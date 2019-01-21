@@ -1,0 +1,218 @@
+section #main_aside {
+    position: relative;
+}
+
+section .notice {
+    position: relative;
+    min-width: 500px;
+    height: 65px;
+    padding-left: 145px;
+    border-bottom: 1px #d7d7d7 solid;
+    color: #353535;
+    background: #f8f8f8;
+}
+
+section .notice_wrap {
+    overflow: hidden;
+    height: 65px;
+    top: 22px;
+}
+
+section .notice h2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    padding: 0 25px 0 36px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 65px;
+    font-size: 18px;
+    color: #d3292c;
+}
+
+section .notice h2 i {
+    position: relative;
+    top: 2px;
+    margin-left: 8px;
+    font-size: 23px;
+}
+
+section .notice_title {
+    top: 22px;
+    overflow: hidden;
+    position: relative;
+    height: 0px;
+}
+
+section .date_wrap {
+    position: absolute;
+    right: 0;
+    top: 0 !important;
+    display: table;
+    height: 64px;
+    background: #f8f8f8;
+    border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
+}
+
+section .date {
+    height: 64px;
+    line-height: 64px;
+    padding: 0 15px;
+    font-size: 15px;
+    color: #808081;
+    cursor: pointer;
+}
+
+section .date em {
+    color: #d3292c;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+section .main_portlet {
+    padding: 15px 5px 38px 15px;
+    position: relative;
+}
+
+section #portlet_main {
+    /* 우측 사이드바
+    padding-right: 204px;
+    */
+    margin-top: -5px;
+}
+
+section .main_menu>ul>li {
+    position: relative;
+    float: left;
+    /* CEO리포트 지우고 변경됨
+    width: 292px;
+    height: 190px;
+     */
+    width: 288px;
+    height: 256px;
+    margin: 0 8px 8px 0;
+    text-align: center;
+    border: 1px #c4c4c4 solid;
+    box-shadow: 0 1px 0 #bbb;
+    background: #fff;
+    border-radius: 10px;
+}
+
+section .main_menu>ul>li>a {
+    width: 154px;
+    padding-top: 54px;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+section .main_menu>ul>li>a>h2 {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    height: 39px;
+    width: 100%;
+    padding-top: 28px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+    color: #333;
+}
+
+section .main_menu>ul>li>a>span {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    margin: -40px 0 0 -55px;
+    width: 110px;
+    height: 110px;
+    display: inline-block;
+    background-image: url(../images/iconset_main.png);
+}
+
+/* 메인 아이콘 */
+section .main_menu>ul>li>a>.mail {
+    background-position: 0 -110px;
+}
+
+section .main_menu>ul>li>a>.approval {
+    background-position: 0 -330px;
+}
+
+section .main_menu>ul>li>a>.board {
+    background-position: 0 -220px;
+}
+
+section .main_menu>ul>li>a>.planner {
+    background-position: 0 -440px;
+}
+
+section .main_menu>ul>li>a>.todo {
+    background-position: -110px -1432px;
+}
+
+section .main_menu>ul>li>a>.message {
+    background-position: -110px -550px;
+}
+
+section .main_menu>ul>li>a>.contact {
+    background-position: 0 -660px;
+}
+
+section .main_menu>ul>li>a>.organization {
+    background-position: 0 -550px;
+}
+
+section .main_menu>ul>li>a>.note {
+    background-position: -110px -769px;
+}
+
+section .main_menu>ul>li>a>.poll {
+    background-position: -110px -440px;
+}
+
+section .main_menu>ul>li>a>.messenger {
+    background-position: -110px -992px;
+}
+
+section .main_menu>ul>li>a>.webdisk {
+    background-position: -112px -2309px;
+}
+
+section .main_menu>ul>li>a>.member_management {
+    background-position: -4px -660px;
+}
+
+section .main_menu>ul>li>a>.work_management {
+    background-position: 0px -880px;
+}
+
+section .main_menu>ul>li>a>.salary_management {
+    background-position: -110px 0;
+}
+
+section .main_menu>ul>li>a>.ceo_report {
+    background-position: -110px -990px;
+}
+
+/* 우측 사이드바
+section #portlet_right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    z-index: 1;
+}
+
+section .private {
+    background: #fff;
+    width: 200px;
+    position: absolute;
+    right: 0;
+    top: 0px;
+    z-index: 10;
+    border-left: 1px solid #c5c5c5;
+    min-height: 1021px;
+}
+*/

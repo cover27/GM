@@ -1,0 +1,53 @@
+body {
+    /*
+    background: #eee url(../images/main_bg.jpg) no-repeat right bottom;
+    */
+    background: #fff;
+}
+
+header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 70;
+    height: 60px;
+    min-width: 1000px;
+    padding: 13px 0 0 18px;
+    border-bottom: 1px solid #999;
+    background: #fff;
+}
+
+aside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding-bottom: 110px;
+    /* 사이드바 미사용으로 인한 크기조정
+    width: 270px;
+     */
+    width: 210px;
+    border-right: 1px solid #e1e1e1;
+    z-index: 15;
+}
+
+section {
+	/* 사이드바 미사용으로 인한 위치조정
+    margin-left: 270px;
+     */
+    margin-left: 210px;
+    padding: 80px 20px 20px 20px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    height: 36px;
+    width: 100%;
+    min-width: 980px;
+    border-top: 1px #a6a6a6 solid;
+    background: #fff;
+    padding: 10px;
+}

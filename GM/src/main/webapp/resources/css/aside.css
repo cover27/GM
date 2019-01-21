@@ -1,0 +1,89 @@
+/* 사용안하는 사이드바
+aside .sidebar {
+    width: 60px;
+    background: #363636;
+    min-height: 933px;
+    height: 100%;
+}
+ */
+ 
+aside .nav {
+    width: 210px;
+    /* 사이드바 미사용으로 인한 위치조정
+    left: 60px;
+     */
+    display: block;
+    position: fixed;
+    top: 60px;
+    z-index: 5;
+    height: 100%;
+    background: #f7f7f7;
+    border-right: 1px #e6e6e6 solid;
+}
+
+aside .nav .nav_title {
+    border-right: 0px;
+    background: #363636;
+    position: relative;
+    line-height: 51px;
+    text-align: center;
+    /*
+    border-left: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e1e1e1;
+    */
+}
+
+aside .nav .nav_title h2 {
+    display: inline-block;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+	padding: 15px 0;
+    vertical-align: middle;
+}
+
+aside .nav .nav_title .category>ul>li {
+    position: relative;
+    display: block;
+    min-height: 42px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+    background: #f7f7f7;
+    text-align: left;
+    border-top: 1px solid #e6e6e6;
+}
+
+aside .nav .nav_title .category>ul>li>span {
+    padding: 0 0 12px 15px;
+}
+
+aside .nav .nav_title .category>ul>li>ul {
+    padding: 0 0 8px;
+    border-bottom: ;
+}
+
+aside .nav .nav_title .category>ul>li>ul>li {
+    display: block;
+    line-height: 18px;
+    padding: 6px 10px 6px 30px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #222;
+    background: url(../images/sub_dot.gif) no-repeat 20px 14px;
+}
+
+aside .nav .nav_title .category>ul>li>ul>li:hover {
+    background: #e1e1e1 url(../images/sub_dot.gif) no-repeat 20px 14px;
+    /* cursor: pointer; */
+}
+
+aside .nav .nav_title .category>ul>li>ul>li>a:hover {
+    opacity: 1;
+}
+
+aside .nav .nav_title .category>ul>li>ul>li>a span {
+    color: #d3292c;
+    font-weight: bold;
+    margin-left: 8px;
+}

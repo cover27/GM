@@ -1,0 +1,107 @@
+section article {
+    border-radius: 20px;
+    /*
+    box-shadow: 10px 10px 50px #333;
+    background: #fff;
+    */
+    width: 100%;
+    min-height: 833px;
+    height: 87%;
+}
+
+section .content_header {
+    position: relative;
+    height: 30px;
+    border-bottom: 1px solid #d1d1d1;
+    background: #fff;
+}
+
+section .content_header h2 {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
+section .content_header .search_wrap {
+    margin: 20px 0;
+    background-color: #f3f3f3;
+    padding: 10px 20px 10px 4px;
+}
+
+section .content_header .search_wrap .form_group {
+    margin-bottom: 0px;
+    position: relative;
+    padding-right: 80px;
+}
+
+section .content_header .search_wrap .form_group table {
+    background: none;
+}
+
+section .content_header .search_wrap .form_group table th {
+    text-align: right;
+    color: #222;
+}
+
+section .content_header .search_wrap .form_group table td {
+    padding: 4px 0 4px 10px;
+}
+
+section .content_header .search_wrap .form_group table td .input_datepicker {
+    text-align: center;
+}
+
+section .content_header .search_wrap .form_group table td .btn_cal {
+    border: 1px #bbb solid;
+    background: #fff !important;
+    height: 27px !important;
+    min-width: 30px;
+    padding: 2px 6px 3px 6px !important;
+    position: relative;
+    top: 4px;
+    left: -5px;
+    border-radius: 0px 3px 3px 0;
+}
+
+section .content_header .search_wrap .form_group table td button i {
+    color: #ff757f;
+    font-size: 15px;
+}
+
+section .content_header .search_wrap .form_group table td button .icon_cal {
+    height: 18px;
+    width: 18px;
+    background: url(../images/icon_calendar.png) 0 0 no-repeat;
+    display: block;
+}
+
+section .content_header .search_wrap .search_btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    text-align: right;
+    margin-top: -14px;
+    padding: 0;
+}
+
+section .content_header .search_wrap .search_btn .btn_search {
+    background: #ff757f !important;
+    padding: 3px 11px 4px;
+    display: inline-block;
+    line-height: 19px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+section .content {
+	margin-top: 158px;
+	min-height: 650px;
+	border: 1px solid #d1d1d1;
+}

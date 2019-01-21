@@ -1,0 +1,132 @@
+header .on {
+    color: #d3292c !important;
+}
+
+header .logo {
+    position: absolute;
+    /* top: 9px; */
+    left: 22px;
+    width: 150px;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+}
+
+header .topmenu {
+    position: absolute;
+    top: 0;
+    left: 220px;
+    right: 455px;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 59px;
+}
+
+header .topmenu>li {
+    padding: 0 30px;
+    display: inline-block;
+}
+
+header .topmenu>li>a {
+    display: inline-block;
+    padding: 15px 3px 0 3px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    color: #222;
+    vertical-align: middle;
+}
+
+header .topmenu>li>a:hover {
+    color: #d3292c;
+    opacity: 1;
+}
+
+/* 일단 안씀 : 모든 메뉴
+header .menu_all {
+    right: 0px;
+    background-color: white;
+    padding-right: 0px !important;
+}
+
+header .menu_all>a {
+    width: 60px;
+    height: 60px;
+    background: url(../images/topmenu_all.png) no-repeat;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+}
+*/
+
+header .etc {
+    position: absolute;
+    right: 20px;
+    top: 17px;
+}
+
+header .etc>.call_center_banner {
+    display: inline-block;
+    margin-top: -17px;
+    margin-right: 10px;
+}
+
+header .etc>.top_notice {
+    position: relative;
+    display: inline-block;
+    margin-top: 2px;
+    padding-right: 18px;
+    vertical-align: middle;
+}
+
+header .etc>.top_notice:after {
+    content:""; position:absolute; top:3px; right:2px; width:1px; height:13px; background:#e5e5e5;
+}
+
+header .etc>.top_notice>li {
+    display: inline-block;
+    margin: 0 6px;
+}
+
+header .etc>.top_notice>li>a {
+    display: inline-block;
+    min-width: 30px;
+    height: 16px;
+    margin: 0 0 2px;
+    padding-left: 23px;
+    vertical-align: middle;
+}
+
+header .etc>.top_notice>li>.mail {
+    background: url(../images/iconset_etc.png) no-repeat 0 0;
+}
+
+header .etc>.top_notice>li>.appr {
+    background: url(../images/iconset_etc.png) no-repeat 0 -100px;
+}
+
+header .etc>.top_notice>li>.todo {
+    background: url(../images/iconset_etc.png) no-repeat 0 -200px;
+}
+
+header .etc>.top_notice>li>.noti {
+    background: url(../images/iconset_etc.png) no-repeat 0 -150px;
+}
+
+header .etc>.top_notice .num {
+    font-size: 13px;
+    font-weight: 600;
+    color: #d3292c;
+}
+
+header .etc .iconset {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+header .etc .iconset a {
+    display: inline-block;
+    margin-left: 16px;
+    text-align: right;
+    font-size: 18px;
+    color: #8a96ad;
+}

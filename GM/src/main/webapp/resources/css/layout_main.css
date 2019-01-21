@@ -1,0 +1,45 @@
+body {
+    background: #eee url(../images/main_bg.jpg) no-repeat right bottom;
+}
+
+header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 70;
+    height: 60px;
+    min-width: 1000px;
+    padding: 13px 0 0 18px;
+    border-bottom: 1px solid #999;
+    background: #fff;
+}
+
+aside {
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    width: 400px;
+    padding-top: 60px;
+    box-shadow: 0 1px 7px #b0b0b0;
+    min-height: 933px;
+    background: #fafafa;
+}
+
+section {
+    margin-left: 400px;
+    padding-top: 60px;
+    min-width: 600px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    height: 36px;
+    width: 100%;
+    min-width: 980px;
+    border-top: 1px #a6a6a6 solid;
+    background: #fff;
+    padding: 10px;
+}
