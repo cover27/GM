@@ -2,6 +2,7 @@ package com.spring.gm.vo;
 
 //게시판 테이블
 public class BoardsVO {
+	
     private int num; //게시판번호
     private int groupId; //그룹번호(FK)
     private String b_name; //게시판이름

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.mvc.pjtcwn.persistence.LoginDAO">
+
+	<select id="idPwdCheck" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM customer_login WHERE id=#{strId} AND pwd=#{strPwd}
+	</select>
+	
+	<insert id="insertMember" parameterType="spring.mvc.pjtcwn.vo.LoginVO">
+		INSERT INTO customer_login (id, pwd, name, credit_card, hp, email, reg_date, birth)
+		VALUES(#{id},#{pwd},#{name},#{credit_card},#{hp},#{email},#{reg_date}, #{birth})
+	</insert>
+	
+	<select id="getMemberInfo" parameterType="String" resultType="spring.mvc.pjtcwn.vo.LoginVO">
+		SELECT * FROM customer_login WHERE id=#{strId}
+	</select>
+	
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*) FROM customer_login WHERE id=#{strId}
+	</select>
+	
+	<update id="updateMemberInfo" parameterType="spring.mvc.pjtcwn.vo.LoginVO">
+		UPDATE customer_login SET pwd=#{pwd}, name=#{name}, hp=#{hp}, credit_card=#{credit_card}, email=#{email}, birth=#{birth} WHERE id=#{id}
+	</update>
+	
+	<delete id="deleteMember" parameterType="java.util.Map">
+		DELETE customer_login WHERE id=#{strId} AND pwd=#{strPwd}
+	</delete>
+	
+</mapper>
