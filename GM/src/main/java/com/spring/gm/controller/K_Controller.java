@@ -19,7 +19,7 @@ public class K_Controller {
 	@Autowired
 	K_Service service;
 	
-	// 로그인 화면
+	// 로그인화면
 	@RequestMapping("/login")
 	public String login(HttpServletRequest req, Model model) {
 		logger.info("URL : login");
