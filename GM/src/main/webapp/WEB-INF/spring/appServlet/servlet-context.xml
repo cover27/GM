@@ -30,7 +30,7 @@
 	
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />									<!-- 컨넥션풀 -->
-		<beans:property name="mapperLocations" value="classpath:mappers/**/*.xml" /> <!-- Mybatis xml의 경로 -->
+		<beans:property name="mapperLocations" value="classpath:mappers/*.xml" /> <!-- Mybatis xml의 경로 -->
 	</beans:bean>
 	
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
