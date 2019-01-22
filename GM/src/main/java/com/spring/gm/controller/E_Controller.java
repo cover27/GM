@@ -19,11 +19,11 @@ public class E_Controller {
 	@Autowired
 	E_Service service;
 	
-	@RequestMapping("/addressGroup")
+	@RequestMapping("/eaddressGroup")
 	public String addressGroup(HttpServletRequest req, Model model) {
 		logger.info("URL : addressGroup");
 		
-		return "/views/E_addressGroup.jsp";
+		return "/views/pages/E_addressGroup";
 	}
 	
 
