@@ -13,12 +13,12 @@
 				<th>*</th>
 				<th>아이디</th>
 				<td><input type="text" name="id" placeholder="아이디를 입력하세요."></td>
-				<td><input type="button"></td>
+				<td><input type="button" name=""></td>
 			</tr>
 			<tr>
 				<th>*</th>
 				<th>비밀번호</th>
-				<td><input type="text" name="id" placeholder="아이디를 입력하세요."></td>
+				<td><input type="text" name="id" placeholder="비밀번호를 입력하세요."></td>
 			</tr>
 		</table>
 	</form>
