@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
-public interface BoardsService {
+public interface D_Service {
 	
-	public void insertBoards(HttpServletRequest request, Model model);
+	public void insertBoards(HttpServletRequest req, Model model);
 	
 }

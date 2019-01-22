@@ -7,15 +7,16 @@ import org.springframework.stereotype.Repository;
 import com.spring.gm.vo.BoardsVO;
 
 @Repository
-public class BoardsDAOImpl implements BoardsDAO{
+public class D_DAOImpl implements D_DAO{
 
 	@Autowired
 	private SqlSession sqlSession;
 	
 	@Override
-	public int insertCnt(BoardsVO boardsVO) {
-	
-		return 0;
+	// 게시판 생성문
+	public int insertBoards(BoardsVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);;
+		return dao.insertBoards(vo);
 	}
 
 }
