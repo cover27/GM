@@ -6,6 +6,6 @@
 	<div class="content_header">
 		<h2>주소록 그룹</h2>
 	</div>
-	
+	주소록 첫페이지
 </article>
 </section>
