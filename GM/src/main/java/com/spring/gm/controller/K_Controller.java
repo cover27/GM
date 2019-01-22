@@ -34,4 +34,16 @@ public class K_Controller {
 		
 		return "pages/K_createAccount";
 	}
+	
+	// 아이디 중복확인
+	@RequestMapping("/confirmId")
+	public String confirmId(HttpServletRequest req, Model model) {
+		logger.info("URL : K_confirmId");
+		
+		service.confirmId(req, model);
+		
+		return "pages/K_confirmId";
+	}
+	
+	
 }
