@@ -17,6 +17,9 @@ public class K_DAOImpl implements K_DAO{
 		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.memberInfo", id);
 	}
 
-	
+	@Override
+	public int registAccount(MemberVO vo) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.registAccount", vo);
+	}
 	
 }

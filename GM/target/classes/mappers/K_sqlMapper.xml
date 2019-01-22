@@ -10,4 +10,12 @@
 		SELECT * FROM member WHERE id = #{id}
 	</select>
 
+	<insert id="registAccount" parameterType="com.spring.gm.vo.MemberVO">
+		INSERT INTO member (id, pwd, name, eng_name, jumin1, jumin2, gender, marry, wdday, frgn, nation, tel, tel_hm, email_in, address, eng_address, depart, enterday, year, sys_rank, del)
+		VALUES (#{id}, #{pwd}, #{name}, #{eng_name}, #{jumin1}, #{jumin2}, 
+		#{gender}, #{marry}, #{wdday}, #{frgn}, #{nation}, #{tel}, #{tel_hm}, 
+		#{email_in}, #{address}, #{eng_address}, #{depart}, #{enterday}, 
+		#{year}, #{sys_rank}, #{del})
+	</insert>
+
 </mapper>

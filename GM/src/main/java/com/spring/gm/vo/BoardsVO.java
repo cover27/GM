@@ -9,7 +9,6 @@ public class BoardsVO {
     private int anon; //익명여부
     private int del; //삭제구분
 	
-    
     public int getNum() {
 		return num;
 	}
