@@ -8,7 +8,6 @@
 			<h2>메일</h2>
 			<%@ include file="/WEB-INF/views/include/content_search.jsp"%>
 		</div>
-		<%@ include file="/WEB-INF/views/pages/sub/content_sub.jsp"%>
 =======
 			<h2>제목</h2>
 		</div>
