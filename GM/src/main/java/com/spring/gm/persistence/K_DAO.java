@@ -6,4 +6,6 @@ public interface K_DAO {
 
 	public MemberVO memberInfo(String id);
 	
+	public int registAccount(MemberVO vo);
+	
 }
