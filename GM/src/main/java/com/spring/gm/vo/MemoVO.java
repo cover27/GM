@@ -1,5 +1,6 @@
 package com.spring.gm.vo;
 
+
 //	메모 (폴더) 테이블
 public class MemoVO {
 	

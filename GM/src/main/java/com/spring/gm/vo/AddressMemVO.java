@@ -1,5 +1,6 @@
 package com.spring.gm.vo;
 
+
 //	주소록 구성원 테이블
 public class AddressMemVO {
 	
