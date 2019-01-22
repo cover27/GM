@@ -19,10 +19,10 @@ public class S_Controller {
 	S_Service service;
 	
 	// 이메일
-	@RequestMapping("/mail")
+	@RequestMapping("/test")
 	public String mail(HttpServletRequest request, Model model) {
-		logger.info("URL : main");
+		logger.info("URL : test");
 		
-		return "pages/mail";
+		return "pages/login";
 	}
 }

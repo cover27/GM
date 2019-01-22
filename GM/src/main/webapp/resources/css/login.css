@@ -1,0 +1,81 @@
+body {
+    background: #eee url(../images/main_bg.jpg) no-repeat right bottom;
+}
+
+.login_wrap {
+	padding-top:60px;
+}
+
+.login_wrap .login_box {
+	position: absolute;
+    width: 482px;
+    height: 360px;
+    top: 60%;
+    left: 50%;
+    margin: -250px 0 0 -252px;
+    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    z-index: 10;
+	background: rgba(54, 54, 54, 0.3);
+}
+
+.login_wrap h2	{
+	padding: 30px 0 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #111;
+    text-align: center;
+    letter-spacing: 1.5px;
+}
+
+.login_wrap .form_area {
+	position: absolute;
+    top: 100px;
+    left: 56px;
+    width: 380px;
+}
+
+.login_wrap .form_area .input_area {
+	position: relative;
+}
+
+.login_wrap .form_area .input_area .i_id {
+	display: inline-block;
+    position: absolute;
+    width: 62px;
+    height: 48px;
+    background: url(../images/ic_login_id.png?v1) no-repeat 6px center;
+}
+
+.login_wrap .form_area .input_area .i_pwd {
+	display: inline-block;
+    position: absolute;
+    width: 62px;
+    height: 48px;
+    background: url(../images/ic_login_pwd.png?v1) no-repeat 6px center;
+}
+
+.login_wrap .form_area .input_area input:focus {
+	background: rgba(254, 255, 196, .8);
+	outline: none;
+}
+
+.login_wrap .form_area input[type="submit"] {
+	display: block;
+    margin: 10px 0 4px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    background: #e30413;
+    border: 1px solid #e30413;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login_wrap .form_area input[type="submit"]:hover {
+	opacity: .8;
+}
