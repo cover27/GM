@@ -9,22 +9,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.spring.gm.service.O_Service;
+import com.spring.gm.service.E_Service;
 
 @Controller
-public class O_Controller {
-
-	private static final Logger logger = LoggerFactory.getLogger(O_Controller.class);	
+public class E_Controller {
+	
+	private static final Logger logger = LoggerFactory.getLogger(E_Controller.class);
 	
 	@Autowired
-	O_Service oservice;
+	E_Service service;
 	
-	@RequestMapping("/o_todo")
-	public String o_todo(HttpServletRequest req, Model model) {
-		logger.info("URL : o_todo");
+	@RequestMapping("/eaddressGroup")
+	public String addressGroup(HttpServletRequest req, Model model) {
+		logger.info("URL : addressGroup");
 		
-		return "pages/o_todo";
+		return "/views/pages/E_addressGroup";
 	}
 	
-	
+
 }
