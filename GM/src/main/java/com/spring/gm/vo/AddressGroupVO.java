@@ -1,6 +1,6 @@
 package com.spring.gm.vo;
 
-// 조직도 (주소록 그룹)
+// 주소록 그룹
 public class AddressGroupVO {
 	
 	private int g_num;		// 주소록 그룹

@@ -4,7 +4,7 @@
 <section>
 <article>
 	<div class="content_header">
-		<h2>메모장test</h2>
+		<h2>주소록 그룹</h2>
 	</div>
 	
 </article>
