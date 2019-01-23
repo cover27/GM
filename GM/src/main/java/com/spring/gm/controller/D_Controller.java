@@ -19,18 +19,28 @@ public class D_Controller {
 	
 	private static final Logger logger = LoggerFactory.getLogger(S_Controller.class);
 	
+	// 게시판 생성 페이지
 	@RequestMapping("D_createBoards")
 	public String createBoards(HttpServletRequest req, Model model) {
 		logger.info("URL : D_createBoards");
-		// 게시판 생성 페이지
+		
 		return "pages/D_createBoards";
 	}
 	
+	//게시판 생성 처리
 	@RequestMapping("D_CreateBoards_pro")
 	public String createBoardsPro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_CreateBoards_pro");
 		
 		service.insertBoards(req, model);
 		return "pages/sub/D_CreateBoards_pro";
+	}
+	
+	//게시판 목록
+	@RequestMapping("D_boardsList")
+	public String boardsList(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardList");
+		
+		return "pages/sub/D_boardsList";
 	}
 }

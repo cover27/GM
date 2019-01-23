@@ -10,6 +10,7 @@
 			errorAlert(insertError);
 		</script>
 	</c:if>
+	
 	<c:if test="${insertCnt != 0}">
 		<script type="text/javascript">
 			alert("생성되었습니다.");

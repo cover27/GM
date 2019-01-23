@@ -8,4 +8,6 @@ public interface D_Service {
 	
 	public void insertBoards(HttpServletRequest req, Model model);
 	
+	public void boardsList(HttpServletRequest req, Model model);
+	
 }
