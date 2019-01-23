@@ -13,10 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class J_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(J_Controller.class);
 	
+<<<<<<< HEAD
 	// 급여기본정보관리(Salary Default Setting)
 	@RequestMapping("/salaryDefaultSetting")
 	public String SalaryDefaultSetting(HttpServletRequest request, Model model) {
 		logger.info("URL : SalaryDefaultSetting");
+=======
+	// 이메일
+	@RequestMapping("/salary")
+	public String salary(HttpServletRequest request, Model model) {
+		logger.info("URL : salary");
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 		
 		return "pages/J_SalaryDefaultSetting";
 	}

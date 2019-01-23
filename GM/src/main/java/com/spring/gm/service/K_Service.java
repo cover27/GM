@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 
 public interface K_Service {
 	
+	public void login(HttpServletRequest req, Model model);
+	
 	public void confirmId(HttpServletRequest req, Model model);
 	
 	public void findCompany(HttpServletRequest req, Model model);
