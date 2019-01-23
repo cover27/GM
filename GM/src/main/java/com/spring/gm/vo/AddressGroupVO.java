@@ -1,5 +1,6 @@
 package com.spring.gm.vo;
 
+
 // 주소록 그룹
 public class AddressGroupVO {
 	
