@@ -152,6 +152,7 @@
 		<form action="registAccount" method="post" name="inputform" onsubmit="return inputCheck();">
 			
 			<input type="hidden" name="hiddenId" value="0">
+			<input type="hidden" name="depart">
 			
 			<table>
 				<tr>
@@ -174,7 +175,7 @@
 					<th>*</th>
 					<th>회사</th>
 					<td>
-						<input type="text" name="depart" readonly>
+						<input type="text" name="depart_name" readonly>
 						<input type="button" value="검색" onclick="findCompany();">
 					</td>
 				</tr>

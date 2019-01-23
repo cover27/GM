@@ -5,5 +5,6 @@
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/b_manage.jsp"%>
 <%@ include file="/WEB-INF/views/pages/sub/O_listTodoContent.jsp"%>
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 
 <!-- 수신 업무 요청 페이지 -->
