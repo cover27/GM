@@ -14,19 +14,19 @@
             <div class="category">
                 <ul>
                 	<li>
-                        <span><a href="e01.jsp">업무 등록</a></span>
+                        <span><a href="O_createSelfTaskView">업무 등록</a></span>
                     </li>
                     <li>
                         <span>To - Do</span>
                         <ul>
-                            <li><a href="e02.jsp">나의 할 일</a></li>
+                            <li><a href="O_listMyTodoView">나의 할 일</a></li>
                         </ul>
                     </li>
                     <li>
                         <span>업무 요청</span>
                         <ul>
                             <li><a href="e03.jsp">내가 한 업무 요청</a></li>
-                            <li><a href="e04.jsp">수신 업무 요청</a></li>
+                            <li><a href="O_listTodoView">수신 업무 요청</a></li>
                             <li><a href="e05.jsp">참조 업무 요청</a></li>
                         </ul>
                     </li>
