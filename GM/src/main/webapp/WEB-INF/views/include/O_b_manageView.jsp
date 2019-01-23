@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 
 <style>
 .content-wrap{
@@ -50,6 +50,10 @@
 	line-height:27px;
 	font-weight:600px;
 }
+.table-search select{
+	float:left;
+	margin-right:5px;
+}
 i.icon.imp{
 	width:13px;
 	height:13px;
@@ -99,6 +103,16 @@ i.icon{
 	border-radius:2px;
 	background:#fff;
 }
+.ui-step-todo span.txt{
+	display: inline-block;
+	position: absolute;
+	top:0;
+	left:-22px;
+	width:60px;
+	text-align:center;
+	font-weight: normal;
+	color:#555;
+}
 .w100{
 	width: 100px !important;
 }
@@ -134,6 +148,10 @@ i.icon{
 	cursor:pointer;
 	white-space:nowrap;
 }
+.table-search .input-search{
+	position:relative;
+	float:left;
+}
 input[type="text"], input[type="password"]{
 	height:27px;
 	line-height:27px;
@@ -141,6 +159,9 @@ input[type="text"], input[type="password"]{
 	border:1px solid #c3c6c9;
 	border-radius:2px;
 	box-shadow:0 3px 3px #f4f4f4 inset;
+}
+.input-datepicker{
+	text-align: center;
 }
 input[type="checkbox"]{
 	margin:0;
@@ -152,15 +173,17 @@ label{
 div{
 	display:block;
 }
+select{
+	height:27px;
+	padding:3px;
+	color:#111;
+	border:1px solid #c3c6c9;
+	border-radius: 2px;
+}
 </style>
 
-<section>
-<article>
-	<div class="content_header">
-		<h2>수신 업무 요청</h2>
-	</div>
-	
-	<div class="content-wrap">	<!-- 수신업무요청의 content 전체 view -->
+
+<div class="content-wrap">	<!-- 수신업무요청의 content 전체 view -->
 		<div class="table-header">		<!-- 수신업무요청의 content 상위 view -->
 			<div class="listinfo">
 				<select id="pagePerRecord" name="pagePerRecord" title=" ">
@@ -233,8 +256,4 @@ div{
 			
 			
 		
-	</div>
-
-
-</article>
-</section>
+</div>

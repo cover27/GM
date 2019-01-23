@@ -4,4 +4,4 @@
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/b_manage.jsp"%>
-<%@ include file="/WEB-INF/views/pages/sub/o_listTodoView.jsp"%>
+<%@ include file="/WEB-INF/views/pages/sub/O_listTodoView.jsp"%>

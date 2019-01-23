@@ -15,7 +15,9 @@
 					<i class="i_pwd"></i>
 					<input type="password" class="input_lg w100p" placeholder="비밀번호를 입력하세요" required />
 				</div>
-				<input type="submit" class="login_btn" />
+				<input type="submit" class="login_btn" value="로그인"/>
+				<input type="button" class="login_btn" value="회원가입" onclick="window.location='createAccount'"/>
+				<input type="button" class="login_btn" value="아이디/비밀번호찾기" onclick="window.location='findAccount'"/>
 			</form>
 		</div>
 	</div>
