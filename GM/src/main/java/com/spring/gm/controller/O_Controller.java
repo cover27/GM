@@ -19,11 +19,11 @@ public class O_Controller {
 	@Autowired
 	O_Service oservice;
 	
-	@RequestMapping("/o_todo")
-	public String o_todo(HttpServletRequest req, Model model) {
-		logger.info("URL : o_todo");
+	@RequestMapping("/O_todo")
+	public String O_todo(HttpServletRequest req, Model model) {
+		logger.info("URL : O_todo");
 		
-		return "pages/o_todo";
+		return "pages/O_todo";
 	}
 	
 	

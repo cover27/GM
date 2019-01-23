@@ -24,9 +24,7 @@ public class E_Controller {
 	@RequestMapping("/memo")
 	public String memo(HttpServletRequest req, Model model) {
 		logger.info("URL : E_memo");
-		
 		service.memoList(req, model);
-		
 		return "/pages/E_memo";
 	}
 	
@@ -34,7 +32,6 @@ public class E_Controller {
 	@RequestMapping("/eaddressGroup")
 	public String addressGroup(HttpServletRequest req, Model model) {
 		logger.info("URL : E_addressGroup");
-		
 		return "/pages/E_addressGroup";
 	}
 	
