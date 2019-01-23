@@ -186,7 +186,7 @@ select{
 <div class="content-wrap">	<!-- 수신업무요청의 content 전체 view -->
 		<div class="table-header">		<!-- 수신업무요청의 content 상위 view -->
 			<div class="listinfo">
-				<select id="pagePerRecord" name="pagePerRecord" title=" ">
+				<select id="pagePerRecord" name="pagePerRecord" title=" ">	
 					<option value="10" selected="selected">10</option>
 					<option value="15">15</option>
 					<option value="20">20</option>
