@@ -30,12 +30,23 @@ public class E_Controller {
 		return "pages/E_memoList";
 	}
 	
+	// 메모 내용
+	@RequestMapping("/memoInfo")
+	public String memoInfo(HttpServletRequest req, Model model) {
+		logger.info("URL : E_memoInfo");
+		
+		return "pages/E_memoInfo";
+	}
+		
 	// 주소록 그룹
 	@RequestMapping("/eaddressGroup")
 	public String addressGroup(HttpServletRequest req, Model model) {
 		logger.info("URL : E_addressGroup");
 		return "pages/E_addressGroup";
 	}
+	
+	
+	
 	
 
 }
