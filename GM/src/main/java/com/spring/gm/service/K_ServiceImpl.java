@@ -1,6 +1,7 @@
 package com.spring.gm.service;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.K_DAO;
+import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
 
 @Service
@@ -34,8 +36,10 @@ public class K_ServiceImpl implements K_Service{
 	
 	@Override
 	public void findCompany(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
+		List<CompaniesVO> list = null;
 		
+		list = dao.findCompany();
+		req.setAttribute("list", list);
 	}
 
 	@Override
@@ -51,7 +55,7 @@ public class K_ServiceImpl implements K_Service{
 		vo.setJumin2(Integer.parseInt(req.getParameter("jumin2")));
 		vo.setGender(Integer.parseInt(req.getParameter("gender")));
 		vo.setMarry(Integer.parseInt(req.getParameter("marry")));
-		if(req.getParameter("wdday") != null) { //미혼이라서 안쓰면 오류남
+		if(Integer.parseInt(req.getParameter("marry")) == 1) { //미혼이라서 안쓰면 오류남
 			Date wdday = Date.valueOf(req.getParameter("wdday"));
 			vo.setWdday(wdday);
 		}

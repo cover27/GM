@@ -18,12 +18,21 @@ public class E_Controller {
 	
 	@Autowired
 	E_Service service;
+
 	
+	// 메모
+	@RequestMapping("/memo")
+	public String memo(HttpServletRequest req, Model model) {
+		logger.info("URL : E_memo");
+		service.memoList(req, model);
+		return "/pages/E_memo";
+	}
+	
+	// 주소록 그룹
 	@RequestMapping("/eaddressGroup")
 	public String addressGroup(HttpServletRequest req, Model model) {
-		logger.info("URL : addressGroup");
-		
-		return "/views/pages/E_addressGroup";
+		logger.info("URL : E_addressGroup");
+		return "/pages/E_addressGroup";
 	}
 	
 

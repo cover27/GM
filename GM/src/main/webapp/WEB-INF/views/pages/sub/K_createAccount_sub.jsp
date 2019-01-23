@@ -82,7 +82,7 @@
 			return false;
 		}
 		
-		var url="confirmId?id="+ document.inputform.id.value;
+		var url="confirmId?id="+ document.inputform.id.value; //confirmId 컨트롤러로 새창화면출력
 		window.open(url, "confirm", "menubar=no, width=300, height=200");
 	}
 	
@@ -91,39 +91,54 @@
 		window.open(url, "confirm", "menubar=no, width=500, height=400");
 	}
 	
-	function nextHp1(){
+	function nextJumin(){
+		if(document.inputform.jumin1.value.length >= 6){
+			document.inputform.jumin2.focus();
+		}
+	}
+	
+	function nextHp1(){ //다입력하면 다음칸으로 넘어가는함수
 		if(document.inputform.hp1.value.length >= 3){
 			document.inputform.hp2.focus();
 		}
 	}
 
-	function nextHp2(){
+	function nextHp2(){ //다입력하면 다음칸으로 넘어가는함수
 		if(document.inputform.hp2.value.length >= 4){
 			document.inputform.hp3.focus();
 		}
 	}
 
-	function nextHp3(){
+	function nextHp3(){ //다입력하면 다음칸으로 넘어가는함수
 		if(document.inputform.hp3.value.length >= 4){
 			document.inputform.hm1.focus();
 		}
 	}
 	
-	function nextHp1(){
+	function nextHm1(){ //다입력하면 다음칸으로 넘어가는함수
 		if(document.inputform.hm1.value.length >= 4){
 			document.inputform.hm2.focus();
 		}
 	}
 
-	function nextHp2(){
+	function nextHm2(){ //다입력하면 다음칸으로 넘어가는함수
 		if(document.inputform.hm2.value.length >= 4){
 			document.inputform.hm3.focus();
 		}
 	}
 
-	function nextHp3(){
+	function nextHm3(){ //다입력하면 다음칸으로 넘어가는함수
 		if(document.inputform.hm3.value.length >= 4){
 			document.inputform.email1.focus();
+		}
+	}
+	
+	function selectEmailChk(){ //이메일 선택하면 자동으로 생성
+		if(document.inputform.email3.value == "0"){
+			document.inputform.email2.value = "";
+			document.inputform.email2.focus();
+		} else{
+			document.inputform.email2.value = document.inputform.email3.value;
 		}
 	}
 	</script>
@@ -153,14 +168,14 @@
 				<tr>
 					<th>*</th>
 					<th>비밀번호확인</th>
-					<td><input type="password" name="repwd" placeholder="비밀번호를 입력하세요."></td>
+					<td><input type="password" name="repwd" placeholder="비밀번호를 확인하세요."></td>
 				</tr>
 				<tr>
 					<th>*</th>
 					<th>회사</th>
 					<td>
 						<input type="text" name="depart" readonly>
-						<input type="button" value="검색" onclick="window.location='findCompany();'">
+						<input type="button" value="검색" onclick="findCompany();">
 					</td>
 				</tr>
 				<tr>
@@ -177,9 +192,9 @@
 					<th>*</th>
 					<th>주민등록번호</th>
 					<td>
-						<input type="text" name="jumin1">
+						<input type="text" name="jumin1" maxlength="6" onkeyup='nextJumin();'>
 						-
-						<input type="password" name="jumin2">
+						<input type="password" name="jumin2" maxlength="7">
 					</td>
 				</tr>
 				<tr>
