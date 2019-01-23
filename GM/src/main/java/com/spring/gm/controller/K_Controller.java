@@ -50,7 +50,7 @@ public class K_Controller {
 	public String findCompany(HttpServletRequest req, Model model) {
 		logger.info("URL : K_findCompany");
 		
-		service.confirmId(req, model);
+		service.findCompany(req, model);
 		
 		return "pages/K_findCompany";
 	}
