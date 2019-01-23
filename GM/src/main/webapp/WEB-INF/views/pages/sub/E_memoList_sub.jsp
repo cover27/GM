@@ -6,6 +6,6 @@
 		<div class="content_header">
 			<h2>제목</h2>
 		</div>
-		여기에 내용 작성
+		상대상대메모메모
 	</article>
 </section>
