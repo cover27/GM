@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class J_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(J_Controller.class);
 	
-	@Autowired
-	
 	// 이메일
 	@RequestMapping("/salary")
 	public String salary(HttpServletRequest request, Model model) {
