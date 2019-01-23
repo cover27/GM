@@ -19,10 +19,20 @@ public class K_Controller {
 	@Autowired
 	K_Service service;
 	
-	// 로그인 화면
-	@RequestMapping("/login")
-	public String login(HttpServletRequest req, Model model) {
-		logger.info("URL : login");
+	// 로그인화면
+	@RequestMapping("/loginInfo")
+	public String loginInfo(HttpServletRequest req, Model model) {
+		logger.info("URL : K_loginInfo");
+		
+		service.login(req, model);
+		
+		return "pages/K_loginInfo";
+	}
+	
+	// 메인화면
+	@RequestMapping("/main")
+	public String main(HttpServletRequest req, Model model) {
+		logger.info("URL : main");
 		
 		return "pages/main";
 	}
