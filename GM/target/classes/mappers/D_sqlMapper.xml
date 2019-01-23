@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.spring.gm.persistence.D_DAO" >
+
+	<insert id="insertBoards" parameterType="com.spring.gm.vo.BoardsVO">
+		INSERT INTO BOARDS (num, groupId, b_name, anon, del) 
+		VALUES(boards_seq.nextval, #{groupId}, #{b_name}, #{anon}, #{del}) 
+	</insert>
+	
+	<select id="getArticleCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM BOARDS
+	</select>
+	
+	<select id="getArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardsVO">
+	<![CDATA[
+		SELECT * FROM (SELECT num, groupId, b_name, anon, del, rownum as rNum FROM (SELECT * FROM Boards ORDER BY num DESC))
+			WHERE  rNum >= #{start} AND rNum <= #{end}
+	]]>
+	</select>
+	
+</mapper>

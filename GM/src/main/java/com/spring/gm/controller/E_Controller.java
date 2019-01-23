@@ -21,18 +21,20 @@ public class E_Controller {
 
 	
 	// 메모
-	@RequestMapping("/memo")
+	@RequestMapping("/memoList")
 	public String memo(HttpServletRequest req, Model model) {
-		logger.info("URL : E_memo");
+		logger.info("URL : E_memoList");
+		/*
 		service.memoList(req, model);
-		return "/pages/E_memo";
+		*/
+		return "pages/E_memoList";
 	}
 	
 	// 주소록 그룹
 	@RequestMapping("/eaddressGroup")
 	public String addressGroup(HttpServletRequest req, Model model) {
 		logger.info("URL : E_addressGroup");
-		return "/pages/E_addressGroup";
+		return "pages/E_addressGroup";
 	}
 	
 

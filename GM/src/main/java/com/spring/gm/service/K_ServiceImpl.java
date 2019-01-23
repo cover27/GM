@@ -20,6 +20,29 @@ public class K_ServiceImpl implements K_Service{
 	K_DAO dao;
 	
 	@Override
+	public void login(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		String pwd = req.getParameter("pwd");
+		MemberVO vo = null;
+		int checkCnt = 0;
+		
+		vo = dao.memberInfo(id); // 아이디로 해당 정보를 불러옴
+		if(vo != null) { //아이디가 존재한다면
+			if(vo.getPwd().equals(pwd)) { // 비밀번호가 맞음 = 로그인 성공
+				checkCnt = 1;
+				req.getSession().setAttribute("loginInfo", vo);
+			} else { // 아이디는 있는데 비밀번호가 틀림 = 로그인 실패
+				checkCnt = 2;
+			}
+		} else { // 아이디 자체가 없음 = 로그인 실패
+			checkCnt = 3;
+		}
+		
+		req.setAttribute("checkCnt", checkCnt);
+		
+	}
+
+	@Override
 	public void confirmId(HttpServletRequest req, Model model) {
 		String id = req.getParameter("id");
 		MemberVO vo = null;

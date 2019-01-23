@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 메모 목록 </title>
+<title>Insert title here</title>
 </head>
 <body>
-내용내용내용
+ㅇㅇㅇㅇ
 </body>
 </html>

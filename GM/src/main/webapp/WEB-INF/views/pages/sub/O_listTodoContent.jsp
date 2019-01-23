@@ -55,7 +55,6 @@ td, th{
 	vertical-align: middle;
 	border-bottom:1px solid #d1d1d1;
 	background:#fff;
-
 }
 .content-list .table > tbody > tr > td{
 	padding:3px 5px;
@@ -169,7 +168,8 @@ tbody {
 			<h2>수신 업무 요청</h2>
 		</div>
 		<div>
-			<%@ include file="/WEB-INF/views/include/O_b_manageView.jsp"%>	<!-- 업무관리에서 쓰이는 상단 -->
+			<!-- 업무관리에서 쓰이는 상단 -->
+			<%@ include file="/WEB-INF/views/include/O_listTodoContentView.jsp"%>	
 			
 			
 			<!-- 업무관리 게시글 나열 list -->
@@ -218,6 +218,8 @@ tbody {
 		                    </tr>
 		                </thead>
 		                
+		                
+		                <!-- 게시글 나열 list -->
 		                <tbody>
                             <tr class="important" style="background: rgb(249, 249, 249);">
                                 <td><input name="chkid" type="checkbox" title="checkbox" value="SPRO,TASK,26211895,U260222"></td>
@@ -292,7 +294,6 @@ tbody {
 		            	</ul>
 		            </div>
 		            <script>pageMoveAction = function(inputName, formId, movePageIndex) { jQuery('input[name=' + inputName + ']', formId).val(movePageIndex); jQuery('input[name=action]', formId).val('pagePerRecord');};</script>
-		
 		           
 		            <input name="pageIndex" type="hidden" value="1" title="현재 페이지">
 		            
