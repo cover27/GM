@@ -9,7 +9,7 @@ public interface D_DAO {
 
 	public int insertBoards(BoardsVO VO); // 게시판 생성문
 	
-	public int getArticleCnt(); //게시판 갯수
+	public int getBoardsArticleCnt(); //게시판 갯수
 	
-	public List<BoardsVO> getArticleList(Map<String, Object> map); //게시판 목록
+	public List<BoardsVO> getBoardsArticleList(Map<String, Object> map); //게시판 목록
 }
