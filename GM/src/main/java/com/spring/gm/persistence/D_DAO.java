@@ -3,6 +3,7 @@ package com.spring.gm.persistence;
 import java.util.List;
 import java.util.Map;
 
+import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.BoardsVO;
 
 public interface D_DAO {
@@ -12,4 +13,8 @@ public interface D_DAO {
 	public int getBoardsArticleCnt(); //게시판 갯수
 	
 	public List<BoardsVO> getBoardsArticleList(Map<String, Object> map); //게시판 목록
+	
+	public int getBoardArticleCnt();	//게시글 갯수
+	
+	public List<BoardListVO> getBoardArticleList(Map<String, Object> map);	//게시글 목록
 }
