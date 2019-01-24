@@ -20,6 +20,22 @@ public class E_Controller {
 	E_Service service;
 
 	
+	// 조직도
+	@RequestMapping("/organizationList")
+	public String organizationList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_organizationList");
+		
+		return "pages/E_organizationList";
+	}
+	
+	// 주소록 그룹
+	@RequestMapping("/eaddressGroup")
+	public String addressGroup(HttpServletRequest req, Model model) {
+		logger.info("URL : E_addressGroup");
+		
+		return "pages/E_addressGroup";
+	}
+	
 	// 메모
 	@RequestMapping("/memoList")
 	public String memo(HttpServletRequest req, Model model) {
@@ -37,14 +53,9 @@ public class E_Controller {
 		
 		return "pages/E_memoInfo";
 	}
-		
-	// 주소록 그룹
-	@RequestMapping("/eaddressGroup")
-	public String addressGroup(HttpServletRequest req, Model model) {
-		logger.info("URL : E_addressGroup");
-		return "pages/E_addressGroup";
-	}
 	
+
+
 	
 	
 	

@@ -12,7 +12,7 @@ public class MemoInfoVO {
 	
 	
 	public int getMemonum() {
-		return memonum;
+		return memonum;	
 	}
 	public void setMemonum(int memonum) {
 		this.memonum = memonum;
