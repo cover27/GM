@@ -55,12 +55,22 @@ public class K_Controller {
 		return "pages/K_confirmId";
 	}
 	
-	// 아이디 중복확인
+	// 회사 찾기(그냥 클릭했을때 검색안했을경우)
 	@RequestMapping("/findCompany")
 	public String findCompany(HttpServletRequest req, Model model) {
 		logger.info("URL : K_findCompany");
 		
 		service.findCompany(req, model);
+		
+		return "pages/K_findCompany";
+	}
+	
+	// 회사 찾기(그냥 클릭했을때 검색안했을경우)
+	@RequestMapping("/searchCompany")
+	public String searchCompany(HttpServletRequest req, Model model) {
+		logger.info("URL : K_searchCompany");
+		
+		service.searchCompany(req, model);
 		
 		return "pages/K_findCompany";
 	}
@@ -75,5 +85,12 @@ public class K_Controller {
 		return "pages/K_registAccount";
 	}
 	
-	
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest req, Model model) {
+		logger.info("URL : logout");
+		
+		req.getSession().removeAttribute("loginInfo");
+		
+		return "pages/login";
+	}
 }

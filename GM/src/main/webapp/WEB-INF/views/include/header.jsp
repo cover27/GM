@@ -64,7 +64,7 @@
                         <span class="blind">통합검색</span>
                     </i>
                 </a>
-                <a href="#">
+                <a href="logout">
                     <i class="fa fa-power-off">
                         <span class="blind">로그아웃</span>
                     </i>

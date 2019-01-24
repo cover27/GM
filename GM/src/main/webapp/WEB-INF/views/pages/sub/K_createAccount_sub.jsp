@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<script src="/gm/resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	// 필수입력항목 다 입력했는지 확인하는 함수
 	function inputCheck(){
@@ -88,7 +89,7 @@
 	
 	function findCompany(){
 		var url="findCompany";
-		window.open(url, "confirm", "menubar=no, width=500, height=400");
+		window.open(url, "confirm", "menubar=no, width=800, height=600");
 	}
 	
 	function nextJumin(){
@@ -141,6 +142,17 @@
 			document.inputform.email2.value = document.inputform.email3.value;
 		}
 	}
+	
+	$(function(){
+		$('#marry').keyup(function(){
+			var marry = $('#marry').val();
+			if(marry == '1'){
+				$('#wedding').css("visibility", "visible");
+			} else{
+				$('#wedding').css("visibility", "hidden");
+			}
+		});
+	});
 	</script>
 
 <section>
@@ -214,13 +226,15 @@
 						<input type="radio" name="marry" value=2>미혼
 					</td>
 				</tr>
-				<tr>
-					<th></th>
-					<th>결혼기념일</th>
-					<td>
-						<input type="date" name="wdday">
-					</td>
-				</tr>
+				<div id="wedding">
+					<tr>
+						<th></th>
+						<th>결혼기념일</th>
+						<td>
+							<input type="date" name="wdday">
+						</td>
+					</tr>
+				</div>
 				<tr>
 					<th>*</th>
 					<th>내외국인 여부</th>

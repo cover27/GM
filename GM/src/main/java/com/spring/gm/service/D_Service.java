@@ -10,4 +10,6 @@ public interface D_Service {
 	
 	public void boardsList(HttpServletRequest req, Model model);
 	
+	public void boardList(HttpServletRequest req, Model model);
+	
 }
