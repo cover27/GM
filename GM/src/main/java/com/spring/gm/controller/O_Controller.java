@@ -20,7 +20,7 @@ public class O_Controller {
 	@Autowired
 	O_Service oservice;
 	
-	//업무관리 클릭 화면 및 수신업무 요청 화면
+	//업무 요청 - 업무관리 클릭 화면 및 수신업무 요청 화면
 	@RequestMapping("/O_listTodoView")
 	public String O_listTodoView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listTodoView");
@@ -36,7 +36,7 @@ public class O_Controller {
 		return "pages/O_createSelfTaskView";
 	}
 	
-	//나의 할 일 화면
+	//TO DO - 나의 할 일 화면
 	@RequestMapping("/O_listMyTodoView")
 	public String O_listMyTodoView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listMyTodoView");
@@ -44,11 +44,72 @@ public class O_Controller {
 		return "pages/O_listMyTodoView";
 	}
 	
-	//내가 한 업무요청 화면
+	//업무 요청 - 내가 한 업무요청 화면
 	@RequestMapping("/O_listPureOrderView")
 	public String O_listPureOrderView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listPureOrderView");
 		
 		return "pages/O_listPureOrderView";
 	}
+	
+	//업무 요청 - 참조 업무 요청 화면
+	@RequestMapping("/O_listSubTodoView")
+	public String O_listSubTodoView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listSubTodoView");
+		
+		return "pages/O_listSubTodoView";
+	}
+	
+	//업무 보고 - 내가 한 업무 보고 화면
+	@RequestMapping("/O_listPureOrderReportView")
+	public String O_listPureOrderReportView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listPureOrderReportView");
+		
+		return "pages/O_listPureOrderReportView";
+	}
+	
+	//업무 보고 - 수신 업무 보고
+	@RequestMapping("/O_listTodoReportView")
+	public String O_listTodoReportView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listTodoReportView");
+		
+		return "pages/O_listTodoReportView";
+	}
+	
+	//업무보고 - 참조 업무 보고
+	@RequestMapping("/O_listSubTodoReportView")
+	public String O_listSubTodoReportView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listSubTodoReportView");
+		
+		return "pages/O_listSubTodoReportView";
+	}
+	
+	//임시 저장함
+	@RequestMapping("/O_listTempTaskView")
+	public String O_listTempTaskView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listTempTaskView");
+		
+		return "pages/O_listTempTaskView";
+	}
+	
+	//업무 보관함
+	@RequestMapping("/O_listMenuStoredTaskView")
+	public String O_listMenuStoredTaskView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listMenuStoredTaskView");
+		
+		return "pages/O_listMenuStoredTaskView";
+	}
+	
+	
+	//관리자 메뉴 - 업무 문서 관리
+	@RequestMapping("/O_listAdminDocManagement")
+	public String O_listAdminDocManagement(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listAdminDocManagement");
+		
+		return "pages/O_listAdminDocManagement";
+	}
+	
+	
+	
+	
 }

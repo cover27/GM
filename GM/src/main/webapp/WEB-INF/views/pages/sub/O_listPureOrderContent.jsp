@@ -177,7 +177,6 @@ tbody {
 		<%@ include file="/WEB-INF/views/include/O_listPureOrderContentView.jsp" %>
 		
 		<!-- 내가 한 업무요청 게시글 나열 list -->
-		<div class="content-list">	
 				<div class="content-list">
 		            <table class="table table-striped" id="tblList">
 		                <caption></caption>
@@ -300,7 +299,6 @@ tbody {
 		                <button type="button" class="btn btn-color7 br" onclick="deleteTask();">삭제</button>
 		            </div>
 	        </div>
-		</div>
 		
 	</article>
 </section>
