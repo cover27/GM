@@ -183,8 +183,8 @@ select{
 </style>
 
 
-<div class="content-wrap">	<!-- 내가 한 업무요청의 content 전체 view -->
-		<div class="table-header">		<!-- 내가 한 업무요청의 content 상위 view -->
+<div class="content-wrap">	<!-- 임시 저장함의 content 전체 view -->
+		<div class="table-header">		<!-- 임시 저장함의 content 상위 view -->
 			<div class="listinfo">
 				<select id="pagePerRecord" name="pagePerRecord" title=" ">	
 					<option value="10" selected="selected">10</option>
@@ -197,31 +197,6 @@ select{
 			</div>
 			
 			<div class="table-search" style="right:262px;">
-				
-				<div class="input-unread w180">
-                     <div class="ui-step-wrap">
-                         <div class="ui-step-todo">
-                             <div class="step-bar"></div>
-                             <!-- <label for="statusReject" style="left: 0%;">반려
-                             	<input type="checkbox" name="statusCode" title="반려" id="statusReject" value="20" checked="">
-                             	<span class="box"></span><span class="txt">반려</span>
-                             </label> -->
-                             <label for="statusDelay" style="left: 0%;"><!-- 지연 -->
-	                             <input type="checkbox" name="statusCode" title="지연" id="statusDelay" value="11" checked="">
-	                             <span class="box"></span><span class="txt">지연</span>
-                             </label>
-                             <label for="statusNotComplete" style="left: 50%;"><!-- 미완료 -->
-	                             <input type="checkbox" name="statusCode" title="미완료" id="statusNotComplete" value="12" checked="">
-	                             <span class="box"></span><span class="txt">미완료</span>
-                             </label>
-                             <label for="statusComplete" style="left: 100%;"><!-- 완료 -->
-	                             <input type="checkbox" name="statusCode" title="완료" id="statusComplete" value="1" checked="">
-	                             <span class="box"></span><span class="txt">완료</span>
-                             </label>
-                         </div>
-                    </div>
-                </div>
-				
 				<input id="startDate" type="text" title="날짜시작" name="" class="input-datepicker w100" placeholder="From" value="" readonly="readonly">
 				<button type="button" class="btn btn-color7 br tbl-inner">
 					<i class="icon calendar"></i>
@@ -234,16 +209,10 @@ select{
 			</div>
 			
 			<div class="table-search">
-				<select name="searchColumn" title="검색타입" aria-invalid="false" class="valid">
-                        <option value="searchUser">담당자</option>
-                        <option value="searchTitle">제목</option>
-                        <option value="searchTContents">업무내용</option>
-                </select>
-				
 				<div class="input-search">
-                    <input name="searchWord" value="" type="text" class="w150 aTitle" title="검색어" placeholder="검색어">
-                    <button id="searchMessageListButton" class="btn btn-color5"><i class="fa fa-search"></i><span>검색</span></button>
-                </div>
+					<input name="searchWord" value="" type="text" class="w150 aTitle valid" title="검색어" placeholder="제목" aria-invalid="false">
+	                <button id="searchMessageListButton" class="btn btn-color5"><i class="fa fa-search"></i><span>검색</span></button>
+	            </div>
 			</div>
 		</div>	
 			
