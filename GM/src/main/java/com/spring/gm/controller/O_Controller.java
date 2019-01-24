@@ -92,12 +92,22 @@ public class O_Controller {
 		return "pages/O_listTempTaskView";
 	}
 	
+	//업무 보관함
+	@RequestMapping("/O_listMenuStoredTaskView")
+	public String O_listMenuStoredTaskView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listMenuStoredTaskView");
+		
+		return "pages/O_listMenuStoredTaskView";
+	}
 	
 	
-	
-	
-	
-	
+	//관리자 메뉴 - 업무 문서 관리
+	@RequestMapping("/O_listAdminDocManagement")
+	public String O_listAdminDocManagement(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listAdminDocManagement");
+		
+		return "pages/O_listAdminDocManagement";
+	}
 	
 	
 	
