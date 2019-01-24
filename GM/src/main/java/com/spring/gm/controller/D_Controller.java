@@ -50,6 +50,6 @@ public class D_Controller {
 	public String boardList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardlist");
 		
-		return "page/D_boardList";
+		return "pages/D_boardList";
 	}
 }

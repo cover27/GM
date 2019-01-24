@@ -62,7 +62,7 @@ public class D_ServiceImpl implements D_Service{
 		
 		int groupId = 0;
 	
-		cnt = dao.getArticleCnt();
+		cnt = dao.getBoardsArticleCnt();
 		
 		System.out.println("cnt : " + cnt);
 		
@@ -98,7 +98,7 @@ public class D_ServiceImpl implements D_Service{
 			map.put("start", start);
 			map.put("end", end);
 			
-			List<BoardsVO> dtos = dao.getArticleList(map);
+			List<BoardsVO> dtos = dao.getBoardsArticleList(map);
 			
 			req.setAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
 		}
