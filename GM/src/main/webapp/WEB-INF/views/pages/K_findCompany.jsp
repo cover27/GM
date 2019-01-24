@@ -4,7 +4,12 @@
 <html>
 <script type="text/javascript">
 
-	function setCompany(company){
+	function setCompany1(company){
+		opener.document.inputform.depart_name.value=company;
+		self.close();
+	}
+	
+	function setCompany2(company){
 		opener.document.inputform.depart.value=company;
 		self.close();
 	}
@@ -23,7 +28,7 @@
 		</tr>
 		<c:forEach var='dto' items='${list}'>
 			<tr>
-				<th><input type="button" value="선택" onclick="setCompany('${dto.c_name}');"></th>
+				<th><input type="button" value="선택" onclick="setCompany1('${dto.c_name}'); setCompany2('${dto.company}');"></th>
 				<th>${dto.c_name }</th>
 				<th>${dto.c_address }</th>
 				<th>${dto.c_number }</th>

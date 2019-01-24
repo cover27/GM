@@ -16,14 +16,14 @@
                 	<li>
                 		<span>급상여관리</span>
                 		<ul>
-                			<li><a href="o01.jsp">급여 기본정보 관리</a></li>
-                			<li><a href="o02.jsp">기본수당 외 수당 관리</a></li>
-                			<li><a href="o03.jsp">근태/급여/상여/연차마감 관리</a></li>
-                			<li><a href="o04.jsp">급여 계산</a></li>
-                			<li><a href="o05.jsp">급여 조회</a></li>
-                			<li><a href="o06.jsp">상여 계산</a></li>
-                			<li><a href="o07.jsp">상여 조회</a></li>
-                			<li><a href="o08.jsp">급여 대장</a></li>
+                			<li><a href="SalaryDefaultSetting">급여 기본정보 관리</a></li>
+                			<li><a href="BasicAllowanceManagement">기본수당 외 수당 관리</a></li>
+                			<li><a href="TimeAttendanceSalaryBonusAnnual">근태/급여/상여/연차마감 관리</a></li>
+                			<li><a href="SalaryCalculation">급여 계산</a></li>
+                			<li><a href="PayrollInquiry">급여 조회</a></li>
+                			<li><a href="BonusCalculation">상여 계산</a></li>
+                			<li><a href="BonusInquiry">상여 조회</a></li>
+                			<li><a href="Payroll">급여 대장</a></li>
                 		</ul>
                 	</li>
                 	<li>

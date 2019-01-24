@@ -188,7 +188,6 @@ select{
 			<div class="listinfo">
 				<select id="pagePerRecord" name="pagePerRecord" title=" ">	
 					<option value="10" selected="selected">10</option>
-					<option value="15">15</option>
 					<option value="20">20</option>
 					<option value="30">30</option>
 					<option value="40">40</option>

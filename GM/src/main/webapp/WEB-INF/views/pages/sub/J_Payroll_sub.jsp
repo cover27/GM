@@ -4,8 +4,8 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2>모든 메모</h2>
+			<h2>급여 대장</h2>
 		</div>
-		내용
+		여기에 내용 작성
 	</article>
 </section>
