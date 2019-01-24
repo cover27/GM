@@ -5,8 +5,8 @@
 		<div class="content_header">
 			<h2>게시판 생성</h2>
 		</div>
-	<form action="D_CreateBoards_pro" method="post" name="D_CreateBoards">
-			<div class="content">
+		
+			<form action="D_CreateBoards_pro" method="post" name="D_CreateBoards">
 				<table>
 					<tr>
 						<th> 그룹 번호</th>
@@ -37,8 +37,8 @@
 									onclick="window.history.back()">				
 						</th>
 					</tr>		
-				</table>										
-			</div>
-		</form>
+				</table>
+			</form>
+			
 	</article>
 </section>

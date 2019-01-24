@@ -59,12 +59,12 @@ public class D_ServiceImpl implements D_Service{
 		int pageCount = 0;		// 페이지 갯수
 		int startPage = 0;		// 시작 페이지
 		int endPage = 0;		// 마지막 페이지
-
+		
+		int groupId = 0;
 	
-		// 5단계-1. 글갯수 구하기
 		cnt = dao.getArticleCnt();
 		
-		System.out.println("cnt : " + cnt);  // 먼저 테이블에 30건을 insert
+		System.out.println("cnt : " + cnt);
 		
 		pageNum = req.getParameter("pageNum");
 		
@@ -72,19 +72,13 @@ public class D_ServiceImpl implements D_Service{
 			pageNum = "1";	// 첫페이지를 1페이지로 지정
 		}
 		
-		// 글 30건 기준
-		currentPage = Integer.parseInt(pageNum); // 현재 페이지 : 1
+		currentPage = Integer.parseInt(pageNum);
 		System.out.println("currentPage : " + currentPage);
 		
-		// 페이지 갯수 6 = (30 / 5) + (0)
 		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
 		
-		// 현재 페이지 시작 글번호 1 (페이지별)
-		// 1 =  (1 - 1) * 5 + 1
 		start = (currentPage - 1) * pageSize + 1; 
 		
-		// 현재 페이지 마지막 글번호 (페이지별)
-		// 5 = 1 + 5 - 1;
 		end = start + pageSize - 1;
 		
 		System.out.println("start : " + start);
@@ -92,19 +86,17 @@ public class D_ServiceImpl implements D_Service{
 		
 		if(end > cnt) end = cnt;
 		
-		// 출력용 글번호
-		// 30 = 30 - (1 - 1) * 5
 		number = cnt - (currentPage - 1) * pageSize;  // 출력용 글번호
 		
 		System.out.println("number : " + number);
 		System.out.println("pageSize : " + pageSize);
 		
 		if(cnt > 0) {
-			// 5-2. 게시글 목록 조회
+			//게시판 목록 조회
 			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("groupId", groupId);
 			map.put("start", start);
 			map.put("end", end);
-			//ArrayList<boardVO> dtos = dao.getArticleList(start, end);
 			
 			List<BoardsVO> dtos = dao.getArticleList(map);
 			
