@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
 <style>
 .content-list{
 	border-top:1px solid #d1d1d1;
@@ -157,6 +156,9 @@ tbody {
 .todo-cate-box.color3, .todo-cate-box1.color3, .todo-cate-box3.color3, .todo-cate-box4.color3{
 	background:#f07070;
 }
+.todo-cate-box.color2, .todo-cate-box1.color2, .todo-cate-box3.color2, .todo-cate-box4.color2{
+	background:#59c2e6;
+}
 .ellipsis{
 	text-overflow:ellipsis;
 	white-space:nowrap;
@@ -165,17 +167,16 @@ tbody {
 }
 </style>
 
-
 <section>
 	<article>
 		<div class="content_header">
-			<h2>나의 할일</h2>
+			<h2>내가 한 업무요청</h2>
 		</div>
 		
-		<!-- 나의 할 일 상단  -->
-		<%@ include file="/WEB-INF/views/include/O_listMyTodoContentView.jsp" %>
+		<!-- 내가 한 업무요청 상단  -->
+		<%@ include file="/WEB-INF/views/include/O_listPureOrderContentView.jsp" %>
 		
-		<!-- 나의 할 일 게시글 나열 list -->
+		<!-- 내가 한 업무요청 게시글 나열 list -->
 		<div class="content-list">	
 				<div class="content-list">
 		            <table class="table table-striped" id="tblList">
@@ -183,31 +184,27 @@ tbody {
 		                <colgroup>
 		                    <col style="width: 40px;">
 		                    <col style="width: 40px;">
-		                    <col style="width: 50px;">
-		                    <col style="width: 140px;">
+		                    <col style="width: 120px;">
+		                    <!-- <col style="width: 140px;"> -->
 		                    <col style="min-width: 200px;">
 		                    <col style="width: 100px;">
-		                    <!-- <col style="width: 90px;"> -->
-		                    <col style="width: 120px;">
 		                    <col style="width: 100px;">
-		                    <!-- <col style="width: 100px;"> -->
+		                    <col style="width: 100px;">
+		                    <col style="width: 100px;">
+		                    <col style="width: 100px;">
 		                </colgroup>
+		               
 		                <thead>
 		                    <tr>
 		                        <th scope="col"><input id="checkAll" name="" onclick="selectAllTodo()" type="checkbox" value="" title="checkAll"></th>
 		                        <th scope="col">번호</th>
-		                        <th scope="col">
-		                            <a data-sortcolumn="PRIORITY" href="#">중요<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
-		                        </th>
 		                        <th scope="col">
 		                            <a data-sortcolumn="FOLDER" href="#">업무 보관함<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
 		                        </th>
 		                        <th scope="col">
 		                            <a data-sortcolumn="TITLE" href="#">제목<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
 		                        </th>
-<!-- 		                        <th scope="col">
-		                            <a data-sortcolumn="REGISTERNAME" href="#">요청자<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
-		                        </th> -->
+		                        <th scope="col">담당자</th>
 		                        <th scope="col">
 		                            <a data-sortcolumn="INSERTDATE" href="#">요청일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
 		                        </th>
@@ -217,47 +214,43 @@ tbody {
 		                        <th scope="col">
 		                            <a data-sortcolumn="TODOSTATUS" href="#">상태<i class="fa fa-caret-up active"><span class="blind">오름차순</span></i></a>
 		                        </th>
-		                        <!-- <th scope="col">확인</th> -->
+		                        <th scope="col">확인</th>
 		                    </tr>
 		                </thead>
 		                
 		                
 		                <!-- 게시글 나열 list -->
 		                <tbody>
-                            <tr class="important" style="background: rgb(249, 249, 249);">
-                                <td><input name="chkid" type="checkbox" title="checkbox" value="SPRO,TASK,26211895,U260222"></td>
-                                <td>1</td>
+                            <tr style="background: rgb(249, 249, 249);">
                                 <td>
-                                    <a href="javascript:void(0);" onclick="addPriority(this, 'SPRO', 'TASK', '26211895', 'U260222');return false;">
-                                        <i class="icon nonimp"></i>
-                                        <span class="blind">중요</span>
-                                    </a>
+                                    <input name="chkid" type="checkbox" title="checkbox" value="26904787" data-status="A1">
                                 </td>
+                                <td>1</td>
                                 <td class="ellipsis">
-                                	업무보관함
+                                    
                                 </td>
                                 <td class="text-left">
-                                	<div class="ellipsis" title="업무분담에 대한 자신의 의견 생각하기">
-                                		<a href="javascript:void(0);" onclick="goURL('Y', '', '/groupware/todo/readTodoView.do', 'SPRO', 'TASK', '26211895', 'U260222')">업무분담에 대한 자신의 의견 생각하기</a> 
-                                	</div>
+                                    <div class="ellipsis">
+                                        <a href="javascript:void(0);" onclick="goURL('26904787')" title="테스트">테스트</a> 
+                                    </div>
                                 </td>
-                                <!-- <td>
-                                    <a title="손장훈" href="javascript:void(0);" onclick="spro.showUserContextMenu(this, 'U260235', 'bottom')">손장훈</a>
-                                </td> -->
-                                <td>요청날짜</td>
-                                <td>마감날짜</td>
                                 <td>
-                                    <a href="javascript:void(0);" onclick="todoStatusPopup('26211895', '업무분담에 대한 자신의 의견 생각하기');">
-                                    	<span class="todo-cate-box1 color3">지연+26</span>
+                                    <div class="ellipsis" title="손장훈">손장훈</div>
+                                </td>
+                                <td>2019.01.15</td>
+                                <td>2019.01.23</td>
+                                <td>
+                                    <a href="javascript:void(0);" onclick="todoStatusPopup('26904787', '테스트', 'A1', '0', '');">
+                                    	<span class="todo-cate-box1 color2">미완료</span>
                                     </a>
                                 </td>
-                                <!-- <td>
-                                    <a href="javascript:void(0);" onclick="todoReadStatusPopup('26211895', '업무분담에 대한 자신의 의견 생각하기', '', '0', '26');">
+                                <td>
+                                    <a href="javascript:void(0);" onclick="todoReadStatusPopup('26904787', '테스트', 'A1', '0', '');">
                                         <span class="todo-cate-buuton">읽음확인</span>
                                     </a>
-                                </td> -->
+                                </td>
                             </tr>
-		                </tbody>
+                		</tbody>
 		            </table>
 		            
 		            
@@ -308,8 +301,6 @@ tbody {
 		            </div>
 	        </div>
 		</div>
-
-
-
+		
 	</article>
 </section>

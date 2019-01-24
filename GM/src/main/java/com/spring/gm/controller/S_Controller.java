@@ -23,7 +23,7 @@ public class S_Controller {
 	public String mail(HttpServletRequest request, Model model) {
 		logger.info("URL : mail");
 		
-		return "pages/s_mail";
+		return "pages/S_mail";
 	}
 	
 	// 이메일
