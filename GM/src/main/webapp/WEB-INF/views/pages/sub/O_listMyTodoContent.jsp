@@ -176,7 +176,6 @@ tbody {
 		<%@ include file="/WEB-INF/views/include/O_listMyTodoContentView.jsp" %>
 		
 		<!-- 나의 할 일 게시글 나열 list -->
-		<div class="content-list">	
 				<div class="content-list">
 		            <table class="table table-striped" id="tblList">
 		                <caption></caption>
@@ -307,7 +306,6 @@ tbody {
 		                <button type="button" class="btn btn-color7 br" onclick="deleteTask();">삭제</button>
 		            </div>
 	        </div>
-		</div>
 
 
 

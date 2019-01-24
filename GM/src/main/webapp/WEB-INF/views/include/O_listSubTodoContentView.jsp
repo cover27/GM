@@ -183,8 +183,8 @@ select{
 </style>
 
 
-<div class="content-wrap">	<!-- 내가 한 업무요청의 content 전체 view -->
-		<div class="table-header">		<!-- 내가 한 업무요청의 content 상위 view -->
+<div class="content-wrap">	<!-- 참조 업무 요청의 content 전체 view -->
+		<div class="table-header">		<!-- 참조 업무 요청의 content 상위 view -->
 			<div class="listinfo">
 				<select id="pagePerRecord" name="pagePerRecord" title=" ">	
 					<option value="10" selected="selected">10</option>
@@ -197,7 +197,6 @@ select{
 			</div>
 			
 			<div class="table-search" style="right:262px;">
-				
 				<div class="input-unread w180">
                      <div class="ui-step-wrap">
                          <div class="ui-step-todo">
@@ -234,11 +233,11 @@ select{
 			</div>
 			
 			<div class="table-search">
-				<select name="searchColumn" title="검색타입" aria-invalid="false" class="valid">
-                        <option value="searchUser">담당자</option>
+				<select name="searchColumn" title="검색타입">
+                        <option value="searchUser" selected="selected">요청자</option>
                         <option value="searchTitle">제목</option>
                         <option value="searchTContents">업무내용</option>
-                </select>
+				</select>
 				
 				<div class="input-search">
                     <input name="searchWord" value="" type="text" class="w150 aTitle" title="검색어" placeholder="검색어">
