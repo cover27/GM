@@ -156,9 +156,6 @@ tbody {
 .todo-cate-box.color3, .todo-cate-box1.color3, .todo-cate-box3.color3, .todo-cate-box4.color3{
 	background:#f07070;
 }
-.todo-cate-box.color2, .todo-cate-box1.color2, .todo-cate-box3.color2, .todo-cate-box4.color2{
-	background:#59c2e6;
-}
 .ellipsis{
 	text-overflow:ellipsis;
 	white-space:nowrap;
@@ -170,13 +167,15 @@ tbody {
 <section>
 	<article>
 		<div class="content_header">
-			<h2>내가 한 업무요청</h2>
+			<h2>내가 한 업무 보고</h2>
 		</div>
 		
-		<!-- 내가 한 업무요청 상단  -->
-		<%@ include file="/WEB-INF/views/include/O_listPureOrderContentView.jsp" %>
-		
-		<!-- 내가 한 업무요청 게시글 나열 list -->
+		<div>
+			<!-- 내가 한 업무 보고에서 쓰이는 상단 -->
+			<%@ include file="/WEB-INF/views/include/O_listPureOrderReportContentView.jsp"%>	
+			
+			
+			<!-- 내가 한 업무 보고 게시글 나열 list -->
 				<div class="content-list">
 		            <table class="table table-striped" id="tblList">
 		                <caption></caption>
@@ -184,13 +183,13 @@ tbody {
 		                    <col style="width: 40px;">
 		                    <col style="width: 40px;">
 		                    <col style="width: 120px;">
-		                    <!-- <col style="width: 140px;"> -->
+		                    <col style="width: 120px;">
 		                    <col style="min-width: 200px;">
 		                    <col style="width: 100px;">
 		                    <col style="width: 100px;">
 		                    <col style="width: 100px;">
 		                    <col style="width: 100px;">
-		                    <col style="width: 100px;">
+		                    <!-- <col style="width: 140px;"> -->
 		                </colgroup>
 		               
 		                <thead>
@@ -201,14 +200,14 @@ tbody {
 		                            <a data-sortcolumn="FOLDER" href="#">업무 보관함<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
 		                        </th>
 		                        <th scope="col">
+		                            <a data-sortcolumn="CATEGORY" href="#">업무 보고 유형<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+		                        </th>
+		                        <th scope="col">
 		                            <a data-sortcolumn="TITLE" href="#">제목<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
 		                        </th>
-		                        <th scope="col">담당자</th>
+		                        <th scope="col">수신자</th>
 		                        <th scope="col">
-		                            <a data-sortcolumn="INSERTDATE" href="#">요청일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
-		                        </th>
-		                        <th scope="col">
-		                            <a data-sortcolumn="DUEDATE" href="#">마감일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+		                            <a data-sortcolumn="STARTDATE" href="#">요청일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
 		                        </th>
 		                        <th scope="col">
 		                            <a data-sortcolumn="TODOSTATUS" href="#">상태<i class="fa fa-caret-up active"><span class="blind">오름차순</span></i></a>
@@ -222,36 +221,38 @@ tbody {
 		                <tbody>
                             <tr style="background: rgb(249, 249, 249);">
                                 <td>
-                                    <input name="chkid" type="checkbox" title="checkbox" value="26904787" data-status="A1">
+                                    <input name="chkid" type="checkbox" title="checkbox" value="26950244">
                                 </td>
                                 <td>1</td>
+		                        <td class="ellipsis">
+		                            
+		                        </td>
                                 <td class="ellipsis">
                                     
                                 </td>
                                 <td class="text-left">
                                     <div class="ellipsis">
-                                        <a href="javascript:void(0);" onclick="goURL('26904787')" title="테스트">테스트</a> 
+                                        <a href="javascript:void(0);" onclick="goURL('26950244')" title="업무보고">업무보고</a> 
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="ellipsis" title="손장훈">손장훈</div>
+                                    <div class="ellipsis" title="오정">오정
+                                    </div>
                                 </td>
-                                <td>2019.01.15</td>
-                                <td>2019.01.23</td>
+                                <td>2019.01.16</td>
                                 <td>
-                                    <a href="javascript:void(0);" onclick="todoStatusPopup('26904787', '테스트', 'A1', '0', '');">
-                                    	<span class="todo-cate-box1 color2">미완료</span>
-                                    </a>
+                                    <a href="javascript:void(0);" onclick="todoStatusPopup('26950244', '업무보고', 'B', '', '');">
+		                                        <span class="todo-cate-box2">승인완료</span>
+		                            </a>
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0);" onclick="todoReadStatusPopup('26904787', '테스트', 'A1', '0', '');">
+                                    <a href="javascript:void(0);" onclick="todoReadStatusPopup('26950244', '업무보고', 'B', '0', '');">
                                         <span class="todo-cate-buuton">읽음확인</span>
                                     </a>
                                 </td>
                             </tr>
-                		</tbody>
+               			 </tbody>
 		            </table>
-		            
 		            
 		            
 		            
@@ -291,14 +292,15 @@ tbody {
 		            <script>pageMoveAction = function(inputName, formId, movePageIndex) { jQuery('input[name=' + inputName + ']', formId).val(movePageIndex); jQuery('input[name=action]', formId).val('pagePerRecord');};</script>
 		           
 		            <input name="pageIndex" type="hidden" value="1" title="현재 페이지">
-		            
 		            <div class="btn-wrap">
-		                <button type="button" class="btn btn-color5 br" onclick="createTask();">업무 등록</button>
+		                <button type="button" class="btn btn-color5 br" onclick="createTask()">업무 등록</button>
 		                <button type="button" class="btn btn-color7 br" onclick="createTaskFolderView();">보관함 지정</button>
-		                <button type="button" class="btn btn-color7 br" onclick="autoComplete();">업무완료</button>
 		                <button type="button" class="btn btn-color7 br" onclick="deleteTask();">삭제</button>
 		            </div>
 	        </div>
-		
+		</div>
+			
+			
+			
 	</article>
 </section>

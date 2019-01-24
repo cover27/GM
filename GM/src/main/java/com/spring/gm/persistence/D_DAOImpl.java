@@ -23,15 +23,17 @@ public class D_DAOImpl implements D_DAO{
 	}
 
 	@Override
-	public int getArticleCnt() {
+	// 게시판 갯수
+	public int getBoardsArticleCnt() {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.getArticleCnt();
+		return dao.getBoardsArticleCnt();
 	}
 
 	@Override
-	public List<BoardsVO> getArticleList(Map<String, Object> map) {
+	// 게시판 목록
+	public List<BoardsVO> getBoardsArticleList(Map<String, Object> map) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.getArticleList(map);
+		return dao.getBoardsArticleList(map);
 	}
 	
 	

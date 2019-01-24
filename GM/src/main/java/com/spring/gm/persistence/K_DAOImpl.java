@@ -24,6 +24,11 @@ public class K_DAOImpl implements K_DAO{
 	public List<CompaniesVO> findCompany() {
 		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.findCompany");
 	}
+	
+	@Override
+	public List<CompaniesVO> searchCompany(String keyword) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.searchCompany", keyword);
+	}
 
 	@Override
 	public int registAccount(MemberVO vo) {

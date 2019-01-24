@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="../../setting.jsp"%>
 <style>
 	table, tr, td, th{
 		border:1px solid;
@@ -74,50 +75,8 @@
 				
 				</div>
 				<table cellpadding="0" cellspacing="0" class="hdr" style="width: 1197px; table-layout: fixed; margin-right: 20px; padding-right: 20px;">
-					<tbody>
-						<tr style="height: auto;">
-							<th style="height: 0px; width: 119px;"></th>
-							<th style="height: 0px; width: 120px;"></th>
-							<th style="height: 0px; width: 119px;"></th>
-							<th style="height: 0px; width: 144px;"></th>
-							<th style="height: 0px; width: 132px;"></th>
-							<th style="height: 0px; width: 155px;"></th>
-							<th style="height: 0px; width: 407px;"></th>
-							<th style="height: 0px; width: 1px;"></th>
-							</tr><tr>
-							<td style="text-align: center; cursor: default;">
-								<div class="hdrcell" id="leftGrid_0">사원번호</div>
-							</td>
-							<td style="text-align: center; cursor: default;">
-								<div class="hdrcell" id="leftGrid_1">성명</div>
-							</td>
-							<td style="text-align: center; cursor: default;">
-								<div class="hdrcell" id="leftGrid_2">직급</div>
-							</td>
-							<td style="text-align: center; cursor: default;">
-								<div class="hdrcell" id="leftGrid_3">부서</div>
-							</td>
-							<td style="text-align: center; cursor: default;">
-								<div class="hdrcell" id="leftGrid_4">입사일자</div>
-							</td>
-							<td style="text-align: center; cursor: default;">
-								<div class="hdrcell" id="leftGrid_5">핸드폰</div>
-							</td>
-							<td style="text-align: center; cursor: default;">
-								<div class="hdrcell" id="leftGrid_6">E-MAIL</div>
-							</td>
-							<td style="text-align: center;">
-								<div class="hdrcell" id="leftGrid_7">emplNo</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="objbox" style="width: 100%; overflow: hidden auto; height: 278px;">
-				<table cellpadding="0" cellspacing="0" class="obj row20px" style="width: 1197px; table-layout: fixed;">
-					<tbody>
-						<tr style="height: auto;">
-							<th style="height: 0px; width: 119px;"></th>
+					<tr style="height: auto;">
+						<th style="height: 0px; width: 119px;"></th>
 						<th style="height: 0px; width: 120px;"></th>
 						<th style="height: 0px; width: 119px;"></th>
 						<th style="height: 0px; width: 144px;"></th>
@@ -125,78 +84,84 @@
 						<th style="height: 0px; width: 155px;"></th>
 						<th style="height: 0px; width: 407px;"></th>
 						<th style="height: 0px; width: 1px;"></th>
+					</tr>
+				</table>
+			</div>
+			<div class="objbox" style="width: 100%; overflow: hidden auto; height: 278px;">
+				<table cellpadding="0" cellspacing="0" class="obj row20px" style="width: 1197px; table-layout: fixed;">
+					<tr>
+						<td style="text-align: center; cursor: default;">
+							<div class="hdrcell" id="leftGrid_0">사원번호</div>
+						</td>
+						<td style="text-align: center; cursor: default;">
+							<div class="hdrcell" id="leftGrid_1">성명</div>
+						</td>
+						<td style="text-align: center; cursor: default;">
+							<div class="hdrcell" id="leftGrid_2">직급</div>
+						</td>
+						<td style="text-align: center; cursor: default;">
+							<div class="hdrcell" id="leftGrid_3">부서</div>
+						</td>
+						<td style="text-align: center; cursor: default;">
+							<div class="hdrcell" id="leftGrid_4">입사일자</div>
+						</td>
+						<td style="text-align: center; cursor: default;">
+							<div class="hdrcell" id="leftGrid_5">핸드폰</div>
+						</td>
+						<td style="text-align: center; cursor: default;">
+							<div class="hdrcell" id="leftGrid_6">E-MAIL</div>
+						</td>
+					</tr>
+					
+					<c:if test="${cnt > 0}">
+						<c:forEach var="dto" items="${dtos}">
+							<tr>
+								<td>${dto.id}</td>
+								<td>${dto.name}</td>
+								<td>${dto.rank}</td>
+								<td>${dto.depart}</td>
+								<td>${dto.enterday}</td>
+								<td>${dto.tel}</td>
+								<td>${dto.email_in}</td>
+							</tr>
+						</c:forEach>
+					</c:if>
+			
+					<!-- 게시글이 없으면 -->
+					<c:if test="${cnt == 0}">
+						<tr>
+							<td colspan="7" align="center">게시글이 없습니다. 글을 작성해주세여.</td>
 						</tr>
-						<tr class=" ev_dhx_skyblue rowselected">
-							<td id="U260222_0" align="center" valign="middle" class=" cellselected">cover27</td>
-							<td id="U260222_1" align="center" valign="middle">오정</td>
-							<td id="U260222_2" align="center" valign="middle">&nbsp;</td>
-							<td id="U260222_3" align="center" valign="middle">테스트</td>
-							<td id="U260222_4" align="center" valign="middle">&nbsp;</td>
-							<td id="U260222_5" align="center" valign="middle">01055511024</td>
-							<td id="U260222_6" align="left" valign="middle">cover27@bizmeka.com</td>
-							<td id="U260222_7" align="center" valign="middle">U260222</td>
-						</tr>
-						<tr class=" odd_dhx_skyblue">
-							<td id="U267422_0" align="center" valign="middle">kkjun0310</td>
-							<td id="U267422_1" align="center" valign="middle">강경준</td>
-							<td id="U267422_2" align="center" valign="middle">&nbsp;</td>
-							<td id="U267422_3" align="center" valign="middle">홈사랑넷</td>
-							<td id="U267422_4" align="center" valign="middle">&nbsp;</td>
-							<td id="U267422_5" align="center" valign="middle">01071975265</td>
-							<td id="U267422_6" align="left" valign="middle">kkjun0310@bizmeka.com</td>
-							<td id="U267422_7" align="center" valign="middle">U267422</td>
-						</tr>
-						<tr class=" ev_dhx_skyblue">
-							<td id="U260216_0" align="center" valign="middle">kokozzang</td>
-							<td id="U260216_1" align="center" valign="middle">박헌철</td>
-							<td id="U260216_2" align="center" valign="middle">&nbsp;</td>
-							<td id="U260216_3" align="center" valign="middle">홈사랑넷</td>
-							<td id="U260216_4" align="center" valign="middle">&nbsp;</td>
-							<td id="U260216_5" align="center" valign="middle">01076737717</td>
-							<td id="U260216_6" align="left" valign="middle">kokozzang@bizmeka.com</td>
-							<td id="U260216_7" align="center" valign="middle">U260216</td>
-						</tr>
-						<tr class=" odd_dhx_skyblue">
-							<td id="U260298_0" align="center" valign="middle">kong2303</td>
-							<td id="U260298_1" align="center" valign="middle">공선빈</td>
-							<td id="U260298_2" align="center" valign="middle">&nbsp;</td>
-							<td id="U260298_3" align="center" valign="middle">테스트</td>
-							<td id="U260298_4" align="center" valign="middle">&nbsp;</td>
-							<td id="U260298_5" align="center" valign="middle">01088202303</td>
-							<td id="U260298_6" align="left" valign="middle">kong2303@bizmeka.com</td>
-							<td id="U260298_7" align="center" valign="middle">U260298</td>
-						</tr>
-						<tr class=" ev_dhx_skyblue">
-							<td id="U260301_0" align="center" valign="middle">msd0084</td>
-							<td id="U260301_1" align="center" valign="middle">이상대</td>
-							<td id="U260301_2" align="center" valign="middle">&nbsp;</td>
-							<td id="U260301_3" align="center" valign="middle">홈사랑넷</td>
-							<td id="U260301_4" align="center" valign="middle">&nbsp;</td>
-							<td id="U260301_5" align="center" valign="middle">01087805422</td>
-							<td id="U260301_6" align="left" valign="middle">msd0084@bizmeka.com</td>
-							<td id="U260301_7" align="center" valign="middle">U260301</td>
-						</tr>
-						<tr class=" odd_dhx_skyblue">
-							<td id="U260235_0" align="center" valign="middle">sonstick</td>
-							<td id="U260235_1" align="center" valign="middle">손장훈</td>
-							<td id="U260235_2" align="center" valign="middle">&nbsp;</td>
-							<td id="U260235_3" align="center" valign="middle">홈사랑넷</td>
-							<td id="U260235_4" align="center" valign="middle">&nbsp;</td>
-							<td id="U260235_5" align="center" valign="middle">01097416651</td>
-							<td id="U260235_6" align="left" valign="middle">sonstick@bizmeka.com</td>
-							<td id="U260235_7" align="center" valign="middle">U260235</td>
-						</tr>
-						<tr class=" ev_dhx_skyblue">
-							<td id="U260302_0" align="center" valign="middle">windol</td>
-							<td id="U260302_1" align="center" valign="middle">최원영</td>
-							<td id="U260302_2" align="center" valign="middle">&nbsp;</td>
-							<td id="U260302_3" align="center" valign="middle">테스트트</td>
-							<td id="U260302_4" align="center" valign="middle">&nbsp;</td>
-							<td id="U260302_5" align="center" valign="middle">01047485097</td>
-							<td id="U260302_6" align="left" valign="middle">windol@bizmeka.com</td>
-							<td id="U260302_7" align="center" valign="middle">U260302</td>
-						</tr>
-					</tbody>
+					</c:if>
+			
+				<!-- 페이지 컨트롤 -->
+					<tr>
+						<th colspan="7" align="center">
+							<!-- 게시글이 있으면 --> <c:if test="${cnt >0}">
+								<!-- 처음[◀◀] / 이전블록[◀]-->
+								<c:if test="${startPage > pageBlock}">
+									<a href="boardList">[◀◀]</a>
+									<a href="boardList?pageNum=${startPage - pageBlock}">[◀]</a>
+								</c:if>
+			
+			
+								<!-- 블록내의 페이지 번호 -->
+								<c:forEach var="i" begin="${startPage}" end="${endPage}">
+									<c:if test="${i == currentPage}">
+										<span><b> [${i}] </b></span>
+									</c:if>
+									<c:if test="${i != currentPage}">
+										<a href="boardList?pageNum=${i}">[${i}]</a>
+									</c:if>
+								</c:forEach>
+								<!-- 다음 블록[▶] /마지막[▶▶] -->
+								<c:if test="${pageCount > endPage}">
+									<a href="boardList?pageNum=${startPage + pageBlock}">[▶]</a>
+									<a href="boardList?pageNum=${pageCount}">[▶▶]</a>
+								</c:if>
+							</c:if>
+						</th>
+					</tr>
 				</table>
 			</div>
 			<div class="nodata" style="width: 100%; overflow: auto; display: none;">데이터가 없습니다.</div>
