@@ -112,5 +112,22 @@ public class K_ServiceImpl implements K_Service{
 		
 		req.setAttribute("insertCnt", insertCnt);
 	}
+
+	@Override
+	public void member_manage(HttpServletRequest req, Model model) {
+		List<MemberVO> list = null;
+		
+		int depart = ((MemberVO)req.getSession().getAttribute("loginInfo")).getDepart();
+		
+		int company = 0;
+		if(depart <= 410000000) { //고유번호가 40으로 시작하면 그룹고유번호, 43으로 시작해야 company
+			company = dao.getCompany(depart);
+		} else {
+			company = depart;
+		}
+		
+		list = dao.getWait(company);
+		req.setAttribute("list", list);
+	}
 	
 }
