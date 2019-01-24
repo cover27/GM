@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="${path}css/layout_main.css">
 <link rel="stylesheet" href="${path}css/aside_main.css">
 <link rel="stylesheet" href="${path}css/content_main.css">
+<%@ page import="com.spring.gm.vo.MemberVO" %>
 
 <aside>
 	<h1></h1>
@@ -10,7 +11,7 @@
 		<ul>
 			<li><a href="#"> <img src="${path}images/profile_default.png">
 			</a></li>
-			<li><a href="#">김봉식</a></li>
+			<li><a href="#"><%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %></a></li>
 		</ul>
 	</div>
 	<div class="admin">

@@ -4,7 +4,7 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2>제목</h2>
+			<h2>기본수당 외 수당 관리</h2>
 		</div>
 		여기에 내용 작성
 	</article>

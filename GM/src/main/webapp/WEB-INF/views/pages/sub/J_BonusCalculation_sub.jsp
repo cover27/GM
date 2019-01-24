@@ -4,11 +4,8 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2>메일</h2>
-			<%@ include file="/WEB-INF/views/include/content_search.jsp"%>
+			<h2>상여 계산</h2>
 		</div>
-			<div class="content">
-				내용
-			</div>
+		여기에 내용 작성
 	</article>
 </section>
