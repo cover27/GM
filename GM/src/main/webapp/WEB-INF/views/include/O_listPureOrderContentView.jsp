@@ -183,8 +183,8 @@ select{
 </style>
 
 
-<div class="content-wrap">	<!-- 나의 할 일의 content 전체 view -->
-		<div class="table-header">		<!-- 나의 할 일의 content 상위 view -->
+<div class="content-wrap">	<!-- 내가 한 업무요청의 content 전체 view -->
+		<div class="table-header">		<!-- 내가 한 업무요청의 content 상위 view -->
 			<div class="listinfo">
 				<select id="pagePerRecord" name="pagePerRecord" title=" ">	
 					<option value="10" selected="selected">10</option>

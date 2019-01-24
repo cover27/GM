@@ -43,4 +43,12 @@ public class O_Controller {
 		
 		return "pages/O_listMyTodoView";
 	}
+	
+	//내가 한 업무요청 화면
+	@RequestMapping("/O_listPureOrderView")
+	public String O_listPureOrderView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listPureOrderView");
+		
+		return "pages/O_listPureOrderView";
+	}
 }
