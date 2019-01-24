@@ -13,6 +13,10 @@
 	<select id="findCompany" resultType="com.spring.gm.vo.CompaniesVO">
 		SELECT * FROM companies
 	</select>
+	
+	<select id="searchCompany" parameterType="String" resultType="com.spring.gm.vo.CompaniesVO">
+		SELECT * FROM companies WHERE c_name like '%'||#{keyword}||'%'
+	</select>
 
 	<insert id="registAccount" parameterType="com.spring.gm.vo.MemberVO">
 		INSERT INTO member (id, pwd, name, eng_name, jumin1, jumin2, gender, marry, wdday, frgn, nation, tel, tel_hm, email_in, address, eng_address, depart, enterday, year, sys_rank, del)

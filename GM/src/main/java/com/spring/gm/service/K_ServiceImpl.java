@@ -66,6 +66,15 @@ public class K_ServiceImpl implements K_Service{
 	}
 
 	@Override
+	public void searchCompany(HttpServletRequest req, Model model) {
+		String keyword = req.getParameter("keyword");
+		List<CompaniesVO> list = null;
+		
+		list = dao.searchCompany(keyword);
+		req.setAttribute("list", list);
+	}
+
+	@Override
 	public void registAccount(HttpServletRequest req, Model model) {
 		int insertCnt = 0;
 		

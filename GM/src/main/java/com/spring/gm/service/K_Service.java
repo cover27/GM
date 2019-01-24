@@ -12,6 +12,8 @@ public interface K_Service {
 	
 	public void findCompany(HttpServletRequest req, Model model);
 	
+	public void searchCompany(HttpServletRequest req, Model model);
+	
 	public void registAccount(HttpServletRequest req, Model model);
 
 }
