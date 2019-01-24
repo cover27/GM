@@ -99,17 +99,8 @@ tbody {
 	text-decoration: none;
 	border-radius:25px !important;
 }
-.btn-wrap{
-	padding:8px 0 8px 0;
-	text-align:right;
-}
 .btn-color5.br{
 	border:1px solid #363636;
-}
-.btn-wrap .btn{
-	min-width:63px;
-	padding:5px 11px;
-	box-shadow: 0 3px 5px #e3e3e3;
 }
 .btn-color5{
 	background:#363636!important;
@@ -167,16 +158,18 @@ tbody {
 }
 </style>
 
+
 <section>
 	<article>
 		<div class="content_header">
-			<h2>내가 한 업무요청</h2>
+			<h2>참조 업무 요청</h2>
 		</div>
 		
-		<!-- 내가 한 업무요청 상단  -->
-		<%@ include file="/WEB-INF/views/include/O_listPureOrderContentView.jsp" %>
 		
-		<!-- 내가 한 업무요청 게시글 나열 list -->
+		<!-- 참조 업무 요청 상단  -->
+		<%@ include file="/WEB-INF/views/include/O_listSubTodoContentView.jsp" %>
+		
+		<!-- 참조 업무 요청 게시글 나열 list -->
 				<div class="content-list">
 		            <table class="table table-striped" id="tblList">
 		                <caption></caption>
@@ -203,7 +196,7 @@ tbody {
 		                        <th scope="col">
 		                            <a data-sortcolumn="TITLE" href="#">제목<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
 		                        </th>
-		                        <th scope="col">담당자</th>
+		                        <th scope="col">요청자</th>
 		                        <th scope="col">
 		                            <a data-sortcolumn="INSERTDATE" href="#">요청일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
 		                        </th>
@@ -292,13 +285,8 @@ tbody {
 		           
 		            <input name="pageIndex" type="hidden" value="1" title="현재 페이지">
 		            
-		            <div class="btn-wrap">
-		                <button type="button" class="btn btn-color5 br" onclick="createTask();">업무 등록</button>
-		                <button type="button" class="btn btn-color7 br" onclick="createTaskFolderView();">보관함 지정</button>
-		                <button type="button" class="btn btn-color7 br" onclick="autoComplete();">업무완료</button>
-		                <button type="button" class="btn btn-color7 br" onclick="deleteTask();">삭제</button>
-		            </div>
 	        </div>
+		
 		
 	</article>
 </section>
