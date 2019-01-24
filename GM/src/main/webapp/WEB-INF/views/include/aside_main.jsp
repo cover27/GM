@@ -15,7 +15,7 @@
 		</ul>
 	</div>
 	<div class="admin">
-		<i class="icon user-admin"></i> <a href="#">회사 관리자</a>
+		<i class="icon user-admin"></i> <a href="setting_admin">회사 관리자</a>
 	</div>
 	<div class="schedule">
 		<div class="main_calendar">

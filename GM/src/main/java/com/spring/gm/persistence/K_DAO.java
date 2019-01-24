@@ -15,4 +15,7 @@ public interface K_DAO {
 	
 	public int registAccount(MemberVO vo);
 	
+	public List<MemberVO> getWait(int company);
+	
+	public int getCompany(int depart);
 }
