@@ -25,12 +25,4 @@ public class S_Controller {
 		
 		return "pages/S_mail";
 	}
-	
-	// 이메일
-	@RequestMapping("/test")
-	public String test(HttpServletRequest request, Model model) {
-		logger.info("URL : test");
-		
-		return "pages/login";
-	}
 }

@@ -20,6 +20,14 @@ public class K_Controller {
 	K_Service service;
 	
 	// 로그인화면
+	@RequestMapping("/login")
+	public String login(HttpServletRequest request, Model model) {
+		logger.info("URL : login");
+		
+		return "pages/login";
+	}
+	
+	// 로그인과정
 	@RequestMapping("/loginInfo")
 	public String loginInfo(HttpServletRequest req, Model model) {
 		logger.info("URL : K_loginInfo");
