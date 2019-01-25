@@ -172,7 +172,7 @@ tbody {
 		</div>
 		
 		<!-- 관리자 메뉴 - 업무 문서 관리 상단  -->
-		<%@ include file="/WEB-INF/views/include/O_listAdminDocManagementContentView.jsp" %>
+		<%@ include file="/WEB-INF/views/admin/sub/O_header/O_listAdminDocManagementContentView.jsp" %>
 		
 		<!-- 관리자 메뉴 - 업무 문서 관리 게시글 나열 list -->
 		<div class="content-list">

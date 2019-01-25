@@ -194,7 +194,7 @@ tbody {
 		
 		
 		<!-- 업무 보관함 상단  -->
-		<%@ include file="/WEB-INF/views/include/O_listMenuStoredTaskContentView.jsp" %>
+		<%@ include file="/WEB-INF/views/pages/sub/O_header/O_listMenuStoredTaskContentView.jsp" %>
 		
 		<!-- 업무 보관함 게시글 나열 list -->
 		<div class="content-list">

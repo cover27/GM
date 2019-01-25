@@ -106,7 +106,7 @@ public class O_Controller {
 	public String O_listAdminDocManagement(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listAdminDocManagement");
 		
-		return "pages/O_listAdminDocManagement";
+		return "admin/O_listAdminDocManagement";
 	}
 	
 	

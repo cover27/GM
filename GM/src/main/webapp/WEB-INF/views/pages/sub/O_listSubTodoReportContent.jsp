@@ -174,7 +174,7 @@ tbody {
 		
 		<div>
 			<!-- 참조 업무 보고에서 쓰이는 상단 -->
-			<%@ include file="/WEB-INF/views/include/O_listSubTodoReportContentView.jsp"%>	
+			<%@ include file="/WEB-INF/views/pages/sub/O_header/O_listSubTodoReportContentView.jsp"%>	
 			
 			
 			<!-- 참조 업무 보고 게시글 나열 list -->
