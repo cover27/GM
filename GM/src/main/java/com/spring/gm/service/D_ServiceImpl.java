@@ -212,4 +212,41 @@ public class D_ServiceImpl implements D_Service{
 		}		
 	}
 
+	@Override
+	public void boardUpdate(HttpServletRequest req, Model model) {
+		
+		BoardsVO vo = new BoardsVO();		// 바구니 생성
+		String group = req.getParameter("groupId");	
+		int groupId = Integer.parseInt(group);
+		String b_name = req.getParameter("b_name");
+		String anon_i = req.getParameter("anon");
+		int anon = Integer.parseInt(anon_i);
+		
+		vo.setGroupId(groupId);		// 가져온 값들을 바구니에 담음
+		vo.setB_name(b_name);
+		vo.setAnon(anon);
+		
+		
+		int upateCnt = dao.updateBoards(vo);	//jsp로 가져온값들을 insert하고 다시 
+		
+		req.setAttribute("upateCnt",upateCnt);
+		
+	}
+
+	@Override
+	public void boardDelete(HttpServletRequest req, Model model) {
+		
+		BoardsVO vo = new BoardsVO();		// 바구니 생성
+		int del = 1;
+		
+		vo.setDel(del);
+		
+		int deleteCnt = dao.deleteBoards(vo);	//jsp로 가져온값들을 insert하고 다시 
+		
+		req.setAttribute("deleteCnt", deleteCnt);
+		
+	}
+	
+	
+
 }

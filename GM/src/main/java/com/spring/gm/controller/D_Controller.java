@@ -45,6 +45,14 @@ public class D_Controller {
 		return "pages/D_boardsList";
 	}
 	
+	@RequestMapping("D_boardsUpdate")
+	public String boardsUpdate(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardsUpdate");
+		
+		
+		return "pages/D_boardsUpdate";
+	}
+	
 	//게시글 목록
 	@RequestMapping("D_boardList")
 	public String boardList(HttpServletRequest req, Model model) {

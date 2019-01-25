@@ -9,6 +9,7 @@
 		</div>
 	<table>
 		<tr>
+			<th>선택</th>
 			<th>번호</th>
 			<th>게시판명</th>
 		</tr>
@@ -17,11 +18,15 @@
 		<c:forEach var="dtos" items="${dtos}">
 			<tr align="center">
 				<td>
-					${dto.num}
+					<input type="checkbox" name="check">
+				</td>
+				
+				<td>
+					${dtos.num}
 				</td>
 						
 				<td>
-					${dto.b_name}
+					${dtos.b_name}
 				</td>
 			</tr>
 		</c:forEach>
@@ -51,6 +56,14 @@
 								<a href="D_boardsList?pageNum=${pageCount}">[▶▶]</a>
 							</c:if>
 						</c:if>
+					</th>
+		
+					<th>
+						<input class="inputButton" type="button" value="수정">
+						<input class="inputButton" type="button" value="삭제">
+						<!-- 목록보기 참고하고 삭제할것  -->
+						<input class="inputButton" type="button" value="목록보기"
+							onclick="window.location='productList?pageNum=${pageNum}'">
 					</th>
 				</tr>
 			</table>

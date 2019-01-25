@@ -10,14 +10,12 @@
 		<table>
 			<tr>
 				<th><input type="button" value="전체선택" onclick=""></th>
-			</tr>
-			<tr>
 				<th>선택</th>
 				<th>ID</th>
 				<th>이름</th>
 				<th>신청일</th>
 			</tr>
-			<c:forEach var="dto" items="#{list }">
+			<c:forEach var="dto" items="#{list}">
 				<tr>
 					<th><input type="checkbox" name="check"></th>
 					<th>${dto.id}</th>
