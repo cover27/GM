@@ -50,6 +50,18 @@ public class D_DAOImpl implements D_DAO{
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		return dao.getBoardArticleList(map);
 	}
+
+	@Override
+	public int updateBoards(BoardsVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.updateBoards(vo);
+	}
+
+	@Override
+	public int deleteBoards(BoardsVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 
