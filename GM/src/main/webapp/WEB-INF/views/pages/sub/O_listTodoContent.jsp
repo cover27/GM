@@ -168,142 +168,140 @@ tbody {
 			<h2>수신 업무 요청</h2>
 		</div>
 		<div>
-			<!-- 업무관리에서 쓰이는 상단 -->
+			<!-- 수신 업무 요청에서 쓰이는 상단 -->
 			<%@ include file="/WEB-INF/views/include/O_listTodoContentView.jsp"%>	
 			
 			
-			<!-- 업무관리 게시글 나열 list -->
-			<div class="content-list">	
-				<div class="content-list">
-		            <table class="table table-striped" id="tblList">
-		                <caption></caption>
-		                <colgroup>
-		                    <col style="width: 40px;">
-		                    <col style="width: 40px;">
-		                    <col style="width: 50px;">
-		                    <col style="width: 120px;">
-		                    <col style="min-width: 200px;">
-		                    <col style="width: 100px;">
-		                    <col style="width: 90px;">
-		                    <col style="width: 120px;">
-		                    <col style="width: 100px;">
-		                    <col style="width: 100px;">
-		                </colgroup>
-		                <thead>
-		                    <tr>
-		                        <th scope="col"><input id="checkAll" name="" onclick="selectAllTodo()" type="checkbox" value="" title="checkAll"></th>
-		                        <th scope="col">번호</th>
-		                        <th scope="col">
-		                            <a data-sortcolumn="PRIORITY" href="#">중요<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
-		                        </th>
-		                        <th scope="col">
-		                            <a data-sortcolumn="FOLDER" href="#">업무 보관함<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
-		                        </th>
-		                        <th scope="col">
-		                            <a data-sortcolumn="TITLE" href="#">제목<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
-		                        </th>
-		                        <th scope="col">
-		                            <a data-sortcolumn="REGISTERNAME" href="#">요청자<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
-		                        </th>
-		                        <th scope="col">
-		                            <a data-sortcolumn="INSERTDATE" href="#">요청일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
-		                        </th>
-		                        <th scope="col">
-		                            <a data-sortcolumn="DUEDATE" href="#">마감일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
-		                        </th>
-		                        <th scope="col">
-		                            <a data-sortcolumn="TODOSTATUS" href="#">상태<i class="fa fa-caret-up active"><span class="blind">오름차순</span></i></a>
-		                        </th>
-		                        <th scope="col">확인</th>
-		                    </tr>
-		                </thead>
-		                
-		                
-		                <!-- 게시글 나열 list -->
-		                <tbody>
-                            <tr class="important" style="background: rgb(249, 249, 249);">
-                                <td><input name="chkid" type="checkbox" title="checkbox" value="SPRO,TASK,26211895,U260222"></td>
-                                <td>1</td>
-                                <td>
-                                    <a href="javascript:void(0);" onclick="addPriority(this, 'SPRO', 'TASK', '26211895', 'U260222');return false;">
-                                        <i class="icon nonimp"></i>
-                                        <span class="blind">중요</span>
-                                    </a>
-                                </td>
-                                <td class="ellipsis">
-                                	업무보관함
-                                </td>
-                                <td class="text-left">
-                                	<div class="ellipsis" title="업무분담에 대한 자신의 의견 생각하기">
-                                		<a href="javascript:void(0);" onclick="goURL('Y', '', '/groupware/todo/readTodoView.do', 'SPRO', 'TASK', '26211895', 'U260222')">업무분담에 대한 자신의 의견 생각하기</a> 
-                                	</div>
-                                </td>
-                                <td>
-                                    <a title="손장훈" href="javascript:void(0);" onclick="spro.showUserContextMenu(this, 'U260235', 'bottom')">손장훈</a>
-                                </td>
-                                <td>요청날짜</td>
-                                <td>마감날짜</td>
-                                <td>
-                                    <a href="javascript:void(0);" onclick="todoStatusPopup('26211895', '업무분담에 대한 자신의 의견 생각하기');">
-                                    	<span class="todo-cate-box1 color3">지연+26</span>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0);" onclick="todoReadStatusPopup('26211895', '업무분담에 대한 자신의 의견 생각하기', '', '0', '26');">
-                                        <span class="todo-cate-buuton">읽음확인</span>
-                                    </a>
-                                </td>
-                            </tr>
-		                </tbody>
-		            </table>
-		            
-		            
-		            
-		            
-		            <!-- 게시물 아래 <<, >> 버튼 및 업무등록, 완료 버튼 -->
-		            <div class="pagination-wrap">
-		            	<ul class="pagination">
-		            		<li>
-		            			<a href="javascript:void(0)" class="disabled">
-		            				<i class="fa fa-chevron-left"></i>
-		            				<i class="fa fa-chevron-left"></i>
-		            				<span class="none">first</span>
-		            			</a>
-		            		</li>
-		            		<li>
-		            			<a href="javascript:void(0)" class="disabled">
-		            				<i class="fa fa-chevron-left"></i>
-		            				<span class="none">previous</span>
-		            			</a>
-		            		</li>
-		            		<li class="active">
-		            			<a href="javascript:void(0)">1</a>
-		            		</li>
-		            		<li>
-		            			<a href="javascript:void(0)" class="disabled">
-		            				<i class="fa fa-chevron-right"></i>
-		            				<span class="none">next</span>
-		            			</a>
-		            		</li>
-		            		<li>
-		            			<a href="javascript:void(0)" class="disabled">
-		            				<i class="fa fa-chevron-right"></i>
-		            				<i class="fa fa-chevron-right"></i>
-		            				<span class="none">last</span>
-		            			</a></li>
-		            	</ul>
-		            </div>
-		            <script>pageMoveAction = function(inputName, formId, movePageIndex) { jQuery('input[name=' + inputName + ']', formId).val(movePageIndex); jQuery('input[name=action]', formId).val('pagePerRecord');};</script>
-		           
-		            <input name="pageIndex" type="hidden" value="1" title="현재 페이지">
-		            
-		            <div class="btn-wrap">
-		                <button type="button" class="btn btn-color5 br" onclick="createTask()">업무 등록</button>
-		                <button type="button" class="btn btn-color7 br" onclick="autoComplete()">업무완료</button>
-		            </div>
-		        </div>
-			</div>	
-		</div>
+			<!-- 수신 업무 요청 게시글 나열 list -->
+			<div class="content-list">
+	            <table class="table table-striped" id="tblList">
+	                <caption></caption>
+	                <colgroup>
+	                    <col style="width: 40px;">
+	                    <col style="width: 40px;">
+	                    <col style="width: 50px;">
+	                    <col style="width: 120px;">
+	                    <col style="min-width: 200px;">
+	                    <col style="width: 100px;">
+	                    <col style="width: 90px;">
+	                    <col style="width: 120px;">
+	                    <col style="width: 100px;">
+	                    <col style="width: 100px;">
+	                </colgroup>
+	                <thead>
+	                    <tr>
+	                        <th scope="col"><input id="checkAll" name="" onclick="selectAllTodo()" type="checkbox" value="" title="checkAll"></th>
+	                        <th scope="col">번호</th>
+	                        <th scope="col">
+	                            <a data-sortcolumn="PRIORITY" href="#">중요<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+	                        </th>
+	                        <th scope="col">
+	                            <a data-sortcolumn="FOLDER" href="#">업무 보관함<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+	                        </th>
+	                        <th scope="col">
+	                            <a data-sortcolumn="TITLE" href="#">제목<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+	                        </th>
+	                        <th scope="col">
+	                            <a data-sortcolumn="REGISTERNAME" href="#">요청자<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+	                        </th>
+	                        <th scope="col">
+	                            <a data-sortcolumn="INSERTDATE" href="#">요청일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+	                        </th>
+	                        <th scope="col">
+	                            <a data-sortcolumn="DUEDATE" href="#">마감일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+	                        </th>
+	                        <th scope="col">
+	                            <a data-sortcolumn="TODOSTATUS" href="#">상태<i class="fa fa-caret-up active"><span class="blind">오름차순</span></i></a>
+	                        </th>
+	                        <th scope="col">확인</th>
+	                    </tr>
+	                </thead>
+	                
+	                
+	                <!-- 게시글 나열 list -->
+	                <tbody>
+                           <tr class="important" style="background: rgb(249, 249, 249);">
+                               <td><input name="chkid" type="checkbox" title="checkbox" value="SPRO,TASK,26211895,U260222"></td>
+                               <td>1</td>
+                               <td>
+                                   <a href="javascript:void(0);" onclick="addPriority(this, 'SPRO', 'TASK', '26211895', 'U260222');return false;">
+                                       <i class="icon nonimp"></i>
+                                       <span class="blind">중요</span>
+                                   </a>
+                               </td>
+                               <td class="ellipsis">
+                               	업무보관함
+                               </td>
+                               <td class="text-left">
+                               	<div class="ellipsis" title="업무분담에 대한 자신의 의견 생각하기">
+                               		<a href="javascript:void(0);" onclick="goURL('Y', '', '/groupware/todo/readTodoView.do', 'SPRO', 'TASK', '26211895', 'U260222')">업무분담에 대한 자신의 의견 생각하기</a> 
+                               	</div>
+                               </td>
+                               <td>
+                                   <a title="손장훈" href="javascript:void(0);" onclick="spro.showUserContextMenu(this, 'U260235', 'bottom')">손장훈</a>
+                               </td>
+                               <td>요청날짜</td>
+                               <td>마감날짜</td>
+                               <td>
+                                   <a href="javascript:void(0);" onclick="todoStatusPopup('26211895', '업무분담에 대한 자신의 의견 생각하기');">
+                                   	<span class="todo-cate-box1 color3">지연+26</span>
+                                   </a>
+                               </td>
+                               <td>
+                                   <a href="javascript:void(0);" onclick="todoReadStatusPopup('26211895', '업무분담에 대한 자신의 의견 생각하기', '', '0', '26');">
+                                       <span class="todo-cate-buuton">읽음확인</span>
+                                   </a>
+                               </td>
+                           </tr>
+	                </tbody>
+	            </table>
+	            
+	            
+	            
+	            
+	            <!-- 게시물 아래 <<, >> 버튼 및 업무등록, 완료 버튼 -->
+	            <div class="pagination-wrap">
+	            	<ul class="pagination">
+	            		<li>
+	            			<a href="javascript:void(0)" class="disabled">
+	            				<i class="fa fa-chevron-left"></i>
+	            				<i class="fa fa-chevron-left"></i>
+	            				<span class="none">first</span>
+	            			</a>
+	            		</li>
+	            		<li>
+	            			<a href="javascript:void(0)" class="disabled">
+	            				<i class="fa fa-chevron-left"></i>
+	            				<span class="none">previous</span>
+	            			</a>
+	            		</li>
+	            		<li class="active">
+	            			<a href="javascript:void(0)">1</a>
+	            		</li>
+	            		<li>
+	            			<a href="javascript:void(0)" class="disabled">
+	            				<i class="fa fa-chevron-right"></i>
+	            				<span class="none">next</span>
+	            			</a>
+	            		</li>
+	            		<li>
+	            			<a href="javascript:void(0)" class="disabled">
+	            				<i class="fa fa-chevron-right"></i>
+	            				<i class="fa fa-chevron-right"></i>
+	            				<span class="none">last</span>
+	            			</a></li>
+	            	</ul>
+	            </div>
+	            <script>pageMoveAction = function(inputName, formId, movePageIndex) { jQuery('input[name=' + inputName + ']', formId).val(movePageIndex); jQuery('input[name=action]', formId).val('pagePerRecord');};</script>
+	           
+	            <input name="pageIndex" type="hidden" value="1" title="현재 페이지">
+	            
+	            <div class="btn-wrap">
+	                <button type="button" class="btn btn-color5 br" onclick="createTask()">업무 등록</button>
+	                <button type="button" class="btn btn-color7 br" onclick="autoComplete()">업무완료</button>
+	            </div>
+	        </div>
+		</div>	
 		
 		
 		

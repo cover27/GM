@@ -23,6 +23,7 @@ public class MemberVO {
     private String eng_address; //영문주소
     private int depart; //그룹번호(FK)
     private int rank; //직급(FK)
+    private int salary; // 연봉
     private int contract; //계약형태
     private int wrkdvd; //재직구분
     private int position; //직책
@@ -147,6 +148,13 @@ public class MemberVO {
 	}
 	public void setRank(int rank) {
 		this.rank = rank;
+	}
+	
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
 	}
 	public int getContract() {
 		return contract;

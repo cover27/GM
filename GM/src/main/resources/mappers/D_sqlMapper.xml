@@ -11,15 +11,14 @@
 		VALUES(boards_seq.nextval, #{groupId}, #{b_name}, #{anon}, #{del}) 
 	</insert>
 	
-	<select id="getArticleCnt" resultType="int">
+	<select id="getBoardsArticleCnt" resultType="int">
 		SELECT COUNT(*) as cnt FROM BOARDS
 	</select>
 	
-	<select id="getArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardsVO">
-	<![CDATA[
-		SELECT * FROM (SELECT num, groupId, b_name, anon, del, rownum as rNum FROM (SELECT * FROM Boards ORDER BY num DESC))
-			WHERE  rNum >= #{start} AND rNum <= #{end}
-	]]>
+	<select id="getBoardsArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardsVO">
+		<![CDATA[
+			SELECT * FROM(SELECT num, groupId, b_name, anon, del, rownum rNum FROM (SELECT * FROM BOARDS WHERE groupId=#{groupId} ORDER BY num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+		]]>
 	</select>
 	
 </mapper>

@@ -197,12 +197,6 @@ select{
 			</div>
 			
 			<div class="table-search" style="right:262px;">
-				<div class="input-unread">
-					<label>
-						<i class="icon imp"></i>중요
-					</label>
-					<input type="checkbox" id="checkboxPriority" title="중요" value="1">
-				</div>
 				
 				<div class="input-unread w180">
                      <div class="ui-step-wrap">
@@ -240,10 +234,11 @@ select{
 			</div>
 			
 			<div class="table-search">
-				<select name="searchColumn" title="검색타입">
-                        <option value="searchTitle" selected="selected">제목</option>
+				<select name="searchColumn" title="검색타입" aria-invalid="false" class="valid">
+                        <option value="searchUser">담당자</option>
+                        <option value="searchTitle">제목</option>
                         <option value="searchTContents">업무내용</option>
-				</select>
+                </select>
 				
 				<div class="input-search">
                     <input name="searchWord" value="" type="text" class="w150 aTitle" title="검색어" placeholder="검색어">

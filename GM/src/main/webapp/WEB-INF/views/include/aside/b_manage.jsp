@@ -27,22 +27,22 @@
                         <ul>
                             <li><a href="O_listPureOrderView">내가 한 업무 요청</a></li>
                             <li><a href="O_listTodoView">수신 업무 요청</a></li>
-                            <li><a href="e05.jsp">참조 업무 요청</a></li>
+                            <li><a href="O_listSubTodoView">참조 업무 요청</a></li>
                         </ul>
                     </li>
                     <li>
                         <span>업무 보고</span>
                         <ul>
-                            <li><a href="e06.jsp">내가 한 업무 보고</a></li>
-                            <li><a href="e07.jsp">수신 업무 보고</a></li>
-                            <li><a href="e08.jsp">참조 업무 보고</a></li>
+                            <li><a href="O_listPureOrderReportView">내가 한 업무 보고</a></li>
+                            <li><a href="O_listTodoReportView">수신 업무 보고</a></li>
+                            <li><a href="O_listSubTodoReportView">참조 업무 보고</a></li>
                         </ul>
                     </li>
                     <li>
-                        <span>임시 저장함</span>
+                        <span><a href="O_listTempTaskView">임시 저장함</a></span>
                     </li>
                     <li>
-                    	<span>업무 보관함</span>
+                    	<span><a href="O_listMenuStoredTaskView">업무 보관함</a></span>
                     </li>
                     <li>
                     	<span><a href="e09.jsp">업무 보관함 관리</a></span>
@@ -51,7 +51,7 @@
                     	<span>관리자 메뉴</span>
                     	<ul>
                     		<li>
-                    			<a href="e10.jsp">업무 문서 관리</a>
+                    			<a href="O_listAdminDocManagement">업무 문서 관리</a>
                     		</li>
                     	</ul>
                     </li>

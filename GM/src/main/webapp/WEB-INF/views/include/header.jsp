@@ -19,7 +19,7 @@
             <li><a href="#">일정</a></li>
             <li><a href="#">게시판</a></li>
             <li><a href="#">웹디스크</a></li>
-            <li><a href="#">인사</a></li>
+            <li><a href="member_manage">인사</a></li>
             <!--
             <li class="menu_all"><a href="#"></a></li>
             -->
@@ -64,7 +64,7 @@
                         <span class="blind">통합검색</span>
                     </i>
                 </a>
-                <a href="#">
+                <a href="logout">
                     <i class="fa fa-power-off">
                         <span class="blind">로그아웃</span>
                     </i>

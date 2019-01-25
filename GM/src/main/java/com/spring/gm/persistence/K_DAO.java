@@ -11,6 +11,11 @@ public interface K_DAO {
 	
 	public List<CompaniesVO> findCompany();
 	
+	public List<CompaniesVO> searchCompany(String keyword);
+	
 	public int registAccount(MemberVO vo);
 	
+	public List<MemberVO> getWait(int company);
+	
+	public int getCompany(int depart);
 }
