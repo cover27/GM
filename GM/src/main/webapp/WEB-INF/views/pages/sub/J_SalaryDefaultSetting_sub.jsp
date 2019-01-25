@@ -140,8 +140,8 @@
 							<!-- 게시글이 있으면 --> <c:if test="${cnt >0}">
 								<!-- 처음[◀◀] / 이전블록[◀]-->
 								<c:if test="${startPage > pageBlock}">
-									<a href="boardList">[◀◀]</a>
-									<a href="boardList?pageNum=${startPage - pageBlock}">[◀]</a>
+									<a href="J_SalaryDefaultSetting">[PageDown x2]</a>
+									<a href="J_SalaryDefaultSetting?pageNum=${startPage - pageBlock}">[PageDown]</a>
 								</c:if>
 			
 			
@@ -151,13 +151,13 @@
 										<span><b> [${i}] </b></span>
 									</c:if>
 									<c:if test="${i != currentPage}">
-										<a href="boardList?pageNum=${i}">[${i}]</a>
+										<a href="J_SalaryDefaultSetting?pageNum=${i}">[${i}]</a>
 									</c:if>
 								</c:forEach>
 								<!-- 다음 블록[▶] /마지막[▶▶] -->
 								<c:if test="${pageCount > endPage}">
-									<a href="boardList?pageNum=${startPage + pageBlock}">[▶]</a>
-									<a href="boardList?pageNum=${pageCount}">[▶▶]</a>
+									<a href="J_SalaryDefaultSetting?pageNum=${startPage + pageBlock}">[▶]</a>
+									<a href="J_SalaryDefaultSetting?pageNum=${pageCount}">[▶▶]</a>
 								</c:if>
 							</c:if>
 						</th>
@@ -462,7 +462,7 @@
 							<th scope="row"><label for="salBasiMatrMngForm_npNtryDt">취득일자</label></th><!-- 가입일자 -->
 							<td>
                                    <input type="text" id="salBasiMatrMngForm_npNtryDt" name="npNtryDt" class="w100 ajaxDatePicker sproDatepicker" tabindex="11">
-                                   <button class="btn btn-color5 br tbl-inner" type="button" tabindex="-1"><i class="icon calendar"></i></button>
+                                   <button class="datepicker" id="datepicker" type="button" tabindex="-1"><i class="icon calendar"></i></button>
 							</td>
 						</tr>
 						<tr>

@@ -169,7 +169,7 @@ tbody {
 		</div>
 		<div>
 			<!-- 수신 업무 요청에서 쓰이는 상단 -->
-			<%@ include file="/WEB-INF/views/include/O_listTodoContentView.jsp"%>	
+			<%@ include file="/WEB-INF/views/pages/sub/O_header/O_listTodoContentView.jsp"%>	
 			
 			
 			<!-- 수신 업무 요청 게시글 나열 list -->
