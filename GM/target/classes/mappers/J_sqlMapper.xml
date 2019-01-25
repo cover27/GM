@@ -16,5 +16,8 @@
 			WHERE  rNum >= #{start} AND rNum <= #{end}
 	]]>
 	</select>
+	<select id="infoList" parameterType="String" resultType="com.spring.gm.vo.MemberVO">
+		SELECT * FROM member WHERE id=#{id}
+	</select>
 	
 </mapper>

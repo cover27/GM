@@ -14,6 +14,7 @@
 			<th>게시판명</th>
 		</tr>
 	</table>
+	
 	<table>
 		<c:forEach var="dtos" items="${dtos}">
 			<tr align="center">
@@ -59,7 +60,6 @@
 					</th>
 		
 					<th>
-						<input class="inputButton" type="button" value="수정">
 						<input class="inputButton" type="button" value="삭제">
 						<!-- 목록보기 참고하고 삭제할것  -->
 						<input class="inputButton" type="button" value="목록보기"

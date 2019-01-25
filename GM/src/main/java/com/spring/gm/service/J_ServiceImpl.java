@@ -21,7 +21,7 @@ public class J_ServiceImpl implements J_Service {
 
 	@Override
 	public void salaryList(HttpServletRequest req, Model model) {
-		int pagenum = Integer(req.getParameter("pageNum"));
+		String pagenum = req.getParameter("pageNum");
 		System.out.println("pagenum :" + pagenum);
 		
 		int pageSize = 5; // 한페이지당 출력할 글 갯수
@@ -119,9 +119,14 @@ public class J_ServiceImpl implements J_Service {
 		}
 	}
 
-	private int Integer(String parameter) {
-		// TODO Auto-generated method stub
-		return 0;
+	@Override
+	public void infoList(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		System.out.println("id :" + id );
+		
+		List<MemberVO> dtos = dao.infoList(id);
+		System.out.println("여기 탔다");
+		req.setAttribute("dtos", dtos);
 	}
 
 }

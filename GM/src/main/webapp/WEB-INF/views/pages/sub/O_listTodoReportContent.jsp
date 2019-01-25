@@ -172,7 +172,7 @@ tbody {
 		
 		<div>
 			<!-- 수신 업무 보고에서 쓰이는 상단 -->
-			<%@ include file="/WEB-INF/views/include/O_listTodoReportContentView.jsp"%>	
+			<%@ include file="/WEB-INF/views/pages/sub/O_header/O_listTodoReportContentView.jsp"%>	
 			
 			
 			<!-- 수신 업무 보고 게시글 나열 list -->

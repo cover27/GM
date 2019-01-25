@@ -24,7 +24,7 @@ public class D_Controller {
 	public String createBoards(HttpServletRequest req, Model model) {
 		logger.info("URL : D_createBoards");
 		
-		return "pages/D_createBoards";
+		return "admin/D_createBoards";
 	}
 	
 	//게시판 생성 처리
@@ -33,7 +33,7 @@ public class D_Controller {
 		logger.info("URL : D_CreateBoards_pro");
 		
 		service.insertBoards(req, model);
-		return "pages/sub/D_CreateBoards_pro";
+		return "admin/sub/D_CreateBoards_pro";
 	}
 	
 	//게시판 목록
@@ -50,14 +50,14 @@ public class D_Controller {
 		logger.info("URL : D_boardsUpdate");
 		
 		
-		return "pages/D_boardsUpdate";
+		return "admin/D_boardsUpdate";
 	}
 	
 	//게시글 목록
-	@RequestMapping("D_boardList")
+/*	@RequestMapping("D_boardList")
 	public String boardList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardlist");
 		
 		return "pages/D_boardList";
-	}
+	}*/
 }
