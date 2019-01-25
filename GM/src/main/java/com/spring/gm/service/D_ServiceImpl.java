@@ -146,7 +146,7 @@ public class D_ServiceImpl implements D_Service{
 		
 		int pageCount = 0;		// 페이지 갯수
 		int startPage = 0;		// 시작 페이지
-		int endPage = 0;		// 마지막 페이지
+		int endPage = 0;		// 마지막 페이지		
 	
 		cnt = dao.getBoardArticleCnt();
 		
