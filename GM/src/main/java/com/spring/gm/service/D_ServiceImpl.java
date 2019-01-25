@@ -237,7 +237,8 @@ public class D_ServiceImpl implements D_Service{
 	public void boardDelete(HttpServletRequest req, Model model) {
 		
 		BoardsVO vo = new BoardsVO();		// 바구니 생성
-		int del = 1;
+		String delNumber = req.getParameter("del");
+		int del = Integer.parseInt(delNumber);
 		
 		vo.setDel(del);
 		
