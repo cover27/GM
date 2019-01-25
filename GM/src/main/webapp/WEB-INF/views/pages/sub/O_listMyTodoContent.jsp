@@ -173,7 +173,7 @@ tbody {
 		</div>
 		
 		<!-- 나의 할 일 상단  -->
-		<%@ include file="/WEB-INF/views/include/O_listMyTodoContentView.jsp" %>
+		<%@ include file="/WEB-INF/views/pages/sub/O_header/O_listMyTodoContentView.jsp" %>
 		
 		<!-- 나의 할 일 게시글 나열 list -->
 				<div class="content-list">

@@ -174,7 +174,7 @@ tbody {
 		</div>
 		
 		<!-- 내가 한 업무요청 상단  -->
-		<%@ include file="/WEB-INF/views/include/O_listPureOrderContentView.jsp" %>
+		<%@ include file="/WEB-INF/views/pages/sub/O_header/O_listPureOrderContentView.jsp" %>
 		
 		<!-- 내가 한 업무요청 게시글 나열 list -->
 				<div class="content-list">
