@@ -140,8 +140,8 @@
 							<!-- 게시글이 있으면 --> <c:if test="${cnt >0}">
 								<!-- 처음[◀◀] / 이전블록[◀]-->
 								<c:if test="${startPage > pageBlock}">
-									<a href="J_SalaryDefaultSetting">[◀◀]</a>
-									<a href="J_SalaryDefaultSetting?pageNum=${startPage - pageBlock}">[◀]</a>
+									<a href="J_SalaryDefaultSetting">[PageDown x2]</a>
+									<a href="J_SalaryDefaultSetting?pageNum=${startPage - pageBlock}">[PageDown]</a>
 								</c:if>
 			
 			
