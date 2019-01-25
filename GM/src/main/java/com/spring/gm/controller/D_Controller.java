@@ -54,10 +54,10 @@ public class D_Controller {
 	}
 	
 	//게시글 목록
-	@RequestMapping("D_boardList")
+/*	@RequestMapping("D_boardList")
 	public String boardList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardlist");
 		
 		return "pages/D_boardList";
-	}
+	}*/
 }
