@@ -4,5 +4,5 @@
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/aside.jsp"%>
-<%@ include file="/WEB-INF/views/pages/sub/content.jsp"%>
+<%@ include file="/WEB-INF/views/admin/sub/admin_content.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
