@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.content .mailbox_header {
+	
+}
+
+.content .mailbox_header>ul>li {
+	display: inline-block;
+}
+
+.content .mailbox_header>ul>li:first-child {
+	float: left;
+}
+
+.content .mailbox_header>ul>li:last-child {
+	float: right;
+	margin-right: 20px;
+}
+
