@@ -3,6 +3,6 @@
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
-<%@ include file="/WEB-INF/views/include/aside/boards.jsp"%>
-<%@ include file="/WEB-INF/views/pages/sub/D_CreateBoards_sub.jsp"%>
+<%@ include file="/WEB-INF/views/include/aside/mail.jsp"%>
+<%@ include file="/WEB-INF/views/pages/sub/S_mail_sub.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

@@ -18,19 +18,21 @@ public class S_Controller {
 	@Autowired
 	S_Service service;
 	
+	/* 선빈이 콘트롤러에 작성
+	// 로그인
+	@RequestMapping("/login")
+	public String test(HttpServletRequest request, Model model) {
+		logger.info("URL : login");
+		
+		return "pages/login";
+	}
+	*/
+	
 	// 이메일
 	@RequestMapping("/mail")
 	public String mail(HttpServletRequest request, Model model) {
 		logger.info("URL : mail");
 		
 		return "pages/S_mail";
-	}
-	
-	// 이메일
-	@RequestMapping("/test")
-	public String test(HttpServletRequest request, Model model) {
-		logger.info("URL : test");
-		
-		return "pages/login";
 	}
 }
