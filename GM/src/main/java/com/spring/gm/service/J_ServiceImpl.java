@@ -21,7 +21,10 @@ public class J_ServiceImpl implements J_Service {
 
 	@Override
 	public void salaryList(HttpServletRequest req, Model model) {
-		int pageSize = 10; // 한페이지당 출력할 글 갯수
+		int pagenum = Integer(req.getParameter("pageNum"));
+		System.out.println("pagenum :" + pagenum);
+		
+		int pageSize = 5; // 한페이지당 출력할 글 갯수
 		int pageBlock = 3; // 한 블럭당 페이지 갯수
 
 		int cnt = 0; // 글갯수
@@ -114,6 +117,11 @@ public class J_ServiceImpl implements J_Service {
 			req.setAttribute("pageCount", pageCount); // 페이지 갯수
 			req.setAttribute("currentPage", currentPage); // 현재페이지
 		}
+	}
+
+	private int Integer(String parameter) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -33,6 +33,7 @@ public class MemberVO {
     private String etc; //비고
     private int sys_rank; //시스템직급(FK)
     private int del; //삭제구분
+    private String account_number; // 계좌번호
     
     
 	public String getId() {
@@ -210,6 +211,12 @@ public class MemberVO {
 	public void setDel(int del) {
 		this.del = del;
 	}
+	public String getAccount_number() {
+		return account_number;
+	}
+	public void setAccount_number(String account_number) {
+		this.account_number = account_number;
+	}
 	
 	
 	@Override
@@ -220,7 +227,7 @@ public class MemberVO {
 				+ email_in + ", email_out=" + email_out + ", address=" + address + ", eng_address=" + eng_address
 				+ ", depart=" + depart + ", rank=" + rank + ", contract=" + contract + ", wrkdvd=" + wrkdvd
 				+ ", position=" + position + ", enterday=" + enterday + ", retireday=" + retireday + ", year=" + year
-				+ ", etc=" + etc + ", sys_rank=" + sys_rank + ", del=" + del + "]";
+				+ ", etc=" + etc + ", sys_rank=" + sys_rank + ", del=" + del +", account_number=" + account_number + "]";
 	}
     
 }
