@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import com.spring.gm.persistence.J_DAO;
 import com.spring.gm.vo.MemberVO;
 
+import sun.security.jca.GetInstance;
+
 @Service
 public class J_ServiceImpl implements J_Service {
 
@@ -121,7 +123,26 @@ public class J_ServiceImpl implements J_Service {
 
 	@Override
 	public void infoList(HttpServletRequest req, Model model) {
-		String id = req.getParameter("id");
+		String strId = req.getParameter("id");
+		
+		/* 장훈수정 시작 */
+		// id 뒤에 자꾸 붙어서 나오는?null이라는 문자열을 없애기
+		
+		/*
+		// 방법1
+		String id = strId.replace("?null", "");
+		System.out.println(id);
+		*/
+		
+		// 방법2
+		System.out.println(strId.length());
+		int idLength = strId.length();
+		System.out.println(idLength - 5);
+		String id = strId.substring(0, idLength - 5);
+		
+		/* 장훈수정 끝 */
+		
+		
 		System.out.println("id :" + id );
 		
 		List<MemberVO> dtos = dao.infoList(id);
