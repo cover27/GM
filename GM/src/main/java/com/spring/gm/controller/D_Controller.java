@@ -17,7 +17,7 @@ public class D_Controller {
 	@Autowired
 	D_Service service;
 	
-	private static final Logger logger = LoggerFactory.getLogger(S_Controller.class);
+	private static final Logger logger = LoggerFactory.getLogger(D_Controller.class);
 	
 	// 게시판 생성 페이지
 	@RequestMapping("D_createBoards")
