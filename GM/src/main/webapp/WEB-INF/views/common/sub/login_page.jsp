@@ -6,7 +6,7 @@
 	<div class="login_box">
 		<h2>Group Ware</h2>
 		<div class="form_area">
-			<form action="loginInfo" method="post">
+			<form action="loginPro" method="post">
 				<div class="input_area">
 					<i class="i_id"></i>
 					<input type="text" name="id" class="input_lg w100p" placeholder="ID를 입력하세요" autofocus required />

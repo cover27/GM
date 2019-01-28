@@ -64,11 +64,13 @@
                         <span class="blind">통합검색</span>
                     </i>
                 </a>
-                <a href="logout">
+                <a href="#" onclick="document.getElementById('logout_form').submit();">
                     <i class="fa fa-power-off">
                         <span class="blind">로그아웃</span>
                     </i>
                 </a>
+                <form action="logout" id="logout_form" method="post">
+                </form>
             </div>
         </div>
     </header>

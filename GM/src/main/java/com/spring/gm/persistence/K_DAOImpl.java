@@ -1,6 +1,7 @@
 package com.spring.gm.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,16 @@ public class K_DAOImpl implements K_DAO{
 	@Override
 	public int registAccount(MemberVO vo) {
 		return sqlSession.insert("com.spring.gm.persistence.K_DAO.registAccount", vo);
+	}
+
+	@Override
+	public int registUsers(Map<String, String> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.registUsers", map);
+	}
+
+	@Override
+	public int registAuthorities(Map<String, String> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.registAuthorities", map);
 	}
 
 	@Override
