@@ -225,7 +225,7 @@ public class MemberVO {
 				+ jumin1 + ", jumin2=" + jumin2 + ", gender=" + gender + ", marry=" + marry + ", wdday=" + wdday
 				+ ", frgn=" + frgn + ", nation=" + nation + ", tel=" + tel + ", tel_hm=" + tel_hm + ", email_in="
 				+ email_in + ", email_out=" + email_out + ", address=" + address + ", eng_address=" + eng_address
-				+ ", depart=" + depart + ", rank=" + rank + ", contract=" + contract + ", wrkdvd=" + wrkdvd
+				+ ", depart=" + depart + ", rank=" + rank + ", salary" + salary + ", contract=" + contract + ", wrkdvd=" + wrkdvd
 				+ ", position=" + position + ", enterday=" + enterday + ", retireday=" + retireday + ", year=" + year
 				+ ", etc=" + etc + ", sys_rank=" + sys_rank + ", del=" + del +", account_number=" + account_number + "]";
 	}

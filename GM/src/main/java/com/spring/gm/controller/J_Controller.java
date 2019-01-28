@@ -76,4 +76,22 @@ public class J_Controller {
 		
 		return "pages/J_Payroll";
 	}
+	
+	//==================================================================
+	//개인 급여정보 가져오기
+	@RequestMapping("/J_info")
+	public String J_info(HttpServletRequest req, Model model) {
+		logger.info("URL : J_info");
+		service.infoList(req, model);
+		System.out.println("J_info 탔습니다");
+		return "pages/sub/J_sub/J_info";
+	}
+	//개인 급여정보 업데이트
+	@RequestMapping("/J_infoUpdate")
+	public String J_infoUpdate(HttpServletRequest req, Model model) {
+		logger.info("URL : J_infoUpdate");
+		service.infoUpdate(req, model);
+		System.out.println("J_infoUpdate 탔습니다");
+		return "pages/sub/J_infoUpdatePro_sub";
+	}
 }

@@ -172,7 +172,7 @@ tbody {
 		</div>
 		
 		<!-- 임시 저장함 상단  -->
-		<%@ include file="/WEB-INF/views/include/O_listTempTaskContentView.jsp" %>
+		<%@ include file="/WEB-INF/views/pages/sub/O_header/O_listTempTaskContentView.jsp" %>
 		
 		<!-- 임시 저장함 게시글 나열 list -->
 		<div class="content-list">

@@ -5,9 +5,13 @@ import java.util.Map;
 
 import com.spring.gm.vo.MemberVO;
 public interface J_DAO {
-
+	//급여 회원정보 확인
 	public int selectCnt();
-	
+	//급여 회원정보 가져오기
 	public ArrayList<MemberVO> selectList(Map<String, Object> map);
-	
+	//급여 개인회원정보 가져오기
+	public ArrayList<MemberVO> infoList(String id);
+	// 회원 급여 개인정보 업데이트
+	public int infoUpdate(Map<String, Object> map);
+
 }

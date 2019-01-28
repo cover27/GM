@@ -146,7 +146,7 @@ public class D_ServiceImpl implements D_Service{
 		
 		int pageCount = 0;		// 페이지 갯수
 		int startPage = 0;		// 시작 페이지
-		int endPage = 0;		// 마지막 페이지
+		int endPage = 0;		// 마지막 페이지		
 	
 		cnt = dao.getBoardArticleCnt();
 		
@@ -237,7 +237,8 @@ public class D_ServiceImpl implements D_Service{
 	public void boardDelete(HttpServletRequest req, Model model) {
 		
 		BoardsVO vo = new BoardsVO();		// 바구니 생성
-		int del = 1;
+		String delNumber = req.getParameter("del");
+		int del = Integer.parseInt(delNumber);
 		
 		vo.setDel(del);
 		

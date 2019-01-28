@@ -59,8 +59,8 @@ public class D_DAOImpl implements D_DAO{
 
 	@Override
 	public int deleteBoards(BoardsVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.deleteBoards(vo);
 	}
 	
 	

@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="${path}css/layout.css">
 <link rel="stylesheet" href="${path}css/aside.css">
 <link rel="stylesheet" href="${path}css/content.css">
+<link rel="stylesheet" href="${path}css/S_css/mail.css" />
 
 <aside>
 	<!-- 사용 안하는 사이드바
@@ -15,7 +16,7 @@
                 <ul>
                     <li>
                         <span>메일작성</span>
-                        <ul>
+                        <ul class="send_mail">
                             <li><a href="a01.jsp">메일 쓰기</a></li>
                             <li><a href="a02.jsp">내게 쓰기</a></li>
                         </ul>

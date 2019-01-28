@@ -31,4 +31,19 @@ public class J_DAOImpl implements J_DAO{
 		dtos = dao.selectList(map);
 		return dtos;
 	}
+
+	@Override
+	public ArrayList<MemberVO> infoList(String id) {
+		ArrayList<MemberVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.infoList(id);
+		return dtos;
+	}
+
+	// 회원 급여 개인정보 업데이트
+	@Override
+	public int infoUpdate(Map<String, Object> map) {
+		int updateCnt = sqlSession.update("com.spring.gm.persistence.J_DAO.infoUpdate", map);
+		return updateCnt;
+	}
 }
