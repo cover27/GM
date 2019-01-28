@@ -1,7 +1,5 @@
 package com.spring.gm.controller;
 
-import java.security.Principal;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -11,9 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.gm.service.K_Service;
 
@@ -27,7 +23,7 @@ public class K_Controller {
 	
 	// 로그인화면
 	@RequestMapping("login")
-	public String login(HttpServletRequest request, Model model) {
+	public String login(HttpServletRequest req, Model model) {
 		logger.info("URL : login");
 		
 		return "common/login";
@@ -35,7 +31,7 @@ public class K_Controller {
 	
 	// 로그인 프로세스
 	@RequestMapping("loginPro")
-	public String loginPro(HttpServletRequest request, Model model) {
+	public String loginPro(HttpServletRequest req, Model model) {
 		logger.info("URL : login");
 		
 		return "common/main";
