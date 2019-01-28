@@ -8,9 +8,9 @@
 	<bean id="customAuthenticationFailHandler" class="com.spring.gm.CustomAuthenticationFailHandler"/>
 
 	<security:http use-expressions="true">
-		<security:intercept-url pattern="/admin/**" access="hasAuthority('USER_ADMIN')"/>
-		<security:intercept-url pattern="/pages/**" access="isAuthenticated()"/>
-		<security:intercept-url pattern="/common/**" access="permitAll"/>
+		<security:intercept-url pattern="/admin/**" access="hasRole('USER_ADMIN')"/>
+		<security:intercept-url pattern="/pages/**" access="hasAnyRole('USER_ADMIN', 'USER')"/>
+		<security:intercept-url pattern="/**" access="permitAll"/>
 		<security:form-login login-page="/login"
 				username-parameter="id"
 				password-parameter="pwd"

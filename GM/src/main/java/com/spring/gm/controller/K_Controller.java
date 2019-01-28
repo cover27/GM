@@ -20,7 +20,7 @@ public class K_Controller {
 
 	@Autowired
 	K_Service service;
-	
+		
 	// 로그인화면
 	@RequestMapping("login")
 	public String login(HttpServletRequest req, Model model) {
@@ -111,20 +111,29 @@ public class K_Controller {
 	}
 	
 	//인사관리 - 대기명단 승인/취소가 기본
-	@RequestMapping("member_manage")
-	public String member_manage(HttpServletRequest req, Model model) {
-		logger.info("URL : member_manage");
+	@RequestMapping("admin/K_member_manage")
+	public String K_member_manage(HttpServletRequest req, Model model) {
+		logger.info("URL : K_member_manage");
 		
 		service.member_manage(req, model);
 		
 		return "admin/K_member_manage";
 	}
 	
-	//회사관리자 아직 안만듬
-	@RequestMapping("setting_admin")
-	public String setting_admin(HttpServletRequest req, Model model) {
-		logger.info("URL : setting_admin");
+	@RequestMapping("admin/K_appMember")
+	public String K_appMember(HttpServletRequest req, Model model) {
+		logger.info("URL : K_appMember");
 		
-		return "pages/K_setting_admin";
+		service.K_appMember(req, model);
+		
+		return "admin/K_appMember";
+	} 
+	
+	//회사관리자 아직 안만듬
+	@RequestMapping("admin/K_setting_admin")
+	public String K_setting_admin(HttpServletRequest req, Model model) {
+		logger.info("URL : K_setting_admin");
+		
+		return "admin/K_setting_admin";
 	}
 }

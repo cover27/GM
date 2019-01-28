@@ -106,7 +106,7 @@ public class K_ServiceImpl implements K_Service{
 			
 			Map<String, String> map2 = new HashMap<String, String>();
 			map2.put("id", vo.getId());
-			map2.put("auth", "user");
+			map2.put("auth", "USER");
 			dao.registAuthorities(map2);
 		}
 		
@@ -128,6 +128,41 @@ public class K_ServiceImpl implements K_Service{
 		
 		list = dao.getWait(company);
 		req.setAttribute("list", list);
+	}
+
+	@Override
+	public void K_appMember(HttpServletRequest req, Model model) {
+		int appcan = Integer.parseInt(req.getParameter("appcan"));
+		int state = 0;
+		
+		if(req.getParameterValues("check") != null){ //클릭이 되어 있어야됨
+			String[] checks = req.getParameterValues("check");
+			if(appcan == 0) { //승인한다면
+				for(int i=0; i<checks.length; i++) {
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("id", checks[i]);
+					map.put("auth", "USER");
+					dao.updateAuthorities(map);
+					
+					Map<String, Object> map2 = new HashMap<String, Object>();
+					map2.put("id", checks[i]);
+					map2.put("rank", 2); // sysrank -> 2는 일반 사용자
+					dao.updateSysrank(map2);
+				}
+				
+			} else { //취소한다면 -> member's sysrank -> 4(승인거절자) 로 바꿈(메일로 승인 거절됨을 알림)
+				for(int i=0; i<checks.length; i++) {
+					Map<String, Object> map2 = new HashMap<String, Object>();
+					map2.put("id", checks[i]);
+					map2.put("rank", 4);
+					dao.updateSysrank(map2);
+				}
+			}
+			state = 1;
+		} else { // 클릭이 안되어 있음. 클릭하라고 경고창쓰
+			state = -1;
+		}
+		req.setAttribute("state", state);
 	}
 	
 }

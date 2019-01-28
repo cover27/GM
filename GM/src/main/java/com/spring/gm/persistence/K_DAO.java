@@ -23,4 +23,8 @@ public interface K_DAO {
 	public List<MemberVO> getWait(int company);
 	
 	public int getCompany(int depart);
+	
+	public int updateSysrank(Map<String, Object> map);
+	
+	public int updateAuthorities(Map<String, String> map);
 }

@@ -44,4 +44,12 @@
 		SELECT company FROM groups WHERE groupsId = #{depart}
 	</select>
 	
+	<update id="updateSysrank" parameterType="java.util.Map">
+		UPDATE member set sys_rank = #{rank} WHERE id = #{id}
+	</update>
+	
+	<update id="updateAuthorities" parameterType="java.util.Map">
+		UPDATE authorities set authority = #{auth} WHERE username = #{id}
+	</update>
+	
 </mapper>
