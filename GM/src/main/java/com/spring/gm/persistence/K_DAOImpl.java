@@ -55,6 +55,15 @@ public class K_DAOImpl implements K_DAO{
 	public int getCompany(int depart) { //그룹을 넣으면 사업장을 찾아주는 메소드
 		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getCompany", depart);
 	}
-	
+
+	@Override
+	public int updateSysrank(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateSysrank", map);
+	}
+
+	@Override
+	public int updateAuthorities(Map<String, String> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateAuthorities", map);
+	}
 	
 }

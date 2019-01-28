@@ -5,16 +5,19 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<bean id="customAuthenticationFailHandler" class="com.spring.gm.CustomAuthenticationFailHandler"/>
+
 	<security:http use-expressions="true">
-		<security:intercept-url pattern="/admin/**" access="hasAuthority('USER_ADMIN')"/>
-		<security:intercept-url pattern="/pages/**" access="isAuthenticated()"/>
-		<security:intercept-url pattern="/common/**" access="permitAll"/>
+		<security:intercept-url pattern="/admin/**" access="hasRole('USER_ADMIN')"/>
+		<security:intercept-url pattern="/pages/**" access="hasAnyRole('USER_ADMIN', 'USER')"/>
+		<security:intercept-url pattern="/**" access="permitAll"/>
 		<security:form-login login-page="/login"
 				username-parameter="id"
 				password-parameter="pwd"
 				login-processing-url="/loginPro"
 				default-target-url="/main"
-				authentication-failure-url="/login"/><!-- 지정페이지로 이동 -->
+				authentication-failure-url="/login"
+				authentication-failure-handler-ref="customAuthenticationFailHandler"/><!-- 지정페이지로 이동 -->
 		<security:logout
 				logout-url = "/logout"
 				logout-success-url = "/login"/>

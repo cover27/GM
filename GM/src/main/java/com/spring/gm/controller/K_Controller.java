@@ -1,7 +1,5 @@
 package com.spring.gm.controller;
 
-import java.security.Principal;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -11,9 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.gm.service.K_Service;
 
@@ -24,10 +20,10 @@ public class K_Controller {
 
 	@Autowired
 	K_Service service;
-	
+		
 	// 로그인화면
 	@RequestMapping("login")
-	public String login(HttpServletRequest request, Model model) {
+	public String login(HttpServletRequest req, Model model) {
 		logger.info("URL : login");
 		
 		return "common/login";
@@ -35,7 +31,7 @@ public class K_Controller {
 	
 	// 로그인 프로세스
 	@RequestMapping("loginPro")
-	public String loginPro(HttpServletRequest request, Model model) {
+	public String loginPro(HttpServletRequest req, Model model) {
 		logger.info("URL : login");
 		
 		return "common/main";
@@ -115,20 +111,29 @@ public class K_Controller {
 	}
 	
 	//인사관리 - 대기명단 승인/취소가 기본
-	@RequestMapping("member_manage")
-	public String member_manage(HttpServletRequest req, Model model) {
-		logger.info("URL : member_manage");
+	@RequestMapping("admin/K_member_manage")
+	public String K_member_manage(HttpServletRequest req, Model model) {
+		logger.info("URL : K_member_manage");
 		
 		service.member_manage(req, model);
 		
 		return "admin/K_member_manage";
 	}
 	
-	//회사관리자 아직 안만듬
-	@RequestMapping("setting_admin")
-	public String setting_admin(HttpServletRequest req, Model model) {
-		logger.info("URL : setting_admin");
+	@RequestMapping("admin/K_appMember")
+	public String K_appMember(HttpServletRequest req, Model model) {
+		logger.info("URL : K_appMember");
 		
-		return "pages/K_setting_admin";
+		service.K_appMember(req, model);
+		
+		return "admin/K_appMember";
+	} 
+	
+	//회사관리자 아직 안만듬
+	@RequestMapping("admin/K_setting_admin")
+	public String K_setting_admin(HttpServletRequest req, Model model) {
+		logger.info("URL : K_setting_admin");
+		
+		return "admin/K_setting_admin";
 	}
 }
