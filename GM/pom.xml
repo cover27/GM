@@ -142,6 +142,7 @@
 			<version>3.2.5.RELEASE</version>
 		</dependency>
 		<!-- security 설정 종료 -->
+		
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
@@ -206,6 +207,7 @@
 		    <artifactId>log4jdbc-remix</artifactId>
 		    <version>0.2.7</version>
 		</dependency>
+		
 		<!-- 마이바티스 설정 종료 -->
 	
 		<!-- Test -->
