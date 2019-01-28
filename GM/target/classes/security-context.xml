@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<security:http use-expressions="true">
+		<security:intercept-url pattern="/admin/**" access="hasAuthority('USER_ADMIN')"/>
+		<security:intercept-url pattern="/pages/**" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/common/**" access="permitAll"/>
+		<security:form-login login-page="/login"
+				username-parameter="id"
+				password-parameter="pwd"
+				login-processing-url="/loginPro"
+				default-target-url="/main"
+				authentication-failure-url="/login"/><!-- 지정페이지로 이동 -->
+		<security:logout
+				logout-url = "/logout"
+				logout-success-url = "/login"/>
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service data-source-ref="dataSource"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>
