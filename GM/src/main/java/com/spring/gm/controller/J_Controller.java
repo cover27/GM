@@ -76,4 +76,15 @@ public class J_Controller {
 		
 		return "pages/J_Payroll";
 	}
+	
+	//==================================================================
+	//급여 대장(Payroll)
+	@RequestMapping("/J_info")
+	public String J_info(HttpServletRequest req, Model model) {
+		logger.info("URL : J_info");
+		service.infoList(req, model);
+		System.out.println("J_info 탔습니다");
+		return "pages/sub/J_sub/J_info";
+	}
+	
 }

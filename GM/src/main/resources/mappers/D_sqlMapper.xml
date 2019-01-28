@@ -33,10 +33,12 @@
 		SELECT COUNT(*) as cnt FROM BOARDLIST
 	</select>
 	
+	<!-- 
 	<select id="getBoardsArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardsVO">
 		<![CDATA[
 			SELECT * FROM(SELECT l.boardnum, l.num, l.writer, l.subject, l.content, l.readcnt, l.re_num, l.ref, l.ref_step, l.ref_level, l.reg_date, l.del, l.rownum rNum FROM (SELECT * FROM BOARDLIST WHERE l.num = #{num} ORDER BY l.boardnum ASC), boards b, boardlist l
 			WHERE b.num = l.num AND l.rNum >= #{start} AND l.rNum <= #{end}
 		]]>
-	</select>		
+	</select>
+	 -->		
 </mapper>

@@ -20,6 +20,9 @@ public class O_Controller {
 	@Autowired
 	O_Service oservice;
 	
+	
+	/* 업무관리 시작 */	
+	
 	//업무 요청 - 업무관리 클릭 화면 및 수신업무 요청 화면
 	@RequestMapping("/O_listTodoView")
 	public String O_listTodoView(HttpServletRequest req, Model model) {
@@ -108,8 +111,19 @@ public class O_Controller {
 		
 		return "admin/O_listAdminDocManagement";
 	}
+	/* 업무 관리 끝 */
 	
 	
 	
+	/* 전자 결재 시작 */
+	//기안 - 기안문 작성
+	@RequestMapping("O_createApprDocFormView")
+	public String O_createApprDocFormView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_createApprDocFormView");
+		
+		return "pages/O_createApprDocFormView";
+	}
 	
+	
+	/* 전자 결재 끝 */
 }

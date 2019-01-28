@@ -84,7 +84,7 @@ section .content_header .search_wrap .search_btn {
     padding: 0;
 }
 
-section .content_header .search_wrap .search_btn .btn_search {
+section .btn_search {
     background: #ff757f !important;
     padding: 3px 11px 4px;
     display: inline-block;
@@ -98,10 +98,18 @@ section .content_header .search_wrap .search_btn .btn_search {
     border-radius: 2px;
     cursor: pointer;
     white-space: nowrap;
+    width: 18px;
+    height: 18px;
 }
 
 section .content {
+	min-height: 800px;
+	margin-top: 10px;
+	/*
 	margin-top: 158px;
-	min-height: 650px;
-	border: 1px solid #d1d1d1;
+	padding: 20px;
+	border: 1px solid #d1d1d1; 
+	overflow: auto;
+	 */
+	overflow-y: scroll;
 }
