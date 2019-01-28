@@ -19,7 +19,7 @@
             <li><a href="#">일정</a></li>
             <li><a href="#">게시판</a></li>
             <li><a href="#">웹디스크</a></li>
-            <li><a href="#">인사</a></li>
+            <li><a href="admin/K_member_manage">인사</a></li>
             <!--
             <li class="menu_all"><a href="#"></a></li>
             -->
@@ -64,11 +64,13 @@
                         <span class="blind">통합검색</span>
                     </i>
                 </a>
-                <a href="logout">
+                <a href="#" onclick="document.getElementById('logout_form').submit();">
                     <i class="fa fa-power-off">
                         <span class="blind">로그아웃</span>
                     </i>
                 </a>
+                <form action="logout" id="logout_form" method="post">
+                </form>
             </div>
         </div>
     </header>

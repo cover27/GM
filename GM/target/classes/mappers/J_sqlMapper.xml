@@ -16,5 +16,11 @@
 			WHERE  rNum >= #{start} AND rNum <= #{end}
 	]]>
 	</select>
+	<select id="infoList" parameterType="String" resultType="com.spring.gm.vo.MemberVO">
+		SELECT * FROM member WHERE id=#{id}
+	</select>
 	
+	<update id="infoUpdate" parameterType="java.util.Map">
+		UPDATE member SET salary=#{salary}, account_number=#{account_number} WHERE id=#{id}
+	</update>
 </mapper>

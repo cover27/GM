@@ -17,8 +17,28 @@
 	
 	<select id="getBoardsArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardsVO">
 		<![CDATA[
-			SELECT * FROM(SELECT groupId, b_name, anon, del, rownum rNum FROM (SELECT * FROM BOARDS WHERE groupId=#{groupId} ORDER BY num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT num, groupId, b_name, anon, del, rownum rNum FROM (SELECT * FROM BOARDS ORDER BY num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>
 	
+	<update id="updateBoards" parameterType="com.spring.gm.vo.BoardsVO">
+		UPDATE BOARDS b_name = #{b_name}, anon = #{anon}, groupId = #{groupId} WHERE num = #{num}
+	</update>
+	
+	<update id="deleteBoards" parameterType="com.spring.gm.vo.BoardsVO">
+		UPDATE BOARDS del = #{del} WHERE num = #{num}
+	</update>
+	
+	<select id="getBoardArticleCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM BOARDLIST
+	</select>
+	
+	<!-- 
+	<select id="getBoardsArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardsVO">
+		<![CDATA[
+			SELECT * FROM(SELECT l.boardnum, l.num, l.writer, l.subject, l.content, l.readcnt, l.re_num, l.ref, l.ref_step, l.ref_level, l.reg_date, l.del, l.rownum rNum FROM (SELECT * FROM BOARDLIST WHERE l.num = #{num} ORDER BY l.boardnum ASC), boards b, boardlist l
+			WHERE b.num = l.num AND l.rNum >= #{start} AND l.rNum <= #{end}
+		]]>
+	</select>
+	 -->		
 </mapper>

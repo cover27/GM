@@ -17,14 +17,14 @@ public class D_Controller {
 	@Autowired
 	D_Service service;
 	
-	private static final Logger logger = LoggerFactory.getLogger(S_Controller.class);
+	private static final Logger logger = LoggerFactory.getLogger(D_Controller.class);
 	
 	// 게시판 생성 페이지
 	@RequestMapping("pages/D_createBoards")
 	public String createBoards(HttpServletRequest req, Model model) {
 		logger.info("URL : D_createBoards");
 		
-		return "pages/D_createBoards";
+		return "admin/D_createBoards";
 	}
 	
 	//게시판 생성 처리
@@ -32,8 +32,13 @@ public class D_Controller {
 	public String createBoardsPro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_CreateBoards_pro");
 		
+<<<<<<< HEAD
 		// service.insertBoards(req, model);
 		return "pages/sub/D_CreateBoards_pro";
+=======
+		service.insertBoards(req, model);
+		return "admin/sub/D_CreateBoards_pro";
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 	}
 	
 	//게시판 목록
@@ -45,11 +50,23 @@ public class D_Controller {
 		return "pages/D_boardsList";
 	}
 	
+	@RequestMapping("D_boardsUpdate")
+	public String boardsUpdate(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardsUpdate");
+		
+		
+		return "admin/D_boardsUpdate";
+	}
+	
 	//게시글 목록
+<<<<<<< HEAD
 	@RequestMapping("pages/D_boardList")
+=======
+/*	@RequestMapping("D_boardList")
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 	public String boardList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardlist");
 		
 		return "pages/D_boardList";
-	}
+	}*/
 }

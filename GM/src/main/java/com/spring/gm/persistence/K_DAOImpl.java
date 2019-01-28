@@ -1,6 +1,7 @@
 package com.spring.gm.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,36 @@ public class K_DAOImpl implements K_DAO{
 	@Override
 	public int registAccount(MemberVO vo) {
 		return sqlSession.insert("com.spring.gm.persistence.K_DAO.registAccount", vo);
+	}
+
+	@Override
+	public int registUsers(Map<String, String> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.registUsers", map);
+	}
+
+	@Override
+	public int registAuthorities(Map<String, String> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.registAuthorities", map);
+	}
+
+	@Override
+	public List<MemberVO> getWait(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getWait", company);
+	}
+
+	@Override
+	public int getCompany(int depart) { //그룹을 넣으면 사업장을 찾아주는 메소드
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getCompany", depart);
+	}
+
+	@Override
+	public int updateSysrank(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateSysrank", map);
+	}
+
+	@Override
+	public int updateAuthorities(Map<String, String> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateAuthorities", map);
 	}
 	
 }

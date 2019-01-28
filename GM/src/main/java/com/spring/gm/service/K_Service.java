@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 
 public interface K_Service {
 	
-	public void login(HttpServletRequest req, Model model);
+	public void login(HttpServletRequest req, Model model, String id);
 	
 	public void confirmId(HttpServletRequest req, Model model);
 	
@@ -15,5 +15,9 @@ public interface K_Service {
 	public void searchCompany(HttpServletRequest req, Model model);
 	
 	public void registAccount(HttpServletRequest req, Model model);
+	
+	public void member_manage(HttpServletRequest req, Model model);
+	
+	public void K_appMember(HttpServletRequest req, Model model);
 
 }

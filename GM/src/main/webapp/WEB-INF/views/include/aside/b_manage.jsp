@@ -42,7 +42,7 @@
                         <span><a href="O_listTempTaskView">임시 저장함</a></span>
                     </li>
                     <li>
-                    	<span>업무 보관함</span>
+                    	<span><a href="O_listMenuStoredTaskView">업무 보관함</a></span>
                     </li>
                     <li>
                     	<span><a href="e09.jsp">업무 보관함 관리</a></span>
@@ -51,7 +51,7 @@
                     	<span>관리자 메뉴</span>
                     	<ul>
                     		<li>
-                    			<a href="e10.jsp">업무 문서 관리</a>
+                    			<a href="O_listAdminDocManagement">업무 문서 관리</a>
                     		</li>
                     	</ul>
                     </li>

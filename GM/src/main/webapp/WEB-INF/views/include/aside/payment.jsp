@@ -16,7 +16,7 @@
                     <li>
                         <span>기안</span>
                         <ul>
-                            <li><a href="b01.jsp">기안문 작성</a></li>
+                            <li><a href="O_createApprDocFormView">기안문 작성</a></li>
                             <li><a href="b02.jsp">결제 요청함<span>2</span></a></li>
                             <li><a href="b03.jsp">임시 저장함</a></li>
                         </ul>
