@@ -20,4 +20,7 @@
 		SELECT * FROM member WHERE id=#{id}
 	</select>
 	
+	<update id="infoUpdate" parameterType="java.util.Map">
+		UPDATE member SET salary=#{salary}, account_number=#{account_number} WHERE id=#{id}
+	</update>
 </mapper>

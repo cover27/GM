@@ -11,5 +11,7 @@ public interface J_DAO {
 	public ArrayList<MemberVO> selectList(Map<String, Object> map);
 	//급여 개인회원정보 가져오기
 	public ArrayList<MemberVO> infoList(String id);
+	// 회원 급여 개인정보 업데이트
+	public int infoUpdate(Map<String, Object> map);
 
 }

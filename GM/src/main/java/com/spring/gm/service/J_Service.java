@@ -9,6 +9,9 @@ public interface J_Service {
 	// 기본 정보
 	public void salaryList(HttpServletRequest req, Model model);
 	
-	// 회원 급여 개인정보
+	//급여 개인회원정보 가져오기
 	public void infoList(HttpServletRequest req, Model model);
+	
+	// 회원 급여 개인정보 업데이트
+	public void infoUpdate(HttpServletRequest req, Model model);
 }

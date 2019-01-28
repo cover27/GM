@@ -26,8 +26,8 @@ public class J_ServiceImpl implements J_Service {
 		String pagenum = req.getParameter("pageNum");
 		System.out.println("pagenum :" + pagenum);
 		
-		int pageSize = 5; // 한페이지당 출력할 글 갯수
-		int pageBlock = 3; // 한 블럭당 페이지 갯수
+		int pageSize = 10; // 한페이지당 출력할 글 갯수
+		int pageBlock = 5; // 한 블럭당 페이지 갯수
 
 		int cnt = 0; // 글갯수
 		int start = 0; // 현재 페이지 시작 글번호
@@ -88,7 +88,7 @@ public class J_ServiceImpl implements J_Service {
 
 			List<MemberVO> dtos = dao.selectList(map);
 			System.out.println("여기 탔다");
-			req.setAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+			model.addAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
 		}
 
 		// 6단계. request나 session에 처리 결과를 저장(jsp에 전달하기 위함)
@@ -108,16 +108,16 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("endPage : " + endPage);
 		System.out.println("================");
 
-		req.setAttribute("cnt", cnt); // 글갯수
-		req.setAttribute("number", number); // 출력용 글번호
-		req.setAttribute("pageNum", pageNum); // 페이지번호
+		model.addAttribute("cnt", cnt); // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum); // 페이지번호
 
 		if (cnt > 0) {
-			req.setAttribute("startPage", startPage); // 시작 페이지
-			req.setAttribute("endPage", endPage); // 마지막 페이지
-			req.setAttribute("pageBlock", pageBlock); // 출력할 페이지 갯수
-			req.setAttribute("pageCount", pageCount); // 페이지 갯수
-			req.setAttribute("currentPage", currentPage); // 현재페이지
+			model.addAttribute("startPage", startPage); // 시작 페이지
+			model.addAttribute("endPage", endPage); // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock); // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount); // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
 		}
 	}
 
@@ -147,7 +147,27 @@ public class J_ServiceImpl implements J_Service {
 		
 		List<MemberVO> dtos = dao.infoList(id);
 		System.out.println("여기 탔다");
-		req.setAttribute("dtos", dtos);
+		System.out.print(dtos.toString());
+		model.addAttribute("dtos", dtos);
+	}
+	
+	// 회원 급여 개인정보 업데이트
+	@Override
+	public void infoUpdate(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		System.out.println("id :" + id);
+		String account_number = req.getParameter("account_number");
+		System.out.println("account_number :" + account_number);
+		int salary = Integer.parseInt(req.getParameter("salary"));
+		System.out.println("salary :" + salary);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("account_number", account_number);
+		map.put("salary", salary);
+		int updateCnt = dao.infoUpdate(map);
+		System.out.println("updateCnt :" + updateCnt);
+		model.addAttribute("updateCnt", updateCnt);
 	}
 
 }
