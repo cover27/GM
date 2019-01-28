@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.E_Service;
 
+
 @Controller
 public class E_Controller {
 	
@@ -21,7 +22,7 @@ public class E_Controller {
 
 	
 	// 조직도
-	@RequestMapping("/organizationList")
+	@RequestMapping("pages/organizationList")
 	public String organizationList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organizationList");
 		
@@ -29,7 +30,7 @@ public class E_Controller {
 	}
 	
 	// 주소록 그룹
-	@RequestMapping("/eaddressGroup")
+	@RequestMapping("pages/eaddressGroup")
 	public String addressGroup(HttpServletRequest req, Model model) {
 		logger.info("URL : E_addressGroup");
 		
