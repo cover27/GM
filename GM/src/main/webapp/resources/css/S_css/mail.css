@@ -89,11 +89,11 @@
 }
 
 .content .mailbox_inbox table col:nth-child(1) {
-	width: 25px;
+	width: 30px;
 }
 
 .content .mailbox_inbox table col:nth-child(2) {
-	width: 25px;
+	width: 30px;
 }
 
 .content .mailbox_inbox table col:nth-child(3) {
@@ -108,4 +108,5 @@
 	background: yellow;
 	border: 1px solid #333;
 	padding: 8px;
+	font-size: 14px;
 }
