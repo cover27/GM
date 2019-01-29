@@ -20,7 +20,7 @@ public class D_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(D_Controller.class);
 	
 	// 게시판 생성 페이지
-	@RequestMapping("D_createBoards")
+	@RequestMapping("/admin/D_createBoards")
 	public String createBoards(HttpServletRequest req, Model model) {
 		logger.info("URL : D_createBoards");
 		
@@ -28,7 +28,7 @@ public class D_Controller {
 	}
 	
 	//게시판 생성 처리
-	@RequestMapping("D_CreateBoards_pro")
+	@RequestMapping("/admin/D_CreateBoards_pro")
 	public String createBoardsPro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_CreateBoards_pro");
 		
@@ -54,10 +54,26 @@ public class D_Controller {
 	}
 	
 	//게시글 목록
-/*	@RequestMapping("D_boardList")
+	@RequestMapping("D_boardList")
 	public String boardList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardlist");
 		
 		return "pages/D_boardList";
-	}*/
+	}
+	
+	//게시글 입력
+	@RequestMapping("D_writeForm")
+	public String insertBoard(HttpServletRequest req, Model model) {
+		logger.info("URL : D_writeForm");
+		
+		return "pages/D_writeForm";
+	}
+	
+	@RequestMapping("D_boardContent")
+	public String boardContent(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardContent");
+		
+		return "pages/D_boardContent";
+	}
+	
 }

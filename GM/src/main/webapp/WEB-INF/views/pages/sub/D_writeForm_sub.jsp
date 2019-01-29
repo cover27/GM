@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ page import="com.spring.gm.vo.MemberVO" %>  
 <section>
 	<article>
 		<div class="content_header">
@@ -19,7 +20,7 @@
 		<tr>
 			<th> 작성자 </th>
 			<td>
-				<input class="input" type="text" name="writer" maxlength="20" placeholder="작성자를 입력하세요!!" autofocus required>
+				<%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %>
 			</td>				
 		</tr>
 			

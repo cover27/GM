@@ -11,7 +11,7 @@
 		<tr>
 			<th colspan="6" align="center" style="height:25px">
 				글목록(글갯수 : ${cnt}) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="writeForm?pageNum=${pageNum}"> 글쓰기 </a>
+				<a href="D_writeForm?pageNum=${pageNum}"> 글쓰기 </a>
 			</th>
 		</tr>
 		

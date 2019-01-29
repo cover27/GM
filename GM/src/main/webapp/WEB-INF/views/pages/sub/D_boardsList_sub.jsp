@@ -27,7 +27,7 @@
 				</td>
 						
 				<td>
-					${dtos.b_name}
+					<a href="D_boardList?num=${dtos.num}">${dtos.b_name}</a>
 				</td>
 			</tr>
 		</c:forEach>

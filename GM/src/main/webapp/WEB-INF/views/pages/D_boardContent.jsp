@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 
-<!-- 게시글 입력 -->    
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/boards.jsp"%>
-<%@ include file="/WEB-INF/views/pages/sub/D_writeForm_sub.jsp"%>
+<%@ include file="/WEB-INF/views/pages/sub/D_boardContent_sub.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

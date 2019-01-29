@@ -147,7 +147,10 @@ public class D_ServiceImpl implements D_Service{
 		int pageCount = 0;		// 페이지 갯수
 		int startPage = 0;		// 시작 페이지
 		int endPage = 0;		// 마지막 페이지		
-	
+		
+		String num_s = req.getParameter("num");
+		int num = Integer.parseInt(num_s);
+		
 		cnt = dao.getBoardArticleCnt();
 		
 		System.out.println("cnt : " + cnt);
@@ -180,6 +183,7 @@ public class D_ServiceImpl implements D_Service{
 		if(cnt > 0) {
 			//게시판 목록 조회
 			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("num", num);
 			map.put("start", start);
 			map.put("end", end);
 			
@@ -211,6 +215,8 @@ public class D_ServiceImpl implements D_Service{
 			req.setAttribute("currentPage", currentPage); // 현재페이지
 		}		
 	}
+	
+	
 
 	@Override
 	public void boardUpdate(HttpServletRequest req, Model model) {
@@ -247,7 +253,56 @@ public class D_ServiceImpl implements D_Service{
 		req.setAttribute("deleteCnt", deleteCnt);
 		
 	}
-	
-	
 
+	@Override
+	public void insertBoard(HttpServletRequest req, Model model) {
+		
+		int boardnum = 0;		// 글 번호 
+		int ref = 1;		// 답글 그룹화 아이디
+		int ref_step = 0;	// 글 순서(행)
+		int ref_level = 0;	// 글 레벨(들여쓰기 / 답글에 대한 답글)
+		int pageNum = 0;
+		 
+		// 답변글에 대한 글 작성시
+		if(req.getParameter("num") != null) {
+			boardnum = Integer.parseInt(req.getParameter("num"));
+			ref = Integer.parseInt(req.getParameter("ref"));
+			ref_step = Integer.parseInt(req.getParameter("ref_step"));
+			ref_level = Integer.parseInt(req.getParameter("ref_level"));
+		}
+		
+		pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		
+		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("boardnum", boardnum);
+		model.addAttribute("ref", ref);
+		model.addAttribute("ref_step", ref_step);
+		model.addAttribute("ref_level", ref_level);
+		model.addAttribute("pageNum", pageNum);
+	}
+
+	@Override
+	public void contentForm(HttpServletRequest req, Model model) {
+		// 3단계. 화면으로부터 입력받은 값을 받아온다.
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int number = Integer.parseInt(req.getParameter("number"));
+		
+		// 4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
+		// BoardDAO dao = BoardDAOImpl.getInstance();
+		
+		// 5-1단계. 조회수 증가
+		dao.addReadCnt(boardnum);
+		
+		// 5-2단계. 상세페이지 조회
+		BoardListVO vo = dao.getArticle(boardnum);
+		
+		// 6단계. request나 session에 처리결과를 저장(jsp에 전달하기 위함)
+		req.setAttribute("dto", vo);
+		req.setAttribute("pageNum", pageNum);
+		req.setAttribute("number", number);
+		
+	}
+	
+	
 }
