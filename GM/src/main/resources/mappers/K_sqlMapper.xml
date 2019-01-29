@@ -52,4 +52,8 @@
 		UPDATE authorities set authority = #{auth} WHERE username = #{id}
 	</update>
 	
+	<select id="getMembers" parameterType="int" resultType="com.spring.gm.vo.MemberVO">
+		SELECT * FROM member WHERE depart=#{company}
+	</select>
+	
 </mapper>

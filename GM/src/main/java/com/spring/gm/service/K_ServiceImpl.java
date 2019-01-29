@@ -1,6 +1,7 @@
 package com.spring.gm.service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -163,6 +164,15 @@ public class K_ServiceImpl implements K_Service{
 			state = -1;
 		}
 		req.setAttribute("state", state);
+	}
+
+	@Override
+	public void K_resistMemberInfo(HttpServletRequest req, Model model) {
+		int company = 0;
+		int depart = ((MemberVO)req.getSession().getAttribute("loginInfo")).getDepart();
+		
+		List<MemberVO> list = null;
+		
 	}
 	
 }

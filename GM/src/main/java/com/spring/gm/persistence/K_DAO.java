@@ -27,4 +27,6 @@ public interface K_DAO {
 	public int updateSysrank(Map<String, Object> map);
 	
 	public int updateAuthorities(Map<String, String> map);
+	
+	public List<MemberVO> getMembers(int company);
 }
