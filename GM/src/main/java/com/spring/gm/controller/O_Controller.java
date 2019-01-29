@@ -24,7 +24,7 @@ public class O_Controller {
 	/* 업무관리 시작 */	
 	
 	//업무 요청 - 업무관리 클릭 화면 및 수신업무 요청 화면
-	@RequestMapping("/O_listTodoView")
+	@RequestMapping("/pages/O_listTodoView")
 	public String O_listTodoView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listTodoView");
 		
@@ -32,7 +32,7 @@ public class O_Controller {
 	}
 	
 	//업무 등록 화면
-	@RequestMapping("/O_createSelfTaskView")
+	@RequestMapping("/pages/O_createSelfTaskView")
 	public String O_createSelfTaskView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_createSelfTaskView");
 		
@@ -40,7 +40,7 @@ public class O_Controller {
 	}
 	
 	//TO DO - 나의 할 일 화면
-	@RequestMapping("/O_listMyTodoView")
+	@RequestMapping("/pages/O_listMyTodoView")
 	public String O_listMyTodoView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listMyTodoView");
 		
@@ -48,7 +48,7 @@ public class O_Controller {
 	}
 	
 	//업무 요청 - 내가 한 업무요청 화면
-	@RequestMapping("/O_listPureOrderView")
+	@RequestMapping("/pages/O_listPureOrderView")
 	public String O_listPureOrderView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listPureOrderView");
 		
@@ -56,7 +56,7 @@ public class O_Controller {
 	}
 	
 	//업무 요청 - 참조 업무 요청 화면
-	@RequestMapping("/O_listSubTodoView")
+	@RequestMapping("/pages/O_listSubTodoView")
 	public String O_listSubTodoView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listSubTodoView");
 		
@@ -64,7 +64,7 @@ public class O_Controller {
 	}
 	
 	//업무 보고 - 내가 한 업무 보고 화면
-	@RequestMapping("/O_listPureOrderReportView")
+	@RequestMapping("/pages/O_listPureOrderReportView")
 	public String O_listPureOrderReportView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listPureOrderReportView");
 		
@@ -72,7 +72,7 @@ public class O_Controller {
 	}
 	
 	//업무 보고 - 수신 업무 보고
-	@RequestMapping("/O_listTodoReportView")
+	@RequestMapping("/pages/O_listTodoReportView")
 	public String O_listTodoReportView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listTodoReportView");
 		
@@ -80,7 +80,7 @@ public class O_Controller {
 	}
 	
 	//업무보고 - 참조 업무 보고
-	@RequestMapping("/O_listSubTodoReportView")
+	@RequestMapping("/pages/O_listSubTodoReportView")
 	public String O_listSubTodoReportView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listSubTodoReportView");
 		
@@ -88,7 +88,7 @@ public class O_Controller {
 	}
 	
 	//임시 저장함
-	@RequestMapping("/O_listTempTaskView")
+	@RequestMapping("/pages/O_listTempTaskView")
 	public String O_listTempTaskView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listTempTaskView");
 		
@@ -96,7 +96,7 @@ public class O_Controller {
 	}
 	
 	//업무 보관함
-	@RequestMapping("/O_listMenuStoredTaskView")
+	@RequestMapping("/pages/O_listMenuStoredTaskView")
 	public String O_listMenuStoredTaskView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listMenuStoredTaskView");
 		
@@ -105,7 +105,7 @@ public class O_Controller {
 	
 	
 	//관리자 메뉴 - 업무 문서 관리
-	@RequestMapping("/O_listAdminDocManagement")
+	@RequestMapping("/pages/O_listAdminDocManagement")
 	public String O_listAdminDocManagement(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listAdminDocManagement");
 		
@@ -117,7 +117,7 @@ public class O_Controller {
 	
 	/* 전자 결재 시작 */
 	//기안 - 기안문 작성
-	@RequestMapping("O_createApprDocFormView")
+	@RequestMapping("/pages/O_createApprDocFormView")
 	public String O_createApprDocFormView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_createApprDocFormView");
 		
