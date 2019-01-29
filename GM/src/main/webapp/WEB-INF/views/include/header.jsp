@@ -82,8 +82,7 @@
 	                        <span class="blind">로그아웃</span>
 	                    </i>
 	                </a>
-	                <!-- <form action="../logout" id="logout_form" method="post"></form> -->
-	                <form action="<c:url value='logout' />" id="logout_form" method="post"></form>
+	                <form action="<c:url value='/logout' />" id="logout_form" method="post"></form>
 	            </div>
 	        </div>
         </c:if>
