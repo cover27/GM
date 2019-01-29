@@ -202,20 +202,12 @@ public class D_ServiceImpl implements D_Service{
 		endPage = startPage + pageBlock - 1; 
 		if(endPage > pageCount) endPage = pageCount;
 		System.out.println("endPage : " + endPage);
-		System.out.println("================");
 		
-<<<<<<< HEAD
 		model.addAttribute("num", num);
 		model.addAttribute("cnt", cnt);  // 글갯수
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum);  // 페이지번호
-=======
-		req.setAttribute("num", num);
-		req.setAttribute("cnt", cnt);  // 글갯수
-		req.setAttribute("number", number); // 출력용 글번호
-		req.setAttribute("pageNum", pageNum);  // 페이지번호
->>>>>>> branch 'master' of https://github.com/cover27/GM.git
-		
+
 		if(cnt > 0) {
 			model.addAttribute("startPage", startPage);     // 시작 페이지
 			model.addAttribute("endPage", endPage);         // 마지막 페이지
