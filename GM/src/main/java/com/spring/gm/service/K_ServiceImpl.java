@@ -169,5 +169,10 @@ public class K_ServiceImpl implements K_Service{
 		
 		req.setAttribute("list", list);
 	}
+
+	@Override
+	public void K_personal(HttpServletRequest req, Model model) {
+		
+	}
 	
 }
