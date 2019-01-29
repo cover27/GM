@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .content .mailbox_header {
-	border-bottom: 1px solid #d1d1d1;
+	border-bottom: 2px solid #d1d1d1;
 	height: 36px;
 }
 
@@ -10,6 +10,7 @@
 
 .content .mailbox_header>ul>li:first-child {
 	float: left;
+	margin-top: 4px;
 }
 
 .content .mailbox_header>ul>li:last-child {
@@ -25,4 +26,64 @@
     margin-left: -5px;
     border: 1px solid #bbb;
     border-radius: 0 2px 2px 0;
+}
+
+.content .mailbox_btns {
+	height: 42px;
+	border-bottom: 1px solid #d1d1d1;
+}
+
+.content .mailbox_btns>ul {
+	display: inline-block;
+	margin-left: 3px;
+}
+
+.content .mailbox_btns>ul:first-child {
+	margin-left: 0;
+}
+
+.content .mailbox_btns>ul>li {
+	display: inline-block;
+	float: left;
+	margin-left: -1px;
+}
+
+.content .mailbox_btns>ul>li:first-child {
+	margin-left: 0;
+}
+
+.content .mailbox_btns>ul>li>button {
+	line-height: 15px;
+    border: 1px solid #bbb;
+	color: #4f4f4f;
+    background: #fff;
+    border-radius: 3px;
+    display: inline-block;
+    width: auto;
+	margin-top: 5px;
+	height: 30px;
+}
+
+.content .mailbox_btns>ul:nth-child(2)>li:nth-child(1)>button {
+	border-radius: 3px 0 0 3px;
+}
+
+.content .mailbox_btns>ul:nth-child(2)>li:nth-child(2)>button {
+	border-radius: 0 3px 3px 0;
+}
+
+.content .mailbox_btns>ul:nth-child(3)>li>button {
+	border-radius: 0;
+}
+
+.content .mailbox_btns>ul:nth-child(2)>li:nth-child(2)>button {
+	border-radius: 0 3px 3px 0;
+}
+
+.content .mailbox_btns>ul:nth-child(3)>li:first-child>button {
+	border-radius: 3px 0 0 3px;
+}
+
+.content .mailbox_btns>ul:nth-child(3)>li:last-child>button {
+	border-radius: 0 3px 3px 0;
 }
