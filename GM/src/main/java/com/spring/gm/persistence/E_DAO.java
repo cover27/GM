@@ -10,7 +10,7 @@ public interface E_DAO {
 	// 메모 갯수
 	public int getMemoCnt();
 
-	// 메모 목록 조회 -- 복수개라서 ArrayList 사용
+	// 메모 목록 조회
 	public List<MemoVO> getMemoList(Map<String, Integer> map);
 
 	
