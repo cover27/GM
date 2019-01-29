@@ -4,5 +4,5 @@
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/addressgroup.jsp"%> 
-<%@ include file="/WEB-INF/views/pages/sub/E_addressGroup_sub.jsp"%>
+<%@ include file="/WEB-INF/views/pages/sub/E_addressList_sub.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
