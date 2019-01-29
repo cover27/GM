@@ -87,3 +87,25 @@
 .content .mailbox_btns>ul:nth-child(3)>li:last-child>button {
 	border-radius: 0 3px 3px 0;
 }
+
+.content .mailbox_inbox table col:nth-child(1) {
+	width: 25px;
+}
+
+.content .mailbox_inbox table col:nth-child(2) {
+	width: 25px;
+}
+
+.content .mailbox_inbox table col:nth-child(3) {
+	width: 145px;
+}
+
+.content .mailbox_inbox table col:nth-child(5) {
+	width: 120px;
+}
+
+.content .mailbox_inbox table th {
+	background: yellow;
+	border: 1px solid #333;
+	padding: 8px;
+}

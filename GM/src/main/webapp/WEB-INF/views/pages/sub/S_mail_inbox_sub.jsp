@@ -46,6 +46,24 @@
 					<li><button>인쇄</button></li>
 				</ul>
 			</div>
+			<div class="mailbox_inbox">
+				<table>
+					<colgroup>
+						<col />
+						<col />
+						<col />
+						<col />
+						<col />
+					</colgroup>
+					<tr>
+						<th><input type="checkbox" /></th>
+						<th><span class="attached_file"></span></th>
+						<th><span>보낸사람</span></th>
+						<th><span>제목</span></th>
+						<th><span>날짜</span></th>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</article>
 </section>
