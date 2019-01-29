@@ -42,7 +42,7 @@ public class D_Controller {
 	public String boardsList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardsList");
 		
-		//service.boardsList(req, model);
+		service.boardsList(req, model);
 		return "pages/D_boardsList";
 	}
 	

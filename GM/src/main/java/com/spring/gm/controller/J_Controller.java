@@ -95,7 +95,7 @@ public class J_Controller {
 	
 	//==================================================================
 	//개인 급여정보 가져오기
-	@RequestMapping("/J_info")
+	@RequestMapping("admin/J_info")
 	public String J_info(HttpServletRequest req, Model model) {
 		logger.info("URL : J_info");
 		service.infoList(req, model);

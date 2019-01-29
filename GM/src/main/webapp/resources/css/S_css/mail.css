@@ -111,4 +111,12 @@
 	font-size: 14px;
 }
 
-.content .mailbox_inbox table td
+.content .mailbox_inbox table tr td {
+	padding: 8px;
+	text-align: center;
+	font-size: 12px;
+}
+
+.content .mailbox_inbox table tr td:nth-child(4) {
+	text-align: left;
+}
