@@ -33,12 +33,28 @@
 		SELECT COUNT(*) as cnt FROM BOARDLIST
 	</select>
 	
-	<!-- 
-	<select id="getBoardsArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardsVO">
+	 
+	<select id="getBoardArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardListVO">
 		<![CDATA[
-			SELECT * FROM(SELECT l.boardnum, l.num, l.writer, l.subject, l.content, l.readcnt, l.re_num, l.ref, l.ref_step, l.ref_level, l.reg_date, l.del, l.rownum rNum FROM (SELECT * FROM BOARDLIST WHERE l.num = #{num} ORDER BY l.boardnum ASC), boards b, boardlist l
-			WHERE b.num = l.num AND l.rNum >= #{start} AND l.rNum <= #{end}
+		SELECT * 
+		FROM (SELECT boardnum, num, writer, pwd, subject, content, re_num, readcnt, ref, ref_step, ref_level, reg_date, del, rownum as rNum
+			FROM (SELECT * FROM BOARDLIST WHERE num=#{num} ORDER BY ref DESC, ref_step ASC)
+			)
+			WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>
-	 -->		
+	
+	<insert id="insertBoard" parameterType="com.spring.gm.vo.BoardListVO">
+		INSERT INTO BOARDLIST (boardnum, num, writer, subject, content, readcnt, re_num, ref, ref_step, ref_level, reg_date, del) 
+		VALUES(board_seq.nextval, #{boardnum}, #{num}, #{writer}, #{subject}, #{content}, #{readcnt}, #{re_num}, #{ref}, #{ref_step}, #{ref_level}, #{reg_date}, #{del}) 
+	</insert>
+	
+	<select id="getArticle" parameterType="int" resultType="com.spring.gm.vo.BoardListVO">
+		SELECT * FROM BOARDLIST WHERE boardnum = #{boardnum}
+	</select>
+	
+	<update id="addReadCnt" parameterType="int">
+		UPDATE BOARDLIST SET readCnt = readCnt + 1 WHERE boardnum = #{boardnum}
+	</update>
+	 		
 </mapper>

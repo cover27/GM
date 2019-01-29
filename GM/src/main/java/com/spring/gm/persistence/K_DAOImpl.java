@@ -65,5 +65,10 @@ public class K_DAOImpl implements K_DAO{
 	public int updateAuthorities(Map<String, String> map) {
 		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateAuthorities", map);
 	}
+
+	@Override
+	public List<MemberVO> getMembers(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getMembers", company);
+	}
 	
 }

@@ -6,6 +6,7 @@ public class MailVO {
 	private String name;	// 이름	
 	private int rank;		// 쪽지등급	
 	private int del;		// 삭제구분
+	private int status;		// 메일 읽음/안읽음 표시
 	
 	public int getMail_num() {
 		return mail_num;
@@ -36,5 +37,11 @@ public class MailVO {
 	}
 	public void setDel(int del) {
 		this.del = del;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 }

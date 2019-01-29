@@ -1,6 +1,6 @@
 package com.spring.gm.vo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 //게시판 목록 테이블
 public class BoardListVO {
@@ -14,7 +14,7 @@ public class BoardListVO {
     private int ref; //ref
     private int ref_step; //ref_step
     private int ref_level; //ref_level
-    private Date reg_date; //작성일시
+    private Timestamp reg_date; //작성일시
     private int del; //삭제구분
 	
     
@@ -78,10 +78,10 @@ public class BoardListVO {
 	public void setRef_level(int ref_level) {
 		this.ref_level = ref_level;
 	}
-	public Date getReg_date() {
+	public Timestamp getReg_date() {
 		return reg_date;
 	}
-	public void setReg_date(Date reg_date) {
+	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
 	public int getDel() {
