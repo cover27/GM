@@ -32,7 +32,7 @@
                         <span><a href="g05.jsp">개인 주소록 그룹 관리</a></span>
                     </li>
                     <li>
-                        <span><a href="g06.jsp">전체 주소록 그룹 관리</a></span>
+                        <span><a href="g06.jsp">전체 주소록 그룹 관리(admin 시큐리티 적용)</a></span>
                     </li>
                     <li>
                         <span><a href="g07.jsp">자주 연락하는 사람 관리</a></span>

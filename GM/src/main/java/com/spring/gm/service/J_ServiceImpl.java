@@ -147,6 +147,7 @@ public class J_ServiceImpl implements J_Service {
 		int idLength = strId.length();
 		System.out.println(idLength - 5);
 		String id = strId.substring(0, idLength - 5);
+		System.out.println("아놔 썅 : "+id); 
 
 		/* 장훈수정 끝 */
 

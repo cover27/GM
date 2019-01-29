@@ -7,21 +7,20 @@
 			<h2>전체 구성원 목록</h2>
 		</div>
 
-
 		<table style="width:1000px" align="center">
 			<tr>
 				<th colspan="6" align="center" style="height:25px">
-					전체  ${cnt} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					전체 구성원  ${cnt} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<a href="writeForm?pageNum=${pageNum}"> 개인 그룹에 추가 </a>
 				</th>
 			</tr>
 			
 			<tr>
-				<th style="width:15%">이미지</th>
-				<th style="width:25%">이름</th>
-				<th style="width:10%">소속그룹명</th>
-				<th style="width:15%">휴대폰번호</th>
-				<th style="width:5%">이메일</th>
+				<th style="width:5%">☆</th><!-- 자주 연락하는 사람 -->
+				<th style="width:15%">이름</th>
+				<th style="width:25%">소속그룹명</th>
+				<th style="width:10%">휴대전화번호</th>
+				<th style="width:15%">이메일</th>
 			</tr>
 			
 			<!-- 메모가 있으면 -->
@@ -36,40 +35,42 @@
 						</td>
 						
 						<td>
-							${dto.writer}
+							${dto.name}
 						</td>
 						
 						<td>
-							<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.reg_date}"/>
+							<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.enterday}"/>
 						</td>
 						
-						<td>
+				<%-- 	<td>
 							${dto.readCnt}
 						</td>
 						
 						<td>
 							${dto.ip}
-						</td>
+						</td> 	
+				--%>
 					</tr>
 	
 				</c:forEach>
 			</c:if>
 	
-			<!-- 메모가 없으면 -->
+			<!-- 멤버가 없으면 -->
 			<c:if test="${cnt==0}">
 				<tr>
 					<td colspan="6" align="center">
-						메모가 없습니다. 메모 작성해주세요!!
+						멤버가 없습니다. 멤버를 등록해주세요!!
 					</td>
 				</tr>
 			</c:if>
 		</table>
 		
 		<!-- 페이지 컨트롤 -->
+		<div style="overflow-y: scroll; height:400px;">		<!-- 스크롤바 -->
 		<table style="width:1000px" align="center">
 			<tr>
 				<th align="center">
-					<!-- 게시글이 있으면 -->
+					<!-- 멤버가 있으면 -->
 					<c:if test="${cnt > 0}">
 						<!-- 처음[◀◀] / 이전블록[◀]  -->
 						<c:if test="${startPage > pageBlock}">
@@ -97,7 +98,8 @@
 				</th>
 			</tr>
 		</table>
+		</div>
 
-		
+
 	</article>
 </section>

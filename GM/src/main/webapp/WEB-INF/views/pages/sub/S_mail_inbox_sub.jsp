@@ -62,6 +62,13 @@
 						<th><span>제목</span></th>
 						<th><span>날짜</span></th>
 					</tr>
+					<tr>
+						<td><input type="checkbox" /></td>
+						<td><span>1</span></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
 				</table>
 			</div>
 		</div>

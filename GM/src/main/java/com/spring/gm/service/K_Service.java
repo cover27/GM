@@ -19,5 +19,9 @@ public interface K_Service {
 	public void member_manage(HttpServletRequest req, Model model);
 	
 	public void K_appMember(HttpServletRequest req, Model model);
+	
+	public void K_resistMemberInfo(HttpServletRequest req, Model model);
+	
+	public void K_personal(HttpServletRequest req, Model model);
 
 }
