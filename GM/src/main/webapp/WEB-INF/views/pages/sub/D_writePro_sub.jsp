@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <body>
-	<h3 align="center"> 게시판 생성  처리</h3>
+	<h3 align="center"> 게시글 생성 처리</h3>
 	<c:if test="${insertCnt == 0}">
 		<script type="text/javascript">
 			errorAlert(insertError);

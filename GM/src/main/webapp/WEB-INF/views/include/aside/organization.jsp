@@ -19,7 +19,7 @@
                     <li>
                         <span>조직도</span>
                         <ul>
-                        	<li><a href="#.jsp">전체 그룹 목록</a></li>
+                        	<li><a href="<c:url value='E_organizationGroupList' />">전체 그룹 목록</a></li>
                         </ul>
                     </li>
                     <li>

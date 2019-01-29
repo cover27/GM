@@ -4,7 +4,7 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2> 구성원 상세 페이지 </h2>
+			<h2> 인물 정보 </h2>
 		</div>
 
 		<table align = "center">
