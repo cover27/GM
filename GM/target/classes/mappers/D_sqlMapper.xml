@@ -37,7 +37,7 @@
 	<select id="getBoardArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardListVO">
 		<![CDATA[
 		SELECT * 
-		FROM (SELECT boardnum, num, writer, pwd, subject, content, re_num, readcnt, ref, ref_step, ref_level, reg_date, del, rownum as rNum
+		FROM (SELECT boardnum, num, writer, subject, content, re_num, readcnt, ref, ref_step, ref_level, reg_date, del, rownum as rNum
 			FROM (SELECT * FROM BOARDLIST WHERE num=#{num} ORDER BY ref DESC, ref_step ASC)
 			)
 			WHERE rNum >= #{start} AND rNum <= #{end}
@@ -46,7 +46,7 @@
 	
 	<insert id="insertBoard" parameterType="com.spring.gm.vo.BoardListVO">
 		INSERT INTO BOARDLIST (boardnum, num, writer, subject, content, readcnt, re_num, ref, ref_step, ref_level, reg_date, del) 
-		VALUES(board_seq.nextval, #{boardnum}, #{num}, #{writer}, #{subject}, #{content}, #{readcnt}, #{re_num}, #{ref}, #{ref_step}, #{ref_level}, #{reg_date}, #{del}) 
+		VALUES(board_seq.nextval, #{num}, #{writer}, #{subject}, #{content}, #{readcnt}, #{re_num}, #{ref}, #{ref_step}, #{ref_level}, #{reg_date}, #{del}) 
 	</insert>
 	
 	<select id="getArticle" parameterType="int" resultType="com.spring.gm.vo.BoardListVO">

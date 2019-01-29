@@ -47,10 +47,10 @@
 			
 			<tr>
 				<th colspan="4">
-					<input type="button" class="inputButton" value="글 수정" onclick="window.location='modifyForm.bo?num=${dto.num}&pageNum=${pageNum}'">
-					<input type="button" class="inputButton" value="글 삭제" onclick="window.location='deleteForm.bo?num=${dto.num}&pageNum=${pageNum}&ref_level=${dto.ref_level}'">
-					<input type="button" class="inputButton" value="답글 쓰기" onclick="window.location='writeForm.bo?num=${dto.num}&ref=${dto.ref}&ref_step=${dto.ref_step}&ref_level=${dto.ref_level}&pageNum=${pageNum}'">
-					<input type="button" class="inputButton" value="목록 보기" onclick="window.location='boardList.bo?pageNum=${pageNum}'">
+					<input type="button" class="inputButton" value="글 수정" onclick="window.location='/pages/D_modifyForm.bo?num=${dto.num}&pageNum=${pageNum}'">
+					<input type="button" class="inputButton" value="글 삭제" onclick="window.location='/pages/D_deleteForm.bo?num=${dto.num}&pageNum=${pageNum}&ref_level=${dto.ref_level}'">
+					<input type="button" class="inputButton" value="답글 쓰기" onclick="window.location='/pages/D_writeForm.bo?num=${dto.num}&ref=${dto.ref}&ref_step=${dto.ref_step}&ref_level=${dto.ref_level}&pageNum=${pageNum}'">
+					<input type="button" class="inputButton" value="목록 보기" onclick="window.location='/pages/D_boardList?pageNum=${pageNum}'">
 				</th>
 			</tr>
 		</table>

@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.spring.gm.persistence.K_DAO;
-import com.spring.gm.persistence.K_DAOImpl;
 import com.spring.gm.service.J_ServiceImpl;
 
 
@@ -94,6 +92,7 @@ public class J_Controller {
 	}
 	
 	//==================================================================
+	
 	//개인 급여정보 가져오기
 	@RequestMapping("admin/J_info")
 	public String J_info(HttpServletRequest req, Model model) {
