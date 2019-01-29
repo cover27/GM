@@ -125,7 +125,15 @@ function loadNews_callback(){
 								<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.id}</td>
 								<td>${dto.name}</td>
 								<td>${dto.rank}</td>
-								<td>${dto.depart}</td>
+								<c:if test="${dto.depart == 430000004}">
+									<td>부서미정</td>
+								</c:if>
+								<c:if test="${dto.depart == 430000003}">
+									<td>부서미정</td>
+								</c:if>
+								<c:if test="${dto.depart == 430000002}">
+									<td>부서미정</td>
+								</c:if>
 								<td>${dto.enterday}</td>
 								<td>${dto.tel}</td>
 								<td>${dto.email_in}</td>

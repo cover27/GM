@@ -93,7 +93,7 @@ public class J_ServiceImpl implements J_Service {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
-			// ArrayList<boardVO> dtos = dao.getArticleList(start, end);
+			map.put("company", company);
 
 			List<MemberVO> dtos = dao.selectList(map);
 			System.out.println("여기 탔다");

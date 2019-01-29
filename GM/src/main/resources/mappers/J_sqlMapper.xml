@@ -12,8 +12,8 @@
 	
 	<select id="selectList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
 	<![CDATA[
-		SELECT * FROM (SELECT  id, name, rank, depart, enterday, tel, email_in, rownum rNum FROM (SELECT * FROM member ORDER BY id DESC))
-			WHERE  rNum >= #{start} AND rNum <= #{end}
+		SELECT * FROM (SELECT  id, name, rank, depart, enterday, tel, email_in, rownum rNum FROM (SELECT * FROM member ORDER BY id DESC)where company =  #{company})
+			WHERE  (rNum >= #{start} AND rNum <= #{end})
 	]]>
 	</select>
 	<select id="infoList" parameterType="String" resultType="com.spring.gm.vo.MemberVO">
