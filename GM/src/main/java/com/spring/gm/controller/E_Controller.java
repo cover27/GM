@@ -26,6 +26,8 @@ public class E_Controller {
 	public String organizationList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organizationList");
 		
+		service.memoList(req, model);
+		
 		return "pages/E_organizationList";
 	}
 	
