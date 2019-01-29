@@ -64,7 +64,7 @@
 					</tr>
 					<tr>
 						<td><input type="checkbox" /></td>
-						<td></td>
+						<td><span>1</span></td>
 						<td></td>
 						<td></td>
 						<td></td>

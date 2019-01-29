@@ -65,9 +65,10 @@ public class D_ServiceImpl implements D_Service{
 		
 		int groupId = 0;
 	
+		// 게시판 갯수
 		cnt = dao.getBoardsArticleCnt();
 		
-		System.out.println("cnt : " + cnt);
+		System.out.println("cnt(게시판 갯수) : " + cnt);
 		
 		pageNum = req.getParameter("pageNum");
 		
@@ -203,10 +204,17 @@ public class D_ServiceImpl implements D_Service{
 		System.out.println("endPage : " + endPage);
 		System.out.println("================");
 		
+<<<<<<< HEAD
 		model.addAttribute("num", num);
 		model.addAttribute("cnt", cnt);  // 글갯수
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum);  // 페이지번호
+=======
+		req.setAttribute("num", num);
+		req.setAttribute("cnt", cnt);  // 글갯수
+		req.setAttribute("number", number); // 출력용 글번호
+		req.setAttribute("pageNum", pageNum);  // 페이지번호
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 		
 		if(cnt > 0) {
 			model.addAttribute("startPage", startPage);     // 시작 페이지

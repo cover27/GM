@@ -141,7 +141,7 @@ public class K_Controller {
 		return "admin/K_appMember";
 	}
 	
-	//인사정보등록
+	//인사정보등록 - 경준씨거 배낄거임 ㅎㅎㅎ 
 	@RequestMapping("admin/K_resistMemberInfo")
 	public String K_resistMemberInfo(HttpServletRequest req, Model model) {
 		logger.info("URL : K_resistMemberInfo");
@@ -149,6 +149,16 @@ public class K_Controller {
 		service.K_resistMemberInfo(req, model);
 		
 		return "admin/K_resistMemberInfo";
+	}
+	
+	//인사/근태/급여기준정보설정
+	@RequestMapping("admin/K_personal")
+	public String K_personal(HttpServletRequest req, Model model) {
+		logger.info("URL : K_personal");
+		
+		service.K_personal(req, model);
+		
+		return "admin/K_personal";
 	}
 	
 	//회사관리자 아직 안만듬

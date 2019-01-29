@@ -7,21 +7,20 @@
 			<h2>전체 구성원 목록</h2>
 		</div>
 
-
 		<table style="width:1000px" align="center">
 			<tr>
 				<th colspan="6" align="center" style="height:25px">
-					전체  ${cnt} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					전체 구성원  ${cnt} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<a href="writeForm?pageNum=${pageNum}"> 개인 그룹에 추가 </a>
 				</th>
 			</tr>
 			
 			<tr>
-				<th style="width:15%">이미지</th>
-				<th style="width:25%">이름</th>
-				<th style="width:10%">소속그룹명</th>
-				<th style="width:15%">휴대폰번호</th>
-				<th style="width:5%">이메일</th>
+				<th style="width:5%">☆</th><!-- 자주 연락하는 사람 -->
+				<th style="width:15%">이름</th>
+				<th style="width:25%">소속그룹명</th>
+				<th style="width:10%">휴대전화번호</th>
+				<th style="width:15%">이메일</th>
 			</tr>
 			
 			<!-- 메모가 있으면 -->
@@ -40,7 +39,7 @@
 						</td>
 						
 						<td>
-							<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.reg_date}"/>
+							<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.enterday}"/>
 						</td>
 						
 				<%-- 	<td>
