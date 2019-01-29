@@ -33,9 +33,9 @@
 	</select>
 	
 	<select id="searchinfoList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
-		SELECT * FROM member WHERE name like '%'||#{search_content}||'%'
+		SELECT * FROM member WHERE name like '%'||#{search_content}||'%' and company = #{company}
 	</select>
 	<select id="searchinfoList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
-		SELECT * FROM member WHERE depart like '%'||#{search_content}||'%'
+		SELECT * FROM member WHERE depart like '%'||#{search_content}||'%' and company = #{company}
 	</select>
 </mapper>
