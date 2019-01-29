@@ -17,6 +17,53 @@
 					</li>
 				</ul>
 			</div>
+			<div class="mailbox_btns">
+				<ul>
+					<li><button>전체선택</button></li>
+				</ul>
+				<ul>
+					<li><button>삭제</button></li>
+					<li><button>완전삭제</button></li>
+				</ul>
+				<ul>
+					<li><button>답장</button></li>
+					<li><button>전체답장</button></li>
+					<li><button>전달</button></li>
+				</ul>
+				<ul>
+					<li><button>수신거부</button></li>
+				</ul>
+				<ul>
+					<li><button>이동</button></li>
+				</ul>
+				<ul>
+					<li><button>읽음표시</button></li>
+				</ul>
+				<ul>
+					<li><button>저장</button></li>
+				</ul>
+				<ul>
+					<li><button>인쇄</button></li>
+				</ul>
+			</div>
+			<div class="mailbox_inbox">
+				<table>
+					<colgroup>
+						<col />
+						<col />
+						<col />
+						<col />
+						<col />
+					</colgroup>
+					<tr>
+						<th><input type="checkbox" /></th>
+						<th><span class="attached_file"></span></th>
+						<th><span>보낸사람</span></th>
+						<th><span>제목</span></th>
+						<th><span>날짜</span></th>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</article>
 </section>

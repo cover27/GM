@@ -7,11 +7,10 @@
 			<h2>가입대기 승인/취소</h2>
 		</div>
 		<br>
-		<form action="<c:url value='/admin/K_appMember'/>" method="post" id="appform">
+		<form action="<c:url value='/admin/K_appMember'/>" method="post" id="appform" name="appform">
 			<input type="hidden" name="appcan" value="0">
 			<table>
 				<tr>
-					<th><input type="button" value="전체선택" onclick=""></th>
 					<th>선택</th>
 					<th>ID</th>
 					<th>이름</th>

@@ -20,7 +20,11 @@ public class D_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(D_Controller.class);
 	
 	// 게시판 생성 페이지
+<<<<<<< HEAD
 	@RequestMapping("/admin/D_createBoards")
+=======
+	@RequestMapping("pages/D_createBoards")
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 	public String createBoards(HttpServletRequest req, Model model) {
 		logger.info("URL : D_createBoards");
 		
@@ -28,20 +32,25 @@ public class D_Controller {
 	}
 	
 	//게시판 생성 처리
+<<<<<<< HEAD
 	@RequestMapping("/admin/D_CreateBoards_pro")
+=======
+	@RequestMapping("pages/D_CreateBoards_pro")
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 	public String createBoardsPro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_CreateBoards_pro");
 		
-		service.insertBoards(req, model);
-		return "admin/sub/D_CreateBoards_pro";
+
+		// service.insertBoards(req, model);
+		return "pages/sub/D_CreateBoards_pro";
 	}
 	
 	//게시판 목록
-	@RequestMapping("D_boardsList")
+	@RequestMapping("pages/D_boardsList")
 	public String boardsList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardsList");
 		
-		service.boardsList(req, model);
+		//service.boardsList(req, model);
 		return "pages/D_boardsList";
 	}
 	
@@ -53,14 +62,20 @@ public class D_Controller {
 		return "admin/D_boardsUpdate";
 	}
 	
+<<<<<<< HEAD
 	//게시글 목록
 	@RequestMapping("D_boardList")
+=======
+	//게시글 목록
+	@RequestMapping("pages/D_boardList")
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 	public String boardList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardlist");
 		
 		service.boardList(req, model);
 		return "pages/D_boardList";
 	}
+<<<<<<< HEAD
 	
 	//게시글 입력
 	@RequestMapping("D_writeForm")
@@ -87,4 +102,6 @@ public class D_Controller {
 	}
 	
 	
+=======
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 }

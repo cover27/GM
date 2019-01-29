@@ -1,6 +1,7 @@
 package com.spring.gm.service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,6 +92,7 @@ public class K_ServiceImpl implements K_Service{
 		vo.setAddress(req.getParameter("address"));
 		vo.setEng_address(req.getParameter("eng_address"));
 		vo.setDepart(Integer.parseInt(req.getParameter("depart")));
+		vo.setCompany(Integer.parseInt(req.getParameter("depart")));
 		java.sql.Date today = new java.sql.Date(new java.util.Date().getTime());
 		vo.setEnterday(today);
 		vo.setYear(0);
@@ -117,14 +119,7 @@ public class K_ServiceImpl implements K_Service{
 	public void member_manage(HttpServletRequest req, Model model) {
 		List<MemberVO> list = null;
 		
-		int depart = ((MemberVO)req.getSession().getAttribute("loginInfo")).getDepart();
-		
-		int company = 0;
-		if(depart <= 410000000) { //고유번호가 40으로 시작하면 그룹고유번호, 43으로 시작해야 company
-			company = dao.getCompany(depart);
-		} else {
-			company = depart;
-		}
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		
 		list = dao.getWait(company);
 		req.setAttribute("list", list);
@@ -163,6 +158,16 @@ public class K_ServiceImpl implements K_Service{
 			state = -1;
 		}
 		req.setAttribute("state", state);
+	}
+
+	@Override
+	public void K_resistMemberInfo(HttpServletRequest req, Model model) {
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		
+		List<MemberVO> list = null;
+		list = dao.getMembers(company);
+		
+		req.setAttribute("list", list);
 	}
 	
 }

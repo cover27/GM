@@ -19,8 +19,8 @@ public class J_DAOImpl implements J_DAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public int selectCnt() {
-		int selectCnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.selectCnt");
+	public int selectCnt(int company) {
+		int selectCnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.selectCnt", company);
 		return selectCnt;
 	}
 
@@ -49,7 +49,7 @@ public class J_DAOImpl implements J_DAO {
 
 	// 검색 급여 회원정보 가져오기
 	@Override
-	public int search_salaryCnt(Map<String, String> map) {
+	public int search_salaryCnt(Map<String, Object> map) {
 		String search_title = (String) map.get("search_title");
 		int selectCnt = 0;
 		if (search_title.equals("name")) {
@@ -73,10 +73,10 @@ public class J_DAOImpl implements J_DAO {
 	}
 
 	@Override
-	public ArrayList<MemberVO> searchinfoList(Map<String, String> map) {
+	public ArrayList<MemberVO> searchinfoList(Map<String, Object> map) {
 		ArrayList<MemberVO> dtos = null;
 		J_DAO dao = sqlSession.getMapper(J_DAO.class);
-		String search_title = map.get("search_title");
+		String search_title = (String) map.get("search_title");
 
 		if (search_title.equals("name")) {
 			System.out.println("name 탔다");
@@ -93,7 +93,7 @@ public class J_DAOImpl implements J_DAO {
 	}
 
 	@Override
-	public ArrayList<MemberVO> searchinfoList2(Map<String, String> map) {
+	public ArrayList<MemberVO> searchinfoList2(Map<String, Object> map) {
 		ArrayList<MemberVO> dtos = null;
 		J_DAO dao = sqlSession.getMapper(J_DAO.class);
 		dtos = dao.searchinfoList2(map);
