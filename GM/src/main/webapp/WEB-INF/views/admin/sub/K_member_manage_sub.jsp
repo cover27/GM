@@ -7,7 +7,7 @@
 			<h2>가입대기 승인/취소</h2>
 		</div>
 		<br>
-		<form action="admin/K_appMember" method="post" id="appform">
+		<form action="<c:url value='/admin/K_appMember'/>" method="post" id="appform">
 			<input type="hidden" name="appcan" value="0">
 			<table>
 				<tr>

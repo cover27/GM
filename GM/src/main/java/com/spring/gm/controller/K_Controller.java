@@ -110,6 +110,18 @@ public class K_Controller {
 		return "common/login";
 	}
 	
+	/*
+	//우측상단에 로그아웃 누르면 로그아웃되면서 로그인화면으로 가짐
+	@RequestMapping("../logout")
+	public String logout_test(HttpServletRequest req, Model model) {
+		logger.info("URL : ../logout");
+		
+		req.getSession().removeAttribute("loginInfo");
+		
+		return "common/login";
+	}
+	*/
+	
 	//인사관리 - 대기명단 승인/취소가 기본
 	@RequestMapping("admin/K_member_manage")
 	public String K_member_manage(HttpServletRequest req, Model model) {
@@ -120,7 +132,7 @@ public class K_Controller {
 		return "admin/K_member_manage";
 	}
 	
-	@RequestMapping("admin/K_appMember")
+	@RequestMapping("/admin/K_appMember")
 	public String K_appMember(HttpServletRequest req, Model model) {
 		logger.info("URL : K_appMember");
 		
