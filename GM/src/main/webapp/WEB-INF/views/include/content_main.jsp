@@ -25,19 +25,19 @@
                 <div class="main_menu">
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="<c:url value='S_mail_inbox' />">
                                 <h2>메일</h2>
                                 <span class="mail"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<c:url value='O_createApprDocFormView' />">
                                 <h2>전자결제</h2>
                                 <span class="approval"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<c:url value='D_boardsList' />">
                                 <h2>게시판</h2>
                                 <span class="board"></span>
                             </a>
@@ -49,7 +49,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<c:url value='O_listMyTodoView' />">
                                 <h2>업무관리</h2>
                                 <span class="todo"></span>
                             </a>
@@ -97,7 +97,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<c:url value='/admin/K_member_manage'/>">
                                 <h2>인사</h2>
                                 <span class="member_management"></span>
                             </a>
@@ -109,7 +109,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<c:url value='J_SalaryDefaultSetting' />">
                                 <h2>급여관리</h2>
                                 <span class="salary_management"></span>
                             </a>

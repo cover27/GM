@@ -29,10 +29,10 @@ public class S_Controller {
 	*/
 	
 	// 이메일
-	@RequestMapping("/S_mail")
+	@RequestMapping("/S_mail_inbox")
 	public String mail(HttpServletRequest request, Model model) {
 		logger.info("URL : mail");
 		
-		return "pages/S_mail";
+		return "pages/S_mail_inbox";
 	}
 }
