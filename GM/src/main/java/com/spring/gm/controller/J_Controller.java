@@ -22,7 +22,19 @@ public class J_Controller {
 	@RequestMapping("/J_SalaryDefaultSetting")
 	public String J_SalaryDefaultSetting(HttpServletRequest req, Model model) {
 		logger.info("URL : J_SalaryDefaultSetting");
-		service.salaryList(req, model);
+		String title = req.getParameter("search_title");
+		String content = req.getParameter("search_content");
+		if((title == null && content == null) || title.equals("allList")  ) {	// 검색 안했을 경우
+			System.out.println("검색 안했을 경우");
+			service.salaryList(req, model);
+			
+		}else if(title != null || content != null){	// 검색 했을경우
+			System.out.println("검색 했을 경우");
+			service.search_salaryList(req, model);
+		}else if((title == null && content != null) || (title != null && content == null)) {
+			System.out.println("검색 내용을 작성해주세여");
+			return "pages/J_SalaryDefaultSettingPro_sub";
+		}
 		
 		return "pages/J_SalaryDefaultSetting";
 	}

@@ -120,7 +120,8 @@ public class J_ServiceImpl implements J_Service {
 			model.addAttribute("currentPage", currentPage); // 현재페이지
 		}
 	}
-
+	
+	// Ajax 개인정보 가져오기
 	@Override
 	public void infoList(HttpServletRequest req, Model model) {
 		String strId = req.getParameter("id");
@@ -134,7 +135,7 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println(id);
 		*/
 		
-		// 방법2
+		// id 값 줄이기
 		System.out.println(strId.length());
 		int idLength = strId.length();
 		System.out.println(idLength - 5);
@@ -167,7 +168,27 @@ public class J_ServiceImpl implements J_Service {
 		map.put("salary", salary);
 		int updateCnt = dao.infoUpdate(map);
 		System.out.println("updateCnt :" + updateCnt);
-		model.addAttribute("updateCnt", updateCnt);
 	}
-
+	
+	// 검색 회원급여정보 가져오기
+	@Override
+	public void search_salaryList(HttpServletRequest req, Model model) {
+		String search_title = req.getParameter("search_title");
+		System.out.println("search_title :" + search_title);
+		String search_content = req.getParameter("search_content");
+		System.out.println("search_content :" + search_content);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("search_title",search_title);
+		map.put("search_content", search_content);
+		
+		int cnt = dao.search_salaryCnt(map);
+		System.out.println(cnt);
+		
+		if(cnt ==1 ) {
+			List<MemberVO> dtos = dao.searchinfoList(map);
+			System.out.println(dtos.toString());
+			model.addAttribute("dtos", dtos);
+			model.addAttribute("cnt" , cnt);
+		}
+	}
 }
