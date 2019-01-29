@@ -24,7 +24,7 @@
                     <li>
                         <span><a href="a03.jsp">전체 메일</a></span>
                         <ul>
-                            <li><a href="<c:url value='S_mail_inbox' />">받은 메일함<span>2</span></a></li>
+                            <li><a href="<c:url value='/pages/S_mail_inbox' />">받은 메일함<span>2</span></a></li>
                             <li><a href="a05.jsp">내게 쓴 메일함</a></li>
                             <li><a href="a06.jsp">보낸 메일함</a></li>
                             <li><a href="a07.jsp">임시 보관함</a></li>
