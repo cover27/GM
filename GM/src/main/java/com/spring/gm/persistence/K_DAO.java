@@ -29,4 +29,5 @@ public interface K_DAO {
 	public int updateAuthorities(Map<String, String> map);
 	
 	public List<MemberVO> getMembers(int company);
+	
 }

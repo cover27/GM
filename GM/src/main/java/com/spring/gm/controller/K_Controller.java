@@ -146,7 +146,7 @@ public class K_Controller {
 	public String K_resistMemberInfo(HttpServletRequest req, Model model) {
 		logger.info("URL : K_resistMemberInfo");
 		
-		
+		service.K_resistMemberInfo(req, model);
 		
 		return "admin/K_resistMemberInfo";
 	}

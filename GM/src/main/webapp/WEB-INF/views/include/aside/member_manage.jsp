@@ -17,7 +17,7 @@
                 		<span>인사정보</span>
                 		<ul>
                 			<li><a href="member_manage">가입대기 승인/취소</a></li>
-                			<li><a href="m01.jsp">인사정보 등록</a></li>
+                			<li><a href="K_resistMemberInfo">인사정보 등록</a></li>
                 			<li><a href="m02.jsp">사원명부/인사기록카드</a></li>
                 		</ul>
                 	</li>
