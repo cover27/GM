@@ -35,8 +35,6 @@ public class MemberVO {
     private int del; //삭제구분
     private String account_number; // 계좌번호
     private int company;
-    
-    
 	public String getId() {
 		return id;
 	}
@@ -232,7 +230,7 @@ public class MemberVO {
 				+ email_in + ", email_out=" + email_out + ", address=" + address + ", eng_address=" + eng_address
 				+ ", depart=" + depart + ", rank=" + rank + ", salary" + salary + ", contract=" + contract + ", wrkdvd=" + wrkdvd
 				+ ", position=" + position + ", enterday=" + enterday + ", retireday=" + retireday + ", year=" + year
-				+ ", etc=" + etc + ", sys_rank=" + sys_rank + ", del=" + del +", account_number=" + account_number + "]";
+				+ ", etc=" + etc + ", sys_rank=" + sys_rank + ", del=" + del +", account_number=" + account_number + ", company=" + company + "]";
 	}
     
 }

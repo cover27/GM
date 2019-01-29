@@ -16,12 +16,12 @@
                 	<li>
                 		<span>급상여관리</span>
                 		<ul>
-                			<li><a href="<c:url value='J_SalaryDefaultSetting' />">급여 기본정보 관리</a></li>
-                			<li><a href="<c:url value='J_BasicAllowanceManagement' />">기본수당 외 수당 관리</a></li>
-                			<li><a href="<c:url value='J_TimeAttendanceSalaryBonusAnnual' />">근태/급여/상여/연차마감 관리</a></li>
-                			<li><a href="<c:url value='J_SalaryCalculation' />">급여 계산</a></li>
+                			<li><a href="<c:url value='admin/J_SalaryDefaultSetting' />">급여 기본정보 관리</a></li>
+                			<li><a href="<c:url value='admin/J_BasicAllowanceManagement' />">기본수당 외 수당 관리</a></li>
+                			<li><a href="<c:url value='admin/J_TimeAttendanceSalaryBonusAnnual' />">근태/급여/상여/연차마감 관리</a></li>
+                			<li><a href="<c:url value='admin/J_SalaryCalculation' />">급여 계산</a></li>
                 			<li><a href="<c:url value='J_PayrollInquiry' />">급여 조회</a></li>
-                			<li><a href="<c:url value='J_BonusCalculation' />">상여 계산</a></li>
+                			<li><a href="<c:url value='admin/J_BonusCalculation' />">상여 계산</a></li>
                 			<li><a href="<c:url value='J_BonusInquiry' />">상여 조회</a></li>
                 			<li><a href="<c:url value='J_Payroll' />">급여 대장</a></li>
                 		</ul>

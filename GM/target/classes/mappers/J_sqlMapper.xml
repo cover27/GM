@@ -6,14 +6,14 @@
     
 <mapper namespace="com.spring.gm.persistence.J_DAO" >
 	
-	<select id="selectCnt" resultType="int">
-		SELECT COUNT(*) as cnt FROM member
+	<select id="selectCnt" parameterType="int" resultType="int">
+		SELECT COUNT(*) as cnt FROM member where company = #{company}
 	</select>
 	
 	<select id="selectList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
 	<![CDATA[
-		SELECT * FROM (SELECT  id, name, rank, depart, enterday, tel, email_in, rownum rNum FROM (SELECT * FROM member ORDER BY id DESC))
-			WHERE  rNum >= #{start} AND rNum <= #{end}
+		SELECT * FROM (SELECT  id, name, rank, depart, enterday, tel, email_in, rownum rNum FROM (SELECT * FROM member ORDER BY id DESC)where company =  #{company})
+			WHERE  (rNum >= #{start} AND rNum <= #{end})
 	]]>
 	</select>
 	<select id="infoList" parameterType="String" resultType="com.spring.gm.vo.MemberVO">
@@ -26,16 +26,16 @@
 	
 	<!-- 검색 급여 회원정보 가져오기 -->
 	<select id="search_salaryCnt" parameterType="java.util.Map" resultType="int">
-		SELECT count(*) cnt FROM member WHERE name like '%'||#{search_content}||'%'
+		SELECT count(*) cnt FROM member WHERE name like '%'||#{search_content}||'%' and company = #{company}
 	</select>
 	<select id="search_salaryCnt2" parameterType="java.util.Map" resultType="int">
-		SELECT count(*) cnt FROM member WHERE depart like '%'||#{search_content}||'%'
+		SELECT count(*) cnt FROM member WHERE depart like '%'||#{search_content}||'%' and company = #{company}
 	</select>
 	
 	<select id="searchinfoList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
-		SELECT * FROM member WHERE name like '%'||#{search_content}||'%'
+		SELECT * FROM member WHERE name like '%'||#{search_content}||'%' and company = #{company}
 	</select>
 	<select id="searchinfoList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
-		SELECT * FROM member WHERE depart like '%'||#{search_content}||'%'
+		SELECT * FROM member WHERE depart like '%'||#{search_content}||'%' and company = #{company}
 	</select>
 </mapper>
