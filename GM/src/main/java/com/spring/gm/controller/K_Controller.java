@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,98 +20,132 @@ public class K_Controller {
 
 	@Autowired
 	K_Service service;
-	
+		
 	// 로그인화면
-	@RequestMapping("/loginInfo")
-	public String loginInfo(HttpServletRequest req, Model model) {
-		logger.info("URL : K_loginInfo");
+	@RequestMapping("login")
+	public String login(HttpServletRequest req, Model model) {
+		logger.info("URL : login");
 		
-		service.login(req, model);
+		return "common/login";
+	}
+	
+	// 로그인 프로세스
+	@RequestMapping("loginPro")
+	public String loginPro(HttpServletRequest req, Model model) {
+		logger.info("URL : login");
 		
-		return "pages/K_loginInfo";
+		return "common/main";
 	}
 	
 	// 메인화면
-	@RequestMapping("/main")
+	@RequestMapping("main")
 	public String main(HttpServletRequest req, Model model) {
 		logger.info("URL : main");
 		
-		return "pages/main";
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String id = authentication.getName();
+		
+		if(id != null) {
+			service.login(req, model, id);
+		}
+		
+		return "common/main";
 	}
 	
 	// 회원가입화면
-	@RequestMapping("/createAccount")
+	@RequestMapping("createAccount")
 	public String createAccount(HttpServletRequest req, Model model) {
 		logger.info("URL : K_createAccount");
 		
-		return "pages/K_createAccount";
+		return "common/K_createAccount";
 	}
 	
 	// 아이디 중복확인
-	@RequestMapping("/confirmId")
+	@RequestMapping("confirmId")
 	public String confirmId(HttpServletRequest req, Model model) {
 		logger.info("URL : K_confirmId");
 		
 		service.confirmId(req, model);
 		
-		return "pages/K_confirmId";
+		return "common/K_confirmId";
 	}
 	
 	// 회사 찾기(그냥 클릭했을때 검색안했을경우)
-	@RequestMapping("/findCompany")
+	@RequestMapping("findCompany")
 	public String findCompany(HttpServletRequest req, Model model) {
 		logger.info("URL : K_findCompany");
 		
 		service.findCompany(req, model);
 		
-		return "pages/K_findCompany";
+		return "common/K_findCompany";
 	}
 	
 	// 회사 찾기(그냥 클릭했을때 검색안했을경우)
-	@RequestMapping("/searchCompany")
+	@RequestMapping("searchCompany")
 	public String searchCompany(HttpServletRequest req, Model model) {
 		logger.info("URL : K_searchCompany");
 		
 		service.searchCompany(req, model);
 		
-		return "pages/K_findCompany";
+		return "common/K_findCompany";
 	}
 	
 	// 회원등록
-	@RequestMapping("/registAccount")
+	@RequestMapping("registAccount")
 	public String registAccount(HttpServletRequest req, Model model) {
 		logger.info("URL : K_registAccount");
 		
 		service.registAccount(req, model);
 		
-		return "pages/K_registAccount";
+		return "common/K_registAccount";
 	}
 	
 	//우측상단에 로그아웃 누르면 로그아웃되면서 로그인화면으로 가짐
-	@RequestMapping("/logout")
+	@RequestMapping("logout")
 	public String logout(HttpServletRequest req, Model model) {
 		logger.info("URL : logout");
 		
 		req.getSession().removeAttribute("loginInfo");
 		
-		return "pages/login";
+		return "common/login";
 	}
 	
+	/*
+	//우측상단에 로그아웃 누르면 로그아웃되면서 로그인화면으로 가짐
+	@RequestMapping("../logout")
+	public String logout_test(HttpServletRequest req, Model model) {
+		logger.info("URL : ../logout");
+		
+		req.getSession().removeAttribute("loginInfo");
+		
+		return "common/login";
+	}
+	*/
+	
 	//인사관리 - 대기명단 승인/취소가 기본
-	@RequestMapping("/member_manage")
-	public String member_manage(HttpServletRequest req, Model model) {
-		logger.info("URL : member_manage");
+	@RequestMapping("admin/K_member_manage")
+	public String K_member_manage(HttpServletRequest req, Model model) {
+		logger.info("URL : K_member_manage");
 		
 		service.member_manage(req, model);
 		
-		return "pages/K_member_manage";
+		return "admin/K_member_manage";
 	}
 	
-	//회사관리자 아직 안만듬
-	@RequestMapping("/setting_admin")
-	public String setting_admin(HttpServletRequest req, Model model) {
-		logger.info("URL : setting_admin");
+	@RequestMapping("/admin/K_appMember")
+	public String K_appMember(HttpServletRequest req, Model model) {
+		logger.info("URL : K_appMember");
 		
-		return "pages/K_setting_admin";
+		service.K_appMember(req, model);
+		
+		return "admin/K_appMember";
+	} 
+	
+	//회사관리자 아직 안만듬
+	@RequestMapping("admin/K_setting_admin")
+	public String K_setting_admin(HttpServletRequest req, Model model) {
+		logger.info("URL : K_setting_admin");
+		
+		return "admin/K_setting_admin";
 	}
 }

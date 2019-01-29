@@ -1,7 +1,9 @@
 package com.spring.gm.service;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,25 +22,12 @@ public class K_ServiceImpl implements K_Service{
 	K_DAO dao;
 	
 	@Override
-	public void login(HttpServletRequest req, Model model) {
-		String id = req.getParameter("id");
-		String pwd = req.getParameter("pwd");
-		MemberVO vo = null;
-		int checkCnt = 0;
-		
-		vo = dao.memberInfo(id); // 아이디로 해당 정보를 불러옴
-		if(vo != null) { //아이디가 존재한다면
-			if(vo.getPwd().equals(pwd)) { // 비밀번호가 맞음 = 로그인 성공
-				checkCnt = 1;
-				req.getSession().setAttribute("loginInfo", vo);
-			} else { // 아이디는 있는데 비밀번호가 틀림 = 로그인 실패
-				checkCnt = 2;
-			}
-		} else { // 아이디 자체가 없음 = 로그인 실패
-			checkCnt = 3;
-		}
-		
-		req.setAttribute("checkCnt", checkCnt);
+	public void login(HttpServletRequest req, Model model, String id) {
+		 
+		 MemberVO vo = null; 
+		  
+		 vo = dao.memberInfo(id); // 아이디로 해당 정보를 불러옴 
+		 req.getSession().setAttribute("loginInfo", vo);
 		
 	}
 
@@ -109,6 +98,17 @@ public class K_ServiceImpl implements K_Service{
 		vo.setDel(0);
 		
 		insertCnt = dao.registAccount(vo);
+		if(insertCnt == 1) {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("id", vo.getId());
+			map.put("pwd", vo.getPwd());
+			dao.registUsers(map);
+			
+			Map<String, String> map2 = new HashMap<String, String>();
+			map2.put("id", vo.getId());
+			map2.put("auth", "USER");
+			dao.registAuthorities(map2);
+		}
 		
 		req.setAttribute("insertCnt", insertCnt);
 	}
@@ -128,6 +128,41 @@ public class K_ServiceImpl implements K_Service{
 		
 		list = dao.getWait(company);
 		req.setAttribute("list", list);
+	}
+
+	@Override
+	public void K_appMember(HttpServletRequest req, Model model) {
+		int appcan = Integer.parseInt(req.getParameter("appcan"));
+		int state = 0;
+		
+		if(req.getParameterValues("check") != null){ //클릭이 되어 있어야됨
+			String[] checks = req.getParameterValues("check");
+			if(appcan == 0) { //승인한다면
+				for(int i=0; i<checks.length; i++) {
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("id", checks[i]);
+					map.put("auth", "USER");
+					dao.updateAuthorities(map);
+					
+					Map<String, Object> map2 = new HashMap<String, Object>();
+					map2.put("id", checks[i]);
+					map2.put("rank", 2); // sysrank -> 2는 일반 사용자
+					dao.updateSysrank(map2);
+				}
+				
+			} else { //취소한다면 -> member's sysrank -> 4(승인거절자) 로 바꿈(메일로 승인 거절됨을 알림)
+				for(int i=0; i<checks.length; i++) {
+					Map<String, Object> map2 = new HashMap<String, Object>();
+					map2.put("id", checks[i]);
+					map2.put("rank", 4);
+					dao.updateSysrank(map2);
+				}
+			}
+			state = 1;
+		} else { // 클릭이 안되어 있음. 클릭하라고 경고창쓰
+			state = -1;
+		}
+		req.setAttribute("state", state);
 	}
 	
 }

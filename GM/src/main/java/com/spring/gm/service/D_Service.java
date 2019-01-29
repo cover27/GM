@@ -14,6 +14,8 @@ public interface D_Service {
 	
 	public void insertBoard(HttpServletRequest req, Model model);
 	
+	public void insertPro(HttpServletRequest req, Model model);
+	
 	public void contentForm(HttpServletRequest req, Model model);
 	
 	public void boardUpdate(HttpServletRequest req, Model model);

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,42 +8,54 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table cellpadding="0" cellspacing="0" class="obj row20px"
-		style="width: 1197px; table-layout: fixed;">
-		<tr>
-			<td style="text-align: center; cursor: default;">
-				<div class="hdrcell" id="leftGrid_0">»ç¿ø¹øÈ£</div>
-			</td>
-			<td style="text-align: center; cursor: default;">
-				<div class="hdrcell" id="leftGrid_1">¼º¸í</div>
-			</td>
-			<td style="text-align: center; cursor: default;">
-				<div class="hdrcell" id="leftGrid_2">Á÷±Ş</div>
-			</td>
-			<td style="text-align: center; cursor: default;">
-				<div class="hdrcell" id="leftGrid_3">ºÎ¼­</div>
-			</td>
-			<td style="text-align: center; cursor: default;">
-				<div class="hdrcell" id="leftGrid_4">ÀÔ»çÀÏÀÚ</div>
-			</td>
-			<td style="text-align: center; cursor: default;">
-				<div class="hdrcell" id="leftGrid_5">ÇÚµåÆù</div>
-			</td>
-			<td style="text-align: center; cursor: default;">
-				<div class="hdrcell" id="leftGrid_6">E-MAIL</div>
-			</td>
-		</tr>
-		<c:forEach var="dto" items="${dtos}">
-			<tr>
-				<td>${dto.id}</td>
-				<td>${dto.name}</td>
-				<td>${dto.rank}</td>
-				<td>${dto.depart}</td>
-				<td>${dto.enterday}</td>
-				<td>${dto.tel}</td>
-				<td>${dto.email_in}</td>
-			</tr>
-		</c:forEach>
-	</table>
+	<form action="J_infoUpdate" method="post" name="infoform">
+
+
+		<table cellpadding="0" cellspacing="0" class="obj row20px"
+			style="width: 1197px; table-layout: fixed;" text-align="center">
+			<c:forEach var="dto" items="${dtos}">
+				<tr>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">ì‚¬ì›ë²ˆí˜¸</td>
+						<td>${dto.id}</td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">ë¶€ì„œ</td>
+						<td>${dto.depart}</td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">ì§ê¸‰</td>
+						<td>${dto.rank}</td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">ì„±ëª…</td>
+						<td>${dto.name}</td>
+				</tr>
+				
+				
+				<tr>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">ì£¼ë¯¼ë²ˆí˜¸(ì•)</td>
+						<td>${dto.jumin1}</td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">ì„±ë³„</td>
+						<td>${dto.gender}</td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">í•¸ë“œí°</td>
+						<td>${dto.tel}</td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">êµ­ì </td>
+						<td>${dto.nation}</td>
+				</tr>
+				
+				
+				<tr>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">ì…ì‚¬ì¼ì</td>
+						<td>${dto.enterday}</td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">ì—°ì°¨</td>
+						<td>${dto.nation}</td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;" colspan="2">E-MAIL</td>
+						<td>${dto.email_in}</td>
+				</tr>
+				<tr>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;" colspan="2">*ì—°ë´‰</td>
+						<td><input type="text" name="salary" value="${dto.salary}"></td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;" colspan="2">*ê³„ì¢Œë²ˆí˜¸</td>
+						<td><input type="text" name="account_number" value="${dto.account_number}"></td> 
+				</tr>
+				<input type=hidden name="id" value="${dto.id}">
+			</c:forEach>
+		</table>
+		<input type="submit" value="ìˆ˜ì •">
+	</form>
 </body>
 </html>

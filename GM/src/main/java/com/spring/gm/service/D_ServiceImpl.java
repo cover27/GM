@@ -1,5 +1,6 @@
 package com.spring.gm.service;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,6 @@ import org.springframework.ui.Model;
 import com.spring.gm.persistence.D_DAO;
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.BoardsVO;
-
 
 @Service
 public class D_ServiceImpl implements D_Service{
@@ -264,13 +264,12 @@ public class D_ServiceImpl implements D_Service{
 		int pageNum = 0;
 		 
 		// 답변글에 대한 글 작성시
-		if(req.getParameter("num") != null) {
-			boardnum = Integer.parseInt(req.getParameter("num"));
+		if(req.getParameter("boardnum") != null) {
+			boardnum = Integer.parseInt(req.getParameter("boardnum"));
 			ref = Integer.parseInt(req.getParameter("ref"));
 			ref_step = Integer.parseInt(req.getParameter("ref_step"));
 			ref_level = Integer.parseInt(req.getParameter("ref_level"));
 		}
-		
 		pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
@@ -285,6 +284,7 @@ public class D_ServiceImpl implements D_Service{
 	public void contentForm(HttpServletRequest req, Model model) {
 		// 3단계. 화면으로부터 입력받은 값을 받아온다.
 		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		int num = Integer.parseInt(req.getParameter("num"));
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		int number = Integer.parseInt(req.getParameter("number"));
 		
@@ -302,6 +302,46 @@ public class D_ServiceImpl implements D_Service{
 		req.setAttribute("pageNum", pageNum);
 		req.setAttribute("number", number);
 		
+	}
+
+	@Override
+	public void insertPro(HttpServletRequest req, Model model) {
+		
+		// 3단계. 입력받은 값을 받아온다.
+		int num = Integer.parseInt(req.getParameter("num"));
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int ref = Integer.parseInt(req.getParameter("ref"));
+		int ref_step = Integer.parseInt(req.getParameter("ref_step"));
+		int ref_level = Integer.parseInt(req.getParameter("ref_level"));
+		
+		// 화면으로부터 입력받은 값을 vo에 담자
+		BoardListVO vo = new BoardListVO();
+		vo.setBoardnum(boardnum);
+		vo.setNum(num);
+		vo.setWriter(req.getParameter("writer"));
+		vo.setSubject(req.getParameter("subject"));
+		vo.setContent(req.getParameter("content"));
+		vo.setRe_num(0);
+		vo.setDel(0);
+		vo.setReadcnt(0);
+		vo.setRef(ref);
+		vo.setRef_step(ref_step);
+		vo.setRef_level(ref_level);
+		vo.setReg_date(new Timestamp(System.currentTimeMillis()));
+		
+		
+		// 4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
+		/*BoardDAO dao = BoardDAOImpl.getInstance();*/
+		
+		// 5단계. 글쓰기 처리(vo를 DAO로 전달하여 SQL 실행)
+		int insertCnt = dao.insertBoard(vo);
+		System.out.println("godgod"+insertCnt);
+		
+		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("dto", vo);
+		model.addAttribute("insertCnt", insertCnt);
 	}
 	
 	

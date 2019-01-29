@@ -3,19 +3,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ page import="com.spring.gm.vo.MemberVO" %>  
+<%@ page import="com.spring.gm.vo.BoardsVO" %>
 <section>
 	<article>
 		<div class="content_header">
 			<h2>게시글 작성</h2>
 		</div>
 		
-	<form action="D_writePro" method="post" name="writeform"
-			onsubmit="return writeCheck();">
-		<input type="hidden" name="num" value="${num}">
+	<form action="D_writePro" method="post" name="D_writeForm">
+		<input type="hidden" name="num" value="">
+		<input type="hidden" name="writer" value="<%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %>">
+		<input type="hidden" name="boardnum" value="${boardnum}">
 		<input type="hidden" name="ref" value="${ref}">
 		<input type="hidden" name="ref_step" value="${ref_step}">
 		<input type="hidden" name="ref_level" value="${ref_level}">
-		<input type="hidden" name="pageNum" value="${pageNum}">   <!-- 추가 -->
+		<input type="hidden" name="pageNum" value="${pageNum}">
 	<table align="center">
 		<tr>
 			<th> 작성자 </th>
@@ -23,11 +25,11 @@
 				<%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %>
 			</td>				
 		</tr>
-			
+		
 		<tr>
-			<th> 비밀번호 </th>
-			<td>
-				<input class="input" type="password" name="pwd" maxlength="10" placeholder="비밀번호를 입력하세요!!" required>
+			<th> 게시판 번호 </th>
+			<td><c:set var ="dtos" value="${dtos.num}" />
+				${dtos.num}
 			</td>
 		</tr>
 			

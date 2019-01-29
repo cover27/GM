@@ -22,10 +22,23 @@ public class J_Controller {
 	@RequestMapping("/J_SalaryDefaultSetting")
 	public String J_SalaryDefaultSetting(HttpServletRequest req, Model model) {
 		logger.info("URL : J_SalaryDefaultSetting");
-		service.salaryList(req, model);
-		
+		String title = req.getParameter("search_title");
+		String content = req.getParameter("search_content");
+		if((title == null && content == null) || title.equals("allList")  ) {	// 검색 안했을 경우
+			System.out.println("검색 안했을 경우");
+			service.salaryList(req, model);
+		}else if(title != null){	// 검색 했을경우
+			if(title != null && content.length() > 0) {
+				System.out.println("검색 했을 경우");
+				service.search_salaryList(req, model);
+			}else if(title != null && content.length() <= 0){
+				System.out.println("검색 실패하였습니다. 확인해 주세여");
+				return "pages/sub/J_SalaryDefaultSettingPro_sub";
+			}
+		}
 		return "pages/J_SalaryDefaultSetting";
 	}
+		
 	
 	//기본수당 외 수당 관리(Basic Allowance Management)
 	@RequestMapping("/J_BasicAllowanceManagement")
@@ -78,7 +91,7 @@ public class J_Controller {
 	}
 	
 	//==================================================================
-	//급여 대장(Payroll)
+	//개인 급여정보 가져오기
 	@RequestMapping("/J_info")
 	public String J_info(HttpServletRequest req, Model model) {
 		logger.info("URL : J_info");
@@ -86,5 +99,12 @@ public class J_Controller {
 		System.out.println("J_info 탔습니다");
 		return "pages/sub/J_sub/J_info";
 	}
-	
+	//개인 급여정보 업데이트
+	@RequestMapping("/J_infoUpdate")
+	public String J_infoUpdate(HttpServletRequest req, Model model) {
+		logger.info("URL : J_infoUpdate");
+		service.infoUpdate(req, model);
+		System.out.println("J_infoUpdate 탔습니다");
+		return "pages/sub/J_infoUpdatePro_sub";
+	}
 }
