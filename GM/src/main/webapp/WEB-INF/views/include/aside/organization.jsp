@@ -10,11 +10,11 @@
      -->
     <div class="nav">
         <div class="nav_title">
-            <h2>조직도</h2>
+            <h2><a href="<c:url value='E_organizationList' />" style="color: white">조직도</a></h2>
             <div class="category">
                 <ul>
                 	<li>
-                        <span><a href="<c:url value='../pages/E_organizationList' />">전체 구성원 목록</a></span>
+                        <span><a href="<c:url value='E_organizationList' />">전체 구성원 목록</a></span>
                     </li>
                     <li>
                         <span>조직도</span>

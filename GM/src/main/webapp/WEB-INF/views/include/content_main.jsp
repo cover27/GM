@@ -61,19 +61,19 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='pages/addressGroup' />">
+                            <a href="<c:url value='E_addressGroup' />">
                                 <h2>주소록</h2>
                                 <span class="contact"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='pages/organizationList' />">
+                            <a href="<c:url value='E_organizationList' />">
                                 <h2>조직도</h2>
                                 <span class="organization"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='pages/memoList' />">
+                            <a href="<c:url value='E_memoList' />">
                                 <h2>메모</h2>
                                 <span class="note"></span>
                             </a>
