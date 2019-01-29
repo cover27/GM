@@ -176,10 +176,8 @@ function loadNews_callback(){
 
 
 	<div class="subtitle">
-		<h3>상세정보</h3>
+		<h3>상세정보(급여기본)</h3>
 	</div>
-	<input type="button" onclick="window.location='#'" value="급여기본">
-	<input type="button" onclick="window.location='#'" value="급여지급">
 	<div id="result">
 		<table cellpadding="0" cellspacing="0" class="obj row20px"
 			style="width: 1197px; table-layout: fixed;" text-align="center">
