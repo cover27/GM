@@ -35,47 +35,29 @@ function loadNews_callback(){
 <section>
 	<article>
 		<div class="content-wrap topPd">
-	<div class="search-wrap">
-		<form id="salBasiMatrMngGridSearchForm">
-		<div class="form-group">
-			<table>
-				<caption>검색타입</caption>
-				<colgroup>
-					<col width="60">
-					<col width="180">
-					<col width="260">
-					<col width="20">
-					<col width="*">
-				</colgroup>
-				<tbody>
-					<tr>
-						<th scope="row"><label for="salBasiMatrMngGridSearchForm_searchEnplcFlag"><span class="text-point-b" title="필수입력항목">*</span>사업장</label></th>
-						<td>
-							<select id="salBasiMatrMngGridSearchForm_searchEnplcFlag" name="searchEnplcFlag" class="w150" tabindex="1">
-								
-									<option value="G001" selected="">홈사랑넷</option>
-								
-							</select>
-						</td>
-						<td>
-							<select id="salBasiMatrMngGridSearchForm_searchColumn" class="w90" name="searchColumn" tabindex="2"> <!-- 성명,사원번호,부서: 일반사용자 disabled 자신의 사원번호 -->
-								<option value="emplNm">성명</option>
-								<option value="emplNo">사원번호</option>
-								<option value="deptCd">부서</option>
-							</select>
-							<input id="salBasiMatrMngGridSearchForm_searchWord" class="submit" type="text" name="searchWord" tabindex="3">
-						</td>
-						<th><input id="aa" name="retire" type="checkbox" value="N" tabindex="4"></th>
-						<td><label for="aa">퇴직자포함</label></td><!-- 퇴직자포함: 일반사용자 disabled -->
-					</tr>
-				</tbody>
-			</table>
-			<div class="search_btn">
-				<button id="salBasiMatrMngGridSearchForm_searchBtn" type="submit" class="btn btn-color5" tabindex="-1"><i class="fa fa-search fa-fw"></i> 검색</button>
+			<div class="search-wrap">
+				<div class="form-group">
+				<form action="J_SalaryDefaultSetting" method="post" name="searchform">
+					<table>
+						<caption>검색타입</caption>
+							<tr>
+								<th>*검색 타이틀</th>
+								<td colspan="2">
+									<select name="search_title"> <!-- 성명,사원번호,부서: 일반사용자 disabled 자신의 사원번호 -->
+										<option value="allList">전체보기</option>
+										<option value="name">성명</option>
+										<option value="depart">부서</option>
+									</select>
+									<input  type="text" name="search_content" placeholder="검색 내용">
+								</td>
+								<td>
+									<input type="submit" value="검색"> 
+								</td>
+							</tr>
+					</table>
+				</form>
+				</div>
 			</div>
-		</div>
-		</form>
-	</div>
 
 	<div class="subtitle">
 		<form id="excelDownloadForm" method="get" action="/product/salmng/salbasimatrmng/excelDownloadSalBasiMatrMng.do?OWASP_CSRFTOKEN=OBEQ-JB61-8UUP-68Z3-QON3-7N56-H65K-U5LP">
@@ -196,14 +178,51 @@ function loadNews_callback(){
 	<div class="subtitle">
 		<h3>상세정보</h3>
 	</div>
-	<ul class="nav nav-tabs6 push mb0" data-toggle="tabs">
-		<li class="active"><a href="#tabs-1">급여기본</a></li><!-- 급여기본 -->
-		<li><a href="#tabs-2">급여지급</a></li><!-- 급여지급 -->
-	</ul>
+	<input type="button" onclick="window.location='#'" value="급여기본">
+	<input type="button" onclick="window.location='#'" value="급여지급">
 	<div id="result">
-		값표시.
+		<table cellpadding="0" cellspacing="0" class="obj row20px"
+			style="width: 1197px; table-layout: fixed;" text-align="center">
+				<tr>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">사원번호</td>
+						<td></td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">부서</td>
+						<td></td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">직급</td>
+						<td></td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">성명</td>
+						<td></td>
+				</tr>
+				
+				
+				<tr>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">주민번호(앞)</td>
+						<td></td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">성별</td>
+						<td></td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">핸드폰</td>
+						<td></td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">국적</td>
+						<td></td>
+				</tr>
+				
+				
+				<tr>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">입사일자</td>
+						<td></td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;">연차</td>
+						<td></td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;" colspan="2">E-MAIL</td>
+						<td></td>
+				</tr>
+				<tr>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;" colspan="2">*연봉</td>
+						<td></td>
+					<td style="text-align: center; cursor: default; background-color: #cccccc;" colspan="2">*계좌번호</td>
+						<td></td> 
+				</tr>
+		</table>
 	</div>
 </div>
-		진짜내용
 	</article>
 </section>
