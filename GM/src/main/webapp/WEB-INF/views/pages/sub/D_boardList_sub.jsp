@@ -11,7 +11,7 @@
 		<tr>
 			<th colspan="6" align="center" style="height:25px">
 				<span>게시판 번호 : ${num}</span>글목록(글갯수 : ${cnt}) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="D_writeForm?pageNum=${pageNum}"> 글쓰기 </a>
+				<a href="/pages/D_writeForm?num=${num}&pageNum=${pageNum}"> 글쓰기 </a>
 			</th>
 		</tr>
 		
@@ -46,15 +46,13 @@
 										
 						<!-- 답글인 경우 : 들여쓰기 > 0 -->					
 						<c:if test="${dto.ref_level > 0}">
-							<img src="${project}images/re.gif" border="0" width="20" height="15">
 						</c:if>
 												
 						<!-- hot 이미지 -->
-						<c:if test="${dto.readCnt > 10}">
-							<img src="${project}images/hot.gif" border="0" width="20" height="15">	
+						<c:if test="${dto.readcnt > 10}">	
 						</c:if>
 					
-						<a href="contentForm?num=${dto.num}&pageNum=${pageNum}&number=${number+1}"> ${dto.subject} </a>
+						<a href="/pages/contentForm?num=${dto.num}&pageNum=${pageNum}&number=${number+1}"> ${dto.subject} </a>
 					</td>
 					
 					<td>
@@ -66,7 +64,7 @@
 					</td>
 					
 					<td>
-						${dto.readCnt}
+						${dto.readcnt}
 					</td>
 				</tr>
 			</c:forEach>
@@ -90,8 +88,8 @@
 				<c:if test="${cnt > 0}">
 					<!-- 처음[◀◀] / 이전블록[◀]  -->
 					<c:if test="${startPage > pageBlock}">					
-						<a href="D_boardList">[◀◀ ]</a>						
-						<a href="D_boardList?pageNum=${startPage - pageBlock}">[◀ ]</a>
+						<a href="/pages/D_boardList">[◀◀ ]</a>						
+						<a href="/pages/D_boardList?pageNum=${startPage - pageBlock}">[◀ ]</a>
 					</c:if>
 					
 					<!-- 블록내의 페이지 번호 -->
@@ -100,14 +98,14 @@
 							<span><b>[${i}]</b></span>
 						</c:if>
 						<c:if test="${i != currentPage}">
-							<a href="D_boardList?pageNum=${i}">[${i}]</a>
+							<a href="/pages/D_boardList?pageNum=${i}">[${i}]</a>
 						</c:if>
 					</c:forEach>					
 					
 					<!-- 다음 블록[▶] / 끝[▶▶]> -->
 					<c:if test="${pageCount > endPage}">					
-						<a href="D_boardList?pageNum=${startPage + pageBlock}">[▶ ]</a>						
-						<a href="D_boardList?pageNum=${pageCount}">[▶▶ ] </a>
+						<a href="/pages/D_boardList?pageNum=${startPage + pageBlock}">[▶ ]</a>						
+						<a href="/pages/D_boardList?pageNum=${pageCount}">[▶▶ ] </a>
 					</c:if>
 				</c:if>
 			</th>
