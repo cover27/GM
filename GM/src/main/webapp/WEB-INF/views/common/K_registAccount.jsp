@@ -14,7 +14,7 @@
 	<c:if test="${insertCnt != 0}">
 		<script type="text/javascript">
 			alert("회원가입에 성공했습니다. 로그인을 진행하세요.!!");
-			window.location = "test";
+			window.location = "login";
 		</script>
 	</c:if>
 

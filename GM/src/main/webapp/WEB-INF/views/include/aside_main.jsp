@@ -14,9 +14,15 @@
 			<li><a href="#"><%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %></a></li>
 		</ul>
 	</div>
-	<div class="admin">
-		<i class="icon user-admin"></i> <a href="setting_admin">회사 관리자</a>
-	</div>
+	<%
+		if(((MemberVO)request.getSession().getAttribute("loginInfo")).getSys_rank() == 1){
+	%>
+		<div class="admin">
+			<i class="icon user-admin"></i> <a href="admin/setting_admin">회사 관리자</a>
+		</div>
+	<%
+		}
+	%>
 	<div class="schedule">
 		<div class="main_calendar">
 			<div>
