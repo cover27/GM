@@ -7,11 +7,11 @@
 	<c:if test="${state == 1}"> <!-- insert 실패 -->
 		<script type="text/javascript">
 			alert("처리되었습니다.");
-			window.location="admin/K_member_manage";
+			window.location="<c:url value='/admin/K_member_manage'/>";
 		</script>
 	</c:if>
 	
-	<c:if test="${state == -1">
+	<c:if test="${state == -1}">
 		<script type="text/javascript">
 			alert("한개 이상 선택해야 합니다.");
 			window.history.back();

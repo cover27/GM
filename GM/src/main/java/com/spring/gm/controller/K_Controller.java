@@ -120,7 +120,7 @@ public class K_Controller {
 		return "admin/K_member_manage";
 	}
 	
-	@RequestMapping("admin/K_appMember")
+	@RequestMapping("/admin/K_appMember")
 	public String K_appMember(HttpServletRequest req, Model model) {
 		logger.info("URL : K_appMember");
 		
