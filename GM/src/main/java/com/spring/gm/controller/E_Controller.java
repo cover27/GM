@@ -30,7 +30,7 @@ public class E_Controller {
 	}
 	
 	// 주소록 그룹
-	@RequestMapping("pages/eaddressGroup")
+	@RequestMapping("pages/addressGroup")
 	public String addressGroup(HttpServletRequest req, Model model) {
 		logger.info("URL : E_addressGroup");
 		
@@ -38,7 +38,7 @@ public class E_Controller {
 	}
 	
 	// 메모
-	@RequestMapping("/memoList")
+	@RequestMapping("pages/memoList")
 	public String memo(HttpServletRequest req, Model model) {
 		logger.info("URL : E_memoList");
 		/*
@@ -48,7 +48,7 @@ public class E_Controller {
 	}
 	
 	// 메모 내용
-	@RequestMapping("/memoInfo")
+	@RequestMapping("pages/memoInfo")
 	public String memoInfo(HttpServletRequest req, Model model) {
 		logger.info("URL : E_memoInfo");
 		
