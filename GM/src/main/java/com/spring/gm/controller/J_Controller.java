@@ -27,17 +27,18 @@ public class J_Controller {
 		if((title == null && content == null) || title.equals("allList")  ) {	// 검색 안했을 경우
 			System.out.println("검색 안했을 경우");
 			service.salaryList(req, model);
-			
-		}else if(title != null || content != null){	// 검색 했을경우
-			System.out.println("검색 했을 경우");
-			service.search_salaryList(req, model);
-		}else if((title == null && content != null) || (title != null && content == null)) {
-			System.out.println("검색 내용을 작성해주세여");
-			return "pages/J_SalaryDefaultSettingPro_sub";
+		}else if(title != null){	// 검색 했을경우
+			if(title != null && content.length() > 0) {
+				System.out.println("검색 했을 경우");
+				service.search_salaryList(req, model);
+			}else if(title != null && content.length() <= 0){
+				System.out.println("검색 실패하였습니다. 확인해 주세여");
+				return "pages/sub/J_SalaryDefaultSettingPro_sub";
+			}
 		}
-		
 		return "pages/J_SalaryDefaultSetting";
 	}
+		
 	
 	//기본수당 외 수당 관리(Basic Allowance Management)
 	@RequestMapping("/J_BasicAllowanceManagement")
