@@ -109,7 +109,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='J_SalaryDefaultSetting' />">
+                            <a href="<c:url value='/admin/J_SalaryDefaultSetting'/>">
                                 <h2>급여관리</h2>
                                 <span class="salary_management"></span>
                             </a>

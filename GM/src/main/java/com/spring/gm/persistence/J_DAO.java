@@ -6,7 +6,7 @@ import java.util.Map;
 import com.spring.gm.vo.MemberVO;
 public interface J_DAO {
 	//급여 회원정보 확인
-	public int selectCnt();
+	public int selectCnt(int company);
 	//급여 회원정보 가져오기
 	public ArrayList<MemberVO> selectList(Map<String, Object> map);
 
@@ -18,7 +18,7 @@ public interface J_DAO {
 	
 	
 	//검색 급여 회원정보 가져오기
-	public int search_salaryCnt(Map<String, String> map);
-	public ArrayList<MemberVO> searchinfoList(Map<String, String> map);
-	public ArrayList<MemberVO> searchinfoList2(Map<String, String> map);
+	public int search_salaryCnt(Map<String, Object> map);
+	public ArrayList<MemberVO> searchinfoList(Map<String, Object> map);
+	public ArrayList<MemberVO> searchinfoList2(Map<String, Object> map);
 }

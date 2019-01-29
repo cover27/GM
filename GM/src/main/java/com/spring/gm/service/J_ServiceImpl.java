@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.J_DAO;
+import com.spring.gm.persistence.K_DAO;
+import com.spring.gm.persistence.K_DAOImpl;
 import com.spring.gm.vo.MemberVO;
 
 import sun.security.jca.GetInstance;
@@ -25,7 +27,7 @@ public class J_ServiceImpl implements J_Service {
 	public void salaryList(HttpServletRequest req, Model model) {
 		String pagenum = req.getParameter("pageNum");
 		System.out.println("pagenum :" + pagenum);
-		
+
 		int pageSize = 10; // 한페이지당 출력할 글 갯수
 		int pageBlock = 5; // 한 블럭당 페이지 갯수
 
@@ -40,8 +42,15 @@ public class J_ServiceImpl implements J_Service {
 		int startPage = 0; // 시작 페이지
 		int endPage = 0; // 마지막 페이지
 
+		// commpany 정보 가져오기
+		K_DAO k_dao = new K_DAOImpl();
+		
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+
+		System.out.println("회사번호 :" + company);
+
 		// 5단계-1. 글갯수 구하기
-		cnt = dao.selectCnt();
+		cnt = dao.selectCnt(company);
 
 		System.out.println("cnt : " + cnt); // 먼저 테이블에 30건을 insert
 
@@ -120,38 +129,35 @@ public class J_ServiceImpl implements J_Service {
 			model.addAttribute("currentPage", currentPage); // 현재페이지
 		}
 	}
-	
+
 	// Ajax 개인정보 가져오기
 	@Override
 	public void infoList(HttpServletRequest req, Model model) {
 		String strId = req.getParameter("id");
-		
+
 		/* 장훈수정 시작 */
 		// id 뒤에 자꾸 붙어서 나오는?null이라는 문자열을 없애기
-		
+
 		/*
-		// 방법1
-		String id = strId.replace("?null", "");
-		System.out.println(id);
-		*/
-		
+		 * // 방법1 String id = strId.replace("?null", ""); System.out.println(id);
+		 */
+
 		// id 값 줄이기
 		System.out.println(strId.length());
 		int idLength = strId.length();
 		System.out.println(idLength - 5);
 		String id = strId.substring(0, idLength - 5);
-		
+
 		/* 장훈수정 끝 */
-		
-		
-		System.out.println("id :" + id );
-		
+
+		System.out.println("id :" + id);
+
 		List<MemberVO> dtos = dao.infoList(id);
 		System.out.println("여기 탔다");
 		System.out.print(dtos.toString());
 		model.addAttribute("dtos", dtos);
 	}
-	
+
 	// 회원 급여 개인정보 업데이트
 	@Override
 	public void infoUpdate(HttpServletRequest req, Model model) {
@@ -161,7 +167,7 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("account_number :" + account_number);
 		int salary = Integer.parseInt(req.getParameter("salary"));
 		System.out.println("salary :" + salary);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("account_number", account_number);
@@ -169,26 +175,39 @@ public class J_ServiceImpl implements J_Service {
 		int updateCnt = dao.infoUpdate(map);
 		System.out.println("updateCnt :" + updateCnt);
 	}
-	
+
 	// 검색 회원급여정보 가져오기
 	@Override
 	public void search_salaryList(HttpServletRequest req, Model model) {
+		// commpany 정보 가져오기
+		K_DAO k_dao = new K_DAOImpl();
+		int company = 0;
+		int depart = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		if (depart < 410000000) {
+			company = k_dao.getCompany(depart);
+		} else {
+			company = depart;
+		}
+		System.out.println("회사 번호 :" + company);
+		
 		String search_title = req.getParameter("search_title");
 		System.out.println("search_title :" + search_title);
 		String search_content = req.getParameter("search_content");
 		System.out.println("search_content :" + search_content);
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("search_title",search_title);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search_title", search_title);
 		map.put("search_content", search_content);
-		
+		map.put("company", company);
+
 		int cnt = dao.search_salaryCnt(map);
 		System.out.println(cnt);
-		
-		if(cnt ==1 ) {
+
+		if (cnt == 1) {
 			List<MemberVO> dtos = dao.searchinfoList(map);
 			System.out.println(dtos.toString());
 			model.addAttribute("dtos", dtos);
-			model.addAttribute("cnt" , cnt);
+			model.addAttribute("cnt", cnt);
 		}
 	}
+
 }
