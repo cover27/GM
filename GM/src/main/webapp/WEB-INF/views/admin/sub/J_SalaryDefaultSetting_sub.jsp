@@ -125,7 +125,15 @@ function loadNews_callback(){
 								<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.id}</td>
 								<td>${dto.name}</td>
 								<td>${dto.rank}</td>
-								<td>${dto.depart}</td>
+								<c:if test="${dto.depart == 430000004}">
+									<td>부서미정</td>
+								</c:if>
+								<c:if test="${dto.depart == 430000003}">
+									<td>부서미정</td>
+								</c:if>
+								<c:if test="${dto.depart == 430000002}">
+									<td>부서미정</td>
+								</c:if>
 								<td>${dto.enterday}</td>
 								<td>${dto.tel}</td>
 								<td>${dto.email_in}</td>
@@ -176,10 +184,8 @@ function loadNews_callback(){
 
 
 	<div class="subtitle">
-		<h3>상세정보</h3>
+		<h3>상세정보(급여기본)</h3>
 	</div>
-	<input type="button" onclick="window.location='#'" value="급여기본">
-	<input type="button" onclick="window.location='#'" value="급여지급">
 	<div id="result">
 		<table cellpadding="0" cellspacing="0" class="obj row20px"
 			style="width: 1197px; table-layout: fixed;" text-align="center">

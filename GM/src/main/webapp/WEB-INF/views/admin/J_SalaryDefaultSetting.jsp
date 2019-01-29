@@ -6,5 +6,5 @@
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/salary_manage.jsp"%>
-<%@ include file="/WEB-INF/views/pages/sub/J_SalaryDefaultSetting_sub.jsp"%>
+<%@ include file="/WEB-INF/views/admin/sub/J_SalaryDefaultSetting_sub.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>

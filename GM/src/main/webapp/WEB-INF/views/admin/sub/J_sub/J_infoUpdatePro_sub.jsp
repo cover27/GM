@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../../setting.jsp"%>
+<%@include file="../../../setting.jsp"%>
 <html>
 <body>
 <%-- <%
@@ -23,7 +23,7 @@
 	<c:if test="${updateCnt != 0}">
 	<script type="text/javascript">
 	 alert("수정되었습니다");
-	 window.location="<c:url value='J_SalaryDefaultSetting' />";
+	 window.location="<c:url value='admin/J_SalaryDefaultSetting' />";
 	 </script>
 	</c:if>
 	

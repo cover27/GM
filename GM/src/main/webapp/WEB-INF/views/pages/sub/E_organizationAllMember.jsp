@@ -36,40 +36,42 @@
 						</td>
 						
 						<td>
-							${dto.writer}
+							${dto.name}
 						</td>
 						
 						<td>
 							<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.reg_date}"/>
 						</td>
 						
-						<td>
+				<%-- 	<td>
 							${dto.readCnt}
 						</td>
 						
 						<td>
 							${dto.ip}
-						</td>
+						</td> 	
+				--%>
 					</tr>
 	
 				</c:forEach>
 			</c:if>
 	
-			<!-- 메모가 없으면 -->
+			<!-- 멤버가 없으면 -->
 			<c:if test="${cnt==0}">
 				<tr>
 					<td colspan="6" align="center">
-						메모가 없습니다. 메모 작성해주세요!!
+						멤버가 없습니다. 멤버를 등록해주세요!!
 					</td>
 				</tr>
 			</c:if>
 		</table>
 		
 		<!-- 페이지 컨트롤 -->
+		<div style="overflow-y: scroll; height:400px;">		<!-- 스크롤바 -->
 		<table style="width:1000px" align="center">
 			<tr>
 				<th align="center">
-					<!-- 게시글이 있으면 -->
+					<!-- 멤버가 있으면 -->
 					<c:if test="${cnt > 0}">
 						<!-- 처음[◀◀] / 이전블록[◀]  -->
 						<c:if test="${startPage > pageBlock}">
@@ -97,7 +99,8 @@
 				</th>
 			</tr>
 		</table>
+		</div>
 
-		
+
 	</article>
 </section>
