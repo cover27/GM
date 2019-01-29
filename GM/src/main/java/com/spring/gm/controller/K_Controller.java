@@ -132,14 +132,22 @@ public class K_Controller {
 		return "admin/K_member_manage";
 	}
 	
-	@RequestMapping("/admin/K_appMember")
+	@RequestMapping("admin/K_appMember")
 	public String K_appMember(HttpServletRequest req, Model model) {
 		logger.info("URL : K_appMember");
 		
 		service.K_appMember(req, model);
 		
 		return "admin/K_appMember";
-	} 
+	}
+	
+	//인사정보등록
+	@RequestMapping("admin/K_resistMemberInfo")
+	public String K_resistMemberInfo(HttpServletRequest req, Model model) {
+		logger.info("URL : K_resistMemberInfo");
+		
+		return "admin/K_resistMemberInfo";
+	}
 	
 	//회사관리자 아직 안만듬
 	@RequestMapping("admin/K_setting_admin")
