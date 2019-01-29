@@ -14,12 +14,12 @@
             <div class="category">
                 <ul>
                 	<li>
-                        <span><a href="h01.jsp">전체 구성원 목록</a></span>
+                        <span><a href="E_organization">전체 구성원 목록</a></span>
                     </li>
                     <li>
                         <span>조직도</span>
                         <ul>
-                        	<li><a href="h02.jsp">홈사랑넷</a></li>
+                        	<li><a href="#.jsp">홈사랑넷</a></li>
                         </ul>
                     </li>
                     <li>

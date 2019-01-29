@@ -55,25 +55,25 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<c:url value='#' />">
                                 <h2>쪽지</h2>
                                 <span class="message"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<c:url value='pages/addressGroup' />">
                                 <h2>주소록</h2>
                                 <span class="contact"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<c:url value='pages/organizationList' />">
                                 <h2>조직도</h2>
                                 <span class="organization"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<c:url value='pages/memoList' />">
                                 <h2>메모</h2>
                                 <span class="note"></span>
                             </a>
