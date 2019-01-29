@@ -61,7 +61,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='E_addressGroup' />">
+                            <a href="<c:url value='E_addressList' />">
                                 <h2>주소록</h2>
                                 <span class="contact"></span>
                             </a>
