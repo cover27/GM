@@ -21,12 +21,20 @@ public class E_Controller {
 	E_Service service;
 
 	
-	// 조직도
+	// 조직도		<a href="<c:url value='pages/organizationList' />">
 	@RequestMapping("pages/organizationList")
 	public String organizationList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organizationList");
 		
 		return "pages/E_organizationList";
+	}
+	
+	// 구성원 상세 페이지 (전체 / 개인)
+	@RequestMapping("sub/E_organizationMember_c")
+	public String E_organizationMember_c(HttpServletRequest req, Model model) {
+		logger.info("URL : E_organizationMember_c");
+		
+		return "pages/sub/E_organizationMember_c";
 	}
 	
 	// 주소록 그룹

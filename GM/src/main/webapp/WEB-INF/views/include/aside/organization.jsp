@@ -14,18 +14,18 @@
             <div class="category">
                 <ul>
                 	<li>
-                        <span><a href="E_organization">전체 구성원 목록</a></span>
+                        <span><a href="<c:url value='../pages/E_organizationList' />">전체 구성원 목록</a></span>
                     </li>
                     <li>
                         <span>조직도</span>
                         <ul>
-                        	<li><a href="#.jsp">홈사랑넷</a></li>
+                        	<li><a href="#.jsp">전체 그룹 목록</a></li>
                         </ul>
                     </li>
                     <li>
                         <span>개인그룹</span>
                         <ul>
-                        	<li><a href="h03.jsp">개인그룹test</a></li>
+                        	<li><a href="h03.jsp">개인 그룹 목록</a></li>
                         </ul>
                     </li>
                     <li>
