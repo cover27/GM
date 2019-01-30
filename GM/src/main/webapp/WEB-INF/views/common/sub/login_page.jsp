@@ -1,20 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
-<%@ page import="com.spring.gm.vo.MemberVO" %>
 <link rel="stylesheet" href="${path}css/layout.css">
 <link rel="stylesheet" href="${path}css/login.css">
-<script type="text/javascript">
-// 로그인 여부를 확인해서  메인화면으로 이동
-<%-- <%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %> --%>
-$(document).ready(function(){
-	if(${sessionScope.loginInfo != null}) {
-		alert(${sessionScope.loginInfo});
-		alert("로그인 정보가 존재합니다. 메인 화면으로 이동합니다.");
-		window.location="main";
-	}
-});
-</script>
 <div class="login_wrap">
 	<div class="login_box">
 		<h2>Group Ware</h2>
