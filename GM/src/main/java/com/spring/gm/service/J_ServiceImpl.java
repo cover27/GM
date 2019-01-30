@@ -187,9 +187,10 @@ public class J_ServiceImpl implements J_Service {
 
 		int cnt = dao.search_salaryCnt(map);
 		System.out.println(cnt);
-
+		
+		
 		if (cnt == 1) {
-			List<MemberVO> dtos = dao.searchinfoList(map);
+			List<join_mgcVO> dtos = dao.searchinfoList(map);
 			System.out.println(dtos.toString());
 			model.addAttribute("dtos", dtos);
 			model.addAttribute("cnt", cnt);
