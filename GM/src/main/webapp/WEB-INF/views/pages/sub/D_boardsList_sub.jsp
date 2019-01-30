@@ -27,11 +27,7 @@
 				</td>
 						
 				<td>
-<<<<<<< HEAD
 					<a href="<c:url value='/pages/D_boardList?num=${dtos.num}'/>">${dtos.b_name}</a>
-=======
-					<a href="<c:url value='/pages/D_boardList?num=${dtos.num}' />">${dtos.b_name}</a>
->>>>>>> branch 'master' of https://github.com/cover27/GM.git
 				</td>
 			</tr>
 		</c:forEach>
