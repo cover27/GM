@@ -9,7 +9,7 @@
 		<tr>
 			<th style="width:150px;">글번호</th>
 			<td>
-				${number}
+				${dto.boardnum}
 			</td>
 			<th style="width:150px;">조회수</th>
 			<td>
@@ -36,10 +36,6 @@
 		</tr>
 			<tr>
 				<th style="width:150px;">글내용</th>
-			<!--
-				word-break:break-all	글자단위 자동 줄바꿈
-						  :keep-all		단어 기준 자동 줄바꿈
-			-->
 				<td colspan="3" style="height:300px;text-align:left; padding-left:10px;">
 					${dto.content}
 				</td>

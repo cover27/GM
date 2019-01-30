@@ -10,7 +10,7 @@
 			<h2>게시글 작성</h2>
 		</div>
 		
-	<form action="/pages/D_writePro" method="post" name="D_writeForm">
+	<form action="<c:url value='/pages/D_writePro'/>" method="post" name="D_writeForm">
 		<input type="hidden" name="num" value="${num}">
 		<input type="hidden" name="writer" value="<%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %>">
 		<input type="hidden" name="boardnum" value="${boardnum}">
@@ -45,7 +45,7 @@
 				<input class="inputButton" type="submit" value="작성">
 				<input class="inputButton" type="reset" value="취소">
 				<input class="inputButton" type="button" value="목록"
-						onclick="window.location='/pages/D_boardList?pageNum=${pageNum}'">
+						onclick="window.location=<c:url value='/pages/D_boardList?pageNum=${pageNum}'/>">
 			</th>
 		</tr>
 	</table>	
