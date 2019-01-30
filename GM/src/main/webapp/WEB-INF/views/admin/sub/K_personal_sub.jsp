@@ -4,7 +4,7 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2>인사/근태/급여 기준정보 설정</h2>
+			<h2>근태/급여 기준정보 설정</h2>
 		</div>
 		<br>
 		
