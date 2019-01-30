@@ -111,7 +111,7 @@ table, tr, td, th {
 									style="cursor: pointer;">${dto.id}</td>
 								<td>${dto.name}</td>
 								<td>${dto.rank}</td>
-								<td>${dto.depart}</td>
+								<td>${dto.j_name}</td>
 								<td>${dto.enterday}</td>
 								<td>${dto.tel}</td>
 								<td>${dto.email_in}</td>

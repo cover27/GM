@@ -84,6 +84,7 @@ public class D_Controller {
 	public String boardContent(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardContent");
 		
+		service.contentForm(req, model);
 		return "pages/D_boardContent";
 	}
 }
