@@ -25,19 +25,19 @@
                 <div class="main_menu">
                     <ul>
                         <li>
-                            <a href="<c:url value='S_mail_inbox' />">
+                            <a href="<c:url value='/pages/S_mail_inbox' />">
                                 <h2>메일</h2>
                                 <span class="mail"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='O_createApprDocFormView' />">
+                            <a href="<c:url value='/pages/O_createApprDocFormView' />">
                                 <h2>전자결제</h2>
                                 <span class="approval"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='D_boardsList' />">
+                            <a href="<c:url value='/pages/D_boardsList' />">
                                 <h2>게시판</h2>
                                 <span class="board"></span>
                             </a>
@@ -49,7 +49,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='O_listMyTodoView' />">
+                            <a href="<c:url value='/pages/O_listMyTodoView' />">
                                 <h2>업무관리</h2>
                                 <span class="todo"></span>
                             </a>
@@ -61,19 +61,19 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='E_addressList' />">
+                            <a href="<c:url value='/pages/E_addressList' />">
                                 <h2>주소록</h2>
                                 <span class="contact"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='E_organizationList' />">
+                            <a href="<c:url value='/pages/E_organizationList' />">
                                 <h2>조직도</h2>
                                 <span class="organization"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='E_memoList' />">
+                            <a href="<c:url value='/pages/E_memoList' />">
                                 <h2>메모</h2>
                                 <span class="note"></span>
                             </a>

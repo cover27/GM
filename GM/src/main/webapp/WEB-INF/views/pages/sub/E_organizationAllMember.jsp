@@ -16,22 +16,23 @@
 			</tr>
 			
 			<tr>
-				<th style="width:5%">☆</th><!-- 자주 연락하는 사람 -->
+				<th style="width:5%">☆</th><!-- 체크시 "자주 연락하는 사람" 목록에 추가 -->
 				<th style="width:15%">이름</th>
-				<th style="width:25%">소속그룹명</th>
-				<th style="width:10%">휴대전화번호</th>
-				<th style="width:15%">이메일</th>
+				<th style="width:5%">성별</th>
+				<th style="width:5%">국적</th>
+				<th style="width:5%">소속그룹명</th>
+				<th style="width:15%">휴대전화번호</th>
+				<th style="width:15%">회사이메일</th>
+				<th style="width:15%">외부이메일</th>
+				<th style="width:10%">등록일</th>
 			</tr>
 			
-			<!-- 메모가 있으면 -->
+			<!-- 구성원이 있으면 -->
 			<c:if test="${cnt>0}">
-			
 				<c:forEach var="dto" items="${dtos}">
 					<tr>
 						<td>
-							${number}
-							<c:set var="number" value="${number - 1}"/>
-							(${dto.ref} / ${dto.ref_step} / ${dto.ref_level})
+							${dto.}
 						</td>
 						
 						<td>
@@ -39,17 +40,33 @@
 						</td>
 						
 						<td>
-							<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.enterday}"/>
-						</td>
-						
-				<%-- 	<td>
-							${dto.readCnt}
+							${dto.gender}
 						</td>
 						
 						<td>
-							${dto.ip}
-						</td> 	
-				--%>
+							${dto.nation}
+						</td>
+						
+						<td>
+							${dto.depart}
+						</td>
+						
+						<td>
+							${dto.tel}
+						</td>
+						
+						<td>
+							${dto.email_in}
+						</td>
+						
+						<td>
+							${dto.email_out}
+						</td>
+						
+						<td>
+							<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.enterday}"/>
+						</td>
+
 					</tr>
 	
 				</c:forEach>
@@ -66,7 +83,7 @@
 		</table>
 		
 		<!-- 페이지 컨트롤 -->
-		<div style="overflow-y: scroll; height:400px;">		<!-- 스크롤바 -->
+		<div style="overflow-y: scroll; height:400px;">		<!-- 상하 스크롤바 -->
 		<table style="width:1000px" align="center">
 			<tr>
 				<th align="center">
@@ -74,8 +91,8 @@
 					<c:if test="${cnt > 0}">
 						<!-- 처음[◀◀] / 이전블록[◀]  -->
 						<c:if test="${startPage > pageBlock}">
-							<a href="organizationList">[◀◀]</a>
-							<a href="organizationList?pageNum=${endPage - pageBlock}">[◀]</a>
+							<a href="/pages/organizationList">[◀◀]</a>
+							<a href="/pages/organizationList?pageNum=${endPage - pageBlock}">[◀]</a>
 						</c:if>
 						
 						<!-- 블록 내의 페이지 번호 -->
@@ -84,14 +101,14 @@
 								<span><b>[${i}]</b></span>
 							</c:if>
 							<c:if test="${i!=currentPage}">
-								<a href="organizationList?pageNum=${i}">[${i}]</a>
+								<a href="/pages/organizationList?pageNum=${i}">[${i}]</a>
 							</c:if>
 						</c:forEach>
 						
 						<!-- 다음블록 [▶]  /  마지막 [▶▶]  -->
 						<c:if test="${pageCount > endPage}">
-							<a href="organizationList?pageNum=${startPage + pageBlock}">[▶]</a>
-							<a href="organizationList?pageNum=${pageCount}">[▶▶]</a>
+							<a href="/pages/organizationList?pageNum=${startPage + pageBlock}">[▶]</a>
+							<a href="/pages/organizationList?pageNum=${pageCount}">[▶▶]</a>
 						</c:if>
 						
 					</c:if>

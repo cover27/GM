@@ -38,7 +38,7 @@ public class D_Controller {
 	}
 	
 	//게시판 목록
-	@RequestMapping("D_boardsList")
+	@RequestMapping("/pages/D_boardsList")
 	public String boardsList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardsList");
 		
@@ -46,7 +46,7 @@ public class D_Controller {
 		return "pages/D_boardsList";
 	}
 	
-	@RequestMapping("D_boardsUpdate")
+	@RequestMapping("/pages/D_boardsUpdate")
 	public String boardsUpdate(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardsUpdate");
 		
@@ -55,7 +55,7 @@ public class D_Controller {
 	}
 	
 	//게시글 목록
-	@RequestMapping("D_boardList")
+	@RequestMapping("/pages/D_boardList")
 	public String boardList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardlist");
 		
@@ -64,7 +64,7 @@ public class D_Controller {
 	}
 
 	//게시글 입력
-	@RequestMapping("D_writeForm")
+	@RequestMapping("/pages/D_writeForm")
 	public String insertBoard(HttpServletRequest req, Model model) {
 		logger.info("URL : D_writeForm");
 		
@@ -72,7 +72,7 @@ public class D_Controller {
 		return "pages/D_writeForm";
 	}
 	
-	@RequestMapping("D_writePro")
+	@RequestMapping("/pages/D_writePro")
 	public String writePro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_writePro");
 		
@@ -80,10 +80,11 @@ public class D_Controller {
 		return "pages/D_writePro";
 	}
 	
-	@RequestMapping("D_boardContent")
+	@RequestMapping("/pages/D_boardContent")
 	public String boardContent(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardContent");
 		
+		service.contentForm(req, model);
 		return "pages/D_boardContent";
 	}
 }

@@ -203,18 +203,18 @@ public class D_ServiceImpl implements D_Service{
 		if(endPage > pageCount) endPage = pageCount;
 		System.out.println("endPage : " + endPage);
 		System.out.println("================");
-		
-		req.setAttribute("num", num);
-		req.setAttribute("cnt", cnt);  // 글갯수
-		req.setAttribute("number", number); // 출력용 글번호
-		req.setAttribute("pageNum", pageNum);  // 페이지번호
+
+		model.addAttribute("num", num);
+		model.addAttribute("cnt", cnt);  // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum);  // 페이지번호
 		
 		if(cnt > 0) {
-			req.setAttribute("startPage", startPage);     // 시작 페이지
-			req.setAttribute("endPage", endPage);         // 마지막 페이지
-			req.setAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
-			req.setAttribute("pageCount", pageCount);     // 페이지 갯수
-			req.setAttribute("currentPage", currentPage); // 현재페이지
+			model.addAttribute("startPage", startPage);     // 시작 페이지
+			model.addAttribute("endPage", endPage);         // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
 		}		
 	}
 	
@@ -260,21 +260,26 @@ public class D_ServiceImpl implements D_Service{
 	public void insertBoard(HttpServletRequest req, Model model) {
 		
 		int boardnum = 0;		// 글 번호 
+		int num = 0;
 		int ref = 1;		// 답글 그룹화 아이디
 		int ref_step = 0;	// 글 순서(행)
 		int ref_level = 0;	// 글 레벨(들여쓰기 / 답글에 대한 답글)
 		int pageNum = 0;
+		
 		 
 		// 답변글에 대한 글 작성시
 		if(req.getParameter("boardnum") != null) {
+			num = Integer.parseInt(req.getParameter("num"));
 			boardnum = Integer.parseInt(req.getParameter("boardnum"));
 			ref = Integer.parseInt(req.getParameter("ref"));
 			ref_step = Integer.parseInt(req.getParameter("ref_step"));
 			ref_level = Integer.parseInt(req.getParameter("ref_level"));
 		}
+		num = Integer.parseInt(req.getParameter("num"));
 		pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("num",num);
 		model.addAttribute("boardnum", boardnum);
 		model.addAttribute("ref", ref);
 		model.addAttribute("ref_step", ref_step);
@@ -300,9 +305,10 @@ public class D_ServiceImpl implements D_Service{
 		BoardListVO vo = dao.getArticle(boardnum);
 		
 		// 6단계. request나 session에 처리결과를 저장(jsp에 전달하기 위함)
-		req.setAttribute("dto", vo);
-		req.setAttribute("pageNum", pageNum);
-		req.setAttribute("number", number);
+		model.addAttribute("dto", vo);
+		model.addAttribute("num", num);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("number", number);
 		
 	}
 

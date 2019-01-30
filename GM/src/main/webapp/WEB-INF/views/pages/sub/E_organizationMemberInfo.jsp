@@ -4,7 +4,7 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2> 인물 정보 </h2>
+			<h2> 인물 상세정보 </h2>
 		</div>
 
 		<table align = "center">
@@ -15,7 +15,7 @@
 				<th style="width:150px">조회수</th>
 				<td style="width:150px" align="center">${dto.readCnt}</td>
 			</tr>
-			
+<%-- 			
 			<tr>
 				<th style="width:150px">작성자</th>
 				<td style="width:150px" align="center">${dto.writer}</td>
@@ -42,12 +42,12 @@
 					<input class="inputButton" type="button" value="글수정" onclick="window.location='modifyForm?num=${dto.num}&pageNum=${pageNum}'">
 					<input class="inputButton" type="button" value="글삭제" onclick="window.location='deleteForm?num=${dto.num}&pageNum=${pageNum}'">
 					<input class="inputButton" type="button" value="답글쓰기" 
-						onclick="window.location='writeForm?num=${dto.num}&ref=${dto.ref}&ref_step=${dto.ref_step}&ref_level=${dto.ref_level}&pageNum=${pageNum}'">
-					<input class="inputButton" type="button" value="목록보기" onclick="window.location='E_organizationList?pageNum=${pageNum}'">
+						onclick="window.location='/pages/writeForm?num=${dto.num}&ref=${dto.ref}&ref_step=${dto.ref_step}&ref_level=${dto.ref_level}&pageNum=${pageNum}'">
+					<input class="inputButton" type="button" value="목록보기" onclick="window.location='/pages/E_organizationList?pageNum=${pageNum}'">
 				</th>
 			</tr>
 		</table>
-
+ --%>
 
 	</article>
 </section>

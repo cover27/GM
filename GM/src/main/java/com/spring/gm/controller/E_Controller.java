@@ -21,16 +21,16 @@ public class E_Controller {
 	E_Service service;
 
 	
-	// 조직도 - 첫페이지, 전체 구성원 목록	<a href="<c:url value='E_organizationList' />">
-	@RequestMapping("E_organizationList")
+	// 조직도 - 첫페이지, 전체 구성원 목록		<a href="<c:url value='E_organizationList' />">
+	@RequestMapping("/pages/E_organizationList")
 	public String organizationList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organizationList");
 		
 		return "pages/E_organizationList";
 	}
 	
-	// 조직도 - 인물 정보창 (전체 / 개인)
-	@RequestMapping("E_organizationMemberInfo")
+	// 조직도 - 인물 상세정보 (전체 / 개인)
+	@RequestMapping("/pages/E_organizationMemberInfo")
 	public String E_organizationMember_c(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organizationMemberInfo");
 		
@@ -38,7 +38,7 @@ public class E_Controller {
 	}
 	
 	// 조직도 - 전체 그룹 목록
-	@RequestMapping("E_organizationGroupList")
+	@RequestMapping("/pages/E_organizationGroupList")
 	public String E_organizationList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organizationGroupList");
 		
@@ -52,7 +52,7 @@ public class E_Controller {
 	
 	
 	// 주소록 - 주소록 첫페이지
-	@RequestMapping("E_addressList")
+	@RequestMapping("/pages/E_addressList")
 	public String addressGroup(HttpServletRequest req, Model model) {
 		logger.info("URL : E_addressList");
 		
@@ -63,7 +63,7 @@ public class E_Controller {
 	
 	
 	// 메모 게시판
-	@RequestMapping("E_memoList")
+	@RequestMapping("/pages/E_memoList")
 	public String memo(HttpServletRequest req, Model model) {
 		logger.info("URL : E_memoList");
 		/*
@@ -73,7 +73,7 @@ public class E_Controller {
 	}
 	
 	// 메모 내용
-	@RequestMapping("E_memoInfo")
+	@RequestMapping("/pages/E_memoInfo")
 	public String memoInfo(HttpServletRequest req, Model model) {
 		logger.info("URL : E_memoInfo");
 		

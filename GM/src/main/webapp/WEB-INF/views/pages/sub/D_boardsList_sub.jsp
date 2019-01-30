@@ -27,7 +27,11 @@
 				</td>
 						
 				<td>
-					<a href="D_boardList?num=${dtos.num}">${dtos.b_name}</a>
+<<<<<<< HEAD
+					<a href="<c:url value='/pages/D_boardList?num=${dtos.num}'/>">${dtos.b_name}</a>
+=======
+					<a href="<c:url value='/pages/D_boardList?num=${dtos.num}' />">${dtos.b_name}</a>
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 				</td>
 			</tr>
 		</c:forEach>
@@ -38,8 +42,8 @@
 					<th align="center">
 						<c:if test="${cnt > 0}">
 							<c:if test="${startPage > pageBlock}">
-								<a href="D_boardsList">[◀◀]</a>
-								<a href="D_boardsList?pageNum=${startPage - pageBlock}">[◀]</a>
+								<a href="<c:url value='/pages/D_boardsList'/>">[◀◀]</a>
+								<a href="<c:url value='/pages/D_boardsList?pageNum=${startPage - pageBlock}'/>">[◀]</a>
 							</c:if>
 					
 							<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -48,13 +52,13 @@
 								</c:if>
 						
 								<c:if test="${i != currentPage}">
-									<a href="D_boardsList?pageNum=${i}">[${i}]</a>
+									<a href="<c:url value='/pages/D_boardsList?pageNum=${i}'/>">[${i}]</a>
 								</c:if>						
 							</c:forEach>
 					
 							<c:if test="${pageCount > endPage}">
-								<a href="D_boardsList?pageNum=${startPage + pageBlock}">[▶]</a>
-								<a href="D_boardsList?pageNum=${pageCount}">[▶▶]</a>
+								<a href="<c:url value='/pages/D_boardsList?pageNum=${startPage + pageBlock}'/>">[▶]</a>
+								<a href="<c:url value='/pages/D_boardsList?pageNum=${pageCount}'/>">[▶▶]</a>
 							</c:if>
 						</c:if>
 					</th>
@@ -63,7 +67,7 @@
 						<input class="inputButton" type="button" value="삭제">
 						<!-- 목록보기 참고하고 삭제할것  -->
 						<input class="inputButton" type="button" value="목록보기"
-							onclick="window.location='productList?pageNum=${pageNum}'">
+							onclick="window.location=<c:url value='/pages/boardsList?pageNum=${pageNum}'/>">
 					</th>
 				</tr>
 			</table>
