@@ -40,18 +40,22 @@
 	<select id="search_salaryCnt" parameterType="java.util.Map" resultType="int">
 		SELECT count(*) cnt FROM member WHERE name like '%'||#{search_content}||'%' and company = #{company}
 	</select>
+	<!-- 검색 급여 회원정보 가져오기(성명 - 그룹테이블과 조인) -->
 	<select id="searchinfoList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
 		select * from(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
               FROM member m ,groups g 
               WHERE m.depart = g.groupid)
      where  depart != #{company} and name like '%'||#{search_content}||'%'
 	</select>
+	<!-- 검색 급여 회원정보 가져오기(성명 - 사업장테이블과 조인) -->
 	<select id="searchinfoList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
 		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
               FROM member m ,companies c
               WHERE m.depart = c.company )
      where  depart = #{company} and name like '%'||#{search_content}||'%'
 	</select>
+	
+	
 	<!-- 검색 급여 회원정보 가져오기(부서) -->
 	<select id="search_salaryCnt2" parameterType="java.util.Map" resultType="int">
 		SELECT count(*) cnt FROM groups WHERE g_name like '%'||#{search_content}||'%' and company = #{company}
@@ -59,5 +63,25 @@
 	<select id="searchinfoList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
 		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
               FROM member m ,groups g WHERE m.depart = g.groupid and g.g_name like '%'||#{search_content}||'%' and g.company = #{company})
+	</select>
+	
+	
+	<!-- 검색 급여 회원정보 가져오기(성명) -->
+	<select id="search_salaryCnt3" parameterType="java.util.Map" resultType="int">
+		SELECT count(*) cnt FROM member WHERE id = #{search_content} and company = #{company}
+	</select>
+	<!-- 검색 급여 회원정보 가져오기(성명 - 그룹테이블과 조인) -->
+	<select id="searchinfoList4" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+		select * from(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g 
+              WHERE m.depart = g.groupid)
+     where  depart != #{company} and id = #{search_content}
+	</select>
+	<!-- 검색 급여 회원정보 가져오기(성명 - 사업장테이블과 조인) -->
+	<select id="searchinfoList5" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
+              FROM member m ,companies c
+              WHERE m.depart = c.company )
+     where  depart = #{company} and id = #{search_content}
 	</select>
 </mapper>

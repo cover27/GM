@@ -24,4 +24,6 @@ public interface J_DAO {
 	public ArrayList<join_mgcVO> searchinfoList(Map<String, Object> map);
 	public ArrayList<join_mgcVO> searchinfoList3(Map<String, Object> map);
 	public ArrayList<join_mgcVO> searchinfoList2(Map<String, Object> map);
+	public ArrayList<join_mgcVO> searchinfoList4(Map<String, Object> map);
+	public ArrayList<join_mgcVO> searchinfoList5(Map<String, Object> map);
 }
