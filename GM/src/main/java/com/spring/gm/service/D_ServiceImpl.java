@@ -41,7 +41,7 @@ public class D_ServiceImpl implements D_Service{
 		
 		int insertCnt = dao.insertBoards(vo);	//jsp로 가져온값들을 insert하고 다시 
 		
-		req.setAttribute("insertCnt",insertCnt);
+		model.addAttribute("insertCnt",insertCnt);
 		
 	}
 
@@ -104,7 +104,9 @@ public class D_ServiceImpl implements D_Service{
 			
 			List<BoardsVO> dtos = dao.getBoardsArticleList(map);
 			
-			req.setAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+
+			model.addAttribute("b_dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+
 		}
 		
 		// 시작페이지
@@ -118,16 +120,16 @@ public class D_ServiceImpl implements D_Service{
 		System.out.println("endPage : " + endPage);
 		System.out.println("================");
 		
-		req.setAttribute("cnt", cnt);  // 글갯수
-		req.setAttribute("number", number); // 출력용 글번호
-		req.setAttribute("pageNum", pageNum);  // 페이지번호
+		model.addAttribute("cnt", cnt);  // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum);  // 페이지번호
 		
 		if(cnt > 0) {
-			req.setAttribute("startPage", startPage);     // 시작 페이지
-			req.setAttribute("endPage", endPage);         // 마지막 페이지
-			req.setAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
-			req.setAttribute("pageCount", pageCount);     // 페이지 갯수
-			req.setAttribute("currentPage", currentPage); // 현재페이지
+			model.addAttribute("startPage", startPage);     // 시작 페이지
+			model.addAttribute("endPage", endPage);         // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
 		}		
 	}
 
@@ -222,9 +224,6 @@ public class D_ServiceImpl implements D_Service{
 
 	@Override
 	public void boardUpdate(HttpServletRequest req, Model model) {
-		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
-		int num = Integer.parseInt(req.getParameter("num"));
-		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		
 		
 		
