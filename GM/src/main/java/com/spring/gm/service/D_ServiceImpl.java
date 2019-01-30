@@ -222,22 +222,11 @@ public class D_ServiceImpl implements D_Service{
 
 	@Override
 	public void boardUpdate(HttpServletRequest req, Model model) {
-		
-		BoardsVO vo = new BoardsVO();		// 바구니 생성
-		String group = req.getParameter("groupId");	
-		int groupId = Integer.parseInt(group);
-		String b_name = req.getParameter("b_name");
-		String anon_i = req.getParameter("anon");
-		int anon = Integer.parseInt(anon_i);
-		
-		vo.setGroupId(groupId);		// 가져온 값들을 바구니에 담음
-		vo.setB_name(b_name);
-		vo.setAnon(anon);
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		int num = Integer.parseInt(req.getParameter("num"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		
 		
-		int upateCnt = dao.updateBoards(vo);	//jsp로 가져온값들을 insert하고 다시 
-		
-		req.setAttribute("upateCnt",upateCnt);
 		
 	}
 
