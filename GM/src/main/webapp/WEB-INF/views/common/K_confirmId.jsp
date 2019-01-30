@@ -16,10 +16,7 @@
 		opener.document.inputform.hiddenId.value="1";
 		self.close();
 	}
-
 </script>
-<html>
-<body>
 	<h2>중복확인 페이지</h2>
 	
 	<form action="confirmId" method="post" name="confirmform" onsubmit="return confirmIdCheck();">
@@ -62,5 +59,3 @@
 			</table>
 		</c:if>
 	</form>
-</body>
-</html>

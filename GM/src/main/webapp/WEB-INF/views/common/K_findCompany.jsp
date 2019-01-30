@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
-<html>
 <script type="text/javascript">
 
 	function setCompany1(company){
@@ -13,11 +12,7 @@
 		opener.document.inputform.depart.value=company;
 		self.close();
 	}
-	
-	
-	
 </script>
-<body>
 	<h2>회사 검색</h2>
 	<br>
 	<form action="searchCompany" method="post">
@@ -52,5 +47,3 @@
 		</table>
 	</form>
 	<input class="inputButton" type="button" value="취소" onclick="self.close();">
-</body>
-</html>
