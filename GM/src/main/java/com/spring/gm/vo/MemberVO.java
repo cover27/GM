@@ -34,12 +34,7 @@ public class MemberVO {
     private int sys_rank; //시스템직급(FK)
     private int del; //삭제구분
     private String account_number; // 계좌번호
-<<<<<<< HEAD
     private int company; //회사번호
-    
-=======
-    private int company;// 소속된 회사
->>>>>>> branch 'master' of https://github.com/cover27/GM.git
     
     
 	public String getId() {
