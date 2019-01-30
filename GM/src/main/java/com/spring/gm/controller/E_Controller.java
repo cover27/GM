@@ -40,11 +40,11 @@ public class E_Controller {
 	}
 	
 	// 조직도 - 전체 그룹 목록
-	@RequestMapping("/pages/E_organizationGroupList")
+	@RequestMapping("/pages/E_organizationAllGroupList")
 	public String E_organizationList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_organizationGroupList");
+		logger.info("URL : E_organizationAllGroupList");
 		
-		return "pages/E_organizationGroupList";
+		return "pages/E_organizationAllGroupList";
 	}
 	
 	// 조직도 - 개인 그룹 목록

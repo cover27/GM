@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.E_DAO;
+import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.MemoVO;
 
 @Service
@@ -18,6 +19,26 @@ public class E_ServiceImpl implements E_Service {
 
 	@Autowired
 	E_DAO dao;
+
+	// 조직도 리스트
+	@Override
+	public void organization(HttpServletRequest req, Model model) {
+		// 1. 세션 로그인 되어있는 사용자의 정보를 가져옴
+		// 2. 가져온 사용자 정보에서 company 를 가져온다.
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		// SQL join
+		
+		// 3. Mapper (DB) 가서 member테이블에 company가 현재 로그인 된 사용자의 company가 같은 사람만 가지고 온다.
+		// SELECT * FROM member WHERE company = #{company}
+		
+		// 4. setAttribute로 list를 넘겨줌.
+		
+		// 5. 화면에서 EL태그로 출력
+		
+	}
+	
+	
+	
 	
 	@Override
 	public void memoList(HttpServletRequest req, Model model) {
@@ -119,5 +140,7 @@ public class E_ServiceImpl implements E_Service {
 		}
 		
 	}
+
+
 
 }

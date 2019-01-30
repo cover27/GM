@@ -27,7 +27,7 @@
 				</td>
 						
 				<td>
-					<a href="/pages/D_boardList?num=${dtos.num}">${dtos.b_name}</a>
+					<a href="<c:url value='/pages/D_boardList?num=${dtos.num}' />">${dtos.b_name}</a>
 				</td>
 			</tr>
 		</c:forEach>
