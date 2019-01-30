@@ -24,7 +24,8 @@ public class J_ServiceImpl implements J_Service {
 
 	@Autowired
 	J_DAO dao;
-
+	
+	//전체 급여 회원 뽑기
 	@Override
 	public void salaryList(HttpServletRequest req, Model model) {
 		String pagenum = req.getParameter("pageNum");
@@ -45,6 +46,7 @@ public class J_ServiceImpl implements J_Service {
 		int endPage = 0; // 마지막 페이지
 		
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		
 		System.out.println("회사번호 :" + company);
 		// 5단계-1. 글갯수 구하기
 		cnt = dao.selectCnt(company);
@@ -83,8 +85,10 @@ public class J_ServiceImpl implements J_Service {
 			List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
 			List<join_mgcVO> dtos2 = dao.selectList2(map);	// depart가 회사번호
 			System.out.println("여기 탔다2");
+			System.out.println(dtos2.toString());
 			List<join_mgcVO> dtos3 = dao.selectList3(map);	//depart가 부서번호
 			System.out.println("여기 탔다3");
+			System.out.println(dtos3.toString());
 			dtos.addAll(dtos2);
 			dtos.addAll(dtos3);
 			System.out.println(dtos.toString());
@@ -168,14 +172,8 @@ public class J_ServiceImpl implements J_Service {
 	@Override
 	public void search_salaryList(HttpServletRequest req, Model model) {
 		// commpany 정보 가져오기
-		K_DAO k_dao = new K_DAOImpl();
-		int company = 0;
-		int depart = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
-		if (depart < 410000000) {
-			company = k_dao.getCompany(depart);
-		} else {
-			company = depart;
-		}
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		
 		System.out.println("회사 번호 :" + company);
 
 		String search_title = req.getParameter("search_title");
@@ -189,9 +187,10 @@ public class J_ServiceImpl implements J_Service {
 
 		int cnt = dao.search_salaryCnt(map);
 		System.out.println(cnt);
-
+		
+		
 		if (cnt == 1) {
-			List<MemberVO> dtos = dao.searchinfoList(map);
+			List<join_mgcVO> dtos = dao.searchinfoList(map);
 			System.out.println(dtos.toString());
 			model.addAttribute("dtos", dtos);
 			model.addAttribute("cnt", cnt);

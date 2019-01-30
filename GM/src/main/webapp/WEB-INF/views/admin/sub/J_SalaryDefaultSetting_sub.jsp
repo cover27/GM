@@ -46,6 +46,7 @@ table, tr, td, th {
 									<option value="allList">전체보기</option>
 									<option value="name">성명</option>
 									<option value="depart">부서</option>
+									<option value="id">사원아이디</option>
 							</select> <input type="text" name="search_content" placeholder="검색 내용">
 							</td>
 							<td><input type="submit" value="검색"></td>
@@ -107,8 +108,7 @@ table, tr, td, th {
 					<c:if test="${cnt > 0}">
 						<c:forEach var="dto" items="${dtos}">
 							<tr>
-								<td onclick="load('J_info?id=${dto.id}')"
-									style="cursor: pointer;">${dto.id}</td>
+								<td onclick="load('J_info?id=${dto.id}')"style="cursor: pointer;">${dto.id}</td>
 								<td>${dto.name}</td>
 								<td>${dto.rank}</td>
 								<td>${dto.j_name}</td>
