@@ -76,7 +76,15 @@ public class J_DAOImpl implements J_DAO {
 				System.out.println("depart 탔다");
 				return selectCnt;
 			}
-		}
+		} /*else if (search_title.equals("id")) {
+			System.out.println("depart 탔다");
+			selectCnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.search_salaryCnt2", map);
+			if (selectCnt != 0) {
+				selectCnt = 1;
+				System.out.println("depart 탔다");
+				return selectCnt;
+			}
+		}*/
 		return selectCnt;
 	}
 

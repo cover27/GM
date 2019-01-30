@@ -104,7 +104,9 @@ public class D_ServiceImpl implements D_Service{
 			
 			List<BoardsVO> dtos = dao.getBoardsArticleList(map);
 			
-			model.addAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+
+			model.addAttribute("b_dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+
 		}
 		
 		// 시작페이지

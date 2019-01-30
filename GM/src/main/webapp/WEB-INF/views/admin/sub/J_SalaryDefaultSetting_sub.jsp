@@ -46,6 +46,7 @@ table, tr, td, th {
 									<option value="allList">전체보기</option>
 									<option value="name">성명</option>
 									<option value="depart">부서</option>
+									<option value="id">사원아이디</option>
 							</select> <input type="text" name="search_content" placeholder="검색 내용">
 							</td>
 							<td><input type="submit" value="검색"></td>

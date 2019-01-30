@@ -15,6 +15,10 @@
                 <ul>
                     <li>
                         <span><a href="c02.jsp">게시판 목록</a></span>
+                        <ul>
+                        	<c:forEach var="b_dtos" items="${b_dtos}">
+                        		<li><a href="<c:url value='/pages/D_boardList?num=${b_dtos.num}'/>">${b_dtos.b_name}</a></li>                        	</c:forEach>
+                        </ul>
                     </li>
                     <li>
                         <span><a href="c03.jsp">임시 저장함</a></span>
