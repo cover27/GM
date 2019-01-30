@@ -125,5 +125,13 @@ public class O_Controller {
 	}
 	
 	
+	//기안 - 결재 요청함
+	@RequestMapping("/pages/O_listApprMyRequestView")
+	public String O_listApprMyRequestView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listApprMyRequestView");
+		
+		return "pages/O_listApprMyRequestView";
+	}
+	
 	/* 전자 결재 끝 */
 }
