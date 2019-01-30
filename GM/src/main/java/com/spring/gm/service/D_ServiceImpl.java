@@ -202,12 +202,13 @@ public class D_ServiceImpl implements D_Service{
 		endPage = startPage + pageBlock - 1; 
 		if(endPage > pageCount) endPage = pageCount;
 		System.out.println("endPage : " + endPage);
-		
+		System.out.println("================");
+
 		model.addAttribute("num", num);
 		model.addAttribute("cnt", cnt);  // 글갯수
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum);  // 페이지번호
-
+		
 		if(cnt > 0) {
 			model.addAttribute("startPage", startPage);     // 시작 페이지
 			model.addAttribute("endPage", endPage);         // 마지막 페이지
