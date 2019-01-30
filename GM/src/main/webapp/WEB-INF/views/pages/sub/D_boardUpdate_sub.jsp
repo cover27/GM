@@ -25,7 +25,7 @@
 					<input class="inputButton" type="submit" value="작성">
 					<input class="inputButton" type="reset" value="취소">
 					<input class="inputButton" type="button" value="목록"
-							onclick="window.location='<c:url value="/pages/D_boardList?pageNum=${pageNum}"/>'">
+							onclick="window.location='<c:url value="/pages/D_boardList?pageNum=${pageNum}&num=${num}&boardnum=${boardnum}"/>'">
 				</th>
 			</tr>						
 		</table>
