@@ -225,6 +225,9 @@ public class D_ServiceImpl implements D_Service{
 		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
 		int num = Integer.parseInt(req.getParameter("num"));
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		
+		
+		
 	}
 
 	@Override

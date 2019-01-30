@@ -7,24 +7,24 @@
 <mapper namespace="com.spring.gm.persistence.J_DAO" >
 	
 	<select id="selectCnt" parameterType="int" resultType="int">
-		SELECT COUNT(*) as cnt FROM member where depart = #{company}
+		SELECT COUNT(*) as cnt FROM member where company = #{company}
 	</select>
 	<!-- 급여 회원정보 가져오기(부서번호가 회사명) -->
 	<select id="selectList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name, rownum rNum
-              FROM member m ,groups g 
-              WHERE m.depart = g.company)
-        WHERE (rNum >=  #{start} AND rNum <= #{end})  and depart = #{depart};
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
+              FROM member m ,companies c
+              WHERE m.depart = c.company )
+        WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
 	]]>
 	</select>
 	<!-- 급여 회원정보 가져오기(부서번호가 부서명) -->
 	<select id="selectList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
-              FROM member m ,companies c
-              WHERE m.depart = c.company )
-        WHERE (rNum >=  #{start} AND rNum <= #{end})  and depart != #{depart}
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
+              FROM member m ,groups g 
+              WHERE m.depart = g.groupid)
+        WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
 	]]>
 	</select>
 	
