@@ -17,13 +17,13 @@ public class J_DAOImpl implements J_DAO {
 
 	@Autowired
 	private SqlSession sqlSession;
-
+	
 	@Override
 	public int selectCnt(int company) {
 		int selectCnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.selectCnt", company);
 		return selectCnt;
 	}
-
+	//급여 회원정보 가져오기(부서번호가 회사명)
 	@Override
 	public ArrayList<join_mgcVO> selectList2(Map<String, Object> map) {
 		ArrayList<join_mgcVO> dtos = null;
@@ -31,6 +31,7 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.selectList2(map);
 		return dtos;
 	}
+	//급여 회원정보 가져오기(부서번호가 부서명)
 	@Override
 	public ArrayList<join_mgcVO> selectList3(Map<String, Object> map) {
 		ArrayList<join_mgcVO> dtos = null;

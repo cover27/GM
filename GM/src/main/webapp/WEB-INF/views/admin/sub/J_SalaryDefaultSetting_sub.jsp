@@ -107,8 +107,7 @@ table, tr, td, th {
 					<c:if test="${cnt > 0}">
 						<c:forEach var="dto" items="${dtos}">
 							<tr>
-								<td onclick="load('J_info?id=${dto.id}')"
-									style="cursor: pointer;">${dto.id}</td>
+								<td onclick="load('J_info?id=${dto.id}')"style="cursor: pointer;">${dto.id}</td>
 								<td>${dto.name}</td>
 								<td>${dto.rank}</td>
 								<td>${dto.j_name}</td>
