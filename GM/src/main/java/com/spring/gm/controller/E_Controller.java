@@ -20,7 +20,7 @@ public class E_Controller {
 	@Autowired
 	E_Service service;
 
-	
+									// commit 실패시 - GIGABYTE <GIGABYTE@SDLEE-Laptop>
 	// 조직도 - 첫페이지, 전체 구성원 목록		<a href="<c:url value='E_organizationList' />">
 	@RequestMapping("/pages/E_organizationList")
 	public String organizationList(HttpServletRequest req, Model model) {
