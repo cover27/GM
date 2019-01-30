@@ -1,0 +1,122 @@
+@charset "UTF-8";
+.content .mailbox_header {
+	border-bottom: 2px solid #d1d1d1;
+	height: 36px;
+}
+
+.content .mailbox_header>ul>li {
+	display: inline-block;
+}
+
+.content .mailbox_header>ul>li:first-child {
+	float: left;
+	margin-top: 4px;
+}
+
+.content .mailbox_header>ul>li:last-child {
+	float: right;
+	margin-right: 20px;
+}
+
+.content .mailbox_header .mailbox_searchbox .btn_search {
+    vertical-align: top;
+    background: #fff url(../../images/ic_search.png) 50% 0 no-repeat !important;
+    height: 27px;
+    width: 29px;
+    margin-left: -5px;
+    border: 1px solid #bbb;
+    border-radius: 0 2px 2px 0;
+}
+
+.content .mailbox_btns {
+	height: 42px;
+	border-bottom: 1px solid #d1d1d1;
+}
+
+.content .mailbox_btns>ul {
+	display: inline-block;
+	margin-left: 3px;
+}
+
+.content .mailbox_btns>ul:first-child {
+	margin-left: 0;
+}
+
+.content .mailbox_btns>ul>li {
+	display: inline-block;
+	float: left;
+	margin-left: -1px;
+}
+
+.content .mailbox_btns>ul>li:first-child {
+	margin-left: 0;
+}
+
+.content .mailbox_btns>ul>li>button {
+	line-height: 15px;
+    border: 1px solid #bbb;
+	color: #4f4f4f;
+    background: #fff;
+    border-radius: 3px;
+    display: inline-block;
+    width: auto;
+	margin-top: 5px;
+	height: 30px;
+}
+
+.content .mailbox_btns>ul:nth-child(2)>li:nth-child(1)>button {
+	border-radius: 3px 0 0 3px;
+}
+
+.content .mailbox_btns>ul:nth-child(2)>li:nth-child(2)>button {
+	border-radius: 0 3px 3px 0;
+}
+
+.content .mailbox_btns>ul:nth-child(3)>li>button {
+	border-radius: 0;
+}
+
+.content .mailbox_btns>ul:nth-child(2)>li:nth-child(2)>button {
+	border-radius: 0 3px 3px 0;
+}
+
+.content .mailbox_btns>ul:nth-child(3)>li:first-child>button {
+	border-radius: 3px 0 0 3px;
+}
+
+.content .mailbox_btns>ul:nth-child(3)>li:last-child>button {
+	border-radius: 0 3px 3px 0;
+}
+
+.content .mailbox_inbox table col:nth-child(1) {
+	width: 30px;
+}
+
+.content .mailbox_inbox table col:nth-child(2) {
+	width: 30px;
+}
+
+.content .mailbox_inbox table col:nth-child(3) {
+	width: 200px;
+}
+
+.content .mailbox_inbox table col:nth-child(5) {
+	width: 200px;
+}
+
+.content .mailbox_inbox table th {
+	background: yellow;
+	border: 1px solid #333;
+	padding: 8px;
+	font-size: 14px;
+}
+
+.content .mailbox_inbox table tr td {
+	padding: 8px;
+	text-align: center;
+	font-size: 12px;
+}
+
+.content .mailbox_inbox table tr td:nth-child(4) {
+	text-align: left;
+}

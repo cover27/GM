@@ -25,6 +25,16 @@
 		#{email_in}, #{address}, #{eng_address, jdbcType=VARCHAR}, #{depart}, #{enterday}, 
 		#{year}, #{sys_rank}, #{del})
 	</insert>
+	
+	<insert id="registUsers" parameterType="java.util.Map">
+		INSERT INTO users (username, password, enabled)
+		VALUES (#{id}, #{pwd}, 1)
+	</insert>
+	
+	<insert id="registAuthorities" parameterType="java.util.Map">
+		INSERT INTO authorities (username, authority)
+		VALUES (#{id}, #{auth})
+	</insert>
 
 	<select id="getWait" parameterType="int" resultType="com.spring.gm.vo.MemberVO">
 		SELECT * FROM member WHERE depart=#{company} AND sys_rank = 0 
@@ -32,6 +42,18 @@
 	
 	<select id="getCompany" parameterType="int" resultType="int">
 		SELECT company FROM groups WHERE groupsId = #{depart}
+	</select>
+	
+	<update id="updateSysrank" parameterType="java.util.Map">
+		UPDATE member set sys_rank = #{rank} WHERE id = #{id}
+	</update>
+	
+	<update id="updateAuthorities" parameterType="java.util.Map">
+		UPDATE authorities set authority = #{auth} WHERE username = #{id}
+	</update>
+	
+	<select id="getMembers" parameterType="int" resultType="com.spring.gm.vo.MemberVO">
+		SELECT * FROM member WHERE company=#{company}
 	</select>
 	
 </mapper>

@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="${path}css/layout.css">
 <link rel="stylesheet" href="${path}css/aside.css">
 <link rel="stylesheet" href="${path}css/content.css">
+<link rel="stylesheet" href="${path}css/S_css/mail.css" />
 
 <aside>
 	<!-- 사용 안하는 사이드바
@@ -15,7 +16,7 @@
                 <ul>
                     <li>
                         <span>메일작성</span>
-                        <ul>
+                        <ul class="send_mail">
                             <li><a href="a01.jsp">메일 쓰기</a></li>
                             <li><a href="a02.jsp">내게 쓰기</a></li>
                         </ul>
@@ -23,7 +24,7 @@
                     <li>
                         <span><a href="a03.jsp">전체 메일</a></span>
                         <ul>
-                            <li><a href="a04.jsp">받은 메일함<span>2</span></a></li>
+                            <li><a href="<c:url value='/pages/S_mail_inbox' />">받은 메일함<span>2</span></a></li>
                             <li><a href="a05.jsp">내게 쓴 메일함</a></li>
                             <li><a href="a06.jsp">보낸 메일함</a></li>
                             <li><a href="a07.jsp">임시 보관함</a></li>
