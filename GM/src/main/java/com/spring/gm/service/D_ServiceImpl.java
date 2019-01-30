@@ -222,7 +222,7 @@ public class D_ServiceImpl implements D_Service{
 
 	@Override
 	public void boardUpdate(HttpServletRequest req, Model model) {
-
+		
 		
 		
 	}
