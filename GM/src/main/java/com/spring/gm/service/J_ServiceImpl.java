@@ -172,14 +172,8 @@ public class J_ServiceImpl implements J_Service {
 	@Override
 	public void search_salaryList(HttpServletRequest req, Model model) {
 		// commpany 정보 가져오기
-		K_DAO k_dao = new K_DAOImpl();
-		int company = 0;
-		int depart = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
-		if (depart < 410000000) {
-			company = k_dao.getCompany(depart);
-		} else {
-			company = depart;
-		}
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		
 		System.out.println("회사 번호 :" + company);
 
 		String search_title = req.getParameter("search_title");

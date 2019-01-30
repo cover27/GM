@@ -48,6 +48,7 @@
 		SELECT * FROM member WHERE name like '%'||#{search_content}||'%' and company = #{company}
 	</select>
 	<select id="searchinfoList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
-		SELECT * FROM member WHERE depart like '%'||#{search_content}||'%' and company = #{company}
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name
+              FROM member m ,groups g WHERE m.depart = g.groupid and g.g_name like '%'||#{search_content}||'%' and g.company = #{company})
 	</select>
 </mapper>
