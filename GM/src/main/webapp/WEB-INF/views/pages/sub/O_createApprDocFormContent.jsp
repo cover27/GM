@@ -133,6 +133,61 @@ i.icon {
     background-repeat: no-repeat;
     vertical-align: middle;
 }
+.fileup_t {
+    position: relative;
+    padding: 12px 0 7px 10px;
+    border-bottom: 1px solid #E5E5E5;
+}
+.fileup_t div.extendButton {
+    position: absolute;
+    right: 12px;
+    top: 19px;
+}
+.mt10 {
+    margin-top: 10px !important;
+}
+.plupload_container {
+    min-height: 200px;
+    _height: 300px;
+    min-height: 300px;
+    position: relative;
+}
+div.plupload_header {
+    display: none;
+}
+.plupload_wrapper * {
+    box-sizing: content-box;
+}
+.plupload_cell {
+    padding: 8px 6px;
+}
+.plupload_content {
+    top: 38px;
+    bottom: 45px;
+    background-color: #f9f9f9;
+}
+.plupload_button {
+    display: -moz-inline-box;
+    FF < 3: ;
+    display: inline-block;
+    font-size: 12px;
+    /* font-weight: 600; */
+    text-decoration: none;
+    color: #222 !important;
+    border: 1px solid #aaa;
+    padding: 2px 8px 2px 24px;
+    /* padding: 2px 8px; */
+    margin-right: 4px;
+    background: #fff url(../img/buttons.png) no-repeat 0 center;
+    /* background: #fff; */
+    outline: 0;
+    text-decoration: none !important;
+    Optional rounded corners for browsers that support it: ;
+    -moz-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
 .table td .btn-color5.br {
     border: 1px #bbb solid;
 }
@@ -150,6 +205,7 @@ table {
 div{
 	display:block;
 }
+
 </style>
 
 
@@ -427,9 +483,21 @@ div{
 				    <input type="hidden" name="pageIndex" value="1">
 				    <input type="hidden" name="pagePerRecord" value="10">
 				    <input type="hidden" name="linkType" value="">
-				<input type="hidden" name="OWASP_CSRFTOKEN" value="MH9Z-B476-OG7Y-7N0R-GGXM-44ZS-CS40-3K6R"></form>   
+					<input type="hidden" name="OWASP_CSRFTOKEN" value="MH9Z-B476-OG7Y-7N0R-GGXM-44ZS-CS40-3K6R">
+				</form>   
 			</div>
 		</div>
+		
+		
+		<div id="formButtonDiv" class="btn-wrap pt10">
+			<button id="uploadFromFileBox" type="button" class="btn btn-color7 br" onclick="">웹디스크 파일첨부</button>
+		    <button id="addApprLineButton" type="button" class="btn btn-color5 br">결재선</button>
+		    <button id="createApprDocButton" type="button" class="btn btn-color5 br">결재요청</button>
+		    <button id="addApprRefInfoButton" type="button" class="btn btn-color7 br">기결재첨부</button>
+			<button id="createApprDocTemporayButton" type="button" class="btn btn-color7 br">임시저장</button>
+			<button id="listApprDocButton" type="button" class="btn btn-color7 br">취소</button>
+		</div>
+		
 		
 		
 	</article>

@@ -14,35 +14,35 @@
             <div class="category">
                 <ul>
                 	<li>
-                        <span><a href="O_createSelfTaskView">업무 등록</a></span>
+                        <span><a href="<c:url value='O_createSelfTaskView' />">업무 등록</a></span>
                     </li>
                     <li>
                         <span>To - Do</span>
                         <ul>
-                            <li><a href="O_listMyTodoView">나의 할 일</a></li>
+                            <li><a href="<c:url value='O_listMyTodoView' />">나의 할 일</a></li>
                         </ul>
                     </li>
                     <li>
                         <span>업무 요청</span>
                         <ul>
-                            <li><a href="O_listPureOrderView">내가 한 업무 요청</a></li>
-                            <li><a href="O_listTodoView">수신 업무 요청</a></li>
-                            <li><a href="O_listSubTodoView">참조 업무 요청</a></li>
+                            <li><a href="<c:url value='O_listPureOrderView' />">내가 한 업무 요청</a></li>
+                            <li><a href="<c:url value='O_listTodoView' />">수신 업무 요청</a></li>
+                            <li><a href="<c:url value='O_listSubTodoView' />">참조 업무 요청</a></li>
                         </ul>
                     </li>
                     <li>
                         <span>업무 보고</span>
                         <ul>
-                            <li><a href="O_listPureOrderReportView">내가 한 업무 보고</a></li>
-                            <li><a href="O_listTodoReportView">수신 업무 보고</a></li>
-                            <li><a href="O_listSubTodoReportView">참조 업무 보고</a></li>
+                            <li><a href="<c:url value='O_listPureOrderReportView' />">내가 한 업무 보고</a></li>
+                            <li><a href="<c:url value='O_listTodoReportView' />">수신 업무 보고</a></li>
+                            <li><a href="<c:url value='O_listSubTodoReportView' />">참조 업무 보고</a></li>
                         </ul>
                     </li>
                     <li>
-                        <span><a href="O_listTempTaskView">임시 저장함</a></span>
+                        <span><a href="<c:url value='O_listTempTaskView' />">임시 저장함</a></span>
                     </li>
                     <li>
-                    	<span><a href="O_listMenuStoredTaskView">업무 보관함</a></span>
+                    	<span><a href="<c:url value='O_listMenuStoredTaskView' />">업무 보관함</a></span>
                     </li>
                     <li>
                     	<span><a href="e09.jsp">업무 보관함 관리</a></span>
@@ -51,7 +51,7 @@
                     	<span>관리자 메뉴</span>
                     	<ul>
                     		<li>
-                    			<a href="O_listAdminDocManagement">업무 문서 관리</a>
+                    			<a href="<c:url value='O_listAdminDocManagement' />">업무 문서 관리</a>
                     		</li>
                     	</ul>
                     </li>
