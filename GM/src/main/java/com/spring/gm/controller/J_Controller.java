@@ -19,7 +19,7 @@ public class J_Controller {
 	J_ServiceImpl service;
 	
 	// 급여기본정보관리(Salary Default Setting)
-	@RequestMapping("admin/J_SalaryDefaultSetting")
+	@RequestMapping("/admin/J_SalaryDefaultSetting")
 	public String J_SalaryDefaultSetting(HttpServletRequest req, Model model) {
 		
 		logger.info("URL : admin/J_SalaryDefaultSetting");
@@ -42,7 +42,7 @@ public class J_Controller {
 		
 	
 	//기본수당 외 수당 관리(Basic Allowance Management)
-	@RequestMapping("admin/J_BasicAllowanceManagement")
+	@RequestMapping("/admin/J_BasicAllowanceManagement")
 	public String J_BasicAllowanceManagement(HttpServletRequest req, Model model) {
 		logger.info("URL : admin/J_BasicAllowanceManagement");
 		
@@ -56,35 +56,35 @@ public class J_Controller {
 		return "admin/J_TimeAttendanceSalaryBonusAnnual";
 	}
 	//급여 계산 (Salary Calculation)
-	@RequestMapping("admin/J_SalaryCalculation")
+	@RequestMapping("/admin/J_SalaryCalculation")
 	public String J_SalaryCalculation(HttpServletRequest req, Model model) {
 		logger.info("URL : admin/J_SalaryCalculation");
 		
 		return "admin/J_SalaryCalculation";
 	}
 	//급여 조회(Payroll Inquiry)
-	@RequestMapping("/J_PayrollInquiry")
+	@RequestMapping("/pages/J_PayrollInquiry")
 	public String J_PayrollInquiry(HttpServletRequest req, Model model) {
 		logger.info("URL : J_PayrollInquiry");
 		
 		return "pages/J_PayrollInquiry";
 	}
 	//상여 계산(Bonus Calculation)
-	@RequestMapping("admin/J_BonusCalculation")
+	@RequestMapping("/admin/J_BonusCalculation")
 	public String J_BonusCalculation(HttpServletRequest req, Model model) {
 		logger.info("URL : admin/J_BonusCalculation");
 		
 		return "admin/J_BonusCalculation";
 	}
 	//상여 조회(Bonus Inquiry)
-	@RequestMapping("/J_BonusInquiry")
+	@RequestMapping("/pages/J_BonusInquiry")
 	public String J_BonusInquiry(HttpServletRequest req, Model model) {
 		logger.info("URL : J_BonusInquiry");
 		
 		return "pages/J_BonusInquiry";
 	}
 	//급여 대장(Payroll)
-	@RequestMapping("/J_Payroll")
+	@RequestMapping("/pages/J_Payroll")
 	public String J_Payroll(HttpServletRequest req, Model model) {
 		logger.info("URL : J_Payroll");
 		
@@ -94,7 +94,7 @@ public class J_Controller {
 	//==================================================================
 	
 	//개인 급여정보 가져오기
-	@RequestMapping("admin/J_info")
+	@RequestMapping("/admin/J_info")
 	public String J_info(HttpServletRequest req, Model model) {
 		logger.info("URL : J_info");
 		service.infoList(req, model);
@@ -102,7 +102,7 @@ public class J_Controller {
 		return "admin/sub/J_sub/J_info";
 	}
 	//개인 급여정보 업데이트
-	@RequestMapping("admin/J_infoUpdate")
+	@RequestMapping("/admin/J_infoUpdate")
 	public String J_infoUpdate(HttpServletRequest req, Model model) {
 		logger.info("URL : J_infoUpdate");
 		service.infoUpdate(req, model);

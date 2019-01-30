@@ -34,7 +34,10 @@ public class MemberVO {
     private int sys_rank; //시스템직급(FK)
     private int del; //삭제구분
     private String account_number; // 계좌번호
-    private int company;
+    private int company; //회사번호
+    
+    
+    
 	public String getId() {
 		return id;
 	}
