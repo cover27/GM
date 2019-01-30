@@ -25,6 +25,7 @@ public class E_DAOImpl implements E_DAO {
 	// 메모 목록 조회
 	@Override
 	public List<MemoVO> getMemoList(Map<String, Integer> map) {
+		
 		//큰 바구니 선언
 		List<MemoVO> dtos = null;
 		

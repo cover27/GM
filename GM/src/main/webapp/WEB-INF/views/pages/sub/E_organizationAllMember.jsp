@@ -6,7 +6,7 @@
 		<div class="content_header">
 			<h2>전체 구성원 목록</h2>
 		</div>
-
+<%-- 		EL 태그 - 서비스단 작업요망
 		<table style="width:1000px" align="center">
 			<tr>
 				<th colspan="6" align="center" style="height:25px">
@@ -32,7 +32,7 @@
 				<c:forEach var="dto" items="${dtos}">
 					<tr>
 						<td>
-							${dto.}
+							${dto.☆}
 						</td>
 						
 						<td>
@@ -68,9 +68,9 @@
 						</td>
 
 					</tr>
-	
+
 				</c:forEach>
-			</c:if>
+			</c:if>	
 	
 			<!-- 멤버가 없으면 -->
 			<c:if test="${cnt==0}">
@@ -115,7 +115,7 @@
 				</th>
 			</tr>
 		</table>
-		</div>
+		</div>			 --%>
 
 
 	</article>
