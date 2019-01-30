@@ -10,7 +10,7 @@
 	<table>
 		<tr>
 			<th colspan="6" align="center" style="height:25px">
-				<span>게시판 번호 : ${num}</span>글목록(글갯수 : ${cnt}) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span>게시판 번호 : ${num}</span>글목록&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="<c:url value='/pages/D_writeForm?num=${num}&pageNum=${pageNum}'/>"> 글쓰기 </a>
 			</th>
 		</tr>
