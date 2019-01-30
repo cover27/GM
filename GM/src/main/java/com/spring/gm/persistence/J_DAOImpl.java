@@ -1,6 +1,7 @@
 package com.spring.gm.persistence;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.gm.vo.MemberVO;
-
-
+import com.spring.gm.vo.join_mgcVO;
 import com.spring.gm.persistence.J_DAO;
 
 @Repository
@@ -25,10 +25,17 @@ public class J_DAOImpl implements J_DAO {
 	}
 
 	@Override
-	public ArrayList<MemberVO> selectList(Map<String, Object> map) {
-		ArrayList<MemberVO> dtos = null;
+	public ArrayList<join_mgcVO> selectList2(Map<String, Object> map) {
+		ArrayList<join_mgcVO> dtos = null;
 		J_DAO dao = sqlSession.getMapper(J_DAO.class);
-		dtos = dao.selectList(map);
+		dtos = dao.selectList2(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgcVO> selectList3(Map<String, Object> map) {
+		ArrayList<join_mgcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.selectList3(map);
 		return dtos;
 	}
 

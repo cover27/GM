@@ -5,6 +5,7 @@
 
 <c:set var="path" value="/gm/resources/" />
 <c:set var="root" value="/gm/" />
+<c:set var="title" value="3팀 그룹웨어" />
 
 <link rel="stylesheet" href="${path}css/common.css" />
 <link rel="stylesheet" href="${path}css/header.css" />
