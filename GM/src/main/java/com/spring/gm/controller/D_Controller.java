@@ -59,6 +59,7 @@ public class D_Controller {
 	public String boardList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardlist");
 		
+		service.boardsList(req, model);
 		service.boardList(req, model);
 		return "pages/D_boardList";
 	}
@@ -86,5 +87,12 @@ public class D_Controller {
 		
 		service.contentForm(req, model);
 		return "pages/D_boardContent";
+	}
+	@RequestMapping("/pages/D_boardUpdate")
+	public String boardUpdate(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardUpdate");
+		
+		
+		return "pages/D_boardUpdate";
 	}
 }
