@@ -28,15 +28,15 @@
                             <li><a href="<c:url value='O_listApprCompleteView' />">결재 진행함</a></li>
                             <li><a href="<c:url value='O_readApprAllListView' />">완료 문서함</a></li>
                             <li><a href="<c:url value='O_listApprRejectView' />">반려 문서함</a></li>
-                            <li><a href="b08.jsp">참조/열람 문서함</a></li>
+                            <li><a href="<c:url value='O_listApprReferenceView' />">참조/열람 문서함</a></li>
                         </ul>
                     </li>
                     <li>
                         <span>관리자 메뉴</span>
                         <ul>
-                            <li><a href="b09.jsp">결재문서 관리</a></li>
-                            <li><a href="b10.jsp">양식 관리</a></li>
-                            <li><a href="b11.jsp">발신 공문 설정</a></li>
+                            <li><a href="<c:url value='O_listApprDocAllAdminView' />">결재문서 관리</a></li>
+                            <!-- <li><a href="b10.jsp">양식 관리</a></li>
+                            <li><a href="b11.jsp">발신 공문 설정</a></li> -->
                         </ul>
                     </li>
                 </ul>

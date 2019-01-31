@@ -385,7 +385,6 @@ tbody {
 						<colgroup>
 							<col width="5%">
 							<col width="5%">
-							<col width="10%">
 							<col width="*">
 							<col width="13%">
 							<col width="13%">
@@ -394,7 +393,6 @@ tbody {
 							<tr>
 								<th scope="col"><input name="allCheck" id="allCheck" title="전체" type="checkbox" value=""></th>
 								<th scope="col">NO</th>
-								<th scope="col">서식함</th>
 								<th scope="col">
 									<a onclick="f_Sort('apprTitle', '');" href="#a">문서제목
 										<i class="fa fa-caret-down"><span class="blind">내림차순</span></i>
@@ -415,7 +413,6 @@ tbody {
 								<td>
 									1
 								</td>
-								<td>공통</td>
 								<td class="text-left">
 									<div class="ellipsis">
 										<a href="#a" onclick="getApprDetail('26946694','');" title="테스트테스트">테스트테스트</a>

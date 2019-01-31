@@ -398,7 +398,6 @@ tbody {
 						<caption></caption>
 						<colgroup>
 							<col width="4%">
-							<col width="8%">							
 							<col width="10%">
 							<col width="10%">
 							<col width="7%">
@@ -412,9 +411,6 @@ tbody {
 							<tr>
 								<th scope="col">
 									<input name="allCheck" id="allCheck" title="전체" type="checkbox" value="">
-								</th>
-								<th scope="col">
-									서식함
 								</th>
 								<th scope="col">양식명</th> 																
 								<th scope="col">
@@ -440,7 +436,6 @@ tbody {
 								<td style="background: rgb(249, 249, 249);">
 									<input type="checkbox" class="checkbox" name="chkApprId" value="26946897" title="삭제할 항목을 선택하세요.">
 								</td>
-								<td style="background: rgb(249, 249, 249);"><div class="ellipsis" title="공통" style="cursor:default;">공통</div></td>											
 								<td style="background: rgb(249, 249, 249);">협조문</td>
 								<td style="background: rgb(249, 249, 249);"><div class="ellipsis" title="20190116-0001" style="cursor:default;">20190116-0001</div></td>											
 								<td style="background: rgb(249, 249, 249);">발신</td>	
