@@ -1,7 +1,6 @@
 package com.spring.gm.service;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.K_DAO;
+import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
+import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.MemberVO;
 
 @Service
@@ -172,7 +173,17 @@ public class K_ServiceImpl implements K_Service{
 
 	@Override
 	public void K_personal(HttpServletRequest req, Model model) {
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		AttendedSetVO attended = null;
+		List<DayoffVO> dayoffList = null;
 		
+		attended = dao.getAttendedSet(company);
+		dayoffList = dao.getDayoffList(company);
+		int holiday = dao.getHoliday(company);
+		
+		req.setAttribute("attended", attended);
+		req.setAttribute("dayoffList", dayoffList);
+		req.setAttribute("holiday", holiday);
 	}
 	
 }

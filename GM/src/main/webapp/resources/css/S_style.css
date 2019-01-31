@@ -20,7 +20,7 @@
 
 .content .mailbox_header .mailbox_searchbox .btn_search {
     vertical-align: top;
-    background: #fff url(../../images/ic_search.png) 50% 0 no-repeat !important;
+    background: #fff url(../images/ic_search.png) 50% 0 no-repeat !important;
     height: 27px;
     width: 29px;
     margin-left: -5px;
@@ -105,8 +105,8 @@
 }
 
 .content .mailbox_inbox table th {
-	background: yellow;
-	border: 1px solid #333;
+	/* background: yellow; */
+	/* border: 1px solid #333; */
 	padding: 8px;
 	font-size: 14px;
 }

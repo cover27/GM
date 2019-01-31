@@ -19,11 +19,11 @@
 	</select>
 
 	<insert id="registAccount" parameterType="com.spring.gm.vo.MemberVO">
-		INSERT INTO member (id, pwd, name, eng_name, jumin1, jumin2, gender, marry, wdday, frgn, nation, tel, tel_hm, email_in, address, eng_address, depart, enterday, year, sys_rank, del)
+		INSERT INTO member (id, pwd, name, eng_name, jumin1, jumin2, gender, marry, wdday, frgn, nation, tel, tel_hm, email_in, address, eng_address, depart, enterday, year, sys_rank, del, company)
 		VALUES (#{id}, #{pwd}, #{name}, #{eng_name}, #{jumin1}, #{jumin2}, 
 		#{gender}, #{marry}, #{wdday, jdbcType=DATE}, #{frgn}, #{nation, jdbcType=VARCHAR}, #{tel}, #{tel_hm, jdbcType=VARCHAR}, 
 		#{email_in}, #{address}, #{eng_address, jdbcType=VARCHAR}, #{depart}, #{enterday}, 
-		#{year}, #{sys_rank}, #{del})
+		#{year}, #{sys_rank}, #{del}, #{company})
 	</insert>
 	
 	<insert id="registUsers" parameterType="java.util.Map">
@@ -56,4 +56,15 @@
 		SELECT * FROM member WHERE company=#{company}
 	</select>
 	
+	<select id="getAttendedSet" parameterType="int" resultType="com.spring.gm.vo.AttendedSetVO">
+		SELECT * FROM attendedset WHERE company=#{company}
+	</select>
+	
+	<select id="getDayoffList" parameterType="int" resultType="com.spring.gm.vo.DayoffVO">
+		SELECT * FROM dayoff WHERE company=#{company} AND types = 1
+	</select>
+	
+	<select id="getHoliday" parameterType="int" resultType="int">
+		SELECT day FROM dayoff WHERE company=#{company} AND types = 2
+	</select>
 </mapper>

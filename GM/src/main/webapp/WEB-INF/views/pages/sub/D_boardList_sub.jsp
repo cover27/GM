@@ -2,15 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <section>
 	<article>
 		<div class="content_header">
 			<h2>게시글 목록</h2>
-		</div>
+		</div>		
 	<table>
 		<tr>
 			<th colspan="6" align="center" style="height:25px">
-				<span>게시판 번호 : ${num}</span>글목록(글갯수 : ${cnt}) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span>게시판 번호 : ${num}</span>글목록&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="<c:url value='/pages/D_writeForm?num=${num}&pageNum=${pageNum}'/>"> 글쓰기 </a>
 			</th>
 		</tr>
@@ -29,6 +30,7 @@
 			     var="dto" : 작은바구니 : 게시글 1건
 			     ==> 게시글목록에 5건이 있다면 5회(ArrayList에서 꺼내서 dto에 담은 다음 출력)
 			 -->
+		<c:if test="${sessionScope.loginInfo.del == 0}">
 			<c:forEach var="dto" items="${dtos}">
 				<tr>
 					<td>
@@ -51,7 +53,7 @@
 						<c:if test="${dto.readcnt > 10}">	
 						</c:if>
 					
-						<a href="<c:url value='/pages/D_boardContent?boardnum=${dto.boardnum}&pageNum=${pageNum}&number=${number+1}'/>"> ${dto.subject} </a>
+						<a href="<c:url value='/pages/D_boardContent?boardnum=${dto.boardnum}&num=${num}&pageNum=${pageNum}&number=${number+1}'/>"> ${dto.subject} </a>
 					</td>
 					
 					<td>
@@ -110,5 +112,6 @@
 			</th>
 		</tr>
 	</table>
+	</c:if>
 	</article>
 </section>

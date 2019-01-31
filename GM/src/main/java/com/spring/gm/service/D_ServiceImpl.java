@@ -41,7 +41,7 @@ public class D_ServiceImpl implements D_Service{
 		
 		int insertCnt = dao.insertBoards(vo);	//jsp로 가져온값들을 insert하고 다시 
 		
-		req.setAttribute("insertCnt",insertCnt);
+		model.addAttribute("insertCnt",insertCnt);
 		
 	}
 
@@ -104,7 +104,9 @@ public class D_ServiceImpl implements D_Service{
 			
 			List<BoardsVO> dtos = dao.getBoardsArticleList(map);
 			
-			req.setAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+
+			model.addAttribute("b_dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+
 		}
 		
 		// 시작페이지
@@ -118,16 +120,16 @@ public class D_ServiceImpl implements D_Service{
 		System.out.println("endPage : " + endPage);
 		System.out.println("================");
 		
-		req.setAttribute("cnt", cnt);  // 글갯수
-		req.setAttribute("number", number); // 출력용 글번호
-		req.setAttribute("pageNum", pageNum);  // 페이지번호
+		model.addAttribute("cnt", cnt);  // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum);  // 페이지번호
 		
 		if(cnt > 0) {
-			req.setAttribute("startPage", startPage);     // 시작 페이지
-			req.setAttribute("endPage", endPage);         // 마지막 페이지
-			req.setAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
-			req.setAttribute("pageCount", pageCount);     // 페이지 갯수
-			req.setAttribute("currentPage", currentPage); // 현재페이지
+			model.addAttribute("startPage", startPage);     // 시작 페이지
+			model.addAttribute("endPage", endPage);         // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
 		}		
 	}
 
@@ -222,37 +224,39 @@ public class D_ServiceImpl implements D_Service{
 
 	@Override
 	public void boardUpdate(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		
-		BoardsVO vo = new BoardsVO();		// 바구니 생성
-		String group = req.getParameter("groupId");	
-		int groupId = Integer.parseInt(group);
-		String b_name = req.getParameter("b_name");
-		String anon_i = req.getParameter("anon");
-		int anon = Integer.parseInt(anon_i);
+		BoardListVO vo = null;
+		vo = dao.getArticle(boardnum);
 		
-		vo.setGroupId(groupId);		// 가져온 값들을 바구니에 담음
-		vo.setB_name(b_name);
-		vo.setAnon(anon);
-		
-		
-		int upateCnt = dao.updateBoards(vo);	//jsp로 가져온값들을 insert하고 다시 
-		
-		req.setAttribute("upateCnt",upateCnt);
-		
+		model.addAttribute("num",num);
+		model.addAttribute("vo", vo);
+		model.addAttribute("boardnum", boardnum);
+		model.addAttribute("pageNum", pageNum);
 	}
 
 	@Override
 	public void boardDelete(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		
-		BoardsVO vo = new BoardsVO();		// 바구니 생성
-		String delNumber = req.getParameter("del");
-		int del = Integer.parseInt(delNumber);
+		BoardListVO vo = new BoardListVO();
+
 		
-		vo.setDel(del);
+		// 4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
+		/*BoardDAO dao = BoardDAOImpl.getInstance();*/
 		
-		int deleteCnt = dao.deleteBoards(vo);	//jsp로 가져온값들을 insert하고 다시 
+		// 5단계. 글 수정 실행(vo를 DAO로 전달하여 SQL 실행)
+		int updateCnt = dao.updateBoard(vo);
 		
-		req.setAttribute("deleteCnt", deleteCnt);
+		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("num", num);
+		model.addAttribute("updateCnt", updateCnt);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("boardnum", boardnum);		
 		
 	}
 
@@ -347,10 +351,38 @@ public class D_ServiceImpl implements D_Service{
 		System.out.println("godgod"+insertCnt);
 		
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("num", num);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("dto", vo);
 		model.addAttribute("insertCnt", insertCnt);
 	}
+
+	@Override
+	public void boardUpdatePro(HttpServletRequest req, Model model) {
+		
+		int num = Integer.parseInt(req.getParameter("num"));
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		
+		// 화면으로부터 입력받은 값을 vo에 담자
+		BoardListVO vo = new BoardListVO();
+		vo.setSubject(req.getParameter("subject"));
+		vo.setContent(req.getParameter("content"));
+		vo.setBoardnum(boardnum);
+		
+		// 4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
+		/*BoardDAO dao = BoardDAOImpl.getInstance();*/
+		
+		// 5단계. 글 수정 실행(vo를 DAO로 전달하여 SQL 실행)
+		int updateCnt = dao.updateBoard(vo);
+		
+		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("num", num);
+		model.addAttribute("updateCnt", updateCnt);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("boardnum", boardnum);
+	}
 	
 	
+		
 }

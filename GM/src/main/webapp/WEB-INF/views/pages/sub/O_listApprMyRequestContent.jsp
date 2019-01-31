@@ -57,6 +57,11 @@ input[type="text"], input[type="password"] {
 .btn-color5 {
     background: #363636!important;
 }
+.btn-wrap .btn {
+    min-width: 63px;
+    padding: 5px 11px;
+    box-shadow: 0 3px 5px #e3e3e3;
+}
 .btn {
     display: inline-block;
     padding: 3px 11px;
@@ -108,6 +113,145 @@ input[type="text"], input[type="password"] {
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+.table-header {
+    border-bottom: 2px solid #c0c0c0;
+}
+.table-header {
+    position: relative;
+    height: 50px;
+    margin: 0 20px;
+    background: #fff;
+}
+.table-header .listinfo {
+    position: relative;
+    top: 11px;
+    line-height: 20px;
+}
+.table-header .listinfo select {
+    float: left;
+    display: inline-block;
+}
+.table-header .listinfo .totalnum {
+    float: left;
+    display: inline-block;
+    margin: 4px 16px 0 10px;
+    color: #999;
+}
+.table-header .listinfo .totalnum span {
+    margin-left: 3px;
+    font-weight: 700;
+    color: #f05050;
+}
+.table-search.astatus {
+    top: 2px;
+}
+.table-search {
+    position: absolute;
+    top: 11px;
+    right: 0;
+}
+i.icon.progress {
+    width: 17px;
+    height: 17px;
+    background-position: -21px 0;
+    vertical-align: middle;
+}
+.approval .ap-status .btn .select2-category i {
+    margin: 0;
+}
+i.icon {
+    display: inline-block;
+    background-image: url(../images/common/ic_common.png);
+    margin: 0 4px;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+.content-list {
+    border-top: 1px solid #d1d1d1;
+    margin: 0 20px;
+    margin-top: -1px;
+}
+.content-list .table {
+    border-bottom: 1px solid #eee;
+}
+.content-list .table > thead > tr > th {
+    padding: 5px 5px 6px;
+    height: 38px;
+    line-height: 18px;
+    color: #111;
+    text-align: center;
+    font-weight: 600;
+    vertical-align: middle;
+    border-bottom: 1px solid #d1d1d1;
+    background: #fff;
+}
+.content-list i.fa-caret-up, .content-list i.fa-caret-down {
+    margin-left: 3px;
+    color: #999;
+    font-size: 13px;
+}
+.content-list .table > tbody > tr > td {
+    padding: 3px 5px;
+    height: 34px;
+    line-height: 18px;
+    color: #333;
+    text-align: center;
+    vertical-align: middle;
+}
+.table-striped.striped02 > tbody > tr > td {
+    background-color: #f9f9f9;
+    border-top: 1px #eee solid;
+}
+.approval .ap-status .btn {
+    padding: 0 8px;
+    position: relative;
+    height: 23px;
+    border-radius: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 0;
+}
+.content-list .table > tbody > tr > td a {
+    color: #111;
+    /* padding-left: 10px; */
+}
+.pagination-wrap {
+    padding: 6px 0 7px;
+    margin-top: -1px;
+    height: 39px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+}
+.pagination {
+    display: inline-block;
+}
+.pagination > li {
+    display: inline;
+}
+.pagination > li > a.disabled .fa {
+    color: #ced3d6;
+}
+.pagination > li > a .fa {
+    font-size: 11px;
+    vertical-align: text-bottom;
+}
+.pagination > li > a, .pagination > li > span {
+    float: left;
+    font-weight: 600;
+    margin: 0 2px;
+    padding: 4px 9px;
+    min-width: 25px;
+    height: 25px;
+    text-decoration: none;
+    border: none !important;
+    border-radius: 25px !important;
+}
+.btn-wrap {
+    padding: 8px 0 8px 0;
+    text-align: right;
 }
 button, input, optgroup, select, textarea {
     color: inherit;
@@ -251,7 +395,6 @@ tbody {
 							<caption></caption>
 							<colgroup>
 										<col width="4%">
-										<col width="8%">				
 										<col width="*">
 										<col width="13%">
 										<col width="13%">
@@ -262,7 +405,6 @@ tbody {
 									<th scope="col">
 										NO
 									</th>
-									<th scope="col">서식함</th>
 									<th scope="col">
 										<a onclick="f_Sort('apprTitle', '');" href="#a">문서제목
 											<i class="fa fa-caret-down"><span class="blind">내림차순</span></i>
@@ -285,7 +427,6 @@ tbody {
 									<td style="background: rgb(249, 249, 249);">
 												2
 									</td>
-									<td style="background: rgb(249, 249, 249);">공통</td>
 									<td class="text-left" style="background: rgb(249, 249, 249);">
 										<a href="#a" onclick="getApprDetail('26947824','');" title="테스트11111">테스트11111</a>
 										<span class="text-point-b"></span>
@@ -310,7 +451,6 @@ tbody {
 									<td style="background: rgb(255, 255, 255);">
 												1
 									</td>
-									<td style="background: rgb(255, 255, 255);">공통</td>
 									<td class="text-left" style="background: rgb(255, 255, 255);">
 										<a href="#a" onclick="getApprDetail('26906959','');" title="협조문 테스트">협조문 테스트</a>
 										<span class="text-point-b"></span>

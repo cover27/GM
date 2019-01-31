@@ -151,7 +151,7 @@ public class K_Controller {
 		return "admin/K_resistMemberInfo";
 	}
 	
-	//인사/근태/급여기준정보설정
+	//근태/급여기준정보설정
 	@RequestMapping("admin/K_personal")
 	public String K_personal(HttpServletRequest req, Model model) {
 		logger.info("URL : K_personal");
@@ -161,11 +161,28 @@ public class K_Controller {
 		return "admin/K_personal";
 	}
 	
+	//테스트용 삭제예정
+	@RequestMapping("admin/test")
+	public String K_test(HttpServletRequest req, Model model) {
+		logger.info("URL : K_personal");
+		
+		//service.K_personal(req, model);
+		String[] values = req.getParameterValues("value");
+		if(values.length != 0) {
+			for(int i=0; i<values.length; i++) {
+				System.out.println(" " + values[i]);
+			}
+		} else {
+			System.out.println("안탐");
+		}
+		return "admin/K_personal";
+	}
+	
 	//회사관리자 아직 안만듬
 	@RequestMapping("admin/K_setting_admin")
 	public String K_setting_admin(HttpServletRequest req, Model model) {
 		logger.info("URL : K_setting_admin");
-		
+				
 		return "admin/K_setting_admin";
 	}
 }
