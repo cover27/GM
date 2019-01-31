@@ -20,30 +20,21 @@ public class E_ServiceImpl implements E_Service {
 	@Autowired
 	E_DAO dao;
 
-	// 조직도 리스트
+	
+	// 조직도 - 첫페이지,	 (내가 속한 회사) 전체 구성원 목록
 	@Override
-	public void organization(HttpServletRequest req, Model model) {
+	public void E_organizationList(HttpServletRequest req, Model model) {
 		// 1. 세션 로그인 되어있는 사용자의 정보를 가져옴
 		// 2. 가져온 사용자 정보에서 company 를 가져온다.
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		
 		// SQL join
 		
 		// 3. Mapper (DB) 가서 member테이블에 company가 현재 로그인 된 사용자의 company가 같은 사람만 가지고 온다.
 		// SELECT * FROM member WHERE company = #{company}
+		List<MemberVO> list = null;	// List : 같은 형태를 하나로 묶는다.( null이라  텅빈 큰 바구니 ), MemberVO : 작은 바구니
+		list = dao.getMyCompanyInfo(company);		// DB에서 접속한 사용자의 회사정보 company값을 가져와서 list에 넣음
 		
-		// 4. setAttribute로 list를 넘겨줌.
-		
-		// 5. 화면에서 EL태그로 출력
-		
-	}
-	
-	
-	
-	
-	@Override
-	public void memoList(HttpServletRequest req, Model model) {
-		
-		//3단계. 화면으로부터 입력받은 값을 받아온다.
 		//페이징 처리
 		int pageSize = 10;		//한페이지당 출력할 글 갯수
 		int pageBlock = 3;		//한 블록당 페이지 갯수
@@ -58,21 +49,15 @@ public class E_ServiceImpl implements E_Service {
 		int pageCount = 0;		//페이지 갯수
 		int startPage = 0;		//시작 페이지
 		int endPage = 0;		//마지막 페이지
-		
-		// 4단계. 다형성 적용, 싱글톤 방식으로 DAO 객체 생성
-		/*BoardDAO dao = BoardDAOImpl.getInstance(); */
-				
-		//5-1단계. 글 갯수 구하기
-		cnt = dao.getMemoCnt();
-
-		System.out.println("cnt : " + cnt); // 우선 테이블에 30건의 데이터를 insert 해 둔다(페이징 확인을 위해)
+	
+		cnt = dao.getMyCompanyMemCnt(company);
 		
 		pageNum = req.getParameter("pageNum");
 		
 		if(pageNum==null) {
 			pageNum = "1";	// 첫페이지를 1페이지로 지정
 		}
-			
+		
 		//글 30건 기준
 		currentPage = Integer.parseInt(pageNum);	//현재 페이지 : 1
 		System.out.println("currentPage : " + currentPage);
@@ -100,20 +85,6 @@ public class E_ServiceImpl implements E_Service {
 		System.out.println("number : " + number);
 		System.out.println("pageSize : " + pageSize);
 		
-		if(cnt > 0) {
-			//5-2단계. 게시글 목록 조회
-			
-			//ArrayList<BoardVO> dtos = dao.getArticleList(start, end);
-			Map<String, Integer> map = new HashMap<String, Integer>();
-			map.put("start", start);
-			map.put("end", end);
-			
-			List<MemoVO> dtos = dao.getMemoList(map);
-			
-			// 6단계. request나 session에 처리결과를 저장(jsp에 전달하기 위함)
-			req.setAttribute("dtos", dtos);	// 큰바구니(게시글(vo, 작은 바구니) 목록)를 jsp로 넘김.   - 큰바구니 : 게시글 목록 	cf)작은바구니 : 게시글 1건
-		}
-			
 		//시작페이지
 		//1 = (1 / 3) * 3 + 1;
 		startPage = (currentPage / pageBlock) * pageBlock + 1;	
@@ -139,8 +110,18 @@ public class E_ServiceImpl implements E_Service {
 			req.setAttribute("currentPage", currentPage);	// 현재 페이지
 		}
 		
+		// 4. setAttribute로 list를 넘겨줌.
+		req.setAttribute("list", list);
+		System.out.println("list : " + list);
+		// 5. 화면에서 EL태그로 출력
+		
 	}
 
-
-
+	// 조직도 - 전체 그룹 목록
+	@Override
+	public void E_organAllGroupList(HttpServletRequest req, Model model) {
+		
+		
+	}
+	
 }
