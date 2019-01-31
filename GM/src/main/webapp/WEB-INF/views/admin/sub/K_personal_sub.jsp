@@ -24,11 +24,15 @@
 		<br>
  
 		<div id="pre_set" style="display:none">
-		    <input type="text" name="" value="" style="width:200px"> <input type="button" value="삭제" onclick="remove_item(this)">
+		    <input type="text" name="value" value="" style="width:200px"> <input type="button" value="삭제" onclick="remove_item(this)">
 		</div>
 		 
-		<div id="field"></div>
+		<form action="<c:url value='/admin/test'/>" method="post">
+			<div id="field"></div>
 		 
-		<input type="button" value=" 추가 " onclick="add_item()"><br>
+			<input type="button" value=" 추가 " onclick="add_item()"><br>
+			<input type="submit" value="전송">
+		</form>
+		
 	</article>
 </section>
