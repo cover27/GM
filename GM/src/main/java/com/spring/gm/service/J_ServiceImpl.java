@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import com.spring.gm.persistence.J_DAO;
 import com.spring.gm.persistence.K_DAO;
 import com.spring.gm.persistence.K_DAOImpl;
+import com.spring.gm.vo.BonusCutVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO;
 
@@ -29,7 +30,6 @@ public class J_ServiceImpl implements J_Service {
 	@Override
 	public void salaryList(HttpServletRequest req, Model model) {
 		String pagenum = req.getParameter("pageNum");
-		System.out.println("pagenum :" + pagenum);
  
 		int pageSize = 10; // 한페이지당 출력할 글 갯수
 		int pageBlock = 5; // 한 블럭당 페이지 갯수
@@ -195,6 +195,24 @@ public class J_ServiceImpl implements J_Service {
 			model.addAttribute("dtos", dtos);
 			model.addAttribute("cnt", cnt);
 		}
+	}
+
+	
+	//------------------- 기본수당 외 수당관리 --------------------
+	// 수당 - 개인회원  수당 기본정보
+	@Override
+	public void J_extrapayinfo(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		System.out.println("id : " + id);
+		int cnt = dao.J_extrapayinfoCnt(id);
+		System.out.println("cnt :" + cnt);
+		
+		List<BonusCutVO> dtos = dao.J_extrapayinfo(id);
+		if(cnt > 0) {
+		System.out.println("dtos :" + dtos.toString());
+		}
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("cnt", cnt);
 	}
 
 }

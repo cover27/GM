@@ -156,8 +156,25 @@ public class K_Controller {
 	public String K_personal(HttpServletRequest req, Model model) {
 		logger.info("URL : K_personal");
 		
-		//service.K_personal(req, model);
+		service.K_personal(req, model);
 		
+		return "admin/K_personal";
+	}
+	
+	//테스트용 삭제예정
+	@RequestMapping("admin/test")
+	public String K_test(HttpServletRequest req, Model model) {
+		logger.info("URL : K_personal");
+		
+		//service.K_personal(req, model);
+		String[] values = req.getParameterValues("value");
+		if(values.length != 0) {
+			for(int i=0; i<values.length; i++) {
+				System.out.println(" " + values[i]);
+			}
+		} else {
+			System.out.println("안탐");
+		}
 		return "admin/K_personal";
 	}
 	

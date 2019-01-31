@@ -7,7 +7,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
+import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.MemberVO;
 
 @Repository
@@ -69,6 +71,20 @@ public class K_DAOImpl implements K_DAO{
 	@Override
 	public List<MemberVO> getMembers(int company) {
 		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getMembers", company);
+	}
+
+	@Override
+	public AttendedSetVO getAttendedSet(int company) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getAttendedSet", company);
+	}
+
+	@Override
+	public List<DayoffVO> getDayoffList(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getDayoffList", company);
+	}
+	
+	public int getHoliday(int company) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getHoliday", company);
 	}
 	
 }

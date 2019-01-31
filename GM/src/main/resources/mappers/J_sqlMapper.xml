@@ -84,4 +84,14 @@
               WHERE m.depart = c.company )
      where  depart = #{company} and id = #{search_content}
 	</select>
+	
+	<!-- ========================기본수당 외 수당관리=============================-->
+	<!-- 급여 개인회원수당 정보 있는지확인 -->
+	<select id="J_extrapayinfoCnt" parameterType="String" resultType="int">
+		SELECT count(*) as cnt FROM bonus_cut WHERE id = #{id} 
+	</select>
+	<!-- 급여 개인회원수당 정보 가져오기 -->
+	<select id="J_extrapayinfo" parameterType="String" resultType="com.spring.gm.vo.BonusCutVO">
+		SELECT * FROM bonus_cut WHERE id = #{id} 
+	</select>
 </mapper>

@@ -388,7 +388,6 @@ tbody {
 						<caption></caption>
 						<colgroup>
 							<col width="4%">
-							<col width="8%">
 							<col width="10%">													
 							<col width="*">				
 							<col width="8%">
@@ -400,7 +399,6 @@ tbody {
 						<thead>
 							<tr>
 								<th scope="col">NO</th>
-								<th scope="col">서식함</th>								
 								<th scope="col">문서번호</th>			
 								<th scope="col">
 									<a onclick="f_Sort('apprTitle', '');" href="#a">문서제목
@@ -425,7 +423,6 @@ tbody {
 								<td style="background: rgb(255, 255, 255);">
 									1
 								</td>
-								<td style="background: rgb(255, 255, 255);"><div class="ellipsis" title="공통" style="cursor:default;">공통</div></td>											
 								<td style="background: rgb(255, 255, 255);"><div class="ellipsis" title="문서번호" style="cursor:default;">문서번호</div></td>											
 								<td class="text-left" style="background: rgb(255, 255, 255);">
 									<div class="ellipsis">

@@ -22,13 +22,27 @@
 			<h2>근태/급여 기준정보 설정</h2>
 		</div>
 		<br>
- 
 		<div id="pre_set" style="display:none">
-		    <input type="text" name="" value="" style="width:200px"> <input type="button" value="삭제" onclick="remove_item(this)">
+		   	 입사연차 : <input type="text" name="year" >
+		   	 연차허용일수 : <input type="text" name="day" > <input type="button" value="삭제" onclick="remove_item(this)">
 		</div>
-		 
-		<div id="field"></div>
-		 
-		<input type="button" value=" 추가 " onclick="add_item()"><br>
+		<form action="<c:url value='/admin/test'/>" method="post">
+			여름휴가 : <input type="text" name="holiday" value="${holiday }"> 일
+			<hr>
+			<div id="field">
+				<c:forEach var="dto" items="${dayoffList }">
+					<div id="pre_set">
+					    입사연차 : <input type="text" name="year" value="${dto.year }">
+					    연차허용일수 : <input type="text" name="day" value="${dto.day }"> <input type="button" value="삭제" onclick="remove_item(this)">
+					</div>
+				</c:forEach>
+			</div>
+		 	
+			<input type="button" value=" 추가 " onclick="add_item()"><br>
+			<hr>
+			근무시각
+			<input type="submit" value="전송">
+		</form>
+		
 	</article>
 </section>

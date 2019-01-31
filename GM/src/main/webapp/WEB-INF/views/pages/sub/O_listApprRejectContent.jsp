@@ -393,8 +393,6 @@ tbody {
 						<caption></caption>
 						<colgroup>
 							<col width="4%">
-							<col width="8%">
-							<col width="7%">
 							<col width="*">
 							<col width="10%">
 							<col width="13%">		
@@ -404,8 +402,6 @@ tbody {
 						<thead>
 							<tr>
 								<th scope="col">NO</th>
-								<th scope="col">서식함</th>
-								<th scope="col">유형</th>
 								<th scope="col">
 									<a onclick="f_Sort('apprTitle', '');" href="#a">문서제목
 										<i class="fa fa-caret-down"><span class="blind">내림차순</span></i>
@@ -425,10 +421,6 @@ tbody {
 								<td style="background: rgb(249, 249, 249);">
 									1
 								</td>
-								<td style="background: rgb(249, 249, 249);">공통</td>
-								<td style="background: rgb(249, 249, 249);">
-									품의
-								</td>											
 								<td class="text-left" style="background: rgb(249, 249, 249);">
 									<div class="ellipsis">
 										<a href="#a" onclick="getApprDetail('26947161','');" title="반려테스트">반려테스트</a>

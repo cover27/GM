@@ -32,9 +32,9 @@ function board_go_callback(){
 		type:"POST",
 		data:"num="+num,
 		url:"${pageContext.request.contextPath}/pages/D_boardList",
-		success:function(data){
+		success:function(result){
 			alert("성공");
-			$("#result").html(url);
+			$("#result").html(result);
 		},
 		error:function(){
 			alert("실패");
