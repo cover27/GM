@@ -108,6 +108,7 @@ public class D_Controller {
 	public String boardDeletePro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardDeletePro");
 		
+		service.boardDelete(req, model);
 		return "pages/D_boardDeletePro";
 	}
 }
