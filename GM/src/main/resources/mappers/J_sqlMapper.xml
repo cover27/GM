@@ -27,28 +27,71 @@
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
 	]]>
 	</select>
-	
+	<!--  -->
 	<select id="infoList" parameterType="String" resultType="com.spring.gm.vo.MemberVO">
 		SELECT * FROM member WHERE id=#{id}
 	</select>
-	
+	<!--개인 회원 급여 수정하기  -->
 	<update id="infoUpdate" parameterType="java.util.Map">
 		UPDATE member SET salary=#{salary}, account_number=#{account_number} WHERE id=#{id}
 	</update>
 	
-	<!-- 검색 급여 회원정보 가져오기 -->
+	<!-- 검색 급여 회원정보 가져오기(성명) -->
 	<select id="search_salaryCnt" parameterType="java.util.Map" resultType="int">
 		SELECT count(*) cnt FROM member WHERE name like '%'||#{search_content}||'%' and company = #{company}
 	</select>
-	<select id="search_salaryCnt2" parameterType="java.util.Map" resultType="int">
-		SELECT count(*) cnt FROM member WHERE depart like '%'||#{search_content}||'%' and company = #{company}
+	<!-- 검색 급여 회원정보 가져오기(성명 - 그룹테이블과 조인) -->
+	<select id="searchinfoList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+		select * from(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g 
+              WHERE m.depart = g.groupid)
+     where  depart != #{company} and name like '%'||#{search_content}||'%'
+	</select>
+	<!-- 검색 급여 회원정보 가져오기(성명 - 사업장테이블과 조인) -->
+	<select id="searchinfoList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
+              FROM member m ,companies c
+              WHERE m.depart = c.company )
+     where  depart = #{company} and name like '%'||#{search_content}||'%'
 	</select>
 	
-	<select id="searchinfoList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
-		SELECT * FROM member WHERE name like '%'||#{search_content}||'%' and company = #{company}
+	
+	<!-- 검색 급여 회원정보 가져오기(부서) -->
+	<select id="search_salaryCnt2" parameterType="java.util.Map" resultType="int">
+		SELECT count(*) cnt FROM groups WHERE g_name like '%'||#{search_content}||'%' and company = #{company}
 	</select>
-	<select id="searchinfoList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name
+	<select id="searchinfoList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
               FROM member m ,groups g WHERE m.depart = g.groupid and g.g_name like '%'||#{search_content}||'%' and g.company = #{company})
+	</select>
+	
+	
+	<!-- 검색 급여 회원정보 가져오기(성명) -->
+	<select id="search_salaryCnt3" parameterType="java.util.Map" resultType="int">
+		SELECT count(*) cnt FROM member WHERE id = #{search_content} and company = #{company}
+	</select>
+	<!-- 검색 급여 회원정보 가져오기(성명 - 그룹테이블과 조인) -->
+	<select id="searchinfoList4" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+		select * from(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g 
+              WHERE m.depart = g.groupid)
+     where  depart != #{company} and id = #{search_content}
+	</select>
+	<!-- 검색 급여 회원정보 가져오기(성명 - 사업장테이블과 조인) -->
+	<select id="searchinfoList5" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
+              FROM member m ,companies c
+              WHERE m.depart = c.company )
+     where  depart = #{company} and id = #{search_content}
+	</select>
+	
+	<!-- ========================기본수당 외 수당관리=============================-->
+	<!-- 급여 개인회원수당 정보 있는지확인 -->
+	<select id="J_extrapayinfoCnt" parameterType="String" resultType="int">
+		SELECT count(*) as cnt FROM bonus_cut WHERE id = #{id} 
+	</select>
+	<!-- 급여 개인회원수당 정보 가져오기 -->
+	<select id="J_extrapayinfo" parameterType="String" resultType="com.spring.gm.vo.BonusCutVO">
+		SELECT * FROM bonus_cut WHERE id = #{id} 
 	</select>
 </mapper>

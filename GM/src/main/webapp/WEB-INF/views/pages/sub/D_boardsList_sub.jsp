@@ -16,23 +16,45 @@
 	</table>
 	
 	<table>
+<<<<<<< HEAD
 		<c:if test="${sessionScope.loginInfo.del == 0}">
 			<c:forEach var="dtos" items="${dtos}">
 				<tr align="center">
 					<td>
 						<input type="checkbox" name="check">
 					</td>
+=======
+		<c:forEach var="b_dtos" items="${b_dtos}">
+			<tr align="center">
+				<td>
+					<input type="checkbox" name="check">
+				</td>
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 				
+<<<<<<< HEAD
 					<td>
 						${dtos.num}
 					</td>
+=======
+				<td>
+					${b_dtos.num}
+				</td>
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 						
+<<<<<<< HEAD
 					<td>
 						<a href="<c:url value='/pages/D_boardList?num=${dtos.num}'/>">${dtos.b_name}</a>
 					</td>
 				</tr>
 			</c:forEach>
 		</c:if>
+=======
+				<td>
+					<a href="<c:url value='/pages/D_boardList?num=${b_dtos.num}'/>">${b_dtos.b_name}</a>
+				</td>
+			</tr>
+		</c:forEach>
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 	</table>
 	
 	<table style="width:1000px" align="center">

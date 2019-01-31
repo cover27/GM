@@ -133,5 +133,60 @@ public class O_Controller {
 		return "pages/O_listApprMyRequestView";
 	}
 	
+	//기안 - 임시저장함
+	@RequestMapping("/pages/O_listApprTempView")
+	public String O_listApprTempView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listApprTempView");
+		
+		return "pages/O_listApprTempView";
+	}
+	
+	//결재 - 결재 대기함
+	@RequestMapping("/pages/O_listApprTodoView")
+	public String O_listApprTodoView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listApprTodoView");
+		
+		return "pages/O_listApprTodoView";
+	}
+	
+	//결재 - 결재 진행함
+	@RequestMapping("/pages/O_listApprCompleteView")
+	public String O_listApprCompleteView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listApprCompleteView");
+		
+		return "pages/O_listApprCompleteView";
+	}
+	
+	//결재 - 완료 문서함
+	@RequestMapping("/pages/O_readApprAllListView")
+	public String O_readApprAllListView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_readApprAllListView");
+		
+		return "pages/O_readApprAllListView";
+	}
+	
+	//결재 - 반려 문서함
+	@RequestMapping("/pages/O_listApprRejectView")
+	public String O_listApprRejectView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listApprRejectView");
+		
+		return "pages/O_listApprRejectView";
+	}
+	
+	//결재 - 참조/열람문서함
+	@RequestMapping("/pages/O_listApprReferenceView")
+	public String O_listApprReferenceView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listApprReferenceView");
+		
+		return "pages/O_listApprReferenceView";
+	}
+	
+	//관리자 메뉴 - 결재문서관리
+	@RequestMapping("/pages/O_listApprDocAllAdminView")
+	public String O_listApprDocAllAdminView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listApprDocAllAdminView");
+		
+		return "pages/O_listApprDocAllAdminView";
+	}
 	/* 전자 결재 끝 */
 }

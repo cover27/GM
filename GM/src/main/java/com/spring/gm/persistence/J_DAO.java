@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.spring.gm.vo.BonusCutVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO;
 public interface J_DAO {
@@ -19,9 +20,16 @@ public interface J_DAO {
 	public int infoUpdate(Map<String, Object> map);
 	
 	
-	
 	//검색 급여 회원정보 가져오기
 	public int search_salaryCnt(Map<String, Object> map);
-	public ArrayList<MemberVO> searchinfoList(Map<String, Object> map);
-	public ArrayList<MemberVO> searchinfoList2(Map<String, Object> map);
+	public ArrayList<join_mgcVO> searchinfoList(Map<String, Object> map);
+	public ArrayList<join_mgcVO> searchinfoList3(Map<String, Object> map);
+	public ArrayList<join_mgcVO> searchinfoList2(Map<String, Object> map);
+	public ArrayList<join_mgcVO> searchinfoList4(Map<String, Object> map);
+	public ArrayList<join_mgcVO> searchinfoList5(Map<String, Object> map);
+	
+	//------------- 기본수당 외 수당관리-------------------------------------------
+	// 급여 개인회원수당 정보 가져오기
+	public int J_extrapayinfoCnt(String id);
+	public ArrayList<BonusCutVO> J_extrapayinfo(String id);
 }
