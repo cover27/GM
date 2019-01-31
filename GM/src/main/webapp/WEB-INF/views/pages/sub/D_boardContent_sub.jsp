@@ -49,7 +49,7 @@
 						<c:if test="${sessionScope.loginInfo.name == dto.writer}">
 							<input type="button" class="inputButton" value="글 수정" onclick="window.location='<c:url value="/pages/D_boardUpdate?boardnum=${dto.boardnum}&pageNum=${pageNum}&num=${num}"/>'">
 						</c:if>
-							<input type="button" class="inputButton" value="글 삭제" onclick="window.location='<c:url value="/pages/D_deleteForm?boardnum=${dto.boardnum}&pageNum=${pageNum}&ref_level=${dto.ref_level}&num=${num}&del=${dto.del}"/>'">
+							<input type="button" class="inputButton" value="글 삭제" onclick="window.location='<c:url value="/pages/D_boardDeletePro?boardnum=${dto.boardnum}&pageNum=${pageNum}&num=${num}"/>'">
 					</c:if>
 						<input type="button" class="inputButton" value="답글 쓰기" onclick="window.location='<c:url value="/pages/D_writeForm?boardnum=${dto.boardnum}&num=${num}&ref=${dto.ref}&ref_step=${dto.ref_step}&ref_level=${dto.ref_level}&pageNum=${pageNum}"/>'">
 						<input type="button" class="inputButton" value="목록 보기" onclick="window.location='<c:url value="/pages/D_boardList?pageNum=${pageNum}&boardnum=${dto.boardnum}&num=${num}"/>'">

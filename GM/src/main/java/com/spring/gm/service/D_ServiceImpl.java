@@ -230,6 +230,7 @@ public class D_ServiceImpl implements D_Service{
 		
 		BoardListVO vo = null;
 		vo = dao.getArticle(boardnum);
+		vo.setDel(1);
 		
 		model.addAttribute("num",num);
 		model.addAttribute("vo", vo);
@@ -250,11 +251,11 @@ public class D_ServiceImpl implements D_Service{
 		/*BoardDAO dao = BoardDAOImpl.getInstance();*/
 		
 		// 5단계. 글 수정 실행(vo를 DAO로 전달하여 SQL 실행)
-		int updateCnt = dao.updateBoard(vo);
+		int deleteCnt = dao.updateBoard(vo);
 		
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
 		model.addAttribute("num", num);
-		model.addAttribute("updateCnt", updateCnt);
+		model.addAttribute("deleteCnt", deleteCnt);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("boardnum", boardnum);		
 		
