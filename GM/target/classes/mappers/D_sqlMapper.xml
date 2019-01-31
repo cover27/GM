@@ -21,12 +21,12 @@
 		]]>
 	</select>
 	
-	<update id="updateBoards" parameterType="com.spring.gm.vo.BoardsVO">
-		UPDATE BOARDS b_name = #{b_name}, anon = #{anon}, groupId = #{groupId} WHERE num = #{num}
+	<update id="updateBoard" parameterType="com.spring.gm.vo.BoardListVO">
+		UPDATE BOARDLIST SET subject = #{subject}, content = #{content} WHERE boardnum = #{boardnum}
 	</update>
 	
-	<update id="deleteBoards" parameterType="com.spring.gm.vo.BoardsVO">
-		UPDATE BOARDS del = #{del} WHERE num = #{num}
+	<update id="deleteBoards" parameterType="com.spring.gm.vo.BoardListVO">
+		UPDATE BOARDLIST SET del = #{del} WHERE num = #{num}
 	</update>
 	
 	<select id="getBoardArticleCnt" resultType="int">

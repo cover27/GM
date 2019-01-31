@@ -34,7 +34,7 @@ public class D_Controller {
 		
 
 		// service.insertBoards(req, model);
-		return "pages/sub/D_CreateBoards_pro";
+		return "admin/sub/D_CreateBoards_pro";
 	}
 	
 	//게시판 목록
@@ -92,7 +92,15 @@ public class D_Controller {
 	public String boardUpdate(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardUpdate");
 		
-		
+		service.boardUpdate(req, model);
 		return "pages/D_boardUpdate";
+	}
+	
+	@RequestMapping("/pages/D_boardUpdatePro")
+	public String boardUpdatePro(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardUpdatePro");
+		
+		service.boardUpdatePro(req, model);
+		return "pages/D_boardUpdatePro";
 	}
 }

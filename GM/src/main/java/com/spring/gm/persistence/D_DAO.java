@@ -15,7 +15,7 @@ public interface D_DAO {
 	
 	public List<BoardsVO> getBoardsArticleList(Map<String, Object> map); //게시판 목록
 	
-	public int updateBoards(BoardsVO vo);	//게시판 수정
+	public int updateBoard(BoardListVO vo);	//게시판 수정
 	
 	public int deleteBoards(BoardsVO vo);	//게시판 삭제
 	
