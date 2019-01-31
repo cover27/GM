@@ -31,7 +31,7 @@ function board_go_callback(){
 	$.ajax({
 		type:"POST",
 		data:"num="+num,
-		url:"${pageContext.request.contextPath}/pages/D_boardList",
+		url:"${pageContext.request.contextPath}/pages/D_boardListSetting",
 		success:function(result){
 			alert("성공");
 			$("#result").html(result);

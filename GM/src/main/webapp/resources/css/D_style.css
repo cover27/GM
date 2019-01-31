@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
 .content .boards_left_wrap {
-	background: #f5f5f5;
-	border-radius: 5px 0 0 5px;
+	border-radius: 10px;
 	min-height: 250px;
     min-width: 300px;
     padding: 20px;
+    border: 1px solid #ddd;
 }
 
 .content .boards_trees {
@@ -27,20 +27,11 @@
 }
 
 .content .boards_right_wrap {
-	background: #f5f5f5;
-	border-radius: 0 5px 5px 0;
 	min-height: 250px;
-	border-left: 5px solid #fff;
 }
 
-.content table {
-	font-size: 14px;
-}
-
-.content table col:nth-child(1) {
-	width: 30px;
-}
-
-.content table col:nth-child(2) {
-	width: 30px;
+#result .notice {
+	margin-left: 15px;
+	padding: 20px;
+    border: 1px solid #ddd;
 }
