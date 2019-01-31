@@ -26,8 +26,10 @@
 					</th>
 				</tr>
 				<tr>
-					<th style="width:10%">이름</th>
-					<th style="width:5%">성별</th>
+					<th style="width:2%"></th>
+					<th style="width:2%"></th>
+					<th style="width:5%">이름</th>
+					<th style="width:2%">성별</th>
 					<th style="width:10%">국적</th>
 					<th style="width:10%">소속그룹명</th>
 					<th style="width:15%">휴대전화번호</th>

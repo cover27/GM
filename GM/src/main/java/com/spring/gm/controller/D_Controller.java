@@ -112,4 +112,12 @@ public class D_Controller {
 		service.boardUpdatePro(req, model);
 		return "pages/D_boardUpdatePro";
 	}
+	
+	@RequestMapping("/pages/D_boardDeletePro")
+	public String boardDeletePro(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardDeletePro");
+		
+		service.boardDelete(req, model);
+		return "pages/D_boardDeletePro";
+	}
 }

@@ -23,7 +23,7 @@ public class E_Controller {
 									// commit 실패시 - Author / Committer : GIGABYTE <GIGABYTE@SDLEE-Laptop>
 	// 조직도 - 첫페이지, 전체 구성원 목록		<a href="<c:url value='E_organizationList' />">
 	@RequestMapping("/pages/E_organizationList")
-	public String E_organizationList(HttpServletRequest req, Model model, int pageSize) {
+	public String E_organizationList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organizationList");
 		
 		service.E_organizationList(req, model);
