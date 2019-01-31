@@ -6,7 +6,11 @@ import org.springframework.ui.Model;
 
 public interface E_Service {
 
-	// 메모 목록
-	public void memoList(HttpServletRequest req, Model model);
+	// 조직도 - 첫페이지,	 (내가 속한 회사) 전체 구성원 목록
+	public void E_organizationList(HttpServletRequest req, Model model);
+	
+	// 조직도 - 전체 그룹 목록
+	public void E_organAllGroupList(HttpServletRequest req, Model model);
+	
 	
 }
