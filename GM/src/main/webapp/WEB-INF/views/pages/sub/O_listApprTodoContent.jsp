@@ -390,7 +390,6 @@ tbody {
 						<caption></caption>
 						<colgroup>
 							<col width="4%">
-							<col width="8%">
 							<col width="10%">													
 							<col width="7%">
 							<col width="*">
@@ -402,7 +401,6 @@ tbody {
 						<thead>
 							<tr>
 								<th scope="col">NO</th>
-								<th scope="col">서식함</th>								
 								<th scope="col">문서번호</th>			
 								<th scope="col">유형</th>
 								<th scope="col">
@@ -427,7 +425,6 @@ tbody {
 								<td>
 									2
 								</td>
-								<td><div class="ellipsis" title="공통" style="cursor:default;">공통</div></td>											
 								<td><div class="ellipsis" title="" style="cursor:default;"></div></td>											
 								<td>결재</td>								
 								<td class="text-left">
@@ -443,7 +440,6 @@ tbody {
 							</tr>
 							<tr>
 								<td>1</td>
-								<td><div class="ellipsis" title="공통" style="cursor:default;">공통</div></td>											
 								<td><div class="ellipsis" title="20190116-0001" style="cursor:default;">20190116-0001</div></td>											
 								<td>수신</td>								
 								<td class="text-left">

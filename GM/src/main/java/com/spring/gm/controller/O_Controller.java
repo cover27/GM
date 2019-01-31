@@ -172,5 +172,21 @@ public class O_Controller {
 		
 		return "pages/O_listApprRejectView";
 	}
+	
+	//결재 - 참조/열람문서함
+	@RequestMapping("/pages/O_listApprReferenceView")
+	public String O_listApprReferenceView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listApprReferenceView");
+		
+		return "pages/O_listApprReferenceView";
+	}
+	
+	//관리자 메뉴 - 결재문서관리
+	@RequestMapping("/pages/O_listApprDocAllAdminView")
+	public String O_listApprDocAllAdminView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listApprDocAllAdminView");
+		
+		return "pages/O_listApprDocAllAdminView";
+	}
 	/* 전자 결재 끝 */
 }
