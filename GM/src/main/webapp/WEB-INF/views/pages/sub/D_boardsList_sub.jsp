@@ -16,21 +16,23 @@
 	</table>
 	
 	<table>
-		<c:forEach var="dtos" items="${dtos}">
-			<tr align="center">
-				<td>
-					<input type="checkbox" name="check">
-				</td>
+		<c:if test="${sessionScope.loginInfo.del == 0}">
+			<c:forEach var="dtos" items="${dtos}">
+				<tr align="center">
+					<td>
+						<input type="checkbox" name="check">
+					</td>
 				
-				<td>
-					${dtos.num}
-				</td>
+					<td>
+						${dtos.num}
+					</td>
 						
-				<td>
-					<a href="<c:url value='/pages/D_boardList?num=${dtos.num}'/>">${dtos.b_name}</a>
-				</td>
-			</tr>
-		</c:forEach>
+					<td>
+						<a href="<c:url value='/pages/D_boardList?num=${dtos.num}'/>">${dtos.b_name}</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</c:if>
 	</table>
 	
 	<table style="width:1000px" align="center">
