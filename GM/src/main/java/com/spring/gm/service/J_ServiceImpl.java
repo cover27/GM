@@ -204,9 +204,15 @@ public class J_ServiceImpl implements J_Service {
 	public void J_extrapayinfo(HttpServletRequest req, Model model) {
 		String id = req.getParameter("id");
 		System.out.println("id : " + id);
+		int cnt = dao.J_extrapayinfoCnt(id);
+		System.out.println("cnt :" + cnt);
+		
 		List<BonusCutVO> dtos = dao.J_extrapayinfo(id);
+		if(cnt > 0) {
 		System.out.println("dtos :" + dtos.toString());
+		}
 		model.addAttribute("dtos", dtos);
+		model.addAttribute("cnt", cnt);
 	}
 
 }

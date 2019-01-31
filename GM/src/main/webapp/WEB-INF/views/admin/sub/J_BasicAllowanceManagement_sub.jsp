@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 <script type="text/javascript">
 // dataType이 text인 경우
 $(function(){
@@ -11,7 +12,6 @@ $(function(){
 			url : '${pageContext.request.contextPath}/admin/J_extrapayinfo', //컨트롤러/basic1_sub로 가라
 			type :	'POST',
 			data: "id=" + id,	//전송할 데이터
-			dataType: "text",
 			success : function(result){	//콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
 				//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
 				$('#result').html(result);	

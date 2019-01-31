@@ -159,6 +159,12 @@ public class J_DAOImpl implements J_DAO {
 	
 	
 	//------------- 기본수당 외 수당관리-------------------------------------------
+	// 급여 개인회원수당 정보 있는지확인
+	@Override
+	public int J_extrapayinfoCnt(String id) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.J_extrapayinfoCnt", id);
+		return cnt;
+	}
 	// 급여 개인회원수당 정보 가져오기
 	@Override
 	public ArrayList<BonusCutVO> J_extrapayinfo(String id) {
