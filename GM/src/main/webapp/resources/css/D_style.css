@@ -30,8 +30,26 @@
 	min-height: 250px;
 }
 
-#result .notice {
+.content .boards_right_wrap .board_result {
 	margin-left: 15px;
 	padding: 20px;
-    border: 1px solid #ddd;
+	border: solid #ddd 1px;
+}
+
+.content .boards_right_wrap .notice {
+	margin-left: 15px;
+	padding: 20px;
+    background: #f3f3f3;
+    line-height: 20px;
+    border-radius: 5px;
+}
+
+.content .createboard_btn {
+	margin-top: 10px;
+	background: #555;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+	padding: 5px;
+	font-weight: bold;
 }
