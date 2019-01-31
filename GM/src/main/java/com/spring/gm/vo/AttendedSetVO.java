@@ -1,6 +1,6 @@
 package com.spring.gm.vo;
 
-public class AttentedSetVO {
+public class AttendedSetVO {
 	private int num;
 	private int company;
 	private int go;

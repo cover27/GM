@@ -56,4 +56,15 @@
 		SELECT * FROM member WHERE company=#{company}
 	</select>
 	
+	<select id="getAttendedSet" parameterType="int" resultType="com.spring.gm.vo.AttendedSetVO">
+		SELECT * FROM attendedset WHERE company=#{company}
+	</select>
+	
+	<select id="getDayoffList" parameterType="int" resultType="com.spring.gm.vo.DayoffVO">
+		SELECT * FROM dayoff WHERE company=#{company} AND types = 1
+	</select>
+	
+	<select id="getHoliday" parameterType="int" resultType="int">
+		SELECT day FROM dayoff WHERE company=#{company} AND types = 2
+	</select>
 </mapper>

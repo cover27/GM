@@ -156,7 +156,7 @@ public class K_Controller {
 	public String K_personal(HttpServletRequest req, Model model) {
 		logger.info("URL : K_personal");
 		
-		//service.K_personal(req, model);
+		service.K_personal(req, model);
 		
 		return "admin/K_personal";
 	}

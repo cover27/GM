@@ -3,7 +3,9 @@ package com.spring.gm.persistence;
 import java.util.List;
 import java.util.Map;
 
+import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
+import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.MemberVO;
 
 public interface K_DAO {
@@ -29,5 +31,11 @@ public interface K_DAO {
 	public int updateAuthorities(Map<String, String> map);
 	
 	public List<MemberVO> getMembers(int company);
+	
+	public AttendedSetVO getAttendedSet(int company);
+	
+	public List<DayoffVO> getDayoffList(int company);
+	
+	public int getHoliday(int company);
 	
 }

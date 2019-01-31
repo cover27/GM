@@ -16,18 +16,18 @@
 	</table>
 	
 	<table>
-		<c:forEach var="dtos" items="${dtos}">
+		<c:forEach var="b_dtos" items="${b_dtos}">
 			<tr align="center">
 				<td>
 					<input type="checkbox" name="check">
 				</td>
 				
 				<td>
-					${dtos.num}
+					${b_dtos.num}
 				</td>
 						
 				<td>
-					<a href="<c:url value='/pages/D_boardList?num=${dtos.num}'/>">${dtos.b_name}</a>
+					<a href="<c:url value='/pages/D_boardList?num=${b_dtos.num}'/>">${b_dtos.b_name}</a>
 				</td>
 			</tr>
 		</c:forEach>
