@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.gm.vo.BonusCutVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO;
 import com.spring.gm.persistence.J_DAO;
@@ -153,6 +154,17 @@ public class J_DAOImpl implements J_DAO {
 		ArrayList<join_mgcVO> dtos = null;
 		J_DAO dao = sqlSession.getMapper(J_DAO.class);
 		dtos = dao.searchinfoList5(map);
+		return dtos;
+	}
+	
+	
+	//------------- 기본수당 외 수당관리-------------------------------------------
+	// 급여 개인회원수당 정보 가져오기
+	@Override
+	public ArrayList<BonusCutVO> J_extrapayinfo(String id) {
+		ArrayList<BonusCutVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.J_extrapayinfo(id);
 		return dtos;
 	}
 }

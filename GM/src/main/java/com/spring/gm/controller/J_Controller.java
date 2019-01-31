@@ -45,7 +45,7 @@ public class J_Controller {
 	@RequestMapping("/admin/J_BasicAllowanceManagement")
 	public String J_BasicAllowanceManagement(HttpServletRequest req, Model model) {
 		logger.info("URL : admin/J_BasicAllowanceManagement");
-		
+		service.salaryList(req, model);
 		return "admin/J_BasicAllowanceManagement";
 	}
 	// 근태/급여/상여/연차 마감관리(Time & Attendance Salary Bonus Annual)
@@ -93,7 +93,7 @@ public class J_Controller {
 	
 	//==================================================================
 	
-	//개인 급여정보 가져오기
+	//개인 급여정보 가져오기(Ajax)
 	@RequestMapping("/admin/J_info")
 	public String J_info(HttpServletRequest req, Model model) {
 		logger.info("URL : J_info");
@@ -108,5 +108,17 @@ public class J_Controller {
 		service.infoUpdate(req, model);
 		System.out.println("J_infoUpdate 탔습니다");
 		return "admin/sub/J_sub/J_infoUpdatePro_sub";
+	}
+	
+	//================기본 수당 외 수당관리 서브==================================
+	// 개인 급여수당정보 가져오기(Ajax)
+	@RequestMapping("/admin/J_extrapayinfo")
+	public String J_extrapayinfo(HttpServletRequest req, Model model) {
+		logger.info("URL : J_extrapayinfo");
+		String id = req.getParameter("id");
+		System.out.println("id :" + id);
+		service.J_extrapayinfo(req, model);
+		System.out.println("J_extrapayinfo 탔습니다");
+		return "admin/sub/J_sub/J_extrapayinfo";
 	}
 }
