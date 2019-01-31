@@ -14,7 +14,7 @@
             <div class="category">
                 <ul>
                     <li>
-                        <span><a href="c02.jsp">게시판 목록</a></span>
+                        <span><a href="<c:url value='/pages/D_boardsList' />">게시판 목록</a></span>
                         <ul>
                         	<c:forEach var="b_dtos" items="${b_dtos}">
                         		<li><a href="<c:url value='/pages/D_boardList?num=${b_dtos.num}'/>">${b_dtos.b_name}</a></li>                        	</c:forEach>
@@ -26,7 +26,7 @@
                     <li>
                         <span>관리자 메뉴</span>
                         <ul>
-                            <li><a href="c04.jsp">게시판 관리</a></li>
+                            <li><a href="<c:url value='/pages/D_boardsList' />">게시판 관리</a></li>
                             <li><a href="c05.jsp">게시물 관리</a></li>
                         </ul>
                     </li>

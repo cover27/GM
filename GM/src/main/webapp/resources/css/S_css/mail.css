@@ -105,8 +105,8 @@
 }
 
 .content .mailbox_inbox table th {
-	background: yellow;
-	border: 1px solid #333;
+	/* background: yellow; */
+	/* border: 1px solid #333; */
 	padding: 8px;
 	font-size: 14px;
 }
