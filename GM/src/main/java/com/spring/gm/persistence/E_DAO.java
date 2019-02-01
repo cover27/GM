@@ -14,4 +14,5 @@ public interface E_DAO {
 	// 조직도 - 사용자가 소속된 회사 멤버 목록
 	public List<MemberVO> getMyCompanyInfo(int company);
 	
+	//
 }

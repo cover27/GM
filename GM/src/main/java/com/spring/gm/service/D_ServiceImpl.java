@@ -241,19 +241,23 @@ public class D_ServiceImpl implements D_Service{
 	@Override
 	public void boardDelete(HttpServletRequest req, Model model) {
 		int num = Integer.parseInt(req.getParameter("num"));
+		int del = Integer.parseInt(req.getParameter("del"));
 		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		
 		BoardListVO vo = new BoardListVO();
+		vo.setBoardnum(boardnum);
+		vo.setDel(1);
 
 		
 		// 4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
 		/*BoardDAO dao = BoardDAOImpl.getInstance();*/
 		
 		// 5단계. 글 수정 실행(vo를 DAO로 전달하여 SQL 실행)
-		int deleteCnt = dao.updateBoard(vo);
+		int deleteCnt = dao.deleteBoard(vo);
 		
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("del", del);
 		model.addAttribute("num", num);
 		model.addAttribute("deleteCnt", deleteCnt);
 		model.addAttribute("pageNum", pageNum);

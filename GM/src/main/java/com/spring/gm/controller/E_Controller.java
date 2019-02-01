@@ -46,17 +46,30 @@ public class E_Controller {
 		
 		return "pages/E_organAllGroupList";
 	}
-	//
-	
 	
 	// 조직도 - 개인 그룹 목록
-//	@RequestMapping("/pages/E_organPrivateGroup")
+	@RequestMapping("/pages/E_MyGroupList")
+	public String E_MyGroupList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_MyGroupList");
+		
+		return "pages/E_MyGroupList";
+	}
 	
 	// 조직도 - 개인그룹 관리
-//	@RequestMapping("/pages/E_privateGroupManage")
+	@RequestMapping("/pages/E_MyGroupManage")
+	public String E_MyGroupManage(HttpServletRequest req, Model model) {
+		logger.info("URL : E_MyGroupManage");
+		
+		return "pages/E_MyGroupManage";
+	}
 	
 	// 조직도 - 자주 연락하는 사람 관리 게시판
-//	@RequestMapping("/pages/E_organFavoritMember")
+	@RequestMapping("/pages/E_OrgMyFavoritMemList")
+	public String E_MyFavoritMemList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_OrgMyFavoritMemList");
+		
+		return "pages/E_OrgMyFavoritMemList";
+	}
 	
 	
 	
@@ -71,9 +84,6 @@ public class E_Controller {
 		
 		return "pages/E_addressList";
 	}
-	
-	
-	
 	
 	// 메모 게시판
 	@RequestMapping("/pages/E_memoList")

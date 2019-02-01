@@ -25,14 +25,14 @@
                     <li>
                         <span>개인그룹</span>
                         <ul>
-                        	<li><a href="<c:url value='/pages/E_organPrivateGroup' />">개인 그룹 목록</a></li>
+                        	<li><a href="<c:url value='/pages/E_MyGroupList' />">개인 그룹 목록</a></li>
                         </ul>
                     </li>
                     <li>
-                        <span><a href="<c:url value='/pages/E_privateGroupManage' />">개인그룹 관리</a></span>
+                        <span><a href="<c:url value='/pages/E_MyGroupManage' />">개인그룹 관리</a></span>
                     </li>
                     <li>
-                        <span><a href="/pages/E_organFavoritMember">자주 연락하는 사람 관리</a></span>
+                        <span><a href="<c:url value='/pages/E_OrgMyFavoritMemList' />">자주 연락하는 사람 관리</a></span>
                     </li>
                 </ul>
             </div>
