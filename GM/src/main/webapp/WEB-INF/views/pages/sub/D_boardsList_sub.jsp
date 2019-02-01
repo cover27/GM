@@ -27,11 +27,11 @@ function board_go_callback(){
  */
  
  function board_go(num) {
-	alert(num);
+	alert("게시판번호 : "+num);
 	$.ajax({
 		type:"POST",
 		data:"num="+num,
-		url:"${pageContext.request.contextPath}/pages/D_boardList",
+		url:"${pageContext.request.contextPath}/pages/D_boardListSetting",
 		success:function(result){
 			alert("성공");
 			$("#result").html(result);
@@ -87,11 +87,15 @@ function board_go_callback(){
         	<div class="w70p fleft boards_right_wrap">
         		<div id="result">
 					<!-- 결과 출력 위치 -->
+					<div class="notice">
+						<ul>
+							<li><i class="fa fa-exclamation-circle"></i> 좌측의 게시판 이름을 선택하면 게시판 정보를 수정할 수 있습니다.</li>
+							<li><i class="fa fa-exclamation-circle"></i> "생성하기" 버튼을 클릭하면 새로운 게시판을 생성할 수 있습니다<div class=""></div></li>
+						</ul>
+					</div>
 				</div>
         	</div>
-        	<div class="buttons">
-            	<input class="inputButton" type="button" value="목록보기" onclick="window.location=<c:url value='/pages/boardsList?pageNum=${pageNum}'/>">
-            </div>
+        	<button class="w30p fleft createboard_btn" onclick="window.location='<c:url value="/admin/D_createBoards" />'">생성하기</button>
         </div>
     </article>
 </section>

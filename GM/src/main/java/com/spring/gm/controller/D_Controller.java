@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.D_Service;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 
 @Controller
 public class D_Controller {
@@ -62,6 +63,14 @@ public class D_Controller {
 		service.boardsList(req, model);
 		service.boardList(req, model);
 		return "pages/D_boardList";
+	}
+	
+	// 게시판관리 - 게시판 선택
+	@RequestMapping("/pages/D_boardListSetting")
+	public String boardListSetting(HttpServletRequest req, Model model) {
+		logger.info("URL : D_BoardListSetting");
+		
+		return "pages/D_boardList_setting";
 	}
 
 	//게시글 입력

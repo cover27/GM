@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
 .content .boards_left_wrap {
-	background: #f5f5f5;
-	border-radius: 5px 0 0 5px;
+	border-radius: 10px;
 	min-height: 250px;
     min-width: 300px;
     padding: 20px;
+    border: 1px solid #ddd;
 }
 
 .content .boards_trees {
@@ -27,20 +27,29 @@
 }
 
 .content .boards_right_wrap {
-	background: #f5f5f5;
-	border-radius: 0 5px 5px 0;
 	min-height: 250px;
-	border-left: 5px solid #fff;
 }
 
-.content table {
-	font-size: 14px;
+.content .boards_right_wrap .board_result {
+	margin-left: 15px;
+	padding: 20px;
+	border: solid #ddd 1px;
 }
 
-.content table col:nth-child(1) {
-	width: 30px;
+.content .boards_right_wrap .notice {
+	margin-left: 15px;
+	padding: 20px;
+    background: #f3f3f3;
+    line-height: 20px;
+    border-radius: 5px;
 }
 
-.content table col:nth-child(2) {
-	width: 30px;
+.content .createboard_btn {
+	margin-top: 10px;
+	background: #555;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+	padding: 5px;
+	font-weight: bold;
 }
