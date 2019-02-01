@@ -24,6 +24,7 @@
 							<td>${dto.cost}</td>
 							<td>${dto.content}</td>
 							<td><input type="button" value="삭제" onclick="deleteInfo('${dto.num}')"></td>
+						
 						</tr>
 						<input type=hidden name="id" value="${dto.id}">
 					</c:forEach>
