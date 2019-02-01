@@ -46,7 +46,7 @@ public class E_Controller {
 		
 		return "pages/E_organAllGroupList";
 	}
-	
+	//
 	
 	
 	// 조직도 - 개인 그룹 목록
