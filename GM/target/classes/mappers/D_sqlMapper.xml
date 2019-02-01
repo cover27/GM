@@ -25,7 +25,7 @@
 		UPDATE BOARDLIST SET subject = #{subject}, content = #{content} WHERE boardnum = #{boardnum}
 	</update>
 	
-	<update id="deleteBoards" parameterType="com.spring.gm.vo.BoardListVO">
+	<update id="deleteBoard" parameterType="com.spring.gm.vo.BoardListVO">
 		UPDATE BOARDLIST SET del = #{del} WHERE boardnum = #{boardnum}
 	</update>
 	

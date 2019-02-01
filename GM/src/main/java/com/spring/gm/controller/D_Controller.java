@@ -33,7 +33,7 @@ public class D_Controller {
 		logger.info("URL : D_CreateBoards_pro");
 		
 
-		// service.insertBoards(req, model);
+		service.insertBoards(req, model);
 		return "admin/sub/D_CreateBoards_pro";
 	}
 	
