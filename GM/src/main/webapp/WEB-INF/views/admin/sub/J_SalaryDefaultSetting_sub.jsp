@@ -59,14 +59,10 @@ table, tr, td, th {
 			기본정보<em>7</em>
 		</h3>
 		<div id="leftGrid"
-			style="height: 310px; width: 1197.2px; cursor: default;"
-			class=" gridbox gridbox_dhx_skyblue isModern">
-			<div class="xhdr"
-				style="width: 100%; height: 32px; overflow: hidden; position: relative;">
-				<div class="dhxgrid_sort_desc"
-					style="display: none; position: absolute;"></div>
-				<table cellpadding="0" cellspacing="0" class="hdr"
-					style="width: 1197px; table-layout: fixed; margin-right: 20px; padding-right: 20px;">
+			style="height: 310px; width: 1197.2px; cursor: default;" >
+			<div style="width: 100%; height: 32px; overflow: hidden; position: relative;">
+				<div style="display: none; position: absolute;"></div>
+				<table cellpadding="0" cellspacing="0" style="width: 1197px; table-layout: fixed; margin-right: 20px; padding-right: 20px;">
 					<tr style="height: auto;">
 						<th style="height: 0px; width: 119px;"></th>
 						<th style="height: 0px; width: 120px;"></th>

@@ -118,4 +118,11 @@ public class J_Controller {
 		service.J_extrapayinfo(req, model);
 		return "admin/sub/J_sub/J_extrapayinfo";
 	}
+	// 개인 급여수당정보 업데이트
+	@RequestMapping("/admin/J_extrapayinfoUpdate")
+	public String J_extrapayinfoUpdate(HttpServletRequest req, Model model) {
+		logger.info("URL : J_extrapayinfoUpdate");
+		service.J_extrapayinfoUpdate(req, model);
+		return "admin/sub/J_sub/J_extrapayinfoUpdatePro_sub";
+	}
 }

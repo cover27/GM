@@ -3,9 +3,24 @@
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <script type="text/javascript">
 // dataType이 text인 경우
-$(function(){
+function load(id){
+		$.ajax({
+			url : '${pageContext.request.contextPath}/admin/J_extrapayinfo', //컨트롤러/basic1_sub로 가라
+			type :	'POST',
+			data: "id=" + id,	//전송할 데이터
+			success : function(result){	//콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
+				//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
+				$('#result').html(result);	
+			},
+		error: function(){
+			alert('오류');
+		}
+	});	
+};
+/* $(function(){
+	
 	//백그라운드에서 실행
-	$('#J_extrapayinfo').click(function(){
+	$('.J_extrapayinfo').click(function(){
 		var id = $('#J_extrapayinfo').text();//입력한 키워드
 		alert("id" + id);
 		$.ajax({
@@ -21,7 +36,7 @@ $(function(){
 		}
 	});	
 });
-});
+}); */
 </script>
 
 <section>
@@ -59,9 +74,9 @@ $(function(){
 						</tr>
 						<c:if test="${cnt > 0}">
 							<c:forEach var="dto" items="${dtos}">
-								<tr>
-									<td id="J_extrapayinfo" style="cursor: pointer;">${dto.id}</td>
-									<td i>${dto.name}</td>
+								<tr id="ttr">
+									<td onclick="load('${dto.id}')" class="J_extrapayinfo" style="cursor: pointer;">${dto.id}</td>
+									<td >${dto.name}</td>
 									<td>${dto.j_name}</td>
 								</tr>
 							</c:forEach>
@@ -113,22 +128,18 @@ $(function(){
 				<h3>기본수당외 수당등록</h3>
 				<table border="1">
 					<tr>
-						<td><input type="checkbox"></td>
-						<td>아이디</td>
-						<td>이름</td>
-						<td>상여금/삭감</td>
-						<td>지급/공제</td>
-						<td>금액</td>
-						<td>비고</td>
+						<td style="text-align: center; background-color: #cccccc;" width="25%">상여금/삭감</td>
+						<td style="text-align: center; background-color: #cccccc;" width="25%">지급/공제</td>
+						<td style="text-align: center; background-color: #cccccc;" width="25%">금액</td>
+						<td style="text-align: center; background-color: #cccccc;" width="25%">비고</td>
 					</tr>
 					<tr>
-						<td><input type="checkbox"></td>
-						<td>0</td>
-						<td>1</td>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 				</table>
 			</div>

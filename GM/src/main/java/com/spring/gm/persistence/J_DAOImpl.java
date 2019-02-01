@@ -173,4 +173,10 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.J_extrapayinfo(id);
 		return dtos;
 	}
+	// 개인 급여수당정보 업데이트
+	@Override
+	public int J_extrapayinfoUpdate(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.J_extrapayinfoUpdate", map);
+		return cnt;
+	}
 }
