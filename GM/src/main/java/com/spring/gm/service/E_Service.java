@@ -12,5 +12,8 @@ public interface E_Service {
 	// 조직도 - 전체 그룹 목록
 	public void E_organAllGroupList(HttpServletRequest req, Model model);
 	
+	// 조직도 - 부서 사이드 메뉴
+	public void E_organDepartSide(HttpServletRequest req, Model model);
+	
 	
 }

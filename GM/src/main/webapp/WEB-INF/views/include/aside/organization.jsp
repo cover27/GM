@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="${path}css/layout.css">
 <link rel="stylesheet" href="${path}css/aside.css">
 <link rel="stylesheet" href="${path}css/content.css">
+<%@page import="com.spring.gm.vo.MemberVO" %>
 
 <aside>
 	<!-- 사용 안하는 사이드바
@@ -19,20 +20,28 @@
                     <li>
                         <span>조직도</span>
                         <ul>
-                        	<li><a href="<c:url value='/pages/E_organAllGroupList' />">전체 그룹 목록</a></li>
+                        	<li><a href="<c:url value='/pages/E_organAllGroupList?depart=${company }' />">${c_name}</a></li>
+                        	<li>
+                        		<ul>
+                        			<c:forEach var="dto" items="${side }">
+                        				<li><a href="<c:url value='/pages/E_organAllGroupList?depart=${dto.groupId }' />">${dto.g_name}</a></li>
+                        			</c:forEach>
+                        		
+                        		</ul>
+                        	</li>
                         </ul>
                     </li>
                     <li>
                         <span>개인그룹</span>
                         <ul>
-                        	<li><a href="<c:url value='/pages/E_organPrivateGroup' />">개인 그룹 목록</a></li>
+                        	<li><a href="<c:url value='/pages/E_MyGroupList' />">개인 그룹 목록</a></li>
                         </ul>
                     </li>
                     <li>
-                        <span><a href="<c:url value='/pages/E_privateGroupManage' />">개인그룹 관리</a></span>
+                        <span><a href="<c:url value='/pages/E_MyGroupManage' />">개인그룹 관리</a></span>
                     </li>
                     <li>
-                        <span><a href="/pages/E_organFavoritMember">자주 연락하는 사람 관리</a></span>
+                        <span><a href="<c:url value='/pages/E_OrgMyFavoritMemList' />">자주 연락하는 사람 관리</a></span>
                     </li>
                 </ul>
             </div>
