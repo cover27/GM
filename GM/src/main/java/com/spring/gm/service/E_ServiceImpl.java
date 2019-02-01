@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.E_DAO;
+import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.MemoVO;
 
@@ -115,6 +116,14 @@ public class E_ServiceImpl implements E_Service {
 		System.out.println("list : " + list);
 		// 5. 화면에서 EL태그로 출력
 		
+		List<GroupsVO> side = null;
+		side = dao.getMyCompanyGroupCnt(company);
+		
+		req.setAttribute("side", side);
+		
+		String c_name = dao.findCompanyName(company);
+		req.setAttribute("c_name", c_name);
+		req.setAttribute("company", company);
 	}
 
 	// 조직도 - 내가 속한 회사의 전체 그룹 목록
@@ -123,13 +132,18 @@ public class E_ServiceImpl implements E_Service {
 		// 1. 세션 로그인 되어있는 사용자의 정보를 가져옴
 		// 2. 가져온 사용자 정보에서 company 를 가져온다.
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		int depart = Integer.parseInt(req.getParameter("depart"));
 		
 		// SQL join
 		
 		// 3. Mapper (DB) 가서 member테이블에 company가 현재 로그인 된 사용자의 company가 같은 사람만 가지고 온다.
 		// SELECT * FROM member WHERE company = #{company}
 		List<MemberVO> list = null;	// List : 같은 형태를 하나로 묶는다.( null이라  텅빈 큰 바구니 ), MemberVO : 작은 바구니
-		list = dao.getMyCompanyInfo(company);		// DB에서 접속한 사용자의 회사정보 company값을 가져와서 list에 넣음
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("depart", depart);
+		
+		list = dao.getMyCompanyInfo2(map);		// DB에서 접속한 사용자의 회사정보 company값을 가져와서 list에 넣음
 		
 		//페이징 처리
 		int pageSize = 10;		//한페이지당 출력할 글 갯수
@@ -210,7 +224,31 @@ public class E_ServiceImpl implements E_Service {
 		req.setAttribute("list", list);
 		System.out.println("list : " + list);
 		// 5. 화면에서 EL태그로 출력		
+		List<GroupsVO> side = null;
+		side = dao.getMyCompanyGroupCnt(company);
+		
+		req.setAttribute("side", side);
+		
+		String c_name = dao.findCompanyName(company);
+		req.setAttribute("c_name", c_name);
+		req.setAttribute("company", company);
 		
 	}
+
+	
+	
+	// 부서 사이드 메뉴
+	
+	@Override
+	public void E_organDepartSide(HttpServletRequest req, Model model) {
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		
+		List<GroupsVO> list = null;
+		list = dao.getMyCompanyGroupCnt(company);
+		
+		req.setAttribute("list", list);
+		
+	}
+	
 	
 }

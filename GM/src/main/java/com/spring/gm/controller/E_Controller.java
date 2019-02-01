@@ -30,7 +30,7 @@ public class E_Controller {
 //	}
 	
 									// commit 실패시 - Author / Committer : GIGABYTE <GIGABYTE@SDLEE-Laptop>
-	// 조직도 - 첫페이지, 전체 구성원 목록		<a href="<c:url value='E_organizationList' />">
+	// 조직도 - 첫페이지, 내회사 전체 구성원 목록		<a href="<c:url value='E_organizationList' />">
 	@RequestMapping("/pages/E_organizationList")
 	public String E_organizationList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organizationList");
@@ -40,10 +40,12 @@ public class E_Controller {
 		return "pages/E_organizationList";
 	}
 	
-	// 조직도 - 전체 그룹 목록
+	// 조직도 - 내 회사 전체 그룹 목록
 	@RequestMapping("/pages/E_organAllGroupList")
 	public String E_organAllGroupList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organAllGroupList");
+		
+		service.E_organAllGroupList(req, model);
 		
 		return "pages/E_organAllGroupList";
 	}

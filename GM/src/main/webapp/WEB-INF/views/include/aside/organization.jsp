@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="${path}css/layout.css">
 <link rel="stylesheet" href="${path}css/aside.css">
 <link rel="stylesheet" href="${path}css/content.css">
+<%@page import="com.spring.gm.vo.MemberVO" %>
 
 <aside>
 	<!-- 사용 안하는 사이드바
@@ -19,7 +20,15 @@
                     <li>
                         <span>조직도</span>
                         <ul>
-                        	<li><a href="<c:url value='/pages/E_organAllGroupList' />">전체 그룹 목록</a></li>
+                        	<li><a href="<c:url value='/pages/E_organAllGroupList?depart=${company }' />">${c_name}</a></li>
+                        	<li>
+                        		<ul>
+                        			<c:forEach var="dto" items="${side }">
+                        				<li><a href="<c:url value='/pages/E_organAllGroupList?depart=${dto.groupId }' />">${dto.g_name}</a></li>
+                        			</c:forEach>
+                        		
+                        		</ul>
+                        	</li>
                         </ul>
                     </li>
                     <li>
