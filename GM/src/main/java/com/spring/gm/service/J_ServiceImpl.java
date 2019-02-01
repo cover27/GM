@@ -206,11 +206,8 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("id : " + id);
 		int cnt = dao.J_extrapayinfoCnt(id);
 		System.out.println("cnt :" + cnt);
-		
 		List<BonusCutVO> dtos = dao.J_extrapayinfo(id);
-		if(cnt > 0) {
 		System.out.println("dtos :" + dtos.toString());
-		}
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("cnt", cnt);
 		model.addAttribute("id", id);
@@ -254,5 +251,21 @@ public class J_ServiceImpl implements J_Service {
 			model.addAttribute("cnt",cnt);
 		}
 	}
-
+	
+	// 개인 급여수당정보 삭제하기
+	@Override
+	public void deleteInfo(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		System.out.println("num : " + num);
+		BonusCutVO vo = dao.numId(num);
+		String id = vo.getId();
+		System.out.println("id : " + id);
+		int cnt = dao.deleteInfo(num);
+		System.out.println("cnt:" + cnt);
+		List<BonusCutVO> dtos = dao.J_extrapayinfo(id);
+		System.out.println("dtos : " + dtos.toString());
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("cnt",cnt);
+		model.addAttribute("id", id);
+	}
 }
