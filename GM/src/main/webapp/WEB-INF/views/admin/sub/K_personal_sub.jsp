@@ -33,7 +33,8 @@
 				<c:forEach var="dto" items="${dayoffList }">
 					<div id="pre_set">
 					    입사연차 : <input type="text" name="year" value="${dto.year }">
-					    연차허용일수 : <input type="text" name="day" value="${dto.day }"> <input type="button" value="삭제" onclick="remove_item(this)">
+					    연차허용일수 : <input type="text" name="day" value="${dto.day }"> 
+					    <input type="button" value="삭제" onclick="remove_item(this)">
 					</div>
 				</c:forEach>
 			</div>

@@ -32,4 +32,6 @@ public interface J_DAO {
 	// 급여 개인회원수당 정보 가져오기
 	public int J_extrapayinfoCnt(String id);
 	public ArrayList<BonusCutVO> J_extrapayinfo(String id);
+	// 개인 급여수당정보 업데이트
+	public int J_extrapayinfoUpdate(Map<String, Object> map);
 }
