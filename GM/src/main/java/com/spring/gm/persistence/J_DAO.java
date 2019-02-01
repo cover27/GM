@@ -30,5 +30,12 @@ public interface J_DAO {
 	
 	//------------- 기본수당 외 수당관리-------------------------------------------
 	// 급여 개인회원수당 정보 가져오기
+	public int J_extrapayinfoCnt(String id);
 	public ArrayList<BonusCutVO> J_extrapayinfo(String id);
+	// 개인 급여수당정보 업데이트
+	public int J_extrapayinfoUpdate(Map<String, Object> map);
+	// 개인 num에대한 id 값 가져오기
+	public BonusCutVO numId(int num);
+	// 개인 급여수당정보 삭제하기
+	public int deleteInfo(int num);
 }

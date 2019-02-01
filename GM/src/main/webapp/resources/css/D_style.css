@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+.content .boards_left_wrap {
+	border-radius: 10px;
+	min-height: 250px;
+    min-width: 300px;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+.content .boards_trees {
+	padding: 5px;
+	font-size: 14px;
+	line-height: 24px;
+	padding-left: 18px;
+}
+
+.content .boards_trees li {
+	list-style-type: disc;
+}
+
+.content .boards_left_wrap .paging {
+	position: absolute;
+    text-align: center;
+    top: 340px;
+    left: 460px;
+}
+
+.content .boards_right_wrap {
+	min-height: 250px;
+}
+
+.content .boards_right_wrap .board_result {
+	margin-left: 15px;
+	padding: 20px;
+	border: solid #ddd 1px;
+}
+
+.content .boards_right_wrap .notice {
+	margin-left: 15px;
+	padding: 20px;
+    background: #f3f3f3;
+    line-height: 20px;
+    border-radius: 5px;
+}
+
+.content .createboard_btn {
+	margin-top: 10px;
+	background: #555;
+	border: none;
+	border-radius: 3px;
+	color: #fff;
+	padding: 5px;
+	font-weight: bold;
+}

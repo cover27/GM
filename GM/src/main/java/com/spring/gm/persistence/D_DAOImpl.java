@@ -52,15 +52,15 @@ public class D_DAOImpl implements D_DAO{
 	}
 
 	@Override
-	public int updateBoards(BoardsVO vo) {
+	public int updateBoard(BoardListVO vo) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.updateBoards(vo);
+		return dao.updateBoard(vo);
 	}
 
 	@Override
-	public int deleteBoards(BoardsVO vo) {
+	public int deleteBoard(BoardListVO vo) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.deleteBoards(vo);
+		return dao.deleteBoard(vo);
 	}
 
 	@Override

@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>${title}</title>
+<link rel="stylesheet" href="${path}/css/D_style.css" />
 </head>
 <body>
-<%@ include file="/WEB-INF/views/include/header.jsp"%>
-<%@ include file="/WEB-INF/views/include/aside/organization.jsp"%> 
-<%@ include file="/WEB-INF/views/pages/sub/E_organAllMember.jsp"%>
-<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+	<div class="board_result">
+		AJAX
+	</div>
 </body>
 </html>

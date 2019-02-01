@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.gm.vo.GroupsVO;
+import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.MemoVO;
 
 @Repository
@@ -15,23 +17,33 @@ public class E_DAOImpl implements E_DAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	// 메모 갯수
-	@Override
-	public int getMemoCnt() {
-		int selectCnt = sqlSession.selectOne("com.spring.gm.persistence.E_DAO.getMemoCnt");
-		return selectCnt;
-	}
 
-	// 메모 목록 조회
+	// 조직도 - 내가 속한 그룹 멤버 수 구하기
 	@Override
-	public List<MemoVO> getMemoList(Map<String, Integer> map) {
-		//큰 바구니 선언
-		List<MemoVO> dtos = null;
-		
-		dtos = sqlSession.selectOne("com.spring.gm.persistence.E_DAO.getMemoList", map);
-		return dtos;
+	public int getMyCompanyMemCnt(int company) {
+		return sqlSession.selectOne("com.spring.gm.persistence.E_DAO.getMyCompanyMemCnt", company);
 	}
-
 	
+	// 조직도 - 사용자가 소속된 회사의 정보
+	@Override
+	public List<MemberVO> getMyCompanyInfo(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.E_DAO.getMyCompanyInfo", company);
+	}
+
+	// 조직도 - 내가 속한 회사의 전체 그룹 수 구하기
+	@Override
+	public List<GroupsVO> getMyCompanyGroupCnt(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.E_DAO.getMyCompanyGroupCnt", company);
+	}
+
+	@Override
+	public List<MemberVO> getMyCompanyInfo2(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.gm.persistence.E_DAO.getMyCompanyInfo2", map);
+	}
+
+	@Override
+	public String findCompanyName(int company) {
+		return sqlSession.selectOne("com.spring.gm.persistence.E_DAO.findCompanyName", company);
+	}
 
 }

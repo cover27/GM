@@ -2,11 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <section>
 	<article>
 		<div class="content_header">
 			<h2>게시글 목록</h2>
-		</div>
+		</div>		
 	<table>
 		<tr>
 			<th colspan="6" align="center" style="height:25px">
@@ -29,6 +30,7 @@
 			     var="dto" : 작은바구니 : 게시글 1건
 			     ==> 게시글목록에 5건이 있다면 5회(ArrayList에서 꺼내서 dto에 담은 다음 출력)
 			 -->
+		<c:if test="${sessionScope.loginInfo.del == 0}">
 			<c:forEach var="dto" items="${dtos}">
 				<tr>
 					<td>
@@ -110,5 +112,6 @@
 			</th>
 		</tr>
 	</table>
+	</c:if>
 	</article>
 </section>

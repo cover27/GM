@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.D_Service;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 
 @Controller
 public class D_Controller {
@@ -33,8 +34,8 @@ public class D_Controller {
 		logger.info("URL : D_CreateBoards_pro");
 		
 
-		// service.insertBoards(req, model);
-		return "pages/sub/D_CreateBoards_pro";
+		service.insertBoards(req, model);
+		return "admin/sub/D_CreateBoards_pro";
 	}
 	
 	//게시판 목록
@@ -62,6 +63,14 @@ public class D_Controller {
 		service.boardsList(req, model);
 		service.boardList(req, model);
 		return "pages/D_boardList";
+	}
+	
+	// 게시판관리 - 게시판 선택
+	@RequestMapping("/pages/D_boardListSetting")
+	public String boardListSetting(HttpServletRequest req, Model model) {
+		logger.info("URL : D_BoardListSetting");
+		
+		return "pages/D_boardList_setting";
 	}
 
 	//게시글 입력
@@ -92,7 +101,23 @@ public class D_Controller {
 	public String boardUpdate(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardUpdate");
 		
-		
+		service.boardUpdate(req, model);
 		return "pages/D_boardUpdate";
+	}
+	
+	@RequestMapping("/pages/D_boardUpdatePro")
+	public String boardUpdatePro(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardUpdatePro");
+		
+		service.boardUpdatePro(req, model);
+		return "pages/D_boardUpdatePro";
+	}
+	
+	@RequestMapping("/pages/D_boardDeletePro")
+	public String boardDeletePro(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardDeletePro");
+		
+		service.boardDelete(req, model);
+		return "pages/D_boardDeletePro";
 	}
 }
