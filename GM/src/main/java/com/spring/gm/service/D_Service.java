@@ -20,6 +20,8 @@ public interface D_Service {
 	
 	public void boardUpdate(HttpServletRequest req, Model model);
 	
+	public void boardUpdatePro(HttpServletRequest req, Model model);
+	
 	public void boardDelete(HttpServletRequest req, Model model);
 	
 }

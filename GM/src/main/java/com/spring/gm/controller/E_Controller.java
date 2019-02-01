@@ -20,32 +20,45 @@ public class E_Controller {
 	@Autowired
 	E_Service service;
 
-	
+									// commit 실패시 - Author / Committer : GIGABYTE <GIGABYTE@SDLEE-Laptop>
 	// 조직도 - 첫페이지, 전체 구성원 목록		<a href="<c:url value='E_organizationList' />">
 	@RequestMapping("/pages/E_organizationList")
-	public String organizationList(HttpServletRequest req, Model model) {
+	public String E_organizationList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organizationList");
+		
+		service.E_organizationList(req, model);
 		
 		return "pages/E_organizationList";
 	}
 	
 	// 조직도 - 인물 상세정보 (전체 / 개인)
-	@RequestMapping("/pages/E_organizationMemberInfo")
-	public String E_organizationMember_c(HttpServletRequest req, Model model) {
-		logger.info("URL : E_organizationMemberInfo");
+//	@RequestMapping("/pages/sub/E_organMemberInfo")
+//	public String E_organMemberInfo(HttpServletRequest req, Model model) {
+//		logger.info("URL : E_organMemberInfo");
 		
-		return "pages/sub/E_organizationMemberInfo";
-	}
+//		return "pages/sub/E_organMemberInfo";
+//	}
 	
 	// 조직도 - 전체 그룹 목록
-	@RequestMapping("/pages/E_organizationGroupList")
-	public String E_organizationList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_organizationGroupList");
+	@RequestMapping("/pages/E_organAllGroupList")
+	public String E_organAllGroupList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_organAllGroupList");
 		
-		return "pages/E_organizationGroupList";
+		return "pages/E_organAllGroupList";
 	}
 	
+	
+	
 	// 조직도 - 개인 그룹 목록
+//	@RequestMapping("/pages/E_organPrivateGroup")
+	
+	// 조직도 - 개인그룹 관리
+//	@RequestMapping("/pages/E_privateGroupManage")
+	
+	// 조직도 - 자주 연락하는 사람 관리 게시판
+//	@RequestMapping("/pages/E_organFavoritMember")
+	
+	
 	
 	
 	
@@ -53,7 +66,7 @@ public class E_Controller {
 	
 	// 주소록 - 주소록 첫페이지
 	@RequestMapping("/pages/E_addressList")
-	public String addressGroup(HttpServletRequest req, Model model) {
+	public String E_addressList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_addressList");
 		
 		return "pages/E_addressList";
@@ -64,7 +77,7 @@ public class E_Controller {
 	
 	// 메모 게시판
 	@RequestMapping("/pages/E_memoList")
-	public String memo(HttpServletRequest req, Model model) {
+	public String E_memoList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_memoList");
 		/*
 		service.memoList(req, model);
@@ -74,7 +87,7 @@ public class E_Controller {
 	
 	// 메모 내용
 	@RequestMapping("/pages/E_memoInfo")
-	public String memoInfo(HttpServletRequest req, Model model) {
+	public String E_memoInfo(HttpServletRequest req, Model model) {
 		logger.info("URL : E_memoInfo");
 		
 		return "pages/E_memoInfo";

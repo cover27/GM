@@ -74,6 +74,10 @@ input[type="text"]:focus, input[type="password"]:focus {
 	background: #f7f7f7;
 }
 
+input[type="button"]:focus {
+	outline: none;
+}
+
 button, input, optgroup, select, textarea {
     color: inherit;
     font: inherit;
@@ -472,6 +476,14 @@ img {
 .bottom0 { bottom:0 !important; }
 .bottom12 { bottom:12px !important; }
 
+.fleft {
+    float: left !important;
+}
+
+.fright {
+    float: right !important;
+}
+
 .btn {
     padding: 3px 11px 4px;
     display: inline-block;
@@ -485,4 +497,8 @@ img {
     border-radius: 2px;
     cursor: pointer;
     white-space: nowrap;
+}
+
+.paging {
+	
 }
