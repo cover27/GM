@@ -23,5 +23,14 @@ public interface K_Service {
 	public void K_resistMemberInfo(HttpServletRequest req, Model model);
 	
 	public void K_personal(HttpServletRequest req, Model model);
-
+	
+	public void K_registpersonal(HttpServletRequest req, Model model);
+	
+	public String toTime(int seconds);
+	
+	public int toSecond(String time);
+	
+	public void K_getMemberInfo(HttpServletRequest req, Model model);
+	
+	public void k_searchMemberInfo(HttpServletRequest req, Model model);
 }

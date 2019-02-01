@@ -61,10 +61,34 @@
 	</select>
 	
 	<select id="getDayoffList" parameterType="int" resultType="com.spring.gm.vo.DayoffVO">
-		SELECT * FROM dayoff WHERE company=#{company} AND types = 1
+		SELECT * FROM dayoff WHERE company=#{company} AND types = 1 ORDER BY year ASC
 	</select>
 	
 	<select id="getHoliday" parameterType="int" resultType="int">
 		SELECT day FROM dayoff WHERE company=#{company} AND types = 2
 	</select>
+	
+	<update id="UpdateAttendedSet" parameterType="com.spring.gm.vo.AttendedSetVO">
+		UPDATE attendedset SET 
+			go=#{go}, off=#{off}, rest_start=#{rest_start}, rest_end=#{rest_end},
+			over_start=#{over_start}, over_end=#{over_end}, night_start=#{night_start}, night_end=#{night_end},
+			over_sal=#{over_sal}, night_sal=#{night_sal}
+			WHERE company = #{company}
+	</update>
+	
+	<update id="UpdateHoliday" parameterType="java.util.Map">
+		UPDATE dayoff SET
+			day = #{holiday}
+			WHERE company=#{company} AND types = 2
+	</update>
+	
+	<delete id="deleteDayOff" parameterType="int">
+		DELETE FROM dayoff
+			WHERE company=#{company} AND types = 1
+	</delete>
+	
+	<insert id="insertDayoff" parameterType="java.util.Map">
+		INSERT INTO dayoff
+			VALUES(seq_dayoff.nextval, #{company}, #{year}, #{day}, 1)
+	</insert>
 </mapper>

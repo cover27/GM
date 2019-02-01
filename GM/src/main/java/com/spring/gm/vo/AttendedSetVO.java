@@ -13,6 +13,15 @@ public class AttendedSetVO {
 	private int night_end;
 	private int over_sal;
 	private int night_sal;
+	private String gos;
+	private String offs;
+	private String rest_starts;
+	private String rest_ends;
+	private String over_starts;
+	private String over_ends;
+	private String night_starts;
+	private String night_ends;
+	
 	public int getNum() {
 		return num;
 	}
@@ -84,6 +93,54 @@ public class AttendedSetVO {
 	}
 	public void setNight_sal(int night_sal) {
 		this.night_sal = night_sal;
+	}
+	public String getGos() {
+		return gos;
+	}
+	public void setGos(String gos) {
+		this.gos = gos;
+	}
+	public String getOffs() {
+		return offs;
+	}
+	public void setOffs(String offs) {
+		this.offs = offs;
+	}
+	public String getRest_starts() {
+		return rest_starts;
+	}
+	public void setRest_starts(String rest_starts) {
+		this.rest_starts = rest_starts;
+	}
+	public String getRest_ends() {
+		return rest_ends;
+	}
+	public void setRest_ends(String rest_ends) {
+		this.rest_ends = rest_ends;
+	}
+	public String getOver_starts() {
+		return over_starts;
+	}
+	public void setOver_starts(String over_starts) {
+		this.over_starts = over_starts;
+	}
+	public String getOver_ends() {
+		return over_ends;
+	}
+	public void setOver_ends(String over_ends) {
+		this.over_ends = over_ends;
+	}
+	public String getNight_starts() {
+		return night_starts;
+	}
+	public void setNight_starts(String night_starts) {
+		this.night_starts = night_starts;
+	}
+	public String getNight_ends() {
+		return night_ends;
+	}
+	public void setNight_ends(String night_ends) {
+		this.night_ends = night_ends;
 	}
 	
 	
