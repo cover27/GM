@@ -20,16 +20,6 @@ public class E_Controller {
 	@Autowired
 	E_Service service;
 
-									// commit 실패시 - Author / Committer : GIGABYTE <GIGABYTE@SDLEE-Laptop>
-	// 조직도 - 첫페이지, 전체 구성원 목록		<a href="<c:url value='E_organizationList' />">
-	@RequestMapping("/pages/E_organizationList")
-	public String E_organizationList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_organizationList");
-		
-		service.E_organizationList(req, model);
-		
-		return "pages/E_organizationList";
-	}
 	
 	// 조직도 - 인물 상세정보 (전체 / 개인)
 //	@RequestMapping("/pages/sub/E_organMemberInfo")
@@ -39,25 +29,54 @@ public class E_Controller {
 //		return "pages/sub/E_organMemberInfo";
 //	}
 	
-	// 조직도 - 전체 그룹 목록
+									// commit 실패시 - Author / Committer : GIGABYTE <GIGABYTE@SDLEE-Laptop>
+	// 조직도 - 첫페이지, 내회사 전체 구성원 목록		<a href="<c:url value='E_organizationList' />">
+	@RequestMapping("/pages/E_organizationList")
+	public String E_organizationList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_organizationList");
+		
+		service.E_organizationList(req, model);
+		
+		return "pages/E_organizationList";
+	}
+	
+	// 조직도 - 내 회사 전체 그룹 목록
 	@RequestMapping("/pages/E_organAllGroupList")
 	public String E_organAllGroupList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organAllGroupList");
 		
+		service.E_organAllGroupList(req, model);
+		
 		return "pages/E_organAllGroupList";
+	}
+	
+	// 조직도 - 개인 그룹 목록
+	@RequestMapping("/pages/E_myGroupList")
+	public String E_myGroupList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_myGroupList");
+		
+		return "pages/E_myGroupList";
+	}
+	
+	// 조직도 - 개인그룹 관리
+	@RequestMapping("/pages/E_myGroupManage")
+	public String E_MyGroupManage(HttpServletRequest req, Model model) {
+		logger.info("URL : E_myGroupManage");
+		
+		return "pages/E_myGroupManage";
+	}
+	
+	// 조직도 - 자주 연락하는 사람 관리 게시판
+	@RequestMapping("/pages/E_orgMyFavoritMemList")
+	public String E_MyFavoritMemList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_orgMyFavoritMemList");
+		
+		return "pages/E_orgMyFavoritMemList";
 	}
 	
 	
 	
-	// 조직도 - 개인 그룹 목록
-//	@RequestMapping("/pages/E_organPrivateGroup")
-	
-	// 조직도 - 개인그룹 관리
-//	@RequestMapping("/pages/E_privateGroupManage")
-	
-	// 조직도 - 자주 연락하는 사람 관리 게시판
-//	@RequestMapping("/pages/E_organFavoritMember")
-	
+
 	
 	
 	
@@ -71,9 +90,6 @@ public class E_Controller {
 		
 		return "pages/E_addressList";
 	}
-	
-	
-	
 	
 	// 메모 게시판
 	@RequestMapping("/pages/E_memoList")

@@ -83,8 +83,30 @@ public class K_DAOImpl implements K_DAO{
 		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getDayoffList", company);
 	}
 	
+	@Override
 	public int getHoliday(int company) {
 		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getHoliday", company);
 	}
+
+	@Override
+	public int UpdateAttendedSet(AttendedSetVO att) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.UpdateAttendedSet", att);
+	}
+
+	@Override
+	public int UpdateHoliday(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.UpdateHoliday", map);
+	}
+
+	@Override
+	public int insertDayoff(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertDayoff", map);
+	}
+
+	@Override
+	public int deleteDayOff(int company) {
+		return sqlSession.delete("com.spring.gm.persistence.K_DAO.deleteDayOff", company);
+	}
+	
 	
 }

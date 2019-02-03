@@ -22,9 +22,9 @@
 					</th> -->
 					<th colspan="6" align="center" style="height:25px">
 						전체  / ${cnt} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#"> [팀원에게 메일 작성] </a>
-						<a href="#"> [팀원에게 쪽지 작성] </a>
-						<a href="#"> [개인 그룹에 추가] </a>
+						<a href="#"> [팀원에게 메일 작성] </a>&nbsp;&nbsp;
+						<a href="#"> [팀원에게 쪽지 작성] </a>&nbsp;&nbsp;
+						<a href="#"> [개인 그룹에 추가] </a>&nbsp;&nbsp;
 					</th>
 				</tr>
 				<tr>

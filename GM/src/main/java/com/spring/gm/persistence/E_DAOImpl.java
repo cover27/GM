@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.MemoVO;
 
@@ -27,6 +28,22 @@ public class E_DAOImpl implements E_DAO {
 	@Override
 	public List<MemberVO> getMyCompanyInfo(int company) {
 		return sqlSession.selectList("com.spring.gm.persistence.E_DAO.getMyCompanyInfo", company);
+	}
+
+	// 조직도 - 내가 속한 회사의 전체 그룹 수 구하기
+	@Override
+	public List<GroupsVO> getMyCompanyGroupCnt(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.E_DAO.getMyCompanyGroupCnt", company);
+	}
+
+	@Override
+	public List<MemberVO> getMyCompanyInfo2(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.gm.persistence.E_DAO.getMyCompanyInfo2", map);
+	}
+
+	@Override
+	public String findCompanyName(int company) {
+		return sqlSession.selectOne("com.spring.gm.persistence.E_DAO.findCompanyName", company);
 	}
 
 }
