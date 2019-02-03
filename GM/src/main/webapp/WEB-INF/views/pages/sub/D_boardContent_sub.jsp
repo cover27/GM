@@ -9,10 +9,10 @@
 			</div>
 	<table>
 		<tr>
-			<th style="width:150px;">글번호</th>
-			<td>
-				${dto.boardnum}
-			</td>
+			<th style="width:150px;">작성자</th>
+				<td>
+					${dto.writer}
+				</td>
 			<th style="width:150px;">조회수</th>
 			<td>
 				${dto.readcnt}
@@ -20,11 +20,8 @@
 		</tr>
 		
 		<tr>
-			<th style="width:150px;">작성자</th>
-				<td>
-					${dto.writer}
-				</td>
-					<th style="width:150px;">작성일</th>
+
+				<th style="width:150px;">작성일</th>
 				<td>
 					<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.getReg_date()}" />
 				</td>
@@ -49,7 +46,7 @@
 						<c:if test="${sessionScope.loginInfo.name == dto.writer}">
 							<input type="button" class="inputButton" value="글 수정" onclick="window.location='<c:url value="/pages/D_boardUpdate?boardnum=${dto.boardnum}&pageNum=${pageNum}&num=${num}"/>'">
 						</c:if>
-							<input type="button" class="inputButton" value="글 삭제" onclick="window.location='<c:url value="/pages/D_boardDeletePro?boardnum=${dto.boardnum}&pageNum=${pageNum}&num=${num}&del=${dto.del}"/>'">
+							<input type="button" class="inputButton" value="글 삭제" onclick="window.location='<c:url value="/pages/D_boardDeletePro?boardnum=${dto.boardnum}&pageNum=${pageNum}&num=${num}&del=${dto.del}&ref_step=${dto.ref_step}"/>'">
 					</c:if>
 						<input type="button" class="inputButton" value="답글 쓰기" onclick="window.location='<c:url value="/pages/D_writeForm?boardnum=${dto.boardnum}&num=${num}&ref=${dto.ref}&ref_step=${dto.ref_step}&ref_level=${dto.ref_level}&pageNum=${pageNum}"/>'">
 						<input type="button" class="inputButton" value="목록 보기" onclick="window.location='<c:url value="/pages/D_boardList?pageNum=${pageNum}&boardnum=${dto.boardnum}&num=${num}"/>'">
