@@ -39,12 +39,12 @@ public class D_Controller {
 	}
 	
 	//게시판 목록
-	@RequestMapping("/pages/D_boardsList")
+	@RequestMapping("/pages/D_boardsSetting")
 	public String boardsList(HttpServletRequest req, Model model) {
-		logger.info("URL : D_boardsList");
+		logger.info("URL : D_boardsSetting");
 		
 		service.boardsList(req, model);
-		return "pages/D_boardsList";
+		return "pages/D_boardsSetting";
 	}
 	
 	// 게시판 수정

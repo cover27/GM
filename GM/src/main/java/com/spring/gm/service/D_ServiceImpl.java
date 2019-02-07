@@ -244,7 +244,6 @@ public class D_ServiceImpl implements D_Service{
 		int del = Integer.parseInt(req.getParameter("del"));
 		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-		int ref_step = Integer.parseInt(req.getParameter("ref_step"));
 		int ref_level = Integer.parseInt(req.getParameter("ref_level"));
 		int deleteCnt = 0;
 		
@@ -253,7 +252,7 @@ public class D_ServiceImpl implements D_Service{
 		vo.setDel(1);
 		
 		if (ref_level == 1) {
-			System.out.println("갓갓 : " + ref_step);
+			System.out.println("갓갓 : " + ref_level);
 			deleteCnt = dao.deleteAll(vo);
 		}
 		

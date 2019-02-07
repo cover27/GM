@@ -49,7 +49,7 @@
 												
 							<c:if test="${dto.readcnt > 10}"></c:if>
 					
-							<a href="<c:url value='/pages/D_boardContent?boardnum=${dto.boardnum}&num=${num}&ref_step=${ref_step}&pageNum=${pageNum}&number=${number+1}'/>"> ${dto.subject} </a>
+							<a href="<c:url value='/pages/D_boardContent?boardnum=${dto.boardnum}&num=${num}&ref_level=${ref_level}&pageNum=${pageNum}&number=${number+1}'/>"> ${dto.subject} </a>
 						</td>
 					
 						<td>
