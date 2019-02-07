@@ -251,7 +251,7 @@ public class D_ServiceImpl implements D_Service{
 		vo.setBoardnum(boardnum);
 		vo.setDel(1);
 		
-		if (ref_level == 1) {
+		if (ref_level >= 1) {	// 가져온 ref_level 이 원본보다 크거나 같다면 전부삭제
 			System.out.println("갓갓 : " + ref_level);
 			deleteCnt = dao.deleteAll(vo);
 		}
