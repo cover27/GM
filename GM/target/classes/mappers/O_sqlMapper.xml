@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.spring.gm.persistence.O_DAO" >
+
+<!-- 전자결재-기안문 -->
+<select id="createAppDocForm" resultType="com.spring.gm.vo.Join_payVO" parameterType="String">
+	select m.name, g.r_name, r.g_name from member m , grade g, groups r
+	where m.rank = g.rank
+	and m.depart = r.groupid
+	and m.id=#{id}
+</select>
+
+<select id="createAppDocForm2" resultType="com.spring.gm.vo.Join_payVO" parameterType="String">
+	select m.name, g.r_name, c.c_name as g_name from member m , grade g, companies c
+	where m.rank = g.rank
+	and m.depart = c.company
+	and m.id=#{id}
+</select>
+
+</mapper>

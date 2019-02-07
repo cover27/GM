@@ -121,6 +121,8 @@ public class O_Controller {
 	public String O_createApprDocFormView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_createApprDocFormView");
 		
+		oservice.createApprDoc(req, model);
+		
 		return "pages/O_createApprDocFormView";
 	}
 	
