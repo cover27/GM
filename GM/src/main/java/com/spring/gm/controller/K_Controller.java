@@ -157,7 +157,16 @@ public class K_Controller {
 		logger.info("URL : K_getMemberInfo");
 		service.K_getMemberInfo(req, model);
 		
-		return "admin/sub/J_sub/J_info";
+		return "admin/sub/K_openMember";
+	}
+	
+	//개인정보 수정
+	@RequestMapping("admin/K_updateMemberInfo")
+	public String K_updateMemberInfo(HttpServletRequest req, Model model) {
+		logger.info("URL : K_updateMemberInfo");
+		service.K_getMemberInfo(req, model);
+		
+		return "admin/sub/K_updateMemberInfo";
 	}
 	
 	//근태/급여기준정보설정
