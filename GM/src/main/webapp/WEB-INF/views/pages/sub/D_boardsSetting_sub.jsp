@@ -49,13 +49,16 @@ function board_go_callback(){
             <h2>게시판 관리</h2>
         </div>
         <div class="content">
-        	<div class="notice">
-				<ul>
-					<li><i class="fa fa-exclamation-circle"></i> 게시판 이름 위에 마우스를 올리면 게시판 정보를 수정하거나 게시판을 삭제할 수 있습니다.</li>
-					<li><i class="fa fa-exclamation-circle"></i> "생성하기" 버튼을 클릭하면 새로운 게시판을 생성할 수 있습니다<div class=""></div></li>
-				</ul>
-			</div>
-        	<div class="w100p fleft boards_left_wrap">
+        	<div class="boards_setting_btnset">
+				<div class="notice">
+					<ul>
+						<li><i class="fa fa-exclamation-circle"></i> 게시판 이름 위에 마우스를 올리면 게시판 정보를 수정하거나 게시판을 삭제할 수 있습니다.</li>
+						<li><i class="fa fa-exclamation-circle"></i> "게시판 생성하기" 버튼을 클릭하면 새로운 게시판을 생성할 수 있습니다<div class=""></div></li>
+					</ul>
+				</div>
+				<button class="createboard_btn" onclick="window.location='<c:url value="/admin/D_createBoards" />'">게시판 생성하기</button>
+        	</div>
+        	<div class="w100p boards_wrap" id="result">
         		<div class="boards_trees">
         			<ul>
         				<c:forEach var="b_dtos" items="${b_dtos}">
@@ -66,7 +69,8 @@ function board_go_callback(){
         				</c:forEach>
         			</ul>
         		</div>
-        		<div class="paging">
+        	</div>
+        	<div class="paging">
 					<c:if test="${cnt > 0}">
 					    <c:if test="${startPage > pageBlock}">
 					        <a href="<c:url value='/pages/D_boardsList'/>">[◀◀]</a>
@@ -89,13 +93,6 @@ function board_go_callback(){
 					    </c:if>
 					</c:if>
 	            </div>
-        	</div>
-        	<div class="w70p fleft boards_right_wrap">
-        		<div id="result">
-					<!-- 결과 출력 위치 -->
-				</div>
-        	</div>
-        	<button class="w30p fleft createboard_btn" onclick="window.location='<c:url value="/admin/D_createBoards" />'">생성하기</button>
         </div>
     </article>
 </section>
