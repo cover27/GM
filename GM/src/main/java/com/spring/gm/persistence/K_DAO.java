@@ -6,6 +6,7 @@ import java.util.Map;
 import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
+import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 
 public interface K_DAO {
@@ -45,5 +46,7 @@ public interface K_DAO {
 	public int insertDayoff(Map<String, Object> map);
 	
 	public int deleteDayOff(int company);
+	
+	public GroupsVO getGroups(int company);
 	
 }
