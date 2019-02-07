@@ -7,6 +7,7 @@ import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.BoardsVO;
 
 
+
 public interface D_DAO {
 
 	public int insertBoards(BoardsVO VO); // 게시판 생성문
@@ -15,9 +16,9 @@ public interface D_DAO {
 	
 	public List<BoardsVO> getBoardsArticleList(Map<String, Object> map); //게시판 목록
 	
-	public int updateBoard(BoardListVO vo);	//게시판 수정
+	public int updateBoard(BoardListVO vo);	//게시글 수정
 	
-	public int deleteBoard(BoardListVO vo);	//게시판 삭제
+	public int deleteBoard(BoardListVO vo);	//게시글 삭제
 	
 	public int getBoardArticleCnt();	//게시글 갯수
 	
@@ -27,5 +28,22 @@ public interface D_DAO {
 	
 	public BoardListVO getArticle(int boardnum);	// 게시글 상세
 	
+	public BoardsVO getBoardsArticle(int num);		// 게시판 상세
+	
 	public void addReadCnt(int boardnum);	// 조회수 증가
+	
+	public int checkReply(BoardListVO vo);	// 댓글
+	
+	public int updateBoards(BoardsVO vo);	// 게시판 수정
+	
+	public int getMaxNum();
+	
+	public void updateReply(BoardListVO vo);
+	
+	public int deleteAll(BoardListVO vo);
+	
+	public void updateStep(BoardListVO vo);
+
+	
+
 }

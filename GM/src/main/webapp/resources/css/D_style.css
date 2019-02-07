@@ -36,11 +36,11 @@
 	border: solid #ddd 1px;
 }
 
-.content .boards_right_wrap .notice {
-	margin-left: 15px;
+.content>.notice {
 	padding: 20px;
+	margin-bottom: 15px;
     background: #f3f3f3;
-    line-height: 20px;
+    line-height: 30px;
     border-radius: 5px;
 }
 
