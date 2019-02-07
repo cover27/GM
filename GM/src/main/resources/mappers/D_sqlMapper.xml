@@ -31,7 +31,7 @@
 		UPDATE BOARDLIST SET subject = #{subject}, content = #{content} WHERE boardnum = #{boardnum}
 	</update>
 	
-	<update id="deleteBoard" parameterType="com.spring.gm.vo.BoardListVO">
+	<update id="deleteBoard" parameterType="int">
 		UPDATE BOARDLIST SET del = #{del} WHERE boardnum = #{boardnum}
 	</update>
 	
@@ -83,7 +83,7 @@
 	
 	<update id="deleteAll" parameterType="com.spring.gm.vo.BoardListVO">
 		<![CDATA[
-			UPDATE BOARDLIST SET del = #{del} WHERE ref = #{ref} AND ref_level > #{ref_level}
+			UPDATE BOARDLIST SET del = 1 WHERE boardnum = #{boardnum} OR (ref=#{ref} AND ref_level > #{ref_level})
 		]]>
 	</update>
 	

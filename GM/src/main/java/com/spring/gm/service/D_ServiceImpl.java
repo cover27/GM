@@ -26,6 +26,7 @@ public class D_ServiceImpl implements D_Service{
 	public void insertBoards(HttpServletRequest req, Model model) {
 		
 		BoardsVO vo = new BoardsVO();		// 바구니 생성
+
 		String b_name = req.getParameter("b_name");
 		String anon_i = req.getParameter("anon");
 		int anon = Integer.parseInt(anon_i);
@@ -239,19 +240,16 @@ public class D_ServiceImpl implements D_Service{
 	@Override
 	public void boardDelete(HttpServletRequest req, Model model) {
 		int num = Integer.parseInt(req.getParameter("num"));
-		int del = Integer.parseInt(req.getParameter("del"));
 		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		int deleteCnt = 0;
 		
+		
 		BoardListVO vo = new BoardListVO();
 		vo.setBoardnum(boardnum);
-		vo.setDel(1);
 		
 		deleteCnt = dao.deleteBoard(boardnum);
-
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
-		model.addAttribute("del", del);
 		model.addAttribute("num", num);
 		model.addAttribute("deleteCnt", deleteCnt);
 		model.addAttribute("pageNum", pageNum);

@@ -75,11 +75,11 @@ public class D_DAOImpl implements D_DAO{
 		
 		if(vo.getBoardnum() != 0) {
 			int replyCnt = checkReply(vo);
-			System.out.println("값0: "+replyCnt);
+			System.out.println("답글을 가지고 있는가? : "+replyCnt);
 			
 			if(replyCnt != 0) {
 				deleteCnt = deleteAll(vo);
-				System.out.println("값1"+deleteCnt);
+				System.out.println("deleteCnt ::: "+deleteCnt);
 				
 				if(deleteCnt > 0) {
 					updateStep(vo);
