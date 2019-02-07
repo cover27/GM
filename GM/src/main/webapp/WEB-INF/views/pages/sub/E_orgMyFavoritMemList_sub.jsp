@@ -4,12 +4,12 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2>전체 그룹 목록</h2>
+			<h2>자주 연락하는 사람 관리</h2>
 		</div>
-
 		
-전체 그룹 목록 게시판
-
-
+		
+		여기에 내용 작성
+		
+		
 	</article>
 </section>

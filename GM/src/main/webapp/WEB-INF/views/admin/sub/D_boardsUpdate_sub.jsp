@@ -9,41 +9,33 @@
 			<h2>게시판 수정</h2>
 		</div>
 		
-<form action="modifyPro" method="post" name="modifyform">
-	<input type="hidden" name="num" value="${num}">
-	<input type="hidden" name="pageNum" value="${pageNum}">
-		<table style="width:1000px;">
-			<tr>
-				<th colspan="2">수정할 정보를 입력하세요.</th>
-			</tr>
+		<form action="<c:url value='/admin/D_boardsUpdatePro'/>" method="post" name="D_boardsUpdate">
+		<input type="hidden" name="num" value="${num}">
+			<table>		
+					<tr>
+						<th> 게시판명</th>
+							<td>
+								<input class="input" type="text" name="b_name" maxlength="50" style="width:270px" placeholder="${bvo.b_name}">
+							</td>
+					</tr>		
 			
-			<tr>
-				<th>작성자</th>
-				<td style="text-align:left;padding-left:10px;">${dto.writer}</td>
-			</tr>
+					<tr>
+						<th> 익명여부</th>
+							<td>
+								<input type="radio" name="anon" value="0"> 실명
+								<input type="radio" name="anon" value="1"> 익명
+							</td>
+					</tr>
 			
-			<tr>
-				<th>글제목</th>
-				<td colspan="2" style="width:150px;text-align:left; padding-left:10px;">
-					<input type="text" name="subject" placeholder="${dto.subject}" style="width:100%;height:100%;" required autofocus>
-				</td>
-			</tr>
-			
-			<tr>
-				<th style="width:150px;">글내용</th>
-				<td style="height:300px;text-align:left; padding-left:10px;">
-					<textarea class="input" name="content" cols="40" rows="10" style="width:100%;height:100%;" placeholder="${dto.content}"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<th colspan="2">
-					<input type="submit" class="inputButton" value="확인">
-					<input type="reset" class="inputButton" value="취소" onclick="window.history.back(-2)">
-					<input type="button" class="inputButton" value="목록 보기" onclick="window.location='boardList?pageNum=${pageNum}'">
-				</th>
-			</tr>
-		</table>
-</form>
+					<tr>
+						<th colspan="2">
+							<input class="inputButton" type="submit" value="수정">
+							<input class="inputButton" type="button" value="수정취소"
+									onclick="window.history.back()">				
+						</th>
+					</tr>		
+				</table>
+			</form>
 	</article>
 </section>
 	

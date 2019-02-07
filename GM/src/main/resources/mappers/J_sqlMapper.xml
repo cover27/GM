@@ -94,4 +94,17 @@
 	<select id="J_extrapayinfo" parameterType="String" resultType="com.spring.gm.vo.BonusCutVO">
 		SELECT * FROM bonus_cut WHERE id = #{id} 
 	</select>
+	<!-- 개인 급여수당정보 업데이트 -->
+	<update id="J_extrapayinfoUpdate" parameterType="java.util.Map">
+		INSERT INTO bonus_cut (num, id, type, day, cost, content, state,  del)
+		VALUES (seq_bonus_cut.nextval,#{id}, #{type}, sysdate, #{cost}, #{content}, #{state}, 0)
+	</update>
+	<!-- 개인 급여수당정보 삭제하기 -->
+	<delete id="deleteInfo" parameterType="int">
+		delete bonus_cut where num=#{num}
+	</delete>
+	<!-- 개인 num에대한 id 값 가져오기 -->
+	<select id = "numId" parameterType="int" resultType="com.spring.gm.vo.BonusCutVO">
+		select id from bonus_cut where num = #{num}
+	</select>
 </mapper>

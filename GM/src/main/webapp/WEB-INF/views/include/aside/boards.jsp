@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="${path}css/layout.css">
 <link rel="stylesheet" href="${path}css/aside.css">
 <link rel="stylesheet" href="${path}css/content.css">
+<link rel="stylesheet" href="${path}css/D_style.css" />
 
 <aside>
 	<!-- 사용 안하는 사이드바

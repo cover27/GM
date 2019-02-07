@@ -109,7 +109,11 @@ section .content {
 	margin-top: 158px;
 	padding: 20px;
 	border: 1px solid #d1d1d1; 
-	overflow: auto;
-	 */
 	overflow-y: scroll;
+	 */
+	overflow: auto;
+}
+
+#result {
+	/* padding: 20px; */
 }

@@ -20,7 +20,7 @@
 
 .content .mailbox_header .mailbox_searchbox .btn_search {
     vertical-align: top;
-    background: #fff url(../../images/ic_search.png) 50% 0 no-repeat !important;
+    background: #fff url(../images/ic_search.png) 50% 0 no-repeat !important;
     height: 27px;
     width: 29px;
     margin-left: -5px;

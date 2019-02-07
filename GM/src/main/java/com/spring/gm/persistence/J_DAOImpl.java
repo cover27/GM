@@ -173,4 +173,22 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.J_extrapayinfo(id);
 		return dtos;
 	}
+	// 개인 급여수당정보 업데이트
+	@Override
+	public int J_extrapayinfoUpdate(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.J_extrapayinfoUpdate", map);
+		return cnt;
+	}
+	// 개인 급여수당정보 삭제하기
+	@Override
+	public int deleteInfo(int num) {
+		int cnt = sqlSession.delete("com.spring.gm.persistence.J_DAO.deleteInfo", num);
+		return cnt;
+	}
+	// 개인 num에대한 id 값 가져오기
+	@Override
+	public BonusCutVO numId(int num) {
+		BonusCutVO vo = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.numId", num);
+		return vo;
+	}
 }

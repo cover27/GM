@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.D_Service;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 
 @Controller
 public class D_Controller {
@@ -33,25 +34,34 @@ public class D_Controller {
 		logger.info("URL : D_CreateBoards_pro");
 		
 
-		// service.insertBoards(req, model);
-		return "pages/sub/D_CreateBoards_pro";
+		service.insertBoards(req, model);
+		return "admin/sub/D_CreateBoards_pro";
 	}
 	
 	//게시판 목록
-	@RequestMapping("/pages/D_boardsList")
+	@RequestMapping("/pages/D_boardsSetting")
 	public String boardsList(HttpServletRequest req, Model model) {
-		logger.info("URL : D_boardsList");
+		logger.info("URL : D_boardsSetting");
 		
 		service.boardsList(req, model);
-		return "pages/D_boardsList";
+		return "pages/D_boardsSetting";
 	}
 	
-	@RequestMapping("/pages/D_boardsUpdate")
+	// 게시판 수정
+	@RequestMapping("/admin/D_boardsUpdate")
 	public String boardsUpdate(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardsUpdate");
 		
-		
+		service.boardsUpdate(req, model);
 		return "admin/D_boardsUpdate";
+	}
+	// 게시판 수정 처리
+	@RequestMapping("/admin/D_boardsUpdatePro")
+	public String boardsUpdatePro(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardsUpdatePro");
+		
+		service.boardsUpdatePro(req, model);
+		return "admin/D_boardsUpdatePro";
 	}
 	
 	//게시글 목록
@@ -62,6 +72,14 @@ public class D_Controller {
 		service.boardsList(req, model);
 		service.boardList(req, model);
 		return "pages/D_boardList";
+	}
+	
+	// 게시판관리 - 게시판 선택
+	@RequestMapping("/pages/D_boardListSetting")
+	public String boardListSetting(HttpServletRequest req, Model model) {
+		logger.info("URL : D_BoardListSetting");
+		
+		return "pages/D_boardList_setting";
 	}
 
 	//게시글 입력
@@ -92,7 +110,25 @@ public class D_Controller {
 	public String boardUpdate(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardUpdate");
 		
-		
+		service.boardUpdate(req, model);
 		return "pages/D_boardUpdate";
 	}
+	
+	@RequestMapping("/pages/D_boardUpdatePro")
+	public String boardUpdatePro(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardUpdatePro");
+		
+		service.boardUpdatePro(req, model);
+		return "pages/D_boardUpdatePro";
+	}
+	
+	@RequestMapping("/pages/D_boardDeletePro")
+	public String boardDeletePro(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardDeletePro");
+		
+		service.boardDelete(req, model);
+		return "pages/D_boardDeletePro";
+	}
+	
+
 }

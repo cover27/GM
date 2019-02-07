@@ -18,4 +18,8 @@ public interface J_Service {
 	//------------------기본수당 외 수당 관리-----------------------------
 	// 급여 개인회원수당 정보 가져오기
 	public void J_extrapayinfo(HttpServletRequest req, Model model);
+	// 개인 급여수당정보 업데이트
+	public void J_extrapayinfoUpdate(HttpServletRequest req, Model model);
+	// 개인 급여수당정보 삭제하기
+	public void deleteInfo(HttpServletRequest req, Model model);
 }

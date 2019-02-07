@@ -52,28 +52,68 @@ public class D_DAOImpl implements D_DAO{
 	}
 
 	@Override
-	public int updateBoards(BoardsVO vo) {
+	public int updateBoard(BoardListVO vo) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.updateBoards(vo);
+		return dao.updateBoard(vo);
 	}
 
 	@Override
-	public int deleteBoards(BoardsVO vo) {
-		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.deleteBoards(vo);
+	public int deleteBoard(BoardListVO vo) {
+		int deleteCnt = 0;
+		
+		if(vo.getBoardnum() != 0) {
+			int replyCnt = checkReply(vo);
+			
+			if(replyCnt != 0) {
+				deleteCnt = deleteAll(vo);
+				
+				if(deleteCnt > 0) {
+					updateStep(vo);
+				}
+			}else {
+				D_DAO dao = sqlSession.getMapper(D_DAO.class);
+				deleteCnt = dao.deleteBoard(vo);
+			}
+		}
+
+		return deleteCnt;
 	}
 
 	@Override
 	public int insertBoard(BoardListVO vo) {
-		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.insertBoard(vo);
+		int boardnum = vo.getNum();
+		int ref = vo.getRef();
+		int ref_step = vo.getRef_step();
+		int ref_level = vo.getRef_level();
+		
+		if(boardnum == 0) {
+			int cnt = getBoardArticleCnt();
+			
+			if(cnt >0) {
+				ref = getMaxNum() + 1;
+			}else {
+				ref=1;
+			}
+			ref_step=0;
+			ref_level=0;
+			
+		}else {
+			updateReply(vo);			
+			ref_step++;
+			ref_level++;			
+		}
+		vo.setRef(ref);
+		vo.setRef_step(ref_step);
+		vo.setRef_level(ref_level);
+		
+			D_DAO dao = sqlSession.getMapper(D_DAO.class);
+			return dao.insertBoard(vo);			
 	}
 
 	@Override
 	public BoardListVO getArticle(int boardnum) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		BoardListVO vo = dao.getArticle(boardnum);
-		
 		return vo;
 	}
 
@@ -82,7 +122,50 @@ public class D_DAOImpl implements D_DAO{
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		dao.addReadCnt(boardnum);
 	}
-	
 
+	@Override
+	public int checkReply(BoardListVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.checkReply(vo);
+	}
+
+	@Override
+	public int updateBoards(BoardsVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.updateBoards(vo);
+	}
+
+	@Override
+	public BoardsVO getBoardsArticle(int num) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		BoardsVO vo = dao.getBoardsArticle(num);
+		return vo;
+	}
+
+	@Override
+	public int getMaxNum() {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.getMaxNum();
+	}
+
+	@Override
+	public void updateReply(BoardListVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		dao.updateReply(vo);
+	}
+
+	@Override
+	public int deleteAll(BoardListVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.deleteAll(vo);
+	}
+
+	@Override
+	public void updateStep(BoardListVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		dao.updateStep(vo);
+	}
+	
+	
 	
 }
