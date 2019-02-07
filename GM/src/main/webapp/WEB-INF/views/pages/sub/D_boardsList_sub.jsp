@@ -27,17 +27,17 @@ function board_go_callback(){
  */
  
  function board_go(num) {
-	alert("게시판번호 : "+num);
+	// alert("게시판번호 : "+num);
 	$.ajax({
 		type:"POST",
 		data:"num="+num,
 		url:"${pageContext.request.contextPath}/pages/D_boardListSetting",
 		success:function(result){
-			alert("성공");
+			// alert("성공");
 			$("#result").html(result);
 		},
 		error:function(){
-			alert("실패");
+			alert("게시판 로딩이 실패하였습니다.");
 		}
 	 });
  }
@@ -49,7 +49,13 @@ function board_go_callback(){
             <h2>게시판 관리</h2>
         </div>
         <div class="content">
-        	<div class="w30p fleft boards_left_wrap">
+        	<div class="notice">
+				<ul>
+					<li><i class="fa fa-exclamation-circle"></i> 게시판 이름 위에 마우스를 올리면 게시판 정보를 수정하거나 게시판을 삭제할 수 있습니다.</li>
+					<li><i class="fa fa-exclamation-circle"></i> "생성하기" 버튼을 클릭하면 새로운 게시판을 생성할 수 있습니다<div class=""></div></li>
+				</ul>
+			</div>
+        	<div class="w100p fleft boards_left_wrap">
         		<div class="boards_trees">
         			<ul>
         				<c:forEach var="b_dtos" items="${b_dtos}">
@@ -87,12 +93,6 @@ function board_go_callback(){
         	<div class="w70p fleft boards_right_wrap">
         		<div id="result">
 					<!-- 결과 출력 위치 -->
-					<div class="notice">
-						<ul>
-							<li><i class="fa fa-exclamation-circle"></i> 좌측의 게시판 이름을 선택하면 게시판 정보를 수정할 수 있습니다.</li>
-							<li><i class="fa fa-exclamation-circle"></i> "생성하기" 버튼을 클릭하면 새로운 게시판을 생성할 수 있습니다<div class=""></div></li>
-						</ul>
-					</div>
 				</div>
         	</div>
         	<button class="w30p fleft createboard_btn" onclick="window.location='<c:url value="/admin/D_createBoards" />'">생성하기</button>
