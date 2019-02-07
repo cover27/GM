@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
+import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 
 @Repository
@@ -107,6 +108,11 @@ public class K_DAOImpl implements K_DAO{
 	public int deleteDayOff(int company) {
 		return sqlSession.delete("com.spring.gm.persistence.K_DAO.deleteDayOff", company);
 	}
-	
+
+	@Override
+	public GroupsVO getGroups(int company) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

@@ -387,10 +387,10 @@ public class K_ServiceImpl implements K_Service{
 
 		System.out.println("id :" + id);
 
-		List<MemberVO> dtos = dao2.infoList(id);
+		MemberVO dto = dao.memberInfo(id);
 		System.out.println("여기 탔다");
-		System.out.print(dtos.toString());
-		model.addAttribute("dtos", dtos);
+		System.out.print(dto.toString());
+		model.addAttribute("dto", dto);
 	}
 
 	@Override
