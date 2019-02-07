@@ -244,18 +244,15 @@ public class D_ServiceImpl implements D_Service{
 		int del = Integer.parseInt(req.getParameter("del"));
 		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-		int ref_step = Integer.parseInt(req.getParameter("ref_step"));
+		int ref_level = Integer.parseInt(req.getParameter("ref_level"));
 		int deleteCnt = 0;
 		
 		BoardListVO vo = new BoardListVO();
 		vo.setBoardnum(boardnum);
 		vo.setDel(1);
 		
-		
-		// 4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
-		/*BoardDAO dao = BoardDAOImpl.getInstance();*/
-		if (ref_step == 1) {
-			System.out.println("갓갓 : " + ref_step);
+		if (ref_level == 1) {
+			System.out.println("갓갓 : " + ref_level);
 			deleteCnt = dao.deleteAll(vo);
 		}
 		

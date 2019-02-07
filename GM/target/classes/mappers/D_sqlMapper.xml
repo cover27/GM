@@ -77,7 +77,7 @@
 	
 	<update id="updateReply" parameterType="com.spring.gm.vo.BoardListVO">
 		<![CDATA[
-			UPDATE BOARDLIST SET ref_step= ref_step+1 WHERE ref = #{ref} AND ref_step > #{ref_step}
+			UPDATE BOARDLIST SET del = #{del} WHERE ref = #{ref} AND ref_level > #{ref_level}
 		]]>
 	</update>
 	

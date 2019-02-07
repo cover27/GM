@@ -37,7 +37,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='/pages/D_boardsList' />">
+                            <a href="<c:url value='/pages/D_boardsSetting' />">
                                 <h2>게시판</h2>
                                 <span class="board"></span>
                             </a>
