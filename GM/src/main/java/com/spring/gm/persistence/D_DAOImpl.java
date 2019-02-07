@@ -107,6 +107,7 @@ public class D_DAOImpl implements D_DAO{
 			
 			if(cnt > 0) {
 				ref = getMaxNum() + 1;
+				System.out.println("ref확인 : "+ref);
 			}else {
 				ref=1;
 			}
