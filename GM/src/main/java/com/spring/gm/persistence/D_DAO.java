@@ -18,7 +18,7 @@ public interface D_DAO {
 	
 	public int updateBoard(BoardListVO vo);	//게시글 수정
 	
-	public int deleteBoard(BoardListVO vo);	//게시글 삭제
+	public int deleteBoard(int boardnum);	//게시글 삭제
 	
 	public int getBoardArticleCnt();	//게시글 갯수
 	

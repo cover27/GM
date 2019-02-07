@@ -23,7 +23,7 @@
 	
 	<select id="checkReply" parameterType="com.spring.gm.vo.BoardListVO" resultType="int">
 		<![CDATA[
-			SELECT COUNT(*) FROM BOARDLIST WHERE ref=#{ref} AND ref_step=#{ref_step}+1 AND ref_level>#{ref_level}
+			SELECT COUNT(*) FROM BOARDLIST WHERE ref = #{ref} AND ref_step = #{ref_step}+1 AND ref_level > #{ref_level}
 		]]>
 	</select>
 	
@@ -31,7 +31,7 @@
 		UPDATE BOARDLIST SET subject = #{subject}, content = #{content} WHERE boardnum = #{boardnum}
 	</update>
 	
-	<update id="deleteBoard" parameterType="com.spring.gm.vo.BoardListVO">
+	<update id="deleteBoard" parameterType="int">
 		UPDATE BOARDLIST SET del = #{del} WHERE boardnum = #{boardnum}
 	</update>
 	
@@ -81,10 +81,16 @@
 		]]>
 	</update>
 	
-	<delete id="deleteAll" parameterType="com.spring.gm.vo.BoardListVO">
+	<update id="deleteAll" parameterType="com.spring.gm.vo.BoardListVO">
 		<![CDATA[
-			UPDATE BOARDLIST SET del = #{del} WHERE ref = #{ref} AND ref_level > #{ref_level}
+			UPDATE BOARDLIST SET del = 1 WHERE boardnum = #{boardnum} OR (ref=#{ref} AND ref_level > #{ref_level})
 		]]>
-	</delete>
+	</update>
+	
+	<update id="updateStep" parameterType="com.spring.gm.vo.BoardListVO">
+		<![CDATA[
+			UPDATE BOARDLIST SET ref_step=ref_step-1  WHERE ref=#{ref} AND ref_step > #{ref_step}
+		]]>
+	</update>
 	 		
 </mapper>

@@ -26,14 +26,12 @@ public class D_ServiceImpl implements D_Service{
 	public void insertBoards(HttpServletRequest req, Model model) {
 		
 		BoardsVO vo = new BoardsVO();		// 바구니 생성
-		String group = req.getParameter("groupId");	
-		int groupId = Integer.parseInt(group);
+
 		String b_name = req.getParameter("b_name");
 		String anon_i = req.getParameter("anon");
 		int anon = Integer.parseInt(anon_i);
 		int del = 0;
 		
-		vo.setGroupId(groupId);		// 가져온 값들을 바구니에 담음
 		vo.setB_name(b_name);
 		vo.setAnon(anon);
 		vo.setDel(del);
@@ -242,26 +240,16 @@ public class D_ServiceImpl implements D_Service{
 	@Override
 	public void boardDelete(HttpServletRequest req, Model model) {
 		int num = Integer.parseInt(req.getParameter("num"));
-		int del = Integer.parseInt(req.getParameter("del"));
 		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-		int ref_level = Integer.parseInt(req.getParameter("ref_level"));
 		int deleteCnt = 0;
+		
 		
 		BoardListVO vo = new BoardListVO();
 		vo.setBoardnum(boardnum);
-		vo.setDel(1);
 		
-		if (ref_level >= 1) {	// 가져온 ref_level 이 원본보다 크거나 같다면 전부삭제
-			System.out.println("갓갓 : " + ref_level);
-			deleteCnt = dao.deleteAll(vo);
-		}
-		
-		// 5단계. 글 수정 실행(vo를 DAO로 전달하여 SQL 실행)
-		deleteCnt = dao.deleteBoard(vo);
-
+		deleteCnt = dao.deleteBoard(boardnum);
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
-		model.addAttribute("del", del);
 		model.addAttribute("num", num);
 		model.addAttribute("deleteCnt", deleteCnt);
 		model.addAttribute("pageNum", pageNum);
