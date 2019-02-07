@@ -38,4 +38,7 @@
 		<beans:constructor-arg ref="sqlSessionFactory" />
 	</beans:bean>
 	
+	<!-- 경준 추가 -->
+
+	<!-- 경준 종료 -->
 </beans:beans>

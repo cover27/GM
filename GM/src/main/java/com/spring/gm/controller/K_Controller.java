@@ -157,7 +157,24 @@ public class K_Controller {
 		logger.info("URL : K_getMemberInfo");
 		service.K_getMemberInfo(req, model);
 		
-		return "admin/sub/J_sub/J_info";
+		return "admin/sub/K_openMember";
+	}
+	
+	//개인정보 수정
+	@RequestMapping("admin/K_updateMemberInfo")
+	public String K_updateMemberInfo(HttpServletRequest req, Model model) {
+		logger.info("URL : K_updateMemberInfo");
+		service.K_getMemberInfo(req, model);
+		
+		return "admin/sub/K_updateMemberInfo";
+	}
+	
+	//개인정보 업데이트
+	@RequestMapping("/admin/K_infoUpdate")
+	public String K_infoUpdate(HttpServletRequest req, Model model) {
+		logger.info("URL : K_infoUpdate");
+		service.K_infoUpdate(req, model);
+		return "admin/sub/K_infoUpdate";
 	}
 	
 	//근태/급여기준정보설정
@@ -178,6 +195,16 @@ public class K_Controller {
 		service.K_registpersonal(req, model);
 		
 		return "admin/K_registpersonal";
+	}
+	
+	//퇴사자 등록
+	@RequestMapping("admin/K_registRetirement")
+	public String K_registRetirement(HttpServletRequest req, Model model) {
+		logger.info("URL : K_registRetirement");
+		
+		service.K_registRetirement(req, model);
+		
+		return "admin/sub/K_registRetirement";
 	}
 	
 	//회사관리자 아직 안만듬

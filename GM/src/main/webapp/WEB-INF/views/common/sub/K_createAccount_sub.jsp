@@ -39,8 +39,12 @@
 			alert('성별을 확인해주세요.');
 			document.inputform.gender.focus();
 			return false; //다음으로 못넘김
-		} else if(!document.inputform.frgn.value){
+		} else if(!document.inputform.wedding.value){
 			alert('기혼여부를 확인해주세요.');
+			document.inputform.wedding.focus();
+			return false; //다음으로 못넘김
+		} else if(!document.inputform.frgn.value){
+			alert('내외국인여부를 확인해주세요.');
 			document.inputform.frgn.focus();
 			return false; //다음으로 못넘김
 		} else if(!document.inputform.hp1.value){

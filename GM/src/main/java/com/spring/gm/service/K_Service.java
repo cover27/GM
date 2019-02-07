@@ -33,4 +33,8 @@ public interface K_Service {
 	public void K_getMemberInfo(HttpServletRequest req, Model model);
 	
 	public void k_searchMemberInfo(HttpServletRequest req, Model model);
+	
+	public void K_infoUpdate(HttpServletRequest req, Model model);
+	
+	public void K_registRetirement(HttpServletRequest req, Model model);
 }

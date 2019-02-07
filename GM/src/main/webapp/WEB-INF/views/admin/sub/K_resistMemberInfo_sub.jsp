@@ -2,33 +2,6 @@
     pageEncoding="UTF-8"%>
 <%-- <%@ include file="/WEB-INF/views/setting.jsp"%> --%>
 <script type="text/javascript">
-	function sendRequest(callback, url, method, params) {
-		
-		// 비동기 통신을 관리하는 XMLHttpRequest 생성
-		httpRequest = getXMLHttpRequest();
-		
-		// onreadystatechange : 오브젝트 상태가 변한 시점에 불러오는 이벤트핸들러.. 즉 대기상태가 바뀌면 실행할 이벤트
-		// callback 함수 : 서버로부터 응답이 오면 동작할 콜백함수(시스템이 자동호출)
-		httpRequest.onreadystatechange = callback;
-		
-		var httpMethod = method ? method : "GET";
-		if(httpMethod != "GET" && httpMethod != "POST") {
-			httpMethod = "GET";
-		}
-	
-		// params
-		var httpParams = (params == null || params == "") ? null : params;
-		
-		// url
-		var httpUrl = (httpMethod == "GET") ? (url + "?" + httpParams) : url;
-		
-		// 요청 전송 - HTTP 통신을 시작한다.
-		// open(방식, 응답페이지, 비동기)
-		httpRequest.open(httpMethod , httpUrl, true);
-		httpRequest.setRequestHeader("content-type", "application/x-www-form-urlencoded;charset=utf-8");
-		
-		httpRequest.send(httpMethod == "POST" ? httpParams : null);
-	}
 	
 	function load(url) {
 		//요청 : url 즉 news1.jsp, news2.jsp, news3.jsp
@@ -136,7 +109,7 @@
 					<c:if test="${cnt > 0}">
 						<c:forEach var="dto" items="${dtos}">
 							<tr>
-								<td onclick="load('/admin/K_getMemberInfo?id=${dto.id}')"style="cursor: pointer;">${dto.id}</td>
+								<td onclick="load('K_getMemberInfo?id=${dto.id}')"style="cursor: pointer;">${dto.id}</td>
 								<td>${dto.name}</td>
 								<td>${dto.rank}</td>
 								<td>${dto.j_name}</td>

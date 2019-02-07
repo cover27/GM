@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="${path}/css/D_style.css" />
 </head>
 <body>
-	<div class="board_result">
+	<div class="content_result">
 		AJAX
 	</div>
 </body>
