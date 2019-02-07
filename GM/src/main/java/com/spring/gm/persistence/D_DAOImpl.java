@@ -56,32 +56,48 @@ public class D_DAOImpl implements D_DAO{
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		return dao.updateBoard(vo);
 	}
-
+	
+	// 답글확인
 	@Override
-	public int deleteBoard(BoardListVO vo) {
+	public int checkReply(BoardListVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		int cnt = dao.checkReply(vo);
+		return cnt;
+	}
+	
+	// 게시글 삭제
+	@Override
+	public int deleteBoard(int boardnum) {
 		int deleteCnt = 0;
+		
+		BoardListVO vo = getArticle(boardnum);
+
 		
 		if(vo.getBoardnum() != 0) {
 			int replyCnt = checkReply(vo);
+			System.out.println("값0: "+replyCnt);
 			
 			if(replyCnt != 0) {
 				deleteCnt = deleteAll(vo);
+				System.out.println("값1"+deleteCnt);
 				
 				if(deleteCnt > 0) {
 					updateStep(vo);
 				}
 			}else {
 				D_DAO dao = sqlSession.getMapper(D_DAO.class);
-				deleteCnt = dao.deleteBoard(vo);
+				deleteCnt = dao.deleteBoard(boardnum);
+				System.out.println("값2"+deleteCnt);
 			}
 		}
-
+		System.out.println("값3"+deleteCnt);
 		return deleteCnt;
 	}
-
+	
+	// 게시글 작성
 	@Override
 	public int insertBoard(BoardListVO vo) {
-		int boardnum = vo.getNum();
+		int boardnum = vo.getBoardnum();
 		int ref = vo.getRef();
 		int ref_step = vo.getRef_step();
 		int ref_level = vo.getRef_level();
@@ -89,7 +105,7 @@ public class D_DAOImpl implements D_DAO{
 		if(boardnum == 0) {
 			int cnt = getBoardArticleCnt();
 			
-			if(cnt >0) {
+			if(cnt > 0) {
 				ref = getMaxNum() + 1;
 			}else {
 				ref=1;
@@ -109,7 +125,8 @@ public class D_DAOImpl implements D_DAO{
 			D_DAO dao = sqlSession.getMapper(D_DAO.class);
 			return dao.insertBoard(vo);			
 	}
-
+	
+	// 게시글 리스트
 	@Override
 	public BoardListVO getArticle(int boardnum) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
@@ -117,31 +134,30 @@ public class D_DAOImpl implements D_DAO{
 		return vo;
 	}
 
+	// 게시글 갯수
 	@Override
 	public void addReadCnt(int boardnum) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		dao.addReadCnt(boardnum);
 	}
+	
 
-	@Override
-	public int checkReply(BoardListVO vo) {
-		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.checkReply(vo);
-	}
-
+	// 게시판 수정
 	@Override
 	public int updateBoards(BoardsVO vo) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		return dao.updateBoards(vo);
 	}
 
+	// 게시판 리스트
 	@Override
 	public BoardsVO getBoardsArticle(int num) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		BoardsVO vo = dao.getBoardsArticle(num);
 		return vo;
 	}
-
+	
+	// 게시글 끝번호 확인
 	@Override
 	public int getMaxNum() {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
