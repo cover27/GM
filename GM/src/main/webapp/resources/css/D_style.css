@@ -38,6 +38,11 @@
      */
 }
 
+.content #create_board_result {
+	margin-top: 10px;
+	display: none;
+}
+
 .content .boards_trees {
 	font-size: 14px;
 	line-height: 24px;

@@ -8,6 +8,19 @@
 <title>${title}</title>
 </head>
 <body>
+<form action="<c:url value='/admin/D_boardsUpdatePro'/>" method="post" name="D_boardsUpdate">
+	<input type="hidden" name="num" value="${num}">
+	<label>
+		<span>게시판명 : </span>
+		<input type="text" name="b_name" maxlength="50" style="width:270px" placeholder="${b_name}" />
+	</label>
+	<span>익명여부 : </span>
+	<label><input type="radio" name="anon" value="0"> 실명</label>
+	<label><input type="radio" name="anon" value="1"> 익명</label>
+	<input class="inputButton" type="submit" value="수정">
+	<input class="inputButton" type="button" value="취소" onclick="location.reload()">
+</form>
+	<%-- 
 	<div class="content_result">
 		<form action="<c:url value='/admin/D_boardsUpdatePro'/>" method="post" name="D_boardsUpdate">
 			<input type="hidden" name="num" value="${num}">
@@ -36,5 +49,6 @@
 			</table>
 		</form>
 	</div>
+	 --%>
 </body>
 </html>
