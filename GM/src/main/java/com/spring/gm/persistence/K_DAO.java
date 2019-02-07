@@ -38,4 +38,12 @@ public interface K_DAO {
 	
 	public int getHoliday(int company);
 	
+	public int UpdateAttendedSet(AttendedSetVO att);
+	
+	public int UpdateHoliday(Map<String, Object> map);
+	
+	public int insertDayoff(Map<String, Object> map);
+	
+	public int deleteDayOff(int company);
+	
 }

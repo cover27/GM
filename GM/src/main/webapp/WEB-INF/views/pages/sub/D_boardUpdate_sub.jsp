@@ -3,7 +3,7 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2>게시판 수정</h2>
+			<h2>게시글 수정</h2>
 		</div>
 	<form action="<c:url value='/pages/D_boardUpdatePro'/>" method="post" name="D_boardUpdatePro">
 	<input type="hidden" name="boardnum" value="${boardnum}">

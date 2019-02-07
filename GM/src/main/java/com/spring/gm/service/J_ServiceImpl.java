@@ -206,13 +206,66 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("id : " + id);
 		int cnt = dao.J_extrapayinfoCnt(id);
 		System.out.println("cnt :" + cnt);
-		
 		List<BonusCutVO> dtos = dao.J_extrapayinfo(id);
-		if(cnt > 0) {
 		System.out.println("dtos :" + dtos.toString());
-		}
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("cnt", cnt);
+		model.addAttribute("id", id);
 	}
 
+	@Override
+	public void J_extrapayinfoUpdate(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		System.out.println("id :" + id);
+		String[] type = req.getParameterValues("type");
+		for(int i=0;i<type.length;i++) {
+			System.out.println("type : " + type[i]);
+		}
+		String[] state = req.getParameterValues("state");
+		for(int i=0;i<type.length;i++) {
+			System.out.println("state : " + state[i]);
+		}
+		String[] cost_s = req.getParameterValues("cost");
+		/*for(int i=0;i<type.length;i++) {
+			System.out.println("salary_s : " + salary_s[i]);
+		}*/
+		int[] cost = new int[cost_s.length];
+		for(int i=0 ; i<cost_s.length; i++) {
+			cost[i] = Integer.parseInt(cost_s[i]);
+			System.out.println("salary : " + cost[i]);
+		}
+		String[] content = req.getParameterValues("content");
+		for(int i=0;i<type.length;i++) {
+			System.out.println("content : " + content[i]);
+		}
+		
+		for(int i=0; i<type.length; i++) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("type", type[i]);
+			map.put("state", state[i]);
+			map.put("cost", cost[i]);
+			map.put("content", content[i]);
+			map.put("id", id);
+			int cnt = dao.J_extrapayinfoUpdate(map);
+			System.out.println("cnt : " + cnt);
+			model.addAttribute("cnt",cnt);
+		}
+	}
+	
+	// 개인 급여수당정보 삭제하기
+	@Override
+	public void deleteInfo(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		System.out.println("num : " + num);
+		BonusCutVO vo = dao.numId(num);
+		String id = vo.getId();
+		System.out.println("id : " + id);
+		int cnt = dao.deleteInfo(num);
+		System.out.println("cnt:" + cnt);
+		List<BonusCutVO> dtos = dao.J_extrapayinfo(id);
+		System.out.println("dtos : " + dtos.toString());
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("cnt",cnt);
+		model.addAttribute("id", id);
+	}
 }

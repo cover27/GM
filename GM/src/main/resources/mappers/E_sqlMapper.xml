@@ -17,5 +17,17 @@
 		SELECT * FROM member WHERE company = #{company}
 	</select>
 
+	<!-- group_rank = 1  : 그룹정보 -->
+	<select id="getMyCompanyGroupCnt" parameterType="int" resultType="com.spring.gm.vo.GroupsVO">
+		SELECT * FROM groups WHERE company = #{company} AND group_rank = 1
+	</select>
+	
+	<select id="getMyCompanyInfo2" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
+		SELECT * FROM member where company = #{company} AND depart = #{depart}
+	</select>
+
+	<select id="findCompanyName" parameterType="int" resultType="String">
+		SELECT c_name from companies where company = #{company}
+	</select>
 
 </mapper>

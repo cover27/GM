@@ -34,7 +34,7 @@ public class D_Controller {
 		logger.info("URL : D_CreateBoards_pro");
 		
 
-		// service.insertBoards(req, model);
+		service.insertBoards(req, model);
 		return "admin/sub/D_CreateBoards_pro";
 	}
 	
@@ -47,12 +47,21 @@ public class D_Controller {
 		return "pages/D_boardsList";
 	}
 	
-	@RequestMapping("/pages/D_boardsUpdate")
+	// 게시판 수정
+	@RequestMapping("/admin/D_boardsUpdate")
 	public String boardsUpdate(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardsUpdate");
 		
-		
+		service.boardsUpdate(req, model);
 		return "admin/D_boardsUpdate";
+	}
+	// 게시판 수정 처리
+	@RequestMapping("/admin/D_boardsUpdatePro")
+	public String boardsUpdatePro(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardsUpdatePro");
+		
+		service.boardsUpdatePro(req, model);
+		return "admin/D_boardsUpdatePro";
 	}
 	
 	//게시글 목록
@@ -120,4 +129,6 @@ public class D_Controller {
 		service.boardDelete(req, model);
 		return "pages/D_boardDeletePro";
 	}
+	
+
 }

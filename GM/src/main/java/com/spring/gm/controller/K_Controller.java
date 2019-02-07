@@ -110,18 +110,6 @@ public class K_Controller {
 		return "common/login";
 	}
 	
-	/*
-	//우측상단에 로그아웃 누르면 로그아웃되면서 로그인화면으로 가짐
-	@RequestMapping("../logout")
-	public String logout_test(HttpServletRequest req, Model model) {
-		logger.info("URL : ../logout");
-		
-		req.getSession().removeAttribute("loginInfo");
-		
-		return "common/login";
-	}
-	*/
-	
 	//인사관리 - 대기명단 승인/취소가 기본
 	@RequestMapping("admin/K_member_manage")
 	public String K_member_manage(HttpServletRequest req, Model model) {
@@ -132,6 +120,7 @@ public class K_Controller {
 		return "admin/K_member_manage";
 	}
 	
+	// 대기명단 승인/취소
 	@RequestMapping("admin/K_appMember")
 	public String K_appMember(HttpServletRequest req, Model model) {
 		logger.info("URL : K_appMember");
@@ -145,10 +134,30 @@ public class K_Controller {
 	@RequestMapping("admin/K_resistMemberInfo")
 	public String K_resistMemberInfo(HttpServletRequest req, Model model) {
 		logger.info("URL : K_resistMemberInfo");
-		
-		service.K_resistMemberInfo(req, model);
+		String title = req.getParameter("search_title");
+		String content = req.getParameter("search_content");
+		if((title == null && content == null) || title.equals("allList")  ) {	// 검색 안했을 경우
+			service.K_resistMemberInfo(req, model);
+		} else if(title != null){
+			if(title != null && content.length() > 0) {
+				System.out.println("검색 했을 경우") ;
+				service.k_searchMemberInfo(req, model);
+			} else if(title != null && content.length() <= 0){
+				System.out.println("검색 실패하였습니다. 확인해 주세여");
+				return "admin/sub/J_SalaryDefaultSettingPro_sub";
+			}
+		}
 		
 		return "admin/K_resistMemberInfo";
+	}
+	
+	// 개인정보 가져오기(Ajax)
+	@RequestMapping("admin/K_getMemberInfo")
+	public String K_getMemberInfo(HttpServletRequest req, Model model) {
+		logger.info("URL : K_getMemberInfo");
+		service.K_getMemberInfo(req, model);
+		
+		return "admin/sub/J_sub/J_info";
 	}
 	
 	//근태/급여기준정보설정
@@ -161,21 +170,14 @@ public class K_Controller {
 		return "admin/K_personal";
 	}
 	
-	//테스트용 삭제예정
-	@RequestMapping("admin/test")
-	public String K_test(HttpServletRequest req, Model model) {
-		logger.info("URL : K_personal");
+	// 근태 및 급여설정 변경
+	@RequestMapping("admin/registpersonal")
+	public String K_registpersonal(HttpServletRequest req, Model model) {
+		logger.info("URL : K_registpersonal");
 		
-		//service.K_personal(req, model);
-		String[] values = req.getParameterValues("value");
-		if(values.length != 0) {
-			for(int i=0; i<values.length; i++) {
-				System.out.println(" " + values[i]);
-			}
-		} else {
-			System.out.println("안탐");
-		}
-		return "admin/K_personal";
+		service.K_registpersonal(req, model);
+		
+		return "admin/K_registpersonal";
 	}
 	
 	//회사관리자 아직 안만듬
