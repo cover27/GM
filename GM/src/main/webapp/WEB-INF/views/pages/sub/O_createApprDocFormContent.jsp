@@ -3,6 +3,12 @@
     
 <!-- text-editor를 쓰기 위한 script 파일 설정으로 아래 textarea가 있어야 한다. -->
 <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+<script type="text/javascript">
+function addApprLine(){
+	var url="O_addApprLine";
+	window.open(url, "addApprLine", "menubar=no, width=1000, height=560");
+}
+</script>
 
 <style>
 .btn-wrap {
@@ -220,7 +226,7 @@ div{
 		
 		<!-- 결재 선 라인 -->
 		<div id="formButtonDiv" class="btn-wrap pt10">
-		    <button id="addApprLineButton" type="button" class="btn btn-color5 br">결재선</button>
+		    <button id="addApprLineButton" type="button" class="btn btn-color5 br" onclick="addApprLine();">결재선</button>
 		    <button id="createApprDocButton" type="button" class="btn btn-color5 br">결재요청</button>
 		    <button id="addApprRefInfoButton" type="button" class="btn btn-color7 br">기결재첨부</button>
 			<button id="createApprDocTemporayButton" type="button" class="btn btn-color7 br">임시저장</button>
@@ -285,7 +291,8 @@ div{
 											<th rowspan="2">
 												결<br><br class="last">재
 											</th>
-										<th class="apprLine last">기안</th></tr>
+											<th class="apprLine last">기안</th>
+										</tr>
 										<tr id="apprLine0BTr">									
 										<td height="60" class="last">${vo.getName()}</td></tr>
 									</tbody>
@@ -300,16 +307,18 @@ div{
 									<caption></caption>
 									<tbody>	
 										</tbody><tbody>	
-										<tr id="apprLine1TTr">	
-											<th rowspan="2">					
-												합<br><br>의
-											</th>
+											<tr id="apprLine1TTr">	
+												<th rowspan="2">					
+													합<br><br class="last">의
+												</th>
+											<th class="apprLine last">-</th>
 										</tr>
-										<tr id="apprLine1BTr">									
+										<tr id="apprLine1BTr">	
+											<td height="60" class="last">합의자</td>								
 										</tr>
 									</tbody>
 								</table>						
-							</div>						
+							</div>		
 						</div>
 					</div>
 										
@@ -330,11 +339,11 @@ div{
 									<th>문서번호</th>
 									<td>자동채번</td>
 									<th>기안일자</th>
-									<td>2019.01.25</td>
+									<td>${today}</td>
 								</tr>
 								<tr>
 									<th>기안자</th>
-									<td>${vo.getName()} ${vo.getR_name()}</td>
+									<td>${vo.getName()} (${vo.getR_name()})</td>
 									<th>기안부서</th>
 									<td>
 										<input type="hidden" name="apprGroupId" value="G153190">${vo.getG_name()}
@@ -360,13 +369,13 @@ div{
 								<tr id="apprReceiveLineTr" style="display: none;">
 									<th scope="row">수신처</th>
 									<td colspan="3">
-										<div id="apprReceiveLineInfoDiv"></div>
+										<div id="apprReceiveLineInfoDiv">쓰지 않음</div>
 									</td>
 								</tr>
 								<tr>
 									<th><span class="text-point-b">*</span>문서제목</th>
 									<td colspan="3">
-						    			<input type="text" title="문서제목" name="apprTitle" value="" class="inputbox w100p" maxlength="100" placeholder="문서제목을 입력하세요. ">
+						    			<input type="text" title="문서제목" name="apprTitle" value="" class="inputbox w100p" maxlength="100" placeholder="문서제목을 입력하세요." required="required">
 									</td>
 								</tr>
 							</tbody>
