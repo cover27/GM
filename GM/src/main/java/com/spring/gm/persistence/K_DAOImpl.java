@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
+import com.spring.gm.vo.GradeVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 
@@ -110,9 +111,33 @@ public class K_DAOImpl implements K_DAO{
 	}
 
 	@Override
-	public GroupsVO getGroups(int company) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<GroupsVO> getGroups(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getGroups", company);
+	}
+
+	@Override
+	public List<GradeVO> getGrade(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getGrade", company);
+	}
+
+	@Override
+	public String getCompanyName(int company) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getCompanyName", company);
+	}
+
+	@Override
+	public int updateAdminMemberInfo(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateAdminMemberInfo", map);
+	}
+
+	@Override
+	public int retireMember(String id) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.retireMember", id);
+	}
+
+	@Override
+	public int retireUsers(String id) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.retireUsers", id);
 	}
 	
 }

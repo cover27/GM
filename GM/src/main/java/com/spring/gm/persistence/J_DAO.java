@@ -1,10 +1,12 @@
 package com.spring.gm.persistence;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.spring.gm.vo.BonusCutVO;
+import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO;
 public interface J_DAO {
@@ -29,9 +31,36 @@ public interface J_DAO {
 	public ArrayList<join_mgcVO> searchinfoList5(Map<String, Object> map);
 	
 	//------------- 기본수당 외 수당관리-------------------------------------------
+	// 회사명 가져오기
+	public ArrayList<CompaniesVO> companyName(int company);
+	// 수당 검색 회원목록 갯수 가져오기(부서 날짜검색 안했을시)
+	public int selectNoneDepartCnt(Map<String, Object> map);
+	public ArrayList<join_mgcVO> selectNoneDepartList(Map<String, Object> map);
+	// 수당 검색 회원목록 갯수 가져오기(아이디 날짜검색 안했을시)
+	public int selectNoneIdCnt(Map<String, Object> map);
+	public ArrayList<join_mgcVO> selectNoneIdList(Map<String, Object> map);
+	// 수당  검색 회원목록  가져오기(id검색시)
+	public ArrayList<join_mgcVO> salaryIdSearchList1_1(Map<String, Object> map);//입사일 년도로 기준
+	public ArrayList<join_mgcVO> salaryIdSearchList1_2(Map<String, Object> map);//입사일 년도로 기준
+	public ArrayList<join_mgcVO> salaryIdSearchList2_1(Map<String, Object> map);//입사일 월로 기준
+	public ArrayList<join_mgcVO> salaryIdSearchList2_2(Map<String, Object> map);//입사일 월로 기준
+	public ArrayList<join_mgcVO> salaryIdSearchList3_1(Map<String, Object> map);//입사일 일별로 기준
+	public ArrayList<join_mgcVO> salaryIdSearchList3_2(Map<String, Object> map);//입사일 일별로 기준
+	
+	// 수당  검색 회원목록  가져오기(depart검색시)
+	public ArrayList<join_mgcVO> salaryDepartSearchList1(Map<String, Object> map);//입사일 년도로 기준
+	public ArrayList<join_mgcVO> salaryDepartSearchList2(Map<String, Object> map);//입사일 월로 기준
+	public ArrayList<join_mgcVO> salaryDepartSearchList3(Map<String, Object> map);//입사일 일별로 기준
 	// 급여 개인회원수당 정보 가져오기
 	public int J_extrapayinfoCnt(String id);
 	public ArrayList<BonusCutVO> J_extrapayinfo(String id);
+	// 급여 개인회원수당 정보 가져오기
+	public int J_extrapayinfoCnt2_1(Map<String, Object> map);
+	public int J_extrapayinfoCnt2_2(Map<String, Object> map);
+	public int J_extrapayinfoCnt2_3(Map<String, Object> map);
+	public ArrayList<BonusCutVO> J_extrapayinfo2_1(Map<String, Object> map);
+	public ArrayList<BonusCutVO> J_extrapayinfo2_2(Map<String, Object> map);
+	public ArrayList<BonusCutVO> J_extrapayinfo2_3(Map<String, Object> map);
 	// 개인 급여수당정보 업데이트
 	public int J_extrapayinfoUpdate(Map<String, Object> map);
 	// 개인 num에대한 id 값 가져오기

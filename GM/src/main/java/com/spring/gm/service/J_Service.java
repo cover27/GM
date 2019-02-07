@@ -1,8 +1,11 @@
 package com.spring.gm.service;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 
 public interface J_Service {
 	
@@ -16,10 +19,22 @@ public interface J_Service {
 	public void infoUpdate(HttpServletRequest req, Model model);
 	
 	//------------------기본수당 외 수당 관리-----------------------------
-	// 급여 개인회원수당 정보 가져오기
+	// 회사명 가져오기
+	public void companyName(HttpServletRequest req, Model model);
+	// 수당  검색 회원목록  가져오기 (depart검색시 날짜입력이 없을시)
+	public void salarySearchNoneDepartList(HttpServletRequest req, Model model);
+	// 수당  검색 회원목록  가져오기 (id검색시 날짜입력이 없을시)
+	public void salarySearchNoneIdList(HttpServletRequest req, Model model);
+	// 수당  검색 회원목록  가져오기(depart)
+	public void salarySearchDepartList(HttpServletRequest req, Model model);
+	// 수당  검색 회원목록 가져오기(id)
+	public void salarySearchIdList(HttpServletRequest req, Model model);
+	// 개인 급여수당정보 가져오기(Ajax) - 이번달
 	public void J_extrapayinfo(HttpServletRequest req, Model model);
-	// 개인 급여수당정보 업데이트
+	// 개인 급여수당정보 가져오기(Ajax) - 날짜 검색
+	public void J_extrapayinfo2(HttpServletRequest req, Model model);
+	// 수당 개인 급여수당정보 업데이트
 	public void J_extrapayinfoUpdate(HttpServletRequest req, Model model);
-	// 개인 급여수당정보 삭제하기
+	//  수당 개인 급여수당정보 삭제하기
 	public void deleteInfo(HttpServletRequest req, Model model);
 }

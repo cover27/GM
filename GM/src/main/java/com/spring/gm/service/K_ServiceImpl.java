@@ -17,6 +17,8 @@ import com.spring.gm.persistence.K_DAO;
 import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
+import com.spring.gm.vo.GradeVO;
+import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO;
 
@@ -149,6 +151,8 @@ public class K_ServiceImpl implements K_Service{
 					map2.put("id", checks[i]);
 					map2.put("rank", 2); // sysrank -> 2는 일반 사용자
 					dao.updateSysrank(map2);
+					
+					
 				}
 				
 			} else { //취소한다면 -> member's sysrank -> 4(승인거절자) 로 바꿈(메일로 승인 거절됨을 알림)
@@ -368,7 +372,8 @@ public class K_ServiceImpl implements K_Service{
 	@Override
 	public void K_getMemberInfo(HttpServletRequest req, Model model) {
 		String strId = req.getParameter("id");
-
+		List<GroupsVO> groupsList = new ArrayList<GroupsVO>();
+		List<GradeVO> gradeList = new ArrayList<GradeVO>();
 		/* 장훈수정 시작 */
 		// id 뒤에 자꾸 붙어서 나오는?null이라는 문자열을 없애기
 
@@ -388,9 +393,34 @@ public class K_ServiceImpl implements K_Service{
 		System.out.println("id :" + id);
 
 		MemberVO dto = dao.memberInfo(id);
-		System.out.println("여기 탔다");
-		System.out.print(dto.toString());
+		groupsList = dao.getGroups(dto.getCompany());
+		gradeList = dao.getGrade(dto.getCompany());
+		String bf_groups = null;
+		String bf_grade = null;
+		for(int i=0; i<groupsList.size(); i++) {
+			if(dto.getDepart() == groupsList.get(i).getGroupId()) {
+				bf_groups = groupsList.get(i).getG_name();
+			}
+		}
+		if(bf_groups == null) {
+			bf_groups = dao.getCompanyName(dto.getCompany());
+		}
+		
+		for(int i=0; i<gradeList.size(); i++) {
+			if(dto.getRank() == gradeList.get(i).getRank()) {
+				bf_grade = gradeList.get(i).getR_name();
+			}
+		}
+		if(bf_grade == null) {
+			bf_grade = "unknown";
+		}
+		
 		model.addAttribute("dto", dto);
+		model.addAttribute("groupsList", groupsList);
+		model.addAttribute("gradeList", gradeList);
+		model.addAttribute("bf_groups", bf_groups);
+		model.addAttribute("bf_grade", bf_grade);
+		model.addAttribute("company", dao.getCompanyName(dto.getCompany()));
 	}
 
 	@Override
@@ -419,6 +449,37 @@ public class K_ServiceImpl implements K_Service{
 			model.addAttribute("cnt", cnt);
 		}
 	}
-	
+
+	@Override
+	public void K_infoUpdate(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		int depart = Integer.parseInt(req.getParameter("depart"));
+		int rank = Integer.parseInt(req.getParameter("rank"));
+		int wrkdvd = Integer.parseInt(req.getParameter("wrkdvd"));
+		Date enterday = Date.valueOf(req.getParameter("enterday"));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("depart", depart);
+		map.put("rank", rank);
+		map.put("wrkdvd", wrkdvd);
+		map.put("enterday", enterday);
+		
+		int updateCnt = dao.updateAdminMemberInfo(map);
+		model.addAttribute("updateCnt", updateCnt);
+	}
+
+	@Override
+	public void K_registRetirement(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		int updateCnt1 = dao.retireMember(id);
+		int updateCnt2 = dao.retireUsers(id);
+		int updateCnt = 0;
+		
+		if(updateCnt1==1 && updateCnt2==1) {
+			updateCnt = 1;
+		}
+		model.addAttribute("updateCnt", updateCnt);
+	}
 	
 }
