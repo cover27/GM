@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<!-- text-editor를 쓰기 위한 script 파일 설정으로 아래 textarea가 있어야 한다. -->
+<script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
 
 <style>
 .btn-wrap {
@@ -284,7 +287,7 @@ div{
 											</th>
 										<th class="apprLine last">기안</th></tr>
 										<tr id="apprLine0BTr">									
-										<td height="60" class="last">오정</td></tr>
+										<td height="60" class="last">${vo.getName()}</td></tr>
 									</tbody>
 								</table>							
 							</div>		
@@ -331,10 +334,10 @@ div{
 								</tr>
 								<tr>
 									<th>기안자</th>
-									<td>오정</td>
+									<td>${vo.getName()} ${vo.getR_name()}</td>
 									<th>기안부서</th>
 									<td>
-										<input type="hidden" name="apprGroupId" value="G153190">테스트
+										<input type="hidden" name="apprGroupId" value="G153190">${vo.getG_name()}
 									</td>
 								</tr>
 								<tr>
@@ -376,9 +379,16 @@ div{
 						
 					
 					<!--  template의 jsp 호출 끝-->
-					<div id="formLinkedHtmlDataDiv" style="border: 1px solid #e0e0e0;" class="mt10 padding10 none"></div>								
+					<!-- <div id="formLinkedHtmlDataDiv" style="border: 1px solid #e0e0e0;" class="mt10 padding10 none"></div> -->								
 					<div class="border_t1" style="border-top:none !important;">
-						<textarea id="formEditorData" title="formEditorData" name="formEditorData" style="display:none;"></textarea><div id="editorDiv"><div id="dext_frame_holderdext5" style="width:100%; height:550px; "><iframe frameborder="0" scrolling="no" id="dext_frame_dext5" title="에디터 전체영역" width="100%" height="100%" style="width: 100%; height: 100%;" src="https://ezgroupware.bizmeka.com/js/dext5editor/pages/editor_release.html?ver=3.5.1263556.1800.01"></iframe></div></div>
+						<div id="editorDiv">
+							<div id="dext_frame_holderdext5" style="width:100%; height:550px;">
+								<!-- text-editor를 쓰기 위함으로 class name은 ckeditor로 쓰여야 한다. -->
+								<textarea class="ckeditor" id="formEditorData" title="formEditorData" name="formEditorData">글쓰기 시작</textarea>
+								<!-- text-editor를 쓰기 위함으로 위의 textarea의 class name이 아래 쓰인다. -->
+								<script>CKEDITOR.replace('formEditorData')</script>
+							</div>
+						</div>
 					</div>
 					
 					

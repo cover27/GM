@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"  %>
+<script src="${path}js/J_script.js"></script>
 <!DOCTYPE html>
 <html>
 <head>

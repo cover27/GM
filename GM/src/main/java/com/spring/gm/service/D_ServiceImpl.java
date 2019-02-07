@@ -26,14 +26,12 @@ public class D_ServiceImpl implements D_Service{
 	public void insertBoards(HttpServletRequest req, Model model) {
 		
 		BoardsVO vo = new BoardsVO();		// 바구니 생성
-		String group = req.getParameter("groupId");	
-		int groupId = Integer.parseInt(group);
+
 		String b_name = req.getParameter("b_name");
 		String anon_i = req.getParameter("anon");
 		int anon = Integer.parseInt(anon_i);
 		int del = 0;
 		
-		vo.setGroupId(groupId);		// 가져온 값들을 바구니에 담음
 		vo.setB_name(b_name);
 		vo.setAnon(anon);
 		vo.setDel(del);
@@ -221,7 +219,7 @@ public class D_ServiceImpl implements D_Service{
 	}
 	
 	
-
+	// 게시글 수정 처리
 	@Override
 	public void boardUpdate(HttpServletRequest req, Model model) {
 		int num = Integer.parseInt(req.getParameter("num"));
@@ -230,41 +228,36 @@ public class D_ServiceImpl implements D_Service{
 		
 		BoardListVO vo = null;
 		vo = dao.getArticle(boardnum);
-		vo.setDel(1);
+
 		
 		model.addAttribute("num",num);
 		model.addAttribute("vo", vo);
 		model.addAttribute("boardnum", boardnum);
 		model.addAttribute("pageNum", pageNum);
 	}
-
+	
+	// 게시글 삭제
 	@Override
 	public void boardDelete(HttpServletRequest req, Model model) {
 		int num = Integer.parseInt(req.getParameter("num"));
-		int del = Integer.parseInt(req.getParameter("del"));
 		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int deleteCnt = 0;
+		
 		
 		BoardListVO vo = new BoardListVO();
 		vo.setBoardnum(boardnum);
-		vo.setDel(1);
-
 		
-		// 4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
-		/*BoardDAO dao = BoardDAOImpl.getInstance();*/
-		
-		// 5단계. 글 수정 실행(vo를 DAO로 전달하여 SQL 실행)
-		int deleteCnt = dao.deleteBoard(vo);
-		
+		deleteCnt = dao.deleteBoard(boardnum);
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
-		model.addAttribute("del", del);
 		model.addAttribute("num", num);
 		model.addAttribute("deleteCnt", deleteCnt);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("boardnum", boardnum);		
 		
 	}
-
+	
+	// 게시글 작성 폼
 	@Override
 	public void insertBoard(HttpServletRequest req, Model model) {
 		
@@ -283,6 +276,7 @@ public class D_ServiceImpl implements D_Service{
 			ref = Integer.parseInt(req.getParameter("ref"));
 			ref_step = Integer.parseInt(req.getParameter("ref_step"));
 			ref_level = Integer.parseInt(req.getParameter("ref_level"));
+			
 		}
 		num = Integer.parseInt(req.getParameter("num"));
 		pageNum = Integer.parseInt(req.getParameter("pageNum"));
@@ -295,7 +289,8 @@ public class D_ServiceImpl implements D_Service{
 		model.addAttribute("ref_level", ref_level);
 		model.addAttribute("pageNum", pageNum);
 	}
-
+	
+	// 게시글 상세페이지
 	@Override
 	public void contentForm(HttpServletRequest req, Model model) {
 		// 3단계. 화면으로부터 입력받은 값을 받아온다.
@@ -321,6 +316,7 @@ public class D_ServiceImpl implements D_Service{
 		
 	}
 
+	// 게시글 작성 처리
 	@Override
 	public void insertPro(HttpServletRequest req, Model model) {
 		
@@ -353,7 +349,6 @@ public class D_ServiceImpl implements D_Service{
 		
 		// 5단계. 글쓰기 처리(vo를 DAO로 전달하여 SQL 실행)
 		int insertCnt = dao.insertBoard(vo);
-		System.out.println("godgod"+insertCnt);
 		
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
 		model.addAttribute("num", num);
@@ -361,7 +356,8 @@ public class D_ServiceImpl implements D_Service{
 		model.addAttribute("dto", vo);
 		model.addAttribute("insertCnt", insertCnt);
 	}
-
+	
+	// 게시글 수정 처리
 	@Override
 	public void boardUpdatePro(HttpServletRequest req, Model model) {
 		
@@ -388,6 +384,49 @@ public class D_ServiceImpl implements D_Service{
 		model.addAttribute("boardnum", boardnum);
 	}
 	
+	// 게시판 수정 폼
+	@Override
+	public void boardsUpdate(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		String b_name = req.getParameter("b_name");
+		String anons = req.getParameter("anon");
+		int anon = Integer.parseInt(anons);
+		
+		BoardsVO vo = new BoardsVO();
+		vo = dao.getBoardsArticle(num);
+		
+		model.addAttribute("num",num);
+		model.addAttribute("bvo", vo);
+		model.addAttribute("b_name", b_name);
+		model.addAttribute("anon", anon);
+		
+	}
 	
+	// 게시판 수정 처리
+	@Override
+	public void boardsUpdatePro(HttpServletRequest req, Model model) {
+		
+		int num = Integer.parseInt(req.getParameter("num"));
+		int anon = Integer.parseInt(req.getParameter("anon"));
+
+		
+		// 화면으로부터 입력받은 값을 vo에 담자
+		BoardsVO vo = new BoardsVO();
+		vo.setB_name(req.getParameter("b_name"));
+		vo.setAnon(anon);
+		
+		// 4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
+		/*BoardDAO dao = BoardDAOImpl.getInstance();*/
+		
+		// 5단계. 글 수정 실행(vo를 DAO로 전달하여 SQL 실행)
+		int updateCnt = dao.updateBoards(vo);
+		
+		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("num", num);
+		model.addAttribute("updateCnt", updateCnt);
+	}
+		
+	
+
 		
 }

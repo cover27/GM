@@ -56,27 +56,86 @@ public class D_DAOImpl implements D_DAO{
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		return dao.updateBoard(vo);
 	}
-
+	
+	// 답글확인
 	@Override
-	public int deleteBoard(BoardListVO vo) {
+	public int checkReply(BoardListVO vo) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.deleteBoard(vo);
+		int cnt = dao.checkReply(vo);
+		return cnt;
 	}
+	
+	// 게시글 삭제
+	@Override
+	public int deleteBoard(int boardnum) {
+		int deleteCnt = 0;
+		
+		BoardListVO vo = getArticle(boardnum);
 
+		
+		if(vo.getBoardnum() != 0) {
+			int replyCnt = checkReply(vo);
+			System.out.println("답글을 가지고 있는가? : "+replyCnt);
+			
+			if(replyCnt != 0) {
+				deleteCnt = deleteAll(vo);
+				System.out.println("deleteCnt ::: "+deleteCnt);
+				
+				if(deleteCnt > 0) {
+					updateStep(vo);
+				}
+			}else {
+				D_DAO dao = sqlSession.getMapper(D_DAO.class);
+				deleteCnt = dao.deleteBoard(boardnum);
+				System.out.println("값2"+deleteCnt);
+			}
+		}
+		System.out.println("값3"+deleteCnt);
+		return deleteCnt;
+	}
+	
+	// 게시글 작성
 	@Override
 	public int insertBoard(BoardListVO vo) {
-		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.insertBoard(vo);
+		int boardnum = vo.getBoardnum();
+		int ref = vo.getRef();
+		int ref_step = vo.getRef_step();
+		int ref_level = vo.getRef_level();
+		
+		if(boardnum == 0) {
+			int cnt = getBoardArticleCnt();
+			
+			if(cnt > 0) {
+				ref = getMaxNum() + 1;
+				System.out.println("ref확인 : "+ref);
+			}else {
+				ref=1;
+			}
+			ref_step=0;
+			ref_level=0;
+			
+		}else {
+			updateReply(vo);			
+			ref_step++;
+			ref_level++;			
+		}
+		vo.setRef(ref);
+		vo.setRef_step(ref_step);
+		vo.setRef_level(ref_level);
+		
+			D_DAO dao = sqlSession.getMapper(D_DAO.class);
+			return dao.insertBoard(vo);			
 	}
-
+	
+	// 게시글 리스트
 	@Override
 	public BoardListVO getArticle(int boardnum) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		BoardListVO vo = dao.getArticle(boardnum);
-		
 		return vo;
 	}
 
+	// 게시글 갯수
 	@Override
 	public void addReadCnt(int boardnum) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
@@ -84,5 +143,46 @@ public class D_DAOImpl implements D_DAO{
 	}
 	
 
+	// 게시판 수정
+	@Override
+	public int updateBoards(BoardsVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.updateBoards(vo);
+	}
+
+	// 게시판 리스트
+	@Override
+	public BoardsVO getBoardsArticle(int num) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		BoardsVO vo = dao.getBoardsArticle(num);
+		return vo;
+	}
+	
+	// 게시글 끝번호 확인
+	@Override
+	public int getMaxNum() {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.getMaxNum();
+	}
+
+	@Override
+	public void updateReply(BoardListVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		dao.updateReply(vo);
+	}
+
+	@Override
+	public int deleteAll(BoardListVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.deleteAll(vo);
+	}
+
+	@Override
+	public void updateStep(BoardListVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		dao.updateStep(vo);
+	}
+	
+	
 	
 }

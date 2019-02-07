@@ -19,7 +19,7 @@
             <li><a href="<c:url value='/pages/S_mail_inbox' />">메일</a></li>
             <li><a href="<c:url value='/pages/O_createApprDocFormView' />">전자결재</a></li>
             <li><a href="#">일정</a></li>
-            <li><a href="<c:url value='/pages/D_boardsList' />">게시판</a></li>
+            <li><a href="<c:url value='/pages/D_boardsSetting' />">게시판</a></li>
             <li><a href="#">웹디스크</a></li>
 
             <li><a href="<c:url value='/admin/K_member_manage'/>">인사</a></li>
