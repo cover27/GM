@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&subset=korean');
 *:before, *:after {
-    -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box
+    -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 * {
-    -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box
+    -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html, body {
@@ -16,12 +20,21 @@ html {
 }
 
 body {
-    margin:0; font-family: 'Nanum Gothic', 'NanumGothic', NanumGothic, ng,Dotum,Helvetica,'Apple SD Gothic Neo',Sans-serif; color:#111; font-size:1.2em;font-weight: normal; line-height: 1.42857143;
-    background: #eee;
+    margin: 0;
+	font-family: 'Nanum Gothic', 'NanumGothic', NanumGothic, ng, Dotum, Helvetica, 'Apple SD Gothic Neo', Sans-serif;
+	color: #111;
+	font-size: 1.4em;
+	font-weight: normal;
+	line-height: 1.42857143;
+	background: #eee;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    padding:0; margin:0; font-weight:500; line-height:1.1;
+    padding: 0;
+	margin: 0;
+	font-weight: 500;
+	line-height: 1.1;
+
 }
 
 ul {
@@ -50,6 +63,10 @@ a, a:visited, a:focus {
 button:hover {
 	text-decoration: none;
     opacity: .8;
+}
+
+button:focus {
+	outline: none;
 }
 
 table {
@@ -497,6 +514,12 @@ img {
     border-radius: 2px;
     cursor: pointer;
     white-space: nowrap;
+}
+
+.content_result {
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	padding: 20px;
 }
 
 .paging {

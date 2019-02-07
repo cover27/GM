@@ -81,7 +81,7 @@ public class D_DAOImpl implements D_DAO{
 
 	@Override
 	public int insertBoard(BoardListVO vo) {
-		int boardnum = vo.getNum();
+		int boardnum = vo.getBoardnum();
 		int ref = vo.getRef();
 		int ref_step = vo.getRef_step();
 		int ref_level = vo.getRef_level();
@@ -91,6 +91,7 @@ public class D_DAOImpl implements D_DAO{
 			
 			if(cnt >0) {
 				ref = getMaxNum() + 1;
+				System.out.println("ref확인 : "+ref);
 			}else {
 				ref=1;
 			}
