@@ -221,7 +221,7 @@ public class D_ServiceImpl implements D_Service{
 	}
 	
 	
-
+	// 게시글 수정 처리
 	@Override
 	public void boardUpdate(HttpServletRequest req, Model model) {
 		int num = Integer.parseInt(req.getParameter("num"));
@@ -237,7 +237,8 @@ public class D_ServiceImpl implements D_Service{
 		model.addAttribute("boardnum", boardnum);
 		model.addAttribute("pageNum", pageNum);
 	}
-
+	
+	// 게시글 삭제
 	@Override
 	public void boardDelete(HttpServletRequest req, Model model) {
 		int num = Integer.parseInt(req.getParameter("num"));
@@ -267,7 +268,8 @@ public class D_ServiceImpl implements D_Service{
 		model.addAttribute("boardnum", boardnum);		
 		
 	}
-
+	
+	// 게시글 작성 폼
 	@Override
 	public void insertBoard(HttpServletRequest req, Model model) {
 		
@@ -299,7 +301,8 @@ public class D_ServiceImpl implements D_Service{
 		model.addAttribute("ref_level", ref_level);
 		model.addAttribute("pageNum", pageNum);
 	}
-
+	
+	// 게시글 상세페이지
 	@Override
 	public void contentForm(HttpServletRequest req, Model model) {
 		// 3단계. 화면으로부터 입력받은 값을 받아온다.
@@ -325,6 +328,7 @@ public class D_ServiceImpl implements D_Service{
 		
 	}
 
+	// 게시글 작성 처리
 	@Override
 	public void insertPro(HttpServletRequest req, Model model) {
 		
@@ -364,7 +368,8 @@ public class D_ServiceImpl implements D_Service{
 		model.addAttribute("dto", vo);
 		model.addAttribute("insertCnt", insertCnt);
 	}
-
+	
+	// 게시글 수정 처리
 	@Override
 	public void boardUpdatePro(HttpServletRequest req, Model model) {
 		
@@ -390,7 +395,8 @@ public class D_ServiceImpl implements D_Service{
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("boardnum", boardnum);
 	}
-
+	
+	// 게시판 수정 폼
 	@Override
 	public void boardsUpdate(HttpServletRequest req, Model model) {
 		int num = Integer.parseInt(req.getParameter("num"));
@@ -407,7 +413,8 @@ public class D_ServiceImpl implements D_Service{
 		model.addAttribute("anon", anon);
 		
 	}
-
+	
+	// 게시판 수정 처리
 	@Override
 	public void boardsUpdatePro(HttpServletRequest req, Model model) {
 		
