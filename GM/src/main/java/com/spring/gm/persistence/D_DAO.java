@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.BoardsVO;
+import com.spring.gm.vo.ReplyListVO;
 
 
 
@@ -43,6 +44,8 @@ public interface D_DAO {
 	public int deleteAll(BoardListVO vo);
 	
 	public void updateStep(BoardListVO vo);
+	
+	public int insertReple(ReplyListVO vo);
 
 	
 

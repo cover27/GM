@@ -92,5 +92,10 @@
 			UPDATE BOARDLIST SET ref_step=ref_step-1  WHERE ref=#{ref} AND ref_step > #{ref_step}
 		]]>
 	</update>
+	
+<!-- 	<insert id="insertReple" parameterType="com.spring.gm.vo.ReplyListVO">
+		INSERT INTO BOARDS (replenum, boardnum, content, writer, reref, reref_step, reref_level, reg_date, del) 
+		VALUES(#{reply_seq.nextval}, #{boardnum}, #{content, #{writer}, #{reref}, #{reref_step}, #{reref_level}, #{reg_date}, #{del})		
+	</insert> -->
 	 		
 </mapper>
