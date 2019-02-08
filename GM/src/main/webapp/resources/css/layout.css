@@ -26,7 +26,7 @@ aside {
     /* 사이드바 미사용으로 인한 크기조정
     width: 270px;
      */
-    width: 210px;
+    width: 300px;
     border-right: 1px solid #e1e1e1;
     z-index: 15;
 }
@@ -35,7 +35,7 @@ section {
 	/* 사이드바 미사용으로 인한 위치조정
     margin-left: 270px;
      */
-    margin-left: 210px;
+    margin-left: 300px;
     padding: 80px 20px 20px 20px;
     background: #fff;
 }

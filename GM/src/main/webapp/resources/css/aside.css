@@ -8,7 +8,7 @@ aside .sidebar {
  */
  
 aside .nav {
-    width: 210px;
+    width: 300px;
     /* 사이드바 미사용으로 인한 위치조정
     left: 60px;
      */
@@ -51,6 +51,7 @@ aside .nav .nav_title .category>ul>li {
     color: #222;
     background: #f7f7f7;
     text-align: left;
+    padding: 0 20px;
     border-top: 1px solid #e6e6e6;
 }
 
@@ -71,10 +72,16 @@ aside .nav .nav_title .category>ul>li>ul>li {
     font-weight: 400;
     color: #222;
     background: url(../images/sub_dot.gif) no-repeat 20px 14px;
+    transition: 0.3s;
+    border-radius: 50%;
 }
 
 aside .nav .nav_title .category>ul>li>ul>li:hover {
     background: #e1e1e1 url(../images/sub_dot.gif) no-repeat 20px 14px;
+    border-radius: 5px;
+    /* box-shadow: 1px 1px #ccc, 2px 2px #ccc, 3px 3px #ccc; */
+	-webkit-transform: translateX(-3px);
+	transform: translateX(-3px);
     /* cursor: pointer; */
 }
 
