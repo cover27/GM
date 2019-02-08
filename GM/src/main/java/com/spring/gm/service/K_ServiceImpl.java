@@ -173,7 +173,7 @@ public class K_ServiceImpl implements K_Service{
 	@Override
 	public void K_resistMemberInfo(HttpServletRequest req, Model model) {
 		String pagenum = req.getParameter("pageNum");
-		 
+		
 		int pageSize = 10; // 한페이지당 출력할 글 갯수
 		int pageBlock = 5; // 한 블럭당 페이지 갯수
  
@@ -189,8 +189,12 @@ public class K_ServiceImpl implements K_Service{
 		int endPage = 0; // 마지막 페이지
 		
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		int retire = Integer.parseInt(req.getParameter("retire"));
 		
-		cnt = dao2.selectCnt(company);
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("company", company);
+		map2.put("retire", retire);
+		cnt = dao.selectCnt(map2);
 		System.out.println("cnt : " + cnt); // 먼저 테이블에 30건을 insert
 		 
 		pageNum = req.getParameter("pageNum");
@@ -223,6 +227,7 @@ public class K_ServiceImpl implements K_Service{
 			map.put("start", start);
 			map.put("end", end);
 			map.put("company", company);
+			map.put("retire", retire);
 			List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
 			List<join_mgcVO> dtos2 = dao2.selectList2(map);	// depart가 회사번호
 			System.out.println("여기 탔다2");
@@ -437,13 +442,14 @@ public class K_ServiceImpl implements K_Service{
 		map.put("search_title", search_title);
 		map.put("search_content", search_content);
 		map.put("company", company);
-
-		int cnt = dao2.search_salaryCnt(map);
+		map.put("retire", req.getParameter("retire"));
+		
+		int cnt = dao.search_salaryCnt(map);
 		System.out.println(cnt);
 		
 		
 		if (cnt == 1) {
-			List<join_mgcVO> dtos = dao2.searchinfoList(map);
+			List<join_mgcVO> dtos = dao.searchinfoList(map);
 			System.out.println(dtos.toString());
 			model.addAttribute("dtos", dtos);
 			model.addAttribute("cnt", cnt);
