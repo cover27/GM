@@ -21,6 +21,8 @@ public interface J_Service {
 	//------------------기본수당 외 수당 관리-----------------------------
 	// 회사명 가져오기
 	public void companyName(HttpServletRequest req, Model model);
+	// 날짜만 입력하여 검색시
+	public void salarySearchList(HttpServletRequest req, Model model);
 	// 수당  검색 회원목록  가져오기 (depart검색시 날짜입력이 없을시)
 	public void salarySearchNoneDepartList(HttpServletRequest req, Model model);
 	// 수당  검색 회원목록  가져오기 (id검색시 날짜입력이 없을시)

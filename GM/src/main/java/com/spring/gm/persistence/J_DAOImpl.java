@@ -168,6 +168,60 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.companyName(company);
 		return dtos;
 	}
+	
+	
+	// 날짜만 입력하여 검색시
+	@Override
+	public int selectCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.selectCnt", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_mgcVO> salarySearchList1_1(Map<String, Object> map) {
+		ArrayList<join_mgcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.salarySearchList1_1(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgcVO> salarySearchList1_2(Map<String, Object> map) {
+		ArrayList<join_mgcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.salarySearchList1_2(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgcVO> salarySearchList2_1(Map<String, Object> map) {
+		ArrayList<join_mgcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.salarySearchList2_1(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgcVO> salarySearchList2_2(Map<String, Object> map) {
+		ArrayList<join_mgcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.salarySearchList2_2(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgcVO> salarySearchList3_1(Map<String, Object> map) {
+		ArrayList<join_mgcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.salarySearchList3_1(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgcVO> salarySearchList3_2(Map<String, Object> map) {
+		ArrayList<join_mgcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.salarySearchList3_2(map);
+		return dtos;
+	}
+	
+	
+	
+	
 	// 수당  검색 회원목록  가져오기(id 검색)
 	@Override
 	public ArrayList<join_mgcVO> salaryIdSearchList1_1(Map<String, Object> map) {
@@ -327,6 +381,13 @@ public class J_DAOImpl implements J_DAO {
 		ArrayList<join_mgcVO> dtos = null;
 		J_DAO dao = sqlSession.getMapper(J_DAO.class);
 		dtos = dao.selectNoneIdList(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgcVO> selectNoneIdList2(Map<String, Object> map) {
+		ArrayList<join_mgcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.selectNoneIdList2(map);
 		return dtos;
 	}
 }
