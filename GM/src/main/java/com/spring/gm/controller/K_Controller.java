@@ -144,7 +144,7 @@ public class K_Controller {
 				service.k_searchMemberInfo(req, model);
 			} else if(title != null && content.length() <= 0){
 				System.out.println("검색 실패하였습니다. 확인해 주세여");
-				return "admin/sub/J_SalaryDefaultSettingPro_sub";
+				return "admin/sub/K_SalaryDefaultSettingPro_sub";
 			}
 		}
 		

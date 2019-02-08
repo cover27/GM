@@ -1,5 +1,6 @@
 package com.spring.gm.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.GradeVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
+import com.spring.gm.vo.join_mgcVO;
 
 public interface K_DAO {
 
@@ -59,4 +61,22 @@ public interface K_DAO {
 	public int retireMember(String id);
 	
 	public int retireUsers(String id);
+	
+	public int selectCnt(Map<String, Object> map);
+	
+	public ArrayList<join_mgcVO> selectList2(Map<String, Object> map);
+	
+	public ArrayList<join_mgcVO> selectList3(Map<String, Object> map);
+	
+	public int search_salaryCnt(Map<String, Object> map);
+	
+	public ArrayList<join_mgcVO> searchinfoList(Map<String, Object> map);
+	
+	public ArrayList<join_mgcVO> searchinfoList2(Map<String, Object> map);
+	
+	public ArrayList<join_mgcVO> searchinfoList3(Map<String, Object> map);
+	
+	public ArrayList<join_mgcVO> searchinfoList4(Map<String, Object> map);
+	
+	public ArrayList<join_mgcVO> searchinfoList5(Map<String, Object> map);
 }
