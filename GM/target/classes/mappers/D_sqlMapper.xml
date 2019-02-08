@@ -63,7 +63,7 @@
 		UPDATE BOARDLIST SET readCnt = readCnt + 1 WHERE boardnum = #{boardnum}
 	</update>
 	
-	<update id="updateBoards" parameterType="int">
+	<update id="updateBoards" parameterType="com.spring.gm.vo.BoardsVO">
 		UPDATE BOARDS SET b_name = #{b_name}, anon = #{anon} WHERE num = #{num}
 	</update>
 	

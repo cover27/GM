@@ -37,7 +37,8 @@ public class D_ServiceImpl implements D_Service{
 		vo.setAnon(anon);
 		vo.setDel(del);
 		
-		
+		int cnt = dao.getBoardsArticleCnt();
+		vo.setGroupId(cnt+1);
 		int insertCnt = dao.insertBoards(vo);	//jsp로 가져온값들을 insert하고 다시 
 		
 		model.addAttribute("insertCnt",insertCnt);
@@ -390,8 +391,7 @@ public class D_ServiceImpl implements D_Service{
 	public void boardsUpdate(HttpServletRequest req, Model model) {
 		int num = Integer.parseInt(req.getParameter("num"));
 		String b_name = req.getParameter("b_name");
-		String anons = req.getParameter("anon");
-		int anon = Integer.parseInt(anons);
+		int anon = Integer.parseInt(req.getParameter("anon"));
 		
 		BoardsVO vo = new BoardsVO();
 		vo = dao.getBoardsArticle(num);
@@ -408,19 +408,26 @@ public class D_ServiceImpl implements D_Service{
 	public void boardsUpdatePro(HttpServletRequest req, Model model) {
 		
 		int num = Integer.parseInt(req.getParameter("num"));
+		System.out.println("확인1:::::::::"+num);
 		int anon = Integer.parseInt(req.getParameter("anon"));
+		System.out.println("확인2:::::::::"+anon);
 
 		
 		// 화면으로부터 입력받은 값을 vo에 담자
 		BoardsVO vo = new BoardsVO();
 		vo.setB_name(req.getParameter("b_name"));
+		System.out.println("확인3:::::::::"+vo.getB_name());
+		vo.setNum(num);
+		System.out.println("확인4:::::::::"+vo.getNum());
 		vo.setAnon(anon);
+		System.out.println("확인5:::::::::"+vo.getAnon());
 		
 		// 4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
 		/*BoardDAO dao = BoardDAOImpl.getInstance();*/
 		
 		// 5단계. 글 수정 실행(vo를 DAO로 전달하여 SQL 실행)
 		int updateCnt = dao.updateBoards(vo);
+		System.out.println("확인6::::::::::"+updateCnt);
 		
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
 		model.addAttribute("num", num);
