@@ -41,7 +41,7 @@
 					</select></td>
 					<td><input type="text" name="cost" placeholder="금액" required ></td>
 					<td><input type="text" name="content" placeholder="사유" required ></td>
-					<td><button class="btn btn-default" name="delStaff">삭제</button></td>
+					<td></td>
 				</tr>
 				</c:if>
 			</tbody>

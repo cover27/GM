@@ -33,12 +33,21 @@ public interface J_DAO {
 	//------------- 기본수당 외 수당관리-------------------------------------------
 	// 회사명 가져오기
 	public ArrayList<CompaniesVO> companyName(int company);
+	// 날짜만 입력하여 검색시
+	public int selectCnt(Map<String, Object> map);
+	public ArrayList<join_mgcVO> salarySearchList1_1(Map<String, Object> map);//입사일 년도로 기준
+	public ArrayList<join_mgcVO> salarySearchList1_2(Map<String, Object> map);//입사일 년도로 기준
+	public ArrayList<join_mgcVO> salarySearchList2_1(Map<String, Object> map);//입사일 월로 기준
+	public ArrayList<join_mgcVO> salarySearchList2_2(Map<String, Object> map);//입사일 월로 기준
+	public ArrayList<join_mgcVO> salarySearchList3_1(Map<String, Object> map);//입사일 일별로 기준
+	public ArrayList<join_mgcVO> salarySearchList3_2(Map<String, Object> map);//입사일 일별로 기준
 	// 수당 검색 회원목록 갯수 가져오기(부서 날짜검색 안했을시)
 	public int selectNoneDepartCnt(Map<String, Object> map);
 	public ArrayList<join_mgcVO> selectNoneDepartList(Map<String, Object> map);
 	// 수당 검색 회원목록 갯수 가져오기(아이디 날짜검색 안했을시)
 	public int selectNoneIdCnt(Map<String, Object> map);
 	public ArrayList<join_mgcVO> selectNoneIdList(Map<String, Object> map);
+	public ArrayList<join_mgcVO> selectNoneIdList2(Map<String, Object> map);
 	// 수당  검색 회원목록  가져오기(id검색시)
 	public ArrayList<join_mgcVO> salaryIdSearchList1_1(Map<String, Object> map);//입사일 년도로 기준
 	public ArrayList<join_mgcVO> salaryIdSearchList1_2(Map<String, Object> map);//입사일 년도로 기준
