@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
 	//select에서 아이디 누르면 인풋 박스 생기게
@@ -98,23 +99,22 @@
 					<tr>
 						<th>사업장</th>
 						<c:forEach var="dto" items="${dtoss}">
-						<td name="search_title" id="search_title">${dto.c_name}</td>
+						<td>${dto.c_name}</td>
 						</c:forEach>
 						<th>조건</th>
 						<td><select name="search_title2"  id="search_title2" >
-								<option value="none">해당없음</option>
+								<option value="none" selected="selected">해당없음</option>
 								<option value="depart">부서</option>
 								<option value="id">아이디</option>
 						</select> 
 						<input type="text" class="search_content2" id="search_content2"
 							name="search_content2" placeholder="검색명을 입력하세요.">
 						</td>
-
 						<th>검색년월</th>
-						<td><c:if test="${content == null}">
+						<td><c:if test="${content == null || fn:length(content) == 0 || content eq 'none'}">
 								<input type="text" name="search_content"
 									placeholder="예)20180724">
-							</c:if> <c:if test="${content != null}">
+							</c:if> <c:if test="${fn:length(content) > 0}">
 								<input type="text" name="search_content"
 									placeholder="${content}">
 							</c:if> <input type="submit" value="검색"></td>
@@ -155,7 +155,7 @@
 						<!-- 게시글이 없으면 -->
 						<c:if test="${cnt == 0}">
 							<tr>
-								<td colspan="7" align="center">게시글이 없습니다. 글을 작성해주세여.</td>
+								<td colspan="3" align="center">게시글이 없습니다. 글을 작성해주세여.</td>
 							</tr>
 						</c:if>
 					</table>
@@ -179,7 +179,7 @@
 												<span><b> [${i}] </b></span>
 											</c:if>
 											<c:if test="${i != currentPage}">
-												<a href="J_BasicAllowanceManagement?pageNum=${i}">[${i}]</a>
+												<a href="J_BasicAllowanceManagement?pageNum=${i}&search_content=${content}">[${i}]</a>
 											</c:if>
 										</c:forEach>
 										<!-- 다음 블록[▶] /마지막[▶▶] -->

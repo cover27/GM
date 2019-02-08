@@ -8,4 +8,7 @@ public interface O_Service {
 
 	//기안문 작성
 	public void createApprDoc(HttpServletRequest req, Model model);
+	
+	//결재선 지정
+	public void addApprLine(HttpServletRequest req, Model model);
 }

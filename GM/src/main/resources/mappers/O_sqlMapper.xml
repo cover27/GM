@@ -8,17 +8,29 @@
 
 <!-- 전자결재-기안문 -->
 <select id="createAppDocForm" resultType="com.spring.gm.vo.Join_payVO" parameterType="String">
-	select m.name, g.r_name, r.g_name from member m , grade g, groups r
-	where m.rank = g.rank
-	and m.depart = r.groupid
+	select m.name, r.r_name, g.g_name from member m , grade r, groups g
+	where m.rank = r.rank
+	and m.depart = g.groupid
 	and m.id=#{id}
 </select>
-
+<!-- 전자결재 - 기안문 생성 - 회사조인 -->
 <select id="createAppDocForm2" resultType="com.spring.gm.vo.Join_payVO" parameterType="String">
 	select m.name, g.r_name, c.c_name as g_name from member m , grade g, companies c
 	where m.rank = g.rank
 	and m.depart = c.company
 	and m.id=#{id}
+</select>
+<!-- 전자결재 - 기안문 - 결재선 select 조인 -->
+<select id="selectApprLine" resultType="com.spring.gm.vo.Join_payVO">
+	select m.name, g.g_name, c.c_name, r.r_name
+	from member m left join groups g on m.depart = g.groupid
+	join companies c on m.company = c.company
+	left join grade r on m.rank = r.rank
+</select>
+
+<!-- 전자결재 - 기안문 - 결재선  회사에 그룹등급이 1인 부서명-->
+<select id="getGroupName" resultType="String">
+	select g_name from groups where company=#{company} and group_rank=1
 </select>
 
 </mapper>
