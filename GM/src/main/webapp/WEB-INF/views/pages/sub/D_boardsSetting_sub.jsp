@@ -77,13 +77,13 @@ function modify_board(num, b_name, anon) {
         </div>
         <div class="content">
         	<div class="boards_setting_btnset">
-				<div class="notice">
+				<div class="notice w80p fleft">
 					<ul>
 						<li><i class="fa fa-exclamation-circle"></i> 게시판 이름 위에 마우스를 올리면 게시판 정보를 수정하거나 게시판을 삭제할 수 있습니다.</li>
 						<li><i class="fa fa-exclamation-circle"></i> "게시판 생성하기" 버튼을 클릭하면 새로운 게시판을 생성할 수 있습니다<div class=""></div></li>
 					</ul>
 				</div>
-				<button class="createboard_btn" onclick="create_board()">게시판 생성하기</button>
+				<button class="createboard_btn w20p" onclick="create_board()">게시판 생성하기</button>
         	</div>
         	<div id="create_board_result"></div>
         	<div class="w100p boards_wrap" id="result">

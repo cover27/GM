@@ -14,7 +14,7 @@
 			<h3>게시판 생성</h3>
 			<label>
 				<span>게시판명 : </span>
-				<input type="text" name="b_name" maxlength="50" placeholder="${b_name}" autofocus />
+				<input type="text" name="b_name" maxlength="50" placeholder="게시판 이름을 입력해주세요." autofocus />
 			</label>
 			<span class="ml50">익명여부 : </span>
 			<select name="anon">
