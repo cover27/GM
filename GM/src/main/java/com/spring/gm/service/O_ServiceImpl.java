@@ -1,6 +1,7 @@
 package com.spring.gm.service;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.spring.gm.persistence.K_DAO;
 import com.spring.gm.persistence.O_DAO;
 import com.spring.gm.vo.Join_payVO;
 import com.spring.gm.vo.MemberVO;
@@ -17,6 +19,8 @@ public class O_ServiceImpl implements O_Service{
 
 	@Autowired
 	O_DAO dao;
+	@Autowired
+	K_DAO dao2;
 	
 	//전자결재 - 기안문 작성
 	@Override
@@ -30,12 +34,44 @@ public class O_ServiceImpl implements O_Service{
 		
 		if(depart < 410000000) { // 부서를 가지고 있는 경우
 			vo = dao.createAppDocForm(id);
-			System.out.print(vo);
 		} else { // 부서가 없어서 회사이름이 들어가는 경우
 			vo = dao.createAppDocForm2(id);
-			System.out.print(vo);
 		}
 		model.addAttribute("vo", vo);
+		
+		
+	}
+
+	//전자결재 - 결재선 지정
+	@Override
+	public void addApprLine(HttpServletRequest req, Model model) {
+		
+		/*
+		 * String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		 */
+		
+		int company=((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		//선빈이가 만든 sql에 회사에 대한 정보가 들어 있음
+		String a = dao2.getCompanyName(company);
+		
+		//회사명, 부서명, 이름명을 dtos에 담고 dtos의 크기를 비교하여 g_name의 null 값을 확인하여 null값을 회사명(a)으로 나타나도록 한다.
+		List<Join_payVO> dtos = dao.selectApprLine();
+		for(int i = 0; i<dtos.size(); i++) {
+			if(dtos.get(i).getG_name()==null) {
+				dtos.get(i).setG_name(a);
+			}
+		}
+		System.out.print(dtos);
+		
+		//a에 회사명 정보가 들어가 있음
+		List<String> dname = new ArrayList<String>();
+		dname.add(a);
+		//전자결재 - 기안문 - 결재선  회사에 그룹등급이 1인 부서명
+		List<String> dname2 = dao.getGroupName(company);
+		dname.addAll(dname2);
+		
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("dname", dname);
 		
 		
 	}

@@ -126,6 +126,15 @@ public class O_Controller {
 		return "pages/O_createApprDocFormView";
 	}
 	
+	//기안 - 기안문 작성 - 결재선 지정
+	@RequestMapping("/pages/O_addApprLine")
+	public String O_addApprLine(HttpServletRequest req, Model model) {
+		logger.info("URL : O_addApprLine");
+		
+		oservice.addApprLine(req, model);
+		
+		return "pages/O_addApprLine";
+	}
 	
 	//기안 - 결재 요청함
 	@RequestMapping("/pages/O_listApprMyRequestView")

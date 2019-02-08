@@ -28,4 +28,6 @@ public interface D_Service {
 	
 	public void boardsUpdatePro(HttpServletRequest req, Model model);
 	
+	public void insertReple(HttpServletRequest req, Model model);
+	
 }
