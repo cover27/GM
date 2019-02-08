@@ -1,6 +1,5 @@
 package com.spring.gm.controller;
 
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,14 +25,14 @@ public class J_Controller {
 		logger.info("URL : admin/J_SalaryDefaultSetting");
 		String title = req.getParameter("search_title");
 		String content = req.getParameter("search_content");
-		if ( content == null || title.equals("allList")) { // 검색 안했을 경우
+		if (content == null || title.equals("allList")) { // 검색 안했을 경우
 			System.out.println("검색 안했을 경우");
 			service.salaryList(req, model);
 		} else if (content != null) { // 검색 했을경우
 			if (content.length() > 0) {
 				System.out.println("검색 했을 경우");
 				service.search_salaryList(req, model);
-			} else if ( content.length() <= 0) {
+			} else if (content.length() <= 0) {
 				System.out.println("검색 실패하였습니다. 확인해 주세여");
 				return "admin/sub/J_SalaryDefaultSettingPro_sub";
 			}
@@ -44,6 +43,7 @@ public class J_Controller {
 	// 기본수당 외 수당 관리(Basi/admin/c Allowance Management)
 	@RequestMapping("/admin/J_BasicAllowanceManagement")
 	public String J_BasicAllowanceManagement(HttpServletRequest req, Model model) {
+		service.companyName(req, model);
 		logger.info("URL : admin/J_BasicAllowanceManagement");
 		String content = req.getParameter("search_content");
 		System.out.println("content:" + content);
@@ -51,41 +51,44 @@ public class J_Controller {
 		System.out.println("title2 :" + title2);
 		String content2 = req.getParameter("search_content2");
 		System.out.println("content2 :" + content2);
-		
-		if ((content == null && content2 == null)|| ((title2 == null|| title2.equals("none")) && content.length() == 0)) { // 검색 안했을 경우
+		if ((content == null && content2 == null)
+				|| ((title2 == null || title2.equals("none")) && content.length() == 0)) { // 검색 안했을 경우
 			System.out.println("검색 안했을 경우");
-			service.companyName(req, model);
 			service.salaryList(req, model);
-			
 		} else if ((title2 != null && content2 != null) || content != null) {
 			System.out.println("검색 했을 경우");
-			if((title2 == null && content2 == null) && content.length() > 0) {	//날짜만 검색했을 경우
-				System.out.println("3");
-				service.salarySearchList(req, model);
-			}else if(title2.equals("depart")) {	// 부서로 검색시
+			if (((title2.equals("none") || title2 == null) && (content2.length() > 0))
+					|| (!title2.equals("none") && (content2.length() == 0))) {
+				System.out.println("검색 조건이 맞지 않습니다.");
+				model.addAttribute("cnt", -3);
+				return "admin/sub/J_sub/J_salarySearchListPro_sub";
+			} else if (title2.equals("depart")) { // 부서로 검색시
 				System.out.println("depart");
-				if (content.length() == 4 || content.length() == 6 || content.length() == 8) { //날짜검색이 있을시
+				if (content.length() == 4 || content.length() == 6 || content.length() == 8) { // 날짜검색이 있을시
 					System.out.println("1");
 					service.salarySearchDepartList(req, model);
-				}else if(content.length() == 0){
+				} else if (content.length() == 0) {
 					System.out.println("2");
 					service.salarySearchNoneDepartList(req, model);
 				} else {
-					model.addAttribute("cnt", -3);	// 날짜 검색이 없을시.
+					model.addAttribute("cnt", -3); // 날짜 검색이 없을시.
 					return "admin/sub/J_sub/J_salarySearchListPro_sub";
 				}
-			}else if(title2.equals("id")) {	//아이디로 검색시
+			} else if (title2.equals("id")) { // 아이디로 검색시
 				System.out.println("id");
 				if (content.length() == 4 || content.length() == 6 || content.length() == 8) {
 					System.out.println("1");
 					service.salarySearchIdList(req, model);
-				}else if(content.length() == 0) {
+				} else if (content.length() == 0) {
 					System.out.println("2");
 					service.salarySearchNoneIdList(req, model);
 				} else {
 					model.addAttribute("cnt", -3);
 					return "admin/sub/J_sub/J_salarySearchListPro_sub";
 				}
+			} else if ((title2 == null && content2 == null) || content.length() > 0) { // 날짜만 검색했을 경우
+				System.out.println("3");
+				service.salarySearchList(req, model);
 			}
 		}
 		model.addAttribute("content", content);
