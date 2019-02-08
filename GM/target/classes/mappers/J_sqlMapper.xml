@@ -298,5 +298,12 @@
          WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
 	]]>
 	</select>
-	
+	<!-- 수정할 목록 불러오기 -->
+	<select id ="J_ExtrapayInfoModified" parameterType="int" resultType="com.spring.gm.vo.BonusCutVO">
+		select *  from bonus_cut where num = #{num}
+	</select>
+	<!-- 수정 업데이트 -->
+	<update id ="J_ExtrapayInfoModifiedComplete" parameterType="java.util.Map">
+		UPDATE bonus_cut SET type=#{type}, cost=#{cost}, content=#{content},state=#{state} where num = #{num}
+	</update>
 </mapper>
