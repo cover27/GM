@@ -12,3 +12,7 @@
 <link rel="stylesheet" href="${path}css/footer.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <script src="${path}js/jquery-3.3.1.min.js"></script>
+
+<!-- 현재날짜 생성 - today -->
+<jsp:useBean id="nowDate" class="java.util.Date"/>
+<fmt:formatDate value="${nowDate}" pattern="yyyy.MM.dd" var="today"/>

@@ -86,12 +86,16 @@ input[type="text"], input[type="password"] {
     /* box-shadow: 0 3px 3px #f4f4f4 inset; */
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
+input[type="text"]:focus, input[type="password"]:focus, select {
 	outline: none;
 	background: #f7f7f7;
 }
 
 input[type="button"]:focus {
+	outline: none;
+}
+
+input[type="submit"]:focus {
 	outline: none;
 }
 
@@ -516,12 +520,7 @@ img {
     white-space: nowrap;
 }
 
-.content_result {
-	border: 1px solid #ddd;
-	border-radius: 10px;
-	padding: 20px;
-}
-
-.paging {
-	
+/* 텍스트 에디터 글쓰기창 크기 변경 */
+#cke_1_contents {
+	height: 400px !important;
 }
