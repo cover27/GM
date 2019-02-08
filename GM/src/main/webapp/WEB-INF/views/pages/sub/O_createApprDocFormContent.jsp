@@ -226,7 +226,7 @@ div{
 		
 		<!-- 결재 선 라인 -->
 		<div id="formButtonDiv" class="btn-wrap pt10">
-		    <button id="addApprLineButton" type="button" class="btn btn-color5 br" onclick="addApprLine();">결재선</button>
+		    <button id="addApprLineButton" name="addApprLineButton" type="button" class="btn btn-color5 br" onclick="addApprLine();">결재선</button>
 		    <button id="createApprDocButton" type="button" class="btn btn-color5 br">결재요청</button>
 		    <button id="addApprRefInfoButton" type="button" class="btn btn-color7 br">기결재첨부</button>
 			<button id="createApprDocTemporayButton" type="button" class="btn btn-color7 br">임시저장</button>

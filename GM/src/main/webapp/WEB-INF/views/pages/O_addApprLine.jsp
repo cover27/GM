@@ -151,26 +151,28 @@ input, button, select, textarea {
 			</li>
 		</ul>
 		
-		
+		<!-- 조직도 출력 부분 -->
 		<div class="tab-content">
 			<div class="tab-pane active ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-orggroup" aria-labelledby="ui-id-1" role="tabpanel" aria-expanded="true" aria-hidden="false">
 				<div class="inbox h480">
 					<div class="shuttleTree">
 						<div id="treeDept" class="jstree jstree-0 jstree-focused jstree-ikep">
 							<ul>
-								<li data="{&quot;type&quot;:&quot;group&quot;,&quot;code&quot;:&quot;G151121&quot;,&quot;parent&quot;:null,&quot;groupTypeId&quot;:&quot;&quot;,&quot;hasChild&quot;:&quot;7&quot;}" code="G151121" id="treeItem_G151121" class="jstree-last jstree-open">
-									<ins class="jstree-icon">&nbsp;</ins>
-									<a href="#"><ins class="jstree-icon dept">&nbsp;</ins>홈사랑넷</a>
-									<ul>
-										<li data="{&quot;type&quot;:&quot;joinUser&quot;,&quot;userName&quot;:&quot;박헌철&quot;,&quot;id&quot;:&quot;U260216&quot;,&quot;group&quot;:&quot;G151121&quot;,&quot;empNo&quot;:&quot;&quot;,&quot;email&quot;:&quot;kokozzang@bizmeka.com&quot;,&quot;jobTitleName&quot;:&quot;&quot;,&quot;teamName&quot;:&quot;홈사랑넷&quot;,&quot;mobile&quot;:&quot;01076737717&quot;,&quot;jobTitleCode&quot;:&quot;&quot;,&quot;profileImg&quot;:&quot;&quot;}" code="" id="treeItem_U260216" class="jstree-leaf">
-											<ins class="jstree-icon">&nbsp;</ins>
-											<a href="#"><ins class="jstree-icon fa fa-leaf join">&nbsp;</ins>박헌철  (부서장)</a>
-										</li>
-										<li data="{&quot;type&quot;:&quot;joinUser&quot;,&quot;userName&quot;:&quot;강경준&quot;,&quot;id&quot;:&quot;U267422&quot;,&quot;group&quot;:&quot;G151121&quot;,&quot;empNo&quot;:&quot;&quot;,&quot;email&quot;:&quot;kkjun0310@bizmeka.com&quot;,&quot;jobTitleName&quot;:&quot;&quot;,&quot;teamName&quot;:&quot;홈사랑넷&quot;,&quot;mobile&quot;:&quot;01071975265&quot;,&quot;jobTitleCode&quot;:&quot;&quot;,&quot;profileImg&quot;:&quot;&quot;}" code="" id="treeItem_U267422" class="jstree-leaf">
-											<ins class="jstree-icon">&nbsp;</ins>
-											<a href="#"><ins class="jstree-icon fa fa-leaf join">&nbsp;</ins>강경준 </a>
-										</li>
-									</ul>
+								<li code="G151121" id="treeItem_G151121" class="jstree-last jstree-open">
+									<c:forEach var="dname" items="${dname}">
+										-- ${dname}
+										<c:forEach var="dto" items="${dtos}">
+												<ul>
+													<li id="treeItem_U260216" class="jstree-leaf">
+													<c:if test="${dto.getG_name()==dname}">
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<a href="#"><ins class="jstree-icon fa fa-leaf join">&nbsp;</ins>
+															${dto.getName()}</a>
+													</c:if>
+													</li>
+												</ul>
+										</c:forEach>
+									</c:forEach>
 								</li>
 							</ul>
 						</div>

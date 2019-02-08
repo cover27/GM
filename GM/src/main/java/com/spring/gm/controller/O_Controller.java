@@ -130,6 +130,9 @@ public class O_Controller {
 	@RequestMapping("/pages/O_addApprLine")
 	public String O_addApprLine(HttpServletRequest req, Model model) {
 		logger.info("URL : O_addApprLine");
+		
+		oservice.addApprLine(req, model);
+		
 		return "pages/O_addApprLine";
 	}
 	
