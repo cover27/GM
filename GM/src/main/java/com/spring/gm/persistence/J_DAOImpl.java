@@ -390,4 +390,18 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.selectNoneIdList2(map);
 		return dtos;
 	}
+	// 수당 개인 급여수당정보 수정
+	@Override
+	public ArrayList<BonusCutVO> J_ExtrapayInfoModified(int num) {
+		ArrayList<BonusCutVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.J_ExtrapayInfoModified(num);
+		return dtos;
+	}
+	// 수당 개인 급여수당정보 수정완료
+	@Override
+	public int J_ExtrapayInfoModifiedComplete(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.J_ExtrapayInfoModifiedComplete", map);
+		return cnt;
+	}
 }

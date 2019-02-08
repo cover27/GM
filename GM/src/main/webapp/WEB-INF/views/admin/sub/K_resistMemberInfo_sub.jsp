@@ -39,7 +39,6 @@
 				<form action="<c:url value='/admin/K_resistMemberInfo'/>" method="post"
 					name="searchform">
 					<table>
-						<caption>검색타입</caption>
 						<tr>
 							<th>*검색 타이틀</th>
 							<td colspan="2"><select name="search_title">
@@ -51,6 +50,9 @@
 							</select> <input type="text" name="search_content" placeholder="검색 내용">
 							</td>
 							<td><input type="submit" value="검색"></td>
+							<td>
+								<input type = 'checkbox' name="retire">퇴사자
+							</td>
 						</tr>
 					</table>
 				</form>
@@ -111,7 +113,7 @@
 							<tr>
 								<td onclick="load('K_getMemberInfo?id=${dto.id}')"style="cursor: pointer;">${dto.id}</td>
 								<td>${dto.name}</td>
-								<td>${dto.rank}</td>
+								<td>${dto.r_name}</td>
 								<td>${dto.j_name}</td>
 								<td>${dto.enterday}</td>
 								<td>${dto.tel}</td>
@@ -135,9 +137,9 @@
 							<!-- 게시글이 있으면 --> <c:if test="${cnt >0}">
 								<!-- 처음[◀◀] / 이전블록[◀]-->
 								<c:if test="${startPage > pageBlock}">
-									<a href="J_SalaryDefaultSetting">[PageDown x2]</a>
+									<a href="K_resistMemberInfo">[PageDown x2]</a>
 									<a
-										href="J_SalaryDefaultSetting?pageNum=${startPage - pageBlock}">[PageDown]</a>
+										href="K_resistMemberInfo?pageNum=${startPage - pageBlock}">[PageDown]</a>
 								</c:if>
 
 
@@ -147,14 +149,14 @@
 										<span><b> [${i}] </b></span>
 									</c:if>
 									<c:if test="${i != currentPage}">
-										<a href="J_SalaryDefaultSetting?pageNum=${i}">[${i}]</a>
+										<a href="K_resistMemberInfo?pageNum=${i}">[${i}]</a>
 									</c:if>
 								</c:forEach>
 								<!-- 다음 블록[▶] /마지막[▶▶] -->
 								<c:if test="${pageCount > endPage}">
 									<a
-										href="J_SalaryDefaultSetting?pageNum=${startPage + pageBlock}">[▶]</a>
-									<a href="J_SalaryDefaultSetting?pageNum=${pageCount}">[▶▶]</a>
+										href="K_resistMemberInfo?pageNum=${startPage + pageBlock}">[▶]</a>
+									<a href="K_resistMemberInfo?pageNum=${pageCount}">[▶▶]</a>
 								</c:if>
 							</c:if>
 						</th>
@@ -188,7 +190,7 @@
 
 				<tr>
 					<td
-						style="text-align: center; cursor: default; background-color: #cccccc;">주민번호(앞)</td>
+						style="text-align: center; cursor: default; background-color: #cccccc;">생년월일</td>
 					<td></td>
 					<td
 						style="text-align: center; cursor: default; background-color: #cccccc;">성별</td>
@@ -197,7 +199,7 @@
 						style="text-align: center; cursor: default; background-color: #cccccc;">핸드폰</td>
 					<td></td>
 					<td
-						style="text-align: center; cursor: default; background-color: #cccccc;">국적</td>
+						style="text-align: center; cursor: default; background-color: #cccccc;">재직구분</td>
 					<td></td>
 				</tr>
 
@@ -207,21 +209,11 @@
 						style="text-align: center; cursor: default; background-color: #cccccc;">입사일자</td>
 					<td></td>
 					<td
-						style="text-align: center; cursor: default; background-color: #cccccc;">연차</td>
+						style="text-align: center; cursor: default; background-color: #cccccc;">퇴직일자</td>
 					<td></td>
 					<td
 						style="text-align: center; cursor: default; background-color: #cccccc;"
 						colspan="2">E-MAIL</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td
-						style="text-align: center; cursor: default; background-color: #cccccc;"
-						colspan="2">*연봉</td>
-					<td></td>
-					<td
-						style="text-align: center; cursor: default; background-color: #cccccc;"
-						colspan="2">*계좌번호</td>
 					<td></td>
 				</tr>
 			</table>

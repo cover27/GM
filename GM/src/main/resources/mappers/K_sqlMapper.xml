@@ -118,4 +118,90 @@
 		UPDATE users SET enabled = '0'
 			WHERE username=#{id}
 	</update>
+	
+	<!-- 검색부분 -->
+	<select id="selectCnt" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) as cnt FROM member where company = #{company} and del=#{retire} and sys_rank != 0
+	</select>
+	
+	<!-- 급여 회원정보 가져오기(부서번호가 회사명) -->
+	<select id="selectList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+	<![CDATA[
+		SELECT * FROM(SELECT m.id, m.name, m.rank, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank 
+              and m.del = #{retire}
+              and m.sys_rank != 0)
+        WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
+	]]>
+	</select>
+	<!-- 급여 회원정보 가져오기(부서번호가 부서명) -->
+	<select id="selectList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+	<![CDATA[
+		SELECT * FROM(SELECT m.id, m.name, m.rank, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
+              FROM member m ,groups g, grade r
+              WHERE m.depart = g.groupid and m.rank = r.rank 
+              and m.del = #{retire}
+              and m.sys_rank != 0)
+        WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
+	]]>
+	</select>
+	
+	<!-- 검색 급여 회원정보 가져오기(성명) -->
+	<select id="search_salaryCnt" parameterType="java.util.Map" resultType="int">
+		SELECT count(*) cnt FROM member WHERE name like '%'||#{search_content}||'%' and company = #{company} and del = #{retire} and sys_rank != 0
+	</select>
+	<!-- 검색 급여 회원정보 가져오기(부서) -->
+	<select id="search_salaryCnt2" parameterType="java.util.Map" resultType="int">
+		SELECT count(*) cnt FROM member WHERE depart like '%'||#{search_content}||'%' and company = #{company} and del = #{retire} and sys_rank != 0
+	</select>
+	<!-- 검색 급여 회원정보 가져오기(사원 아이디) -->
+	<select id="search_salaryCnt3" parameterType="java.util.Map" resultType="int">
+		SELECT count(*) cnt FROM member WHERE id like '%'||#{search_content}||'%' and company = #{company} and del = #{retire} and sys_rank != 0
+	</select>
+	
+	<!-- 검색 급여 회원정보 가져오기(성명 - 그룹테이블과 조인) -->
+	<select id="searchinfoList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+		select * from(SELECT m.id, m.name, m.rank, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g, grade r
+              WHERE m.depart = g.groupid and m.rank = r.rank 
+              and m.del=#{retire} and m.sys_rank != 0)
+     	where  depart != #{company} and name like '%'||#{search_content}||'%'
+	</select>
+	
+	<!-- 검색 급여 회원정보 가져오기(부서) -->
+	<select id="searchinfoList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+		SELECT * FROM(SELECT m.id, m.name, m.rank, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g, grade r
+              WHERE m.depart = g.groupid and m.rank = r.rank  
+              and g.g_name like '%'||#{search_content}||'%' and g.company = #{company} 
+              and m.del=#{retire} and m.sys_rank != 0)
+	</select>
+	
+	<!-- 검색 급여 회원정보 가져오기(성명 - 사업장테이블과 조인) -->
+	<select id="searchinfoList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+		SELECT * FROM(SELECT m.id, m.name, m.rank, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank 
+              and m.del=#{retire} and m.sys_rank != 0)
+    	 where  depart = #{company} and name like '%'||#{search_content}||'%'
+	</select>
+	
+	<!-- 검색 급여 회원정보 가져오기(사원 아이디 - 그룹테이블과 조인) -->
+	<select id="searchinfoList4" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+		select * from(SELECT m.id, m.name, m.rank, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g, grade r 
+              WHERE m.depart = g.groupid and m.rank = r.rank 
+              and m.del=#{retire} and m.sys_rank != 0)
+    	 where  depart != #{company} and id like '%'||#{search_content}||'%'
+	</select>
+	
+	<!-- 검색 급여 회원정보 가져오기(성명 - 사업장테이블과 조인) -->
+	<select id="searchinfoList5" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+		SELECT * FROM(SELECT m.id, m.name, m.rank, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank 
+              and m.del=#{retire} and m.sys_rank != 0)
+    	 where  depart = #{company} and id like '%'||#{search_content}||'%'
+	</select>
 </mapper>

@@ -4,8 +4,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
-	//select에서 아이디 누르면 인풋 박스 생기게
-	
+	//수정 버튼
+	 /*
+    * window.open("파일명", "윈도우명", "창 속성");
+    * url="주소?속성=" + 속성값; → get방식
+    */
+	function J_ExtrapayInfoModified(num, type, state, cost, content){
+  	 var url="J_ExtrapayInfoModified?num=" + num + "&type=" + type + "&state=" + state + "&cost=" + cost + "&content=" + content;
+   	window.open(url, "J_ExtrapayInfoModified", "menubar=no, width=1000, height=560");
+	}
 	// dataType이 text인 경우
 	function load2(id, content) {
 		alert(id);
@@ -75,6 +82,54 @@
 				success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
 					//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
 					$('#result').html(result);
+				},
+				error : function() {
+					alert('오류');
+				}
+			});
+		} else if (con_test == false) {
+			return false;
+		}
+	}
+	
+	//수정 완료
+	function J_ExtrapayInfoModifiedComplete(num){
+		var con_test = confirm("수정하시겠습니까?.");
+		var type = $('#type').val();
+		var state = $('#state').val();
+		var cost = $('#cost').val();
+		var content = $('#content').val();
+		if (con_test == true) {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/admin/J_ExtrapayInfoModifiedComplete', //컨트롤러/basic1_sub로 가라
+				type : 'POST',
+				data : "num=" + num + "&type=" + type + "&state=" + state + "&cost=" + cost + "&content=" + content, //전송할 데이터
+				success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
+					//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
+					$('#result').html(result)
+					,$("#result2").hide();
+
+				},
+				error : function() {
+					alert('오류');
+				}
+			});
+		} else if (con_test == false) {
+			return false;
+		}
+	}
+	//수정 버튼
+	function J_ExtrapayInfoModified(num){
+		var con_test = confirm("수정하시겠습니까?.");
+		if (con_test == true) {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/admin/J_ExtrapayInfoModified', //컨트롤러/basic1_sub로 가라
+				type : 'POST',
+				data : "num=" + num, //전송할 데이터
+				success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
+					//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
+					$("#result2").show()
+					,$('#result2').html(result);
 				},
 				error : function() {
 					alert('오류');
@@ -155,7 +210,7 @@
 						<!-- 게시글이 없으면 -->
 						<c:if test="${cnt == 0}">
 							<tr>
-								<td colspan="7" align="center">게시글이 없습니다. 글을 작성해주세여.</td>
+								<td colspan="3" align="center">게시글이 없습니다. 글을 작성해주세여.</td>
 							</tr>
 						</c:if>
 					</table>
@@ -213,6 +268,9 @@
 					</tr>
 				</table>
 			</div>
+		</div>
+		<div id="result2" style="width: 1200px;">
+			<h3>수정 할 목록</h3>
 		</div>
 	</article>
 </section>

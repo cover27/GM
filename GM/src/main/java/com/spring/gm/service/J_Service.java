@@ -37,6 +37,10 @@ public interface J_Service {
 	public void J_extrapayinfo2(HttpServletRequest req, Model model);
 	// 수당 개인 급여수당정보 업데이트
 	public void J_extrapayinfoUpdate(HttpServletRequest req, Model model);
+	// 수당 개인 급여수당정보 수정
+	public void J_ExtrapayInfoModified(HttpServletRequest req, Model model);
+	// 수당 개인 급여수당정보 수정완료
+	public void J_ExtrapayInfoModifiedComplete(HttpServletRequest req, Model model);
 	//  수당 개인 급여수당정보 삭제하기
 	public void deleteInfo(HttpServletRequest req, Model model);
 }

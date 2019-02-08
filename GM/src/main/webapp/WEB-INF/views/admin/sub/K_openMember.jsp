@@ -17,38 +17,48 @@
 						<td>${dto.id}</td>
 					<td style="text-align: center; cursor: default; background-color: #cccccc;">부서</td>
 						<td>
-							<select name="depart">
-								<c:if test="${dto.depart <= 410000000 }">
-									<option value='${dto.depart }'>${company }</option>
-								</c:if>
-								<c:if test="${dto.depart > 410000000 }">
-									<option value='${dto.depart }' selected>${company }</option>
-								</c:if>
-								<c:forEach var="depart" items="${groupsList }">
-									<c:if test="${bf_groups == depart.getG_name() }">
-										<option value='${depart.getGroupId() }' selected>▶${depart.getG_name() }</option>
+							<c:if test="${dto.del == 1 }">
+								${company }
+							</c:if>
+							<c:if test="${dto.del == 0 }">
+								<select name="depart">
+									<c:if test="${dto.depart <= 410000000 }">
+										<option value='${dto.depart }'>${company }</option>
 									</c:if>
-									<c:if test="${bf_groups != depart.getG_name() }">
-										<option value='${depart.getGroupId() }'>▶${depart.getG_name() }</option>
+									<c:if test="${dto.depart > 410000000 }">
+										<option value='${dto.depart }' selected>${company }</option>
 									</c:if>
-								</c:forEach>
-							</select>
+									<c:forEach var="depart" items="${groupsList }">
+										<c:if test="${bf_groups == depart.getG_name() }">
+											<option value='${depart.getGroupId() }' selected>▶${depart.getG_name() }</option>
+										</c:if>
+										<c:if test="${bf_groups != depart.getG_name() }">
+											<option value='${depart.getGroupId() }'>▶${depart.getG_name() }</option>
+										</c:if>
+									</c:forEach>
+								</select>
+							</c:if>
 						</td>
 					<td style="text-align: center; cursor: default; background-color: #cccccc;">직급</td>
 						<td>
-							<select name="rank" required>
-								<c:if test="${bf_grade == 'unknown' }">
-									<option value="">미부여</option>
-								</c:if>
-								<c:forEach var="rank" items="${gradeList }">
-									<c:if test="${bf_grade == rank.getR_name() }">
-										<option value='${rank.getRank() }' selected>${rank.getR_name() }</option>
+							<c:if test="${dto.del == 1 }">
+								${bf_grade }
+							</c:if>
+							<c:if test="${dto.del == 0 }">
+								<select name="rank" required>
+									<c:if test="${bf_grade == 'unknown' }">
+										<option value="">미부여</option>
 									</c:if>
-									<c:if test="${bf_grade != rank.getR_name() }">
-										<option value='${rank.getRank() }'>${rank.getR_name() }</option>
-									</c:if>
-								</c:forEach>
-							</select>
+									<c:forEach var="rank" items="${gradeList }">
+										<c:if test="${bf_grade == rank.getR_name() }">
+											<option value='${rank.getRank() }' selected>${rank.getR_name() }</option>
+										</c:if>
+										<c:if test="${bf_grade != rank.getR_name() }">
+											<option value='${rank.getRank() }'>${rank.getR_name() }</option>
+										</c:if>
+									</c:forEach>
+								</select>
+							</c:if>
 						</td>
 					<td style="text-align: center; cursor: default; background-color: #cccccc;">성명</td>
 						<td>${dto.name}</td>
@@ -97,7 +107,12 @@
 				<tr>
 					<td style="text-align: center; cursor: default; background-color: #cccccc;">입사일자</td>
 						<td>
-							<input type="date" name="enterday" value="${dto.enterday }">
+							<c:if test="${dto.del == 1 }">
+								${dto.enterday }
+							</c:if>
+							<c:if test="${dto.del == 0 }">
+								<input type="date" name="enterday" value="${dto.enterday }">
+							</c:if>
 						</td>
 					<td style="text-align: center; cursor: default; background-color: #cccccc;">퇴직일자</td>
 						<td>${dto.retireday}</td>
@@ -108,8 +123,10 @@
 		</table>
 		<input type="hidden" name="checkRank" value="${bf_grade }">
 		<input type=hidden name="id" value="${dto.id}">
-		<input type="submit" value="저장">
-		<input type="button" value="퇴사자 등록" onclick='window.location="<c:url value='/admin/K_registRetirement?id=${dto.id }' />";'>
+		<c:if test="${dto.del == 0 }">
+			<input type="submit" value="저장">
+			<input type="button" value="퇴사자 등록" onclick='window.location="<c:url value='/admin/K_registRetirement?id=${dto.id }' />";'>
+		</c:if>
 	</form>
 </body>
 </html>
