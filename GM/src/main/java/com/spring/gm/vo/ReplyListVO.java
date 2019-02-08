@@ -1,6 +1,8 @@
-/*package com.spring.gm.vo;
+package com.spring.gm.vo;
 
-public class ReplyList {
+import java.sql.Timestamp;
+
+public class ReplyListVO {
 	
 	private int replenum;
 	private int boardnum;
@@ -8,9 +10,17 @@ public class ReplyList {
 	private String writer;
 	private int reref;
 	private int reref_stap;
-	private int rere_level;
+	private int reref_level;
+	private Timestamp reg_date;
+	private int del;
 	
 	
+	public int getDel() {
+		return del;
+	}
+	public void setDel(int del) {
+		this.del = del;
+	}
 	public int getReplenum() {
 		return replenum;
 	}
@@ -47,19 +57,28 @@ public class ReplyList {
 	public void setReref_stap(int reref_stap) {
 		this.reref_stap = reref_stap;
 	}
-	public int getRere_level() {
-		return rere_level;
+	public int getReref_level() {
+		return reref_level;
 	}
 	public void setRere_level(int rere_level) {
-		this.rere_level = rere_level;
+		this.reref_level = rere_level;
 	}
-	@Override
-	public String toString() {
-		return "ReplyList [replenum=" + replenum + ", boardnum=" + boardnum + ", content=" + content + ", writer="
-				+ writer + ", reref=" + reref + ", reref_stap=" + reref_stap + ", rere_level=" + rere_level + "]";
+	public Timestamp getReg_date() {
+		return reg_date;
+	}
+	public void setReg_date(Timestamp reg_date) {
+		this.reg_date = reg_date;
 	}
 	
+	@Override
+	public String toString() {
+		return "ReplyListVO [replenum=" + replenum + ", boardnum=" + boardnum + ", content=" + content + ", writer="
+				+ writer + ", reref=" + reref + ", reref_stap=" + reref_stap + ", reref_level=" + reref_level
+				+ ", reg_date=" + reg_date + ", del=" + del + "]";
+	}
+	
+
+
 	
 	
 }
-*/
