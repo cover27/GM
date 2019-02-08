@@ -27,6 +27,7 @@ public class J_Controller {
 		String content = req.getParameter("search_content");
 		if (content == null || title.equals("allList")) { // 검색 안했을 경우
 			System.out.println("검색 안했을 경우");
+			service.companyName(req, model);
 			service.salaryList(req, model);
 		} else if (content != null) { // 검색 했을경우
 			if (content.length() > 0) {
