@@ -21,6 +21,7 @@ import com.spring.gm.vo.GradeVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO;
+import com.spring.gm.vo.join_mgcVO2;
 
 @Service
 public class K_ServiceImpl implements K_Service{
@@ -189,7 +190,13 @@ public class K_ServiceImpl implements K_Service{
 		int endPage = 0; // 마지막 페이지
 		
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
-		int retire = Integer.parseInt(req.getParameter("retire"));
+		int retire = 0;
+		
+		if(req.getParameter("retire") == null||!req.getParameter("retire").equals("on")) {
+			retire = 0;
+		} else {
+			retire = 1;
+		}
 		
 		Map<String, Object> map2 = new HashMap<String, Object>();
 		map2.put("company", company);
@@ -228,11 +235,11 @@ public class K_ServiceImpl implements K_Service{
 			map.put("end", end);
 			map.put("company", company);
 			map.put("retire", retire);
-			List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
-			List<join_mgcVO> dtos2 = dao2.selectList2(map);	// depart가 회사번호
+			List<join_mgcVO2> dtos = new ArrayList<join_mgcVO2>();
+			List<join_mgcVO2> dtos2 = dao.selectList2(map);	// depart가 회사번호
 			System.out.println("여기 탔다2");
 			System.out.println(dtos2.toString());
-			List<join_mgcVO> dtos3 = dao2.selectList3(map);	//depart가 부서번호
+			List<join_mgcVO2> dtos3 = dao.selectList3(map);	//depart가 부서번호
 			System.out.println("여기 탔다3");
 			System.out.println(dtos3.toString());
 			dtos.addAll(dtos2);
@@ -435,21 +442,27 @@ public class K_ServiceImpl implements K_Service{
 		System.out.println("회사 번호 :" + company);
 
 		String search_title = req.getParameter("search_title");
-		System.out.println("search_title :" + search_title);
 		String search_content = req.getParameter("search_content");
-		System.out.println("search_content :" + search_content);
+		int retire = 0;
+		
+		if(req.getParameter("retire") == null||!req.getParameter("retire").equals("on")) {
+			retire = 0;
+		} else {
+			retire = 1;
+		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search_title", search_title);
 		map.put("search_content", search_content);
 		map.put("company", company);
-		map.put("retire", req.getParameter("retire"));
+		map.put("retire", retire);
 		
 		int cnt = dao.search_salaryCnt(map);
 		System.out.println(cnt);
 		
 		
 		if (cnt == 1) {
-			List<join_mgcVO> dtos = dao.searchinfoList(map);
+			List<join_mgcVO2> dtos = dao.searchinfoList(map);
 			System.out.println(dtos.toString());
 			model.addAttribute("dtos", dtos);
 			model.addAttribute("cnt", cnt);

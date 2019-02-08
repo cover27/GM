@@ -113,7 +113,7 @@
 							<tr>
 								<td onclick="load('K_getMemberInfo?id=${dto.id}')"style="cursor: pointer;">${dto.id}</td>
 								<td>${dto.name}</td>
-								<td>${dto.rank}</td>
+								<td>${dto.r_name}</td>
 								<td>${dto.j_name}</td>
 								<td>${dto.enterday}</td>
 								<td>${dto.tel}</td>
