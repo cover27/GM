@@ -30,10 +30,8 @@ public class O_ServiceImpl implements O_Service{
 		
 		if(depart < 410000000) { // 부서를 가지고 있는 경우
 			vo = dao.createAppDocForm(id);
-			System.out.print(vo);
 		} else { // 부서가 없어서 회사이름이 들어가는 경우
 			vo = dao.createAppDocForm2(id);
-			System.out.print(vo);
 		}
 		model.addAttribute("vo", vo);
 		

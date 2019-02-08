@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import com.spring.gm.persistence.D_DAO;
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.BoardsVO;
+import com.spring.gm.vo.ReplyListVO;
 
 @Service
 public class D_ServiceImpl implements D_Service{
@@ -431,6 +432,40 @@ public class D_ServiceImpl implements D_Service{
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
 		model.addAttribute("num", num);
 		model.addAttribute("updateCnt", updateCnt);
+	}
+
+	
+	// 글작성 처리
+	@Override
+	public void insertReple(HttpServletRequest req, Model model) {
+		
+		int replenum = 0;		// 글 번호 
+		int boardnum = 0;
+		int reref = 1;		// 답글 그룹화 아이디
+		int reref_step = 0;	// 글 순서(행)
+		int reref_level = 0;	// 글 레벨(들여쓰기 / 답글에 대한 답글)
+		int pageNum = 0;
+		
+		 
+		// 답변글에 대한 글 작성시
+		if(req.getParameter("replenum") != null) {
+			replenum = Integer.parseInt(req.getParameter("replenum"));
+			boardnum = Integer.parseInt(req.getParameter("boardnum"));
+			reref = Integer.parseInt(req.getParameter("reref"));
+			reref_step = Integer.parseInt(req.getParameter("reref_step"));
+			reref_level = Integer.parseInt(req.getParameter("reref_level"));
+			
+		}
+		boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		
+		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("replenum", replenum);
+		model.addAttribute("boardnum", boardnum);
+		model.addAttribute("reref", reref);
+		model.addAttribute("reref_step", reref_step);
+		model.addAttribute("reref_level", reref_level);
+		model.addAttribute("pageNum", pageNum);
 	}
 		
 	

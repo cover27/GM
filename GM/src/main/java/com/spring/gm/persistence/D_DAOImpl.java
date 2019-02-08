@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.BoardsVO;
+import com.spring.gm.vo.ReplyListVO;
 
 @Repository
 public class D_DAOImpl implements D_DAO{
@@ -181,6 +182,13 @@ public class D_DAOImpl implements D_DAO{
 	public void updateStep(BoardListVO vo) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		dao.updateStep(vo);
+	}
+
+	// 댓글 작성
+	@Override
+	public int insertReple(ReplyListVO vo) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.insertReple(vo);
 	}
 	
 	
