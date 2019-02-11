@@ -660,5 +660,20 @@ public class D_ServiceImpl implements D_Service{
 		}		
 		
 	}
+
+	@Override
+	public void boardsDelete(HttpServletRequest req, Model model) {
+		
+		int num = Integer.parseInt(req.getParameter("num"));
+		
+		BoardsVO vo = new BoardsVO();
+		vo.setNum(num);
+		
+		int deleteCnt = dao.deleteBoards(vo);
+		
+		model.addAttribute("num", num);
+		model.addAttribute("deleteCnt", deleteCnt);
+		
+	}
 		
 }
