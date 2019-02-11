@@ -37,6 +37,16 @@ public interface J_Service {
 	public void J_extrapayinfo2(HttpServletRequest req, Model model);
 	// 수당 개인 급여수당정보 업데이트
 	public void J_extrapayinfoUpdate(HttpServletRequest req, Model model);
+	// 수당 개인 급여수당정보 수정
+	public void J_ExtrapayInfoModified(HttpServletRequest req, Model model);
+	// 수당 개인 급여수당정보 수정완료
+	public void J_ExtrapayInfoModifiedComplete(HttpServletRequest req, Model model);
 	//  수당 개인 급여수당정보 삭제하기
 	public void deleteInfo(HttpServletRequest req, Model model);
+	
+	//------------------수당 조회-----------------------------
+	// 상여 조회(아이디 검색 정보 가져오기)
+	public void searchId(HttpServletRequest req, Model model);
+	//검색 결과값으로 정보 가져오기
+	public void searchPayrollInquiry(HttpServletRequest req, Model model);
 }

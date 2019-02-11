@@ -390,4 +390,40 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.selectNoneIdList2(map);
 		return dtos;
 	}
+	// 수당 개인 급여수당정보 수정
+	@Override
+	public ArrayList<BonusCutVO> J_ExtrapayInfoModified(int num) {
+		ArrayList<BonusCutVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.J_ExtrapayInfoModified(num);
+		return dtos;
+	}
+	// 수당 개인 급여수당정보 수정완료
+	@Override
+	public int J_ExtrapayInfoModifiedComplete(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.J_ExtrapayInfoModifiedComplete", map);
+		return cnt;
+	}
+	
+	//-----------------------상여급여 조회------------------------------------
+	// 상여 조회(아이디 검색 정보 가져오기)
+	@Override
+	public int searchIdCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.searchIdCnt", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_mgcVO> searchIdList(Map<String, Object> map) {
+		ArrayList<join_mgcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.searchIdList(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgcVO> searchIdList2(Map<String, Object> map) {
+		ArrayList<join_mgcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.searchIdList2(map);
+		return dtos;
+	}
 }
