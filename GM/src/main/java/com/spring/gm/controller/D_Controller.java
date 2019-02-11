@@ -29,7 +29,7 @@ public class D_Controller {
 	}
 	
 	//게시판 생성 처리
-	@RequestMapping("/admin/D_CreateBoards_pro")
+	@RequestMapping("/admin/D_CreateBoardsPro")
 	public String createBoardsPro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_CreateBoards_pro");
 		
@@ -61,7 +61,7 @@ public class D_Controller {
 		logger.info("URL : D_boardsUpdatePro");
 		
 		service.boardsUpdatePro(req, model);
-		return "admin/D_boardsUpdatePro";
+		return "admin/sub/D_boardsUpdatePro";
 	}
 	
 	//게시글 목록
@@ -87,6 +87,7 @@ public class D_Controller {
 	public String insertBoard(HttpServletRequest req, Model model) {
 		logger.info("URL : D_writeForm");
 		
+		service.boardsList(req, model);
 		service.insertBoard(req, model);
 		return "pages/D_writeForm";
 	}
@@ -103,6 +104,7 @@ public class D_Controller {
 	public String boardContent(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardContent");
 		
+		service.boardsList(req, model);
 		service.contentForm(req, model);
 		service.repleList(req, model);
 		return "pages/D_boardContent";
@@ -145,6 +147,39 @@ public class D_Controller {
 		
 		service.deleteReple(req, model);
 		return "/pages/D_repleDeletePro";
+	}
+	
+	@RequestMapping("/pages/D_allBoardList")
+	public String allBoardList(HttpServletRequest req, Model model) {
+		logger.info("URL : D_allBoardList");
+		
+		service.boardsList(req, model);
+		service.allBoardList(req, model);
+		return "/pages/D_allBoardList";
+	}
+	
+	@RequestMapping("/admin/D_deleteBoardsPro")
+	public String deleteBoards(HttpServletRequest req, Model model) {
+		logger.info("URL : D_allBoardList");
+		
+		service.boardsDelete(req, model);
+		return "/admin/sub/D_deleteBoards_Pro";
+	}
+	
+	@RequestMapping("/pages/D_repleUpdate")
+	public String D_repleUpdate(HttpServletRequest req, Model model) {
+		logger.info("URL : D_repleUpdate");
+		
+		service.repleUpdate(req, model);
+		return "pages/D_repleUpdate";
+	}
+	
+	@RequestMapping("/pages/D_repleUpdatePro")
+	public String D_repleUpdatePro(HttpServletRequest req, Model model) {
+		logger.info("URL : D_repleUpdatePro");
+		
+		service.repleUpdatePro(req, model);
+		return "pages/D_repleUpdatePro";
 	}
 
 }

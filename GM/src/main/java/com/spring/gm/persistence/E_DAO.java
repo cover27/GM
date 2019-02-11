@@ -18,10 +18,12 @@ public interface E_DAO {
 	// 조직도 - 내가 속한 회사의 전체 그룹 수 구하기
 	public List<GroupsVO> getMyCompanyGroupCnt(int company);
 	
-	// 조직도 - aside 용
+	// 조직도 - 부서 aside 용
 	public List<MemberVO> getMyCompanyInfo2(Map<String, Object> map);
 	
-	// 로그인 정보 회사 이름 찾기
+	// 조직도 - 로그인 정보 회사 이름 찾기
 	public String findCompanyName(int company);
 	
+	// 조직도 - 개인 그룹 목록
+//	public List<MemberVO> getMyCompanyInfo3(Map<String, Object> map);
 }

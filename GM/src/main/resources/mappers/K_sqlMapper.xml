@@ -204,4 +204,61 @@
               and m.del=#{retire} and m.sys_rank != 0)
     	 where  depart = #{company} and id like '%'||#{search_content}||'%'
 	</select>
+	
+	<select id="getMemberList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
+		<![CDATA[
+			SELECT * FROM(
+				SELECT m.*, rownum rNum FROM member m
+				WHERE m.del = #{retire} AND m.company = #{company}
+				)
+			WHERE rNum >=  #{start} AND rNum <= #{end}
+		]]>
+	</select>
+	
+	<update id="updateRestoMember" parameterType="java.util.Map">
+		UPDATE member SET rank = #{rank}, depart = #{depart}, del = 0, retireday = null
+			WHERE id = #{id}
+	</update>
+	
+	<update id="updateRestoUsers" parameterType="String">
+		UPDATE users SET enabled = 1 WHERE username = #{id}
+	</update>
+	
+	<select id="selectCnt_name" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) as cnt FROM member where company = #{company} and del=#{retire} and sys_rank != 0
+			and name like '%'||#{name}||'%'
+	</select>
+	
+	<select id="getMemberList_name" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
+		<![CDATA[
+			SELECT * FROM(
+				SELECT m.*, rownum rNum FROM member m
+				WHERE m.del = #{retire} AND m.company = #{company}
+				AND name like '%'||#{name}||'%'
+				)
+			WHERE rNum >=  #{start} AND rNum <= #{end}
+		]]>
+	</select>
+	
+	<select id="getMgiList" parameterType="int" resultType="com.spring.gm.vo.join_mgiVO">
+		SELECT m.id, m.name, m.depart, g.g_name departName, m.rank, r.r_name rankName, m.tel, m.email_in email, f.rank_mem leader 
+		    FROM member m, groupinfo f, groups g, grade r
+		    WHERE m.id = f.id
+		    AND m.depart = f.groupid
+		    AND m.depart = g.groupid
+		    AND m.rank = r.rank
+		    AND m.company = #{company}
+		    AND m.sys_rank != 0
+		    ORDER BY m.enterday ASC
+	</select>
+	
+	<select id="getMgiList2" parameterType="int" resultType="com.spring.gm.vo.join_mgiVO">
+		SELECT m.id, m.name, m.depart, m.rank, r.r_name rankName, m.tel, m.email_in email
+		    FROM member m, grade r
+		    WHERE m.rank = r.rank
+		    AND m.company = #{company}
+		    AND m.depart > 410000000
+		    AND m.sys_rank != 0
+		    ORDER BY m.enterday ASC
+	</select>
 </mapper>

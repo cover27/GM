@@ -24,13 +24,13 @@
                 		<span>인사 기초정보 설정/조회</span>
                 		<ul>
                 			<li><a href="K_personal">인사/근태/급여 기준정보 설정</a></li>
-                			<li><a href="m06.jsp">인사정보 재등록</a></li>
+                			<li><a href="K_restoMember">인사정보 재등록</a></li>
                 		</ul>
                 	</li>
                 	<li>
                 		<span>사용자/부서관리</span>
                 		<ul>
-                			<li><a href="m07.jsp">사용자 조직도 관리</a></li>
+                			<li><a href="K_manageOrgan">사용자 조직도 관리</a></li>
                 			<li><a href="m07.jsp">직급 관리</a></li>
                 			<li><a href="m07.jsp">우리회사 관리자</a></li>
                 		</ul>

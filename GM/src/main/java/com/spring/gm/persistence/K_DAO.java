@@ -11,6 +11,7 @@ import com.spring.gm.vo.GradeVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO2;
+import com.spring.gm.vo.join_mgiVO;
 
 public interface K_DAO {
 
@@ -79,4 +80,18 @@ public interface K_DAO {
 	public ArrayList<join_mgcVO2> searchinfoList4(Map<String, Object> map);
 	
 	public ArrayList<join_mgcVO2> searchinfoList5(Map<String, Object> map);
+	
+	public List<MemberVO> getMemberList(Map<String, Object> map);
+	
+	public int updateRestoMember(Map<String, Object> map);
+	
+	public int updateRestoUsers(String id);
+	
+	public int selectCnt_name(Map<String, Object> map);
+	
+	public List<MemberVO> getMemberList_name(Map<String, Object> map);
+	
+	public List<join_mgiVO> getMgiList(int company);
+	
+	public List<join_mgiVO> getMgiList2(int company);
 }

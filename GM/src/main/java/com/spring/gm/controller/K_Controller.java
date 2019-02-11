@@ -130,7 +130,7 @@ public class K_Controller {
 		return "admin/K_appMember";
 	}
 	
-	//인사정보등록 - 경준씨거 배낄거임 ㅎㅎㅎ 
+	//인사정보등록
 	@RequestMapping("admin/K_resistMemberInfo")
 	public String K_resistMemberInfo(HttpServletRequest req, Model model) {
 		logger.info("URL : K_resistMemberInfo");
@@ -216,5 +216,26 @@ public class K_Controller {
 		
 		return "admin/K_restoMember";
 	}
+	
+	//인사정보 재등록 - 복구버튼
+	@RequestMapping("admin/K_restoMember_pro")
+	public String K_restoMember_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : K_restoMember_pro");
+		
+		service.K_restoMember_pro(req, model);
+		
+		return "admin/sub/K_restoMember_pro";
+	}
+	
+	// 사용자 조직도 관리
+	@RequestMapping("admin/K_manageOrgan")
+	public String K_manageOrgan(HttpServletRequest req, Model model) {
+		logger.info("URL : K_manageOrgan");
+		
+		service.K_manageOrgan(req, model);
+		
+		return "admin/K_manageOrgan";
+	}
+	
 	
 }

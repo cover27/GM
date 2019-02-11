@@ -11,7 +11,9 @@
 	</c:if>
 	<c:if test="${sessionScope.loginInfo == null}">
 		<div class="logo" style="position: relative; left: 0; margin: 0 auto;">
-			<img src="https://ezportal.bizmeka.com/images/common/logo_bizmeka_2.png" style="margin-top: 4px;">
+			<a href="<c:url value='/login'/>">
+				<img src="https://ezportal.bizmeka.com/images/common/logo_bizmeka_2.png" style="margin-top: 4px;">
+			</a>
         </div>
 	</c:if>
        <c:if test="${sessionScope.loginInfo != null}">
