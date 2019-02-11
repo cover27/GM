@@ -30,7 +30,7 @@
                 	<li>
                 		<span>사용자/부서관리</span>
                 		<ul>
-                			<li><a href="m07.jsp">사용자 조직도 관리</a></li>
+                			<li><a href="K_manageOrgan">사용자 조직도 관리</a></li>
                 			<li><a href="m07.jsp">직급 관리</a></li>
                 			<li><a href="m07.jsp">우리회사 관리자</a></li>
                 		</ul>

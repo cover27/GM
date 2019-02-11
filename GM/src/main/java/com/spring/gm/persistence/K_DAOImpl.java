@@ -16,6 +16,7 @@ import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO;
 import com.spring.gm.vo.join_mgcVO2;
+import com.spring.gm.vo.join_mgiVO;
 
 @Repository
 public class K_DAOImpl implements K_DAO{
@@ -276,6 +277,16 @@ public class K_DAOImpl implements K_DAO{
 	@Override
 	public List<MemberVO> getMemberList_name(Map<String, Object> map) {
 		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getMemberList_name", map);
+	}
+
+	@Override
+	public List<join_mgiVO> getMgiList(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getMgiList", company);
+	}
+
+	@Override
+	public List<join_mgiVO> getMgiList2(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getMgiList2", company);
 	}
 	
 }

@@ -2,7 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<<<<<<< HEAD
 	<button name="addStaff" onclick="addhang()">행 추가</button>
+=======
+
+
+	<button name="addStaff" onclick="addhang();">행 추가</button>
+>>>>>>> branch 'master' of https://github.com/cover27/GM
 	<form action="J_extrapayinfoUpdate" method="post">
 		<table>
 		    <thead>
