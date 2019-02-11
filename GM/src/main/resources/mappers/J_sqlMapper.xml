@@ -84,6 +84,27 @@
               WHERE m.depart = c.company )
      where  depart = #{company} and id like '%'||#{search_content}||'%'
 	</select>
+	<!--개인 급여등록(이번달 목록 가져오기) -->
+	<select id="J_PayrollRegistrationCnt" parameterType="java.util.Map" resultType="int">
+		SELECT count(*) cnt 
+		FROM salary s, member m
+		where s.id = m.id
+		and to_char(s.day,'yyyymm')=to_char(sysdate,'yyyymm') and m.id = #{id} and company = #{company}
+	</select>
+	<select id="J_PayrollRegistrationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.SalaryVO">
+		SELECT s.sal_num, s.id, m.name, m.tel, s.day, s.state, m.email_in, s.salary, m.ACCOUNT_NUMBER
+		from member m, salary s
+		where m.id = s.id
+		and s.id = #{id} and company = #{company}
+	</select>
+	<!--개인 급여등록(이번달 목록 가져오기) 없으면 인설트할 목록 가져오기 -->
+	<select id="J_PayrollRegistrationInsertList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
+		SELECT id,name,tel,email_in,round(salary/12, -2) as salary,account_number FROM member where  id = #{id} and company = #{company}
+	</select>
+	
+	
+	
+	
 	
 	<!-- ========================기본수당 외 수당관리=============================-->
 	<!-- 회사명 가져오기 -->
@@ -306,4 +327,24 @@
 	<update id ="J_ExtrapayInfoModifiedComplete" parameterType="java.util.Map">
 		UPDATE bonus_cut SET type=#{type}, cost=#{cost}, content=#{content},state=#{state} where num = #{num}
 	</update>
+	
+	
+	<!--==================================상여급여 조회====================================-->
+	<!-- 상여 조회(아이디 검색 정보 가져오기) -->
+	<select id="searchIdCnt" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) as cnt FROM member where company = #{company} and id like '%'||#{id}||'%'
+	</select>
+	<select id="searchIdList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+		select * from(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g 
+              WHERE m.depart = g.groupid)
+     	where  depart != #{company} and id like '%'||#{id}||'%'
+	</select>
+     <select id="searchIdList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	 	SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
+              FROM member m ,companies c
+              WHERE m.depart = c.company)
+    	 where  depart = #{company} and id like '%'||#{id}||'%'
+	</select>
+     
 </mapper>

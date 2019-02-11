@@ -143,134 +143,138 @@
 
 <section>
 	<article>
-		<div>
-			<h2>기본수당 외 수당 관리</h2>
+		<div class="content_header">
+		    <h2>기본수당 외 수당 관리</h2>
 		</div>
-		<div>
-			<form action="J_BasicAllowanceManagement" method="post"
-				name="searchform">
-				<table border="1">
-					<caption>검색타입</caption>
-					<tr>
-						<th>사업장</th>
-						<c:forEach var="dto" items="${dtoss}">
-						<td>${dto.c_name}</td>
-						</c:forEach>
-						<th>조건</th>
-						<td><select name="search_title2"  id="search_title2" >
-								<option value="none" selected="selected">해당없음</option>
-								<option value="depart">부서</option>
-								<option value="id">아이디</option>
-						</select> 
-						<input type="text" class="search_content2" id="search_content2"
-							name="search_content2" placeholder="검색명을 입력하세요.">
-						</td>
-						<th>검색년월</th>
-						<td><c:if test="${content == null || fn:length(content) == 0 || content eq 'none'}">
-								<input type="text" name="search_content"
-									placeholder="예)20180724">
-							</c:if> <c:if test="${fn:length(content) > 0}">
-								<input type="text" name="search_content"
-									placeholder="${content}">
-							</c:if> <input type="submit" value="검색"></td>
-					</tr>
-				</table>
-			</form>
-		</div>
-		<div>
-			<div style="width: 400px; float: left;">
-				<h3>
-					기본정보<em>0</em>
-				</h3>
-				<div style="width: 400px;">
-					<table border="1">
-						<tr>
-							<td style="text-align: center; background-color: #cccccc;">사원번호</td>
-							<td style="text-align: center; background-color: #cccccc;">성명</td>
-							<td style="text-align: center; background-color: #cccccc;">부서</td>
-						</tr>
-						<c:if test="${cnt > 0}">
-							<c:forEach var="dto" items="${dtos}">
-								<tr id="ttr">
-									<c:if test="${content != null}">
-										<!--날짜검색  -->
-										<td onclick="load2('${dto.id}','${content}')"
-											style="cursor: pointer; background-color: blue;">${dto.id}</td>
-									</c:if>
-									<c:if test="${content == null}">
-										<!--이번달  -->
-										<td onclick="load('${dto.id}')"
-											style="cursor: pointer; background-color: red;">${dto.id}</td>
-									</c:if>
-									<td>${dto.name}</td>
-									<td>${dto.j_name}</td>
-								</tr>
-							</c:forEach>
-						</c:if>
-						<!-- 게시글이 없으면 -->
-						<c:if test="${cnt == 0}">
-							<tr>
-								<td colspan="3" align="center">게시글이 없습니다. 글을 작성해주세여.</td>
-							</tr>
-						</c:if>
-					</table>
-					<div>
-						<table>
-							<!-- 페이지 컨트롤 -->
-							<tr>
-								<th colspan="7" align="center">
-									<!-- 게시글이 있으면 --> <c:if test="${cnt >0}">
-										<!-- 처음[◀◀] / 이전블록[◀]-->
-										<c:if test="${startPage > pageBlock}">
-											<a href="J_BasicAllowanceManagement">[PageDown x2]</a>
-											<a
-												href="J_BasicAllowanceManagement?pageNum=${startPage - pageBlock}">[PageDown]</a>
-										</c:if>
-
-
-										<!-- 블록내의 페이지 번호 -->
-										<c:forEach var="i" begin="${startPage}" end="${endPage}">
-											<c:if test="${i == currentPage}">
-												<span><b> [${i}] </b></span>
-											</c:if>
-											<c:if test="${i != currentPage}">
-												<a href="J_BasicAllowanceManagement?pageNum=${i}&search_content=${content}">[${i}]</a>
-											</c:if>
-										</c:forEach>
-										<!-- 다음 블록[▶] /마지막[▶▶] -->
-										<c:if test="${pageCount > endPage}">
-											<a
-												href="J_BasicAllowanceManagement?pageNum=${startPage + pageBlock}">[▶]</a>
-											<a href="J_BasicAllowanceManagement?pageNum=${pageCount}">[▶▶]</a>
-										</c:if>
-									</c:if>
-								</th>
-							</tr>
-						</table>
-					</div>
+		<div class="content">
+			<div class="search-wrap">
+				<div class="form-group">
+					<form action="J_BasicAllowanceManagement" method="post" name="searchform">
+				        <span class="bold5px">사업장 : </span>
+				        <c:forEach var="dto" items="${dtoss}">
+		                    <span class="bold5px">${dto.c_name}</span>
+		                </c:forEach>
+		                <span class="ml50 bold5px">조건 : </span>
+		                <span>
+			                <select name="search_title2" id="search_title2">
+		                        <option value="none" selected="selected">해당없음</option>
+		                        <option value="depart">부서</option>
+		                        <option value="id">아이디</option>
+		                    </select>
+		                </span>
+		                <span>
+		                	<input type="text" class="search_content2" id="search_content2" name="search_content2" placeholder="검색명을 입력하세요.">
+		                </span>
+		                <span class="ml50 bold5px">검색년월 : </span>
+		                <span>
+			                <c:if test="${content == null || fn:length(content) == 0 || content eq 'none'}">
+		                        <input type="text" name="search_content" placeholder="예)20180724">
+		                    </c:if>
+		                    <c:if test="${fn:length(content) > 0}">
+		                        <input type="text" name="search_content" placeholder="${content}">
+		                    </c:if>
+		                </span>
+		                <span>
+		                	<input type="submit" value="검색">
+		                </span>
+				    </form>
 				</div>
 			</div>
-			<div id="result" style="width: 1200px; float: right;">
-				<h3>기본수당외 수당등록</h3>
-				<table border="1">
-					<tr>
-						<td style="text-align: center; background-color: #cccccc;"
-							width="25%">상여금/삭감</td>
-						<td style="text-align: center; background-color: #cccccc;"
-							width="25%">지급/공제</td>
-						<td style="text-align: center; background-color: #cccccc;"
-							width="25%">금액</td>
-						<td style="text-align: center; background-color: #cccccc;"
-							width="25%">비고</td>
-					</tr>
-					<tr>
-						<td colspan="4">사원번호를 클릭 하십시오.</td>
-					</tr>
-				</table>
+			
+			<div class="fleft w30p bam_left salary_info">
+				<h3>기본정보</h3>
+				<div>
+	                <table>
+	                    <thead>
+		                    <tr>
+		                        <td>사원번호</td>
+		                        <td>성명</td>
+		                        <td>부서</td>
+		                    </tr>
+	                    </thead>
+	                    <c:if test="${cnt > 0}">
+	                        <c:forEach var="dto" items="${dtos}">
+	                            <tr id="ttr">
+	                                <c:if test="${content != null}">
+	                                    <!--날짜검색  -->
+	                                    <td onclick="load2('${dto.id}','${content}')" style="cursor: pointer; background-color: blue;">${dto.id}</td>
+	                                </c:if>
+	                                <c:if test="${content == null}">
+	                                    <!--이번달  -->
+	                                    <td onclick="load('${dto.id}')" style="cursor: pointer; background-color: red;">${dto.id}</td>
+	                                </c:if>
+	                                <td>${dto.name}</td>
+	                                <td>${dto.j_name}</td>
+	                            </tr>
+	                        </c:forEach>
+	                    </c:if>
+	                    <!-- 게시글이 없으면 -->
+	                    <c:if test="${cnt == 0}">
+	                        <tr>
+	                            <td colspan="3" align="center">게시글이 없습니다. 글을 작성해주세여.</td>
+	                        </tr>
+	                    </c:if>
+	                </table>
+	                <div>
+	                    <table>
+	                        <!-- 페이지 컨트롤 -->
+	                        <tr>
+	                            <th colspan="7" align="center">
+	                                <!-- 게시글이 있으면 -->
+	                                <c:if test="${cnt >0}">
+	                                    <!-- 처음[◀◀] / 이전블록[◀]-->
+	                                    <c:if test="${startPage > pageBlock}">
+	                                        <a href="J_BasicAllowanceManagement">[PageDown x2]</a>
+	                                        <a href="J_BasicAllowanceManagement?pageNum=${startPage - pageBlock}">[PageDown]</a>
+	                                    </c:if>
+	
+	
+	                                    <!-- 블록내의 페이지 번호 -->
+	                                    <c:forEach var="i" begin="${startPage}" end="${endPage}">
+	                                        <c:if test="${i == currentPage}">
+	                                            <span><b> [${i}] </b></span>
+	                                        </c:if>
+	                                        <c:if test="${i != currentPage}">
+	                                            <a href="J_BasicAllowanceManagement?pageNum=${i}&search_content=${content}">[${i}]</a>
+	                                        </c:if>
+	                                    </c:forEach>
+	                                    <!-- 다음 블록[▶] /마지막[▶▶] -->
+	                                    <c:if test="${pageCount > endPage}">
+	                                        <a href="J_BasicAllowanceManagement?pageNum=${startPage + pageBlock}">[▶]</a>
+	                                        <a href="J_BasicAllowanceManagement?pageNum=${pageCount}">[▶▶]</a>
+	                                    </c:if>
+	                                </c:if>
+	                            </th>
+	                        </tr>
+	                    </table>
+	                </div>
+	            </div>
 			</div>
-		</div>
-		<div id="result2" style="width: 1200px;">
-			<h3>수정 할 목록</h3>
+		    <div class="fright w70p" style="background:blue;height:300px;">
+		    
+		    </div>
+		
+		    <div>
+		        <div id="result" class="fleft salary_info">
+		            <h3>기본수당외 수당등록</h3>
+		            <table>
+		                <thead>
+		                	<tr>
+			                    <th>상여금/삭감</th>
+			                    <th>지급/공제</th>
+			                    <th>금액</th>
+			                    <tH>비고</th>
+			                </tr>
+		                </thead>
+		                <tr>
+		                    <td colspan="4">사원번호를 클릭 하십시오.</td>
+		                </tr>
+		            </table>
+		        </div>
+		    </div>
+		    <div id="result2">
+		        <h3>수정 할 목록</h3>
+		    </div>
 		</div>
 	</article>
 </section>

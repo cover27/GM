@@ -30,4 +30,12 @@ public interface D_Service {
 	
 	public void insertReple(HttpServletRequest req, Model model);
 	
+	public void repleList(HttpServletRequest req, Model model);
+	
+	public void deleteReple(HttpServletRequest req, Model model);
+	
+	public void allBoardList(HttpServletRequest req, Model model); // 전체 글목록
+	
+	public void boardsDelete(HttpServletRequest req, Model model); // 게시판 삭제
+	
 }

@@ -524,3 +524,26 @@ img {
 #cke_1_contents {
 	height: 400px !important;
 }
+
+.clear {
+	clear: both;
+}
+
+.btnset input[type="submit"], .btnset input[type="cancel"], .btnset input[type="button"], .btnset button {
+	cursor: pointer;
+    padding: 5px 15px;
+    border-radius: 3px;
+    border: none;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.btnset input[type="submit"], .btnset input[type="button"], .btnset button {
+	color: #fff;
+	background: #555;
+}
+
+.btnset input[type="cancel"] {
+	color: #333;
+	background: #f3f3f3;
+}

@@ -207,11 +207,24 @@ public class K_Controller {
 		return "admin/sub/K_registRetirement";
 	}
 	
-	//회사관리자 아직 안만듬
-	@RequestMapping("admin/K_setting_admin")
-	public String K_setting_admin(HttpServletRequest req, Model model) {
-		logger.info("URL : K_setting_admin");
-				
-		return "admin/K_setting_admin";
+	//인사정보 재등록
+	@RequestMapping("admin/K_restoMember")
+	public String K_restoMember(HttpServletRequest req, Model model) {
+		logger.info("URL : K_restoMember");
+		
+		service.K_restoMember(req, model);
+		
+		return "admin/K_restoMember";
 	}
+	
+	//인사정보 재등록 - 복구버튼
+	@RequestMapping("admin/K_restoMember_pro")
+	public String K_restoMember_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : K_restoMember_pro");
+		
+		service.K_restoMember_pro(req, model);
+		
+		return "admin/sub/K_restoMember_pro";
+	}
+	
 }

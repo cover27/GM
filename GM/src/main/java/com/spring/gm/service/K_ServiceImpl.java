@@ -500,5 +500,118 @@ public class K_ServiceImpl implements K_Service{
 		}
 		model.addAttribute("updateCnt", updateCnt);
 	}
-	
+
+	@Override
+	public void K_restoMember(HttpServletRequest req, Model model) {
+		
+		int pageSize = 10; // 한페이지당 출력할 글 갯수
+		int pageBlock = 5; // 한 블럭당 페이지 갯수
+ 
+		int cnt = 0; // 글갯수
+		int start = 0; // 현재 페이지 시작 글번호
+		int end = 0; // 현재 페이지 마지막 글번호
+		int number = 0; // 출력용 글번호
+		String pageNum = ""; // 페이지 번호
+		int currentPage = 0; // 현재페이지
+ 
+		int pageCount = 0; // 페이지 갯수
+		int startPage = 0; // 시작 페이지
+		int endPage = 0; // 마지막 페이지
+		
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		String name = null;
+		if(req.getParameter("name") != null) {
+			name = req.getParameter("name");
+		}
+		List<GroupsVO> groupsList = new ArrayList<GroupsVO>();
+		List<GradeVO> gradeList = new ArrayList<GradeVO>();
+		List<MemberVO> retireList = new ArrayList<MemberVO>();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("retire", 1);
+		map.put("company", company);
+		map.put("name", name);
+		
+		if(name == null) {
+			cnt = dao.selectCnt(map);
+		} else {
+			cnt = dao.selectCnt_name(map);
+		}
+		
+		pageNum = req.getParameter("pageNum");
+		if (pageNum == null) {
+			pageNum = "1"; // 첫페이지를 1페이지로 지정
+		}
+		currentPage = Integer.parseInt(pageNum);
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);
+		start = (currentPage - 1) * pageSize + 1;
+		end = start + pageSize - 1;
+		
+		if (end > cnt)
+			end = cnt;
+		
+		number = cnt - (currentPage - 1) * pageSize;
+		
+		if (cnt > 0) {
+			map.put("start", start);
+			map.put("end", end);
+			if(name == null) {
+				retireList = dao.getMemberList(map);
+			} else {
+				retireList = dao.getMemberList_name(map);
+			}
+			
+			groupsList = dao.getGroups(company);
+			gradeList = dao.getGrade(company);
+			
+			model.addAttribute("retireList", retireList);
+			model.addAttribute("groupsList", groupsList);
+			model.addAttribute("gradeList", gradeList);
+		}
+		
+		startPage = (currentPage / pageBlock) * pageBlock + 1;
+		if (currentPage % pageBlock == 0)
+			startPage -= pageBlock;
+		
+		endPage = startPage + pageBlock - 1;
+		if (endPage > pageCount)
+			endPage = pageCount;
+ 
+		String companyName = dao.getCompanyName(company);
+		model.addAttribute("cnt", cnt); // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum); // 페이지번호
+		model.addAttribute("company", companyName); //회사 이름
+		model.addAttribute("name", name); // 검색어
+		
+		if (cnt > 0) {
+			model.addAttribute("startPage", startPage); // 시작 페이지
+			model.addAttribute("endPage", endPage); // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock); // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount); // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
+		}
+	}
+
+	@Override
+	public void K_restoMember_pro(HttpServletRequest req, Model model) {
+		String id = req.getParameter("check");
+		int depart = Integer.parseInt(req.getParameter("depart"));
+		int rank = Integer.parseInt(req.getParameter("rank"));
+		int updateCnt = 0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("depart", depart);
+		map.put("rank", rank);
+		
+		int updateCnt1 = dao.updateRestoMember(map);
+		int updateCnt2 = dao.updateRestoUsers(id);
+		
+		if(updateCnt1 !=0 && updateCnt2 != 0) {
+			updateCnt = 1;
+		}
+		
+		model.addAttribute("updateCnt", updateCnt);
+	}
 }

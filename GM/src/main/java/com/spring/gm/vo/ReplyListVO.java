@@ -9,7 +9,7 @@ public class ReplyListVO {
 	private String content;
 	private String writer;
 	private int reref;
-	private int reref_stap;
+	private int reref_step;
 	private int reref_level;
 	private Timestamp reg_date;
 	private int del;
@@ -51,17 +51,17 @@ public class ReplyListVO {
 	public void setReref(int reref) {
 		this.reref = reref;
 	}
-	public int getReref_stap() {
-		return reref_stap;
+	public int getReref_step() {
+		return reref_step;
 	}
-	public void setReref_stap(int reref_stap) {
-		this.reref_stap = reref_stap;
+	public void setReref_step(int reref_stap) {
+		this.reref_step = reref_stap;
 	}
 	public int getReref_level() {
 		return reref_level;
 	}
-	public void setRere_level(int rere_level) {
-		this.reref_level = rere_level;
+	public void setReref_level(int reref_level) {
+		this.reref_level = reref_level;
 	}
 	public Timestamp getReg_date() {
 		return reg_date;
@@ -73,7 +73,7 @@ public class ReplyListVO {
 	@Override
 	public String toString() {
 		return "ReplyListVO [replenum=" + replenum + ", boardnum=" + boardnum + ", content=" + content + ", writer="
-				+ writer + ", reref=" + reref + ", reref_stap=" + reref_stap + ", reref_level=" + reref_level
+				+ writer + ", reref=" + reref + ", reref_step=" + reref_step + ", reref_level=" + reref_level
 				+ ", reg_date=" + reg_date + ", del=" + del + "]";
 	}
 	

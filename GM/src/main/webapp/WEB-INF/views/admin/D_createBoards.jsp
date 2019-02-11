@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="content_result">
-		<form action="<c:url value='/admin/D_CreateBoards_pro'/>" method="post" name="D_boardsUpdate">
+		<form action="<c:url value='/admin/D_CreateBoardsPro'/>" method="post" name="D_boardsUpdate">
 			<input type="hidden" name="num" value="${num}">
 			<h3>게시판 생성</h3>
 			<label>

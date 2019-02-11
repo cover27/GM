@@ -46,7 +46,21 @@ public interface D_DAO {
 	public void updateStep(BoardListVO vo);
 	
 	public int insertReple(ReplyListVO vo);
-
 	
+	public List<ReplyListVO> getRepleArticleList(Map<String, Object> map);	// 댓글 목록
+	
+	public int getRepleArticleCnt();	// 댓글 갯수
+	
+	public int deleteReple(int replenum);	// 댓글 삭제
+	
+	public int repleCnt(int boardnum);	// 해당 글의 댓글갯수
+	
+	public int addRepleCnt(int boardnum);	// 댓글이 생기면 댓글갯수가 증가
+	
+	public int deleteRepleCnt(int boardnum);	// 댓글을 삭제하면 댓글갯수가 감소
+
+	public List<BoardListVO> getAllBoardArticleList(Map<String, Object> map);	// 게시글 전체 목록
+	
+	public int deleteBoards(BoardsVO vo);
 
 }
