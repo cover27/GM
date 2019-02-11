@@ -100,9 +100,22 @@ public class J_Controller {
 	@RequestMapping("admin/J_PayrollRegistration")
 	public String J_PayrollRegistration(HttpServletRequest req, Model model) {
 		logger.info("URL : J_PayrollRegistration");
-		service.companyName(req, model);
-		service.salaryList(req, model);
-
+		String title = req.getParameter("search_title");
+		String content = req.getParameter("search_content");
+		if (content == null || title.equals("allList")) { // 검색 안했을 경우
+			System.out.println("검색 안했을 경우");
+			service.companyName(req, model);
+			service.salaryList(req, model);
+		} else if (content != null) { // 검색 했을경우
+			if (content.length() > 0) {
+				System.out.println("검색 했을 경우");
+				service.search_salaryList(req, model);
+			} else if (content.length() <= 0) {
+				System.out.println("검색 실패하였습니다. 확인해 주세여");
+				model.addAttribute("cnt",-1);
+				return "admin/sub/J_PayrollRegistrationInsertPro_sub";
+			}
+		}
 		return "admin/J_PayrollRegistration";
 	}
 

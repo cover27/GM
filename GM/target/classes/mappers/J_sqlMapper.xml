@@ -91,8 +91,8 @@
 		where s.id = m.id
 		and to_char(s.day,'yyyymm')=to_char(sysdate,'yyyymm') and m.id = #{id} and company = #{company}
 	</select>
-	<select id="J_PayrollRegistrationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.SalaryVO">
-		SELECT s.sal_num, s.id, m.name, m.tel, s.day, s.state, m.email_in, s.salary, m.ACCOUNT_NUMBER
+	<select id="J_PayrollRegistrationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_msVO">
+		SELECT s.sal_num, s.id, m.name, m.tel, s.day, s.state, m.email_in, s.salary, m.account_number
 		from member m, salary s
 		where m.id = s.id
 		and s.id = #{id} and company = #{company}
@@ -101,6 +101,13 @@
 	<select id="J_PayrollRegistrationInsertList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
 		SELECT id,name,tel,email_in,round(salary/12, -2) as salary,account_number FROM member where  id = #{id} and company = #{company}
 	</select>
+	
+	<!--  개인 급여등록 -->
+	<insert id="J_PayrollRegistrationInsert" parameterType="java.util.Map">
+		INSERT INTO salary(sal_num, id, day, state, salary, del)
+		VALUES (seq_salary.nextval,#{id}, to_date(#{month},'yyyy/mm'), #{state}, #{salary}, 0)
+	</insert>
+	
 	
 	
 	

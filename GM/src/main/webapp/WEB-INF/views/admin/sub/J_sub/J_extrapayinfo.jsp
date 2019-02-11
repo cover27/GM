@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
 	<button name="addStaff" onclick="addhang();">행 추가</button>
 	<form action="J_extrapayinfoUpdate" method="post">
 		<table border="1">
