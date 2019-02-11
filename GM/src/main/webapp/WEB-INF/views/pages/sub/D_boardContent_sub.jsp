@@ -70,7 +70,7 @@
 						<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${r_dtos.reg_date}" />
 					</td>
 
-					<td><input type="button" class="inputButton" value="글 수정" onclick="window.location='<c:url value="/pages/D_repleUpdate?boardnum=${r_dtos.boardnum}&pageNum=${pageNum}&num=${num}&number=${number}&replenum=${r_dtos.replenum}"/>'"></td>
+					<td><input type="button" class="inputButton" value="글 수정" onclick="window.location='<c:url value="/pages/D_repleUpdate?boardnum=${r_dtos.boardnum}&pageNum=${pageNum}&num=${num}&number=${number}&replenum=${r_dtos.replenum}&content=${r_dtos.content}"/>'"></td>
 					<td><input type="button" class="inputButton" value="글 삭제" onclick="window.location='<c:url value="/pages/D_repleDeletePro?boardnum=${r_dtos.boardnum}&pageNum=${pageNum}&num=${num}&number=${number}&replenum=${r_dtos.replenum}"/>'"></td>
 				</tr>
 			</c:if>

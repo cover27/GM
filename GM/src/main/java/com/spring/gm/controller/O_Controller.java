@@ -132,6 +132,7 @@ public class O_Controller {
 		logger.info("URL : O_addApprLine");
 		
 		oservice.addApprLine(req, model);
+		oservice.createApprDoc(req, model);
 		
 		return "pages/O_addApprLine";
 	}

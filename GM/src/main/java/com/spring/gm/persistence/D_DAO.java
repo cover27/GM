@@ -61,6 +61,10 @@ public interface D_DAO {
 
 	public List<BoardListVO> getAllBoardArticleList(Map<String, Object> map);	// 게시글 전체 목록
 	
-	public int deleteBoards(BoardsVO vo);
+	public int deleteBoards(BoardsVO vo);	// 게시판 삭제
+	
+	public int updateReple(ReplyListVO vo);
+	
+	public ReplyListVO getRepleArticle(int replenum);
 
 }
