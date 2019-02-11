@@ -131,11 +131,14 @@ input, button, select, textarea {
     margin: 13px 0 0 0;
     padding: 0;
     text-align: left;
+    /* width:101px; */
 }
 .wfooter .right {
-    position: absolute;
+	position:absolute;
+    /* position: relative; */
     top: 0;
-    right: 0;
+    right:0;
+    /* left: 800px; */
 }
 </style>
 <title>결재선지정</title>
@@ -151,26 +154,28 @@ input, button, select, textarea {
 			</li>
 		</ul>
 		
-		
+		<!-- 조직도 출력 부분이며, fa fa-leaf은 아이콘 모양 -->
 		<div class="tab-content">
 			<div class="tab-pane active ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-orggroup" aria-labelledby="ui-id-1" role="tabpanel" aria-expanded="true" aria-hidden="false">
 				<div class="inbox h480">
 					<div class="shuttleTree">
 						<div id="treeDept" class="jstree jstree-0 jstree-focused jstree-ikep">
 							<ul>
-								<li data="{&quot;type&quot;:&quot;group&quot;,&quot;code&quot;:&quot;G151121&quot;,&quot;parent&quot;:null,&quot;groupTypeId&quot;:&quot;&quot;,&quot;hasChild&quot;:&quot;7&quot;}" code="G151121" id="treeItem_G151121" class="jstree-last jstree-open">
-									<ins class="jstree-icon">&nbsp;</ins>
-									<a href="#"><ins class="jstree-icon dept">&nbsp;</ins>홈사랑넷</a>
-									<ul>
-										<li data="{&quot;type&quot;:&quot;joinUser&quot;,&quot;userName&quot;:&quot;박헌철&quot;,&quot;id&quot;:&quot;U260216&quot;,&quot;group&quot;:&quot;G151121&quot;,&quot;empNo&quot;:&quot;&quot;,&quot;email&quot;:&quot;kokozzang@bizmeka.com&quot;,&quot;jobTitleName&quot;:&quot;&quot;,&quot;teamName&quot;:&quot;홈사랑넷&quot;,&quot;mobile&quot;:&quot;01076737717&quot;,&quot;jobTitleCode&quot;:&quot;&quot;,&quot;profileImg&quot;:&quot;&quot;}" code="" id="treeItem_U260216" class="jstree-leaf">
-											<ins class="jstree-icon">&nbsp;</ins>
-											<a href="#"><ins class="jstree-icon fa fa-leaf join">&nbsp;</ins>박헌철  (부서장)</a>
-										</li>
-										<li data="{&quot;type&quot;:&quot;joinUser&quot;,&quot;userName&quot;:&quot;강경준&quot;,&quot;id&quot;:&quot;U267422&quot;,&quot;group&quot;:&quot;G151121&quot;,&quot;empNo&quot;:&quot;&quot;,&quot;email&quot;:&quot;kkjun0310@bizmeka.com&quot;,&quot;jobTitleName&quot;:&quot;&quot;,&quot;teamName&quot;:&quot;홈사랑넷&quot;,&quot;mobile&quot;:&quot;01071975265&quot;,&quot;jobTitleCode&quot;:&quot;&quot;,&quot;profileImg&quot;:&quot;&quot;}" code="" id="treeItem_U267422" class="jstree-leaf">
-											<ins class="jstree-icon">&nbsp;</ins>
-											<a href="#"><ins class="jstree-icon fa fa-leaf join">&nbsp;</ins>강경준 </a>
-										</li>
-									</ul>
+								<li code="G151121" id="treeItem_G151121" class="jstree-last jstree-open">
+									<c:forEach var="dname" items="${dname}">
+										-- ${dname}
+										<c:forEach var="dto" items="${dtos}">
+												<ul>
+													<li id="treeItem_U260216" class="jstree-leaf">
+													<c:if test="${dto.getG_name()==dname}">
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<a href="#"><ins class="fa fa-leaf">&nbsp;</ins>
+															${dto.getName()}</a>
+													</c:if>
+													</li>
+												</ul>
+										</c:forEach>
+									</c:forEach>
 								</li>
 							</ul>
 						</div>
@@ -187,14 +192,14 @@ input, button, select, textarea {
 				<div class="title">결재방법</div>
 				<ul class="mb10">
 					<li class="text-center"><label><input type="radio" value="0" name="apprType" title="" class="radio" checked="checked">결재</label></li>
-					<li class="text-center none"><label><input type="radio" value="4" name="apprType" title="" class="radio">후결</label></li>
-					<li class="text-center "><label><input type="radio" value="1" name="apprType" title="" class="radio">합의</label></li>
-					<li class="text-center none"><label><input type="radio" value="2" name="apprType" title="" class="radio">확인</label></li>
+					<!-- <li class="text-center none"><label><input type="radio" value="4" name="apprType" title="" class="radio">후결</label></li> -->
+					<li class="text-center"><label><input type="radio" value="1" name="apprType" title="" class="radio">합의</label></li>
 				</ul>
 				<ul>
+					<!-- fa fa-angle-left,  fa fa-undo는 아이콘 모양-->
 					<li><a href="#" id="btnItemAdd" class="btn-color5"><i class="fa fa-angle-right"></i><span class="blind">Add</span></a></li>
 					<li><a href="#" id="btnItemRemove"><i class="fa fa-angle-left"></i><span class="blind">Remove</span></a></li>
-					<li><a id="btnItemRemoveAll" href="#a"><i class="fa fa-rotate-left"></i><span class="blind">Reset</span></a></li>
+					<li><a id="btnItemRemoveAll" href="#a"><i class="fa fa-undo"></i><span class="blind">Reset</span></a></li>
 				</ul>						
 			</div>
 		</div>
@@ -297,19 +302,16 @@ input, button, select, textarea {
 					</div>
 			</div>
 		</div>
-		
-
-	<div class="wfooter">	
-		<div id="formButtonDiv">
-			<div class="left"></div>
-			<div class="right">							
-				<button id="btnApply" type="button" class="btn btn-color5 br">적용</button>
-		    	<button id="btnClose" type="button" class="btn btn-color7 br">닫기</button>
-		    </div>
+	
+		<div class="wfooter">	
+			<div id="formButtonDiv">
+				<div class="left"></div>
+				<div class="right">							
+					<button id="btnApply" type="button" class="btn btn-color5 br">적용</button>
+			    	<button id="btnClose" type="button" class="btn btn-color7 br">닫기</button>
+			    </div>
+			</div>
 		</div>
-	</div>
-	
-	
 </div>
 
 

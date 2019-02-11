@@ -1,5 +1,6 @@
 package com.spring.gm.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,8 @@ import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.GradeVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
+import com.spring.gm.vo.join_mgcVO;
+import com.spring.gm.vo.join_mgcVO2;
 
 @Repository
 public class K_DAOImpl implements K_DAO{
@@ -138,6 +141,116 @@ public class K_DAOImpl implements K_DAO{
 	@Override
 	public int retireUsers(String id) {
 		return sqlSession.update("com.spring.gm.persistence.K_DAO.retireUsers", id);
+	}
+	
+	@Override
+	public int selectCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.selectCnt", map);
+	}
+	
+	//급여 회원정보 가져오기(부서번호가 회사명)
+	@Override
+	public ArrayList<join_mgcVO2> selectList2(Map<String, Object> map) {
+		ArrayList<join_mgcVO2> dtos = null;
+		K_DAO dao = sqlSession.getMapper(K_DAO.class);
+		dtos = dao.selectList2(map);
+		return dtos;
+	}
+	//급여 회원정보 가져오기(부서번호가 부서명)
+	@Override
+	public ArrayList<join_mgcVO2> selectList3(Map<String, Object> map) {
+		ArrayList<join_mgcVO2> dtos = null;
+		K_DAO dao = sqlSession.getMapper(K_DAO.class);
+		dtos = dao.selectList3(map);
+		return dtos;
+	}
+
+	@Override
+	public int search_salaryCnt(Map<String, Object> map) {
+		String search_title = (String) map.get("search_title");
+		int selectCnt = 0;
+		if (search_title.equals("name")) {
+			selectCnt = sqlSession.selectOne("com.spring.gm.persistence.K_DAO.search_salaryCnt", map);
+			if (selectCnt != 0) {
+				selectCnt = 1;
+				return selectCnt;
+			}
+		} else if (search_title.equals("depart")) {
+			selectCnt = sqlSession.selectOne("com.spring.gm.persistence.K_DAO.search_salaryCnt2", map);
+			if (selectCnt != 0) {
+				selectCnt = 1;
+				return selectCnt;
+			}
+		} else if (search_title.equals("id")) {
+			selectCnt = sqlSession.selectOne("com.spring.gm.persistence.K_DAO.search_salaryCnt3", map);
+			if (selectCnt != 0) {
+				selectCnt = 1;
+				return selectCnt;
+			}
+		}
+		return selectCnt;
+	}
+
+	@Override
+	public ArrayList<join_mgcVO2> searchinfoList(Map<String, Object> map) {
+		ArrayList<join_mgcVO2> dtos = new ArrayList<join_mgcVO2>();
+		K_DAO dao = sqlSession.getMapper(K_DAO.class);
+		String search_title = (String) map.get("search_title");
+		
+		if (search_title.equals("name")) {	//이름 검색
+			// 5-2. 게시글 목록 조회
+			List<join_mgcVO2> dtos1 = dao.searchinfoList(map);	// depart가 회사번호
+			System.out.println(dtos1.toString());
+			List<join_mgcVO2> dtos3 = dao.searchinfoList3(map);	//depart가 부서번호
+			System.out.println(dtos3.toString());
+			dtos.addAll(dtos1);
+			dtos.addAll(dtos3);
+			System.out.println(dtos.toString());
+		} else if (search_title.equals("depart")) {	//부서 검색
+			System.out.println("depart 탔다");
+			dtos = dao.searchinfoList2(map);
+			System.out.println("depart 탔다");
+		} else if (search_title.equals("id")) {	// 사원아이디 검색
+			List<join_mgcVO2> dtos4 = dao.searchinfoList4(map);	// depart가 회사번호
+			System.out.println("여기 탔다2");
+			System.out.println(dtos4.toString());
+			List<join_mgcVO2> dtos5 = dao.searchinfoList5(map);	//depart가 부서번호
+			System.out.println("여기 탔다3");
+			System.out.println(dtos5.toString());
+			dtos.addAll(dtos4);
+			dtos.addAll(dtos5);
+			System.out.println(dtos.toString());
+		}
+		return dtos;
+	}
+
+	@Override
+	public ArrayList<join_mgcVO2> searchinfoList2(Map<String, Object> map) {
+		ArrayList<join_mgcVO2> dtos = null;
+		K_DAO dao = sqlSession.getMapper(K_DAO.class);
+		dtos = dao.searchinfoList2(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgcVO2> searchinfoList3(Map<String, Object> map) {
+		ArrayList<join_mgcVO2> dtos = null;
+		K_DAO dao = sqlSession.getMapper(K_DAO.class);
+		dtos = dao.searchinfoList3(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgcVO2> searchinfoList4(Map<String, Object> map) {
+		ArrayList<join_mgcVO2> dtos = null;
+		K_DAO dao = sqlSession.getMapper(K_DAO.class);
+		dtos = dao.searchinfoList4(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgcVO2> searchinfoList5(Map<String, Object> map) {
+		ArrayList<join_mgcVO2> dtos = null;
+		K_DAO dao = sqlSession.getMapper(K_DAO.class);
+		dtos = dao.searchinfoList5(map);
+		return dtos;
 	}
 	
 }

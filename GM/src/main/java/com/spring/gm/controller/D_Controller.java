@@ -38,7 +38,7 @@ public class D_Controller {
 		return "admin/sub/D_CreateBoards_pro";
 	}
 	
-	//게시판 목록
+	//게시판 설정
 	@RequestMapping("/pages/D_boardsSetting")
 	public String boardsList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardsSetting");

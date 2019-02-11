@@ -27,8 +27,6 @@ public class J_ServiceImpl implements J_Service {
 	// 전체 급여 회원 뽑기
 	@Override
 	public void salaryList(HttpServletRequest req, Model model) {
-		String pagenum = req.getParameter("pageNum");
-
 		int pageSize = 10; // 한페이지당 출력할 글 갯수
 		int pageBlock = 5; // 한 블럭당 페이지 갯수
 
@@ -38,11 +36,14 @@ public class J_ServiceImpl implements J_Service {
 		int number = 0; // 출력용 글번호
 		String pageNum = ""; // 페이지 번호
 		int currentPage = 0; // 현재페이지
-
+		String content = "";
+		
 		int pageCount = 0; // 페이지 갯수
 		int startPage = 0; // 시작 페이지
 		int endPage = 0; // 마지막 페이지
-
+		
+		pageNum = req.getParameter("pageNum");
+		content = req.getParameter("contents");
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 
 		System.out.println("회사번호 :" + company);
@@ -86,10 +87,8 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println(dtos2.toString());
 			List<join_mgcVO> dtos3 = dao.selectList3(map); // depart가 부서번호
 			System.out.println("여기 탔다3");
-			System.out.println(dtos3.toString());
 			dtos.addAll(dtos2);
 			dtos.addAll(dtos3);
-			System.out.println(dtos.toString());
 			model.addAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
 		}
 		// 시작페이지
@@ -109,6 +108,8 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("cnt", cnt); // 글갯수
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum); // 페이지번호
+		System.out.println("content :" + content);
+		model.addAttribute("content", content);
 
 		if (cnt > 0) {
 			model.addAttribute("startPage", startPage); // 시작 페이지
@@ -116,6 +117,7 @@ public class J_ServiceImpl implements J_Service {
 			model.addAttribute("pageBlock", pageBlock); // 출력할 페이지 갯수
 			model.addAttribute("pageCount", pageCount); // 페이지 갯수
 			model.addAttribute("currentPage", currentPage); // 현재페이지
+			model.addAttribute("content", content);
 		}
 	}
 
@@ -203,6 +205,104 @@ public class J_ServiceImpl implements J_Service {
 		dtos = dao.companyName(company);
 		model.addAttribute("dtoss",dtos);
 	}
+	
+	// 날짜만 입력하여 검색시
+	@Override
+	public void salarySearchList(HttpServletRequest req, Model model) {
+		int pageSize = 10; // 한페이지당 출력할 글 갯수
+		int pageBlock = 5; // 한 블럭당 페이지 갯수
+		int cnt = 0; // 글갯수
+		int start = 0; // 현재 페이지 시작 글번호
+		int end = 0; // 현재 페이지 마지막 글번호
+		int number = 0; // 출력용 글번호
+		String pageNum = ""; // 페이지 번호
+		int currentPage = 0; // 현재페이지
+		int pageCount = 0; // 페이지 갯수
+		int startPage = 0; // 시작 페이지
+		int endPage = 0; // 마지막 페이지
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		System.out.println("회사번호 :" + company);
+		String content2 = req.getParameter("search_content2");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("content2", content2);
+		map.put("company", company);
+		cnt = dao.selectCnt(map);
+		System.out.println("cnt : " + cnt); // 먼저 테이블에 30건을 insert
+		pageNum = req.getParameter("pageNum");
+		if (pageNum == null) {
+			pageNum = "1"; // 첫페이지를 1페이지로 지정
+		}
+		currentPage = Integer.parseInt(pageNum); // 현재 페이지 : 1
+		System.out.println("currentPage : " + currentPage);
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
+		start = (currentPage - 1) * pageSize + 1;
+		end = start + pageSize - 1;
+		System.out.println("start : " + start);
+		System.out.println("end : " + end);
+		if (end > cnt)
+			end = cnt;
+		number = cnt - (currentPage - 1) * pageSize; // 출력용 글번호
+		System.out.println("number : " + number);
+		System.out.println("pageSize : " + pageSize);
+		String title = req.getParameter("search_title");
+		String content = req.getParameter("search_content");
+		String title2 = req.getParameter("search_title2");
+		map.put("title", title);
+		map.put("content", content);
+		map.put("title2", title2);
+		map.put("start", start);
+		map.put("end", end);
+
+
+		List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
+		List<join_mgcVO> dtos2 = null;
+		List<join_mgcVO> dtos3 = null;
+		if (cnt > 0) {
+			System.out.println("여기 탑니까?");
+			if (content.length() == 4) { // 입사일 년도로 기준
+				System.out.println("입사일 년도로 기준");
+				dtos2 = dao.salarySearchList1_1(map);
+				dtos3 = dao.salarySearchList1_2(map);
+				dtos.addAll(dtos2);
+				dtos.addAll(dtos3);
+			} else if (content.length() == 6) { // 입사일 월로 기준
+				System.out.println("입사일 월로 기준");
+				dtos2 = dao.salarySearchList2_1(map);
+				dtos3 = dao.salarySearchList2_2(map);
+				dtos.addAll(dtos2);
+				dtos.addAll(dtos3);
+			} else if (content.length() == 8) { // 입사일 일짜로 기준
+				System.out.println("입사일 일짜로 기준");
+				dtos2 = dao.salarySearchList3_1(map);
+				dtos3 = dao.salarySearchList3_2(map);
+				dtos.addAll(dtos2);
+				dtos.addAll(dtos3);
+			}
+		}
+		startPage = (currentPage / pageBlock) * pageBlock + 1;
+		if (currentPage % pageBlock == 0)
+			startPage -= pageBlock;
+		System.out.println("startPage : " + startPage);
+		endPage = startPage + pageBlock - 1;
+		if (endPage > pageCount)
+			endPage = pageCount;
+		System.out.println("endPage : " + endPage);
+		System.out.println("================");
+		
+		model.addAttribute("dtos",dtos);
+		model.addAttribute("cnt", cnt); // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum); // 페이지번호
+
+		if (cnt > 0) {
+			model.addAttribute("startPage", startPage); // 시작 페이지
+			model.addAttribute("endPage", endPage); // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock); // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount); // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
+		}
+	}
+	
 	// 수당 검색 회원목록 가져오기 (depart검색시 날짜입력이 없을시)
 	@Override
 	public void salarySearchNoneDepartList(HttpServletRequest req, Model model) {
@@ -311,15 +411,19 @@ public class J_ServiceImpl implements J_Service {
 		number = cnt - (currentPage - 1) * pageSize; // 출력용 글번호
 		System.out.println("number : " + number);
 		System.out.println("pageSize : " + pageSize);
-		List<join_mgcVO> dtos = null;
+		List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
+		List<join_mgcVO> dtos2 = null;
+		List<join_mgcVO> dtos3 = null;
 		if (cnt > 0) {
 			map.put("start", start);
 			map.put("end", end);
-			dtos = dao.selectNoneIdList(map);
+			dtos2 = dao.selectNoneIdList(map);
+			dtos3 = dao.selectNoneIdList2(map);
+			dtos.addAll(dtos2);
+			dtos.addAll(dtos3);
+			model.addAttribute("dtos", dtos);
+			model.addAttribute("cnt", cnt);
 		}
-		System.out.println(dtos.toString());
-		model.addAttribute("dtos", dtos);
-		model.addAttribute("cnt", cnt);
 		startPage = (currentPage / pageBlock) * pageBlock + 1;
 		if (currentPage % pageBlock == 0)
 			startPage -= pageBlock;
@@ -360,18 +464,17 @@ public class J_ServiceImpl implements J_Service {
 		map.put("title2", title2);
 		map.put("content2", content2);
 
-		List<join_mgcVO> dtos = null;
-		if (title != null && content.length() == 4) { // 입사일 년도로 기준
+		List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
+		if ( content.length() == 4) { // 입사일 년도로 기준
 			System.out.println("입사일 년도로 기준");
 			dtos = dao.salaryDepartSearchList1(map);
-		} else if (title != null && content.length() == 6) { // 입사일 월로 기준
+		} else if (content.length() == 6) { // 입사일 월로 기준
 			System.out.println("입사일 월로 기준");
 			dtos = dao.salaryDepartSearchList2(map);
-		} else if (title != null && content.length() == 8) { // 입사일 일짜로 기준
+		} else if ( content.length() == 8) { // 입사일 일짜로 기준
 			System.out.println("입사일 일짜로 기준");
 			dtos = dao.salaryDepartSearchList3(map);
 		}
-		System.out.println(dtos.toString());
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("cnt", 1);
 		model.addAttribute("content", content);
@@ -403,13 +506,13 @@ public class J_ServiceImpl implements J_Service {
 			dtos3 = dao.salaryIdSearchList1_2(map);
 			dtos.addAll(dtos2);
 			dtos.addAll(dtos3);
-		} else if (title != null && content.length() == 6) { // 입사일 월로 기준
+		} else if ( content.length() == 6) { // 입사일 월로 기준
 			System.out.println("입사일 월로 기준");
 			dtos2 = dao.salaryIdSearchList2_1(map);
 			dtos3 = dao.salaryIdSearchList2_2(map);
 			dtos.addAll(dtos2);
 			dtos.addAll(dtos3);
-		} else if (title != null && content.length() == 8) { // 입사일 일짜로 기준
+		} else if ( content.length() == 8) { // 입사일 일짜로 기준
 			System.out.println("입사일 일짜로 기준");
 			dtos2 = dao.salaryIdSearchList3_1(map);
 			dtos3 = dao.salaryIdSearchList3_2(map);
@@ -446,23 +549,32 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("content :" + content);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
-		map.put("content",Integer.parseInt(content));
+		map.put("content",content);
 		int cnt = 0;
 		List<BonusCutVO> dtos = null;
+		if(content.length() == 0) {
+			System.out.println("1");
+			cnt = dao.J_extrapayinfoCnt(id);
+			System.out.println(cnt);
+			dtos = dao.J_extrapayinfo(id);
+		}
 		if(content.length() == 4) { //년
+			System.out.println("2");
 			cnt = dao.J_extrapayinfoCnt2_1(map);
 			System.out.println("cnt :" + cnt);
 			dtos = dao.J_extrapayinfo2_1(map);
 		}else if(content.length() == 6) {	//월
+			System.out.println("3");
 			cnt = dao.J_extrapayinfoCnt2_2(map);
 			System.out.println("cnt :" + cnt);
 			dtos = dao.J_extrapayinfo2_2(map);
 		}else if(content.length() == 8) {	//일
+			System.out.println("4");
 			cnt = dao.J_extrapayinfoCnt2_3(map);
 			System.out.println("cnt :" + cnt);
 			dtos = dao.J_extrapayinfo2_3(map);
 		}
-			
+		
 		System.out.println("dtos :" + dtos.toString());
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("cnt", cnt);
@@ -524,6 +636,45 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("cnt", cnt);
 		model.addAttribute("id", id);
+	}
+	// 수당 개인 급여수당정보 수정
+	@Override
+	public void J_ExtrapayInfoModified(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		System.out.println("num : " + num);
+		List<BonusCutVO> dtos = dao.J_ExtrapayInfoModified(num);
+		model.addAttribute("dtos",dtos);
+	}
+	// 수당 개인 급여수당정보 수정완료
+	@Override
+	public void J_ExtrapayInfoModifiedComplete(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		System.out.println("num : " + num);
+		String state = req.getParameter("state");	// 삭감/추기
+		System.out.println("state : " + state);
+		int cost = Integer.parseInt(req.getParameter("cost"));	//금액
+		System.out.println("cost : " + cost);
+		String type = req.getParameter("type");	//	지급 미지급
+		System.out.println("type : " + type);
+		String content = req.getParameter("content");	// 사유
+		System.out.println("content : " + content);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("state", state);
+		map.put("cost",cost);
+		map.put("type", type);
+		map.put("content", content);
+		int cnt = dao.J_ExtrapayInfoModifiedComplete(map);
+		System.out.println("cnt:" + cnt);
+		if(cnt >0) {
+			BonusCutVO vo = dao.numId(num);
+			String id = vo.getId();
+			List<BonusCutVO> dtos = dao.J_extrapayinfo(id);
+			System.out.println("dtos : " + dtos.toString());
+			model.addAttribute("dtos", dtos);
+			model.addAttribute("cnt", cnt);
+			model.addAttribute("id", id);
+		}
 	}
 
 

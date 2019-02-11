@@ -6,7 +6,7 @@
     
 <mapper namespace="com.spring.gm.persistence.J_DAO" >
 	
-	<select id="selectCnt" parameterType="int" resultType="int">
+	<select id="selectCnt" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(*) as cnt FROM member where company = #{company}
 	</select>
 	<!-- 급여 회원정보 가져오기(부서번호가 회사명) -->
@@ -99,7 +99,7 @@
 	SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
               FROM member m ,companies c
               WHERE m.depart = c.company and to_char(m.enterday,'yyyy') <= #{content})
-        WHERE  depart = #{company} and id like '%'||#{content2}||'%';
+        WHERE  depart = #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
 	<select id="salaryIdSearchList1_2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
@@ -166,16 +166,6 @@
 	]]>
 	</select>
 	
-	<!-- 급여 개인회원수당 정보 있는지확인 -->
-	<select id="J_extrapayinfoCnt" parameterType="String" resultType="int">
-		SELECT count(*) as cnt FROM bonus_cut WHERE id = #{id} and to_char(day,'yyyymm')=to_char(sysdate,'yyyymm')
-	</select>
-	<!-- 급여 개인회원수당 정보 가져오기 -->
-	<select id="J_extrapayinfo" parameterType="String" resultType="com.spring.gm.vo.BonusCutVO">
-		SELECT * FROM bonus_cut WHERE id = #{id} and to_char(day,'yyyymm')=to_char(sysdate,'yyyymm')
-	</select>
-	
-	
 	<!-- 수당 검색 회원목록 갯수 가져오기(부서 날짜검색 안했을시) -->
 	<select id="selectNoneDepartCnt" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(*) as cnt FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
@@ -193,7 +183,7 @@
 	
 	<!-- 수당 검색 회원목록 갯수 가져오기(아이디 날짜검색 안했을시) -->
 	<select id="selectNoneIdCnt" parameterType="java.util.Map" resultType="int">
-		SELECT COUNT(*) as cnt FROM member where company = #{company} and id=#{content2}
+		SELECT COUNT(*) as cnt FROM member where company = #{company} and id like '%'||#{content2}||'%'
 	</select>
 	<select id ="selectNoneIdList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
 	<![CDATA[
@@ -203,9 +193,25 @@
         WHERE (rNum >=  #{start} AND rNum <= #{end})
 	]]>	
 	</select>
+	<select id ="selectNoneIdList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<![CDATA[
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
+              FROM member m ,companies c
+              WHERE m.depart = c.company and id like '%'||#{content2}||'%' and m.company = #{company})
+       WHERE (rNum >=  #{start} AND rNum <= #{end})
+	]]>	
+	</select>
 	
 	
 	
+	<!-- 급여 개인회원수당 정보 있는지확인 -->
+	<select id="J_extrapayinfoCnt" parameterType="String" resultType="int">
+		SELECT count(*) as cnt FROM bonus_cut WHERE id = #{id} and to_char(day,'yyyymm')=to_char(sysdate,'yyyymm')
+	</select>
+	<!-- 급여 개인회원수당 정보 가져오기 -->
+	<select id="J_extrapayinfo" parameterType="String" resultType="com.spring.gm.vo.BonusCutVO">
+		SELECT * FROM bonus_cut WHERE id = #{id} and to_char(day,'yyyymm')=to_char(sysdate,'yyyymm')
+	</select>
 	
 	<!-- 급여 개인회원수당 정보 있는지확인(날짜검색) -->
 	<select id="J_extrapayinfoCnt2_1" parameterType="java.util.Map" resultType="int">
@@ -243,5 +249,61 @@
 		select id from bonus_cut where num = #{num}
 	</select>
 	
-	
+	<!-- 날짜만 입력하여 검색시 -->
+	<select id="salarySearchList1_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<![CDATA[
+	SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
+              FROM member m ,companies c
+              WHERE m.depart = c.company and to_char(m.enterday,'yyyy') <= #{content})
+       WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
+	]]>
+	</select>
+	<select id="salarySearchList1_2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<![CDATA[
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
+              FROM member m ,groups g 
+              WHERE m.depart = g.groupid and to_char(m.enterday,'yyyy')<= #{content})
+         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
+	]]>
+	</select>
+	<select id="salarySearchList2_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<![CDATA[
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
+              FROM member m ,companies c
+              WHERE m.depart = c.company and to_char(m.enterday,'yyyymm') <= #{content})
+        WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
+	]]>
+	</select>
+	<select id="salarySearchList2_2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<![CDATA[
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
+              FROM member m ,groups g 
+              WHERE m.depart = g.groupid and to_char(m.enterday,'yyyymm')<= #{content})
+         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
+	]]>
+	</select>
+	<select id="salarySearchList3_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<![CDATA[
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
+              FROM member m ,companies c
+              WHERE m.depart = c.company and to_char(m.enterday,'yyyymmdd') <= #{content})
+        WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
+	]]>
+	</select>
+	<select id="salarySearchList3_2" parameterType="java.util.Map"  resultType="com.spring.gm.vo.join_mgcVO">
+	<![CDATA[
+		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
+              FROM member m ,groups g 
+              WHERE m.depart = g.groupid and to_char(m.enterday,'yyyymmdd')<= #{content})
+         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
+	]]>
+	</select>
+	<!-- 수정할 목록 불러오기 -->
+	<select id ="J_ExtrapayInfoModified" parameterType="int" resultType="com.spring.gm.vo.BonusCutVO">
+		select *  from bonus_cut where num = #{num}
+	</select>
+	<!-- 수정 업데이트 -->
+	<update id ="J_ExtrapayInfoModifiedComplete" parameterType="java.util.Map">
+		UPDATE bonus_cut SET type=#{type}, cost=#{cost}, content=#{content},state=#{state} where num = #{num}
+	</update>
 </mapper>
