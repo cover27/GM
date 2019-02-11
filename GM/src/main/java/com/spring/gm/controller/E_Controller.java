@@ -55,8 +55,11 @@ public class E_Controller {
 	public String E_myGroupList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_myGroupList");
 		
+		service.E_myGroupList(req, model);
+		
 		return "pages/E_myGroupList";
 	}
+	
 	
 	// 조직도 - 개인그룹 관리
 	@RequestMapping("/pages/E_myGroupManage")

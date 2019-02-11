@@ -4,7 +4,7 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2>사내 VIP 목록</h2>
+			<h2>구성원 목록</h2>
 		</div>
 		
 
