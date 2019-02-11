@@ -59,4 +59,5 @@ public interface D_DAO {
 	
 	public int deleteRepleCnt(int boardnum);	// 댓글을 삭제하면 댓글갯수가 감소
 
+	public List<BoardListVO> getAllBoardArticleList(Map<String, Object> map);
 }

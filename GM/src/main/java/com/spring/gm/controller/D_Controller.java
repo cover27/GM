@@ -87,6 +87,7 @@ public class D_Controller {
 	public String insertBoard(HttpServletRequest req, Model model) {
 		logger.info("URL : D_writeForm");
 		
+		service.boardsList(req, model);
 		service.insertBoard(req, model);
 		return "pages/D_writeForm";
 	}
@@ -103,6 +104,7 @@ public class D_Controller {
 	public String boardContent(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardContent");
 		
+		service.boardsList(req, model);
 		service.contentForm(req, model);
 		service.repleList(req, model);
 		return "pages/D_boardContent";
@@ -145,6 +147,15 @@ public class D_Controller {
 		
 		service.deleteReple(req, model);
 		return "/pages/D_repleDeletePro";
+	}
+	
+	@RequestMapping("/pages/D_allBoardList")
+	public String allBoardList(HttpServletRequest req, Model model) {
+		logger.info("URL : D_allBoardList");
+		
+		service.boardsList(req, model);
+		service.allBoardList(req, model);
+		return "/pages/D_allBoardList";
 	}
 
 }
