@@ -36,7 +36,7 @@
                         <span><a href="<c:url value='/pages/E_myGroupManage' />">개인그룹 관리</a></span>
                     </li>
                     <li>
-                        <span><a href="<c:url value='/pages/E_OrgMyFavoritMemList' />">자주 연락하는 사람 관리</a></span>
+                        <span><a href="<c:url value='/pages/E_orgMyFavoritMemList' />">자주 연락하는 사람 관리</a></span>
                     </li>
                 </ul>
             </div>
