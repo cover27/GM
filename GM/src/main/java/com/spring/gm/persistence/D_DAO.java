@@ -53,8 +53,10 @@ public interface D_DAO {
 	
 	public int deleteReple(int replenum);	// 댓글 삭제
 	
-	public int repleCnt();
-
+	public int repleCnt(int boardnum);	// 해당 글의 댓글갯수
 	
+	public int addRepleCnt(int boardnum);	// 댓글이 생기면 댓글갯수가 증가
+	
+	public int deleteRepleCnt(int boardnum);	// 댓글을 삭제하면 댓글갯수가 감소
 
 }

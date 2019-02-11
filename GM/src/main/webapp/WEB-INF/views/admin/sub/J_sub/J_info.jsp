@@ -14,44 +14,46 @@
 		<table>
 			<c:forEach var="dto" items="${dtos}">
 				<tr>
-					<td>사원번호</td>
+					<th>사원번호</th>
 					<td>${dto.id}</td>
-					<td>부서</td>
+					<th>부서</th>
 					<td>${dto.depart}</td>
-					<td>직급</td>
+					<th>직급</th>
 					<td>${dto.rank}</td>
-					<td>성명</td>
+					<th>성명</th>
 					<td>${dto.name}</td>
 				</tr>
 				<tr>
-					<td>주민번호(앞)</td>
+					<th>주민번호(앞)</th>
 					<td>${dto.jumin1}</td>
-					<td>성별</td>
+					<th>성별</th>
 					<td>${dto.gender}</td>
-					<td>핸드폰</td>
+					<th>핸드폰</th>
 					<td>${dto.tel}</td>
-					<td>국적</td>
+					<th>국적</th>
 					<td>${dto.nation}</td>
 				</tr>
 				<tr>
-					<td>입사일자</td>
+					<th>입사일자</th>
 					<td>${dto.enterday}</td>
-					<td>연차</td>
+					<th>연차</th>
 					<td>${dto.nation}</td>
-					<td colspan="2">E-MAIL</td>
-					<td>${dto.email_in}</td>
+					<th>E-MAIL</th>
+					<td colspan="3">${dto.email_in}</td>
 				</tr>
 				<tr>
-					<td colspan="2">*연봉</td>
-					<td><input type="text" name="salary" value="${dto.salary}"></td>
-					<td colspan="2">*계좌번호</td>
-					<td><input type="text" name="account_number"
-						value="${dto.account_number}"></td>
+					<th>*연봉</th>
+					<td colspan="3" class="left_align"><input type="text" name="salary" value="${dto.salary}"></td>
+					<th>*계좌번호</th>
+					<td colspan="3" class="left_align"><input type="text" name="account_number" value="${dto.account_number}"></td>
 				</tr>
 				<input type=hidden name="id" value="${dto.id}">
 			</c:forEach>
 		</table>
-		<input type="submit" value="수정">
+		<div class="btnset">
+			<input type="submit" value="수정">
+		</div>
+		<div class="clear"></div>
 	</form>
 </body>
 </html>

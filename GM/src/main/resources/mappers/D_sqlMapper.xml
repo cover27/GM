@@ -117,8 +117,15 @@
 		]]>
 	</update>
 	
-	<select id="repleCnt" parameterType="int">
-		SELECT COUNT(*) as cnt FROM REPLYLIST WHERE DEL = 0;
+	<select id="repleCnt" resultType="int">
+		SELECT COUNT(*) as repleCnt FROM REPLYLIST WHERE del = 0 AND boardnum = #{boardnum}
 	</select>
-	 		
+	
+	<update id="addRepleCnt" parameterType="int">
+		UPDATE BOARDLIST SET re_num = re_num + 1 WHERE boardnum = #{boardnum}
+	</update>
+	
+	<update id="deleteRepleCnt" parameterType="int">
+		UPDATE BOARDLIST SET re_num = re_num - 1 WHERE boardnum = #{boardnum}
+	</update>
 </mapper>

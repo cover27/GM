@@ -52,8 +52,7 @@ public class D_ServiceImpl implements D_Service{
 		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
-		int cnt = 0;			// 글갯수
-		int reCnt = 0;
+		int cnt = 0;			// 글갯수		
 		int start = 0;			// 현재 페이지 시작 글번호
 		int end = 0;			// 현재 페이지 마지막 글번호
 		int number = 0;			// 출력용 글번호
@@ -68,10 +67,10 @@ public class D_ServiceImpl implements D_Service{
 	
 		// 게시판 갯수
 		cnt = dao.getBoardsArticleCnt();
-		reCnt = dao.repleCnt();
+
 		
 		System.out.println("cnt(게시판 갯수) : " + cnt);
-		System.out.println("reCnt(댓글 갯수) : " + reCnt);
+
 		
 		pageNum = req.getParameter("pageNum");
 		
@@ -124,7 +123,6 @@ public class D_ServiceImpl implements D_Service{
 		System.out.println("================");
 		
 		model.addAttribute("cnt", cnt);  // 글갯수
-		model.addAttribute("reCnt", reCnt);
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum);  // 페이지번호
 		
@@ -161,8 +159,6 @@ public class D_ServiceImpl implements D_Service{
 		
 		cnt = dao.getBoardArticleCnt();
 		
-		System.out.println("cnt : " + cnt);
-		
 		pageNum = req.getParameter("pageNum");
 		
 		if(pageNum == null) {
@@ -194,11 +190,15 @@ public class D_ServiceImpl implements D_Service{
 			map.put("num", num);
 			map.put("start", start);
 			map.put("end", end);
+
 			
 			List<BoardListVO> dtos = dao.getBoardArticleList(map);
 			
-			req.setAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+			model.addAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+
 		}
+
+		
 		
 		// 시작페이지
 		startPage = (currentPage / pageBlock) * pageBlock + 1; 
@@ -311,7 +311,6 @@ public class D_ServiceImpl implements D_Service{
 		
 		// 5-1단계. 조회수 증가
 		dao.addReadCnt(boardnum);
-		dao.repleCnt();
 		
 		// 5-2단계. 상세페이지 조회
 		BoardListVO vo = dao.getArticle(boardnum);
@@ -334,8 +333,6 @@ public class D_ServiceImpl implements D_Service{
 		int ref = Integer.parseInt(req.getParameter("ref"));
 		int ref_step = Integer.parseInt(req.getParameter("ref_step"));
 		int ref_level = Integer.parseInt(req.getParameter("ref_level"));
-		int cnt = 0;
-		cnt = dao.repleCnt();
 
 		
 		// 화면으로부터 입력받은 값을 vo에 담자
@@ -458,6 +455,8 @@ public class D_ServiceImpl implements D_Service{
 		
 		int insertCnt = dao.insertReple(vo);
 		
+		dao.addRepleCnt(boardnum);
+		
 		model.addAttribute("boardnum", boardnum);
 		model.addAttribute("number", number);
 		model.addAttribute("pageNum", pageNum);
@@ -566,6 +565,7 @@ public class D_ServiceImpl implements D_Service{
 		vo.setBoardnum(replenum);
 		
 		deleteCnt=dao.deleteReple(replenum);
+		dao.deleteRepleCnt(boardnum);
 		
 		model.addAttribute("num", num);
 		model.addAttribute("boardnum", boardnum);
