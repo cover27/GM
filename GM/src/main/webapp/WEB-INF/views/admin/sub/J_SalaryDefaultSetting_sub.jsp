@@ -37,11 +37,13 @@
             <div class="search-wrap">
                 <div class="form-group">
                     <form action="J_SalaryDefaultSetting" method="post" name="searchform">
-                    	<span>사업장 :</span>
-                    	<c:forEach var="dto" items="${dtoss}">
-							<span name="search_title" id="search_title">${dto.c_name}</span>
-						</c:forEach>
-						<span>
+                    	<span class="bold5px">사업장 :</span>
+                    	<span>
+	                    	<c:forEach var="dto" items="${dtoss}">
+								<span name="search_title" id="search_title" class="bold5px">${dto.c_name}</span>
+							</c:forEach>
+                    	</span>
+						<span class="ml50">
 							<select name="search_title">
 								<!-- 성명,사원번호,부서: 일반사용자 disabled 자신의 사원번호 -->
 								<option value="allList">전체보기</option>

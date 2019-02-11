@@ -32,17 +32,9 @@
 	display: inline-block;
 }
 
-.content .search-wrap>.form-group>form>span:nth-child(1), span:nth-child(2) {
+.content .search-wrap>.form-group>form .bold5px {
 	font-weight: bold;
 	margin-left: 5px;
-}
-
-.content .search-wrap>.form-group>form>span:nth-child(3) {
-	margin-left: 50px;
-}
-
-.content .search-wrap>.form-group>form>span:nth-child(5) {
-	
 }
 
 .content .search-wrap>.form-group>form>span>select, input[type="text"] {
@@ -88,7 +80,7 @@
 
 .content .salary_info table thead th {
 	border-right: 1px #e5e5e5 solid;
-	border-bottom: 2px #c0c0c0 solid;
+	border-bottom: 1px #c0c0c0 solid;
 	background: #f5f5f5;
 	padding: 5px 0;
 }
@@ -180,4 +172,8 @@
 .content .btnset {
 	margin-top: 15px;
 	float: right;
+}
+
+.content .bam_left {
+	height: 500px;
 }
