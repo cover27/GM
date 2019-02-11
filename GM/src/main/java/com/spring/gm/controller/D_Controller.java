@@ -61,7 +61,7 @@ public class D_Controller {
 		logger.info("URL : D_boardsUpdatePro");
 		
 		service.boardsUpdatePro(req, model);
-		return "admin/D_boardsUpdatePro";
+		return "admin/sub/D_boardsUpdatePro";
 	}
 	
 	//게시글 목록
