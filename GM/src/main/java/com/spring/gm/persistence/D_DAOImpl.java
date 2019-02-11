@@ -190,6 +190,32 @@ public class D_DAOImpl implements D_DAO{
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		return dao.insertReple(vo);
 	}
+
+	// 댓글 목록
+	@Override
+	public List<ReplyListVO> getRepleArticleList(Map<String, Object> map) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.getRepleArticleList(map);
+	}
+
+	// 댓글 갯수
+	@Override
+	public int getRepleArticleCnt() {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.getRepleArticleCnt();
+	}
+
+	@Override
+	public int deleteReple(int replenum) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.deleteReple(replenum);
+	}
+
+	@Override
+	public int repleCnt() {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.repleCnt();
+	}
 	
 	
 	

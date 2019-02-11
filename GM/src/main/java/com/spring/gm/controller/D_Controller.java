@@ -104,6 +104,7 @@ public class D_Controller {
 		logger.info("URL : D_boardContent");
 		
 		service.contentForm(req, model);
+		service.repleList(req, model);
 		return "pages/D_boardContent";
 	}
 	@RequestMapping("/pages/D_boardUpdate")
@@ -130,5 +131,20 @@ public class D_Controller {
 		return "pages/D_boardDeletePro";
 	}
 	
+	@RequestMapping("/pages/D_repleInsertPro")
+	public String repleInsert(HttpServletRequest req, Model model) {
+		logger.info("URL : D_repleInsertPro");
+		
+		service.insertReple(req, model);
+		return "pages/D_repleInsertPro";
+	}
+	
+	@RequestMapping("/pages/D_repleDeletePro")
+	public String repleDelete(HttpServletRequest req, Model model) {
+		logger.info("URL : D_repleDeletePro");
+		
+		service.deleteReple(req, model);
+		return "/pages/D_repleDeletePro";
+	}
 
 }

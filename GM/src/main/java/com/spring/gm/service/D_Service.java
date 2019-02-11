@@ -30,4 +30,8 @@ public interface D_Service {
 	
 	public void insertReple(HttpServletRequest req, Model model);
 	
+	public void repleList(HttpServletRequest req, Model model);
+	
+	public void deleteReple(HttpServletRequest req, Model model);
+	
 }
