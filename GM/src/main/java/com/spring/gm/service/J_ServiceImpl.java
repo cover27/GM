@@ -677,5 +677,35 @@ public class J_ServiceImpl implements J_Service {
 		}
 	}
 
+	//------------------수당 조회-----------------------------
+	// 상여 조회(아이디 검색 정보 가져오기)
+	@Override
+	public void searchId(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		System.out.println("company =" + company);
+		String id = req.getParameter("name");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		int cnt = dao.searchIdCnt(map);
+		if(cnt >0) {
+		List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
+		List<join_mgcVO> dtos2 = dao.searchIdList(map); // depart가 회사번호
+		System.out.println("여기 탔다2");
+		System.out.println(dtos2.toString());
+		List<join_mgcVO> dtos3 = dao.searchIdList2(map); // depart가 부서번호
+		System.out.println("여기 탔다3");
+		dtos.addAll(dtos2);
+		dtos.addAll(dtos3);
+		model.addAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+		}
+	}
+	//검색 결과값으로 정보 가져오기
+	@Override
+	public void searchPayrollInquiry(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

@@ -80,4 +80,10 @@ public interface J_DAO {
 	public BonusCutVO numId(int num);
 	// 개인 급여수당정보 삭제하기
 	public int deleteInfo(int num);
+	
+	//-----------------------상여급여 조회------------------------------------
+	// 상여 조회(아이디 검색 정보 가져오기)
+	public int searchIdCnt(Map<String, Object> map);
+	public ArrayList<join_mgcVO> searchIdList(Map<String, Object> map);
+	public ArrayList<join_mgcVO> searchIdList2(Map<String, Object> map);
 }
