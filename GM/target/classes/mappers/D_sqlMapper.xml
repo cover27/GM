@@ -128,4 +128,15 @@
 	<update id="deleteRepleCnt" parameterType="int">
 		UPDATE BOARDLIST SET re_num = re_num - 1 WHERE boardnum = #{boardnum}
 	</update>
+	
+	
+	<select id="getAllBoardArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardListVO">
+		<![CDATA[
+		SELECT * 
+		FROM (SELECT boardnum, num, writer, subject, content, re_num, readcnt, ref, ref_step, ref_level, reg_date, del, rownum as rNum
+			FROM (SELECT * FROM BOARDLIST ORDER BY ref DESC, ref_step ASC)
+			)
+			WHERE rNum >= #{start} AND rNum <= #{end}
+		]]>
+	</select>
 </mapper>
