@@ -114,7 +114,7 @@ public class E_ServiceImpl implements E_Service {
 		// 4. setAttribute로 list를 넘겨줌.
 		req.setAttribute("list", list);
 		System.out.println("list : " + list);
-		// 5. 화면에서 EL태그로 출력
+		
 		
 		List<GroupsVO> side = null;
 		side = dao.getMyCompanyGroupCnt(company);
@@ -124,6 +124,7 @@ public class E_ServiceImpl implements E_Service {
 		String c_name = dao.findCompanyName(company);
 		req.setAttribute("c_name", c_name);
 		req.setAttribute("company", company);
+		// 5. 화면에서 EL태그로 출력
 	}
 
 	// 조직도 - 내가 속한 회사의 전체 그룹 목록
