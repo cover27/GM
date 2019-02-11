@@ -20,15 +20,10 @@
                     <li>
                         <span>조직도</span>
                         <ul>
-                        	<li><a href="<c:url value='/pages/E_organAllGroupList?depart=${company }' />">${c_name}</a></li>
-                        	<li>
-                        		<ul>
-                        			<c:forEach var="dto" items="${side }">
-                        				<li><a href="<c:url value='/pages/E_organAllGroupList?depart=${dto.groupId }' />">${dto.g_name}</a></li>
-                        			</c:forEach>
-                        		
-                        		</ul>
-                        	</li>
+                        	<li><a href="<c:url value='/pages/E_organVipGroupList?depart=${company }' />">${c_name}</a></li>	<!-- 사내 그룹 리스트 -->
+                       			<c:forEach var="dto" items="${side }">
+                       				<li><a href="<c:url value='/pages/E_organVipGroupList?depart=${dto.groupId }' />">${dto.g_name}</a></li>
+                       			</c:forEach>
                         </ul>
                     </li>
                     <li>

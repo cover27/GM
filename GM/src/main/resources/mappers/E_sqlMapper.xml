@@ -7,7 +7,7 @@
     
 <mapper namespace="com.spring.gm.persistence.E_DAO" >
 
-	<!-- 자신과 동일한 회사 사원 수 구하기 -->
+	<!-- 자신과 동일한 회사에 소속된 사원 수 구하기 -->
 	<select id="getMyCompanyMemCnt" resultType="int">
 		SELECT count(*) FROM member where company = #{company}
 	</select>

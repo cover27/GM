@@ -22,7 +22,7 @@ public class E_ServiceImpl implements E_Service {
 	E_DAO dao;
 
 	
-	// 조직도 - 첫페이지,	 (내가 속한 회사) 전체 구성원 목록
+	// 조직도 - 첫페이지,	 내회사 전체 구성원 목록	
 	@Override
 	public void E_organizationList(HttpServletRequest req, Model model) {
 		// 1. 세션 로그인 되어있는 사용자의 정보를 가져옴
@@ -127,9 +127,9 @@ public class E_ServiceImpl implements E_Service {
 		// 5. 화면에서 EL태그로 출력
 	}
 
-	// 조직도 - 내가 속한 회사의 전체 그룹 목록
+	// 조직도 - 로그인된 계정이 소속된 회사에서 그어떤 그룹에도 속하지 않는 모든 구성원 목록
 	@Override
-	public void E_organAllGroupList(HttpServletRequest req, Model model) {
+	public void E_organVipGroupList(HttpServletRequest req, Model model) {
 		// 1. 세션 로그인 되어있는 사용자의 정보를 가져옴
 		// 2. 가져온 사용자 정보에서 company 를 가져온다.
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
@@ -239,7 +239,6 @@ public class E_ServiceImpl implements E_Service {
 	
 	
 	// 부서 사이드 메뉴
-	
 	@Override
 	public void E_organDepartSide(HttpServletRequest req, Model model) {
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
