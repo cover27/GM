@@ -24,7 +24,7 @@
                 		<span>인사 기초정보 설정/조회</span>
                 		<ul>
                 			<li><a href="K_personal">인사/근태/급여 기준정보 설정</a></li>
-                			<li><a href="m06.jsp">인사정보 재등록</a></li>
+                			<li><a href="K_restoMember">인사정보 재등록</a></li>
                 		</ul>
                 	</li>
                 	<li>

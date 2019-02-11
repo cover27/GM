@@ -139,4 +139,8 @@
 			WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>
+	
+	<update id="deleteBoards" parameterType="com.spring.gm.vo.BoardsVO">
+		UPDATE BOARDS SET del = 1 WHERE num = #{num}
+	</update>
 </mapper>

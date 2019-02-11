@@ -529,7 +529,7 @@ img {
 	clear: both;
 }
 
-.btnset input[type="submit"], input[type="cancel"], input[type="button"], button {
+.btnset input[type="submit"], .btnset input[type="cancel"], .btnset input[type="button"], .btnset button {
 	cursor: pointer;
     padding: 5px 15px;
     border-radius: 3px;
@@ -538,7 +538,7 @@ img {
     font-weight: bold;
 }
 
-.btnset input[type="submit"], input[type="button"], button {
+.btnset input[type="submit"], .btnset input[type="button"], .btnset button {
 	color: #fff;
 	background: #555;
 }

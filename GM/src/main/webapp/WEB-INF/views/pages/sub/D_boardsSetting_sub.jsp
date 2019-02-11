@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
+
+
 function board_go(num) {
 	// alert("게시판번호 : "+num);
 	$.ajax({
@@ -69,6 +71,27 @@ function modify_board(num, b_name, anon) {
 		}
 	});
 }
+
+function delete_board(num) {
+	var isDel=confirm("삭제하시겠습니까?");
+	if(isDel == true){
+		// alert("게시판번호 : "+num);
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/admin/D_deleteBoardsPro",
+			data : {
+				"num" : num
+			},
+			success : function(result) {
+				// alert("성공");
+				$(".boards_tree").html(result);
+			},
+			error : function() {
+				alert("게시판 삭제가 실패하였습니다.");
+			}
+		});
+	}
+}
 </script>
 <section>
     <article>
@@ -90,6 +113,7 @@ function modify_board(num, b_name, anon) {
         		<div class="boards_trees">
         			<ul>
         				<c:forEach var="b_dtos" items="${b_dtos}">
+        					<c:if test="${b_dtos.del == 0}">
         					<li class="boards_tree">
         						<%-- 
         						<a href="#" onclick="board_go('${b_dtos.num}')">
@@ -99,13 +123,14 @@ function modify_board(num, b_name, anon) {
         						<a href="#" onclick="modify_board('${b_dtos.num}', '${b_dtos.b_name}', '${b_dtos.anon}')"><span>${b_dtos.b_name}</span></a>
         						<span class="hover_view">
         							<button class="modify_btn" onclick="modify_board('${b_dtos.num}', '${b_dtos.b_name}', '${b_dtos.anon}')">수정</button>
-        							<button class="delete_btn" onclick="delete_board()">삭제</button>
+        							<button class="delete_btn" onclick="delete_board('${b_dtos.num}')">삭제</button>
         						</span>
         						<span class="anon_status">
         							<c:if test="${b_dtos.anon == 0}">[실명게시판]</c:if>
         							<c:if test="${b_dtos.anon != 0}">[익명게시판]</c:if>
         						</span>
         					</li>
+        					</c:if>
         				</c:forEach>
         			</ul>
         			<div class="paging">
