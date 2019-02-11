@@ -169,6 +169,7 @@ input, button, select, textarea {
 													<li id="treeItem_U260216" class="jstree-leaf">
 													<c:if test="${dto.getG_name()==dname}">
 														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														<input type="radio" name="check">
 														<a href="#"><ins class="fa fa-leaf">&nbsp;</ins>
 															${dto.getName()}</a>
 													</c:if>
