@@ -22,10 +22,11 @@
 </select>
 <!-- 전자결재 - 기안문 - 결재선 select 조인 -->
 <select id="selectApprLine" resultType="com.spring.gm.vo.Join_payVO">
-	select m.name, g.g_name, c.c_name, r.r_name
+	select m.name, m.id, g.g_name, c.c_name, r.r_name
 	from member m left join groups g on m.depart = g.groupid
 	join companies c on m.company = c.company
 	left join grade r on m.rank = r.rank
+	where m.del=0
 </select>
 
 <!-- 전자결재 - 기안문 - 결재선  회사에 그룹등급이 1인 부서명-->
