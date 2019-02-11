@@ -15,6 +15,7 @@ import com.spring.gm.persistence.J_DAO;
 import com.spring.gm.vo.BonusCutVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
+import com.spring.gm.vo.SalaryVO;
 import com.spring.gm.vo.join_mgcVO;
 
 
@@ -167,7 +168,7 @@ public class J_ServiceImpl implements J_Service {
 		int updateCnt = dao.infoUpdate(map);
 		System.out.println("updateCnt :" + updateCnt);
 	}
-
+	
 	// 검색 회원급여정보 가져오기
 	@Override
 	public void search_salaryList(HttpServletRequest req, Model model) {
@@ -195,7 +196,47 @@ public class J_ServiceImpl implements J_Service {
 			model.addAttribute("cnt", cnt);
 		}
 	}
-
+	
+	// 개인 급여등록(이번달 목록 가져오기)
+	@Override
+	public void J_PayrollRegistrationList(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		System.out.println("company :" + company);
+		String id = req.getParameter("id");
+		System.out.println("id :" + id);
+		int rank = Integer.parseInt(req.getParameter("rank"));
+		System.out.println("rank :" + rank);
+		String j_name = req.getParameter("j_name");
+		System.out.println("j_name :" + j_name);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		int cnt = dao.J_PayrollRegistrationCnt(map);
+		System.out.println("cnt : " + cnt);
+		if(cnt > 0) {
+			System.out.println("1");
+			List<SalaryVO> dtos = dao.J_PayrollRegistrationList(map);
+			System.out.println(dtos.toString());
+			model.addAttribute("dtos", dtos);
+		}else if(cnt == 0) {
+			System.out.println("2");
+			List<MemberVO> dtos = dao.J_PayrollRegistrationInsertList(map);
+			model.addAttribute("dtos",dtos);
+		}
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("rank",rank);
+		model.addAttribute("j_name",j_name);
+	}
+	// 개인 급여등록
+	@Override
+	public void J_PayrollRegistrationInsert(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	
 	// ------------------- 기본수당 외 수당관리 --------------------
 	// 회사명 가져오기
 	@Override
@@ -697,13 +738,21 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println(dtos.toString());
 		model.addAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
 		}
+		model.addAttribute("cnt",cnt);
 	}
 	//검색 결과값으로 정보 가져오기
 	@Override
 	public void searchPayrollInquiry(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		System.out.println("company: " + company);
+		String months = req.getParameter("month");
+		System.out.println("months: " + months);
+		String id = req.getParameter("id");
+		System.out.println("id: " + id);
+		
 		
 	}
+
 
 
 }
