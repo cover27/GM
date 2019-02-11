@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.gm.vo.BonusCutVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
+import com.spring.gm.vo.SalaryVO;
 import com.spring.gm.vo.join_mgcVO;
 import com.spring.gm.persistence.J_DAO;
 
@@ -158,6 +159,27 @@ public class J_DAOImpl implements J_DAO {
 		return dtos;
 	}
 	
+	// 개인 급여등록(이번달 목록 가져오기)
+	@Override
+	public int J_PayrollRegistrationCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.J_PayrollRegistrationCnt", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<SalaryVO> J_PayrollRegistrationList(Map<String, Object> map) {
+		ArrayList<SalaryVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.J_PayrollRegistrationList(map);
+		return dtos;
+	}
+	//개인 급여등록(이번달 목록 가져오기) 없으면 인설트할 목록 가져오기
+	@Override
+	public ArrayList<MemberVO> J_PayrollRegistrationInsertList(Map<String, Object> map) {
+		ArrayList<MemberVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.J_PayrollRegistrationInsertList(map);
+		return dtos;
+	}
 	
 	//------------- 기본수당 외 수당관리-------------------------------------------
 	// 회사명 가져오기
@@ -353,6 +375,7 @@ public class J_DAOImpl implements J_DAO {
 		int cnt = sqlSession.delete("com.spring.gm.persistence.J_DAO.deleteInfo", num);
 		return cnt;
 	}
+	
 	// 개인 num에대한 id 값 가져오기
 	@Override
 	public BonusCutVO numId(int num) {
