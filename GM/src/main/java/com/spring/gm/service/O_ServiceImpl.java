@@ -46,9 +46,9 @@ public class O_ServiceImpl implements O_Service{
 	@Override
 	public void addApprLine(HttpServletRequest req, Model model) {
 		
-		/*
-		 * String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		 */
+		
+		  String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		 
 		
 		int company=((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		//선빈이가 만든 sql에 회사에 대한 정보가 들어 있음
