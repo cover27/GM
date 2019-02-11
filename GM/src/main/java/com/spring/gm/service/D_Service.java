@@ -36,4 +36,6 @@ public interface D_Service {
 	
 	public void allBoardList(HttpServletRequest req, Model model); // 전체 글목록
 	
+	public void boardsDelete(HttpServletRequest req, Model model); // 게시판 삭제
+	
 }

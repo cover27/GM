@@ -8,7 +8,7 @@
 <title>${title}</title>
 </head>
 <body>
-	<form action="<c:url value='/admin/D_boardsUpdatePro'/>" method="post" name="D_boardsUpdate" class="boards_trees">
+	<form action="<c:url value='/admin/sub/D_boardsUpdatePro'/>" method="post" name="D_boardsUpdate" class="boards_trees">
 		<input type="hidden" name="num" value="${num}">
 		<label>
 			<span>게시판명 : </span>
