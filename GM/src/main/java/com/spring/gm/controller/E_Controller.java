@@ -29,8 +29,8 @@ public class E_Controller {
 //		return "pages/sub/E_organMemberInfo";
 //	}
 	
-									// commit 실패시 - Author / Committer : GIGABYTE <GIGABYTE@SDLEE-Laptop>
-	// 조직도 - 첫페이지, 내회사 전체 구성원 목록		<a href="<c:url value='E_organizationList' />">
+						
+	// 조직도 - 첫페이지, 내회사 전체 구성원 목록	
 	@RequestMapping("/pages/E_organizationList")
 	public String E_organizationList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organizationList");
@@ -40,14 +40,14 @@ public class E_Controller {
 		return "pages/E_organizationList";
 	}
 	
-	// 조직도 - 내 회사 전체 그룹 목록
-	@RequestMapping("/pages/E_organAllGroupList")
-	public String E_organAllGroupList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_organAllGroupList");
+	// 조직도 - 로그인된 계정이 소속된 회사에서 그어떤 부서에도 속하지 않는 모든 구성원 목록
+	@RequestMapping("/pages/E_organVipGroupList")
+	public String E_organVipGroupList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_organVipGroupList");
 		
-		service.E_organAllGroupList(req, model);
+		service.E_organVipGroupList(req, model);
 		
-		return "pages/E_organAllGroupList";
+		return "pages/E_organVipGroupList";
 	}
 	
 	// 조직도 - 개인 그룹 목록
@@ -55,8 +55,11 @@ public class E_Controller {
 	public String E_myGroupList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_myGroupList");
 		
+		service.E_myGroupList(req, model);
+		
 		return "pages/E_myGroupList";
 	}
+	
 	
 	// 조직도 - 개인그룹 관리
 	@RequestMapping("/pages/E_myGroupManage")

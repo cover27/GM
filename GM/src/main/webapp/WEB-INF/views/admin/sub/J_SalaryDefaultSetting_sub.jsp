@@ -2,6 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.gm.vo.MemberVO" %>
 <script type="text/javascript">
+	/* 클릭한 요소의 색깔을 변경 */
+	$(function(){
+	    $(".select").click(function(){
+	    	var selector = '.selected';
+	    	$(selector).removeClass('selected');
+	    	$(this).siblings().addClass("selected")
+	    	$(this).addClass("selected")
+	    })
+	});
+
 	function load(url) {
 		//요청 : url 즉 news1.jsp, news2.jsp, news3.jsp
 		//sendRequest(callback, url, method, params){}
@@ -26,7 +36,6 @@
 			result.innerHTML = "상태 :" + httpRequest.readyStatus;
 		}
 	}
-	
 </script>
 <section>
     <article>
@@ -102,13 +111,13 @@
 						<c:if test="${cnt > 0}">
 							<c:forEach var="dto" items="${dtos}">
 								<tr>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.id}</td>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.name}</td>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.rank}</td>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.j_name}</td>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.enterday}</td>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.tel}</td>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.email_in}</td>
+									<td onclick="load('J_info?id=${dto.id}')" class="select">${dto.id}</td>
+									<td onclick="load('J_info?id=${dto.id}')" class="select">${dto.name}</td>
+									<td onclick="load('J_info?id=${dto.id}')" class="select">${dto.rank}</td>
+									<td onclick="load('J_info?id=${dto.id}')" class="select">${dto.j_name}</td>
+									<td onclick="load('J_info?id=${dto.id}')" class="select">${dto.enterday}</td>
+									<td onclick="load('J_info?id=${dto.id}')" class="select">${dto.tel}</td>
+									<td onclick="load('J_info?id=${dto.id}')" class="left_align select">${dto.email_in}</td>
 								</tr>
 							</c:forEach>
 						</c:if>

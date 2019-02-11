@@ -1,10 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script>
-	function load(id,rank,j_name) {
+
+	function load3(id,rank,j_name) {
 		alert(id);
 		$.ajax({
 			url : '${pageContext.request.contextPath}/admin/J_PayrollRegistrationList', //컨트롤러/basic1_sub로 가라
+			type : 'POST',
+			data : {
+				'id' : id,
+				'rank' : rank,
+				'j_name' : j_name
+				
+			}, //전송할 데이터
+			success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
+				//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
+				$('#result').html(result);
+			},
+			error : function() {
+				alert('오류');
+			}
+		});
+	};
+	//등록
+	 function load4(id,salary,j_name,rank,account_number,salary) {
+		var month = $('#month').val();
+		var state = $('#state').val();
+		
+		var con_test = confirm("등록 하시겠습니까?.");
+		if (con_test == true) {
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/admin/J_PayrollRegistrationInsert', //컨트롤러/basic1_sub로 가라
+			type : 'POST',
+			data : {
+				'id' : id,
+				'month' : month,
+				'state' : state,
+				'salary' : salary,
+				'rank' : rank,
+				'j_name' : j_name,
+				'account_number' : account_number,
+				'salary' : salary
+			}, //전송할 데이터
+			success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
+				//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
+				$('#result').html(result);
+			},
+			error : function() {
+				alert('오류');
+			}
+		});
+		} else if (con_test == false) {
+			return false;
+		}
+	}; 
+	function change(id,j_name,rank) {
+		var con_test = confirm("지급처리 하시겠습니까?.");
+		if (con_test == true) {
+		$.ajax({
+			url : '${pageContext.request.contextPath}/admin/J_PayrollRegistrationchange', //컨트롤러/basic1_sub로 가라
 			type : 'POST',
 			data : {
 				'id' : id,
@@ -19,22 +77,19 @@
 				alert('오류');
 			}
 		});
-	};
-	
-	function load2(id) {
-		alert(id);
-		var id = $('#id').val();;
-		var day = $('#day').val();
-		var state = $('#state').val();
-		var salary = $('#salary').val();
+		} else if (con_test == false) {
+			return false;
+		}
+	}; 
+	function J_PayrollRegistrationListDelete(id,sal_num) {
+		var con_test = confirm("정보를 삭제 하시겠습니까?.");
+		if (con_test == true) {
 		$.ajax({
-			url : '${pageContext.request.contextPath}/admin/J_PayrollRegistrationInsert', //컨트롤러/basic1_sub로 가라
+			url : '${pageContext.request.contextPath}/admin/J_PayrollRegistrationListDelete', //컨트롤러/basic1_sub로 가라
 			type : 'POST',
 			data : {
 				'id' : id,
-				'day' : day,
-				'state' : state,
-				'salary' : salary
+				'sal_num' : sal_num
 			}, //전송할 데이터
 			success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
 				//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
@@ -44,7 +99,10 @@
 				alert('오류');
 			}
 		});
-	};
+		} else if (con_test == false) {
+			return false;
+		}
+	}; 
 </script>
 <section>
 	<article>
@@ -99,7 +157,7 @@
 					<c:if test="${cnt > 0}">
 						<c:forEach var="dto" items="${dtos}">
 							<tr>
-								<td onclick="load('${dto.id}','${dto.rank}','${dto.j_name}')"
+								<td onclick="load3('${dto.id}','${dto.rank}','${dto.j_name}')"
 									style="cursor: pointer;">${dto.id}</td>
 								<td>${dto.name}</td>
 								<td>${dto.rank}</td>

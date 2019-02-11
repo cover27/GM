@@ -2,7 +2,34 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script type="text/javascript">
 
+function checkAll(){
+      if( $("#th_checkAll").is(':checked') ){
+        $("input[name=checkRow]").prop("checked", true);
+      }else{
+        $("input[name=checkRow]").prop("checked", false);
+      }
+}
+
+function deleteSelect(){
+	var boardnum = "boardnum";
+	var checkRow = document.getElementsByName("checkRow");
+	var checked = false;
+	var index = false;
+	for(i=0; i<checkRow.length; i++){
+		if(checkRow[i].checked){
+			if(index){
+				boardnum = boardnum + ","
+			}
+			boardnum = boardnum + checkRow[i].value;
+			index = true;
+		}
+	}
+}
+
+
+</script>
 <section>
 	<article>
 		<div class="content_header">
@@ -17,6 +44,7 @@
 		</tr>
 		
 		<tr>
+			<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="checkAll();"/></th>
 			<th style="width:15%">(ref/r_step/r_level) </th>
 			<th style="width:25%"> 글제목 </th>
 			<th style="width:10%"> 작성자 </th>
@@ -34,6 +62,10 @@
 			<c:forEach var="dto" items="${dtos}">
 				<c:if test="${dto.del == 0}">
 					<tr>
+						<td>
+							<input type="checkbox" name="checkRow" value="${dto.boardnum}" />
+						</td>
+						
 						<td>
 							<c:set var="number" value="${number-1}" />
 							(${dto.ref} / ${dto.ref_step} / ${dto.ref_level})
@@ -110,7 +142,16 @@
 				</c:if>
 			</th>
 		</tr>
+		
+
 	</table>
 	</c:if>
+	<table>
+		<tr>
+			<th colspan="4">
+			<input type="button" class="inputButton" value="글 삭제" onclick="window.location='<c:url value="/pages/D_boardDeletePro?pageNum=${pageNum}&num=${num}&ref_level=${dto.ref_level}"/>'">
+			</th>
+		</tr>
+	</table>
 	</article>
 </section>
