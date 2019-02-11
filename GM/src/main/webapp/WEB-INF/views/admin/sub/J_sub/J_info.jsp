@@ -23,8 +23,6 @@
 					<td>성명</td>
 					<td>${dto.name}</td>
 				</tr>
-
-
 				<tr>
 					<td>주민번호(앞)</td>
 					<td>${dto.jumin1}</td>
@@ -35,8 +33,6 @@
 					<td>국적</td>
 					<td>${dto.nation}</td>
 				</tr>
-
-
 				<tr>
 					<td>입사일자</td>
 					<td>${dto.enterday}</td>

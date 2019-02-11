@@ -17,7 +17,10 @@ public interface J_Service {
 	public void infoList(HttpServletRequest req, Model model);
 	// 회원 급여 개인정보 업데이트
 	public void infoUpdate(HttpServletRequest req, Model model);
-	
+	// 개인 급여등록(이번달 목록 가져오기)
+	public void J_PayrollRegistrationList(HttpServletRequest req, Model model);
+	// 개인 급여등록
+	public void J_PayrollRegistrationInsert(HttpServletRequest req, Model model);
 	//------------------기본수당 외 수당 관리-----------------------------
 	// 회사명 가져오기
 	public void companyName(HttpServletRequest req, Model model);
