@@ -220,8 +220,10 @@ public class J_Controller {
 		String id = req.getParameter("id");
 		System.out.println("id = " + id);
 		if(id.length() == 0) {
+			System.out.println("1");
 			service.salaryList(req, model);
 		}else {
+			System.out.println("2");
 			service.searchId(req, model);
 		}
 		return "admin/sub/J_sub/J_searchId_sub";

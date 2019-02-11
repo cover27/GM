@@ -311,7 +311,7 @@
 	<!--==================================상여급여 조회====================================-->
 	<!-- 상여 조회(아이디 검색 정보 가져오기) -->
 	<select id="searchIdCnt" parameterType="java.util.Map" resultType="int">
-		SELECT COUNT(*) as cnt FROM member where company = #{company} and id= #{id}
+		SELECT COUNT(*) as cnt FROM member where company = #{company} and id like '%'||#{id}||'%'
 	</select>
 	<select id="searchIdList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
 		select * from(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
