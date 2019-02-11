@@ -167,7 +167,6 @@ input, button, select, textarea {
 <body>
 <div class="body pd" style="padding:10px;">
 
-<<<<<<< HEAD
 	<form action="" method="post">
 		<div class="shuttleL w30p ui-tabs ui-widget ui-widget-content ui-corner-all" id="divTabs">					
 			<ul class="nav nav-tabs6 push ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" data-toggle="tabs" role="tablist">
@@ -199,36 +198,6 @@ input, button, select, textarea {
 														</li>
 													</ul>
 											</c:forEach>
-=======
-	<div class="shuttleL w30p ui-tabs ui-widget ui-widget-content ui-corner-all" id="divTabs">					
-		<ul class="nav nav-tabs6 push ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" data-toggle="tabs" role="tablist">
-			<li class="active ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="tab-orggroup" aria-labelledby="ui-id-1" aria-selected="true">
-				<a href="#tab-orggroup" data-toggle="tab" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">조직도</a>
-			</li>
-		</ul>
-		
-		<!-- 조직도 출력 부분이며, fa fa-leaf은 아이콘 모양 -->
-		<div class="tab-content">
-			<div class="tab-pane active ui-tabs-panel ui-widget-content ui-corner-bottom" id="tab-orggroup" aria-labelledby="ui-id-1" role="tabpanel" aria-expanded="true" aria-hidden="false">
-				<div class="inbox h480">
-					<div class="shuttleTree">
-						<div id="treeDept" class="jstree jstree-0 jstree-focused jstree-ikep">
-							<ul>
-								<li code="G151121" id="treeItem_G151121" class="jstree-last jstree-open">
-									<c:forEach var="dname" items="${dname}">
-										-- ${dname}
-										<c:forEach var="dto" items="${dtos}">
-												<ul>
-													<li id="treeItem_U260216" class="jstree-leaf">
-													<c:if test="${dto.getG_name()==dname}">
-														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-														<input type="radio" name="check">
-														<a href="#"><ins class="fa fa-leaf">&nbsp;</ins>
-															${dto.getName()}</a>
-													</c:if>
-													</li>
-												</ul>
->>>>>>> branch 'master' of https://github.com/cover27/GM.git
 										</c:forEach>
 									</li>
 								</ul>
