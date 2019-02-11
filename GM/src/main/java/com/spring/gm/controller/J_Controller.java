@@ -194,7 +194,28 @@ public class J_Controller {
 		service.J_PayrollRegistrationInsert(req,model);
 		return "admin/sub/J_sub/J_PayrollRegistrationList_sub";
 	}
-
+	//미지급 -> 지급으로 처리
+	@RequestMapping("/admin/J_PayrollRegistrationchange")
+	public String J_PayrollRegistrationchange(HttpServletRequest req, Model model) {
+		logger.info("URL : J_PayrollRegistrationchange");
+		service.J_PayrollRegistrationchange(req,model);
+		return "admin/sub/J_sub/J_PayrollRegistrationList_sub";
+	}
+	//정보 삭제
+	@RequestMapping("/admin/J_PayrollRegistrationListDelete")
+	public String J_PayrollRegistrationListDelete(HttpServletRequest req, Model model) {
+		logger.info("URL : J_PayrollRegistrationListDelete");
+		service.J_PayrollRegistrationListDelete(req,model);
+		return "admin/sub/J_sub/J_PayrollRegistrationList_sub";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	// ================기본 수당 외 수당관리 서브==================================
 	// 개인 급여수당정보 가져오기(Ajax) - 이번달
 	@RequestMapping("/admin/J_extrapayinfo")

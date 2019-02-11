@@ -46,6 +46,14 @@ public interface J_Service {
 	public void J_ExtrapayInfoModifiedComplete(HttpServletRequest req, Model model);
 	//  수당 개인 급여수당정보 삭제하기
 	public void deleteInfo(HttpServletRequest req, Model model);
+	//미지급 지급으로 처리
+	public void J_PayrollRegistrationchange(HttpServletRequest req, Model model);
+	//정보 삭제
+	public void J_PayrollRegistrationListDelete(HttpServletRequest req, Model model);
+	
+	
+	
+	
 	
 	//------------------수당 조회-----------------------------
 	// 상여 조회(아이디 검색 정보 가져오기)

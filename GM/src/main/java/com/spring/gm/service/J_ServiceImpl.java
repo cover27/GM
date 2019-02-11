@@ -256,9 +256,66 @@ public class J_ServiceImpl implements J_Service {
 		List<join_msVO> dtos = dao.J_PayrollRegistrationList(map);
 		System.out.println(dtos.toString());
 		model.addAttribute("dtos",dtos);
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("rank", rank);
+		model.addAttribute("j_name", j_name);
+	}
+	//미지급 지급으로 처리
+	@Override
+	public void J_PayrollRegistrationchange(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		System.out.println("company :" + company);
+		int rank = Integer.parseInt(req.getParameter("rank"));
+		System.out.println("rank :" + rank);
+		String j_name = req.getParameter("j_name");
+		System.out.println("j_name :" + j_name);
+		String id = req.getParameter("id");
+		System.out.println("id :" + id);
+		String state = "지급";
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("state", state);
+		map.put("company", company);
+		dao.J_PayrollRegistrationchange(map);
+		
+		//지급 처리후 정보 가져오기
+		int cnt = dao.J_PayrollRegistrationCnt(map);
+		List<join_msVO> dtos = dao.J_PayrollRegistrationList(map);
+		System.out.println(dtos.toString());
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("cnt", cnt);
+		model.addAttribute("rank", rank);
+		model.addAttribute("j_name", j_name);
 	}
+	//정보 삭제
+	@Override
+	public void J_PayrollRegistrationListDelete(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		System.out.println("company :" + company);
+		String id = req.getParameter("id");
+		System.out.println("id :" + id);
+		String sal_num = req.getParameter("sal_num");
+		System.out.println("sal_num :" + sal_num);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("sal_num", sal_num);
+		map.put("company", company);
+		dao.J_PayrollRegistrationListDelete(map);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// ------------------- 기본수당 외 수당관리 --------------------
 	// 회사명 가져오기
@@ -775,5 +832,7 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("id: " + id);
 
 	}
+
+
 
 }
