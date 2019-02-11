@@ -20,8 +20,8 @@ import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.GradeVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
-import com.spring.gm.vo.join_mgcVO;
 import com.spring.gm.vo.join_mgcVO2;
+import com.spring.gm.vo.join_mgiVO;
 
 @Service
 public class K_ServiceImpl implements K_Service{
@@ -173,7 +173,6 @@ public class K_ServiceImpl implements K_Service{
 
 	@Override
 	public void K_resistMemberInfo(HttpServletRequest req, Model model) {
-		String pagenum = req.getParameter("pageNum");
 		
 		int pageSize = 10; // 한페이지당 출력할 글 갯수
 		int pageBlock = 5; // 한 블럭당 페이지 갯수
@@ -614,4 +613,30 @@ public class K_ServiceImpl implements K_Service{
 		
 		model.addAttribute("updateCnt", updateCnt);
 	}
+
+	@Override
+	public void K_manageOrgan(HttpServletRequest req, Model model) {
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		String companyName = dao.getCompanyName(company);
+		List<GroupsVO> groupsList = new ArrayList<GroupsVO>();
+		List<join_mgiVO> mgiList = new ArrayList<join_mgiVO>();
+		
+		groupsList = dao.getGroups(company);
+		List<join_mgiVO> mgiList1 = new ArrayList<join_mgiVO>();
+		mgiList1 = dao.getMgiList(company);
+		List<join_mgiVO> mgiList2 = new ArrayList<join_mgiVO>();
+		mgiList2 = dao.getMgiList2(company);
+		for(int i = 0; i<mgiList2.size(); i++) {
+			mgiList2.get(i).setLeader(0);
+			mgiList2.get(i).setDepartName(companyName);
+		}
+		
+		mgiList.addAll(mgiList1);
+		mgiList.addAll(mgiList2);
+		
+		model.addAttribute("groupsList", groupsList);
+		model.addAttribute("mgiList", mgiList);
+		model.addAttribute("companyName", companyName);
+	}
+	
 }
