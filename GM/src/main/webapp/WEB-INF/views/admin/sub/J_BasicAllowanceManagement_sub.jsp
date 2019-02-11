@@ -4,6 +4,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
+
+	/* 클릭한 요소의 색깔을 변경 */
+	$(function(){
+	    $(".select").click(function(){
+	    	var selector = '.selected';
+	    	$(selector).removeClass('selected');
+	    	$(this).siblings().addClass("selected")
+	    	$(this).addClass("selected")
+	    })
+	});
+	
+
 	//수정 버튼
 	 /*
     * window.open("파일명", "윈도우명", "창 속성");
@@ -15,7 +27,7 @@
 	}
 	// dataType이 text인 경우
 	function load2(id, content) {
-		alert(id);
+		// alert(id);
 		$.ajax({
 			url : '${pageContext.request.contextPath}/admin/J_extrapayinfo2', //컨트롤러/basic1_sub로 가라
 			type : 'POST',
@@ -34,7 +46,7 @@
 	};
 
 	function load(id) {
-		alert(id);
+		// alert(id);
 		$.ajax({
 			url : '${pageContext.request.contextPath}/admin/J_extrapayinfo', //컨트롤러/basic1_sub로 가라
 			type : 'POST',
@@ -53,6 +65,7 @@
 
 	// 행 추가
 	function addhang() {
+		alert("!!!!!!!!!!!!!!!!!!!");
 		var addStaffText = '<tr name="trStaff">'
 				+ '       <td><select name="type"><option value="상여금">상여금</option><option value="삭감">삭감</option></select></td>'
 				+ '       <td><select name="state"><option value="지급">지급</option><option value="미지급">미지급</option></select></td>'
@@ -181,82 +194,72 @@
 				</div>
 			</div>
 			
-			<div class="fleft w30p bam_left salary_info">
+			<div class="fleft w30p bam_left">
 				<h3>기본정보</h3>
-				<div>
-	                <table>
-	                    <thead>
-		                    <tr>
-		                        <td>사원번호</td>
-		                        <td>성명</td>
-		                        <td>부서</td>
-		                    </tr>
-	                    </thead>
-	                    <c:if test="${cnt > 0}">
-	                        <c:forEach var="dto" items="${dtos}">
-	                            <tr id="ttr">
-	                                <c:if test="${content != null}">
-	                                    <!--날짜검색  -->
-	                                    <td onclick="load2('${dto.id}','${content}')" style="cursor: pointer; background-color: blue;">${dto.id}</td>
-	                                </c:if>
-	                                <c:if test="${content == null}">
-	                                    <!--이번달  -->
-	                                    <td onclick="load('${dto.id}')" style="cursor: pointer; background-color: red;">${dto.id}</td>
-	                                </c:if>
-	                                <td>${dto.name}</td>
-	                                <td>${dto.j_name}</td>
-	                            </tr>
-	                        </c:forEach>
-	                    </c:if>
-	                    <!-- 게시글이 없으면 -->
-	                    <c:if test="${cnt == 0}">
-	                        <tr>
-	                            <td colspan="3" align="center">게시글이 없습니다. 글을 작성해주세여.</td>
-	                        </tr>
-	                    </c:if>
-	                </table>
-	                <div>
-	                    <table>
-	                        <!-- 페이지 컨트롤 -->
-	                        <tr>
-	                            <th colspan="7" align="center">
-	                                <!-- 게시글이 있으면 -->
-	                                <c:if test="${cnt >0}">
-	                                    <!-- 처음[◀◀] / 이전블록[◀]-->
-	                                    <c:if test="${startPage > pageBlock}">
-	                                        <a href="J_BasicAllowanceManagement">[PageDown x2]</a>
-	                                        <a href="J_BasicAllowanceManagement?pageNum=${startPage - pageBlock}">[PageDown]</a>
-	                                    </c:if>
-	
-	
-	                                    <!-- 블록내의 페이지 번호 -->
-	                                    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-	                                        <c:if test="${i == currentPage}">
-	                                            <span><b> [${i}] </b></span>
-	                                        </c:if>
-	                                        <c:if test="${i != currentPage}">
-	                                            <a href="J_BasicAllowanceManagement?pageNum=${i}&search_content=${content}">[${i}]</a>
-	                                        </c:if>
-	                                    </c:forEach>
-	                                    <!-- 다음 블록[▶] /마지막[▶▶] -->
-	                                    <c:if test="${pageCount > endPage}">
-	                                        <a href="J_BasicAllowanceManagement?pageNum=${startPage + pageBlock}">[▶]</a>
-	                                        <a href="J_BasicAllowanceManagement?pageNum=${pageCount}">[▶▶]</a>
-	                                    </c:if>
-	                                </c:if>
-	                            </th>
-	                        </tr>
-	                    </table>
-	                </div>
-	            </div>
+				<div class="salary_info">
+					<table>
+					    <thead>
+					        <tr>
+					            <th>사원번호</th>
+					            <th>성명</th>
+					            <th>부서</th>
+					        </tr>
+					    </thead>
+					    <c:if test="${cnt > 0}">
+					        <c:forEach var="dto" items="${dtos}">
+					            <tr id="ttr">
+					                <c:if test="${content != null}">
+					                    <!--날짜검색  -->
+					                    <td onclick="load2('${dto.id}','${content}')" class="select">${dto.id}</td>
+					                    <td onclick="load2('${dto.id}','${content}')" class="select">${dto.name}</td>
+					                	<td onclick="load2('${dto.id}','${content}')" class="select">${dto.j_name}</td>
+					                </c:if>
+					                <c:if test="${content == null}">
+					                    <!--이번달  -->
+					                    <td onclick="load('${dto.id}')" class="select">${dto.id}</td>
+					                    <td onclick="load('${dto.id}')" class="select">${dto.name}</td>
+					                	<td onclick="load('${dto.id}')" class="select">${dto.j_name}</td>
+					                </c:if>
+					            </tr>
+					        </c:forEach>
+					    </c:if>
+					    <!-- 게시글이 없으면 -->
+					    <c:if test="${cnt == 0}">
+					        <tr>
+					            <td colspan="3" align="center">게시글이 없습니다. 글을 작성해주세여.</td>
+					        </tr>
+					    </c:if>
+					</table>
+				</div>
+				<%-- 
+				<div class="paging">
+				<c:if test="${cnt > 0}">
+				    <c:if test="${startPage > pageBlock}">
+				        <a href="J_SalaryDefaultSetting">[◀◀]</a>
+				        <a href="J_SalaryDefaultSetting?pageNum=${startPage - pageBlock}">[◀]</a>
+				    </c:if>
+				
+				    <c:forEach var="i" begin="${startPage}" end="${endPage}">
+				        <c:if test="${i == currentPage}">
+				            <span><b>[${i}]</b></span>
+				        </c:if>
+				
+				        <c:if test="${i != currentPage}">
+				            <a href="J_SalaryDefaultSetting?pageNum=${i}">[${i}]</a>
+				        </c:if>
+				    </c:forEach>
+				
+				    <c:if test="${pageCount > endPage}">
+				        <a href="J_SalaryDefaultSetting?pageNum=${startPage + pageBlock}">[▶]</a>
+				        <a href="J_SalaryDefaultSetting?pageNum=${pageCount}">[▶▶]</a>
+				    </c:if>
+				</c:if>
+            </div>
+             --%>
 			</div>
-		    <div class="fright w70p" style="background:blue;height:300px;">
-		    
-		    </div>
-		
-		    <div>
-		        <div id="result" class="fleft salary_info">
-		            <h3>기본수당외 수당등록</h3>
+		    <div class="fright w70p">
+		    	<h3>기본수당외 수당등록</h3>
+		    	<div id="result" class="fleft salary_info"> 
 		            <table>
 		                <thead>
 		                	<tr>
@@ -271,6 +274,10 @@
 		                </tr>
 		            </table>
 		        </div>
+		    </div>
+		
+		    <div>
+		        
 		    </div>
 		    <div id="result2">
 		        <h3>수정 할 목록</h3>

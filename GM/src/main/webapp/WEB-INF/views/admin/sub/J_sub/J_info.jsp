@@ -39,7 +39,7 @@
 					<th>연차</th>
 					<td>${dto.nation}</td>
 					<th>E-MAIL</th>
-					<td colspan="3">${dto.email_in}</td>
+					<td colspan="3" class="left_align">${dto.email_in}</td>
 				</tr>
 				<tr>
 					<th>*연봉</th>

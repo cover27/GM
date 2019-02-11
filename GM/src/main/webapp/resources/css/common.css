@@ -547,3 +547,7 @@ img {
 	color: #333;
 	background: #f3f3f3;
 }
+
+.selected {
+	background: #fbeded;
+}
