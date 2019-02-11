@@ -4,7 +4,7 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2>전체 그룹 목록</h2>
+			<h2>사내 VIP 목록</h2>
 		</div>
 		
 
@@ -40,8 +40,8 @@
 				<!-- 구성원이 있으면 -->
 				<c:forEach var='dto' items='${list }'>
 					<tr>
-						<td>▣</td><!-- 체크박스 -->
-						<td>☆</td><!-- 자주 연락하는 사람 등록버튼 -->
+						<!-- 체크박스 버튼 ▣  -->
+						<!-- 자주 연락하는 사람 등록버튼 ☆ -->
 					
 						<td>	<!-- ( = list.name 꼴 ) -->
 							${dto.name}
@@ -87,8 +87,8 @@
 						<c:if test="${cnt > 0}">
 							<!-- 처음[◀◀] / 이전블록[◀]  -->
 							<c:if test="${startPage > pageBlock}">
-								<a href="/pages/E_organAllGroupList">[◀◀]</a>
-								<a href="/pages/E_organAllGroupList?pageNum=${endPage - pageBlock}">[◀]</a>
+								<a href="/pages/E_organVipGroupList">[◀◀]</a>
+								<a href="/pages/E_organVipGroupList?pageNum=${endPage - pageBlock}">[◀]</a>
 							</c:if>
 							
 							<!-- 블록 내의 페이지 번호 -->
@@ -97,14 +97,14 @@
 									<span><b>[${i}]</b></span>
 								</c:if>
 								<c:if test="${i!=currentPage}">
-									<a href="/pages/E_organAllGroupList?pageNum=${i}">[${i}]</a>
+									<a href="/pages/E_organVipGroupList?pageNum=${i}">[${i}]</a>
 								</c:if>
 							</c:forEach>
 							
 							<!-- 다음블록 [▶]  /  마지막 [▶▶]  -->
 							<c:if test="${pageCount > endPage}">
-								<a href="/pages/E_organAllGroupList?pageNum=${startPage + pageBlock}">[▶]</a>
-								<a href="/pages/E_organAllGroupList?pageNum=${pageCount}">[▶▶]</a>
+								<a href="/pages/E_organVipGroupList?pageNum=${startPage + pageBlock}">[▶]</a>
+								<a href="/pages/E_organVipGroupList?pageNum=${pageCount}">[▶▶]</a>
 							</c:if>
 							
 						</c:if>

@@ -40,7 +40,7 @@ public class E_Controller {
 		return "pages/E_organizationList";
 	}
 	
-	// 조직도 - 로그인된 계정이 소속된 회사에서 그어떤 그룹에도 속하지 않는 모든 구성원 목록
+	// 조직도 - 로그인된 계정이 소속된 회사에서 그어떤 부서에도 속하지 않는 모든 구성원 목록
 	@RequestMapping("/pages/E_organVipGroupList")
 	public String E_organVipGroupList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organVipGroupList");

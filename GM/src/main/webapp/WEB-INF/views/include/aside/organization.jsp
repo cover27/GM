@@ -14,13 +14,13 @@
             <h2><a href="<c:url value='/pages/E_organizationList' />" style="color: white">조직도</a></h2>
             <div class="category">
                 <ul>
-                	<li>
+                	<li>	<!-- 로그인된 계정이 소속된 회사에서 그어떤 그룹에도 속하지 않는 모든 구성원 목록 -->
                         <span><a href="<c:url value='/pages/E_organizationList' />">전체 구성원 목록</a></span>
                     </li>
                     <li>
                         <span>조직도</span>
-                        <ul>
-                        	<li><a href="<c:url value='/pages/E_organVipGroupList?depart=${company }' />">${c_name}</a></li>	<!-- 사내 그룹 리스트 -->
+                        <ul>	<!-- 사내 그룹 리스트 ( 기획부, 사업부, 인사부 각각 클릭시 해당부서 화면 출력.. ) -->
+                        	<li><a href="<c:url value='/pages/E_organVipGroupList?depart=${company }' />">${c_name}</a></li>	
                        			<c:forEach var="dto" items="${side }">
                        				<li><a href="<c:url value='/pages/E_organVipGroupList?depart=${dto.groupId }' />">${dto.g_name}</a></li>
                        			</c:forEach>
