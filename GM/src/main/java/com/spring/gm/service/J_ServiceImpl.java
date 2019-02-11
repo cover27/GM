@@ -637,6 +637,45 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("cnt", cnt);
 		model.addAttribute("id", id);
 	}
+	// 수당 개인 급여수당정보 수정
+	@Override
+	public void J_ExtrapayInfoModified(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		System.out.println("num : " + num);
+		List<BonusCutVO> dtos = dao.J_ExtrapayInfoModified(num);
+		model.addAttribute("dtos",dtos);
+	}
+	// 수당 개인 급여수당정보 수정완료
+	@Override
+	public void J_ExtrapayInfoModifiedComplete(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		System.out.println("num : " + num);
+		String state = req.getParameter("state");	// 삭감/추기
+		System.out.println("state : " + state);
+		int cost = Integer.parseInt(req.getParameter("cost"));	//금액
+		System.out.println("cost : " + cost);
+		String type = req.getParameter("type");	//	지급 미지급
+		System.out.println("type : " + type);
+		String content = req.getParameter("content");	// 사유
+		System.out.println("content : " + content);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("state", state);
+		map.put("cost",cost);
+		map.put("type", type);
+		map.put("content", content);
+		int cnt = dao.J_ExtrapayInfoModifiedComplete(map);
+		System.out.println("cnt:" + cnt);
+		if(cnt >0) {
+			BonusCutVO vo = dao.numId(num);
+			String id = vo.getId();
+			List<BonusCutVO> dtos = dao.J_extrapayinfo(id);
+			System.out.println("dtos : " + dtos.toString());
+			model.addAttribute("dtos", dtos);
+			model.addAttribute("cnt", cnt);
+			model.addAttribute("id", id);
+		}
+	}
 
 
 }

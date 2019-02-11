@@ -8,7 +8,7 @@
 		<table border="1">
 			<thead>
 				<tr>
-					<td style="text-align: center; background-color: #cccccc;">상여금/삭감</td>
+					<td style="text-align: center; background-color: #cccccc;">상여금 <br>추가/삭감</td>
 					<td style="text-align: center; background-color: #cccccc;">지급/공제(상태)</td>
 					<td style="text-align: center; background-color: #cccccc;">금액</td>
 					<td style="text-align: center; background-color: #cccccc;">사유</td>
@@ -23,7 +23,10 @@
 							<td>${dto.state}</td>
 							<td>${dto.cost}</td>
 							<td>${dto.content}</td>
-							<td><input type="button" value="삭제" onclick="deleteInfo('${dto.num}')"></td>
+							<td>
+							<input type="button" value="삭제" onclick="deleteInfo('${dto.num}')">
+							<input type="button" value="수정" onclick="J_ExtrapayInfoModified('${dto.num}')">
+							</td>
 						</tr>
 						<input type=hidden name="id" value="${dto.id}">
 					</c:forEach>
@@ -32,7 +35,7 @@
 				<c:if test="${cnt == 0}">
 				<tr name="trStaff">
 					<td><select name="type">
-							<option value="상여금">상여금</option>
+							<option value="추가">추가</option>
 							<option value="삭감">삭감</option>
 					</select></td>
 					<td><select name="state">

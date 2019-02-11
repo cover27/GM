@@ -188,7 +188,20 @@ public class J_Controller {
 		service.J_extrapayinfoUpdate(req, model);
 		return "admin/sub/J_sub/J_extrapayinfoUpdatePro_sub";
 	}
-
+	// 개인 급여수당정보 수정
+	@RequestMapping("/admin/J_ExtrapayInfoModified")
+	public String J_ExtrapayInfoModified(HttpServletRequest req, Model model) {
+		logger.info("URL : J_ExtrapayInfoModified");
+		service.J_ExtrapayInfoModified(req, model);
+		return "admin/sub/J_sub/J_ExtrapayInfoModified";
+	}
+	// 개인 급여수당정보 수정완료
+	@RequestMapping("/admin/J_ExtrapayInfoModifiedComplete")
+	public String J_ExtrapayInfoModifiedComplete(HttpServletRequest req, Model model) {
+		logger.info("URL : J_ExtrapayInfoModifiedComplete");
+		service.J_ExtrapayInfoModifiedComplete(req, model);
+		return "admin/sub/J_sub/J_extrapayinfo";
+	}
 	// 개인 급여수당정보 삭제하기
 	@RequestMapping("/admin/deleteInfo")
 	public String deleteInfo(HttpServletRequest req, Model model) {

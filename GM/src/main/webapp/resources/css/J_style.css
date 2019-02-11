@@ -83,3 +83,10 @@
 	width: 150px;
 	margin: 10px auto;
 }
+
+.content h3	 {
+	padding-left: 15px;
+    color: #222;
+    font-weight: 600;
+    font-size: 14px;
+}

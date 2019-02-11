@@ -72,6 +72,10 @@ public interface J_DAO {
 	public ArrayList<BonusCutVO> J_extrapayinfo2_3(Map<String, Object> map);
 	// 개인 급여수당정보 업데이트
 	public int J_extrapayinfoUpdate(Map<String, Object> map);
+	// 수당 개인 급여수당정보 수정
+	public ArrayList<BonusCutVO> J_ExtrapayInfoModified(int num);
+	// 수당 개인 급여수당정보 수정
+	public int J_ExtrapayInfoModifiedComplete(Map<String, Object> map);
 	// 개인 num에대한 id 값 가져오기
 	public BonusCutVO numId(int num);
 	// 개인 급여수당정보 삭제하기
