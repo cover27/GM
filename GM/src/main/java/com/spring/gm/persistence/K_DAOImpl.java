@@ -252,5 +252,30 @@ public class K_DAOImpl implements K_DAO{
 		dtos = dao.searchinfoList5(map);
 		return dtos;
 	}
+
+	@Override
+	public List<MemberVO> getMemberList(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getMemberList", map);
+	}
+
+	@Override
+	public int updateRestoMember(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateRestoMember", map);
+	}
+
+	@Override
+	public int updateRestoUsers(String id) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateRestoUsers", id);
+	}
+
+	@Override
+	public int selectCnt_name(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.selectCnt_name", map);
+	}
+
+	@Override
+	public List<MemberVO> getMemberList_name(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getMemberList_name", map);
+	}
 	
 }

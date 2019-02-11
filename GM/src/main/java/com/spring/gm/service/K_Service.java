@@ -39,4 +39,7 @@ public interface K_Service {
 	public void K_registRetirement(HttpServletRequest req, Model model);
 	
 	public void K_restoMember(HttpServletRequest req, Model model);
+	
+	public void K_restoMember_pro(HttpServletRequest req, Model model);
+	
 }

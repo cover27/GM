@@ -217,4 +217,14 @@ public class K_Controller {
 		return "admin/K_restoMember";
 	}
 	
+	//인사정보 재등록 - 복구버튼
+	@RequestMapping("admin/K_restoMember_pro")
+	public String K_restoMember_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : K_restoMember_pro");
+		
+		service.K_restoMember_pro(req, model);
+		
+		return "admin/sub/K_restoMember_pro";
+	}
+	
 }

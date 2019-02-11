@@ -79,4 +79,15 @@ public interface K_DAO {
 	public ArrayList<join_mgcVO2> searchinfoList4(Map<String, Object> map);
 	
 	public ArrayList<join_mgcVO2> searchinfoList5(Map<String, Object> map);
+	
+	public List<MemberVO> getMemberList(Map<String, Object> map);
+	
+	public int updateRestoMember(Map<String, Object> map);
+	
+	public int updateRestoUsers(String id);
+	
+	public int selectCnt_name(Map<String, Object> map);
+	
+	public List<MemberVO> getMemberList_name(Map<String, Object> map);
+	
 }
