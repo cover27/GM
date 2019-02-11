@@ -500,5 +500,10 @@ public class K_ServiceImpl implements K_Service{
 		}
 		model.addAttribute("updateCnt", updateCnt);
 	}
+
+	@Override
+	public void K_restoMember(HttpServletRequest req, Model model) {
+		
+	}
 	
 }
