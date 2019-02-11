@@ -2,20 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>  
 
-<script>
-$(document).ready(function(){
-  $("#reset").click(function(){
-    $("li").removeClass(".ui-state-default important move ui-selected");
-  });
-});
-</script>
-
 <script type="text/javascript">
 //결재자 클릭시 추가하는 버튼
 $(document).ready(function(){
 	$('#btnItemAdd').click(function(){
 		var radioVal = $('input[name="id"]:checked').val();
-		alert(radioVal);
+		var radioApprType = $('input[name="apprType"]:checked').val();
+		$('#liDiv > table > tbody').append('<tr><td td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">'+radioApprType+ '</td><td class="textLeft ellipsis" id="apprTypeTd1" style="border-left:1px solid #F0F3F7; padding-left: 3px;">' + radioVal +'</td></tr>');
+		alert(radioVal + radioApprType);
 	});
 });
 </script>
@@ -192,7 +186,7 @@ input, button, select, textarea {
 														<c:if test="${dto.getG_name()==dname}">
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															<!-- <a href="#" onclick="approval();"> -->
-															<input type="radio" name="id" value="${dto.getName()}"><ins class="fa fa-leaf">&nbsp;</ins>
+															<input type="radio" name="id" value="${dto.getName()}(${dto.getId()}) - ${dto.getG_name()}"><ins class="fa fa-leaf">&nbsp;</ins>
 																${dto.getName()}(${dto.getId()})<!-- </a> -->
 														</c:if>
 														</li>
@@ -214,13 +208,13 @@ input, button, select, textarea {
 				<input type="hidden" title="" name="apprType" value="0">
 				<div class="title">결재방법</div>
 				<ul class="mb10">
-					<li class="text-center"><label><input type="radio" value="0" id="apprType" name="apprType" title="" class="radio" checked="checked">결재</label></li>
+					<li class="text-center"><label><input type="radio" value="결재" id="apprType" name="apprType" title="" class="radio" checked="checked">결재</label></li>
 					<!-- <li class="text-center none"><label><input type="radio" value="4" name="apprType" title="" class="radio">후결</label></li> -->
-					<li class="text-center"><label><input type="radio" value="1" id="apprType" name="apprType" title="" class="radio">합의</label></li>
+					<li class="text-center"><label><input type="radio" value="합의" id="apprType" name="apprType" title="" class="radio">합의</label></li>
 				</ul>
 				<ul>
 					<!-- fa fa-angle-left,  fa fa-undo는 아이콘 모양-->
-					<li><a href="#" id="btnItemAdd" class="btn-color5"><i class="fa fa-angle-right"></i><span class="blind">Add</span></a></li>
+					<li><a href="#" id="btnItemAdd" class="btn-color5" onclick="add_btnItemAdd();"><i class="fa fa-angle-right"></i><span class="blind">Add</span></a></li>
 					<li><a href="#" id="btnItemRemove"><i class="fa fa-angle-left"></i><span class="blind">Remove</span></a></li>
 					<li><a id="btnItemRemoveAll" href=""><i class="fa fa-undo"></i><span class="blind"><button id="reset">Reset</button></span></a></li>
 				</ul>						
@@ -254,7 +248,6 @@ input, button, select, textarea {
 								<table cellspacing="1" cellpadding="1" border="0" style="width: 100%; table-layout:fixed; border:1px solid #eee">
 									<tbody>
 										<tr>
-											<td style="padding:10px 5px; width: 30px; text-align: center;"></td>
 											<td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">결재</td>
 											<td class="textLeft ellipsis" style="border-left:1px solid #F0F3F7; padding-left: 3px;">${vo.getName()} 기안 ${vo.getG_name()}</td>
 										</tr>
@@ -264,14 +257,13 @@ input, button, select, textarea {
 						</li>
 						
 						<li class="ui-state-default important move ui-selected">
-							<div class="liDiv">
+							<div class="liDiv" id="liDiv">
 								<table cellspacing="1" cellpadding="1" border="0" style="width: 100%; table-layout:fixed; border:1px solid #eee">
 									<tbody>
-										<tr>
-											<td style="padding:10px 5px; width: 30px; text-align: center;">최종</td>
+										<!-- <tr>
 											<td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">결재</td>
 											<td class="textLeft ellipsis" id="apprTypeTd1" style="border-left:1px solid #F0F3F7; padding-left: 3px;"></td>
-										</tr>
+										</tr> -->
 									</tbody>
 								</table>
 							</div>
