@@ -100,6 +100,7 @@ public class J_Controller {
 	@RequestMapping("admin/J_TimeAttendanceSalaryBonusAnnual")
 	public String J_TimeAttendanceSalaryBonusAnnual(HttpServletRequest req, Model model) {
 		logger.info("URL : J_TimeAttendanceSalaryBonusAnnual");
+		service.companyName(req, model);
 
 		return "admin/J_TimeAttendanceSalaryBonusAnnual";
 	}
@@ -113,11 +114,12 @@ public class J_Controller {
 	}
 
 	// 급여 조회(Payroll Inquiry)
-	@RequestMapping("/pages/J_PayrollInquiry")
+	@RequestMapping("/admin/J_PayrollInquiry")
 	public String J_PayrollInquiry(HttpServletRequest req, Model model) {
 		logger.info("URL : J_PayrollInquiry");
-
-		return "pages/J_PayrollInquiry";
+		service.companyName(req, model);
+		
+		return "admin/J_PayrollInquiry";
 	}
 
 	// 상여 계산(Bonus Calculation)
@@ -208,5 +210,29 @@ public class J_Controller {
 		logger.info("URL : deleteInfo");
 		service.deleteInfo(req, model);
 		return "admin/sub/J_sub/J_extrapayinfo";
+	}
+	
+	//-----------------------상여급여 조회------------------------------------
+	// 상여 조회(아이디 검색 정보 가져오기)
+	@RequestMapping("/admin/J_searchId_sub")
+	public String searchId(HttpServletRequest req, Model model) {
+		logger.info("URL : searchId_sub");
+		String id = req.getParameter("id");
+		System.out.println("id = " + id);
+		if(id.length() == 0) {
+			System.out.println("1");
+			service.salaryList(req, model);
+		}else {
+			System.out.println("2");
+			service.searchId(req, model);
+		}
+		return "admin/sub/J_sub/J_searchId_sub";
+	}
+	//검색 결과값으로 정보 가져오기
+	@RequestMapping("/admin/searchPayrollInquiry")
+	public String searchPayrollInquiry(HttpServletRequest req, Model model) {
+		logger.info("URL : searchId_sub");
+		service.searchPayrollInquiry(req, model);
+		return "admin/sub/J_sub/searchPayrollInquiry";
 	}
 }
