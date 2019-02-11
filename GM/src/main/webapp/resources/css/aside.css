@@ -72,8 +72,9 @@ aside .nav .nav_title .category>ul>li>ul>li {
     font-weight: 400;
     color: #222;
     background: url(../images/sub_dot.gif) no-repeat 20px 14px;
-    transition: 0.3s;
+    background-size: 1% 1%;
     border-radius: 50%;
+    transition: 0.3s;
 }
 
 aside .nav .nav_title .category>ul>li>ul>li:hover {
