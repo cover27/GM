@@ -32,7 +32,7 @@
 	</update>
 	
 	<update id="deleteBoard" parameterType="int">
-		UPDATE BOARDLIST SET del = #{del} WHERE boardnum = #{boardnum}
+		UPDATE BOARDLIST SET del = 1 WHERE boardnum = #{boardnum}
 	</update>
 	
 	<select id="getBoardArticleCnt" resultType="int">
@@ -93,9 +93,32 @@
 		]]>
 	</update>
 	
-<!-- 	<insert id="insertReple" parameterType="com.spring.gm.vo.ReplyListVO">
-		INSERT INTO BOARDS (replenum, boardnum, content, writer, reref, reref_step, reref_level, reg_date, del) 
-		VALUES(#{reply_seq.nextval}, #{boardnum}, #{content, #{writer}, #{reref}, #{reref_step}, #{reref_level}, #{reg_date}, #{del})		
-	</insert> -->
+	<!-- 댓글 작성 -->
+	<insert id="insertReple" parameterType="com.spring.gm.vo.ReplyListVO">
+		INSERT INTO REPLYLIST (replenum, boardnum, content, writer, reref, reref_step, reref_level, reg_date, del) 
+		VALUES(reply_seq.nextval, #{boardnum}, #{content}, #{writer}, #{reref}, #{reref_step}, #{reref_level}, #{reg_date}, #{del})		
+	</insert>
+	
+	
+	<select id="getRepleArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.ReplyListVO">
+		<![CDATA[
+			SELECT * FROM(SELECT replenum, boardnum, content, writer, reref, reref_step, reref_level, reg_date, del, rownum rNum FROM (SELECT * FROM REPLYLIST ORDER BY replenum ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 댓글 갯수 -->
+	<select id="getRepleArticleCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM REPLYLIST
+	</select>
+	
+	<update id="deleteReple" parameterType="com.spring.gm.vo.ReplyListVO">
+		<![CDATA[
+			UPDATE REPLYLIST SET del = 1 WHERE replenum = #{replenum}
+		]]>
+	</update>
+	
+	<select id="repleCnt" parameterType="int">
+		SELECT COUNT(*) as cnt FROM REPLYLIST WHERE DEL = 0;
+	</select>
 	 		
 </mapper>

@@ -53,6 +53,7 @@ public class D_ServiceImpl implements D_Service{
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수
+		int reCnt = 0;
 		int start = 0;			// 현재 페이지 시작 글번호
 		int end = 0;			// 현재 페이지 마지막 글번호
 		int number = 0;			// 출력용 글번호
@@ -67,8 +68,10 @@ public class D_ServiceImpl implements D_Service{
 	
 		// 게시판 갯수
 		cnt = dao.getBoardsArticleCnt();
+		reCnt = dao.repleCnt();
 		
 		System.out.println("cnt(게시판 갯수) : " + cnt);
+		System.out.println("reCnt(댓글 갯수) : " + reCnt);
 		
 		pageNum = req.getParameter("pageNum");
 		
@@ -121,6 +124,7 @@ public class D_ServiceImpl implements D_Service{
 		System.out.println("================");
 		
 		model.addAttribute("cnt", cnt);  // 글갯수
+		model.addAttribute("reCnt", reCnt);
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum);  // 페이지번호
 		
@@ -140,7 +144,7 @@ public class D_ServiceImpl implements D_Service{
 		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
-		int cnt = 0;			// 글갯수
+		int cnt = 0;		// 글갯수
 		int start = 0;			// 현재 페이지 시작 글번호
 		int end = 0;			// 현재 페이지 마지막 글번호
 		int number = 0;			// 출력용 글번호
@@ -153,6 +157,7 @@ public class D_ServiceImpl implements D_Service{
 		
 		String num_s = req.getParameter("num");
 		int num = Integer.parseInt(num_s);
+		
 		
 		cnt = dao.getBoardArticleCnt();
 		
@@ -306,10 +311,10 @@ public class D_ServiceImpl implements D_Service{
 		
 		// 5-1단계. 조회수 증가
 		dao.addReadCnt(boardnum);
+		dao.repleCnt();
 		
 		// 5-2단계. 상세페이지 조회
 		BoardListVO vo = dao.getArticle(boardnum);
-		
 		// 6단계. request나 session에 처리결과를 저장(jsp에 전달하기 위함)
 		model.addAttribute("dto", vo);
 		model.addAttribute("num", num);
@@ -329,6 +334,9 @@ public class D_ServiceImpl implements D_Service{
 		int ref = Integer.parseInt(req.getParameter("ref"));
 		int ref_step = Integer.parseInt(req.getParameter("ref_step"));
 		int ref_level = Integer.parseInt(req.getParameter("ref_level"));
+		int cnt = 0;
+		cnt = dao.repleCnt();
+
 		
 		// 화면으로부터 입력받은 값을 vo에 담자
 		BoardListVO vo = new BoardListVO();
@@ -405,29 +413,22 @@ public class D_ServiceImpl implements D_Service{
 	
 	// 게시판 수정 처리
 	@Override
-	public void boardsUpdatePro(HttpServletRequest req, Model model) {
-		
+	public void boardsUpdatePro(HttpServletRequest req, Model model) {	
 		int num = Integer.parseInt(req.getParameter("num"));
-		System.out.println("확인1:::::::::"+num);
 		int anon = Integer.parseInt(req.getParameter("anon"));
-		System.out.println("확인2:::::::::"+anon);
 
-		
 		// 화면으로부터 입력받은 값을 vo에 담자
 		BoardsVO vo = new BoardsVO();
 		vo.setB_name(req.getParameter("b_name"));
-		System.out.println("확인3:::::::::"+vo.getB_name());
 		vo.setNum(num);
-		System.out.println("확인4:::::::::"+vo.getNum());
 		vo.setAnon(anon);
-		System.out.println("확인5:::::::::"+vo.getAnon());
+
 		
 		// 4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
 		/*BoardDAO dao = BoardDAOImpl.getInstance();*/
 		
 		// 5단계. 글 수정 실행(vo를 DAO로 전달하여 SQL 실행)
 		int updateCnt = dao.updateBoards(vo);
-		System.out.println("확인6::::::::::"+updateCnt);
 		
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
 		model.addAttribute("num", num);
@@ -438,37 +439,139 @@ public class D_ServiceImpl implements D_Service{
 	// 글작성 처리
 	@Override
 	public void insertReple(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int number = Integer.parseInt(req.getParameter("number"));
+		String content = req.getParameter("content");
+		String writer = req.getParameter("writer");
 		
-		int replenum = 0;		// 글 번호 
-		int boardnum = 0;
-		int reref = 1;		// 답글 그룹화 아이디
-		int reref_step = 0;	// 글 순서(행)
-		int reref_level = 0;	// 글 레벨(들여쓰기 / 답글에 대한 답글)
-		int pageNum = 0;
+		ReplyListVO vo = new ReplyListVO();
+		vo.setBoardnum(boardnum);
+		vo.setContent(content);
+		vo.setWriter(writer);
+		vo.setReref(0);
+		vo.setReref_step(0);
+		vo.setReref_level(0);
+		vo.setReg_date(new Timestamp(System.currentTimeMillis()));
+		vo.setDel(0);
 		
-		 
-		// 답변글에 대한 글 작성시
-		if(req.getParameter("replenum") != null) {
-			replenum = Integer.parseInt(req.getParameter("replenum"));
-			boardnum = Integer.parseInt(req.getParameter("boardnum"));
-			reref = Integer.parseInt(req.getParameter("reref"));
-			reref_step = Integer.parseInt(req.getParameter("reref_step"));
-			reref_level = Integer.parseInt(req.getParameter("reref_level"));
-			
-		}
-		boardnum = Integer.parseInt(req.getParameter("boardnum"));
-		pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int insertCnt = dao.insertReple(vo);
 		
-		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
-		model.addAttribute("replenum", replenum);
 		model.addAttribute("boardnum", boardnum);
-		model.addAttribute("reref", reref);
-		model.addAttribute("reref_step", reref_step);
-		model.addAttribute("reref_level", reref_level);
+		model.addAttribute("number", number);
 		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("dto", vo);
+		model.addAttribute("insertCnt", insertCnt);
+		model.addAttribute("num", num);
 	}
-		
-	
 
+	@Override
+	public void repleList(HttpServletRequest req, Model model) {
+		
+		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageBlock = 3;		// 한 블럭당 페이지 갯수
+		
+		int cnt = 0;			// 글갯수
+		int start = 0;			// 현재 페이지 시작 글번호
+		int end = 0;			// 현재 페이지 마지막 글번호
+		int number = 0;			// 출력용 글번호
+		String pageNum = "";	// 페이지 번호
+		int currentPage = 0;	// 현재페이지
+		
+		int pageCount = 0;		// 페이지 갯수
+		int startPage = 0;		// 시작 페이지
+		int endPage = 0;		// 마지막 페이지		
+		
+		String boardnum_s = req.getParameter("boardnum");
+		int boardnum = Integer.parseInt(boardnum_s);
+		
+		cnt = dao.getRepleArticleCnt();
+		
+		System.out.println("cnt : " + cnt);
+		
+		pageNum = req.getParameter("pageNum");
+		
+		if(pageNum == null) {
+			pageNum = "1";	// 첫페이지를 1페이지로 지정
+		}
+		
+		currentPage = Integer.parseInt(pageNum);
+		System.out.println("currentPage : " + currentPage);
+		
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
+		
+		start = (currentPage - 1) * pageSize + 1; 
+		
+		end = start + pageSize - 1;
+		
+		System.out.println("start : " + start);
+		System.out.println("end : " + end);
+		
+		if(end > cnt) end = cnt;
+		
+		number = cnt - (currentPage - 1) * pageSize;  // 출력용 글번호
+		
+		System.out.println("number : " + number);
+		System.out.println("pageSize : " + pageSize);
+		
+		if(cnt > 0) {
+			//게시판 목록 조회
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("boardnum", boardnum);
+			map.put("start", start);
+			map.put("end", end);
+			
+			List<ReplyListVO> r_dtos = dao.getRepleArticleList(map);
+			
+			req.setAttribute("r_dtos", r_dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+		}
+		
+		// 시작페이지
+		startPage = (currentPage / pageBlock) * pageBlock + 1; 
+		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+		System.out.println("startPage : " + startPage);
+				
+		// 마지막 페이지
+		endPage = startPage + pageBlock - 1; 
+		if(endPage > pageCount) endPage = pageCount;
+		System.out.println("endPage : " + endPage);
+		System.out.println("================");
+
+		model.addAttribute("boardnum", boardnum);
+		model.addAttribute("cnt", cnt);  // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum);  // 페이지번호
+		
+		if(cnt > 0) {
+			model.addAttribute("startPage", startPage);     // 시작 페이지
+			model.addAttribute("endPage", endPage);         // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
+		}		
+	}
+	
+	// 리플 삭제여부
+	@Override
+	public void deleteReple(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int replenum = Integer.parseInt(req.getParameter("replenum"));
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int number = Integer.parseInt(req.getParameter("number"));
+		int deleteCnt = 0;
+		
+		ReplyListVO vo = new ReplyListVO();
+		vo.setBoardnum(replenum);
+		
+		deleteCnt=dao.deleteReple(replenum);
+		
+		model.addAttribute("num", num);
+		model.addAttribute("boardnum", boardnum);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("deleteCnt", deleteCnt);
+		model.addAttribute("number", number);
+	}
 		
 }
