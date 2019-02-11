@@ -89,6 +89,11 @@
 	border-right: none;
 }
 
+.content .salary_info table .left_align {
+	text-align: left;
+	padding: 0 20px;
+}
+
 .content .salary_info table tbody tr:hover {
 	background: #fbeded;
 	transition: 0.3s;
@@ -99,12 +104,11 @@
 	border-bottom: 1px #e5e5e5 solid;
 	padding: 5px 0;
 	text-align: center;
+	cursor: pointer;
 }
 
 .content .salary_info table tbody td:last-child {
 	border-right: none;
-	text-align: left;
-	padding-left: 20px;
 }
 
 .content .salary_info_result {
@@ -177,3 +181,10 @@
 .content .bam_left {
 	height: 500px;
 }
+
+/* 
+.content .bam_left .salary_info {
+	height: 500px;
+	overflow: hidden;
+}
+ */
