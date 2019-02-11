@@ -660,5 +660,69 @@ public class D_ServiceImpl implements D_Service{
 		}		
 		
 	}
+
+	@Override
+	public void boardsDelete(HttpServletRequest req, Model model) {
+		
+		int num = Integer.parseInt(req.getParameter("num"));
+		
+		BoardsVO vo = new BoardsVO();
+		vo.setNum(num);
+		
+		int deleteCnt = dao.deleteBoards(vo);
+		
+		model.addAttribute("num", num);
+		model.addAttribute("deleteCnt", deleteCnt);
+		
+	}
+
+	@Override
+	public void repleUpdate(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int replenum = Integer.parseInt(req.getParameter("replenum"));
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int number = Integer.parseInt(req.getParameter("number"));
+		String content = req.getParameter("content");
+		
+		ReplyListVO vo = null;
+		vo = dao.getRepleArticle(replenum);
+		
+		
+		model.addAttribute("num", num);
+		model.addAttribute("boardnum", boardnum);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("r_dtos", vo);
+		model.addAttribute("number", number);
+		model.addAttribute("content", content);
+		model.addAttribute("replenum", replenum);
+		
+	}
+
+	@Override
+	public void repleUpdatePro(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int replenum = Integer.parseInt(req.getParameter("replenum"));
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int number = Integer.parseInt(req.getParameter("number"));
+		int updateCnt = 0;
+		
+		ReplyListVO vo = new ReplyListVO();
+		vo.setReplenum(replenum);
+		vo.setContent(req.getParameter("content"));
+		
+		updateCnt=dao.updateReple(vo);
+		System.out.println("updateCnt확인:::::::::::::"+updateCnt);
+
+		
+		model.addAttribute("num", num);
+		model.addAttribute("boardnum", boardnum);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("updateCnt", updateCnt);
+		model.addAttribute("number", number);
+		model.addAttribute("replenum", replenum);
+		
+	}
 		
 }

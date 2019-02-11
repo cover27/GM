@@ -18,7 +18,10 @@
                         <span><a href="<c:url value='/pages/D_boardsSetting' />">게시판 목록</a></span>
                         <ul>
                         	<c:forEach var="b_dtos" items="${b_dtos}">
-                        		<li><a href="<c:url value='/pages/D_boardList?num=${b_dtos.num}'/>">${b_dtos.b_name}</a></li>                        	</c:forEach>
+                        		<c:if test="${b_dtos.del == 0}">
+                        			<li><a href="<c:url value='/pages/D_boardList?num=${b_dtos.num}'/>">${b_dtos.b_name}</a></li>  
+                        		</c:if>                      	
+                        	</c:forEach>
                         </ul>
                     </li>
                     <li>
