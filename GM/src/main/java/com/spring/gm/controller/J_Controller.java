@@ -96,13 +96,14 @@ public class J_Controller {
 		return "admin/J_BasicAllowanceManagement";
 	}
 
-	// 근태/급여/상여/연차 마감관리(Time & Attendance Salary Bonus Annual)
-	@RequestMapping("admin/J_TimeAttendanceSalaryBonusAnnual")
-	public String J_TimeAttendanceSalaryBonusAnnual(HttpServletRequest req, Model model) {
-		logger.info("URL : J_TimeAttendanceSalaryBonusAnnual");
+	//급여등록(Payroll Registration)
+	@RequestMapping("admin/J_PayrollRegistration")
+	public String J_PayrollRegistration(HttpServletRequest req, Model model) {
+		logger.info("URL : J_PayrollRegistration");
 		service.companyName(req, model);
+		service.salaryList(req, model);
 
-		return "admin/J_TimeAttendanceSalaryBonusAnnual";
+		return "admin/J_PayrollRegistration";
 	}
 
 	// 급여 계산 (Salary Calculation)
@@ -164,6 +165,21 @@ public class J_Controller {
 		service.infoUpdate(req, model);
 		System.out.println("J_infoUpdate 탔습니다");
 		return "admin/sub/J_sub/J_infoUpdatePro_sub";
+	}
+	
+	// 개인 급여등록(이번달 목록 가져오기)
+	@RequestMapping("/admin/J_PayrollRegistrationList")
+	public String J_PayrollRegistrationList(HttpServletRequest req, Model model) {
+		logger.info("URL : J_PayrollRegistrationList");
+		service.J_PayrollRegistrationList(req,model);
+		return "admin/sub/J_sub/J_PayrollRegistrationList_sub";
+	}
+	// 개인 급여등록
+	@RequestMapping("/admin/J_PayrollRegistrationInsert")
+	public String J_PayrollRegistrationInsert(HttpServletRequest req, Model model) {
+		logger.info("URL : J_PayrollRegistrationInsert");
+		service.J_PayrollRegistrationInsert(req,model);
+		return "admin/sub/J_sub/J_PayrollRegistrationList_sub";
 	}
 
 	// ================기본 수당 외 수당관리 서브==================================

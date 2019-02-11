@@ -11,8 +11,7 @@
 	<table>
 		<tr>
 			<th colspan="6" align="center" style="height:25px">
-				<span>게시판 번호 : ${num}</span>&nbsp;글목록&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="<c:url value='/pages/D_writeForm?num=${num}&pageNum=${pageNum}'/>"> 글쓰기 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				전체 글목록
 			</th>
 		</tr>
 		
@@ -48,7 +47,7 @@
 												
 							<c:if test="${dto.readcnt > 10}"></c:if>
 					
-							<a href="<c:url value='/pages/D_boardContent?boardnum=${dto.boardnum}&num=${num}&ref_level=${dto.ref_level}&pageNum=${pageNum}&number=${number+1}'/>"> ${dto.subject}</a>
+							<a href="<c:url value='/pages/D_boardContent?boardnum=${dto.boardnum}&num=${dto.num}&ref_level=${dto.ref_level}&pageNum=${pageNum}&number=${number+1}'/>"> ${dto.subject}</a>
 							[${dto.re_num}]
 						</td>
 					
