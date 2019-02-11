@@ -63,13 +63,13 @@
             <div class="salary_info">
             	<table>
             		<colgroup>
-            			<col width="5%" />
-            			<col width="5%" />
-            			<col width="5%" />
-            			<col width="5%" />
-            			<col width="5%" />
-            			<col width="5%" />
-            			<col width="50%" />
+            			<col width="10%" />
+            			<col width="10%" />
+            			<col width="10%" />
+            			<col width="10%" />
+            			<col width="10%" />
+            			<col width="15%" />
+            			<col width="*" />
             		</colgroup>
             		<thead>
             			<tr>
@@ -101,12 +101,12 @@
 							<c:forEach var="dto" items="${dtos}">
 								<tr>
 									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.id}</td>
-									<td>${dto.name}</td>
-									<td>${dto.rank}</td>
-									<td>${dto.j_name}</td>
-									<td>${dto.enterday}</td>
-									<td>${dto.tel}</td>
-									<td>${dto.email_in}</td>
+									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.name}</td>
+									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.rank}</td>
+									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.j_name}</td>
+									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.enterday}</td>
+									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.tel}</td>
+									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.email_in}</td>
 								</tr>
 							</c:forEach>
 						</c:if>
@@ -142,44 +142,44 @@
 				    </c:if>
 				</c:if>
             </div>
-            <div class="subtitle">
+            <div class="subtitle mt60">
                 <h3>상세정보(급여기본)</h3>
             </div>
-            <div id="result">
+            <div id="result" class="salary_info_result">
                 <table>
                     <tr>
-                        <td>사원번호</td>
+                        <th>사원번호</th>
                         <td></td>
-                        <td>부서</td>
+                        <th>부서</th>
                         <td></td>
-                        <td>직급</td>
+                        <tH>직급</th>
                         <td></td>
-                        <td>성명</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>주민번호(앞)</td>
-                        <td></td>
-                        <td>성별</td>
-                        <td></td>
-                        <td>핸드폰</td>
-                        <td></td>
-                        <td>국적</td>
+                        <th>성명</th>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>입사일자</td>
+                        <th>주민번호(앞)</th>
                         <td></td>
-                        <td>연차</td>
+                        <th>성별</th>
                         <td></td>
-                        <td colspan="2">E-MAIL</td>
+                        <th>핸드폰</th>
+                        <td></td>
+                        <th>국적</th>
                         <td></td>
                     </tr>
                     <tr>
-                        <td colspan="2">*연봉</td>
+                        <th>입사일자</th>
                         <td></td>
-                        <td colspan="2">*계좌번호</td>
+                        <th>연차</th>
                         <td></td>
+                        <th>E-MAIL</th>
+                        <td colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <th>*연봉</th>
+                        <td colspan="3"></td>
+                        <th>*계좌번호</th>
+                        <td colspan="3"></td>
                     </tr>
                 </table>
             </div>
