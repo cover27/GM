@@ -32,7 +32,7 @@
 		
 			<c:forEach var="dto" items="${dtos}">
 				<c:if test="${dto.del == 0}">
-					<tr>
+					<tr>				
 						<td>
 							<c:set var="number" value="${number-1}" />
 							(${dto.ref} / ${dto.ref_step} / ${dto.ref_level})
