@@ -14,6 +14,7 @@ import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
 import com.spring.gm.vo.join_mgcVO;
+import com.spring.gm.vo.join_msVO;
 import com.spring.gm.persistence.J_DAO;
 
 @Repository
@@ -166,8 +167,9 @@ public class J_DAOImpl implements J_DAO {
 		return cnt;
 	}
 	@Override
-	public ArrayList<SalaryVO> J_PayrollRegistrationList(Map<String, Object> map) {
-		ArrayList<SalaryVO> dtos = null;
+	public ArrayList<join_msVO> J_PayrollRegistrationList(Map<String, Object> map) {
+		System.out.println("J_PayrollRegistrationList여기탔어용");
+		ArrayList<join_msVO> dtos = null;
 		J_DAO dao = sqlSession.getMapper(J_DAO.class);
 		dtos = dao.J_PayrollRegistrationList(map);
 		return dtos;
@@ -180,6 +182,22 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.J_PayrollRegistrationInsertList(map);
 		return dtos;
 	}
+	// 개인 급여등록
+	@Override
+	public int J_PayrollRegistrationInsert(Map<String, Object> map) {
+		int cnt = sqlSession.insert("com.spring.gm.persistence.J_DAO.J_PayrollRegistrationInsert", map);
+		return cnt;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//------------- 기본수당 외 수당관리-------------------------------------------
 	// 회사명 가져오기
