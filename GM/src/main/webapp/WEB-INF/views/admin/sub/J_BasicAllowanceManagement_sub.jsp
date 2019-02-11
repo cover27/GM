@@ -181,15 +181,17 @@
 				</div>
 			</div>
 			
-			<div class="fleft w30p bam_left">
+			<div class="fleft w30p bam_left salary_info">
 				<h3>기본정보</h3>
 				<div>
 	                <table>
-	                    <tr>
-	                        <td style="text-align: center; background-color: #cccccc;">사원번호</td>
-	                        <td style="text-align: center; background-color: #cccccc;">성명</td>
-	                        <td style="text-align: center; background-color: #cccccc;">부서</td>
-	                    </tr>
+	                    <thead>
+		                    <tr>
+		                        <td>사원번호</td>
+		                        <td>성명</td>
+		                        <td>부서</td>
+		                    </tr>
+	                    </thead>
 	                    <c:if test="${cnt > 0}">
 	                        <c:forEach var="dto" items="${dtos}">
 	                            <tr id="ttr">
@@ -253,15 +255,17 @@
 		    </div>
 		
 		    <div>
-		        <div id="result" class="fleft">
+		        <div id="result" class="fleft salary_info">
 		            <h3>기본수당외 수당등록</h3>
-		            <table border="1">
-		                <tr>
-		                    <td style="text-align: center; background-color: #cccccc;" width="25%">상여금/삭감</td>
-		                    <td style="text-align: center; background-color: #cccccc;" width="25%">지급/공제</td>
-		                    <td style="text-align: center; background-color: #cccccc;" width="25%">금액</td>
-		                    <td style="text-align: center; background-color: #cccccc;" width="25%">비고</td>
-		                </tr>
+		            <table>
+		                <thead>
+		                	<tr>
+			                    <th>상여금/삭감</th>
+			                    <th>지급/공제</th>
+			                    <th>금액</th>
+			                    <tH>비고</th>
+			                </tr>
+		                </thead>
 		                <tr>
 		                    <td colspan="4">사원번호를 클릭 하십시오.</td>
 		                </tr>
