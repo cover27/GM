@@ -9,13 +9,13 @@
     }
 </script>
 <div>
-	<form method="post" name="searchform">
+	<form action="J_searchId_sub"method="post" name="searchform">
 		<table border="1" style="width: 600px;">
 			<tr>
 				<td width="10%">아이디</td>
-				
+				<td><input type="text" value="${id}" name="id"></td>
 				<td width="25%">
-					<button onclick="searchId()">검색</button>
+					<input type="submit" value="검색">
 				</td>
 			</tr>
 		</table>
@@ -37,7 +37,7 @@
 				<td>${dto.id}</td>
 				<td>${dto.name}</td>
 				<td>${dto.j_name}</td>
-				<td>${dto.rank}</td>
+				<td>${dto.r_name}</td>
 				<td><input class="inputButton" type="button" value="확인" onclick="back('${dto.id}','${dto.name}')"></td>
 			</tr>
 		</c:forEach>

@@ -10,20 +10,20 @@
 		SELECT COUNT(*) as cnt FROM member where company = #{company}
 	</select>
 	<!-- 급여 회원정보 가져오기(부서번호가 회사명) -->
-	<select id="selectList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="selectList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
-              FROM member m ,companies c
-              WHERE m.depart = c.company )
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank  )
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
 	]]>
 	</select>
 	<!-- 급여 회원정보 가져오기(부서번호가 부서명) -->
-	<select id="selectList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="selectList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid)
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
+              FROM member m ,groups g , grade r
+              WHERE m.depart = g.groupid and m.rank = r.rank)
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
 	]]>
 	</select>
@@ -41,17 +41,17 @@
 		SELECT count(*) cnt FROM member WHERE name like '%'||#{search_content}||'%' and company = #{company}
 	</select>
 	<!-- 검색 급여 회원정보 가져오기(성명 - 그룹테이블과 조인) -->
-	<select id="searchinfoList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
-		select * from(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid)
+	<select id="searchinfoList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+		select * from(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g, grade r 
+              WHERE m.depart = g.groupid and m.rank = r.rank)
      where  depart != #{company} and name like '%'||#{search_content}||'%'
 	</select>
 	<!-- 검색 급여 회원정보 가져오기(성명 - 사업장테이블과 조인) -->
-	<select id="searchinfoList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
-              FROM member m ,companies c
-              WHERE m.depart = c.company )
+	<select id="searchinfoList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank)
      where  depart = #{company} and name like '%'||#{search_content}||'%'
 	</select>
 	
@@ -60,9 +60,11 @@
 	<select id="search_salaryCnt2" parameterType="java.util.Map" resultType="int">
 		SELECT count(*) cnt FROM groups WHERE g_name like '%'||#{search_content}||'%' and company = #{company}
 	</select>
-	<select id="searchinfoList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
-              FROM member m ,groups g WHERE m.depart = g.groupid and g.g_name like '%'||#{search_content}||'%' and g.company = #{company})
+	<select id="searchinfoList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g, grade r
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and g.g_name like '%'||#{search_content}||'%' and g.company = #{company})
 	</select>
 	
 	
@@ -71,17 +73,17 @@
 		SELECT count(*) cnt FROM member WHERE id = #{search_content} and company = #{company}
 	</select>
 	<!-- 검색 급여 회원정보 가져오기(사원 아이디 - 그룹테이블과 조인) -->
-	<select id="searchinfoList4" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
-		select * from(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid)
+	<select id="searchinfoList4" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+		select * from(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g, grade r 
+              WHERE m.depart = g.groupid and m.rank = r.rank)
      where  depart != #{company} and id like '%'||#{search_content}||'%'
 	</select>
 	<!-- 검색 급여 회원정보 가져오기(성명 - 사업장테이블과 조인) -->
-	<select id="searchinfoList5" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
-              FROM member m ,companies c
-              WHERE m.depart = c.company )
+	<select id="searchinfoList5" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank)
      where  depart = #{company} and id like '%'||#{search_content}||'%'
 	</select>
 	<!--개인 급여등록(이번달 목록 가져오기) -->
@@ -91,19 +93,30 @@
 		where s.id = m.id
 		and to_char(s.day,'yyyymm')=to_char(sysdate,'yyyymm') and m.id = #{id} and company = #{company}
 	</select>
-	<select id="J_PayrollRegistrationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.SalaryVO">
-		SELECT s.sal_num, s.id, m.name, m.tel, s.day, s.state, m.email_in, s.salary, m.ACCOUNT_NUMBER
-		from member m, salary s
-		where m.id = s.id
-		and s.id = #{id} and company = #{company}
+	<select id="J_PayrollRegistrationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_msVO">
+		SELECT s.sal_num, s.id, m.name, m.tel,r.r_name, s.day, s.state, m.email_in, s.salary, m.account_number
+		from member m, salary s, grade r
+		where m.id = s.id and m.rank = r.rank
+		and s.id = #{id} and m.company = #{company} and to_char(s.day,'yyyymm')=to_char(sysdate,'yyyymm')
 	</select>
 	<!--개인 급여등록(이번달 목록 가져오기) 없으면 인설트할 목록 가져오기 -->
 	<select id="J_PayrollRegistrationInsertList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
 		SELECT id,name,tel,email_in,round(salary/12, -2) as salary,account_number FROM member where  id = #{id} and company = #{company}
 	</select>
 	
-	
-	
+	<!--  개인 급여등록 -->
+	<insert id="J_PayrollRegistrationInsert" parameterType="java.util.Map">
+		INSERT INTO salary(sal_num, id, day, state, salary, del)
+		VALUES (seq_salary.nextval,#{id}, to_date(#{month},'yyyy/mm'), #{state}, #{salary}, 0)
+	</insert>
+	<!-- 미지급 지급으로 처리 -->
+	<update id="J_PayrollRegistrationchange" parameterType="java.util.Map">
+		update salary set state = #{state} where id=#{id} and to_char(day,'yyyymm')=to_char(sysdate,'yyyymm')
+	</update>
+	<!--정보 삭제 -->
+	<delete id="J_PayrollRegistrationListDelete" parameterType="java.util.Map">
+		delete salary where sal_num = #{sal_num} and id= #{id}
+	</delete>
 	
 	
 	<!-- ========================기본수당 외 수당관리=============================-->
@@ -115,89 +128,100 @@
 	
 	<!--수당  검색 회원목록  가져오기(id검색)  -->
 	<!--입사일 년,도로 기준  -->
-	<select id="salaryIdSearchList1_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salaryIdSearchList1_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-	SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
-              FROM member m ,companies c
-              WHERE m.depart = c.company and to_char(m.enterday,'yyyy') <= #{content})
+	SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank
+               and to_char(m.enterday,'yyyy') <= #{content})
         WHERE  depart = #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
-	<select id="salaryIdSearchList1_2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salaryIdSearchList1_2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid and to_char(m.enterday,'yyyy')<= #{content})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g, grade r 
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and to_char(m.enterday,'yyyy')<= #{content})
          WHERE  depart != #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
-	<select id="salaryIdSearchList2_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salaryIdSearchList2_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
-              FROM member m ,companies c
-              WHERE m.depart = c.company and to_char(m.enterday,'yyyymm') <= #{content})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank
+              and to_char(m.enterday,'yyyymm') <= #{content})
         WHERE  depart = #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
-	<select id="salaryIdSearchList2_2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salaryIdSearchList2_2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid and to_char(m.enterday,'yyyymm')<= #{content})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g, grade r 
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and to_char(m.enterday,'yyyymm')<= #{content})
          WHERE  depart != #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
-	<select id="salaryIdSearchList3_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salaryIdSearchList3_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
-              FROM member m ,companies c
-              WHERE m.depart = c.company and to_char(m.enterday,'yyyymmdd') <= #{content})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank
+              and to_char(m.enterday,'yyyymmdd') <= #{content})
         WHERE  depart = #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
-	<select id="salaryIdSearchList3_2" parameterType="java.util.Map"  resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salaryIdSearchList3_2" parameterType="java.util.Map"  resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
 		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid and to_char(m.enterday,'yyyymmdd')<= #{content})
+              FROM member m ,groups g, grade r 
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and to_char(m.enterday,'yyyymmdd')<= #{content})
          WHERE  depart != #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
 	<!--수당  검색 회원목록  가져오기(depart검색)  -->
 	<!--입사일 년,도로 기준  -->
-	<select id="salaryDepartSearchList1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salaryDepartSearchList1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
 	SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
-              FROM member m ,groups g
-              WHERE m.depart = g.groupid and to_char(m.enterday,'yyyy') <= #{content} and g_name like '%'||#{content2}||'%' and  m.company = #{company})
+              FROM member m ,groups g, grade r
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and to_char(m.enterday,'yyyy') <= #{content} and g_name like '%'||#{content2}||'%' and  m.company = #{company})
 	]]>
 	</select>
-	<select id="salaryDepartSearchList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salaryDepartSearchList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
 		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
-              FROM member m ,groups g
-              WHERE m.depart = g.groupid and to_char(m.enterday,'yyyymm') <= #{content} and g_name like '%'||#{content2}||'%' and  m.company = #{company})
+              FROM member m ,groups g, grade r
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and to_char(m.enterday,'yyyymm') <= #{content} and g_name like '%'||#{content2}||'%' and  m.company = #{company})
 	]]>
 	</select>
-	<select id="salaryDepartSearchList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salaryDepartSearchList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
-              FROM member m ,groups g
-              WHERE m.depart = g.groupid and to_char(m.enterday,'yyyymmdd') <= #{content} and g_name like '%'||#{content2}||'%' and  m.company = #{company})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g, grade r
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and to_char(m.enterday,'yyyymmdd') <= #{content} and g_name like '%'||#{content2}||'%' and  m.company = #{company})
 	]]>
 	</select>
 	
 	<!-- 수당 검색 회원목록 갯수 가져오기(부서 날짜검색 안했을시) -->
 	<select id="selectNoneDepartCnt" parameterType="java.util.Map" resultType="int">
-		SELECT COUNT(*) as cnt FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid and g.g_name like '%'||#{content2}||'%' and m.company = #{company})
+		SELECT COUNT(*) as cnt FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g, grade r 
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and g.g_name like '%'||#{content2}||'%' and m.company = #{company})
 	</select>
-	<select id="selectNoneDepartList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="selectNoneDepartList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid and g.g_name like '%'||#{content2}||'%' and m.company = #{company})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
+              FROM member m ,groups g, grade r 
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and g.g_name like '%'||#{content2}||'%' and m.company = #{company})
         WHERE (rNum >=  #{start} AND rNum <= #{end})
      ]]>
 	</select>
@@ -206,19 +230,21 @@
 	<select id="selectNoneIdCnt" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(*) as cnt FROM member where company = #{company} and id like '%'||#{content2}||'%'
 	</select>
-	<select id ="selectNoneIdList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id ="selectNoneIdList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid and id like '%'||#{content2}||'%' and m.company = #{company})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
+              FROM member m ,groups g, grade r 
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and id like '%'||#{content2}||'%' and m.company = #{company})
         WHERE (rNum >=  #{start} AND rNum <= #{end})
 	]]>	
 	</select>
-	<select id ="selectNoneIdList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id ="selectNoneIdList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
-              FROM member m ,companies c
-              WHERE m.depart = c.company and id like '%'||#{content2}||'%' and m.company = #{company})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank
+              and id like '%'||#{content2}||'%' and m.company = #{company})
        WHERE (rNum >=  #{start} AND rNum <= #{end})
 	]]>	
 	</select>
@@ -271,51 +297,57 @@
 	</select>
 	
 	<!-- 날짜만 입력하여 검색시 -->
-	<select id="salarySearchList1_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salarySearchList1_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-	SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
-              FROM member m ,companies c
-              WHERE m.depart = c.company and to_char(m.enterday,'yyyy') <= #{content})
+	SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank
+              and to_char(m.enterday,'yyyy') <= #{content})
        WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
 	]]>
 	</select>
-	<select id="salarySearchList1_2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salarySearchList1_2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid and to_char(m.enterday,'yyyy')<= #{content})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
+              FROM member m ,groups g, grade r 
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and to_char(m.enterday,'yyyy')<= #{content})
          WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
 	]]>
 	</select>
-	<select id="salarySearchList2_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salarySearchList2_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
-              FROM member m ,companies c
-              WHERE m.depart = c.company and to_char(m.enterday,'yyyymm') <= #{content})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank
+              and to_char(m.enterday,'yyyymm') <= #{content})
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
 	]]>
 	</select>
-	<select id="salarySearchList2_2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salarySearchList2_2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid and to_char(m.enterday,'yyyymm')<= #{content})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
+              FROM member m ,groups g , grade r
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and to_char(m.enterday,'yyyymm')<= #{content})
          WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
 	]]>
 	</select>
-	<select id="salarySearchList3_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salarySearchList3_1" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
-              FROM member m ,companies c
-              WHERE m.depart = c.company and to_char(m.enterday,'yyyymmdd') <= #{content})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank
+              and to_char(m.enterday,'yyyymmdd') <= #{content})
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
 	]]>
 	</select>
-	<select id="salarySearchList3_2" parameterType="java.util.Map"  resultType="com.spring.gm.vo.join_mgcVO">
+	<select id="salarySearchList3_2" parameterType="java.util.Map"  resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
-		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid and to_char(m.enterday,'yyyymmdd')<= #{content})
+		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
+              FROM member m ,groups g, grade r 
+              WHERE m.depart = g.groupid and m.rank = r.rank
+              and to_char(m.enterday,'yyyymmdd')<= #{content})
          WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
 	]]>
 	</select>
@@ -334,16 +366,16 @@
 	<select id="searchIdCnt" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(*) as cnt FROM member where company = #{company} and id like '%'||#{id}||'%'
 	</select>
-	<select id="searchIdList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
-		select * from(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
-              FROM member m ,groups g 
-              WHERE m.depart = g.groupid)
+	<select id="searchIdList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+		select * from(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
+              FROM member m ,groups g, grade r 
+              WHERE m.depart = g.groupid and m.rank = r.rank)
      	where  depart != #{company} and id like '%'||#{id}||'%'
 	</select>
-     <select id="searchIdList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO">
-	 	SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
-              FROM member m ,companies c
-              WHERE m.depart = c.company)
+     <select id="searchIdList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+	 	SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
+              FROM member m ,companies c, grade r
+              WHERE m.depart = c.company and m.rank = r.rank)
     	 where  depart = #{company} and id like '%'||#{id}||'%'
 	</select>
      

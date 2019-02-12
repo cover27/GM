@@ -39,12 +39,12 @@ public class D_Controller {
 	}
 	
 	//게시판 설정
-	@RequestMapping("/pages/D_boardsSetting")
+	@RequestMapping("/admin/D_boardsSetting")
 	public String boardsList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardsSetting");
 		
 		service.boardsList(req, model);
-		return "pages/D_boardsSetting";
+		return "admin/D_boardsSetting";
 	}
 	
 	// 게시판 수정
@@ -180,6 +180,14 @@ public class D_Controller {
 		
 		service.repleUpdatePro(req, model);
 		return "pages/D_repleUpdatePro";
+	}
+	
+	@RequestMapping("/admin/D_boardDelPro")
+	public String D_boardDel(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardDelPro");
+		
+		service.boardDel(req, model);
+		return "/admin/sub/D_boardDelPro";
 	}
 
 }

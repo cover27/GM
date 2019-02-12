@@ -17,9 +17,9 @@
 					<th>사원번호</th>
 					<td>${dto.id}</td>
 					<th>부서</th>
-					<td>${dto.depart}</td>
+					<td>${j_name}</td>
 					<th>직급</th>
-					<td>${dto.rank}</td>
+					<td>${r_name}</td>
 					<th>성명</th>
 					<td>${dto.name}</td>
 				</tr>
@@ -39,7 +39,7 @@
 					<th>연차</th>
 					<td>${dto.nation}</td>
 					<th>E-MAIL</th>
-					<td colspan="3">${dto.email_in}</td>
+					<td colspan="3" class="left_align">${dto.email_in}</td>
 				</tr>
 				<tr>
 					<th>*연봉</th>

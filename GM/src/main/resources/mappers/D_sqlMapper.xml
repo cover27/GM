@@ -153,4 +153,10 @@
 	<select id="getRepleArticle" parameterType="int" resultType="com.spring.gm.vo.ReplyListVO">
 		SELECT * FROM REPLYLIST WHERE replenum = #{replenum}
 	</select>
+	
+	<update id="delBoard" parameterType="com.spring.gm.vo.BoardListVO">
+		<![CDATA[
+			UPDATE BOARDLIST SET del = 1 WHERE boardnum = #{boardnum}
+		]]>
+	</update>
 </mapper>

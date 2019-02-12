@@ -251,11 +251,11 @@ public class D_ServiceImpl implements D_Service{
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		int deleteCnt = 0;
 		
-		
 		BoardListVO vo = new BoardListVO();
 		vo.setBoardnum(boardnum);
 		
 		deleteCnt = dao.deleteBoard(boardnum);
+
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
 		model.addAttribute("num", num);
 		model.addAttribute("deleteCnt", deleteCnt);
@@ -713,8 +713,6 @@ public class D_ServiceImpl implements D_Service{
 		vo.setContent(req.getParameter("content"));
 		
 		updateCnt=dao.updateReple(vo);
-		System.out.println("updateCnt확인:::::::::::::"+updateCnt);
-
 		
 		model.addAttribute("num", num);
 		model.addAttribute("boardnum", boardnum);
@@ -722,6 +720,23 @@ public class D_ServiceImpl implements D_Service{
 		model.addAttribute("updateCnt", updateCnt);
 		model.addAttribute("number", number);
 		model.addAttribute("replenum", replenum);
+		
+	}
+
+	@Override
+	public void boardDel(HttpServletRequest req, Model model) {
+		int deleteCnt = 0;
+		String [] boardArr = req.getParameterValues("checkRow");
+		
+		if(boardArr != null && boardArr.length > 0) {
+			for(int i=0; i<boardArr.length; i++) {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+					map.put("boardnum", Integer.parseInt(boardArr[i]));
+					deleteCnt = dao.delBoard(map);
+			}
+		}
+		
+		model.addAttribute("deleteCnt", deleteCnt);
 		
 	}
 		

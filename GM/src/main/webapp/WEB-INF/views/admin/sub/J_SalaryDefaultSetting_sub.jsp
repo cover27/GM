@@ -2,31 +2,35 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.gm.vo.MemberVO" %>
 <script type="text/javascript">
-	function load(url) {
-		//요청 : url 즉 news1.jsp, news2.jsp, news3.jsp
-		//sendRequest(callback, url, method, params){}
-		sendRequest(loadNews_callback, url, "post"); //url로 이동 -> 콜백함수로 리턴
-	}
-	/*
-	 콜백함수
-	 -서버로부터 응답이 오면 동작할 함수(시스템이 자동으로 호출한다.)
-	 -콜백함수명은 sendRequest(콜백함수명)과 일치해야 한다.
-	 -loadNews_callback : 콜백함수, result = 출력위치
-	 */
-	function loadNews_callback() {
-		var result = document.getElementById("result");
-		if (httpRequest.readyState == 4) { // 4 : completed : 전체 데이터가 취득 완료된 상태
-			if (httpRequest.status == 200) { // 200 : 정상종료
-				//result.innerHTML = "정상종료";
-				result.innerHTML = httpRequest.responseText;
-			} else {
-				result.innerHTML = "에러발생";
-			}
-		} else {
-			result.innerHTML = "상태 :" + httpRequest.readyStatus;
-		}
-	}
-	
+	/* 클릭한 요소의 색깔을 변경 */
+	$(function(){
+	    $(".select").click(function(){
+	    	var selector = '.selected';
+	    	$(selector).removeClass('selected');
+	    	$(this).siblings().addClass("selected")
+	    	$(this).addClass("selected")
+	    })
+	});
+
+	 function J_info(id, j_name, r_name) {
+			// alert(id);
+			$.ajax({
+				url : '${pageContext.request.contextPath}/admin/J_info', //컨트롤러/basic1_sub로 가라
+				type : 'POST',
+				data : {
+					'id' : id,
+					'j_name' : j_name,
+					'r_name' : r_name
+				}, //전송할 데이터
+				success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
+					//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
+					$('#result').html(result);
+				},
+				error : function() {
+					alert('오류');
+				}
+			});
+		};
 </script>
 <section>
     <article>
@@ -102,13 +106,13 @@
 						<c:if test="${cnt > 0}">
 							<c:forEach var="dto" items="${dtos}">
 								<tr>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.id}</td>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.name}</td>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.rank}</td>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.j_name}</td>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.enterday}</td>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.tel}</td>
-									<td onclick="load('J_info?id=${dto.id}')" style="cursor: pointer;">${dto.email_in}</td>
+									<td onclick="J_info('${dto.id}','${dto.j_name}','${dto.r_name}')" class="select">${dto.id}</td>
+									<td onclick="J_info('${dto.id}','${dto.j_name}','${dto.r_name}')" class="select">${dto.name}</td>
+									<td onclick="J_info('${dto.id}','${dto.j_name}','${dto.r_name}')" class="select">${dto.r_name}</td>
+									<td onclick="J_info('${dto.id}','${dto.j_name}','${dto.r_name}')" class="select">${dto.j_name}</td>
+									<td onclick="J_info('${dto.id}','${dto.j_name}','${dto.r_name}')" class="select">${dto.enterday}</td>
+									<td onclick="J_info('${dto.id}','${dto.j_name}','${dto.r_name}')" class="select">${dto.tel}</td>
+									<td onclick="J_info('${dto.id}','${dto.j_name}','${dto.r_name}')" class="left_align select">${dto.email_in}</td>
 								</tr>
 							</c:forEach>
 						</c:if>
