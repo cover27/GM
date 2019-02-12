@@ -619,24 +619,64 @@ public class K_ServiceImpl implements K_Service{
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		String companyName = dao.getCompanyName(company);
 		List<GroupsVO> groupsList = new ArrayList<GroupsVO>();
-		List<join_mgiVO> mgiList = new ArrayList<join_mgiVO>();
-		
 		groupsList = dao.getGroups(company);
-		List<join_mgiVO> mgiList1 = new ArrayList<join_mgiVO>();
-		mgiList1 = dao.getMgiList(company);
-		List<join_mgiVO> mgiList2 = new ArrayList<join_mgiVO>();
-		mgiList2 = dao.getMgiList2(company);
-		for(int i = 0; i<mgiList2.size(); i++) {
-			mgiList2.get(i).setLeader(0);
-			mgiList2.get(i).setDepartName(companyName);
-		}
-		
-		mgiList.addAll(mgiList1);
-		mgiList.addAll(mgiList2);
 		
 		model.addAttribute("groupsList", groupsList);
-		model.addAttribute("mgiList", mgiList);
 		model.addAttribute("companyName", companyName);
 	}
+
+	@Override
+	public void K_openOrgan(HttpServletRequest req, Model model) {
+		String depart_s = req.getParameter("depart");
+		int departLength = depart_s.length();
+		String depart_sub = depart_s.substring(0, departLength-5);
+		int depart = Integer.parseInt(depart_sub);
+		
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		String companyName = dao.getCompanyName(company);
+		if(depart == 0) {
+			depart = company;
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("depart", depart);
+		List<join_mgiVO> mgiList = new ArrayList<join_mgiVO>();
+		
+		if(depart == company) {
+			mgiList = dao.getMgiList2(company);
+			for(int i = 0; i<mgiList.size(); i++) {
+				mgiList.get(i).setLeader(0);
+				mgiList.get(i).setDepartName(companyName);
+			}
+		} else {
+			mgiList = dao.getMgiList(map);
+		}
+		model.addAttribute("mgiList", mgiList);
+	}
+
+	@Override
+	public void K_createDepart(HttpServletRequest req, Model model) {
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		
+		String departName = null;
+		int insertCnt = 0;
+		if(req.getParameter("departName").length() != 0) {
+			departName = req.getParameter("departName");
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("company", company);
+			map.put("departName", departName);
+			
+			insertCnt = dao.createDepart(map);
+		} else {
+			insertCnt = -1;
+		}
+		
+		model.addAttribute("insertCnt", insertCnt);
+	}
+
+	@Override
+	public void K_updateDepart(HttpServletRequest req, Model model) {
+		
+	}	
 	
 }
