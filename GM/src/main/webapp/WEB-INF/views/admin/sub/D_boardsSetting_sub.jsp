@@ -133,7 +133,6 @@ function delete_board(num) {
         					</c:if>
         				</c:forEach>
         			</ul>
-        			<%-- 
         			<div class="paging">
 						<c:if test="${cnt > 0}">
 						    <c:if test="${startPage > pageBlock}">
@@ -157,7 +156,6 @@ function delete_board(num) {
 						    </c:if>
 						</c:if>
 		            </div>
-		             --%>
         		</div>
         	</div>
         </div>

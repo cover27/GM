@@ -63,11 +63,16 @@
 
 .content input[type="button"] {
 	background: #555;
+	padding: 1px 6px;
+}
+
+.content button {
+	background: #555;
 }
 
 .content .salary_info {
 	overflow-y: scroll;
-	height: 318px;
+	height: 420px;
 	margin-top: 10px;
 	border-top: 2px #c0c0c0 solid;
 	border-bottom: 2px #c0c0c0 solid;
@@ -109,6 +114,16 @@
 
 .content .salary_info table tbody td:last-child {
 	border-right: none;
+}
+
+.content .salary_info table input[type="text"] {
+	width: 90%;
+	border: none;
+	background: #f7f7f7;
+}
+
+.content .salary_info table input[type="text"]:focus {
+	background: #eee;
 }
 
 .content .salary_info_result {

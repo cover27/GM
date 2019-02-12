@@ -254,6 +254,12 @@ public class D_DAOImpl implements D_DAO{
 		ReplyListVO vo = dao.getRepleArticle(replenum);
 		return vo;
 	}
+
+	@Override
+	public int delBoard(Map<String, Integer> map) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.delBoard(map);
+	}
 	
 	
 	
