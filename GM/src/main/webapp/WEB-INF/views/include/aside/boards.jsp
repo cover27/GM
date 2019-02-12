@@ -7,6 +7,9 @@
 
 <script type="text/javascript">
     var url = window.location.href.split('gm');
+    var url_split = url[1].split('/');
+    var category = url_split[2].split('?');
+    // alert(category[0]);
     
     if(url[1] == "/pages/D_boardsSetting"){
 		// alert("됨");
@@ -20,6 +23,8 @@
 			$("#D_allBoardList").children().css("color", "#d3292c");
 			$("#D_allBoardList").css("font-weight", "bold");
 		});
+	} else {
+		alert("카테고리 로딩 오류");
 	}
 </script>
 <aside>

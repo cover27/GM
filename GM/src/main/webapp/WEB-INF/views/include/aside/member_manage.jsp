@@ -4,6 +4,44 @@
 <link rel="stylesheet" href="${path}css/aside.css">
 <link rel="stylesheet" href="${path}css/content.css">
 
+<script type="text/javascript">
+	// alert(window.location.href);
+	var url = window.location.href.split('gm');
+	var url_split = url[1].split('/');
+    var category = url_split[2].split('?');
+	
+	if(category[0] == "K_member_manage"){
+		// alert("됨");
+		$(function(){
+			$("#K_member_manage").children().css("color", "#d3292c");
+			$("#K_member_manage").css("font-weight", "bold");
+		});
+	} else if(category[0] == "K_resistMemberInfo") {
+		$(function(){
+			$("#K_resistMemberInfo").children().css("color", "#d3292c");
+			$("#K_resistMemberInfo").css("font-weight", "bold");
+		});
+	} else if(category[0] == "K_personal") {
+		$(function(){
+			$("#K_personal").children().css("color", "#d3292c");
+			$("#K_personal").css("font-weight", "bold");
+		});
+	} else if(category[0] == "K_restoMember") {
+		$(function(){
+			$("#K_restoMember").children().css("color", "#d3292c");
+			$("#K_restoMember").css("font-weight", "bold");
+		});
+	} else if(category[0] == "K_manageOrgan") {
+		$(function(){
+			$("#K_manageOrgan").children().css("color", "#d3292c");
+			$("#K_manageOrgan").css("font-weight", "bold");
+		});
+	} else {
+		alert("카테고리 로딩 오류");
+	}
+	
+</script>
+
 <aside>
 	<!-- 사용 안하는 사이드바
     <div class="sidebar"></div>
@@ -16,21 +54,21 @@
                 	<li>
                 		<span>인사정보</span>
                 		<ul>
-                			<li><a href="K_member_manage">가입대기 승인/취소</a></li>
-                			<li><a href="K_resistMemberInfo">인사정보 등록</a></li>
+                			<li id="K_member_manage"><a href="<c:url value='/admin/K_member_manage' />">가입대기 승인/취소</a></li>
+                			<li id="K_resistMemberInfo"><a href="<c:url value='/admin/K_resistMemberInfo' />">인사정보 등록</a></li>
                 		</ul>
                 	</li>
                 	<li>
                 		<span>인사 기초정보 설정/조회</span>
                 		<ul>
-                			<li><a href="K_personal">인사/근태/급여 기준정보 설정</a></li>
-                			<li><a href="K_restoMember">인사정보 재등록</a></li>
+                			<li id="K_personal"><a href="<c:url value='/admin/K_personal' />">인사/근태/급여 기준정보 설정</a></li>
+                			<li id="K_restoMember"><a href="<c:url value='/admin/K_restoMember' />">인사정보 재등록</a></li>
                 		</ul>
                 	</li>
                 	<li>
                 		<span>사용자/부서관리</span>
                 		<ul>
-                			<li><a href="K_manageOrgan">사용자 조직도 관리</a></li>
+                			<li id="K_manageOrgan"><a href="<c:url value='/admin/K_manageOrgan' />">사용자 조직도 관리</a></li>
                 			<li><a href="m07.jsp">직급 관리</a></li>
                 			<li><a href="m07.jsp">우리회사 관리자</a></li>
                 		</ul>
