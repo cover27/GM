@@ -42,4 +42,6 @@ public interface D_Service {
 	
 	public void repleUpdatePro(HttpServletRequest req, Model model);	// 댓글 수정 처리
 	
+	public void boardDel(HttpServletRequest req, Model model);
+	
 }
