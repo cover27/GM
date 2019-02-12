@@ -13,7 +13,7 @@
 	<c:if test="${insertCnt != 0}">
 		<script type="text/javascript">
 			alert("생성되었습니다.");
-			window.location="<c:url value="/pages/D_boardsSetting" />";
+			window.location="<c:url value="/admin/D_boardsSetting" />";
 		</script>
 	</c:if>
 </body>

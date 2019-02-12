@@ -269,6 +269,7 @@ img {
 .w16p { width:16.6666% !important; }
 .w20p { width:20% !important; }
 .w25p { width:25% !important; }
+.w28p { width:28% !important; }
 .w30p { width:30% !important; }
 .w32p { width:32% !important; }
 .w33p { width:33.3333% !important; }
@@ -529,7 +530,7 @@ img {
 	clear: both;
 }
 
-.btnset input[type="submit"], .btnset input[type="cancel"], .btnset input[type="button"], .btnset button {
+.btnset>input[type="submit"], .btnset input[type="cancel"], .btnset>input[type="button"], .btnset>button {
 	cursor: pointer;
     padding: 5px 15px;
     border-radius: 3px;
@@ -538,16 +539,39 @@ img {
     font-weight: bold;
 }
 
-.btnset input[type="submit"], .btnset input[type="button"], .btnset button {
+.btnset>input[type="submit"], .btnset>input[type="button"], .btnset>button {
 	color: #fff;
 	background: #555;
 }
 
-.btnset input[type="cancel"] {
+.btnset>input[type="cancel"] {
 	color: #333;
 	background: #f3f3f3;
 }
 
 .selected {
 	background: #fbeded;
+}
+
+
+/* 스크롤바 */
+/* width */
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #ccc;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #c0c0c0; 
 }

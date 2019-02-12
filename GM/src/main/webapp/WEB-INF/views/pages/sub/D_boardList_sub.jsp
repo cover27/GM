@@ -5,7 +5,7 @@
 <script type="text/javascript">
 
 // 체크박스 전체선택
-function checkAll(){
+function allCheck(){
       if( $("#th_checkAll").is(':checked') ){
         $("input[name=checkRow]").prop("checked", true);
       }else{
@@ -13,20 +13,12 @@ function checkAll(){
       }
 }
 
-// 삭제할거 정보이전
-function deleteSelect(){
-	var boardnum = "boardnum";
-	var checkRow = document.getElementsByName("checkRow");
-	var checked = false;
-	var index = false;
-	for(i=0; i<checkRow.length; i++){
-		if(checkRow[i].checked){
-			if(index){
-				boardnum = boardnum + ","
-			}
-			boardnum = boardnum + checkRow[i].value;
-			index = true;
-		}
+//삭제할거 정보이전
+function delBoard(){
+	var god = confirm("삭제하시겠습니까?");
+	if(god){
+		window.location ="<c:url value='/admin/D_boardDelPro'/>"
+		document.getElementById('boardDel').submit();
 	}
 }
 
@@ -37,6 +29,7 @@ function deleteSelect(){
 		<div class="content_header">
 			<h2>게시글 목록</h2>
 		</div>		
+<form action="<c:url value='/admin/D_boardDelPro'/>" method="post" id="boardDel" onsubmit="return delBoard();">
 	<table>
 		<tr>
 			<th colspan="6" align="center" style="height:25px">
@@ -46,8 +39,7 @@ function deleteSelect(){
 		</tr>
 		
 		<tr>
-			<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="checkAll();"/></th>
-			<th style="width:15%"> 게시판명 </th>
+			<th scope="col" style="width:15%"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allCheck()" /></th>
 			<th style="width:25%"> 글제목 </th>
 			<th style="width:10%"> 작성자 </th>
 			<th style="width:15%"> 작성일 </th>
@@ -66,11 +58,6 @@ function deleteSelect(){
 					<tr>
 						<td>
 							<input type="checkbox" name="checkRow" value="${dto.boardnum}" />
-						</td>
-						
-						<td>
-							<c:set var="number" value="${number-1}" />
-							(${dto.ref} / ${dto.ref_step} / ${dto.ref_level})
 						</td>
 						
 						<td>
@@ -151,9 +138,10 @@ function deleteSelect(){
 	<table>
 		<tr>
 			<th colspan="4">
-			<input type="button" class="inputButton" value="글 삭제" onclick="window.location='<c:url value="/pages/D_boardDeletePro?pageNum=${pageNum}&num=${num}&ref_level=${dto.ref_level}"/>'">
+				<input type="submit" value="삭제">
 			</th>
 		</tr>
 	</table>
+</form>
 	</article>
 </section>

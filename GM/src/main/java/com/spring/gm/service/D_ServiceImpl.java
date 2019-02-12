@@ -722,5 +722,22 @@ public class D_ServiceImpl implements D_Service{
 		model.addAttribute("replenum", replenum);
 		
 	}
+
+	@Override
+	public void boardDel(HttpServletRequest req, Model model) {
+		int deleteCnt = 0;
+		String [] boardArr = req.getParameterValues("checkRow");
+		
+		if(boardArr != null && boardArr.length > 0) {
+			for(int i=0; i<boardArr.length; i++) {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+					map.put("boardnum", Integer.parseInt(boardArr[i]));
+					deleteCnt = dao.delBoard(map);
+			}
+		}
+		
+		model.addAttribute("deleteCnt", deleteCnt);
+		
+	}
 		
 }
