@@ -47,7 +47,7 @@
 		                        <option value="지급">지급</option>
 		                        <option value="미지급">미지급</option>
 		                    </select></td>
-		                <td><input type="text" name="cost" placeholder="금액" required></td>
+		                <td><input type="text" name="cost" placeholder="금액" required autofocus></td>
 		                <td><input type="text" name="content" placeholder="사유" required></td>
 		                <td></td>
 		            </tr>
@@ -56,7 +56,7 @@
 		</table>
 
 		<input type=hidden name="id" value="${id}">
-		<div class="fright" style="margin:10px 25px">
+		<div class="J_BasicAllowanceManagement_btnset">
 			<button name="addStaff" onclick="addhang()">행 추가</button>
 			<input type="submit" value="저장">
 		</div>
