@@ -58,9 +58,6 @@
 </script>
 
 <aside>
-	<!-- 사용 안하는 사이드바
-    <div class="sidebar"></div>
-     -->
     <div class="nav">
         <div class="nav_title">
             <h2>급여관리</h2>
