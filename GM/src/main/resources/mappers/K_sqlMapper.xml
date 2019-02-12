@@ -240,13 +240,14 @@
 		]]>
 	</select>
 	
-	<select id="getMgiList" parameterType="int" resultType="com.spring.gm.vo.join_mgiVO">
+	<select id="getMgiList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgiVO">
 		SELECT m.id, m.name, m.depart, g.g_name departName, m.rank, r.r_name rankName, m.tel, m.email_in email, f.rank_mem leader 
 		    FROM member m, groupinfo f, groups g, grade r
 		    WHERE m.id = f.id
 		    AND m.depart = f.groupid
 		    AND m.depart = g.groupid
 		    AND m.rank = r.rank
+		    AND m.depart = #{depart}
 		    AND m.company = #{company}
 		    AND m.sys_rank != 0
 		    ORDER BY m.enterday ASC

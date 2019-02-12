@@ -237,5 +237,12 @@ public class K_Controller {
 		return "admin/K_manageOrgan";
 	}
 	
-	
+	@RequestMapping("admin/K_openOrgan")
+	public String K_openOrgan(HttpServletRequest req, Model model) {
+		logger.info("URL : K_openOrgan");
+		
+		service.K_openOrgan(req, model);
+		
+		return "admin/sub/K_openOrgan";
+	}
 }

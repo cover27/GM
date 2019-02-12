@@ -1,39 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript">
+	
+	function load(url) {
+		//요청 : url 즉 news1.jsp, news2.jsp, news3.jsp
+		//sendRequest(callback, url, method, params){}
+		sendRequest(loadNews_callback, url, "post"); //url로 이동 -> 콜백함수로 리턴
+	}
+	/*
+	 콜백함수
+	 -서버로부터 응답이 오면 동작할 함수(시스템이 자동으로 호출한다.)
+	 -콜백함수명은 sendRequest(콜백함수명)과 일치해야 한다.
+	 -loadNews_callback : 콜백함수, result = 출력위치
+	 */
+	function loadNews_callback() {
+		var result = document.getElementById("result");
+		if (httpRequest.readyState == 4) { // 4 : completed : 전체 데이터가 취득 완료된 상태
+			if (httpRequest.status == 200) { // 200 : 정상종료
+				//result.innerHTML = "정상종료";
+				result.innerHTML = httpRequest.responseText;
+			} else {
+				result.innerHTML = "에러발생";
+			}
+		} else {
+			result.innerHTML = "상태 :" + httpRequest.readyStatus;
+		}
+	}
+</script>
 <section>
 	<article>
 		<div class="content_header">
 			<h2>사용자 조직도 관리</h2>
 		</div>
 		<br>
-		<table>
-			<c:forEach var="depart" items="${groupsList }">
-				<tr>
-					<th>${depart.g_name }</th>
-				</tr>
-			</c:forEach>
-			<c:forEach var="dto" items="${mgiList }">
-				<c:if test="${dto.leader == 1 }">
-					<tr style="background-color : grey;">
-						<th>${dto.name}</th>
-						<th>${dto.departName}</th>
-						<th>${dto.rankName}</th>
-						<th>${dto.tel}</th>
-						<th>${dto.email}</th>
-					</tr>
-				</c:if>
-				<c:if test="${dto.leader == 0 }">
+		<div class="fleft w30p">
+			<h3>부서 목록</h3>
+			<hr>
+			<form action="handle" method="post">
+				<table border="1">
 					<tr>
-						<th>${dto.name}</th>
-						<th>${dto.departName}</th>
-						<th>${dto.rankName}</th>
-						<th>${dto.tel}</th>
-						<th>${dto.email}</th>
+						<td onclick="load('K_openOrgan?depart=0')" style="cursor: pointer;">${companyName }</td>
 					</tr>
-				</c:if>
-				
-			</c:forEach>
-		</table>
+					<c:forEach var="depart" items="${groupsList }">
+						<tr>
+							<td onclick="load('K_openOrgan?depart=${depart.groupId}')" style="cursor: pointer;">&nbsp;&nbsp;${depart.g_name }</td>
+						</tr>
+					</c:forEach>
+					<tr>
+						<td><input type="text" name="departName" required><input type="submit" value="추가"></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div id="result" class="fright w70p">
+			
+		</div>
 		
 	</article>
 </section>

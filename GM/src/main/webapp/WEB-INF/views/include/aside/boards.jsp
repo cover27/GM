@@ -11,7 +11,7 @@
     var category = url_split[2].split('?');
     // alert(category[0]);
     
-    if(url[1] == "/pages/D_boardsSetting"){
+    if(url[1] == "/admin/D_boardsSetting"){
 		// alert("됨");
 		$(function(){
 			$("#D_boardsSetting").children().css("color", "#d3292c");
@@ -59,7 +59,7 @@
                     <li>
                         <span>관리자 메뉴</span>
                         <ul>
-                            <li id="D_boardsSetting"><a href="<c:url value='/pages/D_boardsSetting' />">게시판 관리</a></li>
+                            <li id="D_boardsSetting"><a href="<c:url value='/admin/D_boardsSetting' />">게시판 관리</a></li>
                             <li><a href="#">게시물 관리</a></li>
                         </ul>
                     </li>
