@@ -38,7 +38,7 @@
 				</tr>
 				<th>
 				<c:if test="${dto.state eq '미지급'}">
-					<input type="button" onclick="change('${dto.id}','${j_name}','${rank}')" value="지급처리">
+					<input type="button" onclick="change('${dto.id}','${j_name}','${r_name}')" value="지급처리">
 				</c:if>
 				<input type="button" onclick="J_PayrollRegistrationListDelete('${dto.id}','${dto.sal_num}')" value="삭제">
 				</th>

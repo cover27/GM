@@ -86,6 +86,8 @@
               WHERE m.depart = c.company and m.rank = r.rank)
      where  depart = #{company} and id like '%'||#{search_content}||'%'
 	</select>
+	
+	
 	<!--개인 급여등록(이번달 목록 가져오기) -->
 	<select id="J_PayrollRegistrationCnt" parameterType="java.util.Map" resultType="int">
 		SELECT count(*) cnt 
@@ -379,4 +381,34 @@
     	 where  depart = #{company} and id like '%'||#{id}||'%'
 	</select>
      
+     <!--==================================급여 조회====================================-->
+     <!-- 급여 조회&수당(cnt) -->
+     <select id="mgstblCnt" parameterType="java.util.Map" resultType="int">
+     	SELECT count(*) as cnt
+              FROM member m , salary s
+              WHERE  m.id = s.id 
+              and to_char(s.day,'yyyymm') = #{months} and  m.id = #{id} and  m.company = #{company}
+     </select>
+     <select id="mgstblCnt2" parameterType="java.util.Map" resultType="int">
+		select count(*) as cnt from bonus_cut where id= #{id} and to_char(day,'yyyymm') = #{months}
+     </select>
+     <!-- 급여 조회&수당(List) -->
+     <!-- 급여 부서명 가져오는  셀리리조인 -->
+     <select id="mgstbl" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
+        select s.day, m.id, m.name, g.g_name as j_name, s.salary as salary
+		from member m, groups g, salary s
+		where m.depart = g.groupid and m.id = s.id
+		and m.id = #{id} and m.company = #{company} and to_char(s.day,'yyyymm')= #{months}
+     </select>
+	<!-- 급여 회사명 가져오는  셀리리조인 -->
+	<select id="mgstbl2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
+		select s.day as day, m.id, m.name, c.c_name as j_name, s.salary as salary
+		from member m, companies c, salary s
+		where m.company = c.company and m.id = s.id
+		and m.id = #{id} and m.company =  #{company} and to_char(s.day,'yyyymm')= #{months}
+     </select>
+     <!-- Bonus_cut 정보 가져오기 -->
+     <select id="bonustbl" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
+     	select sum(cost) as bonussalary from bonus_cut  where id= #{id} and to_char(day,'yyyymm') = #{months}
+     </select>
 </mapper>
