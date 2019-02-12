@@ -1,6 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<script type="text/javascript">
+	var url = window.location.href.split('gm');
+    var url_split = url[1].split('/');
+    var category = url_split[2].split('_');
+    // alert(category[0]);
+    
+    if(category[0] == "S"){
+		// alert("됨");
+		$(function(){
+			$("#s").children().css("color", "#d3292c");
+			$("#s").css("font-weight", "bold");
+		});
+	} else if(category[0] == "O"){
+		// alert("됨");
+		$(function(){
+			$("#o").children().css("color", "#d3292c");
+			$("#o").css("font-weight", "bold");
+		});
+	} else if(category[0] == "D"){
+		// alert("됨");
+		$(function(){
+			$("#d").children().css("color", "#d3292c");
+			$("#d").css("font-weight", "bold");
+		});
+	} else if(category[0] == "J"){
+		// alert("됨");
+		$(function(){
+			$("#j").children().css("color", "#d3292c");
+			$("#j").css("font-weight", "bold");
+		});
+	} else if(category[0] == "K"){
+		// alert("됨");
+		$(function(){
+			$("#k").children().css("color", "#d3292c");
+			$("#k").css("font-weight", "bold");
+		});
+	}
+</script>
+    
 <header>
 	<c:if test="${sessionScope.loginInfo != null}">
 		<div class="logo">
@@ -18,13 +57,13 @@
 	</c:if>
        <c:if test="${sessionScope.loginInfo != null}">
         <ul class="topmenu">
-            <li><a href="<c:url value='/pages/S_mail_inbox' />">메일</a></li>
-            <li><a href="<c:url value='/pages/O_createApprDocFormView' />">전자결재</a></li>
+            <li id="s"><a href="<c:url value='/pages/S_mail_inbox' />">메일</a></li>
+            <li id="o"><a href="<c:url value='/pages/O_createApprDocFormView' />">전자결재</a></li>
             <li><a href="#">일정</a></li>
-            <li><a href="<c:url value='/pages/D_boardsSetting' />">게시판</a></li>
-            <li><a href="#">웹디스크</a></li>
+            <li id="d"><a href="<c:url value='/pages/D_allBoardList' />">게시판</a></li>
+            <li id="j"><a href="<c:url value='/admin/J_SalaryDefaultSetting' />">급여관리</a></li>
 
-            <li><a href="<c:url value='/admin/K_member_manage'/>">인사</a></li>
+            <li id="k"><a href="<c:url value='/admin/K_member_manage'/>">인사</a></li>
 
             <!--
             <li class="menu_all"><a href="#"></a></li>
@@ -32,7 +71,7 @@
         </ul>
        
         <div class="etc">
-            
+        	<%-- 
             <!-- this object only main start -->
             <div class="call_center_banner">
                 <img src="${path}images/banner_callcenter_main.png">
@@ -64,7 +103,7 @@
                 </li>
             </ul>
             <!-- this object only main end -->
-            
+             --%>
             <div class="iconset">
                 <a href="#">
                     <i class="fa fa-search">
@@ -79,5 +118,6 @@
                 <form action="<c:url value='/logout' />" id="logout_form" method="post"></form>
             </div>
         </div>
+        
        </c:if>
    </header>

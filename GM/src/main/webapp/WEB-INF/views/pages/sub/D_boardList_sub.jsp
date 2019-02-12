@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
 
+// 체크박스 전체선택
 function checkAll(){
       if( $("#th_checkAll").is(':checked') ){
         $("input[name=checkRow]").prop("checked", true);
@@ -12,6 +13,7 @@ function checkAll(){
       }
 }
 
+// 삭제할거 정보이전
 function deleteSelect(){
 	var boardnum = "boardnum";
 	var checkRow = document.getElementsByName("checkRow");
@@ -45,7 +47,7 @@ function deleteSelect(){
 		
 		<tr>
 			<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="checkAll();"/></th>
-			<th style="width:15%">(ref/r_step/r_level) </th>
+			<th style="width:15%"> 게시판명 </th>
 			<th style="width:25%"> 글제목 </th>
 			<th style="width:10%"> 작성자 </th>
 			<th style="width:15%"> 작성일 </th>
