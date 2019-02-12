@@ -39,7 +39,7 @@ public class join_msVO {
 	private String account_number; // 계좌번호
 	private int company; // 회사번호
 	private int sal_num; //급여번호
-	private Timestamp day;	//지급일
+	private Date day;	//지급일
 	private String state;	//상태
 	public String getId() {
 		return id;
@@ -233,10 +233,10 @@ public class join_msVO {
 	public void setSal_num(int sal_num) {
 		this.sal_num = sal_num;
 	}
-	public Timestamp getDay() {
+	public Date getDay() {
 		return day;
 	}
-	public void setDay(Timestamp day) {
+	public void setDay(Date day) {
 		this.day = day;
 	}
 	public String getState() {

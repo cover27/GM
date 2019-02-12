@@ -38,6 +38,14 @@ public interface J_DAO {
 	public ArrayList<MemberVO> J_PayrollRegistrationInsertList(Map<String, Object> map);
 	// 개인 급여등록
 	public int J_PayrollRegistrationInsert(Map<String, Object> map);
+	//미지급 지급으로 처리
+	public int J_PayrollRegistrationchange(Map<String, Object> map);
+	//정보 삭제
+	public int J_PayrollRegistrationListDelete(Map<String, Object> map);
+	
+	
+	
+	
 	//------------- 기본수당 외 수당관리-------------------------------------------
 	// 회사명 가져오기
 	public ArrayList<CompaniesVO> companyName(int company);

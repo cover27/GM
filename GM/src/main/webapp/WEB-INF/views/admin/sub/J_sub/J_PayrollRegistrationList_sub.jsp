@@ -27,7 +27,7 @@
 					<td>${dto.tel}</td>
 					<td>지급일</td>
 					<td>${dto.day}</td>
-					<td colspan="2">E-MAIL</td>
+					<td>E-MAIL</td>
 					<td>${dto.email_in}</td>
 				</tr>
 				<tr>
@@ -36,6 +36,12 @@
 					<td>*계좌번호</td>
 					<td>${dto.account_number}원</td>
 				</tr>
+				<th>
+				<c:if test="${dto.state eq '미지급'}">
+					<input type="button" onclick="change('${dto.id}','${j_name}','${rank}')" value="지급처리">
+				</c:if>
+				<input type="button" onclick="J_PayrollRegistrationListDelete('${dto.id}','${dto.sal_num}')" value="삭제">
+				</th>
 			</c:forEach>
 		</c:if>
 		<c:if test="${cnt == 0}">

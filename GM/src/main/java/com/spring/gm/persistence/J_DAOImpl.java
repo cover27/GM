@@ -188,11 +188,17 @@ public class J_DAOImpl implements J_DAO {
 		int cnt = sqlSession.insert("com.spring.gm.persistence.J_DAO.J_PayrollRegistrationInsert", map);
 		return cnt;
 	}
-	
-	
-	
-	
-	
+	//미지급 지급으로 처리
+	public int J_PayrollRegistrationchange(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.J_PayrollRegistrationchange", map);
+		return cnt;
+	}
+	//정보 삭제
+	@Override
+	public int J_PayrollRegistrationListDelete(Map<String, Object> map) {
+		int cnt = sqlSession.delete("com.spring.gm.persistence.J_DAO.J_PayrollRegistrationListDelete", map);
+		return cnt;
+	}
 	
 	
 	

@@ -153,7 +153,6 @@
 		}
 	}
 </script>
-
 <section>
 	<article>
 		<div class="content_header">
