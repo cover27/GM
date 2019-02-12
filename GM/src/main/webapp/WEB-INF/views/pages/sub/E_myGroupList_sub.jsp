@@ -26,6 +26,8 @@
 					</th>
 				</tr>
 				<tr>
+					<th style="width:10%"></th>
+					<th style="width:10%"></th>
 					<th style="width:10%">이름</th>
 					<th style="width:5%">성별</th>
 					<th style="width:10%">국적</th>
@@ -38,8 +40,11 @@
 				<!-- 구성원이 있으면 -->
 				<c:forEach var='dto' items='${list }'>
 					<tr>
-						<!-- 체크박스 버튼 ▣  -->
-						<!-- 자주 연락하는 사람 등록버튼 ☆ -->
+					
+						<!-- 체크박스 버튼 ▣  -->				 <!-- 체크 그룹 -->
+				    	<td><label><input type="checkbox" name="check" value="nemo"></label></td>
+				    	<!-- 자주 연락하는 사람 등록버튼 ☆ -->
+				    	<td><label><input type="checkbox" name="check" value="star"></label></td>
 					
 						<td>	<!-- ( = list.name 꼴 ) -->
 							${dto.name}
