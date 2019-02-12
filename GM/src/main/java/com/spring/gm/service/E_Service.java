@@ -16,7 +16,7 @@ public interface E_Service {
 	public void E_organDepartSide(HttpServletRequest req, Model model);
 	
 	// 조직도 - 개인 그룹 목록
-	public void E_myGroupList(HttpServletRequest req, Model model);
+//	public void E_myGroupList(HttpServletRequest req, Model model);
 	
 	
 }

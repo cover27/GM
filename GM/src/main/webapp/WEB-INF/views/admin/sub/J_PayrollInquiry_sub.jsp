@@ -7,7 +7,7 @@
 	function searchId(){
     var id = $('.searchId').val();
   	 var url="J_searchId_sub?id=" + id;
-   	window.open(url, "J_searchId", "menubar=no, width=1000, height=560");
+   	window.open(url, "J_searchId", "menubar=no, width=700, height=560");
 	}
     
     function back(id,name){
@@ -21,22 +21,26 @@
     	var id = $('#id').val();
     	var name = $('#name').val();
     	var month = $('#month').val();
-		$.ajax({
-			url : '${pageContext.request.contextPath}/admin/searchPayrollInquiry', //컨트롤러/basic1_sub로 가라
-			type : 'POST',
-			data : {
-				'id' : id,
-				'name' : name,
-				'month' : month
-			}, //전송할 데이터
-			success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
-				//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
-				$('#result').html(result);
-			},
-			error : function() {
-				alert('오류');
-			}
-		});
+    	var textLength = $('#month').val().length;
+    	if(textLength == 0){
+    		alert("날짜를 입력해주십시오.");
+    	}else{
+    		$.ajax({
+    			url : '${pageContext.request.contextPath}/admin/searchPayrollInquiry', 
+    			type : 'POST',
+    			data : {
+    				'id' : id,
+    				'name' : name,
+    				'month' : month
+    			}, //전송할 데이터
+    			success : function(result) {
+    				$('#result').html(result);
+    			},
+    			error : function() {
+    				alert('오류');
+    			}
+    		});
+    	}
 	};
 </script>
 <section>
@@ -54,7 +58,7 @@
 						<td width="10%">${dto.c_name}</td>
 						</c:forEach>
 						<th width="10%">*급여년월</th>
-						<td width="20%"><input type="month" class="month" value="month"></td>
+						<td width="20%"><input type="month" id="month"></td>
 						<td width="5%">아이디</td>
 						<td width="25%">
 						<input type="text" class="searchId" id="id">
@@ -64,7 +68,28 @@
 						<td><button onclick="searchPayrollInquiry()">검색</button></td>
 					</tr>
 				</table>
-				<div id="result"></div>
+				<div id="result">
+					<table border="1">
+						<tr>
+							<td>지급기준일</td>
+							<td>사원번호</td>
+							<td>성명</td>
+							<td>부서</td>
+							<td>지급총액</td>
+							<td>공제총액</td>
+							<td>실지급액</td>
+						</tr>
+						<tr >
+							<td colspan="7" style="height:150px;" text-align="center">*데이터 정보가 없습니다.</td>
+						</tr>
+						<tr>
+							<td colspan="4">합계</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+						</tr>
+					</table>
+				</div>
 			</form>
 		</div>
 	</article>

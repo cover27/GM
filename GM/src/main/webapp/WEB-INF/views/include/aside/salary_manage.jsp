@@ -8,45 +8,46 @@
 <script type="text/javascript">
 	// alert(window.location.href);
 	var url = window.location.href.split('gm');
-	// alert(url[1]);
+	var url_split = url[1].split('/');
+    var category = url_split[2].split('?');
 	
-	if(url[1] == "/admin/J_SalaryDefaultSetting"){
+	if(category[0] == "J_SalaryDefaultSetting"){
 		// alert("됨");
 		$(function(){
 			$("#J_SalaryDefaultSetting").children().css("color", "#d3292c");
 			$("#J_SalaryDefaultSetting").css("font-weight", "bold");
 		});
-	} else if(url[1] == "/admin/J_PayrollRegistration") {
+	} else if(category[0] == "J_PayrollRegistration") {
 		$(function(){
 			$("#J_PayrollRegistration").children().css("color", "#d3292c");
 			$("#J_PayrollRegistration").css("font-weight", "bold");
 		});
-	} else if(url[1] == "/admin/J_BasicAllowanceManagement") {
+	} else if(category[0] == "J_BasicAllowanceManagement") {
 		$(function(){
 			$("#J_BasicAllowanceManagement").children().css("color", "#d3292c");
 			$("#J_BasicAllowanceManagement").css("font-weight", "bold");
 		});
-	} else if(url[1] == "/admin/J_SalaryCalculation") {
+	} else if(category[0] == "J_SalaryCalculation") {
 		$(function(){
 			$("#J_SalaryCalculation").children().css("color", "#d3292c");
 			$("#J_SalaryCalculation").css("font-weight", "bold");
 		});
-	} else if(url[1] == "/admin/J_PayrollInquiry") {
+	} else if(category[0] == "J_PayrollInquiry") {
 		$(function(){
 			$("#J_PayrollInquiry").children().css("color", "#d3292c");
 			$("#J_PayrollInquiry").css("font-weight", "bold");
 		});
-	} else if(url[1] == "/admin/J_BonusCalculation") {
+	} else if(category[0] == "J_BonusCalculation") {
 		$(function(){
 			$("#J_BonusCalculation").children().css("color", "#d3292c");
 			$("#J_BonusCalculation").css("font-weight", "bold");
 		});
-	} else if(url[1] == "/admin/J_BonusInquiry") {
+	} else if(category[0] == "J_BonusInquiry") {
 		$(function(){
 			$("#J_BonusInquiry").children().css("color", "#d3292c");
 			$("#J_BonusInquiry").css("font-weight", "bold");
 		});
-	} else if(url[1] == "/admin/J_Payroll") {
+	} else if(category[0] == "J_Payroll") {
 		$(function(){
 			$("#J_Payroll").children().css("color", "#d3292c");
 			$("#J_Payroll").css("font-weight", "bold");

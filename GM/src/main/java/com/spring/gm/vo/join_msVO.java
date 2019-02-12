@@ -24,6 +24,7 @@ public class join_msVO {
 	private String eng_address; // 영문주소
 	private int depart; // 그룹번호(FK)
 	private int rank; // 직급(FK)
+	private String r_name;	//직급
 	private int salary; // 연봉
 	private int contract; // 계약형태
 	private int wrkdvd; // 재직구분

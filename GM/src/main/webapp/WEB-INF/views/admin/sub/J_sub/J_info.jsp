@@ -17,9 +17,9 @@
 					<th>사원번호</th>
 					<td>${dto.id}</td>
 					<th>부서</th>
-					<td>${dto.depart}</td>
+					<td>${j_name}</td>
 					<th>직급</th>
-					<td>${dto.rank}</td>
+					<td>${r_name}</td>
 					<th>성명</th>
 					<td>${dto.name}</td>
 				</tr>

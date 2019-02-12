@@ -7,6 +7,9 @@
 
 <script type="text/javascript">
     var url = window.location.href.split('gm');
+    var url_split = url[1].split('/');
+    var category = url_split[2].split('?');
+    // alert(category[0]);
     
     if(url[1] == "/pages/D_boardsSetting"){
 		// alert("됨");

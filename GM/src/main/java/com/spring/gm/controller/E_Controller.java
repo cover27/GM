@@ -55,7 +55,7 @@ public class E_Controller {
 	public String E_myGroupList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_myGroupList");
 		
-		service.E_myGroupList(req, model);
+		service.E_organVipGroupList(req, model);
 		
 		return "pages/E_myGroupList";
 	}
