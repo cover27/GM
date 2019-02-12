@@ -262,4 +262,8 @@
 		    AND m.sys_rank != 0
 		    ORDER BY m.enterday ASC
 	</select>
+	
+	<insert id="createDepart" parameterType="java.util.Map">
+		INSERT INTO groups VALUES(seq_groups.nextval, #{company}, #{departName}, 1, 0)
+	</insert>
 </mapper>

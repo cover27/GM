@@ -652,6 +652,31 @@ public class K_ServiceImpl implements K_Service{
 			mgiList = dao.getMgiList(map);
 		}
 		model.addAttribute("mgiList", mgiList);
+	}
+
+	@Override
+	public void K_createDepart(HttpServletRequest req, Model model) {
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		
+		String departName = null;
+		int insertCnt = 0;
+		if(req.getParameter("departName").length() != 0) {
+			departName = req.getParameter("departName");
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("company", company);
+			map.put("departName", departName);
+			
+			insertCnt = dao.createDepart(map);
+		} else {
+			insertCnt = -1;
+		}
+		
+		model.addAttribute("insertCnt", insertCnt);
+	}
+
+	@Override
+	public void K_updateDepart(HttpServletRequest req, Model model) {
+		
 	}	
 	
 }

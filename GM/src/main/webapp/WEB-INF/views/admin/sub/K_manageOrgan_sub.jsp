@@ -3,6 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 	
+	function updateDepart(){
+		if(!document.departform.check.value){
+			alert('부서를 선택해주세요.');
+			document.departform.check.focus();
+			return false;
+		}
+		
+		var url="K_updateDepart?depart="+ document.departform.check.value;
+		window.open(url, "confirm", "menubar=no, width=300, height=200");
+	}
+	
 	function load(url) {
 		//요청 : url 즉 news1.jsp, news2.jsp, news3.jsp
 		//sendRequest(callback, url, method, params){}
@@ -37,18 +48,25 @@
 		<div class="fleft w30p">
 			<h3>부서 목록</h3>
 			<hr>
-			<form action="handle" method="post">
+			<form action="K_createDepart" method="post" name="departform">
 				<table border="1">
 					<tr>
 						<td onclick="load('K_openOrgan?depart=0')" style="cursor: pointer;">${companyName }</td>
 					</tr>
 					<c:forEach var="depart" items="${groupsList }">
 						<tr>
-							<td onclick="load('K_openOrgan?depart=${depart.groupId}')" style="cursor: pointer;">&nbsp;&nbsp;${depart.g_name }</td>
+							<td onclick="load('K_openOrgan?depart=${depart.groupId}')" style="cursor: pointer;">
+								<input type="radio" name="check" value="${depart.groupId}"> &nbsp;&nbsp;${depart.g_name }
+							</td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td><input type="text" name="departName" required><input type="submit" value="추가"></td>
+						<td>
+							<input type="text" name="departName" placeholder="부서이름을 입력하세요.">
+							<input type="submit" value="부서 추가">
+							<input type="button" value="부서 수정" onclick="updateDepart();">
+							<input type="button" value="부서 삭제" onclick="window.location='';">
+						</td>
 					</tr>
 				</table>
 			</form>

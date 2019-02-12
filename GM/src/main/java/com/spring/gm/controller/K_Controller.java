@@ -245,4 +245,24 @@ public class K_Controller {
 		
 		return "admin/sub/K_openOrgan";
 	}
+	
+	@RequestMapping("admin/K_createDepart")
+	public String K_createDepart(HttpServletRequest req, Model model) {
+		logger.info("URL : K_createDepart");
+		
+		service.K_createDepart(req, model);
+		
+		return "admin/sub/K_createDepart";
+	}
+	
+	@RequestMapping("admin/K_updateDepart")
+	public String K_updateDepart(HttpServletRequest req, Model model) {
+		logger.info("URL : K_updateDepart");
+		
+		service.K_createDepart(req, model);
+		
+		return "admin/sub/K_updateDepart";
+	}
+	
+	
 }

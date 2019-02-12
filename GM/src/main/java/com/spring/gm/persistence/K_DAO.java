@@ -94,4 +94,7 @@ public interface K_DAO {
 	public List<join_mgiVO> getMgiList(Map<String, Object> map);
 	
 	public List<join_mgiVO> getMgiList2(int company);
+	
+	public int createDepart(Map<String, Object> map);
+	
 }
