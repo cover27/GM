@@ -7,8 +7,7 @@
 			<h2>전체 구성원 목록</h2>
 		</div>
 		
-		<div>
-			
+		<div style="overflow-y: scroll; height:400px;">	<!-- 스크롤바 -->
 			<table style="width:1500px" align="center">
 				<tr>
 				<!--<th>
@@ -36,97 +35,91 @@
 					<th style="width:15%">외부이메일</th>
 					<th style="width:20%">등록일</th>
 				</tr>
-					
-				<div style="overflow-y: scroll; height:400px;">	<!-- 스크롤바 -->
 				
-					<!-- 구성원이 있으면 -->
-					<c:forEach var='dto' items='${list }'>
-						<tr>
-							<!-- 체크박스 버튼 ▣  -->				 <!-- 체크 그룹 -->
-					    	<td><input type="checkbox" name="check" value="nemo"></td>
-					    	<!-- 자주 연락하는 사람 등록버튼 ☆ -->
-					    	<td><input type="checkbox" name="check" value="star"></td>
-						
-							<td>	<!-- ( = list.name 꼴 ) -->
-								${dto.name}
-							</td>
-							
-							<td>
-								${dto.gender}
-							</td>
-							
-							<td>
-								${dto.nation}
-							</td>
-							
-							<td>
-								${dto.depart}
-							</td>
-							
-							<td>
-								${dto.tel}
-							</td>
-							
-							<td>
-								${dto.email_in}
-							</td>
-							
-							<td>
-								${dto.email_out}
-							</td>
-							
-							<td>
-								<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.enterday}"/>
-							</td>
-						</tr>
-					</c:forEach>
-			</table>
-			</div>
-			
-			<div>
-							<!-- 페이지 컨트롤 -->
-				<table style="width:1000px" align="center">
+				
+				<!-- 구성원이 있으면 -->
+				<c:forEach var='dto' items='${list }'>
 					<tr>
-						<th align="center">
-							<!-- 멤버가 있으면 -->
-							<c:if test="${cnt > 0}">
-								<!-- 처음[◀◀] / 이전블록[◀]  -->
-								<c:if test="${startPage > pageBlock}">
-									<a href="<c:url value='/pages/E_organizationList'/>">[◀◀]</a>
-									<a href="<c:url value='/pages/E_organizationList?pageNum=${endPage - pageBlock}'/>">[◀]</a>
-								</c:if>
-								
-								<!-- 블록 내의 페이지 번호 -->
-								<c:forEach var="i" begin="${startPage}" end="${endPage}">
-									<c:if test="${i==currentPage}">
-										<span><b>[${i}]</b></span>
-									</c:if>
-									<c:if test="${i!=currentPage}">
-										<a href="<c:url value='/pages/E_organizationList?pageNum=${i}'/>">[${i}]</a>
-									</c:if>
-								</c:forEach>
-								
-								<!-- 다음블록 [▶]  /  마지막 [▶▶]  -->
-								<c:if test="${pageCount > endPage}">
-									<a href="<c:url value='/pages/E_organizationList?pageNum=${startPage + pageBlock}'/>">[▶]</a>
-									<a href="<c:url value='/pages/E_organizationList?pageNum=${pageCount}'/>">[▶▶]</a>
-								</c:if>
-								
+						<!-- 체크박스 버튼 ▣  -->				 <!-- 체크 그룹 -->
+				    	<td><input type="checkbox" name="check" value="nemo"></td>
+				    	<!-- 자주 연락하는 사람 등록버튼 ☆ -->
+				    	<td><input type="checkbox" name="check" value="star"></td>
+					
+						<td>	<!-- ( = list.name 꼴 ) -->
+							${dto.name}
+						</td>
+						
+						<td>
+							${dto.gender}
+						</td>
+						
+						<td>
+							${dto.nation}
+						</td>
+						
+						<td>
+							${dto.depart}
+						</td>
+						
+						<td>
+							${dto.tel}
+						</td>
+						
+						<td>
+							${dto.email_in}
+						</td>
+						
+						<td>
+							${dto.email_out}
+						</td>
+						
+						<td>
+							<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.enterday}"/>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>	
+				<!-- 페이지 컨트롤 -->
+			<table style="width:1000px" align="center">
+				<tr>
+					<th align="center">
+						<!-- 멤버가 있으면 -->
+						<c:if test="${cnt > 0}">
+							<!-- 처음[◀◀] / 이전블록[◀]  -->
+							<c:if test="${startPage > pageBlock}">
+								<a href="<c:url value='/pages/E_organizationList'/>">[◀◀]</a>
+								<a href="<c:url value='/pages/E_organizationList?pageNum=${endPage - pageBlock}'/>">[◀]</a>
 							</c:if>
 							
-						</th>
-					</tr>
-					
-				</table>
-			</div>
+							<!-- 블록 내의 페이지 번호 -->
+							<c:forEach var="i" begin="${startPage}" end="${endPage}">
+								<c:if test="${i==currentPage}">
+									<span><b>[${i}]</b></span>
+								</c:if>
+								<c:if test="${i!=currentPage}">
+									<a href="<c:url value='/pages/E_organizationList?pageNum=${i}'/>">[${i}]</a>
+								</c:if>
+							</c:forEach>
+							
+							<!-- 다음블록 [▶]  /  마지막 [▶▶]  -->
+							<c:if test="${pageCount > endPage}">
+								<a href="<c:url value='/pages/E_organizationList?pageNum=${startPage + pageBlock}'/>">[▶]</a>
+								<a href="<c:url value='/pages/E_organizationList?pageNum=${pageCount}'/>">[▶▶]</a>
+							</c:if>
+						</c:if>
+					</th>
+				</tr>
+				
+				<tr>
+	                <th colspan="2">
+	                    <input class="inputButton" type="submit" value="개인 그룹에 추가" onclick="<c:url value='/pages/E_myGroupList?pageNum=${i}'/>">
+	                    <input class="inputButton" type="reset" value="취소" onclick="window.history.back()">
+	                </th>
+		        </tr>
 			
-				<ul>
-					<li>
-	              		<input type="submit" value="개인 그룹에 추가" onclick="<c:url value='/pages/E_organizationList?pageNum=${i}'/>">
-	            	</li>
-	            </ul>
-	        
-		</div>
+			</table>
 
+		
 	</article>
 </section>

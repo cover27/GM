@@ -237,7 +237,6 @@ public class E_ServiceImpl implements E_Service {
 		
 	}
 	
-	
 	// 조직도 - 부서 사이드 메뉴(aside)
 	@Override
 	public void E_organDepartSide(HttpServletRequest req, Model model) {
@@ -248,9 +247,12 @@ public class E_ServiceImpl implements E_Service {
 		
 		req.setAttribute("list", list);
 	}
-
-/*
+	
 	// 조직도 - 개인 그룹 목록
+
+	
+	
+/*
 	-- 선빈이 코드 참고용 ( 멀티 체크박스 게시판 정보 이동 )
 	@Override
 	public void K_appMember(HttpServletRequest req, Model model) {
