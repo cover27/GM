@@ -276,6 +276,7 @@ public class J_Controller {
 			System.out.println("2");
 			service.searchId(req, model);
 		}
+		model.addAttribute("id",id);
 		return "admin/sub/J_sub/J_searchId_sub";
 	}
 	//검색 결과값으로 정보 가져오기

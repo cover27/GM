@@ -7,33 +7,33 @@
 			<c:forEach var="dto" items="${dtos}">
 			정보 있을때
 				<tr>
-					<td>급여번호</td>
+					<td style="text-align: center; background-color: #cccccc;">급여번호</td>
 					<td>${dto.sal_num}</td>
-					<td>아아디</td>
+					<td style="text-align: center; background-color: #cccccc;">아아디</td>
 					<td>${dto.id}</td>
-					<td>성명</td>
+					<td style="text-align: center; background-color: #cccccc;">성명</td>
 					<td>${dto.name}</td>
 				</tr>
 				<tr>
-					<td>부서</td>
+					<td style="text-align: center; background-color: #cccccc;">부서</td>
 					<td>${j_name}</td>
-					<td>직급</td>
-					<td>${rank}</td>
-					<td>상태</td>
+					<td style="text-align: center; background-color: #cccccc;">직급</td>
+					<td>${r_name}</td>
+					<td style="text-align: center; background-color: #cccccc;">상태</td>
 					<td>${dto.state}</td>
 				</tr>
 				<tr>
-					<td>핸드폰</td>
+					<td style="text-align: center; background-color: #cccccc;">핸드폰</td>
 					<td>${dto.tel}</td>
-					<td>지급일</td>
+					<td style="text-align: center; background-color: #cccccc;">지급일</td>
 					<td>${dto.day}</td>
-					<td>E-MAIL</td>
+					<td style="text-align: center; background-color: #cccccc;">E-MAIL</td>
 					<td>${dto.email_in}</td>
 				</tr>
 				<tr>
-					<td>*이번달 급여</td>
+					<td style="text-align: center; background-color: #cccccc;">*이번달 급여</td>
 					<td>${dto.salary}</td>
-					<td>*계좌번호</td>
+					<td style="text-align: center; background-color: #cccccc;">*계좌번호</td>
 					<td>${dto.account_number}원</td>
 				</tr>
 				<th>

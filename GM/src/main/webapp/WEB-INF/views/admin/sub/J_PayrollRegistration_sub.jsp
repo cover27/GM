@@ -5,14 +5,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script>
 
-	function load3(id,rank,j_name) {
+	function load3(id,r_name,j_name) {
 		alert(id);
 		$.ajax({
 			url : '${pageContext.request.contextPath}/admin/J_PayrollRegistrationList', //컨트롤러/basic1_sub로 가라
 			type : 'POST',
 			data : {
 				'id' : id,
-				'rank' : rank,
+				'r_name' : r_name,
 				'j_name' : j_name
 				
 			}, //전송할 데이터
@@ -58,7 +58,7 @@
 			return false;
 		}
 	}; 
-	function change(id,j_name,rank) {
+	function change(id,j_name,r_name) {
 		var con_test = confirm("지급처리 하시겠습니까?.");
 		if (con_test == true) {
 		$.ajax({
@@ -157,10 +157,10 @@
 					<c:if test="${cnt > 0}">
 						<c:forEach var="dto" items="${dtos}">
 							<tr>
-								<td onclick="load3('${dto.id}','${dto.rank}','${dto.j_name}')"
+								<td onclick="load3('${dto.id}','${dto.r_name}','${dto.j_name}')"
 									style="cursor: pointer;">${dto.id}</td>
 								<td>${dto.name}</td>
-								<td>${dto.rank}</td>
+								<td>${dto.r_name}</td>
 								<td>${dto.j_name}</td>
 								<td>${dto.enterday}</td>
 								<td>${dto.tel}</td>
@@ -202,6 +202,7 @@
 		</div>
 		<div id="result" style="width: 1200px;">
 			<h3>이번달 급여 목록</h3>
+			*위 원하시는 정보를 클릭 하십시오.
 		</div>
 	</article>
 </section>
