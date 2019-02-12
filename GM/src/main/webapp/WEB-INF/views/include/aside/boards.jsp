@@ -23,8 +23,6 @@
 			$("#D_allBoardList").children().css("color", "#d3292c");
 			$("#D_allBoardList").css("font-weight", "bold");
 		});
-	} else {
-		alert("카테고리 로딩 오류");
 	}
 </script>
 <aside>
