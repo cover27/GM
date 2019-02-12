@@ -4,22 +4,22 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-	<button name="addStaff" onclick="addhang();">행 추가</button>
+	
 	<form action="J_extrapayinfoUpdate" method="post">
 		<table>
 		    <thead>
 		        <tr>
-		            <td style="text-align: center; background-color: #cccccc;">상여금 <br>추가/삭감</td>
-		            <td style="text-align: center; background-color: #cccccc;">지급/공제(상태)</td>
-		            <td style="text-align: center; background-color: #cccccc;">금액</td>
-		            <td style="text-align: center; background-color: #cccccc;">사유</td>
-		            <td style="text-align: center; background-color: #cccccc;">삭제</td>
+		            <th>추가/삭감</th>
+		            <th>지급/공제(상태)</th>
+		            <th>금액</th>
+		            <th>사유</th>
+		            <th>삭제</th>
 		        </tr>
 		    </thead>
 		    <tbody>
 		        <c:if test="${cnt > 0}">
 		            <c:forEach var="dto" items="${dtos}">
-		                <tr>
+		                <tr name="trStaff">
 		                    <td>${dto.type}</td>
 		                    <td>${dto.state}</td>
 		                    <td>${dto.cost}</td>
@@ -38,7 +38,7 @@
 		                alert("급여정보 설정이 되어 있지 않습니다.");
 		
 		            </script>
-		            <tr>
+		            <tr name="trStaff">
 		                <td><select name="type">
 		                        <option value="추가">추가</option>
 		                        <option value="삭감">삭감</option>
@@ -56,5 +56,8 @@
 		</table>
 
 		<input type=hidden name="id" value="${id}">
-		<input type="submit" value="저장">
+		<div class="fright" style="margin:10px 25px">
+			<button name="addStaff" onclick="addhang()">행 추가</button>
+			<input type="submit" value="저장">
+		</div>
 	</form>

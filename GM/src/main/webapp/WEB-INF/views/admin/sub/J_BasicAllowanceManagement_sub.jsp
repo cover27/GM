@@ -65,15 +65,8 @@
 
 	// 행 추가
 	function addhang() {
-		alert("!!!!!!!!!!!!!!!!!!!");
-		var addStaffText = '<tr name="trStaff">'
-				+ '       <td><select name="type"><option value="상여금">상여금</option><option value="삭감">삭감</option></select></td>'
-				+ '       <td><select name="state"><option value="지급">지급</option><option value="미지급">미지급</option></select></td>'
-				+ '       <td><input type="text" name="cost" placeholder="금액" required ></td>'
-				+ '       <td><input type="text" name="content" placeholder="사유" required ></td>'
-				+ '       <td><button class="btn btn-default" name="delStaff">삭제</button></td>'
-				+ '       button class="btn btn-default" name="delStaff">삭제</button>'
-				+ '</tr>';
+		var addStaffText = '<tr name="trStaff"><td><select name="type"><option value="추가">추가</option><option value="삭감">삭감</option></select></td><td><select name="state"><option value="지급">지급</option><option value="미지급">미지급</option></select></td><td><input type="text" name="cost" placeholder="금액" required ></td><td><input type="text" name="content" placeholder="사유" required ></td><td><button class="btn btn-default" name="delStaff">삭제</button></td>button class="btn btn-default" name="delStaff">삭제</button></tr>';
+		console.log(addStaffText);
 		var trHtml = $("tr[name=trStaff]:last"); //last를 사용하여 trStaff라는 명을 가진 마지막 태그 호출
 		trHtml.after(addStaffText); //마지막 trStaff명 뒤에 붙인다.
 	}
@@ -193,7 +186,7 @@
 				</div>
 			</div>
 			
-			<div class="fleft w30p bam_left">
+			<div class="fleft w28p bam_left">
 				<h3>기본정보</h3>
 				<div class="salary_info">
 					<table>
@@ -262,7 +255,7 @@
 		            <table>
 		                <thead>
 		                	<tr>
-			                    <th>상여금/삭감</th>
+			                    <th>추가/삭감</th>
 			                    <th>지급/공제</th>
 			                    <th>금액</th>
 			                    <tH>비고</th>
@@ -275,9 +268,7 @@
 		        </div>
 		    </div>
 		
-		    <div>
-		        
-		    </div>
+		    <div class="clear"></div>
 		    <div id="result2">
 		        <h3>수정 할 목록</h3>
 		    </div>
