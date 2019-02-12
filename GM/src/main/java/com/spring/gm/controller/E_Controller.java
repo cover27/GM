@@ -50,7 +50,7 @@ public class E_Controller {
 		return "pages/E_organVipGroupList";
 	}
 	
-	// 조직도 - 개인 그룹 목록 /
+	// 조직도 - 개인 그룹 목록
 	@RequestMapping("/pages/E_myGroupList")
 	public String E_myGroupList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_myGroupList");

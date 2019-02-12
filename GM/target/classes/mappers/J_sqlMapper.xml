@@ -91,19 +91,30 @@
 		where s.id = m.id
 		and to_char(s.day,'yyyymm')=to_char(sysdate,'yyyymm') and m.id = #{id} and company = #{company}
 	</select>
-	<select id="J_PayrollRegistrationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.SalaryVO">
-		SELECT s.sal_num, s.id, m.name, m.tel, s.day, s.state, m.email_in, s.salary, m.ACCOUNT_NUMBER
+	<select id="J_PayrollRegistrationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_msVO">
+		SELECT s.sal_num, s.id, m.name, m.tel, s.day, s.state, m.email_in, s.salary, m.account_number
 		from member m, salary s
 		where m.id = s.id
-		and s.id = #{id} and company = #{company}
+		and s.id = #{id} and company = #{company} and to_char(s.day,'yyyymm')=to_char(sysdate,'yyyymm')
 	</select>
 	<!--개인 급여등록(이번달 목록 가져오기) 없으면 인설트할 목록 가져오기 -->
 	<select id="J_PayrollRegistrationInsertList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
 		SELECT id,name,tel,email_in,round(salary/12, -2) as salary,account_number FROM member where  id = #{id} and company = #{company}
 	</select>
 	
-	
-	
+	<!--  개인 급여등록 -->
+	<insert id="J_PayrollRegistrationInsert" parameterType="java.util.Map">
+		INSERT INTO salary(sal_num, id, day, state, salary, del)
+		VALUES (seq_salary.nextval,#{id}, to_date(#{month},'yyyy/mm'), #{state}, #{salary}, 0)
+	</insert>
+	<!-- 미지급 지급으로 처리 -->
+	<update id="J_PayrollRegistrationchange" parameterType="java.util.Map">
+		update salary set state = #{state} where id=#{id} and to_char(day,'yyyymm')=to_char(sysdate,'yyyymm')
+	</update>
+	<!--정보 삭제 -->
+	<delete id="J_PayrollRegistrationListDelete" parameterType="java.util.Map">
+		delete salary where sal_num = #{sal_num} and id= #{id}
+	</delete>
 	
 	
 	<!-- ========================기본수당 외 수당관리=============================-->

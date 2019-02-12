@@ -10,6 +10,7 @@ import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
 import com.spring.gm.vo.join_mgcVO;
+import com.spring.gm.vo.join_msVO;
 public interface J_DAO {
 	//급여 회원정보 확인
 	public int selectCnt(int company);
@@ -33,8 +34,17 @@ public interface J_DAO {
 	
 	// 개인 급여등록(이번달 목록 가져오기)
 	public int J_PayrollRegistrationCnt(Map<String, Object> map);
-	public ArrayList<SalaryVO> J_PayrollRegistrationList(Map<String, Object> map);
+	public ArrayList<join_msVO> J_PayrollRegistrationList(Map<String, Object> map);
 	public ArrayList<MemberVO> J_PayrollRegistrationInsertList(Map<String, Object> map);
+	// 개인 급여등록
+	public int J_PayrollRegistrationInsert(Map<String, Object> map);
+	//미지급 지급으로 처리
+	public int J_PayrollRegistrationchange(Map<String, Object> map);
+	//정보 삭제
+	public int J_PayrollRegistrationListDelete(Map<String, Object> map);
+	
+	
+	
 	
 	//------------- 기본수당 외 수당관리-------------------------------------------
 	// 회사명 가져오기

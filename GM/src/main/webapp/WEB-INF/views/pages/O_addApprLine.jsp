@@ -8,10 +8,22 @@ $(document).ready(function(){
 	$('#btnItemAdd').click(function(){
 		var radioVal = $('input[name="id"]:checked').val();
 		var radioApprType = $('input[name="apprType"]:checked').val();
-		$('#liDiv > table > tbody').append('<tr><td td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">'+radioApprType+ '</td><td class="textLeft ellipsis" id="apprTypeTd1" style="border-left:1px solid #F0F3F7; padding-left: 3px;">' + radioVal +'</td></tr>');
-		alert(radioVal + radioApprType);
+		$('#liDiv > table > tbody:first').append('<tr><td style="padding:10px 5px; width: 30px; text-align: center;"><input type="radio" name="id2"></td><td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">'+radioApprType+ '</td><td class="textLeft ellipsis" id="apprTypeTd1" style="border-left:1px solid #F0F3F7; padding-left: 3px;">' + radioVal +'</td></tr>');
 	});
+	
+	//삭제 버튼
+	var trHtml;
+	$(document).on("click", "input[name=id2]", function() {
+		trHtml = $(this).parent().parent();
+	});
+ 	$('#btnItemRemove').click(function(){
+		trHtml.remove();
+	});
+ 	
 });
+
+
+//select문으로 선택 값 바꾸기
 </script>
 
 
@@ -214,7 +226,7 @@ input, button, select, textarea {
 				</ul>
 				<ul>
 					<!-- fa fa-angle-left,  fa fa-undo는 아이콘 모양-->
-					<li><a href="#" id="btnItemAdd" class="btn-color5" onclick="add_btnItemAdd();"><i class="fa fa-angle-right"></i><span class="blind">Add</span></a></li>
+					<li><a href="#" id="btnItemAdd" class="btn-color5"><i class="fa fa-angle-right"></i><span class="blind">Add</span></a></li>
 					<li><a href="#" id="btnItemRemove"><i class="fa fa-angle-left"></i><span class="blind">Remove</span></a></li>
 					<li><a id="btnItemRemoveAll" href=""><i class="fa fa-undo"></i><span class="blind"><button id="reset">Reset</button></span></a></li>
 				</ul>						
@@ -242,12 +254,13 @@ input, button, select, textarea {
 				
 			<div class="line-wrap">
 				<div class="fleft" style="width:67% !important; overflow-y:auto;">
-					<ul id="ulResult" class="list-selectable ui-sortable" style="width:100%; font-size:1em;">
+<!-- 					<ul id="ulResult" class="list-selectable ui-sortable" style="width:100%; font-size:1em;"> -->
 						<li class="ui-state-default important nomove">
 							<div class="liDiv">
 								<table cellspacing="1" cellpadding="1" border="0" style="width: 100%; table-layout:fixed; border:1px solid #eee">
 									<tbody>
 										<tr>
+											<td style="padding:10px 5px; width: 30px; text-align: center;"></td>
 											<td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">결재</td>
 											<td class="textLeft ellipsis" style="border-left:1px solid #F0F3F7; padding-left: 3px;">${vo.getName()} 기안 ${vo.getG_name()}</td>
 										</tr>
@@ -276,7 +289,7 @@ input, button, select, textarea {
 					<div style="border:1px solid #eee" class="pt5 pl5 pr5 pb5 mb5" id="apprTypeDiv">
 						<dt><strong>결재방법변경</strong>
 							<dl>
-								<select id="apprTypeChange" title="결재방법변경" class="w100p">
+								<select id="apprTypeChange" name="apprTypeChange" title="결재방법변경" class="w100p" onChange="getSelectValue(this.form);">
 									<option value="0" selected="selected">결재</option>
 									<option value="1">합의</option>
 								</select>
@@ -284,7 +297,7 @@ input, button, select, textarea {
 						</dt>
 					</div>
 					
-					<div id="setAuth" class="none" style="display: block;">
+					<!-- <div id="setAuth" class="none" style="display: block;">
 						
 							<div style="border:1px solid #eee" class="pt5 pl5 pr5 pb5 mb5">
 								<dt><strong>권한설정</strong>
@@ -305,7 +318,7 @@ input, button, select, textarea {
 								<label for="agreePar">병렬합의</label>
 							</dl>												
 						</dt>
-					</div>
+					</div> -->
 				</div>
 			</div>
 

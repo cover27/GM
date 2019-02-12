@@ -5,6 +5,9 @@
 <link rel="stylesheet" href="${path}css/content.css">
 <link rel="stylesheet" href="${path}css/D_style.css" />
 
+<script type="text/javascript">
+    var url = window.location.href.split('gm');
+</script>
 <aside>
 	<!-- 사용 안하는 사이드바
     <div class="sidebar"></div>
@@ -19,7 +22,18 @@
                         <ul>
                         	<c:forEach var="b_dtos" items="${b_dtos}">
                         		<c:if test="${b_dtos.del == 0}">
-                        			<li><a href="<c:url value='/pages/D_boardList?num=${b_dtos.num}'/>">${b_dtos.b_name}</a></li>  
+                        			<li id="${b_dtos.num}">
+	                        			<script type="text/javascript">
+	                        				if(url[1]=="/pages/D_boardList?num=${b_dtos.num}") {
+	                        					$(function(){
+	                        						$("#${b_dtos.num}").children().css("color", "#d3292c");
+	                        						$("#${b_dtos.num}").css("font-weight", "bold");
+	                        					});
+
+	                        				}
+	                        			</script>
+                        				<a href="<c:url value='/pages/D_boardList?num=${b_dtos.num}'/>">${b_dtos.b_name}</a>
+                        			</li>  
                         		</c:if>                      	
                         	</c:forEach>
                         </ul>
@@ -38,5 +52,4 @@
             </div>
         </div>
     </div>
-    
 </aside>
