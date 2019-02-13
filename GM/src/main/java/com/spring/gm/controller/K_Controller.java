@@ -259,10 +259,44 @@ public class K_Controller {
 	public String K_updateDepart(HttpServletRequest req, Model model) {
 		logger.info("URL : K_updateDepart");
 		
-		service.K_createDepart(req, model);
+		service.K_updateDepart(req, model);
 		
 		return "admin/sub/K_updateDepart";
 	}
 	
+	@RequestMapping("admin/K_updateDepartName")
+	public String K_updateDepartName(HttpServletRequest req, Model model) {
+		logger.info("URL : K_updateDepartName");
+		
+		service.K_updateDepartName(req, model);
+		
+		return "admin/sub/K_updateDepartName";
+	}
 	
+	@RequestMapping("admin/K_deleteDepartName")
+	public String K_deleteDepartName(HttpServletRequest req, Model model) {
+		logger.info("URL : K_deleteDepartName");
+		
+		service.K_deleteDepartName(req, model);
+		
+		return "admin/sub/K_deleteDepartName";
+	}
+	
+	@RequestMapping("admin/K_updateDepartLeader")
+	public String K_updateDepartLeader(HttpServletRequest req, Model model) {
+		logger.info("URL : K_updateDepartLeader");
+		
+		service.K_updateDepartLeader(req, model);
+		
+		return "admin/sub/K_updateDepartLeader";
+	}
+	
+	@RequestMapping("admin/K_departLeader_pro")
+	public String K_departLeader_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : K_departLeader_pro");
+		
+		service.K_departLeader_pro(req, model);
+		
+		return "admin/sub/K_departLeader_pro";
+	}
 }
