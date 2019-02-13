@@ -4,44 +4,6 @@
 <link rel="stylesheet" href="${path}css/aside.css">
 <link rel="stylesheet" href="${path}css/content.css">
 
-<script type="text/javascript">
-	// alert(window.location.href);
-	var url = window.location.href.split('gm');
-	var url_split = url[1].split('/');
-    var category = url_split[2].split('?');
-	
-	if(category[0] == "K_member_manage"){
-		// alert("됨");
-		$(function(){
-			$("#K_member_manage").children().css("color", "#d3292c");
-			$("#K_member_manage").css("font-weight", "bold");
-		});
-	} else if(category[0] == "K_resistMemberInfo") {
-		$(function(){
-			$("#K_resistMemberInfo").children().css("color", "#d3292c");
-			$("#K_resistMemberInfo").css("font-weight", "bold");
-		});
-	} else if(category[0] == "K_personal") {
-		$(function(){
-			$("#K_personal").children().css("color", "#d3292c");
-			$("#K_personal").css("font-weight", "bold");
-		});
-	} else if(category[0] == "K_restoMember") {
-		$(function(){
-			$("#K_restoMember").children().css("color", "#d3292c");
-			$("#K_restoMember").css("font-weight", "bold");
-		});
-	} else if(category[0] == "K_manageOrgan") {
-		$(function(){
-			$("#K_manageOrgan").children().css("color", "#d3292c");
-			$("#K_manageOrgan").css("font-weight", "bold");
-		});
-	} else {
-		alert("카테고리 로딩 오류");
-	}
-	
-</script>
-
 <aside>
 	<!-- 사용 안하는 사이드바
     <div class="sidebar"></div>

@@ -5,59 +5,6 @@
 <link rel="stylesheet" href="${path}css/content.css">
 <link rel="stylesheet" href="${path}css/J_style.css" />
 
-<script type="text/javascript">
-	// alert(window.location.href);
-	var url = window.location.href.split('gm');
-	var url_split = url[1].split('/');
-    var category = url_split[2].split('?');
-	
-	if(category[0] == "J_SalaryDefaultSetting"){
-		// alert("됨");
-		$(function(){
-			$("#J_SalaryDefaultSetting").children().css("color", "#d3292c");
-			$("#J_SalaryDefaultSetting").css("font-weight", "bold");
-		});
-	} else if(category[0] == "J_PayrollRegistration") {
-		$(function(){
-			$("#J_PayrollRegistration").children().css("color", "#d3292c");
-			$("#J_PayrollRegistration").css("font-weight", "bold");
-		});
-	} else if(category[0] == "J_BasicAllowanceManagement") {
-		$(function(){
-			$("#J_BasicAllowanceManagement").children().css("color", "#d3292c");
-			$("#J_BasicAllowanceManagement").css("font-weight", "bold");
-		});
-	} else if(category[0] == "J_SalaryCalculation") {
-		$(function(){
-			$("#J_SalaryCalculation").children().css("color", "#d3292c");
-			$("#J_SalaryCalculation").css("font-weight", "bold");
-		});
-	} else if(category[0] == "J_PayrollInquiry") {
-		$(function(){
-			$("#J_PayrollInquiry").children().css("color", "#d3292c");
-			$("#J_PayrollInquiry").css("font-weight", "bold");
-		});
-	} else if(category[0] == "J_BonusCalculation") {
-		$(function(){
-			$("#J_BonusCalculation").children().css("color", "#d3292c");
-			$("#J_BonusCalculation").css("font-weight", "bold");
-		});
-	} else if(category[0] == "J_BonusInquiry") {
-		$(function(){
-			$("#J_BonusInquiry").children().css("color", "#d3292c");
-			$("#J_BonusInquiry").css("font-weight", "bold");
-		});
-	} else if(category[0] == "J_Payroll") {
-		$(function(){
-			$("#J_Payroll").children().css("color", "#d3292c");
-			$("#J_Payroll").css("font-weight", "bold");
-		});
-	} else {
-		alert("카테고리 로딩 오류");
-	}
-	
-</script>
-
 <aside>
     <div class="nav">
         <div class="nav_title">
