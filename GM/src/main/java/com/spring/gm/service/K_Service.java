@@ -49,4 +49,13 @@ public interface K_Service {
 	public void K_createDepart(HttpServletRequest req, Model model);
 	
 	public void K_updateDepart(HttpServletRequest req, Model model);
+	
+	public void K_updateDepartName(HttpServletRequest req, Model model);
+	
+	public void K_deleteDepartName(HttpServletRequest req, Model model);
+	
+	public void K_updateDepartLeader(HttpServletRequest req, Model model);
+	
+	public void K_departLeader_pro(HttpServletRequest req, Model model);
+	
 }

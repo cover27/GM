@@ -100,8 +100,10 @@ input[type="submit"]:focus {
 }
 
 button, input, optgroup, select, textarea {
+    /* 
     color: inherit;
     font: inherit;
+     */
     margin: 0;
 }
 

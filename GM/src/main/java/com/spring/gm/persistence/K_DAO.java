@@ -8,6 +8,7 @@ import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.GradeVO;
+import com.spring.gm.vo.GroupInfoVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO2;
@@ -57,6 +58,12 @@ public interface K_DAO {
 	
 	public String getCompanyName(int company);
 	
+	public GroupInfoVO getGroupInfo(Map<String, Object> map);
+	
+	public int deleteGroupInfo(Map<String, Object> map);
+	
+	public int insertGroupInfo(Map<String, Object> map);
+	
 	public int updateAdminMemberInfo(Map<String, Object> map);
 	
 	public int retireMember(String id);
@@ -97,4 +104,15 @@ public interface K_DAO {
 	
 	public int createDepart(Map<String, Object> map);
 	
+	public String getDepartName(int depart);
+	
+	public int updateDepartName(Map<String, Object> map);
+	
+	public int countDepartMember(int depart);
+	
+	public int deleteDepart(int depart);
+	
+	public int changeleader1(int depart);
+	
+	public int changeleader2(Map<String, Object> map);
 }

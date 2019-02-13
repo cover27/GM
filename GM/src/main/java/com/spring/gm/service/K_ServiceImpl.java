@@ -18,6 +18,7 @@ import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.GradeVO;
+import com.spring.gm.vo.GroupInfoVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO2;
@@ -470,11 +471,17 @@ public class K_ServiceImpl implements K_Service{
 
 	@Override
 	public void K_infoUpdate(HttpServletRequest req, Model model) {
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		String id = req.getParameter("id");
 		int depart = Integer.parseInt(req.getParameter("depart"));
 		int rank = Integer.parseInt(req.getParameter("rank"));
 		int wrkdvd = Integer.parseInt(req.getParameter("wrkdvd"));
 		Date enterday = Date.valueOf(req.getParameter("enterday"));
+		MemberVO vo = dao.memberInfo(id);
+		int setDepart = vo.getDepart();
+		int rank_mem = 0;
+		
+		System.out.println("id:"+id);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
@@ -482,6 +489,26 @@ public class K_ServiceImpl implements K_Service{
 		map.put("rank", rank);
 		map.put("wrkdvd", wrkdvd);
 		map.put("enterday", enterday);
+		
+		if(depart == setDepart) {
+			Map<String, Object> map2 = new HashMap<String, Object>();
+			map2.put("id", id);
+			map2.put("setDepart", setDepart);
+			GroupInfoVO vo2 = dao.getGroupInfo(map2);
+			rank_mem = vo2.getRank_mem();
+		}
+		
+		Map<String, Object> map3 = new HashMap<String, Object>();
+		map3.put("id", id);
+		map3.put("setDepart", setDepart);
+		dao.deleteGroupInfo(map3);
+		if(depart != company) {
+			Map<String, Object> map4 = new HashMap<String, Object>();
+			map4.put("id", id);
+			map4.put("depart", depart);
+			map4.put("rank_mem", rank_mem);
+			dao.insertGroupInfo(map4);
+		}
 		
 		int updateCnt = dao.updateAdminMemberInfo(map);
 		model.addAttribute("updateCnt", updateCnt);
@@ -676,7 +703,73 @@ public class K_ServiceImpl implements K_Service{
 
 	@Override
 	public void K_updateDepart(HttpServletRequest req, Model model) {
+		int depart = Integer.parseInt(req.getParameter("depart"));
+		String departName = dao.getDepartName(depart);
 		
+		model.addAttribute("depart", depart);
+		model.addAttribute("departName", departName);
+	}
+
+	@Override
+	public void K_updateDepartName(HttpServletRequest req, Model model) {
+		int depart = Integer.parseInt(req.getParameter("depart"));
+		String dname = req.getParameter("dname");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("depart", depart);
+		map.put("dname", dname);
+		int updateCnt = dao.updateDepartName(map);
+		
+		model.addAttribute("updateCnt", updateCnt);
+	}
+
+	@Override
+	public void K_deleteDepartName(HttpServletRequest req, Model model) {
+		int depart = Integer.parseInt(req.getParameter("depart"));
+		int count = dao.countDepartMember(depart);
+		int deleteCnt = 0;
+		if(count == 0) {
+			deleteCnt = dao.deleteDepart(depart);
+		} else {
+			deleteCnt = -1;
+		}
+		
+		model.addAttribute("deleteCnt", deleteCnt);
+	}
+
+	@Override
+	public void K_updateDepartLeader(HttpServletRequest req, Model model) {
+		int depart = Integer.parseInt(req.getParameter("depart"));
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("depart", depart);
+		List<join_mgiVO> mgiList = new ArrayList<join_mgiVO>();
+		mgiList = dao.getMgiList(map);
+		
+		model.addAttribute("mgiList", mgiList);
+		model.addAttribute("depart", depart);
+	}
+
+	@Override
+	public void K_departLeader_pro(HttpServletRequest req, Model model) {
+		int depart = Integer.parseInt(req.getParameter("depart"));
+		String id = req.getParameter("check");
+		int updateCnt1 = 0;
+		int updateCnt2 = 0;
+		int updateCnt = 0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("depart", depart);
+		
+		updateCnt1 = dao.changeleader1(depart);
+		updateCnt2 = dao.changeleader2(map);
+		if(updateCnt1!=0 && updateCnt2!=0) {
+			updateCnt = 1;
+		}
+		
+		model.addAttribute("updateCnt", updateCnt);
 	}	
-	
 }

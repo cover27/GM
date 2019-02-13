@@ -510,5 +510,11 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.bonustbl(map);
 		return dtos;
 	}
-	
+	@Override
+	public ArrayList<join_mgsbVO> bonustbl2(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.bonustbl2(map);
+		return dtos;
+	}
 }
