@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
@@ -17,17 +17,19 @@
 	}
 
 	//검색 결과값으로 정보 가져오기
-	function searchPayrollInquiry() {
+	function J_SalaryCalculationSearch() {
 		var id = $('#id').val();
 		var name = $('#name').val();
 		var month = $('#month').val();
 		var textLength = $('#month').val().length;
-		if (textLength == 0) {
+		if (textLength >= 0 && textLength <= 3) {
+			alert("날짜를 확인해주십시오.");
+		}else if(textLength == 0){
 			alert("날짜를 입력해주십시오.");
-		} else {
+		}else { 
 			$
 			.ajax({
-				url : '${pageContext.request.contextPath}/admin/searchPayrollInquiry',
+				url : '${pageContext.request.contextPath}/admin/J_SalaryCalculationSearch',
 				type : 'POST',
 				data : {
 					'id' : id,
@@ -41,7 +43,7 @@
 					alert('오류');
 				}
 			});
-		}
+		} 
 	};
 </script>
 <section>
@@ -58,36 +60,62 @@
 							<td width="10%">${dto.c_name}</td>
 						</c:forEach>
 						<th width="10%">*급여년월</th>
-						<td width="20%"><input type="month" id="month"></td>
+						<td width="20%"><input type="text" id="month" maxlength="4"></td>
 						<td width="5%">아이디</td>
 						<td width="25%"><input type="text" class="searchId" id="id">
 							<button onclick="searchId()">검색</button> <input type="text"
 							class="searchName" name="name"></td>
-						<td><input type="button" onclick="searchPayrollInquiry()" value="검색"></td>
+						<td><input type="button"
+							onclick="J_SalaryCalculationSearch()" value="검색"></td>
 					</tr>
 				</table>
-				<div id="result">
 					<table border="1">
-							<tr>
-								<td style="text-align: center; background-color: #cccccc;">지급기준일</td>
-								<td style="text-align: center; background-color: #cccccc;">사원번호</td>
-								<td style="text-align: center; background-color: #cccccc;">성명</td>
-								<td style="text-align: center; background-color: #cccccc;">부서</td>
-								<td style="text-align: center; background-color: #cccccc;">지급총액</td>
-								<td style="text-align: center; background-color: #cccccc;">공제총액</td>
-								<td style="text-align: center; background-color: #cccccc;">실지급액</td>
-							</tr>
-							<tr>
-								<td colspan="7" style="height: 150px;" text-align="center">
-								*데이터 정보가 없습니다.</td>
-							</tr>
-							<tr>
-								<td colspan="4">합계</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-							</tr>
+					<c:if test="${cnt == 0}">
+						<tr>
+							<td style="text-align: center; background-color: #cccccc;">급여번호</td>
+							<td style="text-align: center; background-color: #cccccc;">아이디</td>
+							<td style="text-align: center; background-color: #cccccc;">지급일</td>
+							<td style="text-align: center; background-color: #cccccc;">지급액</td>
+							<td style="text-align: center; background-color: #cccccc;">상태</td>
+						</tr>
+					
+						<tr>
+							<td colspan="7" style="height: 150px;" text-align="center">
+								*데이터 정보가 없습니다.
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">합계</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+						</tr>
+					</c:if>
+					
+					
+					<c:if test="${cnt > 0}">
+						<tr>
+							<td style="text-align: center; background-color: #cccccc;">급여번호</td>
+							<td style="text-align: center; background-color: #cccccc;">아이디</td>
+							<td style="text-align: center; background-color: #cccccc;">지급일</td>
+							<td style="text-align: center; background-color: #cccccc;">지급액</td>
+							<td style="text-align: center; background-color: #cccccc;">상태</td>
+						</tr>
+						<tr>
+							<td>${dto.sal_num}</td>
+							<td>${dto.id}</td>
+							<td>${dto.day}</td>
+							<td>${dto.salary}</td>
+							<td>${dto.state}</td>
+						</tr>
+						<tr>
+							<td colspan="4">합계</td>
+							<td>${dto.Sumsalatbonus}</td>
+						</tr>
+					</c:if>
 					</table>
+				<div id="result">
+				
 				</div>
 			</form>
 		</div>
