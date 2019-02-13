@@ -68,5 +68,7 @@ public interface D_DAO {
 	public ReplyListVO getRepleArticle(int replenum);
 	
 	public int delBoard(Map<String, Integer> map);	// 게시판 삭제
+	
+	public int boardMove(Map<String, Integer> map);	// 게시판 이동
 
 }

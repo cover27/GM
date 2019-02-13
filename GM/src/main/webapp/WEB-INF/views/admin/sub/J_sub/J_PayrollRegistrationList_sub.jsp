@@ -31,18 +31,10 @@
 				</tr>
 				<tr>
 					<th>*이번달 급여</th>
-					<td>${dto.salary}</td>
+					<td>${dto.salary}원</td>
 					<th>*계좌번호</th>
-					<td colspan="3">${dto.account_number}원</td>
+					<td colspan="3">${dto.account_number}</td>
 				</tr>
-<<<<<<< HEAD
-				<th>
-				<c:if test="${dto.state eq '미지급'}">
-					<input type="button" onclick="change('${dto.id}','${j_name}','${r_name}')" value="지급처리">
-				</c:if>
-				<input type="button" onclick="J_PayrollRegistrationListDelete('${dto.id}','${dto.sal_num}')" value="삭제">
-				</th>
-=======
 				<tr>
 					<td colspan="6" class="J_PayrollRegistrationList">
 						<c:if test="${dto.state eq '미지급'}">
@@ -51,7 +43,6 @@
 						<input type="button" onclick="J_PayrollRegistrationListDelete('${dto.id}','${dto.sal_num}')" value="삭제" class="delete_btn">
 					</td>
 				</tr>
->>>>>>> branch 'master' of https://github.com/cover27/GM.git
 			</c:forEach>
 		</c:if>
 		<c:if test="${cnt == 0}">
@@ -68,7 +59,7 @@
 					<th>부서</th>
 					<td>${j_name}</td>
 					<th>직급</th>
-					<td>${rank}</td>
+					<td>${r_name}</td>
 					<th>상태</th>
 					<td class="left_align">
 						<select name="state" id="state">
@@ -93,7 +84,18 @@
 				</tr>
 				<tr>
 					<td colspan="6" class="J_PayrollRegistrationList">
+						<c:if test="${dto.salary == 0 && dto.account_number == null}">
+						<span>급여 기본정보를 등록해 주십시오.</span>
+						</c:if>
+						<c:if test="${dto.salary == 0 && dto.account_number != null}">
+						<span>급여 기본정보 연봉을 등록해 주십시오.</span>
+						</c:if>
+						<c:if test="${dto.salary > 0 && dto.account_number == null}">
+						<span>급여 기본정보 계좌번호를 등록해 주십시오.</span>
+						</c:if>
+						<c:if test="${dto.salary >0 && dto.account_number != null}" >
 						<input type="button" onclick="load4('${dto.id}','${dto.salary}','${j_name}','${rank}','${dto.account_number}','${dto.salary}')" value="등록" class="modify_btn">
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>

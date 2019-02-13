@@ -260,6 +260,12 @@ public class D_DAOImpl implements D_DAO{
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		return dao.delBoard(map);
 	}
+
+	@Override
+	public int boardMove(Map<String, Integer> map) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.boardMove(map);
+	}
 	
 	
 	
