@@ -247,8 +247,15 @@ public class E_ServiceImpl implements E_Service {
 		
 		req.setAttribute("list", list);
 	}
-	
+
+
 	// 조직도 - 개인 그룹 목록
+	@Override
+	public void E_myGroupList(HttpServletRequest req, Model model) {
+
+	
+	}
+	
 
 	
 	

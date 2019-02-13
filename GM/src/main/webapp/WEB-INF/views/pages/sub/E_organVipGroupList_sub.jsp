@@ -7,7 +7,6 @@
 			<h2>구성원 목록</h2>
 		</div>
 		
-
 		<div style="overflow-y: scroll; height:400px;">	<!-- 스크롤바 -->
 			<table style="width:1500px" align="center">
 				<tr>
@@ -20,18 +19,14 @@
 							<option>50</option>
 						</select>
 					</th> -->
-					<th colspan="6" align="center" style="height:25px">
-						전체  / ${cnt} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<a href="#"> [팀원에게 메일 작성] </a>&nbsp;&nbsp;
-						<a href="#"> [팀원에게 쪽지 작성] </a>&nbsp;&nbsp;
-						<a href="#"> [개인 그룹에 추가] </a>&nbsp;&nbsp;
+					<th colspan="6" align="left" style="height:25px">
+						전체&nbsp;&nbsp;  / ${cnt} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</th>
 				</tr>
 				<tr>
-					<th style="width:10%"></th>
-					<th style="width:10%"></th>
-					<th style="width:10%">이름</th>
-					<th style="width:5%">성별</th>
+					<th></th>
+					<th style="width:5%">이름</th>
+					<th style="width:2%">성별</th>
 					<th style="width:10%">국적</th>
 					<th style="width:10%">소속그룹명</th>
 					<th style="width:15%">휴대전화번호</th>
@@ -39,15 +34,13 @@
 					<th style="width:15%">외부이메일</th>
 					<th style="width:20%">등록일</th>
 				</tr>
+				
+				
 				<!-- 구성원이 있으면 -->
 				<c:forEach var='dto' items='${list }'>
 					<tr>
-						
-						<!-- 체크박스 버튼 ▣  -->				 <!-- 체크 그룹 -->
-				    	<td><label><input type="checkbox" name="check" value="nemo"></label></td>
-				    	<!-- 자주 연락하는 사람 등록버튼 ☆ -->
-				    	<td><label><input type="checkbox" name="check" value="star"></label></td>
-											
+				    	<td><input type="checkbox" name="check" value="v"></td>
+					
 						<td>	<!-- ( = list.name 꼴 ) -->
 							${dto.name}
 						</td>
@@ -82,9 +75,8 @@
 					</tr>
 				</c:forEach>
 			</table>
-			
-			
-			<!-- 페이지 컨트롤 -->
+		</div>	
+				<!-- 페이지 컨트롤 -->
 			<table style="width:1000px" align="center">
 				<tr>
 					<th align="center">
@@ -92,8 +84,8 @@
 						<c:if test="${cnt > 0}">
 							<!-- 처음[◀◀] / 이전블록[◀]  -->
 							<c:if test="${startPage > pageBlock}">
-								<a href="/pages/E_organVipGroupList">[◀◀]</a>
-								<a href="/pages/E_organVipGroupList?pageNum=${endPage - pageBlock}">[◀]</a>
+								<a href="<c:url value='/pages/E_organVipGroupList'/>">[◀◀]</a>
+								<a href="<c:url value='/pages/E_organVipGroupList?pageNum=${endPage - pageBlock}'/>">[◀]</a>
 							</c:if>
 							
 							<!-- 블록 내의 페이지 번호 -->
@@ -102,22 +94,28 @@
 									<span><b>[${i}]</b></span>
 								</c:if>
 								<c:if test="${i!=currentPage}">
-									<a href="/pages/E_organVipGroupList?pageNum=${i}">[${i}]</a>
+									<a href="<c:url value='/pages/E_organVipGroupList?pageNum=${i}'/>">[${i}]</a>
 								</c:if>
 							</c:forEach>
 							
 							<!-- 다음블록 [▶]  /  마지막 [▶▶]  -->
 							<c:if test="${pageCount > endPage}">
-								<a href="/pages/E_organVipGroupList?pageNum=${startPage + pageBlock}">[▶]</a>
-								<a href="/pages/E_organVipGroupList?pageNum=${pageCount}">[▶▶]</a>
+								<a href="<c:url value='/pages/E_organVipGroupList?pageNum=${startPage + pageBlock}'/>">[▶]</a>
+								<a href="<c:url value='/pages/E_organVipGroupList?pageNum=${pageCount}'/>">[▶▶]</a>
 							</c:if>
-							
 						</c:if>
 					</th>
 				</tr>
-			</table>
+				
+				<tr>
+	                <th colspan="2">
+	                	<input class="inputButton" type="submit" value="팀원에게 메일 작성" onclick="<c:url value='/pages/E_myGroupList?pageNum=${i}'/>">
+	                	<input class="inputButton" type="submit" value="팀원에게 쪽지 작성" onclick="<c:url value='/pages/E_myGroupList?pageNum=${i}'/>">
+	                    <input class="inputButton" type="submit" value="개인 그룹에 추가" onclick="<c:url value='/pages/E_myGroupList?pageNum=${i}'/>">
+	                </th>
+		        </tr>
 			
-		</div>
+			</table>
 		
 
 	</article>

@@ -30,6 +30,8 @@
 		SELECT c_name from companies where company = #{company}
 	</select>
 	
-
+<!-- 	<select id="getMemberList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
+		SELECT * FROM member where company = #{company} AND depart = #{depart}
+	</select> -->
 
 </mapper>
