@@ -14,11 +14,11 @@ function allcheck(){
 }
 
 //삭제할거 정보이전
-function delBoard(){
+function delBoardAdmin(){
 	var god = confirm("선택한것들을 삭제하시겠습니까?");
 	if(god){
-		window.location ="<c:url value='/admin/D_allBoardDeletePro'/>"
-		document.getElementById('boardSelect').submit();
+		document.boardSelect.action="<c:url value='/admin/D_boardAdminDeletePro'/>"
+		document.boardSelect.submit();
 	}
 }
 // 이동시킬것 정보이전
@@ -40,7 +40,7 @@ function board_move(){
 	<input type="hidden" name="pageNum" value="${pageNum}">
 	<table border = 1>
 		<tr>
-			<th colspan="6" align="center" style="height:25px">
+			<th colspan="7" align="center" style="height:25px">
 				전체 글목록
 			</th>
 		</tr>
@@ -62,7 +62,7 @@ function board_move(){
 			     ==> 게시글목록에 5건이 있다면 5회(ArrayList에서 꺼내서 dto에 담은 다음 출력)
 			 -->
 		
-			<c:forEach var="dto" items="${dtos}">
+			<c:forEach var="dto" items="${ad_dtos}">
 				<c:if test="${dto.del == 0}">
 					<tr>				
 						<td>
@@ -78,12 +78,12 @@ function board_move(){
 						</td>
 					
 						<td>
-								<select name="boardMove">
+								<select name="num">
 										<option value=""> 선택하세요 </option>
 								<c:forEach var="dtos" items="${b_dtos}">
 									<c:if test="${dto.num != dtos.num}">
    										<option value="${dtos.num}"> ${dtos.b_name}</option>
-   										<script>console.log("-num:::::"+${dtos.num});</script>
+   										<script>console.log("-num:::::"+${dtos.num});</script>   										
    									</c:if>
    								</c:forEach>
 							</select>
@@ -115,7 +115,7 @@ function board_move(){
 						</td>
 					</tr>
 				</c:if>
-					<input type="hidden" name="num" value="${dto.num}">
+				<input type="hidden" name="nums" value="${dto.num}">
 			</c:forEach>
 		</c:if>
 		
@@ -139,8 +139,8 @@ function board_move(){
 				<c:if test="${cnt > 0}">
 					<!-- 처음[◀◀] / 이전블록[◀]  -->
 					<c:if test="${startPage > pageBlock}">					
-						<a href="<c:url value='/pages/D_boardList'/>">[◀◀ ]</a>						
-						<a href="<c:url value='/pages/D_boardList?pageNum=${startPage - pageBlock}'/>">[◀ ]</a>
+						<a href="<c:url value='/admin/D_allBoardAdmin'/>">[◀◀ ]</a>						
+						<a href="<c:url value='/admin/D_allBoardAdmin?pageNum=${startPage - pageBlock}'/>">[◀ ]</a>
 					</c:if>
 					
 					<!-- 블록내의 페이지 번호 -->
@@ -149,14 +149,14 @@ function board_move(){
 							<span><b>[${i}]</b></span>
 						</c:if>
 						<c:if test="${i != currentPage}">
-							<a href="<c:url value='/pages/D_boardList?pageNum=${i}'/>">[${i}]</a>
+							<a href="<c:url value='/admin/D_allBoardAdmin?pageNum=${i}'/>">[${i}]</a>
 						</c:if>
 					</c:forEach>					
 					
 					<!-- 다음 블록[▶] / 끝[▶▶]> -->
 					<c:if test="${pageCount > endPage}">					
-						<a href="<c:url value='/pages/D_boardList?pageNum=${startPage + pageBlock}'/>">[▶ ]</a>						
-						<a href="<c:url value='/pages/D_boardList?pageNum=${pageCount}'/>">[▶▶ ] </a>
+						<a href="<c:url value='/admin/D_allBoardAdmin?pageNum=${startPage + pageBlock}'/>">[▶ ]</a>						
+						<a href="<c:url value='/admin/D_allBoardAdmin?pageNum=${pageCount}'/>">[▶▶ ] </a>
 					</c:if>
 				</c:if>
 			</th>
@@ -166,7 +166,7 @@ function board_move(){
 	<table>
 		<tr>
 			<th colspan="4">
-				<input type="button" value="삭제" onclick="delBoard()">
+				<input type="button" value="삭제" onclick="delBoardAdmin()">
 				<input type="button" value="게시판 이동" onclick="board_move()">
 			</th>
 		</tr>

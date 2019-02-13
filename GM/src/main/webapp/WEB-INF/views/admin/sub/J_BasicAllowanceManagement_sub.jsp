@@ -194,7 +194,7 @@
 					    </thead>
 					</table>
 				</div>
-				<div class="salary_info">
+				<div class="salary_info" style="height: 666px;">
 					<table>
 					    <c:if test="${cnt > 0}">
 					        <c:forEach var="dto" items="${dtos}">
@@ -248,7 +248,7 @@
             </div>
              --%>
 			</div>
-		    <div class="fright w70p">
+		    <div class="fright w70p" style="height: 666px;">
 		    	<h3>기본수당외 수당등록</h3>
 		    	<div class="table_top">
 		    		<table>
@@ -264,7 +264,7 @@
 					    </thead>
 		    		</table>
 		    	</div>
-		    	<div id="result" class="fleft salary_info">
+		    	<div id="result" class="fleft salary_info" style="height: 666px;">
 		            <table>
 		                <tr>
 		                    <td colspan="4">사원번호를 클릭 하십시오.</td>

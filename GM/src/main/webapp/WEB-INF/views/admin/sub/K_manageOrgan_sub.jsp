@@ -3,6 +3,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
 	
+	function updateLeader(){
+		if(!document.departform.check.value){
+			alert('부서를 선택해주세요.');
+			document.departform.check.focus();
+			return false;
+		}
+		
+		var url="K_updateDepartLeader?depart="+ document.departform.check.value;
+		window.open(url, "confirm", "menubar=no, width=600, height=300");
+	}
+	
 	function updateDepart(){
 		if(!document.departform.check.value){
 			alert('부서를 선택해주세요.');
@@ -11,7 +22,17 @@
 		}
 		
 		var url="K_updateDepart?depart="+ document.departform.check.value;
-		window.open(url, "confirm", "menubar=no, width=300, height=200");
+		window.open(url, "confirm", "menubar=no, width=500, height=300");
+	}
+	
+	function deleteDepart(){
+		if(!document.departform.check.value){
+			alert('부서를 선택해주세요.');
+			document.departform.check.focus();
+			return false;
+		}
+		
+		window.location ="K_deleteDepartName?depart="+ document.departform.check.value;
 	}
 	
 	function load(url) {
@@ -64,8 +85,13 @@
 						<td>
 							<input type="text" name="departName" placeholder="부서이름을 입력하세요.">
 							<input type="submit" value="부서 추가">
+						</td>
+					</tr>
+					<tr>
+						<td>
 							<input type="button" value="부서 수정" onclick="updateDepart();">
-							<input type="button" value="부서 삭제" onclick="window.location='';">
+							<input type="button" value="부서 삭제" onclick="deleteDepart();">
+							<input type="button" value="부서장 지정" onclick="updateLeader();">
 						</td>
 					</tr>
 				</table>
