@@ -1,1 +1,71 @@
 @charset "UTF-8";
+body {
+    background: #eee url(../images/main_bg.jpg) no-repeat right bottom;
+}
+
+.signup_wrap {
+	padding-top:60px;
+}
+
+.signup_wrap .signup_box {
+	width: 800px;
+    height: 820px;
+    margin: 30px auto;
+    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    z-index: 10;
+    background: rgba(26, 26, 26, 0.2);
+    padding: 20px;
+}
+
+.signup_wrap h2	{
+	padding: 30px 0 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #111;
+    text-align: center;
+    letter-spacing: 1.5px;
+}
+
+.signup_wrap h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    letter-spacing: 1.5px;
+    padding: 5px 0;
+    margin: 45px 0 15px 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.signup_wrap .input_area {
+	margin-top: 30px;
+	padding: 0 30px;
+}
+
+.signup_wrap .input_area input:focus {
+	background: rgba(254, 255, 196, .8);
+	outline: none;
+}
+
+.signup_wrap .input_area li {
+	line-height: 38px;
+}
+
+.signup_wrap .input_area li span {
+	display: inline-block;
+	width: 100px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.signup_wrap .input_area input[type="submit"], .signup_wrap .input_area input[type="button"], .signup_wrap .input_area input[type="reset"] {
+	color: #fff;
+    background: #555;
+    cursor: pointer;
+    height: 30px;
+    padding: 0 15px;
+    border-radius: 3px;
+    border: none;
+    font-size: 1em;
+    font-weight: bold;
+}
