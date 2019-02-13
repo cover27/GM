@@ -94,7 +94,7 @@ function delBoard(){
 						</td>
 					</tr>
 				</c:if>
-				<input type="hidden" name="num" value="${dto.num}">
+				<input type="hidden" name="nums" value="${dto.num}">
 			</c:forEach>
 		</c:if>
 		
