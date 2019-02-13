@@ -66,6 +66,27 @@ body {
     padding: 0 15px;
     border-radius: 3px;
     border: none;
-    font-size: 1em;
+    font-size: 0.8em;
     font-weight: bold;
+}
+
+.signup_wrap .input_area input[type="submit"]:hover, .signup_wrap .input_area input[type="button"]:hover, .signup_wrap .input_area input[type="reset"]:hover {
+	opacity: 0.8;
+}
+
+.signup_wrap .input_area li>input[type="button"] {
+	/* float: right; */
+}
+
+.signup_wrap .input_area li span:first-child {
+	margin: 0;
+}
+
+.signup_wrap .input_area li span {
+	margin-left: 30px 
+}
+
+.signup_wrap .input_area li input[type="text"], .signup_wrap .input_area li input[type="password"] {
+	width: 229px;
+	height: 30px;
 }

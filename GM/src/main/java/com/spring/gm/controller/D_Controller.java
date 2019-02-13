@@ -202,16 +202,24 @@ public class D_Controller {
 		logger.info("URL : D_allBoardAdmin");
 		
 		service.boardsList(req, model);
-		service.allBoardList(req, model);
+		service.allBoardAdmin(req, model);
 		return "/admin/D_allBoardAdmin";
 	}
 	
-	@RequestMapping("/admin/D_boardMovePro")	// 전체 게시물 목록에서 삭제
+	@RequestMapping("/admin/D_boardMovePro")	//  게시물 목록 관리에서 이동
 	public String boardMovePro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardMovePro");
 		
 		service.boardMove(req, model);
 		return "/admin/sub/D_boardMovePro";
+	}
+	
+	@RequestMapping("/admin/D_boardAdminDeletePro")	// 게시물 목록 관리에서 삭제
+	public String allBoardAdminDeletePro(HttpServletRequest req, Model model) {
+		logger.info("URL : D_boardAdminDeletePro");
+		
+		service.boardDel(req, model);
+		return "/admin/sub/D_boardAdminDeletePro";
 	}
 
 }

@@ -419,4 +419,46 @@
 		where m.id = b.id
 		and m.id= #{id} and to_char(day,'yyyymm') = #{months} and m.company = #{company} and state = '지급'
      </select>
+     
+     
+     
+     <!--=====================급여 계산=============================-->
+     <!-- 급여 계산 목록 가져오기 -->
+     <select id = "J_SalaryCalculationSearchCnt"  parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
+		     select count(*) as cnt
+			from salary s,member m  
+			where m.id = s.id
+			and m.id= #{id} and to_char(day,'yyyy') = to_char(sysdate, 'yyyy') and m.company =  #{company}
+     </select>
+     <select id = "J_SalaryCalculationSearchList"  parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
+     	select s.sal_num, s.id, s.day, s.salary, s.state, sum(s.salary) as sumsalatbonus
+		from salary s,member m  
+		where m.id = s.id
+		and m.id= #{id} and to_char(day,'yyyy') = to_char(sysdate, 'yyyy') and m.company = 430000004
+		group by s.sal_num, s.id, s.day, s.salary, s.state
+     </select>
+
+
+     
+     <!-- 검색 날짜가 있을 경우 -->
+      <select id = "J_SalaryCalculationSearchCnt2"  parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
+    	 select count(*) as cnt
+		from salary s,member m  
+		where m.id = s.id
+		and m.id= #{id} and to_char(day,'yyyy') = #{months} and m.company =  #{company}
+     </select>
+     <select id = "J_SalaryCalculationSearchList2"  parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
+		 select s.sal_num, s.id, s.day, s.salary, s.state, sum(s.salary) as sumsalatbonus
+		from salary s,member m  
+		where m.id = s.id
+		and m.id= #{id} and to_char(day,'yyyy') = #{months} and m.company = 430000004
+		group by s.sal_num, s.id, s.day, s.salary, s.state
+     </select>
+     
+     
+     
+     
+     
+     
+     
 </mapper>
