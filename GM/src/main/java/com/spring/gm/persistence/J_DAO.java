@@ -56,7 +56,7 @@ public interface J_DAO {
 	public ArrayList<join_mgsbVO> mgstbl2(Map<String, Object> map);
 	//Bonus_cut 정보 가져오기
 	public ArrayList<join_mgsbVO> bonustbl(Map<String, Object> map);
-	
+	public ArrayList<join_mgsbVO> bonustbl2(Map<String, Object> map);
 	
 	
 	
