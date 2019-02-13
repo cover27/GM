@@ -5,7 +5,7 @@
 <script type="text/javascript">
 
 // 체크박스 전체선택
-function allCheck(){
+function allcheck(){
       if( $("#th_checkAll").is(':checked') ){
         $("input[name=checkRow]").prop("checked", true);
       }else{
@@ -17,31 +17,29 @@ function allCheck(){
 function delBoard(){
 	var god = confirm("삭제하시겠습니까?");
 	if(god){
-		window.location ="<c:url value='/admin/D_boardDelPro'/>"
+		window.location ="<c:url value='/admin/D_allBoardDeletePro'/>"
 		document.getElementById('boardDel').submit();
 	}
 }
-
-
 </script>
+
 <section>
 	<article>
 		<div class="content_header">
-			<h2>게시글 목록</h2>
+			<h2>게시글 전체 목록</h2>
 		</div>		
-<form action="<c:url value='/admin/D_boardDelPro'/>" method="post" id="boardDel" onsubmit="return delBoard();">
+<form action="<c:url value='/admin/D_allBoardDeletePro'/>" method="post" id="boardDel" onsubmit="return delBoard();">
 	<input type="hidden" name="pageNum" value="${pageNum}">
-	<input type="hidden" name="num" value="${num}">
-	<table>
+	<table border = 1>
 		<tr>
 			<th colspan="6" align="center" style="height:25px">
-				<span>게시판 번호 : ${num}</span>&nbsp;글목록&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="<c:url value='/pages/D_writeForm?num=${num}&pageNum=${pageNum}'/>"> 글쓰기 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				전체 글목록
 			</th>
 		</tr>
 		
 		<tr>
-			<th scope="col" style="width:15%"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allCheck()" /></th>
+			<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allcheck();"/></th>
+			<th style="width:15%"> 게시판명 </th>
 			<th style="width:25%"> 글제목 </th>
 			<th style="width:10%"> 작성자 </th>
 			<th style="width:15%"> 작성일 </th>
@@ -57,9 +55,17 @@ function delBoard(){
 		
 			<c:forEach var="dto" items="${dtos}">
 				<c:if test="${dto.del == 0}">
-					<tr>
+					<tr>				
 						<td>
-							<input type="checkbox" name="checkRow" value="${dto.boardnum}" />
+							<input type="checkbox" name="checkRow" value="${dto.boardnum}"/>
+						</td>
+						
+						<td>
+							<c:forEach var="dtos" items="${b_dtos}">
+								<c:if test="${dto.num == dtos.num}">
+									${dtos.b_name}
+								</c:if>
+							</c:forEach>
 						</td>
 						
 						<td>
@@ -71,7 +77,7 @@ function delBoard(){
 												
 							<c:if test="${dto.readcnt > 10}"></c:if>
 					
-							<a href="<c:url value='/pages/D_boardContent?boardnum=${dto.boardnum}&num=${num}&ref_level=${dto.ref_level}&pageNum=${pageNum}&number=${number+1}'/>"> ${dto.subject}</a>
+							<a href="<c:url value='/pages/D_boardContent?boardnum=${dto.boardnum}&num=${dto.num}&ref_level=${dto.ref_level}&pageNum=${pageNum}&number=${number+1}'/>"> ${dto.subject}</a>
 							[${dto.re_num}]
 						</td>
 					
@@ -88,6 +94,7 @@ function delBoard(){
 						</td>
 					</tr>
 				</c:if>
+				<input type="hidden" name="num" value="${dto.num}">
 			</c:forEach>
 		</c:if>
 		
@@ -133,18 +140,18 @@ function delBoard(){
 				</c:if>
 			</th>
 		</tr>
-		
-
 	</table>
 	</c:if>
 	<table>
-	<c:if test="${sessionScope.loginInfo.sys_rank == 1">
 		<tr>
 			<th colspan="4">
 				<input type="submit" value="삭제">
 			</th>
+			
+			<th>
+			
+			</th>
 		</tr>
-	</c:if>
 	</table>
 </form>
 	</article>

@@ -5,20 +5,31 @@
 <script type="text/javascript">
 
 // 체크박스 전체선택
-function checkAll(){
+function allcheck(){
       if( $("#th_checkAll").is(':checked') ){
         $("input[name=checkRow]").prop("checked", true);
       }else{
         $("input[name=checkRow]").prop("checked", false);
       }
 }
+
+//삭제할거 정보이전
+function delBoard(){
+	var god = confirm("삭제하시겠습니까?");
+	if(god){
+		window.location ="<c:url value='/admin/D_allBoardDeletePro'/>"
+		document.getElementById('boardDel').submit();
+	}
+}
 </script>
 
 <section>
 	<article>
 		<div class="content_header">
-			<h2>게시글 목록</h2>
+			<h2>게시글 전체 목록</h2>
 		</div>		
+<form action="<c:url value='/admin/D_allBoardDeletePro'/>" method="post" id="boardDel" onsubmit="return delBoard();">
+	<input type="hidden" name="pageNum" value="${pageNum}">
 	<table>
 		<tr>
 			<th colspan="6" align="center" style="height:25px">
@@ -27,7 +38,7 @@ function checkAll(){
 		</tr>
 		
 		<tr>
-			<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="checkAll();"/></th>
+			<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allcheck();"/></th>
 			<th style="width:15%"> 게시판명 </th>
 			<th style="width:25%"> 글제목 </th>
 			<th style="width:10%"> 작성자 </th>
@@ -83,6 +94,7 @@ function checkAll(){
 						</td>
 					</tr>
 				</c:if>
+				<input type="hidden" name="num" value="${dto.num}">
 			</c:forEach>
 		</c:if>
 		
@@ -130,5 +142,13 @@ function checkAll(){
 		</tr>
 	</table>
 	</c:if>
+	<table>
+		<tr>
+			<th colspan="4">
+				<input type="submit" value="삭제">
+			</th>
+		</tr>
+	</table>
+</form>
 	</article>
 </section>

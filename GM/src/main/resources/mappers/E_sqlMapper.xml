@@ -12,14 +12,14 @@
 		SELECT count(*) FROM member where company = #{company}
 	</select>
 
-	<!-- company 컬럼과 입력받은 company값 비교해서 가져오기용 -->
+	<!-- company 컬럼과 입력받은 company값 비교( company = #{company} )해서 가져오기용 -->
 	<select id="getMyCompanyInfo" parameterType="int" resultType="com.spring.gm.vo.MemberVO">
 		SELECT * FROM member WHERE company = #{company}
 	</select>
 
-	<!-- group_rank = 1  : 그룹정보 -->
+	<!-- group_rank = 1  : 1. 그룹정보,    del : 삭제판정값(0 : 안보이게) -->
 	<select id="getMyCompanyGroupCnt" parameterType="int" resultType="com.spring.gm.vo.GroupsVO">
-		SELECT * FROM groups WHERE company = #{company} AND group_rank = 1
+		SELECT * FROM groups WHERE company = #{company} AND group_rank = 1 AND del = 0
 	</select>
 	
 	<select id="getMyCompanyInfo2" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">

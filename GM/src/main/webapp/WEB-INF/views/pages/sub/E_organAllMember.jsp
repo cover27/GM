@@ -54,7 +54,7 @@
 						</td>
 						
 						<td>
-							${dto.depart}
+							${dto.depart}<!-- 부서이름으로 수정요망 -->
 						</td>
 						
 						<td>
