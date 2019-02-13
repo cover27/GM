@@ -212,6 +212,12 @@ if(url[1] == "/admin/D_boardsSetting"){
 		$("#D_allBoardList").children().css("color", "#d3292c");
 		$("#D_allBoardList").css("font-weight", "bold");
 	});
+} else if(url[1] == "/admin/D_allBoardAdmin"){
+	// alert("됨");
+	$(function(){
+		$("#D_allBoardAdmin").children().css("color", "#d3292c");
+		$("#D_allBoardAdmin").css("font-weight", "bold");
+	});
 }
 /* aside 게시판 끝 */
 
