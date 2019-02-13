@@ -771,5 +771,18 @@ public class K_ServiceImpl implements K_Service{
 		}
 		
 		model.addAttribute("updateCnt", updateCnt);
+	}
+	
+	// 직급관리
+	@Override
+	public void K_manageRank(HttpServletRequest req, Model model) {
+		
+	}
+
+	//우리회사 관리자
+	@Override
+	public void K_ourManager(HttpServletRequest req, Model model) {
+		
 	}	
+	
 }

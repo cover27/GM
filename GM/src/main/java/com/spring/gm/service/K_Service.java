@@ -58,4 +58,8 @@ public interface K_Service {
 	
 	public void K_departLeader_pro(HttpServletRequest req, Model model);
 	
+	public void K_manageRank(HttpServletRequest req, Model model);
+	
+	public void K_ourManager(HttpServletRequest req, Model model);
+	
 }

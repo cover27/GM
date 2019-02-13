@@ -299,4 +299,24 @@ public class K_Controller {
 		
 		return "admin/sub/K_departLeader_pro";
 	}
+	
+	@RequestMapping("admin/K_manageRank")
+	public String K_manageRank(HttpServletRequest req, Model model) {
+		logger.info("URL : K_manageRank");
+		
+		service.K_manageRank(req, model);
+		
+		return "admin/K_manageRank";
+	}
+	
+	//우리회사 관리자
+	@RequestMapping("admin/K_ourManager")
+	public String K_ourManager(HttpServletRequest req, Model model) {
+		logger.info("URL : K_ourManager");
+		
+		service.K_ourManager(req, model);
+		
+		return "admin/K_ourManager";
+	}
+	
 }
