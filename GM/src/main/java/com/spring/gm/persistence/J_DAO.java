@@ -10,6 +10,7 @@ import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
 import com.spring.gm.vo.join_mgcVO2;
+import com.spring.gm.vo.join_mgsbVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_msVO;
 public interface J_DAO {
@@ -43,6 +44,19 @@ public interface J_DAO {
 	public int J_PayrollRegistrationchange(Map<String, Object> map);
 	//정보 삭제
 	public int J_PayrollRegistrationListDelete(Map<String, Object> map);
+	
+	
+	//급여 조회&수당(cnt)
+	public int mgstblCnt(Map<String, Object> map);
+	public int mgstblCnt2(Map<String, Object> map);
+	//급여 조회&수당(List)
+	//급여 부서명 가져오는  셀리리조인 
+	public ArrayList<join_mgsbVO> mgstbl(Map<String, Object> map);
+	//급여 회사명 가져오는  셀리리조인
+	public ArrayList<join_mgsbVO> mgstbl2(Map<String, Object> map);
+	//Bonus_cut 정보 가져오기
+	public ArrayList<join_mgsbVO> bonustbl(Map<String, Object> map);
+	
 	
 	
 	

@@ -2,84 +2,100 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <form action="J_PayrollRegistrationInsert" method="post" name="infoform">
-	<table border="1">
+	<table>
 		<c:if test="${cnt > 0}">
 			<c:forEach var="dto" items="${dtos}">
-			정보 있을때
 				<tr>
-					<td style="text-align: center; background-color: #cccccc;">급여번호</td>
+					<th>급여번호</th>
 					<td>${dto.sal_num}</td>
-					<td style="text-align: center; background-color: #cccccc;">아아디</td>
-					<td>${dto.id}</td>
-					<td style="text-align: center; background-color: #cccccc;">성명</td>
-					<td>${dto.name}</td>
+					<th>아아디</th>
+					<th>${dto.id}</td>
+					<th>성명</th>
+					<th>${dto.name}</td>
 				</tr>
 				<tr>
-					<td style="text-align: center; background-color: #cccccc;">부서</td>
+					<th>부서</th>
 					<td>${j_name}</td>
-					<td style="text-align: center; background-color: #cccccc;">직급</td>
+					<th>직급</th>
 					<td>${r_name}</td>
-					<td style="text-align: center; background-color: #cccccc;">상태</td>
+					<th>상태</th>
 					<td>${dto.state}</td>
 				</tr>
 				<tr>
-					<td style="text-align: center; background-color: #cccccc;">핸드폰</td>
+					<th>핸드폰</th>
 					<td>${dto.tel}</td>
-					<td style="text-align: center; background-color: #cccccc;">지급일</td>
+					<th>지급일</th>
 					<td>${dto.day}</td>
-					<td style="text-align: center; background-color: #cccccc;">E-MAIL</td>
+					<th>E-MAIL</th>
 					<td>${dto.email_in}</td>
 				</tr>
 				<tr>
-					<td style="text-align: center; background-color: #cccccc;">*이번달 급여</td>
+					<th>*이번달 급여</th>
 					<td>${dto.salary}</td>
-					<td style="text-align: center; background-color: #cccccc;">*계좌번호</td>
-					<td>${dto.account_number}원</td>
+					<th>*계좌번호</th>
+					<td colspan="3">${dto.account_number}원</td>
 				</tr>
+<<<<<<< HEAD
 				<th>
 				<c:if test="${dto.state eq '미지급'}">
-					<input type="button" onclick="change('${dto.id}','${j_name}','${rank}')" value="지급처리">
+					<input type="button" onclick="change('${dto.id}','${j_name}','${r_name}')" value="지급처리">
 				</c:if>
 				<input type="button" onclick="J_PayrollRegistrationListDelete('${dto.id}','${dto.sal_num}')" value="삭제">
 				</th>
+=======
+				<tr>
+					<td colspan="6" class="J_PayrollRegistrationList">
+						<c:if test="${dto.state eq '미지급'}">
+							<input type="button" onclick="change('${dto.id}','${j_name}','${rank}')" value="지급처리" class="modify_btn">
+						</c:if>
+						<input type="button" onclick="J_PayrollRegistrationListDelete('${dto.id}','${dto.sal_num}')" value="삭제" class="delete_btn">
+					</td>
+				</tr>
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 			</c:forEach>
 		</c:if>
 		<c:if test="${cnt == 0}">
 			<c:forEach var="dto" items="${dtos}">
-			정보 없을때
 				<tr>
-					<td style="text-align: center; background-color: #cccccc;">아아디</td>
+					<th>급여번호</th>
+					<td>급여정보 없음</td>
+					<th>아이디</th>
 					<td id="id">${dto.id}</td>
-					<td style="text-align: center; background-color: #cccccc;">성명</td>
+					<th>성명</th>
 					<td>${dto.name}</td>
 				</tr>
 				<tr>
-					<td style="text-align: center; background-color: #cccccc;">부서</td>
+					<th>부서</th>
 					<td>${j_name}</td>
-					<td style="text-align: center; background-color: #cccccc;">직급</td>
+					<th>직급</th>
 					<td>${rank}</td>
-					<td style="text-align: center; background-color: #cccccc;">상태</td>
-					<td><select name="state" id="state">
+					<th>상태</th>
+					<td class="left_align">
+						<select name="state" id="state">
 							<option value="지급">지급</option>
 							<option value="미지급">미지급</option>
-					</select>
+						</select>
 					</td>
 				</tr>
 				<tr>
-					<td style="text-align: center; background-color: #cccccc;">핸드폰</td>
+					<th>핸드폰</th>
 					<td>${dto.tel}</td>
-					<td style="text-align: center; background-color: #cccccc;">지급일</td>
-					<td><input type="month" id="month"></td>
-					<td style="text-align: center; background-color: #cccccc;">E-MAIL</td>
+					<th>지급일</th>
+					<td class="left_align"><input type="month" id="month"></td>
+					<th>E-MAIL</th>
 					<td>${dto.email_in}</td>
 				</tr>
 				<tr>
-					<td style="text-align: center; background-color: #cccccc;">*이번달 급여</td>
+					<th>*이번달 급여</th>
 					<td id="salary">${dto.salary}</td>
-					<td >*계좌번호</td>
-					<td>${dto.account_number}</td>
+					<th>*계좌번호</th>
+					<td colspan="3">${dto.account_number}</td>
 				</tr>
-					<th><input type="button" onclick="load4('${dto.id}','${dto.salary}','${j_name}','${rank}','${dto.account_number}','${dto.salary}')" value="등록"></th>
+				<tr>
+					<td colspan="6" class="J_PayrollRegistrationList">
+						<input type="button" onclick="load4('${dto.id}','${dto.salary}','${j_name}','${rank}','${dto.account_number}','${dto.salary}')" value="등록" class="modify_btn">
+					</td>
+				</tr>
 			</c:forEach>
 		</c:if>
 	</table>
