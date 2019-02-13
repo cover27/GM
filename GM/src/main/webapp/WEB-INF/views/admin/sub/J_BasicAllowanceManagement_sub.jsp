@@ -65,15 +65,8 @@
 
 	// 행 추가
 	function addhang() {
-		alert("!!!!!!!!!!!!!!!!!!!");
-		var addStaffText = '<tr name="trStaff">'
-				+ '       <td><select name="type"><option value="상여금">상여금</option><option value="삭감">삭감</option></select></td>'
-				+ '       <td><select name="state"><option value="지급">지급</option><option value="미지급">미지급</option></select></td>'
-				+ '       <td><input type="text" name="cost" placeholder="금액" required ></td>'
-				+ '       <td><input type="text" name="content" placeholder="사유" required ></td>'
-				+ '       <td><button class="btn btn-default" name="delStaff">삭제</button></td>'
-				+ '       button class="btn btn-default" name="delStaff">삭제</button>'
-				+ '</tr>';
+		var addStaffText = '<tr name="trStaff"><td><select name="type"><option value="추가">추가</option><option value="삭감">삭감</option></select></td><td><select name="state"><option value="지급">지급</option><option value="미지급">미지급</option></select></td><td><input type="text" name="cost" placeholder="금액" required ></td><td><input type="text" name="content" placeholder="사유" required ></td><td><button class="btn btn-default" name="delStaff">삭제</button></td>button class="btn btn-default" name="delStaff">삭제</button></tr>';
+		console.log(addStaffText);
 		var trHtml = $("tr[name=trStaff]:last"); //last를 사용하여 trStaff라는 명을 가진 마지막 태그 호출
 		trHtml.after(addStaffText); //마지막 trStaff명 뒤에 붙인다.
 	}
@@ -120,7 +113,7 @@
 				success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
 					//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
 					$('#result').html(result)
-					,$("#result2").hide();
+					// ,$("#result2").hide();
 
 				},
 				error : function() {
@@ -133,24 +126,18 @@
 	}
 	//수정 버튼
 	function J_ExtrapayInfoModified(num){
-		var con_test = confirm("수정하시겠습니까?.");
-		if (con_test == true) {
-			$.ajax({
-				url : '${pageContext.request.contextPath}/admin/J_ExtrapayInfoModified', //컨트롤러/basic1_sub로 가라
-				type : 'POST',
-				data : "num=" + num, //전송할 데이터
-				success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
-					//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
-					$("#result2").show()
-					,$('#result2').html(result);
-				},
-				error : function() {
-					alert('오류');
-				}
-			});
-		} else if (con_test == false) {
-			return false;
-		}
+		$.ajax({
+			url : '${pageContext.request.contextPath}/admin/J_ExtrapayInfoModified', //컨트롤러/basic1_sub로 가라
+			type : 'POST',
+			data : "num=" + num, //전송할 데이터
+			success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
+				//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
+				$('#result').html(result);
+			},
+			error : function() {
+				alert('오류');
+			}
+		});
 	}
 </script>
 <section>
@@ -193,17 +180,22 @@
 				</div>
 			</div>
 			
-			<div class="fleft w30p bam_left">
+			<div class="fleft w28p bam_left">
 				<h3>기본정보</h3>
-				<div class="salary_info">
+				<div class="table_top">
 					<table>
-					    <thead>
+						<thead>
 					        <tr>
 					            <th>사원번호</th>
 					            <th>성명</th>
-					            <th>부서</th>
+					            <th class="scrollbar_bro">부서</th>
+					            <th style="width: 5px;"></th>
 					        </tr>
 					    </thead>
+					</table>
+				</div>
+				<div class="salary_info">
+					<table>
 					    <c:if test="${cnt > 0}">
 					        <c:forEach var="dto" items="${dtos}">
 					            <tr id="ttr">
@@ -258,16 +250,22 @@
 			</div>
 		    <div class="fright w70p">
 		    	<h3>기본수당외 수당등록</h3>
-		    	<div id="result" class="fleft salary_info"> 
+		    	<div class="table_top">
+		    		<table>
+			    		<thead>
+					        <tr>
+					            <th>추가/삭감</th>
+					            <th>지급/공제(상태)</th>
+					            <th>금액</th>
+					            <th>사유</th>
+					            <th class="scrollbar_bro">삭제</th>
+					            <th style="width:5px;"></th>
+					        </tr>
+					    </thead>
+		    		</table>
+		    	</div>
+		    	<div id="result" class="fleft salary_info">
 		            <table>
-		                <thead>
-		                	<tr>
-			                    <th>상여금/삭감</th>
-			                    <th>지급/공제</th>
-			                    <th>금액</th>
-			                    <tH>비고</th>
-			                </tr>
-		                </thead>
 		                <tr>
 		                    <td colspan="4">사원번호를 클릭 하십시오.</td>
 		                </tr>
@@ -275,12 +273,12 @@
 		        </div>
 		    </div>
 		
-		    <div>
-		        
-		    </div>
+		    <div class="clear"></div>
+		    <!-- 
 		    <div id="result2">
 		        <h3>수정 할 목록</h3>
 		    </div>
+		     -->
 		</div>
 	</article>
 </section>

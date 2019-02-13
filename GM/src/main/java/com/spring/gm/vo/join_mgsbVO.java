@@ -4,44 +4,55 @@ import java.sql.Date;
 
 import com.sun.jmx.snmp.Timestamp;
 
-public class join_msVO {
-	private String id; // 아이디
-	private String pwd; // 비밀번호
-	private String name; // 성함
-	private String eng_name; // 영문이름
-	private int jumin1; // 주민번호앞자리
-	private int jumin2; // 주민번호뒷자리
-	private int gender; // 성별
-	private int marry; // 미혼여부
-	private Date wdday; // 결혼기념일
-	private int frgn; // 내외국인여부
-	private String nation; // 국적
-	private String tel; // 휴대전화번호
-	private String tel_hm; // 자택번호
-	private String email_in; // 회사이메일
-	private String email_out; // 외부이메일
-	private String address; // 자택주소
-	private String eng_address; // 영문주소
-	private int depart; // 그룹번호(FK)
-	private int rank; // 직급(FK)
-	private String r_name;	//직급
-	private int salary; // 연봉
-	private int contract; // 계약형태
-	private int wrkdvd; // 재직구분
-	private int position; // 직책
-	private Date enterday; // 입사일
-	private Date retireday; // 퇴직일
-	private int year; // 연차
-	private String etc; // 비고
-	private int sys_rank; // 시스템직급(FK)
-	private int del; // 삭제구분
-	
-	
-	private String account_number; // 계좌번호
-	private int company; // 회사번호
-	private int sal_num; //급여번호
+public class join_mgsbVO {
+	private String id; //아이디
+    private String pwd; //비밀번호
+    private String name; //성함
+    private String eng_name; //영문이름
+    private int jumin1; //주민번호앞자리
+    private int jumin2; //주민번호뒷자리
+    private int gender; //성별
+    private int marry; //미혼여부
+    private Date wdday; //결혼기념일
+    private int frgn; //내외국인여부
+    private String nation; //국적
+    private String tel; //휴대전화번호
+    private String tel_hm; //자택번호
+    private String email_in; //회사이메일
+    private String email_out; //외부이메일
+    private String address; //자택주소
+    private String eng_address; //영문주소
+    private int depart; //그룹번호(FK)
+    private int rank; //직급(FK)
+    private int salary; // 연봉
+    private int contract; //계약형태
+    private int wrkdvd; //재직구분
+    private int position; //직책
+    private Date enterday; //입사일
+    private Date retireday; //퇴직일
+    private int year; //연차
+    private String etc; //비고
+    private int sys_rank; //시스템직급(FK)
+    private int del; //삭제구분
+    private String account_number; // 계좌번호
+    private String j_name;
+    
+    private int groupId; //그룹번호
+    private String g_name; //그룹이름
+    private int group_rank; //그룹등급
+    
+    private int sal_num; //급여번호
 	private Date day;	//지급일
 	private String state;	//상태
+	
+	private int num;
+	private String type;
+	private int cost;
+	private String content;
+	
+	
+	private int bonussalary;
+	private int Sumsalaybonus;
 	public String getId() {
 		return id;
 	}
@@ -222,11 +233,29 @@ public class join_msVO {
 	public void setAccount_number(String account_number) {
 		this.account_number = account_number;
 	}
-	public int getCompany() {
-		return company;
+	public String getJ_name() {
+		return j_name;
 	}
-	public void setCompany(int company) {
-		this.company = company;
+	public void setJ_name(String j_name) {
+		this.j_name = j_name;
+	}
+	public int getGroupId() {
+		return groupId;
+	}
+	public void setGroupId(int groupId) {
+		this.groupId = groupId;
+	}
+	public String getG_name() {
+		return g_name;
+	}
+	public void setG_name(String g_name) {
+		this.g_name = g_name;
+	}
+	public int getGroup_rank() {
+		return group_rank;
+	}
+	public void setGroup_rank(int group_rank) {
+		this.group_rank = group_rank;
 	}
 	public int getSal_num() {
 		return sal_num;
@@ -246,18 +275,58 @@ public class join_msVO {
 	public void setState(String state) {
 		this.state = state;
 	}
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public int getBonussalary() {
+		return bonussalary;
+	}
+	public void setBonussalary(int bonussalary) {
+		this.bonussalary = bonussalary;
+	}
+	public int getSumsalaybonus() {
+		return Sumsalaybonus;
+	}
+	public void setSumsalaybonus(int sumsalaybonus) {
+		Sumsalaybonus = sumsalaybonus;
+	}
 	@Override
 	public String toString() {
-		return "join_msVO [id=" + id + ", pwd=" + pwd + ", name=" + name + ", eng_name=" + eng_name + ", jumin1="
+		return "join_mgsbVO [id=" + id + ", pwd=" + pwd + ", name=" + name + ", eng_name=" + eng_name + ", jumin1="
 				+ jumin1 + ", jumin2=" + jumin2 + ", gender=" + gender + ", marry=" + marry + ", wdday=" + wdday
 				+ ", frgn=" + frgn + ", nation=" + nation + ", tel=" + tel + ", tel_hm=" + tel_hm + ", email_in="
 				+ email_in + ", email_out=" + email_out + ", address=" + address + ", eng_address=" + eng_address
 				+ ", depart=" + depart + ", rank=" + rank + ", salary=" + salary + ", contract=" + contract
 				+ ", wrkdvd=" + wrkdvd + ", position=" + position + ", enterday=" + enterday + ", retireday="
 				+ retireday + ", year=" + year + ", etc=" + etc + ", sys_rank=" + sys_rank + ", del=" + del
-				+ ", account_number=" + account_number + ", company=" + company + ", sal_num=" + sal_num + ", day="
-				+ day + ", state=" + state + "]";
+				+ ", account_number=" + account_number + ", j_name=" + j_name + ", groupId=" + groupId + ", g_name="
+				+ g_name + ", group_rank=" + group_rank + ", sal_num=" + sal_num + ", day=" + day + ", state=" + state
+				+ ", num=" + num + ", type=" + type + ", cost=" + cost + ", content=" + content + ", bonussalary="
+				+ bonussalary + ", Sumsalaybonus=" + Sumsalaybonus + "]";
 	}
+	
+	
 	
 	
 }

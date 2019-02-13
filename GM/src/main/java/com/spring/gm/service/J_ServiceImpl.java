@@ -16,7 +16,8 @@ import com.spring.gm.vo.BonusCutVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
-import com.spring.gm.vo.join_mgcVO;
+import com.spring.gm.vo.join_mgcVO2;
+import com.spring.gm.vo.join_mgsbVO;
 import com.spring.gm.vo.join_msVO;
 
 @Service
@@ -82,11 +83,11 @@ public class J_ServiceImpl implements J_Service {
 			map.put("start", start);
 			map.put("end", end);
 			map.put("company", company);
-			List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
-			List<join_mgcVO> dtos2 = dao.selectList2(map); // depart가 회사번호
+			List<join_mgcVO2> dtos = new ArrayList<join_mgcVO2>();
+			List<join_mgcVO2> dtos2 = dao.selectList2(map); // depart가 회사번호
 			System.out.println("여기 탔다2");
 			System.out.println(dtos2.toString());
-			List<join_mgcVO> dtos3 = dao.selectList3(map); // depart가 부서번호
+			List<join_mgcVO2> dtos3 = dao.selectList3(map); // depart가 부서번호
 			System.out.println("여기 탔다3");
 			dtos.addAll(dtos2);
 			dtos.addAll(dtos3);
@@ -125,8 +126,12 @@ public class J_ServiceImpl implements J_Service {
 	// Ajax 개인정보 가져오기
 	@Override
 	public void infoList(HttpServletRequest req, Model model) {
-		String strId = req.getParameter("id");
-
+		String id = req.getParameter("id");
+		System.out.println("id :" + id);
+		String j_name = req.getParameter("j_name");
+		System.out.println("j_name : " + j_name);
+		String r_name = req.getParameter("r_name");
+		System.out.println("r_name :" + r_name);
 		/* 장훈수정 시작 */
 		// id 뒤에 자꾸 붙어서 나오는?null이라는 문자열을 없애기
 
@@ -134,12 +139,11 @@ public class J_ServiceImpl implements J_Service {
 		 * // 방법1 String id = strId.replace("?null", ""); System.out.println(id);
 		 */
 
-		// id 값 줄이기
-		System.out.println(strId.length());
-		int idLength = strId.length();
-		System.out.println(idLength - 5);
-		String id = strId.substring(0, idLength - 5);
-		System.out.println("아놔 썅 : " + id);
+		/*
+		 * // id 값 줄이기 System.out.println(strId.length()); int idLength =
+		 * strId.length(); System.out.println(idLength - 5); String id =
+		 * strId.substring(0, idLength - 5); System.out.println("아놔 썅 : " + id);
+		 */
 
 		/* 장훈수정 끝 */
 
@@ -149,6 +153,8 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("여기 탔다");
 		System.out.print(dtos.toString());
 		model.addAttribute("dtos", dtos);
+		model.addAttribute("j_name", j_name);
+		model.addAttribute("r_name", r_name);
 	}
 
 	// 회원 급여 개인정보 업데이트
@@ -190,7 +196,7 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println(cnt);
 
 		if (cnt == 1) {
-			List<join_mgcVO> dtos = dao.searchinfoList(map);
+			List<join_mgcVO2> dtos = dao.searchinfoList(map);
 			System.out.println(dtos.toString());
 			model.addAttribute("dtos", dtos);
 			model.addAttribute("cnt", cnt);
@@ -204,8 +210,8 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("company :" + company);
 		String id = req.getParameter("id");
 		System.out.println("id :" + id);
-		int rank = Integer.parseInt(req.getParameter("rank"));
-		System.out.println("rank :" + rank);
+		String r_name = req.getParameter("r_name");
+		System.out.println("r_name :" + r_name);
 		String j_name = req.getParameter("j_name");
 		System.out.println("j_name :" + j_name);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -224,7 +230,7 @@ public class J_ServiceImpl implements J_Service {
 			model.addAttribute("dtos", dtos);
 		}
 		model.addAttribute("cnt", cnt);
-		model.addAttribute("rank", rank);
+		model.addAttribute("r_name", r_name);
 		model.addAttribute("j_name", j_name);
 	}
 
@@ -241,8 +247,8 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("state :" + state);
 		String month = req.getParameter("month");
 		System.out.println("month :" + month);
-		int rank = Integer.parseInt(req.getParameter("rank"));
-		System.out.println("rank :" + rank);
+		String r_name = req.getParameter("r_name");
+		System.out.println("r_name :" + r_name);
 		String j_name = req.getParameter("j_name");
 		System.out.println("j_name :" + j_name);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -255,18 +261,19 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("updatecnt :" + cnt);
 		List<join_msVO> dtos = dao.J_PayrollRegistrationList(map);
 		System.out.println(dtos.toString());
-		model.addAttribute("dtos",dtos);
+		model.addAttribute("dtos", dtos);
 		model.addAttribute("cnt", cnt);
-		model.addAttribute("rank", rank);
+		model.addAttribute("r_name", r_name);
 		model.addAttribute("j_name", j_name);
 	}
-	//미지급 지급으로 처리
+
+	// 미지급 지급으로 처리
 	@Override
 	public void J_PayrollRegistrationchange(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
 		System.out.println("company :" + company);
-		int rank = Integer.parseInt(req.getParameter("rank"));
-		System.out.println("rank :" + rank);
+		String r_name = req.getParameter("r_name");
+		System.out.println("r_name :" + r_name);
 		String j_name = req.getParameter("j_name");
 		System.out.println("j_name :" + j_name);
 		String id = req.getParameter("id");
@@ -277,17 +284,18 @@ public class J_ServiceImpl implements J_Service {
 		map.put("state", state);
 		map.put("company", company);
 		dao.J_PayrollRegistrationchange(map);
-		
-		//지급 처리후 정보 가져오기
+
+		// 지급 처리후 정보 가져오기
 		int cnt = dao.J_PayrollRegistrationCnt(map);
 		List<join_msVO> dtos = dao.J_PayrollRegistrationList(map);
 		System.out.println(dtos.toString());
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("cnt", cnt);
-		model.addAttribute("rank", rank);
+		model.addAttribute("r_name", r_name);
 		model.addAttribute("j_name", j_name);
 	}
-	//정보 삭제
+
+	// 정보 삭제
 	@Override
 	public void J_PayrollRegistrationListDelete(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
@@ -302,20 +310,6 @@ public class J_ServiceImpl implements J_Service {
 		map.put("company", company);
 		dao.J_PayrollRegistrationListDelete(map);
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	// ------------------- 기본수당 외 수당관리 --------------------
 	// 회사명 가져오기
@@ -374,9 +368,9 @@ public class J_ServiceImpl implements J_Service {
 		map.put("start", start);
 		map.put("end", end);
 
-		List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
-		List<join_mgcVO> dtos2 = null;
-		List<join_mgcVO> dtos3 = null;
+		List<join_mgcVO2> dtos = new ArrayList<join_mgcVO2>();
+		List<join_mgcVO2> dtos2 = null;
+		List<join_mgcVO2> dtos3 = null;
 		if (cnt > 0) {
 			System.out.println("여기 탑니까?");
 			if (content.length() == 4) { // 입사일 년도로 기준
@@ -464,7 +458,7 @@ public class J_ServiceImpl implements J_Service {
 		if (cnt > 0) {
 			map.put("start", start);
 			map.put("end", end);
-			List<join_mgcVO> dtos = null;
+			List<join_mgcVO2> dtos = null;
 			dtos = dao.selectNoneDepartList(map);
 			System.out.println(dtos.toString());
 			model.addAttribute("dtos", dtos);
@@ -531,9 +525,9 @@ public class J_ServiceImpl implements J_Service {
 		number = cnt - (currentPage - 1) * pageSize; // 출력용 글번호
 		System.out.println("number : " + number);
 		System.out.println("pageSize : " + pageSize);
-		List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
-		List<join_mgcVO> dtos2 = null;
-		List<join_mgcVO> dtos3 = null;
+		List<join_mgcVO2> dtos = new ArrayList<join_mgcVO2>();
+		List<join_mgcVO2> dtos2 = null;
+		List<join_mgcVO2> dtos3 = null;
 		if (cnt > 0) {
 			map.put("start", start);
 			map.put("end", end);
@@ -584,7 +578,7 @@ public class J_ServiceImpl implements J_Service {
 		map.put("title2", title2);
 		map.put("content2", content2);
 
-		List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
+		List<join_mgcVO2> dtos = new ArrayList<join_mgcVO2>();
 		if (content.length() == 4) { // 입사일 년도로 기준
 			System.out.println("입사일 년도로 기준");
 			dtos = dao.salaryDepartSearchList1(map);
@@ -616,9 +610,9 @@ public class J_ServiceImpl implements J_Service {
 		map.put("title2", title2);
 		map.put("content2", content2);
 
-		List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
-		List<join_mgcVO> dtos2 = null;
-		List<join_mgcVO> dtos3 = null;
+		List<join_mgcVO2> dtos = new ArrayList<join_mgcVO2>();
+		List<join_mgcVO2> dtos2 = null;
+		List<join_mgcVO2> dtos3 = null;
 		if (title != null && content.length() == 4) { // 입사일 년도로 기준
 			System.out.println("입사일 년도로 기준");
 			dtos2 = dao.salaryIdSearchList1_1(map);
@@ -810,9 +804,9 @@ public class J_ServiceImpl implements J_Service {
 		map.put("company", company);
 		int cnt = dao.searchIdCnt(map);
 		if (cnt > 0) {
-			List<join_mgcVO> dtos = new ArrayList<join_mgcVO>();
-			List<join_mgcVO> dtos2 = dao.searchIdList(map); // depart가 회사번호
-			List<join_mgcVO> dtos3 = dao.searchIdList2(map); // depart가 부서번호
+			List<join_mgcVO2> dtos = new ArrayList<join_mgcVO2>();
+			List<join_mgcVO2> dtos2 = dao.searchIdList(map); // depart가 회사번호
+			List<join_mgcVO2> dtos3 = dao.searchIdList2(map); // depart가 부서번호
 			dtos.addAll(dtos2);
 			dtos.addAll(dtos3);
 			System.out.println(dtos.toString());
@@ -827,12 +821,44 @@ public class J_ServiceImpl implements J_Service {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		System.out.println("company: " + company);
 		String months = req.getParameter("month");
+		String[] month = months.split("-");
+		months = month[0]+month[1];
 		System.out.println("months: " + months);
 		String id = req.getParameter("id");
 		System.out.println("id: " + id);
-
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		map.put("months", months);
+		
+		int cnt2 = dao.mgstblCnt(map);
+		System.out.println("cnt2 : " + cnt2);
+		int	cnt3 = dao.mgstblCnt2(map);
+		System.out.println("cnt3 : " + cnt3);
+		if(cnt2 > 0) {cnt2 = 1;};
+		if(cnt3 > 0) {cnt3 = 1;};
+		int cnt = cnt2 + cnt3;
+		System.out.println("cnt : " + cnt);
+		if(cnt ==1) {cnt = 0;}
+		if(cnt >= 2) {
+		List<join_mgsbVO> dtos = new ArrayList<join_mgsbVO>();
+		List<join_mgsbVO> dtos2 = dao.mgstbl(map);
+		System.out.println("dtos2 :" + dtos2.toString());
+		List<join_mgsbVO> dtos3 = dao.mgstbl2(map);
+		System.out.println("dtos3 :" + dtos3.toString());
+		List<join_mgsbVO> dtos4 = dao.bonustbl(map);
+		System.out.println("dtos4 :" + dtos4.toString());
+		dtos.addAll(dtos2);
+		dtos.addAll(dtos3);
+		
+		System.out.println("dtos.get(0).getDay() :" + dtos.get(0).getDay());
+		
+		int Sumsalarybonus = dtos.get(0).getSalary() + dtos4.get(0).getBonussalary();
+		System.out.println("Sumsalarybonus : " + Sumsalarybonus);
+		model.addAttribute("Sumsalarybonus",Sumsalarybonus);
+		model.addAttribute("dtos",dtos);
+		}
+		model.addAttribute("cnt" , cnt);
 	}
-
-
 
 }

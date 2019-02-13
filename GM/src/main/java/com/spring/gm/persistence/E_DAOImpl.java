@@ -48,10 +48,5 @@ public class E_DAOImpl implements E_DAO {
 		return sqlSession.selectOne("com.spring.gm.persistence.E_DAO.findCompanyName", company);
 	}
 
-	// 조직도 - 개인 그룹 목록
-/*	@Override
-	public List<MemberVO> getMyCompanyInfo3(Map<String, Object> map) {
-		return sqlSession.selectList("com.spring.gm.persistence.E_DAO.getMyCompanyInfo3", map);
-	}*/
 
 }

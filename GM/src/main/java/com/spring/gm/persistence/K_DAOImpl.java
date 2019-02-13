@@ -280,13 +280,19 @@ public class K_DAOImpl implements K_DAO{
 	}
 
 	@Override
-	public List<join_mgiVO> getMgiList(int company) {
-		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getMgiList", company);
+	public List<join_mgiVO> getMgiList(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getMgiList", map);
 	}
 
 	@Override
 	public List<join_mgiVO> getMgiList2(int company) {
 		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getMgiList2", company);
 	}
+
+	@Override
+	public int createDepart(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.createDepart", map);
+	}
+	
 	
 }
