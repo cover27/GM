@@ -40,7 +40,7 @@ function board_move(){
 	<input type="hidden" name="pageNum" value="${pageNum}">
 	<table border = 1>
 		<tr>
-			<th colspan="6" align="center" style="height:25px">
+			<th colspan="7" align="center" style="height:25px">
 				전체 글목록
 			</th>
 		</tr>
