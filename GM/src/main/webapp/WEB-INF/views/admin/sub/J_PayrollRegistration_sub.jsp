@@ -77,7 +77,7 @@
 			type : 'POST',
 			data : {
 				'id' : id,
-				'rank' : rank,
+				'r_name' : r_name,
 				'j_name' : j_name
 			}, //전송할 데이터
 			success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.

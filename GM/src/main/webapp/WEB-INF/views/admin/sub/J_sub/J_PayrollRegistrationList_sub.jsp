@@ -35,6 +35,14 @@
 					<th>*계좌번호</th>
 					<td colspan="3">${dto.account_number}원</td>
 				</tr>
+<<<<<<< HEAD
+				<th>
+				<c:if test="${dto.state eq '미지급'}">
+					<input type="button" onclick="change('${dto.id}','${j_name}','${r_name}')" value="지급처리">
+				</c:if>
+				<input type="button" onclick="J_PayrollRegistrationListDelete('${dto.id}','${dto.sal_num}')" value="삭제">
+				</th>
+=======
 				<tr>
 					<td colspan="6" class="J_PayrollRegistrationList">
 						<c:if test="${dto.state eq '미지급'}">
@@ -43,6 +51,7 @@
 						<input type="button" onclick="J_PayrollRegistrationListDelete('${dto.id}','${dto.sal_num}')" value="삭제" class="delete_btn">
 					</td>
 				</tr>
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 			</c:forEach>
 		</c:if>
 		<c:if test="${cnt == 0}">
