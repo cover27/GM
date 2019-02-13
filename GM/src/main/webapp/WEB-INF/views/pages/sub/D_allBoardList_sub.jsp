@@ -118,8 +118,8 @@ function delBoard(){
 				<c:if test="${cnt > 0}">
 					<!-- 처음[◀◀] / 이전블록[◀]  -->
 					<c:if test="${startPage > pageBlock}">					
-						<a href="<c:url value='/pages/D_boardList'/>">[◀◀ ]</a>						
-						<a href="<c:url value='/pages/D_boardList?pageNum=${startPage - pageBlock}'/>">[◀ ]</a>
+						<a href="<c:url value='/pages/D_allBoardList'/>">[◀◀ ]</a>						
+						<a href="<c:url value='/pages/D_allBoardList?pageNum=${startPage - pageBlock}'/>">[◀ ]</a>
 					</c:if>
 					
 					<!-- 블록내의 페이지 번호 -->
@@ -128,14 +128,14 @@ function delBoard(){
 							<span><b>[${i}]</b></span>
 						</c:if>
 						<c:if test="${i != currentPage}">
-							<a href="<c:url value='/pages/D_boardList?pageNum=${i}'/>">[${i}]</a>
+							<a href="<c:url value='/pages/D_allBoardList?pageNum=${i}'/>">[${i}]</a>
 						</c:if>
 					</c:forEach>					
 					
 					<!-- 다음 블록[▶] / 끝[▶▶]> -->
 					<c:if test="${pageCount > endPage}">					
-						<a href="<c:url value='/pages/D_boardList?pageNum=${startPage + pageBlock}'/>">[▶ ]</a>						
-						<a href="<c:url value='/pages/D_boardList?pageNum=${pageCount}'/>">[▶▶ ] </a>
+						<a href="<c:url value='/pages/D_allBoardList?pageNum=${startPage + pageBlock}'/>">[▶ ]</a>						
+						<a href="<c:url value='/pages/D_allBoardList?pageNum=${pageCount}'/>">[▶▶ ] </a>
 					</c:if>
 				</c:if>
 			</th>

@@ -15,10 +15,18 @@ function allcheck(){
 
 //삭제할거 정보이전
 function delBoard(){
-	var god = confirm("삭제하시겠습니까?");
+	var god = confirm("선택한것들을 삭제하시겠습니까?");
 	if(god){
 		window.location ="<c:url value='/admin/D_allBoardDeletePro'/>"
-		document.getElementById('boardDel').submit();
+		document.getElementById('boardSelect').submit();
+	}
+}
+// 이동시킬것 정보이전
+function board_move(){
+	var move = confirm("선택한것들을 이동시키겠습니까?");
+	if(move){
+		document.boardSelect.action="<c:url value='/admin/D_boardMovePro'/>";
+		document.boardSelect.submit();
 	}
 }
 </script>
@@ -28,7 +36,7 @@ function delBoard(){
 		<div class="content_header">
 			<h2>게시글 전체 목록</h2>
 		</div>		
-<form action="<c:url value='/admin/D_allBoardDeletePro'/>" method="post" id="boardDel" onsubmit="return delBoard();">
+<form method="post" name= "boardSelect" id="boardSelect">
 	<input type="hidden" name="pageNum" value="${pageNum}">
 	<table border = 1>
 		<tr>
@@ -40,6 +48,7 @@ function delBoard(){
 		<tr>
 			<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allcheck();"/></th>
 			<th style="width:15%"> 게시판명 </th>
+			<th> 이동 대상 게시판 </th>
 			<th style="width:25%"> 글제목 </th>
 			<th style="width:10%"> 작성자 </th>
 			<th style="width:15%"> 작성일 </th>
@@ -66,6 +75,18 @@ function delBoard(){
 									${dtos.b_name}
 								</c:if>
 							</c:forEach>
+						</td>
+					
+						<td>
+								<select name="boardMove">
+										<option value=""> 선택하세요 </option>
+								<c:forEach var="dtos" items="${b_dtos}">
+									<c:if test="${dto.num != dtos.num}">
+   										<option value="${dtos.num}"> ${dtos.b_name}</option>
+   										<script>console.log("-num:::::"+${dtos.num});</script>
+   									</c:if>
+   								</c:forEach>
+							</select>
 						</td>
 						
 						<td>
@@ -94,7 +115,7 @@ function delBoard(){
 						</td>
 					</tr>
 				</c:if>
-				<input type="hidden" name="num" value="${dto.num}">
+					<input type="hidden" name="num" value="${dto.num}">
 			</c:forEach>
 		</c:if>
 		
@@ -145,11 +166,8 @@ function delBoard(){
 	<table>
 		<tr>
 			<th colspan="4">
-				<input type="submit" value="삭제">
-			</th>
-			
-			<th>
-			
+				<input type="button" value="삭제" onclick="delBoard()">
+				<input type="button" value="게시판 이동" onclick="board_move()">
 			</th>
 		</tr>
 	</table>
