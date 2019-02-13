@@ -17,6 +17,7 @@ import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
 import com.spring.gm.vo.join_mgcVO2;
+import com.spring.gm.vo.join_mgsbVO;
 import com.spring.gm.vo.join_msVO;
 
 @Service
@@ -28,7 +29,7 @@ public class J_ServiceImpl implements J_Service {
 	// 전체 급여 회원 뽑기
 	@Override
 	public void salaryList(HttpServletRequest req, Model model) {
-		int pageSize = 10; // 한페이지당 출력할 글 갯수
+		int pageSize = 100; // 한페이지당 출력할 글 갯수
 		int pageBlock = 5; // 한 블럭당 페이지 갯수
 
 		int cnt = 0; // 글갯수
@@ -88,6 +89,7 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println(dtos2.toString());
 			List<join_mgcVO2> dtos3 = dao.selectList3(map); // depart가 부서번호
 			System.out.println("여기 탔다3");
+			System.out.println(dtos3.toString());
 			dtos.addAll(dtos2);
 			dtos.addAll(dtos3);
 			model.addAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
@@ -271,8 +273,8 @@ public class J_ServiceImpl implements J_Service {
 	public void J_PayrollRegistrationchange(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
 		System.out.println("company :" + company);
-		int rank = Integer.parseInt(req.getParameter("rank"));
-		System.out.println("rank :" + rank);
+		String r_name = req.getParameter("r_name");
+		System.out.println("r_name :" + r_name);
 		String j_name = req.getParameter("j_name");
 		System.out.println("j_name :" + j_name);
 		String id = req.getParameter("id");
@@ -290,7 +292,7 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println(dtos.toString());
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("cnt", cnt);
-		model.addAttribute("rank", rank);
+		model.addAttribute("r_name", r_name);
 		model.addAttribute("j_name", j_name);
 	}
 
@@ -813,18 +815,72 @@ public class J_ServiceImpl implements J_Service {
 		}
 		model.addAttribute("cnt", cnt);
 	}
-
-	// 검색 결과값으로 정보 가져오기
+	
+	
+	// ------------------급여 조회-----------------------------
+	// 급여조회 - 검색 결과값으로 정보 가져오기
 	@Override
 	public void searchPayrollInquiry(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		System.out.println("company: " + company);
 		String months = req.getParameter("month");
+		String[] month = months.split("-");
+		months = month[0]+month[1];
 		System.out.println("months: " + months);
 		String id = req.getParameter("id");
 		System.out.println("id: " + id);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		map.put("months", months);
 		
-
+		int cnt2 = dao.mgstblCnt(map); //급여 정보 뽑아오기
+		System.out.println("cnt2 : " + cnt2);
+		int	cnt3 = dao.mgstblCnt2(map);//상여금 정보 뽑아오기
+		System.out.println("cnt3 : " + cnt3);
+		if(cnt2 > 0) {cnt2 = 1;};
+		if(cnt3 > 0) {cnt3 = 1;};
+		int cnt = cnt2 + cnt3;
+		System.out.println("cnt : " + cnt);
+		if(cnt3 == 0 && cnt2 == 1) {cnt = 1;}
+		if(cnt3 == 1 && cnt2 == 0) {cnt = 0;}
+		
+		if(cnt == 2) { //급여 , 상여금 둘다 정보가 있을경우
+		System.out.println("급여 , 상여금 둘다 정보가 있을경우");
+		List<join_mgsbVO> dtos = new ArrayList<join_mgsbVO>();
+		List<join_mgsbVO> dtos2 = dao.mgstbl(map);
+		System.out.println("dtos2 :" + dtos2.toString());
+		List<join_mgsbVO> dtos3 = dao.mgstbl2(map);
+		System.out.println("dtos3 :" + dtos3.toString());
+		List<join_mgsbVO> dtos4 = dao.bonustbl(map);
+		System.out.println("dtos4 :" + dtos4.toString());
+		List<join_mgsbVO> dtos5 = dao.bonustbl2(map);
+		dtos.addAll(dtos2);
+		dtos.addAll(dtos3);
+		
+		System.out.println("dtos.get(0).getDay() :" + dtos.get(0).getDay());
+		
+		int Sumsalarybonus = dtos.get(0).getSalary() + dtos4.get(0).getBonussalary();
+		System.out.println("Sumsalarybonus : " + Sumsalarybonus);
+		model.addAttribute("Sumsalarybonus",Sumsalarybonus);
+		model.addAttribute("dtos",dtos);
+		model.addAttribute("dtos2",dtos5);
+		}
+		
+		if(cnt2 == 1 && cnt3 == 0) { // 급여만 존재한 경우
+			System.out.println("급여만 존재한 경우");
+			List<join_mgsbVO> dtos = new ArrayList<join_mgsbVO>();
+			List<join_mgsbVO> dtos2 = dao.mgstbl(map);
+			System.out.println("dtos2 :" + dtos2.toString());
+			List<join_mgsbVO> dtos3 = dao.mgstbl2(map);
+			System.out.println("dtos3 :" + dtos3.toString());
+			dtos.addAll(dtos2);
+			dtos.addAll(dtos3);
+			model.addAttribute("dtos",dtos);
+		}
+		
+		model.addAttribute("cnt" , cnt);
+		model.addAttribute("cnt2" , cnt3);
 	}
 
 }

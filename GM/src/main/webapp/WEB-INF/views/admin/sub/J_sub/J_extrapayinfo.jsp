@@ -7,15 +7,6 @@
 	
 	<form action="J_extrapayinfoUpdate" method="post">
 		<table>
-		    <thead>
-		        <tr>
-		            <th>추가/삭감</th>
-		            <th>지급/공제(상태)</th>
-		            <th>금액</th>
-		            <th>사유</th>
-		            <th>삭제</th>
-		        </tr>
-		    </thead>
 		    <tbody>
 		        <c:if test="${cnt > 0}">
 		            <c:forEach var="dto" items="${dtos}">
@@ -26,7 +17,7 @@
 		                    <td>${dto.content}</td>
 		                    <td>
 		                        <input type="button" value="삭제" onclick="deleteInfo('${dto.num}')">
-		                        <input type="button" value="수정" onclick="J_ExtrapayInfoModified('${dto.num}')">
+		                        <input type="button" value="수정" onclick="J_ExtrapayInfoModified('${dto.num}')" style="background:#d3292c;">
 		                    </td>
 		                </tr>
 		                <input type=hidden name="id" value="${dto.id}">
@@ -57,7 +48,10 @@
 
 		<input type=hidden name="id" value="${id}">
 		<div class="J_BasicAllowanceManagement_btnset">
-			<button name="addStaff" onclick="addhang()">행 추가</button>
-			<input type="submit" value="저장">
+			<div class="fright">
+				<input type="button" value="행 추가" name="addStaff" onclick="addhang()">
+				<input type="submit" value="저장">
+			</div>
+			<div class="clear"></div>
 		</div>
 	</form>

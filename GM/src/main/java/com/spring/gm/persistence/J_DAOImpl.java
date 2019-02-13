@@ -14,6 +14,7 @@ import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
 import com.spring.gm.vo.join_mgcVO2;
+import com.spring.gm.vo.join_mgsbVO;
 import com.spring.gm.vo.join_msVO;
 import com.spring.gm.persistence.J_DAO;
 
@@ -471,6 +472,49 @@ public class J_DAOImpl implements J_DAO {
 		ArrayList<join_mgcVO2> dtos = null;
 		J_DAO dao = sqlSession.getMapper(J_DAO.class);
 		dtos = dao.searchIdList2(map);
+		return dtos;
+	}
+	@Override
+	public int mgstblCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.mgstblCnt", map);
+		return cnt;
+	}
+	@Override
+	public int mgstblCnt2(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.mgstblCnt2", map);
+		return cnt;
+	}
+	
+	//-----------------------급여 조회------------------------------------
+	//급여 부서명 가져오는  셀리리조인 
+	@Override
+	public ArrayList<join_mgsbVO> mgstbl(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.mgstbl(map);
+		return dtos;
+	}
+	//급여 회사명 가져오는  셀리리조인
+	@Override
+	public ArrayList<join_mgsbVO> mgstbl2(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.mgstbl2(map);
+		return dtos;
+	}
+	//Bonus_cut 정보 가져오기
+	@Override
+	public ArrayList<join_mgsbVO> bonustbl(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.bonustbl(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgsbVO> bonustbl2(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.bonustbl2(map);
 		return dtos;
 	}
 }

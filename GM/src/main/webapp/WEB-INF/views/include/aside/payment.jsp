@@ -4,64 +4,6 @@
 <link rel="stylesheet" href="${path}css/aside.css">
 <link rel="stylesheet" href="${path}css/content.css">
 
-<script type="text/javascript">
-	// alert(window.location.href);
-	var url = window.location.href.split('gm');
-	var url_split = url[1].split('/');
-    var category = url_split[2].split('?');
-	
-	if(category[0] == "O_createApprDocFormView"){
-		// alert("됨");
-		$(function(){
-			$("#O_createApprDocFormView").children().css("color", "#d3292c");
-			$("#O_createApprDocFormView").css("font-weight", "bold");
-		});
-	} else if(category[0] == "O_listApprMyRequestView") {
-		$(function(){
-			$("#O_listApprMyRequestView").children().css("color", "#d3292c");
-			$("#O_listApprMyRequestView").css("font-weight", "bold");
-		});
-	} else if(category[0] == "O_listApprTempView") {
-		$(function(){
-			$("#O_listApprTempView").children().css("color", "#d3292c");
-			$("#O_listApprTempView").css("font-weight", "bold");
-		});
-	} else if(category[0] == "O_listApprTodoView") {
-		$(function(){
-			$("#O_listApprTodoView").children().css("color", "#d3292c");
-			$("#O_listApprTodoView").css("font-weight", "bold");
-		});
-	} else if(category[0] == "O_listApprCompleteView") {
-		$(function(){
-			$("#O_listApprCompleteView").children().css("color", "#d3292c");
-			$("#O_listApprCompleteView").css("font-weight", "bold");
-		});
-	} else if(category[0] == "O_readApprAllListView") {
-		$(function(){
-			$("#O_readApprAllListView").children().css("color", "#d3292c");
-			$("#O_readApprAllListView").css("font-weight", "bold");
-		});
-	} else if(category[0] == "O_listApprRejectView") {
-		$(function(){
-			$("#O_listApprRejectView").children().css("color", "#d3292c");
-			$("#O_listApprRejectView").css("font-weight", "bold");
-		});
-	} else if(category[0] == "O_listApprReferenceView") {
-		$(function(){
-			$("#O_listApprReferenceView").children().css("color", "#d3292c");
-			$("#O_listApprReferenceView").css("font-weight", "bold");
-		});
-	} else if(category[0] == "O_listApprDocAllAdminView") {
-		$(function(){
-			$("#O_listApprDocAllAdminView").children().css("color", "#d3292c");
-			$("#O_listApprDocAllAdminView").css("font-weight", "bold");
-		});
-	} else {
-		alert("카테고리 로딩 오류");
-	}
-	
-</script>
-
 <aside>
 	<!-- 사용 안하는 사이드바
     <div class="sidebar"></div>

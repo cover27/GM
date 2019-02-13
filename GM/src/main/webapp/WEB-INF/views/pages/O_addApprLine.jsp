@@ -3,12 +3,27 @@
 <%@ include file="/WEB-INF/views/setting.jsp"%>  
 
 <script type="text/javascript">
+
+	function change1(){
+		$(function(){
+			var displaycourse=$('#apprTypeChange option:selected').text();
+			var aaa = $(this).val();
+			alert(aaa);
+			$(this).parent().prev().html(displaycourse);
+		});
+	}
+
 //결재자 클릭시 추가하는 버튼
 $(document).ready(function(){
 	$('#btnItemAdd').click(function(){
 		var radioVal = $('input[name="id"]:checked').val();
 		var radioApprType = $('input[name="apprType"]:checked').val();
-		$('#liDiv > table > tbody:first').append('<tr><td style="padding:10px 5px; width: 30px; text-align: center;"><input type="radio" name="id2"></td><td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">'+radioApprType+ '</td><td class="textLeft ellipsis" id="apprTypeTd1" style="border-left:1px solid #F0F3F7; padding-left: 3px;">' + radioVal +'</td></tr>');
+		//if(radioVal.value!=$('input[name="apprTypeTd2"]').val()){
+			alert($('input[name="id"]:checked').val());
+			$('#liDiv > table > tbody:first').append('<tr><td style="padding:10px 5px; width: 30px; text-align: center;"><input type="radio" id="id2" name="id2"></td><td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">'+radioApprType+ '</td><td class="textLeft ellipsis" id="apprTypeTd1" style="border-left:1px solid #F0F3F7; padding-left: 3px;"><input type="hidden" name="apprTypeTd2" value="${radioVal}">' + radioVal +'</td><td><select id="apprTypeChange" name="apprTypeChange" title="결재방법변경" style="float:right;"><option value="2" selected="selected">결재</option><option value="1">합의</option></select></td></tr>');
+		//}else{
+		//	alert($('input[name="apprTypeTd2"]').val());
+		//}
 	});
 	
 	//삭제 버튼
@@ -20,10 +35,43 @@ $(document).ready(function(){
 		trHtml.remove();
 	});
  	
+ 	// 결재선 지정 적용
+ 	$("#btnApply").click(function() {
+		var approverId=[];
+ 		var $resultItems = $("#tbodyRusult").children();
+ 		
+ 		if($resultItems.length <= 0) {
+ 			alert("결재선을 선택하지 않으셨습니다.");
+ 			return false;
+ 		}else{
+ 			alert("결제선 적용 되었습니다.");
+ 			window.close();
+ 		}
+ 		
+		// 결재선 중복체크
+		/* $.each($resultItems, function(idx) {
+			var data = $.extend({}, $.data(this, "data"));
+			approverId[idx]=this.type=='group'?data.code:data.id;
+		}); */
+ 	});
+ 	
+ 	
+ 	
+ 	/* $('#apprTypeChange').change(function(){
+		alert(111);
+		var displaycourse=$('#apprTypeChange option:selected').text();
+		$(this).parent().prev().html(displaycourse);
+	}); */
+ 	
 });
 
+/* function getSelectValue(frm){
+	frm.apprType.value = frm.apprTypeChange.options[frm.apprTypeChange.selectedIndex].text;
+}  */
 
-//select문으로 선택 값 바꾸기
+		
+
+
 </script>
 
 
@@ -173,7 +221,7 @@ input, button, select, textarea {
 <body>
 <div class="body pd" style="padding:10px;">
 
-	<form action="" method="post">
+	<form action="O_createApprDocFormView" method="post">
 		<div class="shuttleL w30p ui-tabs ui-widget ui-widget-content ui-corner-all" id="divTabs">					
 			<ul class="nav nav-tabs6 push ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" data-toggle="tabs" role="tablist">
 				<li class="active ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="tab-orggroup" aria-labelledby="ui-id-1" aria-selected="true">
@@ -198,8 +246,10 @@ input, button, select, textarea {
 														<c:if test="${dto.getG_name()==dname}">
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															<!-- <a href="#" onclick="approval();"> -->
+															<label>
 															<input type="radio" name="id" value="${dto.getName()}(${dto.getId()}) - ${dto.getG_name()}"><ins class="fa fa-leaf">&nbsp;</ins>
 																${dto.getName()}(${dto.getId()})<!-- </a> -->
+															</label>
 														</c:if>
 														</li>
 													</ul>
@@ -232,7 +282,7 @@ input, button, select, textarea {
 				</ul>						
 			</div>
 		</div>
-	</form>	
+	
 	
 	
 	<div class="shuttleR w60p">
@@ -253,43 +303,43 @@ input, button, select, textarea {
 			
 				
 			<div class="line-wrap">
-				<div class="fleft" style="width:67% !important; overflow-y:auto;">
-<!-- 					<ul id="ulResult" class="list-selectable ui-sortable" style="width:100%; font-size:1em;"> -->
-						<li class="ui-state-default important nomove">
-							<div class="liDiv">
-								<table cellspacing="1" cellpadding="1" border="0" style="width: 100%; table-layout:fixed; border:1px solid #eee">
-									<tbody>
-										<tr>
-											<td style="padding:10px 5px; width: 30px; text-align: center;"></td>
-											<td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">결재</td>
-											<td class="textLeft ellipsis" style="border-left:1px solid #F0F3F7; padding-left: 3px;">${vo.getName()} 기안 ${vo.getG_name()}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</li>
+				<div class="fleft" style="width:80% !important; overflow-y:auto;">
+ 						<ul id="ulResult" class="list-selectable ui-sortable" style="width:100%; font-size:1em;">
+							<li class="ui-state-default important nomove">
+								<div class="liDiv">
+									<table cellspacing="1" cellpadding="1" border="0" style="width: 100%; table-layout:fixed; border:1px solid #eee">
+										<tbody>
+											<tr>
+												<td style="padding:10px 5px; width: 30px; text-align: center;"></td>
+												<td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">결재</td>
+												<td class="textLeft ellipsis" style="border-left:1px solid #F0F3F7; padding-left: 3px;">${vo.getName()} 기안 ${vo.getG_name()}</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</li>
 						
-						<li class="ui-state-default important move ui-selected">
-							<div class="liDiv" id="liDiv">
-								<table cellspacing="1" cellpadding="1" border="0" style="width: 100%; table-layout:fixed; border:1px solid #eee">
-									<tbody>
-										<!-- <tr>
-											<td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">결재</td>
-											<td class="textLeft ellipsis" id="apprTypeTd1" style="border-left:1px solid #F0F3F7; padding-left: 3px;"></td>
-										</tr> -->
-									</tbody>
-								</table>
-							</div>
-						</li>
-					</ul>
-				</div>
+							<li class="ui-state-default important move ui-selected">
+								<div class="liDiv" id="liDiv">
+									<table cellspacing="1" cellpadding="1" border="0" style="width: 100%; table-layout:fixed; border:1px solid #eee">
+										<tbody id="tbodyRusult">
+											<!-- <tr>
+												<td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">결재</td>
+												<td class="textLeft ellipsis" id="apprTypeTd1" style="border-left:1px solid #F0F3F7; padding-left: 3px;"></td>
+											</tr> -->
+										</tbody>
+									</table>
+								</div>
+							</li>
+						</ul>
+					</div>
 				
-				<div class="fright w30p" style="overflow-y:auto;">	
+				<!-- <div class="fright w30p" style="overflow-y:auto;">	
 					
 					<div style="border:1px solid #eee" class="pt5 pl5 pr5 pb5 mb5" id="apprTypeDiv">
 						<dt><strong>결재방법변경</strong>
 							<dl>
-								<select id="apprTypeChange" name="apprTypeChange" title="결재방법변경" class="w100p" onChange="getSelectValue(this.form);">
+								<select id="apprTypeChange" name="apprTypeChange" title="결재방법변경" class="w100p">
 									<option value="0" selected="selected">결재</option>
 									<option value="1">합의</option>
 								</select>
@@ -297,7 +347,7 @@ input, button, select, textarea {
 						</dt>
 					</div>
 					
-					<!-- <div id="setAuth" class="none" style="display: block;">
+					<div id="setAuth" class="none" style="display: block;">
 						
 							<div style="border:1px solid #eee" class="pt5 pl5 pr5 pb5 mb5">
 								<dt><strong>권한설정</strong>
@@ -318,8 +368,8 @@ input, button, select, textarea {
 								<label for="agreePar">병렬합의</label>
 							</dl>												
 						</dt>
-					</div> -->
-				</div>
+					</div>
+				</div> -->
 			</div>
 
 			<div class="clearboth"></div>
@@ -335,11 +385,12 @@ input, button, select, textarea {
 		<div id="formButtonDiv">
 			<div class="left"></div>
 			<div class="right">							
-				<button id="btnApply" type="button" class="btn btn-color5 br">적용</button>
-		    	<button id="btnClose" type="button" class="btn btn-color7 br">닫기</button>
+				<button id="btnApply" type="submit" class="btn btn-color5 br">적용</button>
+		    	<button id="btnClose" type="button" class="btn btn-color7 br" onclick="javascript:window.close()">닫기</button>
 		    </div>
 		</div>
 	</div>
+	</form>	
 </div>
 
 
