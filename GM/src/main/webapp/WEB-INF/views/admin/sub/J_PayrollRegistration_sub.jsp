@@ -220,7 +220,7 @@
 					</c:if>
 				</c:if>
 			</div>
-			<div class="subtitle mt60">
+			<div class="subtitle">
                 <h3>이번달 급여 목록</h3>
             </div>
 			<div id="result" class="salary_info_result">

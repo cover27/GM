@@ -4,17 +4,18 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<h2>게시판 삭제 처리</h2>
-	<c:if test="${deleteCnt == 0}">
+	<h2>글 이동 처리</h2>
+	<c:if test="${updateCnt == 0}">
 		<script type="text/javascript">
-			alert("삭제를 실패하였습니다.");
+			alert("이동에 실패하였습니다.");
 			window.history.back();
 		</script>
 	</c:if>
-	<c:if test="${deleteCnt != 0}">
+	
+	<c:if test="${updateCnt != 0}">
 		<script type="text/javascript">
-			alert("삭제되었습니다.");
-			window.location="<c:url value='/pages/D_boardList?pageNum=${pageNum}&num=${num}'/>";
+			alert("이동되었습니다.");
+			window.location="<c:url value='/admin/D_allBoardAdmin'/>";
 		</script>
 	</c:if>
 </body>

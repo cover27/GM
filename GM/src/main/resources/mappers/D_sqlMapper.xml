@@ -159,4 +159,10 @@
 			UPDATE BOARDLIST SET del = 1 WHERE boardnum = #{boardnum}
 		]]>
 	</update>
+	
+	<update id="boardMove" parameterType="com.spring.gm.vo.BoardListVO">
+		<![CDATA[
+			UPDATE BOARDLIST SET num = #{num} WHERE boardnum = #{boardnum}
+		]]>
+	</update>
 </mapper>

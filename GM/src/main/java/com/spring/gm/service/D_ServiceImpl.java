@@ -726,6 +726,8 @@ public class D_ServiceImpl implements D_Service{
 	@Override
 	public void boardDel(HttpServletRequest req, Model model) {
 		int deleteCnt = 0;
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int num = Integer.parseInt(req.getParameter("num"));
 		String [] boardArr = req.getParameterValues("checkRow");
 		
 		if(boardArr != null && boardArr.length > 0) {
@@ -737,7 +739,31 @@ public class D_ServiceImpl implements D_Service{
 		}
 		
 		model.addAttribute("deleteCnt", deleteCnt);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("num", num);
+	}
+
+	@Override
+	public void boardMove(HttpServletRequest req, Model model) {
+		int updateCnt = 0;
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		//int num = Integer.parseInt(req.getParameter("num"));
+		String [] moveArr = req.getParameterValues("checkRow");
+		String [] nums = req.getParameterValues("num");
+		
+		if(moveArr != null && moveArr.length > 0) {
+			for(int i=0; i<moveArr.length; i++) {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+					map.put("boardnum", Integer.parseInt(moveArr[i]));
+					map.put("num", Integer.parseInt(nums[i]));
+					updateCnt = dao.boardMove(map);
+			}
+		}
+		
+		model.addAttribute("updateCnt", updateCnt);
+		model.addAttribute("pageNum", pageNum);
+		//model.addAttribute("num", num);		
 		
 	}
-		
+
 }
