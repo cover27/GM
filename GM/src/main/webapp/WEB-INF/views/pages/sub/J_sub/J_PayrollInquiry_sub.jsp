@@ -10,9 +10,6 @@
 	cnt == 2 은 둘다 정보가 있을때
 	cnt2 == 상여여금 목록 불러오기
 	  -->
-	
-	
-	
 	<table border="1">
 		<c:if test="${cnt == 0}">
 			<tr>

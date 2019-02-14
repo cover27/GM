@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.K_Service;
+import com.spring.gm.vo.MemberVO;
 
 @Controller
 public class K_Controller {
@@ -32,6 +33,8 @@ public class K_Controller {
 	// 로그인 프로세스
 	@RequestMapping("loginPro")
 	public String loginPro(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : login");
 		
 		return "common/main";

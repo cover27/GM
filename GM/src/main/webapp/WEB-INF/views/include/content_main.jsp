@@ -109,10 +109,19 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='/admin/J_SalaryDefaultSetting'/>">
+                        	<c:if test="${sys_rank == 1 }">
+                        	<a href="<c:url value='/admin/J_SalaryDefaultSetting'/>">
                                 <h2>급여관리</h2>
                                 <span class="salary_management"></span>
                             </a>
+                        	</c:if>
+                        	
+                        	<c:if test="${sys_rank != 1 }">
+                        	<a href="<c:url value='/pages/J_PayrollInquiry'/>">
+                                <h2>급여관리</h2>
+                                <span class="salary_management"></span>
+                            </a>
+                        	</c:if>
                         </li>
                         <!-- 사용안함
                         <li>
