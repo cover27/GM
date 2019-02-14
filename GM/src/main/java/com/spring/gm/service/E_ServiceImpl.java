@@ -134,7 +134,8 @@ public class E_ServiceImpl implements E_Service {
 		// 1. 세션 로그인 되어있는 사용자의 정보를 가져옴
 		// 2. 가져온 사용자 정보에서 company 를 가져온다.
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
-		int depart = Integer.parseInt(req.getParameter("depart"));	// 새로운 제한조건 추가
+		int depart = Integer.parseInt(req.getParameter("depart"));	// 새로운 제한조건 추가 (SQL문의 where속성문에 and되는 부분)
+
 		
 		// SQL join
 		
@@ -254,10 +255,6 @@ public class E_ServiceImpl implements E_Service {
 	// 조직도 - 개인 그룹 목록 (전체 list에서 특정 인물만 내 게시판 목록으로 가져옴)
 	@Override
 	public void E_myGroupList(HttpServletRequest req, Model model) {
-		// 1. 세션 로그인 되어있는 사용자의 정보를 가져옴
-		// 2. 가져온 사용자 정보에서 company 를 가져온다.
-	//	int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
-	//	int b_name = Integer.parseInt(req.getParameter("bName"));	// 새로운 제한조건 추가
 
 	
 	}
@@ -266,52 +263,10 @@ public class E_ServiceImpl implements E_Service {
 	// 조직도 - 개인그룹 관리 ( 멀티 체크박스 게시판 정보 이동 )
 	@Override
 	public void E_MyGroupManage(HttpServletRequest req, Model model) {
-		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
-		int b_name = Integer.parseInt(req.getParameter("bName"));
+		
 		
 	}
 	
 
-	
-	
-/*
-	-- 선빈이 코드 참고용 ( 멀티 체크박스 게시판 정보 이동 )
-	@Override
-	public void K_appMember(HttpServletRequest req, Model model) {
-		int appcan = Integer.parseInt(req.getParameter("appcan"));	-- appcan은 name="이름값"
-		int state = 0;
-		
-		if(req.getParameterValues("check") != null){ //클릭이 되어 있어야됨
-			String[] checks = req.getParameterValues("check");
-			if(appcan == 0) { //승인한다면
-				for(int i=0; i<checks.length; i++) {
-					Map<String, String> map = new HashMap<String, String>();
-					map.put("id", checks[i]);
-					map.put("auth", "USER");
-					dao.updateAuthorities(map);
-					
-					Map<String, Object> map2 = new HashMap<String, Object>();
-					map2.put("id", checks[i]);
-					map2.put("rank", 2); // sysrank -> 2는 일반 사용자
-					dao.updateSysrank(map2);
-					
-					
-				}
-				
-			} else { //취소한다면 -> member's sysrank -> 4(승인거절자) 로 바꿈(메일로 승인 거절됨을 알림)
-				for(int i=0; i<checks.length; i++) {
-					Map<String, Object> map2 = new HashMap<String, Object>();
-					map2.put("id", checks[i]);
-					map2.put("rank", 4);
-					dao.updateSysrank(map2);
-				}
-			}
-			state = 1;
-		} else { // 클릭이 안되어 있음. 클릭하라고 경고창쓰
-			state = -1;
-		}
-		req.setAttribute("state", state);
-	}
-	*/
 	
 }

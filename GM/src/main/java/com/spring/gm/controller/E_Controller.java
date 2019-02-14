@@ -71,13 +71,7 @@ public class E_Controller {
 		return "pages/E_myGroupManage";
 	}
 	
-	// 조직도 - 자주 연락하는 사람 관리 게시판
-/*	@RequestMapping("/pages/E_orgMyFavoritMemList")
-	public String E_MyFavoritMemList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_orgMyFavoritMemList");
-		
-		return "pages/E_orgMyFavoritMemList";
-	}*/
+
 	
 	
 	

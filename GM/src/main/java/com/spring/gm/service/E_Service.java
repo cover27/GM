@@ -21,4 +21,6 @@ public interface E_Service {
 	// 조직도 - 개인그룹 관리
 	public void E_MyGroupManage(HttpServletRequest req, Model model);
 	
+	
+	
 }

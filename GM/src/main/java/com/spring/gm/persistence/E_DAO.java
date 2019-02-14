@@ -24,8 +24,6 @@ public interface E_DAO {
 	// 조직도 - 로그인 정보 회사 이름 찾기
 	public String findCompanyName(int company);
 	
-	// 조직도 - 전체 or 부서 게시판 내용 -> 개인 그룹 목록 으로 가져올 때 사용
-	public int getMemberList(Map<String, String> map);
-	
+
 	
 }
