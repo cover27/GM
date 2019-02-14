@@ -517,4 +517,35 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.bonustbl2(map);
 		return dtos;
 	}
+	
+	
+	//-----------------------------급여 계산-------------------------------------------
+	//급여 계산 목록 가져오기
+	@Override
+	public int J_SalaryCalculationSearchCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.J_SalaryCalculationSearchCnt", map);
+		return cnt;
+	}
+	
+	@Override
+	public ArrayList<join_mgsbVO> J_SalaryCalculationSearchList(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.J_SalaryCalculationSearchList(map);
+		return dtos;
+	}
+	// 검색 날짜가 있을 경우
+	@Override
+	public int J_SalaryCalculationSearchCnt2(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.J_SalaryCalculationSearchCnt2", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_mgsbVO> J_SalaryCalculationSearchList2(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.J_SalaryCalculationSearchList2(map);
+		return dtos;
+	}
+	
 }

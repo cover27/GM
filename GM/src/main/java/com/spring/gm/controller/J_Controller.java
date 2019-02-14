@@ -286,4 +286,14 @@ public class J_Controller {
 		service.searchPayrollInquiry(req, model);
 		return "admin/sub/J_sub/J_PayrollInquiry_sub";
 	}
+	
+	
+	//-----------------------급여 계산------------------------------------
+	//급여 계산 목록 가져오기
+	@RequestMapping("/admin/J_SalaryCalculationSearch")
+	public String J_SalaryCalculationSearch(HttpServletRequest req, Model model) {
+		logger.info("URL : J_SalaryCalculationSearch");
+		service.J_SalaryCalculationSearch(req, model);
+		return "admin/sub/J_sub/J_SalaryCalculation_sub";
+	}
 }
