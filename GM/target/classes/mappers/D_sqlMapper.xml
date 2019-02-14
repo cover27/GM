@@ -12,12 +12,12 @@
 	</insert>
 	
 	<select id="getBoardsArticleCnt" resultType="int">
-		SELECT COUNT(*) as cnt FROM BOARDS
+		SELECT COUNT(*) as cnt FROM BOARDS WHERE groupId = #{company}
 	</select>
 	
 	<select id="getBoardsArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardsVO">
 		<![CDATA[
-			SELECT * FROM(SELECT num, groupId, b_name, anon, del, rownum rNum FROM (SELECT * FROM BOARDS ORDER BY num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT num, groupId, b_name, anon, del, rownum rNum FROM (SELECT * FROM BOARDS WHERE groupId = #{company} ORDER BY num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>
 	
@@ -130,11 +130,13 @@
 	</update>
 	
 	
-	<select id="getAllBoardArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardListVO">
+	<select id="getAllBoardArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardListAndBoardsVO">
 		<![CDATA[
 		SELECT * 
-		FROM (SELECT boardnum, num, writer, subject, content, re_num, readcnt, ref, ref_step, ref_level, reg_date, del, rownum as rNum
-			FROM (SELECT * FROM BOARDLIST ORDER BY ref DESC, ref_step ASC)
+		FROM (SELECT b.boardnum, b.num, b.writer, b.subject, b.content, b.re_num, b.readcnt, b.ref, b.ref_step, b.ref_level, b.reg_date, b.del, r.groupId,rownum as rNum
+			FROM (SELECT * FROM BOARDLIST ORDER BY ref DESC, ref_step ASC) b , BOARDS r
+			WHERE b.num = r.num
+			AND r.groupId = #{company}
 			)
 			WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
