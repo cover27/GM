@@ -3,6 +3,43 @@
 
 <link rel="stylesheet" href="${path}css/layout.css">
 <link rel="stylesheet" href="${path}css/signup.css">
+
+<script type="text/javascript">
+//id 중복확인체크함수
+function confirmId(){
+	//id값 미입력시
+	if(!document.inputform.id.value){
+		alert('아이디를 입력하세요');
+		document.inputform.id.focus();
+		return false;
+	}
+	
+	$("#confirmId").fadeIn(1500);
+	
+	var getId = document.inputform.id.value;
+	console.log(getId);
+	
+	$.ajax({
+		type : "POST",
+		url : "${pageContext.request.contextPath}/confirmId",
+		data : {
+			"id" : getId
+		},
+		success : function(result) {
+			// alert("성공");
+			$("#confirmId").html(result);
+		},
+		error : function() {
+			alert("아이디 조회가 실패하였습니다.");
+			console.log(getId);
+		}
+	});
+	
+	
+	// window.open(url, "confirm", "menubar=no, width=300, height=200");
+}
+</script>
+
 <div class="signup_wrap">
     <form action="registAccount" method="post" name="inputform" onsubmit="return inputCheck();">
         <input type="hidden" name="hiddenId" value="0">
@@ -15,7 +52,7 @@
                         <li>
                             <span>*아이디</span>
                             <input type="text" class="haveBtn" name="id" placeholder="아이디를 입력하세요." autofocus>
-                            <input type="button" name="dupChk" value="중복확인" onclick="confirmId();"></li>
+                            <input type="button" name="dupChk" value="중복확인" onclick="confirmId();">
                         <li>
                             <span>*비밀번호</span>
                             <input type="password" name="pwd" placeholder="비밀번호를 입력하세요.">
@@ -26,11 +63,11 @@
                         </li>
                         <li>
                             <span>*이름</span>
-                            <input type="text" name="name">
+                            <input type="text" name="name" placeholder="이름을 입력하세요.">
                         </li>
                         <li>
                             <span>*회사</span>
-                            <input type="text" class="haveBtn" name="depart_name" readonly>
+                            <input type="text" class="haveBtn" name="depart_name" placeholder="회사조회를 클릭하세요." readonly>
                             <input type="button" value="회사조회" onclick="findCompany();">
                         </li>
                         <li>
@@ -51,6 +88,8 @@
                         	</span>
                         </li>
                     </ul>
+                    <div id="confirmId">
+                    </div>
                 </div>
             </div>
             <div class="signup_box">
@@ -60,9 +99,9 @@
                         <li class="jumin">
                            <span>*주민등록번호</span>
                            <span class="input_wrap">
-	                           <input type="text" name="jumin1" maxlength="6" onkeyup='nextJumin();'>
+	                           <input type="text" name="jumin1" maxlength="6" onkeyup='nextJumin();' placeholder="000000">
 	                           <b>-</b>
-	                           <input type="password" name="jumin2" maxlength="7">
+	                           <input type="password" name="jumin2" maxlength="7" placeholder="0000000">
                            </span>
                         </li>
                         <li>
@@ -89,16 +128,16 @@
                         <li class="hp">
                             <span>*휴대폰번호</span>
                             <span class="input_wrap">
-	                            <input type="text" name="hp1" maxlength="3" onkeyup="nextHp1();">
+	                            <input type="text" name="hp1" maxlength="3" onkeyup="nextHp1();" placeholder="000">
 	                            <b>-</b>
-	                            <input type="text" name="hp2" maxlength="4" onkeyup="nextHp2();">
+	                            <input type="text" name="hp2" maxlength="4" onkeyup="nextHp2();" placeholder="0000">
 	                            <b>-</b> 
-	                            <input type="text" name="hp3" maxlength="4" onkeyup="nextHp3();">
+	                            <input type="text" name="hp3" maxlength="4" onkeyup="nextHp3();" placeholder="0000">
                             </span>
                         </li>
                         <li>
                             <span>*주소</span>
-                            <input type="text" name="address">
+                            <input type="text" name="address" placeholder="주소를 입력하세요.">
                         </li>
             		</ul>
             	</div>
@@ -109,11 +148,11 @@
                     <ul>
                         <li>
                             <span>영문이름</span>
-                            <input type="text" name="eng_name">
+                            <input type="text" name="eng_name" placeholder="Please Enter Your Name">
                         </li>
                         <li>
 	                        <span>국적</span>
-	                        <input type="text" name="nation">
+	                        <input type="text" name="nation" placeholder="국적을 입력하세요">
                         </li>
                         <li id="wedding">
                             <span>결혼기념일</span>
@@ -122,16 +161,16 @@
                         <li class="hp">
                             <span>자택번호</span>
                             <span class="input_wrap">
-	                            <input type="text" name="hm1" maxlength="4" onkeyup="nextHm1();">
+	                            <input type="text" name="hm1" maxlength="4" onkeyup="nextHm1();" placeholder="000">
 	                            <b>-</b>
-	                            <input type="text" name="hm2" maxlength="4" onkeyup="nextHm2();">
+	                            <input type="text" name="hm2" maxlength="4" onkeyup="nextHm2();" placeholder="0000">
 	                            <b>-</b> 
-	                            <input type="text" name="hm3" maxlength="4" onkeyup="nextHm3();">
+	                            <input type="text" name="hm3" maxlength="4" onkeyup="nextHm3();" placeholder="0000">
                             </span>
                         </li>
                         <li>
                             <span>영문주소</span>
-                            <input type="text" name="eng_address">
+                            <input type="text" name="eng_address" placeholder="Please Enter Your Address">
                         </li>
                     </ul>
                 </div>

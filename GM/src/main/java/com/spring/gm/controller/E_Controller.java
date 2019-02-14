@@ -78,18 +78,6 @@ public class E_Controller {
 
 	
 	
-	
-	
-	
-	
-	// 주소록 - 주소록 첫페이지
-	@RequestMapping("/pages/E_addressList")
-	public String E_addressList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_addressList");
-		
-		return "pages/E_addressList";
-	}
-	
 	// 메모 게시판
 	@RequestMapping("/pages/E_memoList")
 	public String E_memoList(HttpServletRequest req, Model model) {
@@ -108,6 +96,21 @@ public class E_Controller {
 		return "pages/E_memoInfo";
 	}
 	
+	
+	
+	
+	
+	
+	
+	// 주소록 - 주소록 첫페이지
+	@RequestMapping("/pages/E_addressList")
+	public String E_addressList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_addressList");
+		
+		return "pages/E_addressList";
+	}
+	
+
 
 
 	

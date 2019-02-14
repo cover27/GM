@@ -22,6 +22,13 @@ public class E_ServiceImpl implements E_Service {
 	E_DAO dao;
 
 	
+	@Override
+	public void E_memoList(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	// 조직도 - 첫페이지,	 내회사 전체 구성원 목록	
 	@Override
 	public void E_organizationList(HttpServletRequest req, Model model) {

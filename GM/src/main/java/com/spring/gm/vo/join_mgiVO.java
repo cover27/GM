@@ -10,6 +10,7 @@ public class join_mgiVO {
 	private String tel; // 전화번호
 	private String email; // 이메일
 	private int leader; // 부서장 여부 1이면 부서장 아니면 그냥 부서원
+	private int sys_rank; // 관리자 여부
 	
 	public String getId() {
 		return id;
@@ -65,6 +66,11 @@ public class join_mgiVO {
 	public void setLeader(int leader) {
 		this.leader = leader;
 	}
-	
+	public int getSys_rank() {
+		return sys_rank;
+	}
+	public void setSys_rank(int sys_rank) {
+		this.sys_rank = sys_rank;
+	}
 	
 }

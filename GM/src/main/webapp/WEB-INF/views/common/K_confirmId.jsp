@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <style>
-	body {
-		background: #fff;
-	}
+	
 </style>
 <script type="text/javascript">
 	
@@ -17,9 +15,9 @@
 	}
 	
 	function setId(id){
-		opener.document.inputform.id.value=id;
-		opener.document.inputform.hiddenId.value="1";
-		self.close();
+		document.inputform.id.value=id;
+		document.inputform.hiddenId.value="1";
+		$("#confirmId").fadeOut(1500);
 	}
 </script>
 
@@ -42,9 +40,9 @@
 				</tr>
 				
 				<tr>
-					<th colspan="2">
-						<input type="submit" value = "확인">
-						<input type="reset" value="취소" onclick="self.close();">
+					<th colspan="2" style="height:100px;">
+						<input type="submit" value = "확인" style="height: 36px;">
+						<input type="reset" value="취소" onclick="self.close();" style="height: 36px;">
 					</th>
 				</tr>
 			</table>
@@ -57,8 +55,8 @@
 					</td>
 				</tr>
 				<tr>
-					<th>
-						<input type="button" value = "확인" onclick="setId('${id}');">
+					<th style="height:100px;">
+						<input type="button" value = "확인" onclick="setId('${id}');" style="height: 36px;">
 					</th>
 				</tr>
 			</table>
