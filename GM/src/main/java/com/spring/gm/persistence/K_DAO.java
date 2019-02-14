@@ -8,6 +8,7 @@ import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.GradeVO;
+import com.spring.gm.vo.Grade_visibleVO;
 import com.spring.gm.vo.GroupInfoVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
@@ -115,4 +116,25 @@ public interface K_DAO {
 	public int changeleader1(int depart);
 	
 	public int changeleader2(Map<String, Object> map);
+	
+	public List<Grade_visibleVO> getGrades(int company);
+	
+	public int getGradeCnt(int rank);
+	
+	public int insertGrade(GradeVO vo);
+	
+	public int updateGrade(GradeVO vo);
+	
+	public int deleteGrade(int rank);
+	
+	public List<join_mgiVO> getMgiList3(int company);
+	
+	public int insertManager(String id);
+	
+	public int insertManager2(String id);
+	
+	public int deleteManager(String id);
+	
+	public int deleteManager2(String id);
+	
 }

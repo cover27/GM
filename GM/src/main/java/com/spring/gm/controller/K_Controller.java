@@ -300,6 +300,7 @@ public class K_Controller {
 		return "admin/sub/K_departLeader_pro";
 	}
 	
+	//직급관리
 	@RequestMapping("admin/K_manageRank")
 	public String K_manageRank(HttpServletRequest req, Model model) {
 		logger.info("URL : K_manageRank");
@@ -307,6 +308,36 @@ public class K_Controller {
 		service.K_manageRank(req, model);
 		
 		return "admin/K_manageRank";
+	}
+	
+	// 직급삭제
+	@RequestMapping("admin/K_deleteRank")
+	public String K_deleteRank(HttpServletRequest req, Model model) {
+		logger.info("URL : K_deleteRank");
+		
+		service.K_deleteRank(req, model);
+		
+		return "admin/sub/K_deleteRank";
+	}
+	
+	// 직급추가
+	@RequestMapping("admin/K_addRank")
+	public String K_addRank(HttpServletRequest req, Model model) {
+		logger.info("URL : K_addRank");
+		
+		service.K_addRank(req, model);
+		
+		return "admin/sub/K_deleteRank";
+	}
+	
+	//직급 등록
+	@RequestMapping("admin/K_manageRank_pro")
+	public String K_manageRank_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : K_manageRank_pro");
+		
+		service.K_manageRank_pro(req, model);
+		
+		return "admin/sub/K_manageRank_pro";
 	}
 	
 	//우리회사 관리자
@@ -317,6 +348,26 @@ public class K_Controller {
 		service.K_ourManager(req, model);
 		
 		return "admin/K_ourManager";
+	}
+	
+	//사용자 -> 관리자
+	@RequestMapping("admin/K_insertManager")
+	public String K_insertManager(HttpServletRequest req, Model model) {
+		logger.info("URL : K_insertManager");
+		
+		service.K_insertManager(req, model);
+		
+		return "admin/sub/K_insertManager";
+	}
+	
+	//관리자 ->사용자
+	@RequestMapping("admin/K_deleteManager")
+	public String K_deleteManager(HttpServletRequest req, Model model) {
+		logger.info("URL : K_deleteManager");
+		
+		service.K_deleteManager(req, model);
+		
+		return "admin/sub/K_deleteManager";
 	}
 	
 }

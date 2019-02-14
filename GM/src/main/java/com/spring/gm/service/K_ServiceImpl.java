@@ -18,6 +18,7 @@ import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.GradeVO;
+import com.spring.gm.vo.Grade_visibleVO;
 import com.spring.gm.vo.GroupInfoVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
@@ -776,13 +777,179 @@ public class K_ServiceImpl implements K_Service{
 	// 직급관리
 	@Override
 	public void K_manageRank(HttpServletRequest req, Model model) {
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		if(req.getParameter("state") == null) {
+			List<Grade_visibleVO> list = new ArrayList<Grade_visibleVO>();
+			list = dao.getGrades(company);
+			for(int i=0; i<list.size(); i++) {
+				list.get(i).setVisible(1);
+			}
+			req.getSession().setAttribute("rankList", list);
+		}
+	}
+	
+	@Override
+	public void K_deleteRank(HttpServletRequest req, Model model) {
+		int rank = Integer.parseInt(req.getParameter("rank"));
+		int checkCnt = dao.getGradeCnt(rank);
+		System.out.println("rank :"+rank);
+		System.out.println("checkCnt :"+checkCnt);
+		List<Grade_visibleVO> rankList = (List<Grade_visibleVO>)req.getSession().getAttribute("rankList");
 		
+		if(checkCnt == 0) {
+			for(int i=0; i<rankList.size(); i++) {
+				if(rankList.get(i).getRank() == rank) {
+					rankList.get(i).setVisible(0);
+				}
+				System.out.println("rank_name : "+rankList.get(i).getR_name());
+			}
+		}
+		
+		req.getSession().setAttribute("rankList", rankList);
+		model.addAttribute("checkCnt", checkCnt);
+	}
+	
+	@Override
+	public void K_addRank(HttpServletRequest req, Model model) {
+		String r_name = req.getParameter("addRank");
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		//vo 다 채워넣기
+		Grade_visibleVO vo = new Grade_visibleVO();
+		vo.setRank(0);
+		vo.setR_name(r_name);
+		vo.setCompany(company);
+		List<Grade_visibleVO> rankList = (List<Grade_visibleVO>)req.getSession().getAttribute("rankList");
+		vo.setRanking(rankList.size()+1);
+		vo.setVisible(1);
+		
+		rankList.add(vo);
+		req.getSession().setAttribute("rankList", rankList);
+		model.addAttribute("checkCnt", 0);
+	}
+	
+	@Override
+	public void K_manageRank_pro(HttpServletRequest req, Model model) {
+		String[] rank_s = req.getParameterValues("rank");
+		int[] rank = new int[rank_s.length];
+		for(int i=0; i<rank_s.length; i++) {
+			rank[i] = Integer.parseInt(rank_s[i]);
+			System.out.println("rank : "+rank[i]);
+		}
+		String[] r_name = req.getParameterValues("r_name");
+		String[] visible_s = req.getParameterValues("visible");
+		int[] visible = new int[visible_s.length];
+		for(int i=0; i<visible_s.length; i++) {
+			visible[i] = Integer.parseInt(visible_s[i]);
+			System.out.println("visible : "+visible[i]);
+		}
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		int insertCnt = 1;
+		int updateCnt = 1;
+		int deleteCnt = 1;
+		int cnt = 0;
+		
+		GradeVO vo = new GradeVO();
+		
+		int i = 0;
+		int order = 0;
+		while(i<rank.length) {
+			if(visible[i] == 1) { // 있어야 하는 것
+				if(rank[i] == 0) { // 새로만든 직급이므로 insert를 해줘야함
+					vo.setR_name(r_name[i]);
+					vo.setCompany(company);
+					vo.setRanking(order+1);
+					insertCnt = dao.insertGrade(vo);
+					System.out.println("insertCnt : "+insertCnt);
+				} else { // 원래 있는 직급인 경우 update
+					vo.setRank(rank[i]);
+					vo.setR_name(r_name[i]);
+					vo.setCompany(company);
+					vo.setRanking(order+1);
+					updateCnt = dao.updateGrade(vo);
+					System.out.println("updateCnt : "+updateCnt);
+				}
+				order += 1;
+			} else { // 없어야 하는것 여기는 rank = 0이 있어도 그냥 무시하면 됨 // 또한 i가 늘어나면 안됨
+				if(rank[i] != 0) {
+					deleteCnt = dao.deleteGrade(rank[i]);
+					System.out.println("deleteCnt : "+deleteCnt);
+				}
+			}
+			i += 1;
+		}
+		if(insertCnt!=0 && updateCnt!=0 && deleteCnt!=0) {
+			cnt = 1;
+		}
+		model.addAttribute("cnt", cnt);
+		req.getSession().removeAttribute("rankList");
 	}
 
 	//우리회사 관리자
 	@Override
 	public void K_ourManager(HttpServletRequest req, Model model) {
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		String companyName = dao.getCompanyName(company);
+		List<join_mgiVO> mgiList = new ArrayList<join_mgiVO>();
+		List<join_mgiVO> mgiList2 = new ArrayList<join_mgiVO>();
+		List<join_mgiVO> mgiList3 = new ArrayList<join_mgiVO>();
 		
-	}	
+		mgiList2 = dao.getMgiList2(company);
+		for(int i = 0; i<mgiList2.size(); i++) {
+			mgiList2.get(i).setLeader(0);
+			mgiList2.get(i).setDepartName(companyName);
+			mgiList.add(mgiList2.get(i));
+		}
+		mgiList3 = dao.getMgiList3(company);
+		for(int i=0; i<mgiList3.size(); i++) {
+			System.out.println("id:"+mgiList3.get(i).getId());
+			mgiList.add(mgiList3.get(i));
+		}
+		model.addAttribute("mgiList", mgiList);
+		model.addAttribute("strId", strId);
+	}
+
+	@Override
+	public void K_insertManager(HttpServletRequest req, Model model) {
+		String[] id = req.getParameterValues("check2");
+		int cnt = 0;
+		int cnt2 = 0;
+		int cnt3 = 0;
+		if(id != null) {
+			for(int i=0; i<id.length; i++) {
+				cnt2 = dao.insertManager(id[i]);
+				cnt3 = dao.insertManager2(id[i]);
+				if(cnt2!=0&&cnt3!=0) {
+					cnt = 1;
+				}
+			}
+		} else {
+			cnt = -1;
+		}
+		
+		model.addAttribute("cnt", cnt);
+	}
+
+	@Override
+	public void K_deleteManager(HttpServletRequest req, Model model) {
+		String[] id = req.getParameterValues("check1");
+		int cnt = 0;
+		int cnt2 = 0;
+		int cnt3 = 0;
+		
+		if(id != null) {
+			for(int i=0; i<id.length; i++) {
+				cnt2 = dao.deleteManager(id[i]);
+				cnt3 = dao.deleteManager2(id[i]);
+				if(cnt2!=0&&cnt3!=0) {
+					cnt = 1;
+				}
+			}
+		} else {
+			cnt = -1;
+		}
+		
+		model.addAttribute("cnt", cnt);
+	}		
 	
 }
