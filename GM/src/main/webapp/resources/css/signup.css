@@ -1,4 +1,6 @@
 @charset "UTF-8";
+@import "compass/css3";
+
 body {
     background: #eee url(../images/main_bg.jpg) no-repeat right bottom;
 }
@@ -89,7 +91,11 @@ body {
 }
 
 .signup_wrap .input_area input[type="date"] {
-	text-align: center;
+	text-align: center;	 
+}
+
+.signup_wrap .input_area input[type="date"]::-webkit-inner-spin-button {
+	height: 43px;
 }
 
 .signup_wrap .input_area .input_wrap {
