@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.gm.vo.BoardListAndBoardsVO;
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.BoardsVO;
 import com.spring.gm.vo.ReplyListVO;
@@ -26,9 +27,9 @@ public class D_DAOImpl implements D_DAO{
 
 	@Override
 	// 게시판 갯수
-	public int getBoardsArticleCnt() {
+	public int getBoardsArticleCnt(int company) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.getBoardsArticleCnt();
+		return dao.getBoardsArticleCnt(company);
 	}
 
 	@Override
@@ -231,7 +232,7 @@ public class D_DAOImpl implements D_DAO{
 	}
 
 	@Override
-	public List<BoardListVO> getAllBoardArticleList(Map<String, Object> map) {
+	public List<BoardListAndBoardsVO> getAllBoardArticleList(Map<String, Object> map) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		return dao.getAllBoardArticleList(map);
 	}
