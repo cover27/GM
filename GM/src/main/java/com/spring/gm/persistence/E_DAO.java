@@ -24,4 +24,6 @@ public interface E_DAO {
 	// 조직도 - 로그인 정보 회사 이름 찾기
 	public String findCompanyName(int company);
 	
+
+	
 }

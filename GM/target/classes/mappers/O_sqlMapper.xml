@@ -31,7 +31,8 @@
 
 <!-- 전자결재 - 기안문 - 결재선  회사에 그룹등급이 1인 부서명-->
 <select id="getGroupName" resultType="String">
-	select g_name from groups where company=#{company} and group_rank=1
+	select g_name from groups where company=#{company} and group_rank=1 and del=0
 </select>
+
 
 </mapper>
