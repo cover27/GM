@@ -35,6 +35,8 @@
 				<td style="text-align: center; background-color: #cccccc;">0</td>
 			</tr>
 		</c:if>
+		
+		
 		<c:if test="${cnt == 2}">
 			<tr>
 				<td style="text-align: center; background-color: #cccccc;">지급기준일</td>
@@ -53,7 +55,7 @@
 					<td>${dto.j_name}</td>
 					<td>${dto.salary}</td>
 					<td>${dto.bonussalary}</td>
-					<td>${Sumsalarybonus}</td>
+					<td>${dto.sumsalarybonus}</td>
 				</tr>
 			</c:forEach>
 			<tr>
@@ -61,9 +63,11 @@
 					style="text-align: center; background-color: #cccccc;">합계</td>
 				<td style="text-align: center; background-color: #cccccc;">${dto.salary}</td>
 				<td style="text-align: center; background-color: #cccccc;">${dto.bonussalary}</td>
-				<td style="text-align: center; background-color: #cccccc;">${Sumsalarybonus}</td>
+				<td style="text-align: center; background-color: #cccccc;">${dto.sumsalarybonus}</td>
 			</tr>
 		</c:if>
+		
+		
 		<c:if test="${cnt == 1}">
 			<tr>
 				<td style="text-align: center; background-color: #cccccc;">지급기준일</td>
@@ -110,7 +114,7 @@
 	<table border="1">
 		<c:if test="${cnt2 == 0 || cnt == 0}">
 			<tr>
-				<td style="text-align: center; background-color: #cccccc;">NO</td>
+				<td style="text-align: center; background-color: #cccccc;">수당번호</td>
 				<td style="text-align: center; background-color: #cccccc;">공제항목</td>
 				<td style="text-align: center; background-color: #cccccc;">공제내용</td>
 				<td style="text-align: center; background-color: #cccccc;">공제금액</td>
@@ -120,14 +124,14 @@
 					*데이터 정보가 없습니다.!!!!!!!</td>
 			</tr>
 			<tr>
-				<td colspan="3"
-					style="text-align: center; background-color: #cccccc;">NO>합계</td>
-				<td>0</td>
+				<td colspan="4" style="text-align: center; background-color: #cccccc;">합계</td>
 			</tr>
 		</c:if>
+		
+		
 		<c:if test="${cnt > 0 && cnt2 > 0}">
 			<tr>
-				<td style="text-align: center; background-color: #cccccc;">NO</td>
+				<td style="text-align: center; background-color: #cccccc;">수당번호</td>
 				<td style="text-align: center; background-color: #cccccc;">공제항목</td>
 				<td style="text-align: center; background-color: #cccccc;">공제내용</td>
 				<td style="text-align: center; background-color: #cccccc;">공제금액</td>

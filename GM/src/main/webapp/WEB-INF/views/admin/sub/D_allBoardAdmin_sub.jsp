@@ -14,11 +14,19 @@ function allcheck(){
 }
 
 //삭제할거 정보이전
-function delBoard(){
-	var god = confirm("삭제하시겠습니까?");
+function delBoardAdmin(){
+	var god = confirm("선택한것들을 삭제하시겠습니까?");
 	if(god){
-		window.location ="<c:url value='/admin/D_allBoardDeletePro'/>"
-		document.getElementById('boardDel').submit();
+		document.boardSelect.action="<c:url value='/admin/D_boardAdminDeletePro'/>"
+		document.boardSelect.submit();
+	}
+}
+// 이동시킬것 정보이전
+function board_move(){
+	var move = confirm("선택한것들을 이동시키겠습니까?");
+	if(move){
+		document.boardSelect.action="<c:url value='/admin/D_boardMovePro'/>";
+		document.boardSelect.submit();
 	}
 }
 </script>
@@ -28,11 +36,11 @@ function delBoard(){
 		<div class="content_header">
 			<h2>게시글 전체 목록</h2>
 		</div>		
-<form action="<c:url value='/admin/D_allBoardDeletePro'/>" method="post" id="boardDel" onsubmit="return delBoard();">
+<form method="post" name= "boardSelect" id="boardSelect">
 	<input type="hidden" name="pageNum" value="${pageNum}">
 	<table border = 1>
 		<tr>
-			<th colspan="6" align="center" style="height:25px">
+			<th colspan="7" align="center" style="height:25px">
 				전체 글목록
 			</th>
 		</tr>
@@ -40,6 +48,7 @@ function delBoard(){
 		<tr>
 			<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allcheck();"/></th>
 			<th style="width:15%"> 게시판명 </th>
+			<th> 이동 대상 게시판 </th>
 			<th style="width:25%"> 글제목 </th>
 			<th style="width:10%"> 작성자 </th>
 			<th style="width:15%"> 작성일 </th>
@@ -53,7 +62,7 @@ function delBoard(){
 			     ==> 게시글목록에 5건이 있다면 5회(ArrayList에서 꺼내서 dto에 담은 다음 출력)
 			 -->
 		
-			<c:forEach var="dto" items="${dtos}">
+			<c:forEach var="dto" items="${ad_dtos}">
 				<c:if test="${dto.del == 0}">
 					<tr>				
 						<td>
@@ -66,6 +75,18 @@ function delBoard(){
 									${dtos.b_name}
 								</c:if>
 							</c:forEach>
+						</td>
+					
+						<td>
+								<select name="num">
+										<option value=""> 선택하세요 </option>
+								<c:forEach var="dtos" items="${b_dtos}">
+									<c:if test="${dto.num != dtos.num}">
+   										<option value="${dtos.num}"> ${dtos.b_name}</option>
+   										<script>console.log("-num:::::"+${dtos.num});</script>   										
+   									</c:if>
+   								</c:forEach>
+							</select>
 						</td>
 						
 						<td>
@@ -94,7 +115,7 @@ function delBoard(){
 						</td>
 					</tr>
 				</c:if>
-				<input type="hidden" name="num" value="${dto.num}">
+				<input type="hidden" name="nums" value="${dto.num}">
 			</c:forEach>
 		</c:if>
 		
@@ -118,8 +139,8 @@ function delBoard(){
 				<c:if test="${cnt > 0}">
 					<!-- 처음[◀◀] / 이전블록[◀]  -->
 					<c:if test="${startPage > pageBlock}">					
-						<a href="<c:url value='/pages/D_boardList'/>">[◀◀ ]</a>						
-						<a href="<c:url value='/pages/D_boardList?pageNum=${startPage - pageBlock}'/>">[◀ ]</a>
+						<a href="<c:url value='/admin/D_allBoardAdmin'/>">[◀◀ ]</a>						
+						<a href="<c:url value='/admin/D_allBoardAdmin?pageNum=${startPage - pageBlock}'/>">[◀ ]</a>
 					</c:if>
 					
 					<!-- 블록내의 페이지 번호 -->
@@ -128,14 +149,14 @@ function delBoard(){
 							<span><b>[${i}]</b></span>
 						</c:if>
 						<c:if test="${i != currentPage}">
-							<a href="<c:url value='/pages/D_boardList?pageNum=${i}'/>">[${i}]</a>
+							<a href="<c:url value='/admin/D_allBoardAdmin?pageNum=${i}'/>">[${i}]</a>
 						</c:if>
 					</c:forEach>					
 					
 					<!-- 다음 블록[▶] / 끝[▶▶]> -->
 					<c:if test="${pageCount > endPage}">					
-						<a href="<c:url value='/pages/D_boardList?pageNum=${startPage + pageBlock}'/>">[▶ ]</a>						
-						<a href="<c:url value='/pages/D_boardList?pageNum=${pageCount}'/>">[▶▶ ] </a>
+						<a href="<c:url value='/admin/D_allBoardAdmin?pageNum=${startPage + pageBlock}'/>">[▶ ]</a>						
+						<a href="<c:url value='/admin/D_allBoardAdmin?pageNum=${pageCount}'/>">[▶▶ ] </a>
 					</c:if>
 				</c:if>
 			</th>
@@ -145,11 +166,8 @@ function delBoard(){
 	<table>
 		<tr>
 			<th colspan="4">
-				<input type="submit" value="삭제">
-			</th>
-			
-			<th>
-			
+				<input type="button" value="삭제" onclick="delBoardAdmin()">
+				<input type="button" value="게시판 이동" onclick="board_move()">
 			</th>
 		</tr>
 	</table>

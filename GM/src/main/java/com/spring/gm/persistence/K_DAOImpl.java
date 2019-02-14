@@ -12,9 +12,9 @@ import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.GradeVO;
+import com.spring.gm.vo.GroupInfoVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
-import com.spring.gm.vo.join_mgcVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgiVO;
 
@@ -127,6 +127,21 @@ public class K_DAOImpl implements K_DAO{
 	@Override
 	public String getCompanyName(int company) {
 		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getCompanyName", company);
+	}
+	
+	@Override
+	public GroupInfoVO getGroupInfo(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getGroupInfo", map);
+	}
+
+	@Override
+	public int deleteGroupInfo(Map<String, Object> map) {
+		return sqlSession.delete("com.spring.gm.persistence.K_DAO.deleteGroupInfo", map);
+	}
+
+	@Override
+	public int insertGroupInfo(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertGroupInfo", map);
 	}
 
 	@Override
@@ -293,6 +308,35 @@ public class K_DAOImpl implements K_DAO{
 	public int createDepart(Map<String, Object> map) {
 		return sqlSession.insert("com.spring.gm.persistence.K_DAO.createDepart", map);
 	}
+
+	@Override
+	public String getDepartName(int depart) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getDepartName", depart);
+	}
+
+	@Override
+	public int updateDepartName(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateDepartName", map);
+	}
 	
+	@Override
+	public int countDepartMember(int depart) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.countDepartMember", depart);
+	}
+
+	@Override
+	public int deleteDepart(int depart) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.deleteDepart", depart);
+	}
+
+	@Override
+	public int changeleader1(int depart) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.changeleader1", depart);
+	}
+
+	@Override
+	public int changeleader2(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.changeleader2", map);
+	}
 	
 }

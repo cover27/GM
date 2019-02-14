@@ -138,13 +138,11 @@ function delBoard(){
 	</table>
 	</c:if>
 	<table>
-	<c:if test="${sessionScope.loginInfo.sys_rank == 1">
 		<tr>
 			<th colspan="4">
-				<input type="submit" value="삭제">
+					<input type="submit" value="삭제">
 			</th>
 		</tr>
-	</c:if>
 	</table>
 </form>
 	</article>

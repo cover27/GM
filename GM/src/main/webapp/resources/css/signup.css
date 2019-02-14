@@ -1,1 +1,289 @@
 @charset "UTF-8";
+@import "compass/css3";
+
+body {
+    background: #eee url(../images/main_bg.jpg) no-repeat right bottom;
+}
+
+.signup_wrap {
+	padding-top:60px;
+}
+
+.signup_wrap .signup_center {
+	margin: 160px auto;
+	width: 1486px;
+}
+
+.signup_wrap .signup_box {
+	width: 482px;
+    height: 540px;
+    margin-left: 20px;
+    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    float: left;
+    background: rgba(26, 26, 26, 0.2);
+    padding: 20px;
+}
+
+.signup_wrap .signup_box:first-child {
+	margin: 0;
+}
+
+.signup_wrap h2	{
+	padding: 30px 0 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #111;
+    text-align: center;
+    letter-spacing: 1.5px;
+}
+
+.signup_wrap h2>span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    margin: 15px 15px;
+}
+
+.signup_wrap .input_area {
+	margin-top: 30px;
+	padding: 0 30px;
+}
+
+.signup_wrap .input_area li {
+	line-height: 42px;
+	height: 58px;
+}
+
+.signup_wrap .input_area li span {
+	width: 117px;
+    height: 48px;
+    padding: 3px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    -webkit-appearance: none;
+    box-shadow: none;
+    border-right: 1px solid #d4d4d4;
+    border-radius: 6px 0 0 6px;
+    background: #eee;
+    display: inline-block;
+    position: relative;
+    left: 5px;
+}
+
+.signup_wrap .input_area input[type="text"]:focus, .signup_wrap .input_area input[type="password"]:focus, .signup_wrap .input_area input[type="date"]:focus {
+	background: rgba(254, 255, 196, .8);
+	outline: none;
+}
+
+.signup_wrap .input_area input[type="text"], .signup_wrap .input_area input[type="password"], .input_area input[type="date"], .input_area select {
+	width: 261px;
+    height: 48px;
+    padding: 3px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #222;
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    background: #fff;
+}
+
+.signup_wrap .input_area input[type="date"] {
+	text-align: center;	 
+}
+
+.signup_wrap .input_area input[type="date"]::-webkit-inner-spin-button {
+	height: 43px;
+}
+
+.signup_wrap .input_area .input_wrap {
+	display: inline-block;
+    width: 260px;
+    background: #fff;
+    height: 48px;
+    padding: 0;
+    padding-left: 18px;
+    border: none;
+    border-left: 1px solid #d4d4d4;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 0 6px 6px 0;
+    left: 0;
+    bottom: 3px;
+}
+
+.signup_wrap .input_area .input_wrap input[type="radio"] {
+	position: relative;
+    top: 6px;
+}
+
+.signup_wrap .input_area .input_wrap b {
+	position: relative;
+    top: 2px;
+    left: 5px;
+    margin-right: 50px;
+}
+
+.signup_wrap .input_area .haveBtn {
+	width: 173px !important;
+}
+
+.signup_wrap .input_area .two_line_header {
+	border-radius: 6px 6px 0 0 !important;
+	width: 377px !important;
+}
+
+.signup_wrap .input_area .two_line {
+	position: relative !important;
+	bottom: 11px !important;
+}
+
+.signup_wrap .input_area .two_line_body {
+	border-radius: 0 0 6px 6px !important;
+    width: 377px !important;
+    padding: 0 !important;
+    background: #fff;
+	border-top: 1px solid #d4d4d4;
+}
+
+.signup_wrap .input_area .two_line_body span {
+	color: #111;
+}
+
+.signup_wrap .input_area .email_03 {
+	width: 127px !important;
+    position: relative;
+    top: -1.5px !important;
+    border: none !important;
+    border-right: 1px solid #d4d4d4 !important;
+    border-radius: 0 0 0 6px !important;
+    height: 47px !important;
+}
+
+.signup_wrap .input_area .email_04 {
+	padding: 3px 8px !important;
+	position: relative;
+    width: 36px !important;
+    border: none !important;
+	background: transparent;
+}
+
+.signup_wrap .input_area .email_05 {
+	width: 105px !important;
+    position: relative;
+    border-radius: 0 !important;
+    border: 0 !important;
+    border-left: 1px solid #d4d4d4 !important;
+    border-right: 1px solid #d4d4d4 !important;
+    top: -1.5px;
+    height: 47px !important;
+}
+
+.signup_wrap .input_area .email_06 {
+	width: 96px !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+    background: transparent;
+}
+
+.signup_wrap .input_area .jumin span:nth-child(2), .signup_wrap .input_area .hp span:nth-child(2) {
+	padding-left: 0 !important;
+    position: relative;
+    top: 0px
+}
+
+.signup_wrap .input_area .jumin b, .signup_wrap .input_area .hp b {
+	width: 10px;
+    top: 0;
+    left: 0;
+    margin-left: 0;
+    display: inline-block;
+    text-align: center;
+    margin-right: 0;
+}
+
+.signup_wrap .input_area .jumin input {
+	width: 121px;
+    border-radius: 0;
+    border: 0;
+    border-right: 1px solid #d4d4d4;
+    height: 48px;
+}
+
+.signup_wrap .input_area .jumin input:last-child {
+	border-radius: 0 6px 6px 0;
+    border: 0;
+    border-left: 1px solid #d4d4d4;
+}
+
+.signup_wrap .input_area .hp input {
+	width: 75.1px;
+    border-right: 1px solid #d4d4d4;
+    border-left: 1px solid #d4d4d4;
+    border-radius: 0;
+    height: 48px;
+}
+
+.signup_wrap .input_area .hp input:first-child {
+	border-left: 0;
+}
+
+.signup_wrap .input_area .hp input:last-child {
+	border-radius: 0 6px 6px 0;
+}
+
+.signup_wrap .input_area input[type="button"], .signup_wrap .input_area input[type="reset"] {
+	color: #fff;
+    background: #555;
+    cursor: pointer;
+    height: 48px;
+    padding: 0 15px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+    position: relative;
+    top: 1px;
+    left: 1px;
+}
+
+.signup_wrap .input_area input[type="button"]:hover, .signup_wrap .input_area input[type="reset"]:hover {
+	opacity: 0.8;
+}
+
+.signup_wrap .signup_btn input[type="submit"] {
+	display: block;
+    margin: 10px 0 4px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    background: #e30413;
+    border: 1px solid #e30413;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.signup_wrap .signup_btn input[type="reset"], .signup_wrap .signup_btn input[type="button"] {
+	display: inline-block;
+    width: 49.2%;
+    height: 32px;
+    margin-left: 1px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    background: #555;
+    border: 1px solid #555;
+    border-radius: 4px;
+    cursor: pointer;
+	
+}
+
+.signup_wrap .input_area input[type="submit"]:hover, .signup_wrap .input_area input[type="button"]:hover {
+	opacity: .8;
+}

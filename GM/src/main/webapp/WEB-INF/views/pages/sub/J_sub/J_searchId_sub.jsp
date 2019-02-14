@@ -49,5 +49,3 @@
 		</tr>
 	</c:if>
 </table>
-<div class="col-lg-12" id="ex1_Result1"></div>
-<div class="col-lg-12" id="ex1_Result2"></div>

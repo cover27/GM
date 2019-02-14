@@ -93,7 +93,7 @@
 	</insert>
 	
 	<select id="getGroups" resultType="com.spring.gm.vo.GroupsVO">
-		SELECT * FROM groups WHERE company =#{company} AND group_rank = 1
+		SELECT * FROM groups WHERE company =#{company} AND group_rank = 1 AND del = 0
 	</select>
 	
 	<select id="getGrade" resultType="com.spring.gm.vo.GradeVO">
@@ -103,6 +103,19 @@
 	<select id="getCompanyName" resultType="String">
 		SELECT c_name FROM companies WHERE company =#{company}
 	</select>
+	
+	<select id="getGroupInfo" parameterType="java.util.Map" resultType="com.spring.gm.vo.GroupInfoVO">
+		SELECT * FROM groupinfo WHERE id=#{id} AND groupId=#{setDepart}
+	</select>
+	
+	<delete id="deleteGroupInfo" parameterType="java.util.Map">
+		DELETE FROM groupinfo WHERE groupId = #{setDepart} AND id = #{id}
+	</delete>
+	
+	<insert id="insertGroupInfo" parameterType="java.util.Map">
+		INSERT INTO groupinfo (groupId, id, rank_mem, del) 
+			VALUES(#{depart}, #{id}, #{rank_mem}, 0)
+	</insert>
 	
 	<update id="updateAdminMemberInfo" parameterType="java.util.Map">
 		UPDATE member SET depart = #{depart}, rank = #{rank}, wrkdvd=#{wrkdvd},
@@ -250,6 +263,7 @@
 		    AND m.depart = #{depart}
 		    AND m.company = #{company}
 		    AND m.sys_rank != 0
+		    AND m.del = 0
 		    ORDER BY m.enterday ASC
 	</select>
 	
@@ -260,10 +274,35 @@
 		    AND m.company = #{company}
 		    AND m.depart > 410000000
 		    AND m.sys_rank != 0
+		    AND m.del = 0
 		    ORDER BY m.enterday ASC
 	</select>
 	
 	<insert id="createDepart" parameterType="java.util.Map">
 		INSERT INTO groups VALUES(seq_groups.nextval, #{company}, #{departName}, 1, 0)
 	</insert>
+	
+	<select id="getDepartName" parameterType="int" resultType="String">
+		SELECT g_name FROM groups WHERE groupId=#{depart}
+	</select>
+	
+	<update id="updateDepartName" parameterType="java.util.Map">
+		UPDATE groups SET g_name = #{dname} WHERE groupId = #{depart}
+	</update>
+	
+	<select id="countDepartMember" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM member WHERE depart = #{depart} AND del = 0
+	</select>
+	
+	<update id="deleteDepart" parameterType="int">
+		UPDATE groups SET del = 1 WHERE groupId = #{depart}
+	</update>
+	
+	<update id="changeleader1" parameterType="int">
+		UPDATE groupinfo SET rank_mem = 0 WHERE groupId=#{depart}
+	</update>
+	
+	<update id="changeleader2" parameterType="java.util.Map">
+		UPDATE groupinfo SET rank_mem = 1 WHERE groupId=#{depart} AND id=#{id}
+	</update>
 </mapper>
