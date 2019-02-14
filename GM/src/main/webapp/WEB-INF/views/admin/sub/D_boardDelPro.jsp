@@ -14,7 +14,7 @@
 	<c:if test="${deleteCnt != 0}">
 		<script type="text/javascript">
 			alert("삭제되었습니다.");
-			window.location="<c:url value='/pages/D_boardList' />";
+			window.location="<c:url value='/pages/D_boardList?pageNum=${pageNum}&num=${num}'/>";
 		</script>
 	</c:if>
 </body>

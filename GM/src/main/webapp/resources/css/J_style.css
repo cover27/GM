@@ -63,7 +63,6 @@
 
 .content input[type="button"] {
 	background: #555;
-	padding: 1px 6px;
 }
 
 .content button {
@@ -77,7 +76,7 @@
 
 .content .salary_info {
 	overflow-y: scroll;
-	height: 388px;
+	height: 386px;
 	border-bottom: 2px #c0c0c0 solid;
 }
 
@@ -201,7 +200,7 @@
 }
 
 .content .btnset {
-	margin-top: 15px;
+	margin-top: 10px;
 	float: right;
 }
 
@@ -233,6 +232,10 @@
 
 .content .J_PayrollRegistrationList input:last-child {
 	margin-right: 0 !important;
+}
+
+.content .J_PayrollRegistrationList input[type="button"] {
+	padding: 5px;
 }
 
 .content .J_PayrollRegistrationList .modify_btn {

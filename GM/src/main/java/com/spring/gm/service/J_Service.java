@@ -51,7 +51,12 @@ public interface J_Service {
 	//정보 삭제
 	public void J_PayrollRegistrationListDelete(HttpServletRequest req, Model model);
 	
-	
+	//-----------------------------급여 계산-------------------------------------------
+	//급여 계산 목록 가져오기
+	public void J_SalaryCalculationSearch(HttpServletRequest req, Model model);
+	//-----------------------------상여조희--------------------------------------------
+	//상여 조회 목록 가져오기
+	public void searchBonusInquiry(HttpServletRequest req, Model model);
 	
 	
 	

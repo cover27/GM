@@ -4,27 +4,6 @@
 <link rel="stylesheet" href="${path}css/aside.css">
 <link rel="stylesheet" href="${path}css/content.css">
 <link rel="stylesheet" href="${path}css/D_style.css" />
-
-<script type="text/javascript">
-    var url = window.location.href.split('gm');
-    var url_split = url[1].split('/');
-    var category = url_split[2].split('?');
-    // alert(category[0]);
-    
-    if(url[1] == "/admin/D_boardsSetting"){
-		// alert("됨");
-		$(function(){
-			$("#D_boardsSetting").children().css("color", "#d3292c");
-			$("#D_boardsSetting").css("font-weight", "bold");
-		});
-	} else if(url[1] == "/pages/D_allBoardList"){
-		// alert("됨");
-		$(function(){
-			$("#D_allBoardList").children().css("color", "#d3292c");
-			$("#D_allBoardList").css("font-weight", "bold");
-		});
-	}
-</script>
 <aside>
 	<!-- 사용 안하는 사이드바
     <div class="sidebar"></div>
@@ -60,7 +39,7 @@
                         <span>관리자 메뉴</span>
                         <ul>
                             <li id="D_boardsSetting"><a href="<c:url value='/admin/D_boardsSetting' />">게시판 관리</a></li>
-                            <li><a href="#">게시물 관리</a></li>
+                            <li id="D_allBoardAdmin"><a href="<c:url value='/admin/D_allBoardAdmin' />">게시물 관리</a></li>
                         </ul>
                     </li>
                 </ul>

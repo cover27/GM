@@ -16,6 +16,11 @@
 			<th>전화번호</th>
 			<th>이메일</th>
 		</tr>
+		<c:if test="${mgiList.size() == 0 }">
+			<tr>
+				<th colspan="5">소속 구성원이 없습니다.</th>
+			</tr>
+		</c:if>
 		<c:forEach var="dto" items="${mgiList }">
 			<tr>
 				<c:if test="${dto.leader == 1 }">

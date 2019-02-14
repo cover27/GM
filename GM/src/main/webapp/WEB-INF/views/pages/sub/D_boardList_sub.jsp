@@ -30,6 +30,8 @@ function delBoard(){
 			<h2>게시글 목록</h2>
 		</div>		
 <form action="<c:url value='/admin/D_boardDelPro'/>" method="post" id="boardDel" onsubmit="return delBoard();">
+	<input type="hidden" name="pageNum" value="${pageNum}">
+	<input type="hidden" name="num" value="${num}">
 	<table>
 		<tr>
 			<th colspan="6" align="center" style="height:25px">
@@ -138,7 +140,7 @@ function delBoard(){
 	<table>
 		<tr>
 			<th colspan="4">
-				<input type="submit" value="삭제">
+					<input type="submit" value="삭제">
 			</th>
 		</tr>
 	</table>

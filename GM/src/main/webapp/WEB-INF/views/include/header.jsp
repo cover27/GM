@@ -1,45 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<script type="text/javascript">
-	var url = window.location.href.split('gm');
-    var url_split = url[1].split('/');
-    var category = url_split[2].split('_');
-    // alert(category[0]);
-    
-    if(category[0] == "S"){
-		// alert("됨");
-		$(function(){
-			$("#s").children().css("color", "#d3292c");
-			$("#s").css("font-weight", "bold");
-		});
-	} else if(category[0] == "O"){
-		// alert("됨");
-		$(function(){
-			$("#o").children().css("color", "#d3292c");
-			$("#o").css("font-weight", "bold");
-		});
-	} else if(category[0] == "D"){
-		// alert("됨");
-		$(function(){
-			$("#d").children().css("color", "#d3292c");
-			$("#d").css("font-weight", "bold");
-		});
-	} else if(category[0] == "J"){
-		// alert("됨");
-		$(function(){
-			$("#j").children().css("color", "#d3292c");
-			$("#j").css("font-weight", "bold");
-		});
-	} else if(category[0] == "K"){
-		// alert("됨");
-		$(function(){
-			$("#k").children().css("color", "#d3292c");
-			$("#k").css("font-weight", "bold");
-		});
-	}
-</script>
-    
+    pageEncoding="UTF-8"%>  
 <header>
 	<c:if test="${sessionScope.loginInfo != null}">
 		<div class="logo">

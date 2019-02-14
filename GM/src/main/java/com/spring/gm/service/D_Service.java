@@ -6,27 +6,27 @@ import org.springframework.ui.Model;
 
 public interface D_Service {
 	
-	public void insertBoards(HttpServletRequest req, Model model);
+	public void insertBoards(HttpServletRequest req, Model model);	// 게시판생성
 	
-	public void boardsList(HttpServletRequest req, Model model);
+	public void boardsList(HttpServletRequest req, Model model);	// 게시판 목록
+		
+	public void boardsUpdate(HttpServletRequest req, Model model);	// 게시판 수정
 	
-	public void boardsUpdate(HttpServletRequest req, Model model);
+	public void boardList(HttpServletRequest req, Model model);	// 게시글 목록
 	
-	public void boardList(HttpServletRequest req, Model model);
+	public void insertBoard(HttpServletRequest req, Model model);	// 게시글 생성폼
 	
-	public void insertBoard(HttpServletRequest req, Model model);
+	public void insertPro(HttpServletRequest req, Model model);		// 게시글 생성 처리
 	
-	public void insertPro(HttpServletRequest req, Model model);
+	public void contentForm(HttpServletRequest req, Model model);	// 게시글 상세페이지
 	
-	public void contentForm(HttpServletRequest req, Model model);
+	public void boardUpdate(HttpServletRequest req, Model model);	// 게시글 수정폼
 	
-	public void boardUpdate(HttpServletRequest req, Model model);
+	public void boardUpdatePro(HttpServletRequest req, Model model);	// 게시글 수정 처리
 	
-	public void boardUpdatePro(HttpServletRequest req, Model model);
+	public void boardDelete(HttpServletRequest req, Model model);	// 게시글 삭제
 	
-	public void boardDelete(HttpServletRequest req, Model model);
-	
-	public void boardsUpdatePro(HttpServletRequest req, Model model);
+	public void boardsUpdatePro(HttpServletRequest req, Model model);	// 게시글 
 	
 	public void insertReple(HttpServletRequest req, Model model);
 	
@@ -42,6 +42,10 @@ public interface D_Service {
 	
 	public void repleUpdatePro(HttpServletRequest req, Model model);	// 댓글 수정 처리
 	
-	public void boardDel(HttpServletRequest req, Model model);
+	public void boardDel(HttpServletRequest req, Model model);		// 게시글 광역삭제
+	
+	public void boardMove(HttpServletRequest req, Model model);		// 게시글 이동
+	
+	public void allBoardAdmin(HttpServletRequest req, Model model);	// 게시관리 페이징
 	
 }

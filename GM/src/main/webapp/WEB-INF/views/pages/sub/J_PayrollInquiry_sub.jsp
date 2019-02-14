@@ -27,7 +27,7 @@
 		} else {
 			$
 			.ajax({
-				url : '${pageContext.request.contextPath}/admin/searchPayrollInquiry',
+				url : '${pageContext.request.contextPath}/pages/searchPayrollInquiry',
 				type : 'POST',
 				data : {
 					'id' : id,
@@ -69,22 +69,20 @@
 				<div id="result">
 					<table border="1">
 							<tr>
-								<td>지급기준일</td>
-								<td>사원번호</td>
-								<td>성명</td>
-								<td>부서</td>
-								<td>지급총액</td>
-								<td>공제총액</td>
-								<td>실지급액</td>
+								<td style="text-align: center; background-color: #cccccc;">지급기준일</td>
+								<td style="text-align: center; background-color: #cccccc;">사원번호</td>
+								<td style="text-align: center; background-color: #cccccc;">성명</td>
+								<td style="text-align: center; background-color: #cccccc;">부서</td>
+								<td style="text-align: center; background-color: #cccccc;">지급총액</td>
+								<td style="text-align: center; background-color: #cccccc;">공제총액</td>
+								<td style="text-align: center; background-color: #cccccc;">실지급액</td>
 							</tr>
 							<tr>
 								<td colspan="7" style="height: 150px;" text-align="center">
 								*데이터 정보가 없습니다.</td>
 							</tr>
 							<tr>
-								<td colspan="4">합계</td>
-								<td>0</td>
-								<td>0</td>
+								<td colspan="5">합계</td>
 								<td>0</td>
 							</tr>
 					</table>

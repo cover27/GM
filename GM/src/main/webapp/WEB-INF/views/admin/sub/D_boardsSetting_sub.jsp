@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
-
-
 function board_go(num) {
 	// alert("게시판번호 : "+num);
 	$.ajax({
@@ -39,13 +37,6 @@ $(function() {
 		});
 	});
 });
-
-function create_board() {
-	// alert("확인");
-	/* 
-	
-	 */
-}
 
 function modify_board(num, b_name, anon) {
 	var selector = '.boards_tree';
