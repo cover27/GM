@@ -113,19 +113,6 @@ function inputCheck(){
 	}
 }
 
-// id 중복확인체크함수
-function confirmId(){
-	//id값 미입력시
-	if(!document.inputform.id.value){
-		alert('아이디를 입력하세요');
-		document.inputform.id.focus();
-		return false;
-	}
-
-	var url="confirmId?id="+ document.inputform.id.value; //confirmId 컨트롤러로 새창화면출력
-	window.open(url, "confirm", "menubar=no, width=300, height=200");
-}
-
 function findCompany(){
 	var url="findCompany";
 	window.open(url, "confirm", "menubar=no, width=800, height=600");

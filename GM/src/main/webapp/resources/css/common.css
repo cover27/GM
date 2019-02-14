@@ -26,7 +26,7 @@ body {
 	font-size: 1.4em;
 	font-weight: normal;
 	line-height: 1.42857143;
-	background: #eee;
+	background: #eee url(../images/main_bg.jpg) no-repeat right bottom;;
 }
 
 h1, h2, h3, h4, h5, h6 {
