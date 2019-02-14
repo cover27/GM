@@ -5,7 +5,7 @@
 <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
 <script type="text/javascript">
 function addApprLine(){
-	var url="O_addApprLine";
+	var url="K_addApprLine";
 	window.open(url, "addApprLine", "menubar=no, width=1000, height=560");
 }
 
@@ -238,7 +238,7 @@ div{
 		<!-- 기안 용지 작성 content -->
 		<div class="content-wrap approval responsive">
 			<div class="content-write">	
-				<form id="apprDocForm" name="apprDocForm" method="post" action="O_apprDocFormReqPro" novalidate="novalidate">
+				<form id="apprDocForm" name="apprDocForm" method="post" action="K_apprDocFormReqPro" novalidate="novalidate">
 			       	<input type="hidden" name="del" value="0">
 			       	<input type="hidden" name="groupId" value="">
 					
@@ -300,7 +300,7 @@ div{
 							<tbody>							
 								<tr>
 									<th>문서번호</th>
-									<td><input type="hidden" name="num" value="${num}">자동채번</td>
+									<td><input type="hidden" name="num" value="">자동채번</td>
 									<th>기안일자</th>
 									<td><input type="hidden" name="reg_date" value="${today}">${today}</td>
 								</tr>

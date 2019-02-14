@@ -16,25 +16,25 @@
                     <li>
                         <span>기안</span>
                         <ul>
-                            <li id="O_createApprDocFormView"><a href="<c:url value='/pages/O_createApprDocFormView' />">기안문 작성</a></li>
-                            <li id="O_listApprMyRequestView"><a href="<c:url value='/pages/O_listApprMyRequestView' />">결재 요청함<span>2</span></a></li>
-                            <li id="O_listApprTempView"><a href="<c:url value='/pages/O_listApprTempView' />">임시 저장함</a></li>
+                            <li id="K_createApprDocFormView"><a href="<c:url value='/pages/K_createApprDocFormView' />">기안문 작성</a></li>
+                            <li id="K_listApprMyRequestView"><a href="<c:url value='/pages/K_listApprMyRequestView' />">결재 요청함<span>2</span></a></li>
+                            <li id="K_listApprTempView"><a href="<c:url value='/pages/K_listApprTempView' />">임시 저장함</a></li>
                         </ul>
                     </li>
                     <li>
                         <span>결재</span>
                         <ul>
-                            <li id="O_listApprTodoView"><a href="<c:url value='/pages/O_listApprTodoView' />">결재 대기함</a></li>
-                            <li id="O_listApprCompleteView"><a href="<c:url value='/pages/O_listApprCompleteView' />">결재 진행함</a></li>
-                            <li id="O_readApprAllListView"><a href="<c:url value='/pages/O_readApprAllListView' />">완료 문서함</a></li>
-                            <li id="O_listApprRejectView"><a href="<c:url value='/pages/O_listApprRejectView' />">반려 문서함</a></li>
-                            <li id="O_listApprReferenceView"><a href="<c:url value='/pages/O_listApprReferenceView' />">참조/열람 문서함</a></li>
+                            <li id="K_listApprTodoView"><a href="<c:url value='/pages/K_listApprTodoView' />">결재 대기함</a></li>
+                            <li id="K_listApprCompleteView"><a href="<c:url value='/pages/K_listApprCompleteView' />">결재 진행함</a></li>
+                            <li id="K_readApprAllListView"><a href="<c:url value='/pages/K_readApprAllListView' />">완료 문서함</a></li>
+                            <li id="K_listApprRejectView"><a href="<c:url value='/pages/K_listApprRejectView' />">반려 문서함</a></li>
+                            <li id="K_listApprReferenceView"><a href="<c:url value='/pages/K_listApprReferenceView' />">참조/열람 문서함</a></li>
                         </ul>
                     </li>
                     <li>
                         <span>관리자 메뉴</span>
                         <ul>
-                            <li id="O_listApprDocAllAdminView"><a href="<c:url value='/pages/O_listApprDocAllAdminView' />">결재문서 관리</a></li>
+                            <li id="K_listApprDocAllAdminView"><a href="<c:url value='/pages/K_listApprDocAllAdminView' />">결재문서 관리</a></li>
                             <!-- <li><a href="b10.jsp">양식 관리</a></li>
                             <li><a href="b11.jsp">발신 공문 설정</a></li> -->
                         </ul>

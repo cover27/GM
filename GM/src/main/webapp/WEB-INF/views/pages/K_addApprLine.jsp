@@ -219,7 +219,7 @@ input, button, select, textarea {
 <body>
 <div class="body pd" style="padding:10px;">
 
-	<form action="O_createApprDocFormView" method="post">
+	<form action="K_createApprDocFormView" method="post">
 		<div class="shuttleL w30p ui-tabs ui-widget ui-widget-content ui-corner-all" id="divTabs">					
 			<ul class="nav nav-tabs6 push ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" data-toggle="tabs" role="tablist">
 				<li class="active ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="tab-orggroup" aria-labelledby="ui-id-1" aria-selected="true">

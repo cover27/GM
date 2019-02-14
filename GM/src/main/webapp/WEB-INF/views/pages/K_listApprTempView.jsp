@@ -4,7 +4,7 @@
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/payment.jsp"%>
-<%@ include file="/WEB-INF/views/pages/sub/O_listApprTempContent.jsp"%>
+<%@ include file="/WEB-INF/views/pages/sub/K_listApprTempContent.jsp"%>
 
 <!-- 기안 - 임시저장함 페이지 -->
 

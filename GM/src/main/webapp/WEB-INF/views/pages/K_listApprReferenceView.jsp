@@ -4,7 +4,7 @@
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/payment.jsp"%>
-<%@ include file="/WEB-INF/views/pages/sub/O_listApprDocAllAdminContent.jsp"%>
+<%@ include file="/WEB-INF/views/pages/sub/K_listApprReferenceContent.jsp"%>
 <%-- <%@ include file="/WEB-INF/views/include/footer.jsp"%> --%>
 
-<!-- 관리자 메뉴 - 결재문서관리 페이지 -->
+<!-- 결재 - 참조/열람문서함 페이지 -->
