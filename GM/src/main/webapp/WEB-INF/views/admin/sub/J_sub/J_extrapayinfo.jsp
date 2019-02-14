@@ -50,6 +50,7 @@
 		<div class="J_BasicAllowanceManagement_btnset">
 			<div class="fright">
 				<input type="button" value="행 추가" name="addStaff" onclick="addhang()">
+				<input type="hidden" value="${contents}" name="contents">
 				<input type="submit" value="저장">
 			</div>
 			<div class="clear"></div>

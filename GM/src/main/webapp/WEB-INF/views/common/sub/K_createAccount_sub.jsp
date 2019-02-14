@@ -13,7 +13,7 @@
    				<ul>
 	            	<li>
 	            		<span>*아이디</span>
-	            		<input type="text" name="id" placeholder="아이디를 입력하세요.">
+	            		<input type="text" name="id" placeholder="아이디를 입력하세요." autofocus>
 	            		<input type="button" name="dupChk" value="중복확인" onclick="confirmId();">
 	            	</li>
 	            	<li>
@@ -32,7 +32,9 @@
 	            	</li>
 	            	<li>
 	            		<span>*주민등록번호</span>
-	            		<input type="text" name="jumin1" maxlength="6" onkeyup='nextJumin();'> - <input type="password" name="jumin2" maxlength="7">
+	            		<input type="text" name="jumin1" maxlength="6" onkeyup='nextJumin();' style="width: 291px;">
+	            		 - 
+	            		<input type="password" name="jumin2" maxlength="7" style="width: 291px;">
 	            	</li>
 	            	<li>
 	            		<span>*성별</span>

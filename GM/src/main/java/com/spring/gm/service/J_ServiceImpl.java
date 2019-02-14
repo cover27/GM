@@ -693,6 +693,7 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("cnt", cnt);
 		model.addAttribute("id", id);
+		model.addAttribute("contents", content);
 	}
 
 	@Override
@@ -881,6 +882,49 @@ public class J_ServiceImpl implements J_Service {
 		
 		model.addAttribute("cnt" , cnt);
 		model.addAttribute("cnt2" , cnt3);
+	}
+	
+	//-----------------------------급여 계산-------------------------------------------
+	//급여 계산 목록 가져오기
+	@Override
+	public void J_SalaryCalculationSearch(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = req.getParameter("id");
+		System.out.println("id: " + id);
+		String month = req.getParameter("month");
+		System.out.println("month: " + month);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		map.put("month", month);
+		if(month.length() == 0) { //검색 날짜가 없을경우 오늘 날짜년도로 뽑음
+			int cnt = dao.J_SalaryCalculationSearchCnt(map);
+			if(cnt > 0) {
+				List<join_mgsbVO> dtos = J_SalaryCalculationSearchList(map);
+				model.addAttribute("dtos", dtos);
+				model.addAttribute("cnt",cnt);
+			}
+		}
+		if(month.length() == 4) { // 검색 날짜가 있을 경우
+			int cnt = dao.J_SalaryCalculationSearchCnt2(map);
+			if(cnt > 0) {
+				List<join_mgsbVO> dtos = J_SalaryCalculationSearchList2(map);
+				model.addAttribute("dtos", dtos);
+				model.addAttribute("cnt",cnt);
+			}
+		}
+		model.addAttribute("company",company);
+		
+	}
+
+	private List<join_mgsbVO> J_SalaryCalculationSearchList2(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private List<join_mgsbVO> J_SalaryCalculationSearchList(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
