@@ -52,7 +52,7 @@ public class join_mgsbVO {
 	
 	
 	private int bonussalary;
-	private int Sumsalaybonus;
+	private int Sumsalarybonus;
 	public String getId() {
 		return id;
 	}
@@ -305,11 +305,11 @@ public class join_mgsbVO {
 	public void setBonussalary(int bonussalary) {
 		this.bonussalary = bonussalary;
 	}
-	public int getSumsalaybonus() {
-		return Sumsalaybonus;
+	public int getSumsalarybonus() {
+		return Sumsalarybonus;
 	}
-	public void setSumsalaybonus(int sumsalaybonus) {
-		Sumsalaybonus = sumsalaybonus;
+	public void setSumsalarybonus(int sumsalarybonus) {
+		Sumsalarybonus = sumsalarybonus;
 	}
 	@Override
 	public String toString() {
@@ -323,10 +323,8 @@ public class join_mgsbVO {
 				+ ", account_number=" + account_number + ", j_name=" + j_name + ", groupId=" + groupId + ", g_name="
 				+ g_name + ", group_rank=" + group_rank + ", sal_num=" + sal_num + ", day=" + day + ", state=" + state
 				+ ", num=" + num + ", type=" + type + ", cost=" + cost + ", content=" + content + ", bonussalary="
-				+ bonussalary + ", Sumsalaybonus=" + Sumsalaybonus + "]";
+				+ bonussalary + ", Sumsalarybonus=" + Sumsalarybonus + "]";
 	}
-	
-	
 	
 	
 }
