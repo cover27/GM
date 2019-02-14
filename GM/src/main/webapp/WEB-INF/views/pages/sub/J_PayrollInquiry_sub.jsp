@@ -27,7 +27,7 @@
 		} else {
 			$
 			.ajax({
-				url : '${pageContext.request.contextPath}/admin/searchPayrollInquiry',
+				url : '${pageContext.request.contextPath}/pages/searchPayrollInquiry',
 				type : 'POST',
 				data : {
 					'id' : id,
@@ -82,9 +82,7 @@
 								*데이터 정보가 없습니다.</td>
 							</tr>
 							<tr>
-								<td colspan="4">합계</td>
-								<td>0</td>
-								<td>0</td>
+								<td colspan="5">합계</td>
 								<td>0</td>
 							</tr>
 					</table>
