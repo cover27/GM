@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.gm.vo.Join_payVO;
+import com.spring.gm.vo.PaymentVO;
 
 
 @Repository
