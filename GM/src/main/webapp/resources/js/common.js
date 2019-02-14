@@ -174,7 +174,7 @@ function nextHm3(){ //다입력하면 다음칸으로 넘어가는함수
 }
 
 function selectEmailChk(){ //이메일 선택하면 자동으로 생성
-	if(document.inputform.email3.value == "0"){
+	if(document.inputform.email3.value == "1"){
 		document.inputform.email2.value = "";
 		document.inputform.email2.focus();
 	} else{

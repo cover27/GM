@@ -532,7 +532,7 @@ img {
 	clear: both;
 }
 
-.btnset>input[type="submit"], .btnset input[type="cancel"], .btnset>input[type="button"], .btnset>button {
+.btnset>input[type="submit"], .btnset input[type="reset"], .btnset>input[type="button"], .btnset>button {
 	cursor: pointer;
     padding: 5px 15px;
     border-radius: 3px;
@@ -541,14 +541,9 @@ img {
     font-weight: bold;
 }
 
-.btnset>input[type="submit"], .btnset>input[type="button"], .btnset>button {
+.btnset>input[type="submit"], .btnset>input[type="button"], .btnset>input[type="reset"], .btnset>button {
 	color: #fff;
 	background: #555;
-}
-
-.btnset>input[type="cancel"] {
-	color: #333;
-	background: #f3f3f3;
 }
 
 .selected {
