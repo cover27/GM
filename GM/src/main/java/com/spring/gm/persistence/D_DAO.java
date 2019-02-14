@@ -3,6 +3,7 @@ package com.spring.gm.persistence;
 import java.util.List;
 import java.util.Map;
 
+import com.spring.gm.vo.BoardListAndBoardsVO;
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.BoardsVO;
 import com.spring.gm.vo.ReplyListVO;
@@ -13,7 +14,7 @@ public interface D_DAO {
 
 	public int insertBoards(BoardsVO VO); // 게시판 생성문
 	
-	public int getBoardsArticleCnt(); //게시판 갯수
+	public int getBoardsArticleCnt(int company); //게시판 갯수
 	
 	public List<BoardsVO> getBoardsArticleList(Map<String, Object> map); //게시판 목록
 	
@@ -59,7 +60,7 @@ public interface D_DAO {
 	
 	public int deleteRepleCnt(int boardnum);	// 댓글을 삭제하면 댓글갯수가 감소
 
-	public List<BoardListVO> getAllBoardArticleList(Map<String, Object> map);	// 게시글 전체 목록
+	public List<BoardListAndBoardsVO> getAllBoardArticleList(Map<String, Object> map);	// 게시글 전체 목록
 	
 	public int deleteBoards(BoardsVO vo);	// 게시판 삭제
 	

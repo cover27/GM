@@ -1,7 +1,6 @@
 package com.spring.gm.service;
 
 import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.D_DAO;
+import com.spring.gm.vo.BoardListAndBoardsVO;
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.BoardsVO;
+import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.ReplyListVO;
 
 @Service
@@ -26,7 +27,7 @@ public class D_ServiceImpl implements D_Service{
 	@Override
 	// 게시판 작성
 	public void insertBoards(HttpServletRequest req, Model model) {
-		
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		BoardsVO vo = new BoardsVO();		// 바구니 생성
 
 		String b_name = req.getParameter("b_name");
@@ -38,8 +39,7 @@ public class D_ServiceImpl implements D_Service{
 		vo.setAnon(anon);
 		vo.setDel(del);
 		
-		int cnt = dao.getBoardsArticleCnt();
-		vo.setGroupId(cnt+1);
+		vo.setGroupId(company);
 		int insertCnt = dao.insertBoards(vo);	//jsp로 가져온값들을 insert하고 다시 
 		
 		model.addAttribute("insertCnt",insertCnt);
@@ -49,7 +49,7 @@ public class D_ServiceImpl implements D_Service{
 	@Override
 	// 게시판 목록
 	public void boardsList(HttpServletRequest req, Model model) {
-		
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
@@ -67,7 +67,7 @@ public class D_ServiceImpl implements D_Service{
 		int groupId = 0;
 	
 		// 게시판 갯수
-		cnt = dao.getBoardsArticleCnt();
+		cnt = dao.getBoardsArticleCnt(company);
 
 		
 		System.out.println("cnt(게시판 갯수) : " + cnt);
@@ -104,6 +104,7 @@ public class D_ServiceImpl implements D_Service{
 			map.put("groupId", groupId);
 			map.put("start", start);
 			map.put("end", end);
+			map.put("company", company);
 			
 			List<BoardsVO> dtos = dao.getBoardsArticleList(map);
 			
@@ -578,7 +579,7 @@ public class D_ServiceImpl implements D_Service{
 	@Override
 	// 게시글 목록
 	public void allBoardList(HttpServletRequest req, Model model) {
-		
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
@@ -625,9 +626,10 @@ public class D_ServiceImpl implements D_Service{
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
+			map.put("company", company);
 
 			
-			List<BoardListVO> dtos = dao.getAllBoardArticleList(map);
+			List<BoardListAndBoardsVO> dtos = dao.getAllBoardArticleList(map);
 			
 			model.addAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
 
@@ -769,7 +771,7 @@ public class D_ServiceImpl implements D_Service{
 	}
 	
 	public void allBoardAdmin(HttpServletRequest req, Model model) {
-		
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
@@ -816,9 +818,10 @@ public class D_ServiceImpl implements D_Service{
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
+			map.put("company", company);
 
 			
-			List<BoardListVO> dtos = dao.getAllBoardArticleList(map);
+			List<BoardListAndBoardsVO> dtos = dao.getAllBoardArticleList(map);
 			
 			model.addAttribute("ad_dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
 

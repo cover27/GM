@@ -113,19 +113,6 @@ function inputCheck(){
 	}
 }
 
-// id 중복확인체크함수
-function confirmId(){
-	//id값 미입력시
-	if(!document.inputform.id.value){
-		alert('아이디를 입력하세요');
-		document.inputform.id.focus();
-		return false;
-	}
-
-	var url="confirmId?id="+ document.inputform.id.value; //confirmId 컨트롤러로 새창화면출력
-	window.open(url, "confirm", "menubar=no, width=300, height=200");
-}
-
 function findCompany(){
 	var url="findCompany";
 	window.open(url, "confirm", "menubar=no, width=800, height=600");
@@ -174,7 +161,7 @@ function nextHm3(){ //다입력하면 다음칸으로 넘어가는함수
 }
 
 function selectEmailChk(){ //이메일 선택하면 자동으로 생성
-	if(document.inputform.email3.value == "0"){
+	if(document.inputform.email3.value == "1"){
 		document.inputform.email2.value = "";
 		document.inputform.email2.focus();
 	} else{

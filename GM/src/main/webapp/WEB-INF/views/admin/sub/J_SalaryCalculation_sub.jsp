@@ -24,26 +24,26 @@
 		var textLength = $('#month').val().length;
 		if (textLength >= 0 && textLength <= 3) {
 			alert("날짜를 확인해주십시오.");
-		}else if(textLength == 0){
+		} else if (textLength == 0) {
 			alert("날짜를 입력해주십시오.");
-		}else { 
+		} else {
 			$
-			.ajax({
-				url : '${pageContext.request.contextPath}/admin/J_SalaryCalculationSearch',
-				type : 'POST',
-				data : {
-					'id' : id,
-					'name' : name,
-					'month' : month
-				}, //전송할 데이터
-				success : function(result) {
-					$('#result').html(result);
-				},
-				error : function() {
-					alert('오류');
-				}
-			});
-		} 
+					.ajax({
+						url : '${pageContext.request.contextPath}/admin/J_SalaryCalculationSearch',
+						type : 'POST',
+						data : {
+							'id' : id,
+							'name' : name,
+							'month' : month
+						}, //전송할 데이터
+						success : function(result) {
+							$('#result').html(result);
+						},
+						error : function() {
+							alert('오류');
+						}
+					});
+		}
 	};
 </script>
 <section>
@@ -69,53 +69,25 @@
 							onclick="J_SalaryCalculationSearch()" value="검색"></td>
 					</tr>
 				</table>
-					<table border="1">
-					<c:if test="${cnt == 0}">
-						<tr>
-							<td style="text-align: center; background-color: #cccccc;">급여번호</td>
-							<td style="text-align: center; background-color: #cccccc;">아이디</td>
-							<td style="text-align: center; background-color: #cccccc;">지급일</td>
-							<td style="text-align: center; background-color: #cccccc;">지급액</td>
-							<td style="text-align: center; background-color: #cccccc;">상태</td>
-						</tr>
-					
-						<tr>
-							<td colspan="7" style="height: 150px;" text-align="center">
-								*데이터 정보가 없습니다.
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">합계</td>
-							<td>0</td>
-							<td>0</td>
-							<td>0</td>
-						</tr>
-					</c:if>
-					
-					
-					<c:if test="${cnt > 0}">
-						<tr>
-							<td style="text-align: center; background-color: #cccccc;">급여번호</td>
-							<td style="text-align: center; background-color: #cccccc;">아이디</td>
-							<td style="text-align: center; background-color: #cccccc;">지급일</td>
-							<td style="text-align: center; background-color: #cccccc;">지급액</td>
-							<td style="text-align: center; background-color: #cccccc;">상태</td>
-						</tr>
-						<tr>
-							<td>${dto.sal_num}</td>
-							<td>${dto.id}</td>
-							<td>${dto.day}</td>
-							<td>${dto.salary}</td>
-							<td>${dto.state}</td>
-						</tr>
-						<tr>
-							<td colspan="4">합계</td>
-							<td>${dto.Sumsalatbonus}</td>
-						</tr>
-					</c:if>
-					</table>
 				<div id="result">
-				
+					<table border="1">
+						<tr>
+							<td style="text-align: center; background-color: #cccccc;">급여번호</td>
+							<td style="text-align: center; background-color: #cccccc;">아이디</td>
+							<td style="text-align: center; background-color: #cccccc;">지급일</td>
+							<td style="text-align: center; background-color: #cccccc;">상태</td>
+							<td style="text-align: center; background-color: #cccccc;">지급액</td>
+						</tr>
+
+						<tr>
+							<td colspan="5" style="height: 150px;" text-align="center">*데이터
+								정보가 없습니다.</td>
+						</tr>
+						<tr>
+							<td colspan="4">합계</td>
+							<td>0</td>
+						</tr>
+					</table>
 				</div>
 			</form>
 		</div>

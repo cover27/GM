@@ -40,7 +40,7 @@ public class E_Controller {
 		return "pages/E_organizationList";
 	}
 	
-	// 조직도 - 로그인된 계정이 소속된 회사에서 그어떤 부서에도 속하지 않는 모든 구성원 목록
+	// 조직도 - 로그인된 계정이 소속된 회사 특정 그룹에 속하는 구성원 목록
 	@RequestMapping("/pages/E_organVipGroupList")
 	public String E_organVipGroupList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_organVipGroupList");
@@ -50,7 +50,8 @@ public class E_Controller {
 		return "pages/E_organVipGroupList";
 	}
 	
-	// 조직도 - 개인 그룹 목록
+	
+	// 조직도 - 개인 그룹 목록 ( 개인그룹 관리에서 초기 게시판 생성 후 작성 )
 	@RequestMapping("/pages/E_myGroupList")
 	public String E_myGroupList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_myGroupList");
@@ -66,33 +67,16 @@ public class E_Controller {
 	public String E_MyGroupManage(HttpServletRequest req, Model model) {
 		logger.info("URL : E_myGroupManage");
 		
+		service.E_MyGroupManage(req, model);
 		return "pages/E_myGroupManage";
 	}
-	
-	// 조직도 - 자주 연락하는 사람 관리 게시판
-	@RequestMapping("/pages/E_orgMyFavoritMemList")
-	public String E_MyFavoritMemList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_orgMyFavoritMemList");
-		
-		return "pages/E_orgMyFavoritMemList";
-	}
-	
-	
 	
 
 	
 	
 	
+
 	
-	
-	
-	// 주소록 - 주소록 첫페이지
-	@RequestMapping("/pages/E_addressList")
-	public String E_addressList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_addressList");
-		
-		return "pages/E_addressList";
-	}
 	
 	// 메모 게시판
 	@RequestMapping("/pages/E_memoList")
@@ -112,6 +96,21 @@ public class E_Controller {
 		return "pages/E_memoInfo";
 	}
 	
+	
+	
+	
+	
+	
+	
+	// 주소록 - 주소록 첫페이지
+	@RequestMapping("/pages/E_addressList")
+	public String E_addressList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_addressList");
+		
+		return "pages/E_addressList";
+	}
+	
+
 
 
 	

@@ -54,10 +54,11 @@ public interface J_DAO {
 	public ArrayList<join_mgsbVO> mgstbl(Map<String, Object> map);
 	//급여 회사명 가져오는  셀리리조인
 	public ArrayList<join_mgsbVO> mgstbl2(Map<String, Object> map);
+	/*public ArrayList<join_mgsbVO> mgstbl3(Map<String, Object> map);
+	public ArrayList<join_mgsbVO> mgstbl4(Map<String, Object> map);*/
 	//Bonus_cut 정보 가져오기
 	public ArrayList<join_mgsbVO> bonustbl(Map<String, Object> map);
 	public ArrayList<join_mgsbVO> bonustbl2(Map<String, Object> map);
-	
 	
 	
 	
@@ -129,10 +130,14 @@ public interface J_DAO {
 	public ArrayList<join_mgsbVO> J_SalaryCalculationSearchList2(Map<String, Object> map);
 	
 	
+	//-----------------------상여 조회------------------------------------
+	public ArrayList<join_mgsbVO> bonusList(Map<String, Object> map);
+	public ArrayList<join_mgsbVO> bonusList2(Map<String, Object> map);
 	
-	
-	
-	
+	//상여 미지급 목록
+	public int bonusNoneCnt(Map<String, Object> map);
+	public ArrayList<join_mgsbVO> bonusNoneList(Map<String, Object> map);
+	public ArrayList<join_mgsbVO> bonusNoneList2(Map<String, Object> map);
 	
 	
 	

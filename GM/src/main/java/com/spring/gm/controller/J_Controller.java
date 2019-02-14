@@ -11,10 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.J_ServiceImpl;
+import com.sun.jmx.snmp.Timestamp;
 
 @Controller
 public class J_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(J_Controller.class);
+	private static final String Timestamp = null;
 	@Autowired
 	J_ServiceImpl service;
 
@@ -128,12 +130,13 @@ public class J_Controller {
 	}
 
 	// 급여 조회(Payroll Inquiry)
-	@RequestMapping("/admin/J_PayrollInquiry")
+	@RequestMapping("/pages/J_PayrollInquiry")
 	public String J_PayrollInquiry(HttpServletRequest req, Model model) {
 		logger.info("URL : J_PayrollInquiry");
 		service.companyName(req, model);
-		
-		return "admin/J_PayrollInquiry";
+		String today = Timestamp;
+		model.addAttribute("today", today);
+		return "pages/J_PayrollInquiry";
 	}
 
 	// 상여 계산(Bonus Calculation)
@@ -264,7 +267,7 @@ public class J_Controller {
 	
 	//-----------------------상여급여 조회------------------------------------
 	// 상여 조회(아이디 검색 정보 가져오기)
-	@RequestMapping("/admin/J_searchId_sub")
+	@RequestMapping("/pages/J_searchId_sub")
 	public String searchId(HttpServletRequest req, Model model) {
 		logger.info("URL : searchId_sub");
 		String id = req.getParameter("id");
@@ -277,16 +280,23 @@ public class J_Controller {
 			service.searchId(req, model);
 		}
 		model.addAttribute("id",id);
-		return "admin/sub/J_sub/J_searchId_sub";
+		return "pages/sub/J_sub/J_searchId_sub";
 	}
 	//검색 결과값으로 정보 가져오기
-	@RequestMapping("/admin/searchPayrollInquiry")
+	@RequestMapping("/pages/searchPayrollInquiry")
 	public String searchPayrollInquiry(HttpServletRequest req, Model model) {
 		logger.info("URL : searchPayrollInquiry");
 		service.searchPayrollInquiry(req, model);
-		return "admin/sub/J_sub/J_PayrollInquiry_sub";
+		return "pages/sub/J_sub/J_PayrollInquiry_sub";
 	}
 	
+	//상여 조회
+	@RequestMapping("/pages/searchBonusInquiry")
+	public String searchBonusInquiry(HttpServletRequest req, Model model) {
+		logger.info("URL : searchBonusInquiry");
+		service.searchBonusInquiry(req, model);
+		return "pages/sub/J_sub/J_searchBonusInquiry_sub";
+	}
 	
 	//-----------------------급여 계산------------------------------------
 	//급여 계산 목록 가져오기
