@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
+<link rel="stylesheet" href="${path}css/signup.css">
 <script type="text/javascript">
 
 	function setCompany1(company){
@@ -13,14 +14,14 @@
 		self.close();
 	}
 </script>
+<div id="findCompany">
 	<h2>회사 검색</h2>
-	<br>
 	<form action="searchCompany" method="post">
 		<table>
 			<tr>
 				<th>
 					<input type="text" name="keyword" placeholder="업체명을 입력하세요." required>
-					<input type="submit" value="검색" >
+					<input type="submit" value="검색">
 				</th>
 			</tr>
 			<tr>
@@ -31,7 +32,9 @@
 			</tr>
 			<c:forEach var='dto' items='${list}'>
 				<tr>
-					<th><input type="button" value="선택" onclick="setCompany1('${dto.c_name}'); setCompany2('${dto.company}');"></th>
+					<th>
+						<input type="button" value="선택" onclick="setCompany1('${dto.c_name}'); setCompany2('${dto.company}');">
+					</th>
 					<th>${dto.c_name }</th>
 					<th>${dto.c_address }</th>
 					<th>${dto.c_number }</th>
@@ -39,11 +42,10 @@
 			</c:forEach>
 			<c:if test="${list.size() == 0 }">
 				<tr>
-					<th>
-						검색결과가 없습니다.
-					</th>
+					<th>검색결과가 없습니다.</th>
 				</tr>
 			</c:if>
 		</table>
 	</form>
 	<input class="inputButton" type="button" value="취소" onclick="self.close();">
+</div>
