@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@page import="java.util.*" %>
+<%@page import="com.spring.gm.vo.PaymentVO" %>
 <style>
 .search-wrap {
     margin: 0 0 20px;
@@ -383,93 +384,35 @@ tbody {
 						    	
 				<!-- content-list approval -->
 				<div class="content-list approval">		
-
 				<!-- listtable -->
 				<div>
-					<table class="table table-striped " id="listTable">
-						<caption></caption>
-						<colgroup>
-							<col width="4%">
-							<col width="10%">													
-							<col width="7%">
-							<col width="*">
-							<col width="10%">				
-							<col width="13%">
-							<col width="13%">
-							<col width="13%">
-						</colgroup>					
-						<thead>
-							<tr>
-								<th scope="col">NO</th>
-								<th scope="col">문서번호</th>			
-								<th scope="col">유형</th>
-								<th scope="col">
-									<a onclick="f_Sort('apprTitle', '');" href="#a">문서제목
-										<i class="fa fa-caret-down"><span class="blind">내림차순</span></i>
-									</a>	
-								</th>
-								<th scope="col">기안자</th>
-								<th scope="col">기안부서</th>
-								<th scope="col">
-									<a onclick="f_Sort('apprReqDate', '');" href="#a">기안일</a>
-									<i class="fa fa-caret-down"><span class="blind">내림차순</span></i>
-								</th>
-								<th scope="col">
-									<a onclick="f_Sort('assignDate', 'DESC');" href="#a">배정일&nbsp;&nbsp;</a>
-									<i class="fa fa-caret-down active"><span class="blind">내림차순</span></i>
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr style="background: rgb(249, 249, 249);">
-								<td>
-									2
-								</td>
-								<td><div class="ellipsis" title="" style="cursor:default;"></div></td>											
-								<td>결재</td>								
-								<td class="text-left">
-									<div class="ellipsis">
-										<a href="#a" onclick="getApprDetail('26947622','','','1');" title="ㅏㅕㅘㅕㅗ">ㅏㅕㅘㅕㅗ</a>
-										<span class="text-point-b"></span>
-									</div>
-								</td>
-								<td><div class="ellipsis"><span class="name"><a href="#a" onclick="spro.showUserContextMenu(this, 'U260298', 'bottom')">공선빈</a></span></div></td>
-								<td>테스트</td>
-								<td>2019.01.16 18:26</td>
-								<td>2019.01.16 18:26</td>																		
-							</tr>
-							<tr>
-								<td>1</td>
-								<td><div class="ellipsis" title="20190116-0001" style="cursor:default;">20190116-0001</div></td>											
-								<td>수신</td>								
-								<td class="text-left">
-									<div class="ellipsis">
-										<a href="#a" onclick="getApprDetail('26946998','','','1');" title="이것도 테스트">이것도 테스트</a>
-										<span class="text-point-b"></span>
-									</div>
-								</td>
-								<td><div class="ellipsis"><span class="name"><a href="#a" onclick="spro.showUserContextMenu(this, 'U260235', 'bottom')">손장훈</a></span></div></td>
-								<td>홈사랑넷</td>
-								<td>2019.01.16 18:16</td>
-								<td>2019.01.16 18:16</td>																		
-							</tr>
-						</tbody> 
-					</table>
-					
-					<!-- pagination -->	
-						
-						<div class="pagination-wrap"><ul class="pagination"><li><a href="javascript:void(0)" class="disabled"><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i><span class="none">first</span></a></li><li><a href="javascript:void(0)" class="disabled"><i class="fa fa-chevron-left"></i><span class="none">previous</span></a></li><li class="active"><a href="javascript:void(0)">1</a></li><li><a href="javascript:void(0)" class="disabled"><i class="fa fa-chevron-right"></i><span class="none">next</span></a></li><li><a href="javascript:void(0)" class="disabled"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><span class="none">last</span></a></li></ul></div><script>pageMoveAction = function(inputName, formId, movePageIndex) { jQuery('input[name=' + inputName + ']', formId).val(movePageIndex); jQuery('input[name=action]', formId).val('pagePerRecord');};</script>
-
-						<input id="pageIndex" name="pageIndex" type="hidden" value="1" title="현재 페이지">
-						 
-					<!-- pagination -->	
-
-				</div>
-				<!-- listtable -->	
-				
-			</div>
-				<!-- //content-list approval -->
-			<input type="hidden" name="OWASP_CSRFTOKEN" value="T0I8-S60Q-SL26-7D62-JJNV-9V2H-ULMJ-5UZK">
+				<%
+					List<PaymentVO> payment = (List<PaymentVO>)request.getAttribute("payment");
+				%>
+				<table class="table table-striped " id="listTable">
+					<tr>
+						<th>순서</th>
+						<th>제목</th>
+						<th>기안자</th>
+						<th>요청일</th>
+						<th>만료일</th>
+						<th>상태</th>
+					</tr>
+				<%
+					for(int i=0; i<payment.size();i++){
+				%>
+					<tr>
+						<th><%=payment.size()-i %></th>
+						<th><%=payment.get(i).getSubject() %></th>
+						<th><%=payment.get(i).getName() %></th>
+						<th><%=payment.get(i).getReg_date() %></th>
+						<th><%=payment.get(i).getDeadline() %></th>
+						<th><%=payment.get(i).getState() %></th>
+					</tr>
+				<%
+					}
+				%>
+				</table>
 			</form>	
 		</div>
 		
