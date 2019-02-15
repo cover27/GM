@@ -34,7 +34,14 @@ if(category[0] == "S"){
 		$("#k").children().css("color", "#d3292c");
 		$("#k").css("font-weight", "bold");
 	});
+} else if(category[0] == "P"){
+	// alert("됨");
+	$(function(){
+		$("#p").children().css("color", "#d3292c");
+		$("#p").css("font-weight", "bold");
+	});
 }
+
 /*헤더 카테고리 선택시 강조 끝 */
 
 /* 회원가입 */
@@ -299,51 +306,51 @@ var url = window.location.href.split('gm');
 var url_split = url[1].split('/');
 var category = url_split[2].split('?');
 
-if(category[0] == "O_createApprDocFormView"){
+if(category[0] == "P_createApprDocFormView"){
 	// alert("됨");
 	$(function(){
-		$("#O_createApprDocFormView").children().css("color", "#d3292c");
-		$("#O_createApprDocFormView").css("font-weight", "bold");
+		$("#P_createApprDocFormView").children().css("color", "#d3292c");
+		$("#P_createApprDocFormView").css("font-weight", "bold");
 	});
-} else if(category[0] == "O_listApprMyRequestView") {
+} else if(category[0] == "P_listApprMyRequestView") {
 	$(function(){
-		$("#O_listApprMyRequestView").children().css("color", "#d3292c");
-		$("#O_listApprMyRequestView").css("font-weight", "bold");
+		$("#P_listApprMyRequestView").children().css("color", "#d3292c");
+		$("#P_listApprMyRequestView").css("font-weight", "bold");
 	});
-} else if(category[0] == "O_listApprTempView") {
+} else if(category[0] == "P_listApprTempView") {
 	$(function(){
-		$("#O_listApprTempView").children().css("color", "#d3292c");
-		$("#O_listApprTempView").css("font-weight", "bold");
+		$("#P_listApprTempView").children().css("color", "#d3292c");
+		$("#P_listApprTempView").css("font-weight", "bold");
 	});
-} else if(category[0] == "O_listApprTodoView") {
+} else if(category[0] == "P_listApprTodoView") {
 	$(function(){
-		$("#O_listApprTodoView").children().css("color", "#d3292c");
-		$("#O_listApprTodoView").css("font-weight", "bold");
+		$("#P_listApprTodoView").children().css("color", "#d3292c");
+		$("#P_listApprTodoView").css("font-weight", "bold");
 	});
-} else if(category[0] == "O_listApprCompleteView") {
+} else if(category[0] == "P_listApprCompleteView") {
 	$(function(){
-		$("#O_listApprCompleteView").children().css("color", "#d3292c");
-		$("#O_listApprCompleteView").css("font-weight", "bold");
+		$("#P_listApprCompleteView").children().css("color", "#d3292c");
+		$("#P_listApprCompleteView").css("font-weight", "bold");
 	});
-} else if(category[0] == "O_readApprAllListView") {
+} else if(category[0] == "P_readApprAllListView") {
 	$(function(){
-		$("#O_readApprAllListView").children().css("color", "#d3292c");
-		$("#O_readApprAllListView").css("font-weight", "bold");
+		$("#P_readApprAllListView").children().css("color", "#d3292c");
+		$("#P_readApprAllListView").css("font-weight", "bold");
 	});
-} else if(category[0] == "O_listApprRejectView") {
+} else if(category[0] == "P_listApprRejectView") {
 	$(function(){
-		$("#O_listApprRejectView").children().css("color", "#d3292c");
-		$("#O_listApprRejectView").css("font-weight", "bold");
+		$("#P_listApprRejectView").children().css("color", "#d3292c");
+		$("#P_listApprRejectView").css("font-weight", "bold");
 	});
-} else if(category[0] == "O_listApprReferenceView") {
+} else if(category[0] == "P_listApprReferenceView") {
 	$(function(){
-		$("#O_listApprReferenceView").children().css("color", "#d3292c");
-		$("#O_listApprReferenceView").css("font-weight", "bold");
+		$("#P_listApprReferenceView").children().css("color", "#d3292c");
+		$("#P_listApprReferenceView").css("font-weight", "bold");
 	});
-} else if(category[0] == "O_listApprDocAllAdminView") {
+} else if(category[0] == "P_listApprDocAllAdminView") {
 	$(function(){
-		$("#O_listApprDocAllAdminView").children().css("color", "#d3292c");
-		$("#O_listApprDocAllAdminView").css("font-weight", "bold");
+		$("#P_listApprDocAllAdminView").children().css("color", "#d3292c");
+		$("#P_listApprDocAllAdminView").css("font-weight", "bold");
 	});
 }
 /* aside 전자결재 끝 */

@@ -115,100 +115,116 @@ public class O_Controller {
 	
 	
 	
+	/* 일정 시작 */
+	//일정 화면
+	@RequestMapping("/pages/O_calendar")
+	public String O_calendar(HttpServletRequest req, Model model) {
+		logger.info("URL : O_calendar");
+		
+		oservice.calendarPageNum(req, model);
+		
+		return "pages/O_calendar";
+	}
+	
+	/* 일정 끝 */
+	
+	
+	
+	
 	/* 전자 결재 시작 */
 	//기안 - 기안문 작성
-	@RequestMapping("/pages/K_createApprDocFormView")
-	public String K_createApprDocFormView(HttpServletRequest req, Model model) {
-		logger.info("URL : K_createApprDocFormView");
+	@RequestMapping("/pages/P_createApprDocFormView")
+	public String P_createApprDocFormView(HttpServletRequest req, Model model) {
+		logger.info("URL : P_createApprDocFormView");
 		
 		oservice.createApprDoc(req, model);
 		
-		return "pages/K_createApprDocFormView";
+		return "pages/P_createApprDocFormView";
 	}
 	
 	//기안 - 기안문 작성 - 결재선 지정
-	@RequestMapping("/pages/K_addApprLine")
-	public String K_addApprLine(HttpServletRequest req, Model model) {
-		logger.info("URL : K_addApprLine");
+	@RequestMapping("/pages/P_addApprLine")
+	public String P_addApprLine(HttpServletRequest req, Model model) {
+		logger.info("URL : P_addApprLine");
 		
 		oservice.addApprLine(req, model);
 		oservice.createApprDoc(req, model);
 		
-		return "pages/K_addApprLine";
+		return "pages/P_addApprLine";
 	}
 	
 	//기안 - 기안문 작성 - 결재 요청
-	@RequestMapping("/pages/K_apprDocFormReqPro")
-	public String K_apprDocFormReqPro(HttpServletRequest req, Model model) {
-		logger.info("URL : K_apprDocFormReqPro");
+	@RequestMapping("/pages/P_apprDocFormReqPro")
+	public String P_apprDocFormReqPro(HttpServletRequest req, Model model) {
+		logger.info("URL : P_apprDocFormReqPro");
 		
 		oservice.apprDocReq(req, model);
 		
-		return "pages/K_apprDocFormReqPro";
+		return "pages/P_apprDocFormReqPro";
 	}
 	
 	//기안 - 결재 요청함
-	@RequestMapping("/pages/K_listApprMyRequestView")
-	public String K_listApprMyRequestView(HttpServletRequest req, Model model) {
-		logger.info("URL : K_listApprMyRequestView");
+	@RequestMapping("/pages/P_listApprMyRequestView")
+	public String P_listApprMyRequestView(HttpServletRequest req, Model model) {
+		logger.info("URL : P_listApprMyRequestView");
 		
-		return "pages/K_listApprMyRequestView";
+		return "pages/P_listApprMyRequestView";
 	}
 	
 	//기안 - 임시저장함
-	@RequestMapping("/pages/K_listApprTempView")
-	public String K_listApprTempView(HttpServletRequest req, Model model) {
-		logger.info("URL : K_listApprTempView");
+	@RequestMapping("/pages/P_listApprTempView")
+	public String P_listApprTempView(HttpServletRequest req, Model model) {
+		logger.info("URL : P_listApprTempView");
 		
-		return "pages/K_listApprTempView";
+		return "pages/P_listApprTempView";
 	}
 	
 	//결재 - 결재 대기함
-	@RequestMapping("/pages/K_listApprTodoView")
-	public String K_listApprTodoView(HttpServletRequest req, Model model) {
-		logger.info("URL : K_listApprTodoView");
+	@RequestMapping("/pages/P_listApprTodoView")
+	public String P_listApprTodoView(HttpServletRequest req, Model model) {
+		logger.info("URL : P_listApprTodoView");
 		
-		return "pages/K_listApprTodoView";
+		return "pages/P_listApprTodoView";
 	}
 	
 	//결재 - 결재 진행함
-	@RequestMapping("/pages/K_listApprCompleteView")
-	public String K_listApprCompleteView(HttpServletRequest req, Model model) {
-		logger.info("URL : K_listApprCompleteView");
+	@RequestMapping("/pages/P_listApprCompleteView")
+	public String P_listApprCompleteView(HttpServletRequest req, Model model) {
+		logger.info("URL : P_listApprCompleteView");
 		
-		return "pages/K_listApprCompleteView";
+		return "pages/P_listApprCompleteView";
 	}
 	
 	//결재 - 완료 문서함
-	@RequestMapping("/pages/K_readApprAllListView")
-	public String K_readApprAllListView(HttpServletRequest req, Model model) {
-		logger.info("URL : K_readApprAllListView");
+	@RequestMapping("/pages/P_readApprAllListView")
+	public String P_readApprAllListView(HttpServletRequest req, Model model) {
+		logger.info("URL : P_readApprAllListView");
 		
-		return "pages/K_readApprAllListView";
+		return "pages/P_readApprAllListView";
 	}
 	
 	//결재 - 반려 문서함
-	@RequestMapping("/pages/K_listApprRejectView")
-	public String K_listApprRejectView(HttpServletRequest req, Model model) {
-		logger.info("URL : K_listApprRejectView");
+	@RequestMapping("/pages/P_listApprRejectView")
+	public String P_listApprRejectView(HttpServletRequest req, Model model) {
+		logger.info("URL : P_listApprRejectView");
 		
-		return "pages/K_listApprRejectView";
+		return "pages/P_listApprRejectView";
 	}
 	
 	//결재 - 참조/열람문서함
-	@RequestMapping("/pages/K_listApprReferenceView")
-	public String K_listApprReferenceView(HttpServletRequest req, Model model) {
-		logger.info("URL : K_listApprReferenceView");
+	@RequestMapping("/pages/P_listApprReferenceView")
+	public String P_listApprReferenceView(HttpServletRequest req, Model model) {
+		logger.info("URL : P_listApprReferenceView");
 		
-		return "pages/K_listApprReferenceView";
+		return "pages/P_listApprReferenceView";
 	}
 	
 	//관리자 메뉴 - 결재문서관리
-	@RequestMapping("/pages/K_listApprDocAllAdminView")
-	public String K_listApprDocAllAdminView(HttpServletRequest req, Model model) {
-		logger.info("URL : K_listApprDocAllAdminView");
+	@RequestMapping("/pages/P_listApprDocAllAdminView")
+	public String P_listApprDocAllAdminView(HttpServletRequest req, Model model) {
+		logger.info("URL : P_listApprDocAllAdminView");
 		
-		return "pages/K_listApprDocAllAdminView";
+		return "pages/P_listApprDocAllAdminView";
 	}
 	/* 전자 결재 끝 */
 }

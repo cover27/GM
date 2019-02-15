@@ -1,6 +1,7 @@
 package com.spring.gm.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.gm.vo.Join_payVO;
 import com.spring.gm.vo.PaymentVO;
+import com.spring.gm.vo.ScheduleVO;
 
 
 @Repository
@@ -43,6 +45,25 @@ public class O_DAOImpl implements O_DAO {
 	public List<String> getGroupName(int company) {
 		dao = sqlSession.getMapper(O_DAO.class);
 		return dao.getGroupName(company);
+	}
+	
+	//일정 - 페이지넘
+	/*
+	 * @Override public int getCalendarCnt() { dao =
+	 * sqlSession.getMapper(O_DAO.class); return dao.getCalendarCnt(); }
+	 */
+	
+	@Override
+	public int getCalendarCnt() {
+		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.getCalendarCnt");
+	}
+	
+	@Override
+	public List<ScheduleVO> getCalendarList(Map<String, Integer> map){
+		List<ScheduleVO> dtos=null;
+		dao = sqlSession.getMapper(O_DAO.class);
+		dtos= dao.getCalendarList(map);
+		return dtos;
 	}
 	
 	
