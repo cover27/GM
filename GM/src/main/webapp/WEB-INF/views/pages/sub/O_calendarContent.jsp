@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+
 <style>
 tr, th, td{
 	border:1px solid;
@@ -62,12 +63,14 @@ tr, th, td{
 						</thead>
 						<tbody>
 							<c:if test="${cnt > 0 }">
+								<c:forEach var="dto" items="dtos">
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td>명</td>
+									<td>${dto.begin}</td>
+									<td>${dto.begin}</td>
+									<td>${dto.begin}</td>
+									<td>${dto.begin}명</td>
 								</tr>
+								</c:forEach>
 							</c:if>
 						</tbody>
 					</table>

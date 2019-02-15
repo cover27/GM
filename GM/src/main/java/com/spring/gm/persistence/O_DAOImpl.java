@@ -48,10 +48,14 @@ public class O_DAOImpl implements O_DAO {
 	}
 	
 	//일정 - 페이지넘
+	/*
+	 * @Override public int getCalendarCnt() { dao =
+	 * sqlSession.getMapper(O_DAO.class); return dao.getCalendarCnt(); }
+	 */
+	
 	@Override
 	public int getCalendarCnt() {
-		dao = sqlSession.getMapper(O_DAO.class);
-		return dao.getCalendarCnt();
+		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.getCalendarCnt");
 	}
 	
 	@Override

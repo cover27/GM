@@ -171,7 +171,7 @@ public class O_ServiceImpl implements O_Service{
 			
 			List<ScheduleVO> dtos = dao.getCalendarList(map);
 			
-			req.setAttribute("dtos", dtos);	//큰바구니 : 게시글 목록 	cf)작은바구니 : 게시글 1건
+			model.addAttribute("dtos", dtos);	//큰바구니 : 게시글 목록 	cf)작은바구니 : 게시글 1건
 		}
 			
 		//6단계. request나 session에 처리 결과를 저장(jsp에 전달하기 위함)
@@ -186,16 +186,16 @@ public class O_ServiceImpl implements O_Service{
 		System.out.println("endPage : " + endPage);
 		System.out.println("======================");
 		
-		req.setAttribute("cnt", cnt);	//글 갯수
-		req.setAttribute("number", number);	//출력용 글번호
-		req.setAttribute("pageNum", pageNum);	//페이지 번호
+		model.addAttribute("cnt", cnt);	//글 갯수
+		model.addAttribute("number", number);	//출력용 글번호
+		model.addAttribute("pageNum", pageNum);	//페이지 번호
 		
 		if(cnt > 0) {
-			req.setAttribute("startPage", startPage);		//시작 페이지
-			req.setAttribute("endPage", endPage);			//마지막 페이지
-			req.setAttribute("pageBlock", pageBlock);		//출력할 페이지 갯수
-			req.setAttribute("pageCount", pageCount);		//페이지 갯수
-			req.setAttribute("currentPage", currentPage);	//현재 페이지
+			model.addAttribute("startPage", startPage);		//시작 페이지
+			model.addAttribute("endPage", endPage);			//마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);		//출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount);		//페이지 갯수
+			model.addAttribute("currentPage", currentPage);	//현재 페이지
 		}
 		
 	}

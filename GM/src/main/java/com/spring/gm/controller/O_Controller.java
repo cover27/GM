@@ -121,7 +121,7 @@ public class O_Controller {
 	public String O_calendar(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendar");
 		
-		//oservice.calendarPageNum(req, model);
+		oservice.calendarPageNum(req, model);
 		
 		return "pages/O_calendar";
 	}

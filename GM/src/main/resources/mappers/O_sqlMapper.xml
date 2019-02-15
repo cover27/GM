@@ -37,7 +37,7 @@
 
 <!-- 일정 -->
 <!-- 게시글 갯수조회 -->
-<select id="getCalendarCnt" parameterType="int">
+<select id="getCalendarCnt" resultType="int">
 	select count(*) from schedule
 </select>
 
