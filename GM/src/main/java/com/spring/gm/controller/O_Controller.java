@@ -126,6 +126,16 @@ public class O_Controller {
 		return "pages/O_calendar";
 	}
 	
+	//일정 등록화면
+	@RequestMapping("/pages/O_calendarCreateView")
+	public String O_calendarCreateView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_calendarCreateView");
+		
+		
+		
+		return "pages/O_calendarCreateView";
+	}
+	
 	/* 일정 끝 */
 	
 	
