@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
 tr, th, td{
@@ -19,11 +18,12 @@ tr, th, td{
 			<form>
 				<div class="daterang" style="float:left">
 					<span>기간</span>
-					<input type="text" title="날짜" name="startDate" class="startDate" placeholder="yyyy.MM.dd">
-					<input type="button" value="조회">
+					<input type="date" title="날짜" name="startDate" class="startDate" id="now_date">
+					<script>
+						document.getElementById('now_date').valueAsDate = new Date();
+					</script>
 						<span>~</span>
-					<input type="text" title="날짜" name="endDate" class="endDate" placeholder="yyyy.MM.dd">
-					<input type="button" value="조회">
+					<input type="date" title="날짜" name="endDate" class="endDate">
 					
 					<div class="table-search" style="float:right; margin-right:50px;">
 						<select title="검색조건" name="searchFields">
@@ -62,25 +62,42 @@ tr, th, td{
 							</tr>
 						</thead>
 						<tbody>
-							<c:if test="${cnt > 0 }">
-								<c:forEach var="dto" items="dtos">
+						<c:if test="${cnt > 0 }">
+						<script>console.log('${cnt}');</script>
+								<c:forEach var="dto" items="${dtos}">
+								<script>console.log('${pageBlock}')</script>
 								<tr>
-									<td></td>
+									<td>${dto.num}</td>
 									<td></td>
 									<td></td>
 									<td>명</td>
 								</tr>
 								</c:forEach>
-							</c:if>
+						</c:if>
+						
+					<!-- 게시글이 있으면 -->
+					<c:if test="${cnt==0}">
+						<tr>
+							<td colspan="6" align="center">
+								게시글이 없습니다. 글을 작성해주세요!!
+							</td>
+						</tr>
+					</c:if>
 						</tbody>
+						
 					</table>
 					
 					<table>
 					<tr>
 						<th align="center">
 							<!-- 게시글이 있으면 -->
+							<script>console.log('${cnt}');</script>
 							<c:if test="${cnt > 0}">
+								<script>console.log('${cnt}');</script>
 								<!-- 처음[◀◀] / 이전블록[◀]  -->
+								<script>console.log('${startPage}');</script>
+								<script>console.log('${pageBlock}');</script>
+								
 								<c:if test="${startPage > pageBlock}">
 									<a href="O_calendar">[◀◀]</a>
 									<a href="O_calendar?pageNum=${endPage - pageBlock}">[◀]</a>

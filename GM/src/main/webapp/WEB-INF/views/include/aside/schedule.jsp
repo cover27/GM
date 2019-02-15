@@ -22,9 +22,9 @@
                     <li>
                         <span>관리자 메뉴</span>
                         <ul>
-                            <li><a href="d03.jsp">회의실 관리</a></li>
-                            <li><a href="d04.jsp">공용설비 관리</a></li>
-                            <li><a href="d05.jsp">휴일 관리</a></li>
+                            <li><a href="#">회의실 관리</a></li>
+                            <li><a href="#">공용설비 관리</a></li>
+                            <li><a href="#">휴일 관리</a></li>
                         </ul>
                     </li>
                 </ul>
