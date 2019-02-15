@@ -62,27 +62,25 @@ tr, th, td{
 							</tr>
 						</thead>
 						<tbody>
-						<c:if test="${cnt > 0 }">
-						<script>console.log('${cnt}');</script>
+							<c:if test="${cnt > 0}">
 								<c:forEach var="dto" items="${dtos}">
-								<script>console.log('${pageBlock}')</script>
-								<tr>
-									<td>${dto.num}</td>
-									<td></td>
-									<td></td>
-									<td>명</td>
-								</tr>
+									<tr>
+										<td>${dto.num}</td>
+										<td></td>
+										<td></td>
+										<td>명</td>
+									</tr>
 								</c:forEach>
-						</c:if>
-						
-					<!-- 게시글이 있으면 -->
-					<c:if test="${cnt==0}">
-						<tr>
-							<td colspan="6" align="center">
-								게시글이 없습니다. 글을 작성해주세요!!
-							</td>
-						</tr>
-					</c:if>
+							</c:if>
+							
+						<!-- 게시글이 있으면 -->
+							<c:if test="${cnt==0}">
+								<tr>
+									<td colspan="6" align="center">
+										게시글이 없습니다. 글을 작성해주세요!!
+									</td>
+								</tr>
+							</c:if>
 						</tbody>
 						
 					</table>
@@ -91,16 +89,12 @@ tr, th, td{
 					<tr>
 						<th align="center">
 							<!-- 게시글이 있으면 -->
-							<script>console.log('${cnt}');</script>
 							<c:if test="${cnt > 0}">
-								<script>console.log('${cnt}');</script>
 								<!-- 처음[◀◀] / 이전블록[◀]  -->
-								<script>console.log('${startPage}');</script>
-								<script>console.log('${pageBlock}');</script>
 								
 								<c:if test="${startPage > pageBlock}">
-									<a href="O_calendar">[◀◀]</a>
-									<a href="O_calendar?pageNum=${endPage - pageBlock}">[◀]</a>
+									<a href="<c:url value='/pages/O_calendar'/>">[◀◀]</a>
+									<a href="<c:url value='/pages/O_calendar?pageNum=${endPage - pageBlock}'/>">[◀]</a>
 								</c:if>
 								
 								<!-- 중간에 들어갈 페이지 -->
@@ -109,14 +103,14 @@ tr, th, td{
 										<span><b>[${i}]</b></span>
 									</c:if>
 									<c:if test="${i!=currentPage}">
-										<a href="O_calendar?pageNum=${i}">[${i}]</a>
+										<a href="<c:url value='/pages/O_calendar?pageNum=${i}'/>">[${i}]</a>
 									</c:if>
 								</c:forEach>
 								
 								<!-- 다음[▶] / 마지막[▶▶]  -->
 								<c:if test="${pageCount > endPage}">
-									<a href="O_calendar?pageNum=${startPage + pageBlock}">[▶]</a>
-									<a href="O_calendar?pageNum=${pageCount}">[▶▶]</a>
+									<a href="<c:url value='/pages/O_calendar?pageNum=${startPage + pageBlock}'/>">[▶]</a>
+									<a href="<c:url value='/pages/O_calendar?pageNum=${pageCount}'/>">[▶▶]</a>
 								</c:if>
 								
 							</c:if>
