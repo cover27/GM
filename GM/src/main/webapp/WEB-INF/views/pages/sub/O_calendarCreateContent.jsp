@@ -27,13 +27,19 @@ th{
 									<th scope="row"><span>*</span>기간</th>
 									<td>
 										<div>
-											<input type="datetime-local" name="startMonth" value="조회">
+											<input type="datetime-local" name="startMonth" value="조회" id="now_date">
+											<script>
+												document.getElementById('now_date').value = new Date().toISOString().slice(0,  16);
+											</script>
 												<span>~</span>
-											<input type="datetime-local" name="endMonth" value="조회">
+											<input type="datetime-local" name="endMonth" value="조회" id="now_date2">
+											<script>
+												document.getElementById('now_date2').value = new Date().toISOString().slice(0,  16);
+											</script>
 											<span>
-												<label><input type="radio" name="company">회사 일정</label>
-												<label><input type="radio" name="dept">부서일정</label>
-												<label><input type="radio" name="private">비공개</label>
+												<label><input type="radio" name="radiosel">회사 일정</label>
+												<label><input type="radio" name="radiosel">부서일정</label>
+												<label><input type="radio" name="radiosel" checked>비공개</label>
 											</span>
 										</div>
 									</td>

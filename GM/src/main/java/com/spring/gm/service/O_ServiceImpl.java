@@ -143,6 +143,8 @@ public class O_ServiceImpl implements O_Service{
 		
 		//페이지 갯수 6이 나오는 이유 =(30/5) + (0)
 		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);	//페이지 갯수 + 나머지 있으면 1
+		System.out.println("pageCount : " + pageCount);
+		
 		
 		//현재 페이지 시작 글번호(페이지별) --1
 		start = (currentPage - 1) * pageSize + 1;	//1 = (1 - 1) * 5 + 1;
