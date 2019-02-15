@@ -31,7 +31,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='/pages/K_createApprDocFormView' />">
+                            <a href="<c:url value='/pages/P_createApprDocFormView' />">
                                 <h2>전자결제</h2>
                                 <span class="approval"></span>
                             </a>
