@@ -4,26 +4,23 @@
 
 <script type="text/javascript">
 
-	function change1(){
+/*결재방법 변경 실패했음 
+function change1(){
 		$(function(){
 			var displaycourse=$('#apprTypeChange option:selected').text();
 			var aaa = $(this).val();
 			alert(aaa);
 			$(this).parent().prev().html(displaycourse);
 		});
-	}
+	} */
 
 //결재자 클릭시 추가하는 버튼
 $(document).ready(function(){
 	$('#btnItemAdd').click(function(){
-		var radioVal = $('input[name="id"]:checked').val();
+		var radioVal = $('input[name="memName"]:checked').val();
 		var radioApprType = $('input[name="apprType"]:checked').val();
-		//if(radioVal.value!=$('input[name="apprTypeTd2"]').val()){
-			alert($('input[name="id"]:checked').val());
-			$('#liDiv > table > tbody:first').append('<tr><td style="padding:10px 5px; width: 30px; text-align: center;"><input type="radio" id="id2" name="id2"></td><td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">'+radioApprType+ '</td><td class="textLeft ellipsis" id="apprTypeTd1" style="border-left:1px solid #F0F3F7; padding-left: 3px;"><input type="hidden" name="apprTypeTd2" value="${radioVal}">' + radioVal +'</td><td><select id="apprTypeChange" name="apprTypeChange" title="결재방법변경" style="float:right;"><option value="2" selected="selected">결재</option><option value="1">합의</option></select></td></tr>');
-		//}else{
-		//	alert($('input[name="apprTypeTd2"]').val());
-		//}
+			alert($('input[name="memName"]:checked').val());
+			$('#liDiv > table > tbody:first').append('<tr><td style="padding:10px 5px; width: 30px; text-align: center;"><input type="checkbox" id="id2" name="id2" value="'+radioVal+'"></td><td id="apprTypeTd" style="padding:10px 5px; text-align: center; border-left:1px solid #F0F3F7; width: 70px;">'+radioApprType+ '</td><td class="textLeft ellipsis" id="apprTypeTd1" style="border-left:1px solid #F0F3F7; padding-left: 3px;"><input name="apprTypeTd2" value="'+radioVal+'" readonly></td><td><select id="apprTypeChange" name="apprTypeChange" title="결재방법변경" style="float:right;"><option value="2" selected="selected">결재</option><option value="1">합의</option></select></td></tr>');
 	});
 	
 	//삭제 버튼
@@ -36,19 +33,25 @@ $(document).ready(function(){
 	});
  	
  	// 결재선 지정 적용
- 	$("#btnApply").click(function() {
-		var approverId=[];
+ 	$("#btnApply").click(function(apprTypeTd2) {
+ 		var approverId=[];
  		var $resultItems = $("#tbodyRusult").children();
  		
  		if($resultItems.length <= 0) {
  			alert("결재선을 선택하지 않으셨습니다.");
  			return false;
  		}else{
- 			alert("결제선 적용 되었습니다.");
- 			window.close();
+		var apprSend = $('input[name="apprTypeTd2"]').val();
+			alert(apprSend);
+			alert("결제선 적용 되었습니다.");
+			opener.document.apprDocForm.apprLine0BTr1.value=apprSend;
+ 			
+			//$('#apprLine0Tr > table > tbody > tr:last > td:last').append('<td height="60" class="last">'+apprSend+'</td>');
+			
+			window.close();
  		}
  		
-		// 결재선 중복체크
+		// 결재선 중복체크 실패했음
 		/* $.each($resultItems, function(idx) {
 			var data = $.extend({}, $.data(this, "data"));
 			approverId[idx]=this.type=='group'?data.code:data.id;
@@ -57,19 +60,14 @@ $(document).ready(function(){
  	
  	
  	
- 	/* $('#apprTypeChange').change(function(){
+ 	/* 결재방법 변경 실패했음
+ 	$('#apprTypeChange').change(function(){
 		alert(111);
 		var displaycourse=$('#apprTypeChange option:selected').text();
 		$(this).parent().prev().html(displaycourse);
 	}); */
  	
 });
-
-/* function getSelectValue(frm){
-	frm.apprType.value = frm.apprTypeChange.options[frm.apprTypeChange.selectedIndex].text;
-}  */
-
-		
 
 
 </script>
@@ -221,7 +219,7 @@ input, button, select, textarea {
 <body>
 <div class="body pd" style="padding:10px;">
 
-	<form action="O_createApprDocFormView" method="post">
+	<form action="K_createApprDocFormView" method="post">
 		<div class="shuttleL w30p ui-tabs ui-widget ui-widget-content ui-corner-all" id="divTabs">					
 			<ul class="nav nav-tabs6 push ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" data-toggle="tabs" role="tablist">
 				<li class="active ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="tab-orggroup" aria-labelledby="ui-id-1" aria-selected="true">
@@ -247,7 +245,7 @@ input, button, select, textarea {
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															<!-- <a href="#" onclick="approval();"> -->
 															<label>
-															<input type="radio" name="id" value="${dto.getName()}(${dto.getId()}) - ${dto.getG_name()}"><ins class="fa fa-leaf">&nbsp;</ins>
+															<input type="radio" name="memName" value="${dto.getName()}(${dto.getId()}) - ${dto.getG_name()}"><ins class="fa fa-leaf">&nbsp;</ins>
 																${dto.getName()}(${dto.getId()})<!-- </a> -->
 															</label>
 														</c:if>
@@ -386,7 +384,7 @@ input, button, select, textarea {
 			<div class="left"></div>
 			<div class="right">							
 				<button id="btnApply" type="submit" class="btn btn-color5 br">적용</button>
-		    	<button id="btnClose" type="button" class="btn btn-color7 br" onclick="javascript:window.close()">닫기</button>
+		    	<button id="btnClose" type="reset" class="btn btn-color7 br" onclick="self.close()">닫기</button>
 		    </div>
 		</div>
 	</div>

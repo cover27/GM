@@ -24,8 +24,7 @@
 					</th>
 				</tr>
 				<tr>
-					<th style="width:2%"></th>
-					<th style="width:2%"></th>
+					<th></th>
 					<th style="width:5%">이름</th>
 					<th style="width:2%">성별</th>
 					<th style="width:10%">국적</th>
@@ -40,10 +39,7 @@
 				<!-- 구성원이 있으면 -->
 				<c:forEach var='dto' items='${list }'>
 					<tr>
-						<!-- 체크박스 버튼 ▣  -->				 <!-- 체크 그룹 -->
-				    	<td><input type="checkbox" name="check" value="nemo"></td>
-				    	<!-- 자주 연락하는 사람 등록버튼 ☆ -->
-				    	<td><input type="checkbox" name="check" value="star"></td>
+				    	<td><input type="checkbox" name="check" value="v"></td>
 					
 						<td>	<!-- ( = list.name 꼴 ) -->
 							${dto.name}
@@ -58,7 +54,7 @@
 						</td>
 						
 						<td>
-							${dto.depart}
+							${dto.depart}<!-- 부서이름으로 수정요망 -->
 						</td>
 						
 						<td>
@@ -114,7 +110,6 @@
 				<tr>
 	                <th colspan="2">
 	                    <input class="inputButton" type="submit" value="개인 그룹에 추가" onclick="<c:url value='/pages/E_myGroupList?pageNum=${i}'/>">
-	                    <input class="inputButton" type="reset" value="취소" onclick="window.history.back()">
 	                </th>
 		        </tr>
 			

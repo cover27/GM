@@ -14,18 +14,21 @@
             <div class="category">
                 <ul>
                 	<li>
-                		<span><a href="i01.jsp">메모 등록</a></span>
+                		<span><a href="<c:url value='/pages/E_memoWriteForm' />">메모 등록</a></span>
                 	</li>
                 	<li>
-                        <span><a href="i02.jsp">모든 메모</a></span>
+                        <span><a href="<c:url value='/pages/E_memoList' />">모든 메모&nbsp;&nbsp;<span>1</span></a></span>
+                        		<%-- <c:forEach var="dto" items="${side }">
+                       				<li><a href="<c:url value='/pages/E_organVipGroupList?depart=${dto.groupId }' />">${dto.g_name}</a></li>
+                       			</c:forEach> --%>
                     </li>
                     <li>
-                        <span><a href="i03.jsp">중요 메모</a></span>
+                        <span><a href="i03.jsp">중요 메모&nbsp;&nbsp;<span>1</span></a></span>
                     </li>
                     <li>
                         <span>나의 폴더</span>
                         <ul>
-                        	<li><a href="i04.jsp">아이디어</a></li>
+                        	<li><a href="i04.jsp">아이디어&nbsp;&nbsp;<span>1</span></a></li>
                         </ul>
                     </li>
                     <li>

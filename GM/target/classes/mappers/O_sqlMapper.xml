@@ -31,7 +31,18 @@
 
 <!-- 전자결재 - 기안문 - 결재선  회사에 그룹등급이 1인 부서명-->
 <select id="getGroupName" resultType="String">
-	select g_name from groups where company=#{company} and group_rank=1
+	select g_name from groups where company=#{company} and group_rank=1 and del=0
 </select>
 
+
+<!-- 일정 -->
+<!-- 게시글 갯수조회 -->
+<select id="getCalendarCnt" resultType="int">
+	select count(*) from schedule
+</select>
+
+<!-- 게시글 목록 조회 -->
+<select id="getCalendarList" resultType="com.spring.gm.vo.ScheduleVO" parameterType="java.util.Map">
+	select begin, scheduleKind, subject, num from schedule
+</select>
 </mapper>

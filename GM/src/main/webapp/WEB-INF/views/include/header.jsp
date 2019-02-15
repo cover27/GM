@@ -18,8 +18,8 @@
        <c:if test="${sessionScope.loginInfo != null}">
         <ul class="topmenu">
             <li id="s"><a href="<c:url value='/pages/S_mail_inbox' />">메일</a></li>
-            <li id="o"><a href="<c:url value='/pages/O_createApprDocFormView' />">전자결재</a></li>
-            <li><a href="#">일정</a></li>
+            <li id="p"><a href="<c:url value='/pages/P_createApprDocFormView' />">전자결재</a></li>
+            <li id="o"><a href="<c:url value='/pages/O_calendar' />">일정</a></li>
             <li id="d"><a href="<c:url value='/pages/D_allBoardList' />">게시판</a></li>
             <li id="j"><a href="<c:url value='/admin/J_SalaryDefaultSetting' />">급여관리</a></li>
 
