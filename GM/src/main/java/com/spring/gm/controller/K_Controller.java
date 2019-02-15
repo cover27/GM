@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.K_Service;
+import com.spring.gm.vo.MemberVO;
 
 @Controller
 public class K_Controller {
@@ -48,6 +49,12 @@ public class K_Controller {
 		if(id != null) {
 			service.login(req, model, id);
 		}
+		
+		// 경주니
+		System.out.println("vo확인"+((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank());
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		System.out.println("sys_rank" +  sys_rank);
+		model.addAttribute("sys_rank",sys_rank);
 		
 		return "common/main";
 	}

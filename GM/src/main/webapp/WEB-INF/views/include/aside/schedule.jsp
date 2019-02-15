@@ -14,10 +14,10 @@
             <div class="category">
                 <ul>
                     <li>
-                        <span><a href="d01.jsp">일정 등록</a></span>
+                        <span><a href="<c:url value='/pages/O_calendarCreateView' />">일정 등록</a></span>
                     </li>
                     <li>
-                        <span><a href="d00.jsp">일정</a></span>
+                        <span><a href="<c:url value='/pages/O_calendar' />">일정</a></span>
                     </li>
                     <li>
                         <span>관리자 메뉴</span>

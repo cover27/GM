@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
-
 	function searchId() {
 		var id = $('.searchId').val();
 		var url = "J_searchId_sub?id=" + id;
@@ -27,21 +26,21 @@
 			alert("날짜를 입력해주십시오.");
 		} else {
 			$
-			.ajax({
-				url : '${pageContext.request.contextPath}/pages/searchBonusInquiry',
-				type : 'POST',
-				data : {
-					'id' : id,
-					'name' : name,
-					'month' : month
-				}, //전송할 데이터
-				success : function(result) {
-					$('#result').html(result);
-				},
-				error : function() {
-					alert('오류');
-				}
-			});
+					.ajax({
+						url : '${pageContext.request.contextPath}/pages/searchBonusInquiry',
+						type : 'POST',
+						data : {
+							'id' : id,
+							'name' : name,
+							'month' : month
+						}, //전송할 데이터
+						success : function(result) {
+							$('#result').html(result);
+						},
+						error : function() {
+							alert('오류');
+						}
+					});
 		}
 	};
 </script>
@@ -53,41 +52,61 @@
 		<div>
 			<form method="post" name="searchform">
 				<table border="1" style="width: 1800px;">
-					<tr>
-						<th width="10%">사업장</th>
-						<c:forEach var="dto" items="${dtoss}">
-							<td width="10%">${dto.c_name}</td>
-						</c:forEach>
-						<th width="10%">*급여년월</th>
-						<td width="20%"><input type="month" id="month"></td>
-						<td width="5%">아이디</td>
-						<td width="25%"><input type="text" class="searchId" id="id">
-							<button onclick="searchId()">검색</button> <input type="text"
-							class="searchName" name="name"></td>
-						<td><input type="button" onclick="searchBonusInquiry()" value="검색"></td>
-					</tr>
+					<c:if test="${sys_rank == 1 }">
+						<!-- 관리자인경우 -->
+						<tr>
+							<th width="10%">사업장</th>
+							<c:forEach var="dto" items="${dtoss}">
+								<td width="10%">${dto.c_name}</td>
+							</c:forEach>
+							<th width="10%">*급여년월</th>
+							<td width="20%"><input type="month" id="month"></td>
+							<td width="5%">아이디</td>
+							<td width="25%"><input type="text" class="searchId" id="id">
+								<button onclick="searchId()">검색</button> <input type="text"
+								class="searchName" name="name"></td>
+							<td><input type="button" onclick="searchBonusInquiry()"
+								value="검색"></td>
+						</tr>
+					</c:if>
+					<c:if test="${sys_rank != 1 }">
+						<!-- 관리자가 아닐경우 -->
+						<tr>
+							<th width="10%">사업장</th>
+							<c:forEach var="dto" items="${dtoss}">
+								<td width="10%">${dto.c_name}</td>
+							</c:forEach>
+							<th width="10%">*급여년월</th>
+							<td width="20%"><input type="month" id="month"></td>
+							<td width="5%">아이디</td>
+							<td width="25%"><input type="text" class="searchId" id="id"
+								value="${id}" readonly> <input type="text"
+								class="searchName" name="name" value="${name}" readonly>
+							</td>
+							<td><input type="button" onclick="searchBonusInquiry()"
+								value="검색"></td>
+						</tr>
+					</c:if>
 				</table>
 				<div id="result">
 					<table border="1">
-							<tr>
-								<td style="text-align: center; background-color: #cccccc;">지급기준일</td>
-								<td style="text-align: center; background-color: #cccccc;">사원번호</td>
-								<td style="text-align: center; background-color: #cccccc;">성명</td>
-								<td style="text-align: center; background-color: #cccccc;">부서</td>
-								<td style="text-align: center; background-color: #cccccc;">지급총액</td>
-								<td style="text-align: center; background-color: #cccccc;">공제총액</td>
-								<td style="text-align: center; background-color: #cccccc;">실지급액</td>
-							</tr>
-							<tr>
-								<td colspan="7" style="height: 150px;" text-align="center">
-								*데이터 정보가 없습니다.</td>
-							</tr>
-							<tr>
-								<td colspan="4">합계</td>
-								<td>0</td>
-								<td>0</td>
-								<td>0</td>
-							</tr>
+						<tr>
+							<td style="text-align: center; background-color: #cccccc;">등록기준일</td>
+							<td style="text-align: center; background-color: #cccccc;">사원번호</td>
+							<td style="text-align: center; background-color: #cccccc;">성명</td>
+							<td style="text-align: center; background-color: #cccccc;">부서</td>
+							<td style="text-align: center; background-color: #cccccc;">추가 및 삭감구분</td>
+							<td style="text-align: center; background-color: #cccccc;">사유</td>
+							<td style="text-align: center; background-color: #cccccc;">지급액</td>
+						</tr>
+						<tr>
+							<td colspan="7" style="height: 150px;" text-align="center">
+								*데이터 정보가 없습니다.!!!!!!!</td>
+						</tr>
+						<tr>
+							<td colspan="6">합계</td>
+							<td style="text-align: center; background-color: #cccccc;">0</td>
+						</tr>
 					</table>
 				</div>
 			</form>
