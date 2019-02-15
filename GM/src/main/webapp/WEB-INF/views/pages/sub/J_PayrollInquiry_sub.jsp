@@ -52,6 +52,7 @@
 		<div>
 			<form method="post" name="searchform">
 				<table border="1" style="width: 1800px;">
+				<c:if test="${sys_rank == 1 }"> <!-- 관리자인경우 -->
 					<tr>
 						<th width="10%">사업장</th>
 						<c:forEach var="dto" items="${dtoss}">
@@ -65,6 +66,23 @@
 							class="searchName" name="name"></td>
 						<td><input type="button" onclick="searchPayrollInquiry()" value="검색"></td>
 					</tr>
+				</c:if>
+				<c:if test="${sys_rank != 1 }"> <!-- 관리자가 아닐경우 -->
+					<tr>
+						<th width="10%">사업장</th>
+						<c:forEach var="dto" items="${dtoss}">
+							<td width="10%">${dto.c_name}</td>
+						</c:forEach>
+						<th width="10%">*급여년월</th>
+						<td width="20%"><input type="month" id="month"></td>
+						<td width="5%">아이디</td>
+						<td width="25%">
+							<input type="text" class="searchId" id="id" value="${id}" readonly>
+							<input type="text" class="searchName" name="name" value="${name}" readonly>
+						</td>
+						<td><input type="button" onclick="searchPayrollInquiry()" value="검색"></td>
+					</tr>
+				</c:if>
 				</table>
 				<div id="result">
 					<table border="1">
@@ -73,9 +91,9 @@
 								<td style="text-align: center; background-color: #cccccc;">사원번호</td>
 								<td style="text-align: center; background-color: #cccccc;">성명</td>
 								<td style="text-align: center; background-color: #cccccc;">부서</td>
+								<td style="text-align: center; background-color: #cccccc;">기본급</td>
+								<td style="text-align: center; background-color: #cccccc;">추가 및 삭감</td>
 								<td style="text-align: center; background-color: #cccccc;">지급총액</td>
-								<td style="text-align: center; background-color: #cccccc;">공제총액</td>
-								<td style="text-align: center; background-color: #cccccc;">실지급액</td>
 							</tr>
 							<tr>
 								<td colspan="7" style="height: 150px;" text-align="center">

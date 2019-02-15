@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.J_ServiceImpl;
+import com.spring.gm.vo.MemberVO;
 import com.sun.jmx.snmp.Timestamp;
 
 @Controller
@@ -23,7 +24,8 @@ public class J_Controller {
 	// 급여기본정보관리(Salary Default Setting)
 	@RequestMapping("/admin/J_SalaryDefaultSetting")
 	public String J_SalaryDefaultSetting(HttpServletRequest req, Model model) {
-
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : admin/J_SalaryDefaultSetting");
 		String title = req.getParameter("search_title");
 		String content = req.getParameter("search_content");
@@ -46,6 +48,8 @@ public class J_Controller {
 	// 기본수당 외 수당 관리(Basi/admin/c Allowance Management)
 	@RequestMapping("/admin/J_BasicAllowanceManagement")
 	public String J_BasicAllowanceManagement(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		service.companyName(req, model);
 		logger.info("URL : admin/J_BasicAllowanceManagement");
 		String content = req.getParameter("search_content");
@@ -101,6 +105,8 @@ public class J_Controller {
 	//급여등록(Payroll Registration)
 	@RequestMapping("admin/J_PayrollRegistration")
 	public String J_PayrollRegistration(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : J_PayrollRegistration");
 		String title = req.getParameter("search_title");
 		String content = req.getParameter("search_content");
@@ -124,6 +130,8 @@ public class J_Controller {
 	// 급여 계산 (Salary Calculation)
 	@RequestMapping("/admin/J_SalaryCalculation")
 	public String J_SalaryCalculation(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : admin/J_SalaryCalculation");
 
 		return "admin/J_SalaryCalculation";
@@ -132,16 +140,25 @@ public class J_Controller {
 	// 급여 조회(Payroll Inquiry)
 	@RequestMapping("/pages/J_PayrollInquiry")
 	public String J_PayrollInquiry(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
+		model.addAttribute("sys_rank",sys_rank);
+		model.addAttribute("id",id);
+		model.addAttribute("name",name);
+		
+		
+		
 		logger.info("URL : J_PayrollInquiry");
 		service.companyName(req, model);
-		String today = Timestamp;
-		model.addAttribute("today", today);
 		return "pages/J_PayrollInquiry";
 	}
 
 	// 상여 계산(Bonus Calculation)
 	@RequestMapping("/admin/J_BonusCalculation")
 	public String J_BonusCalculation(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : admin/J_BonusCalculation");
 
 		return "admin/J_BonusCalculation";
@@ -150,14 +167,24 @@ public class J_Controller {
 	// 상여 조회(Bonus Inquiry)
 	@RequestMapping("/pages/J_BonusInquiry")
 	public String J_BonusInquiry(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
+		model.addAttribute("sys_rank",sys_rank);
+		model.addAttribute("id",id);
+		model.addAttribute("name",name);
+		
+		
 		logger.info("URL : J_BonusInquiry");
-
+		service.companyName(req, model);
 		return "pages/J_BonusInquiry";
 	}
 
 	// 급여 대장(Payroll)
 	@RequestMapping("/pages/J_Payroll")
 	public String J_Payroll(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : J_Payroll");
 
 		return "pages/J_Payroll";
@@ -293,6 +320,8 @@ public class J_Controller {
 	//상여 조회
 	@RequestMapping("/pages/searchBonusInquiry")
 	public String searchBonusInquiry(HttpServletRequest req, Model model) {
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		System.out.println("id : " + id);
 		logger.info("URL : searchBonusInquiry");
 		service.searchBonusInquiry(req, model);
 		return "pages/sub/J_sub/J_searchBonusInquiry_sub";
