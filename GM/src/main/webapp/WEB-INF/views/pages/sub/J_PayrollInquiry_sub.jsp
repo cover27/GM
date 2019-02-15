@@ -91,9 +91,9 @@
 								<td style="text-align: center; background-color: #cccccc;">사원번호</td>
 								<td style="text-align: center; background-color: #cccccc;">성명</td>
 								<td style="text-align: center; background-color: #cccccc;">부서</td>
+								<td style="text-align: center; background-color: #cccccc;">기본급</td>
+								<td style="text-align: center; background-color: #cccccc;">추가 및 삭감</td>
 								<td style="text-align: center; background-color: #cccccc;">지급총액</td>
-								<td style="text-align: center; background-color: #cccccc;">공제총액</td>
-								<td style="text-align: center; background-color: #cccccc;">실지급액</td>
 							</tr>
 							<tr>
 								<td colspan="7" style="height: 150px;" text-align="center">

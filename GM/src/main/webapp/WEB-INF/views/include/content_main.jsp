@@ -109,7 +109,9 @@
                             </a>
                         </li>
                         <li>
+                        	<script>console.log("가즈아~!::::${sys_rank}")</script>
                         	<c:if test="${sys_rank == 1 }">
+                        	<script>console.log("${sys_rank}")</script>
                         	<a href="<c:url value='/admin/J_SalaryDefaultSetting'/>">
                                 <h2>급여관리</h2>
                                 <span class="salary_management"></span>
@@ -117,6 +119,7 @@
                         	</c:if>
                         	
                         	<c:if test="${sys_rank != 1 }">
+                        	<script>console.log("${sys_rank}")</script>
                         	<a href="<c:url value='/pages/J_PayrollInquiry'/>">
                                 <h2>급여관리</h2>
                                 <span class="salary_management"></span>

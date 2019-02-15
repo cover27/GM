@@ -33,8 +33,6 @@ public class K_Controller {
 	// 로그인 프로세스
 	@RequestMapping("loginPro")
 	public String loginPro(HttpServletRequest req, Model model) {
-		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
-		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : login");
 		
 		return "common/main";
@@ -51,6 +49,12 @@ public class K_Controller {
 		if(id != null) {
 			service.login(req, model, id);
 		}
+		
+		// 경주니
+		System.out.println("vo확인"+((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank());
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		System.out.println("sys_rank" +  sys_rank);
+		model.addAttribute("sys_rank",sys_rank);
 		
 		return "common/main";
 	}

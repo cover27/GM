@@ -40,7 +40,7 @@
 						<c:if test="${dto.state eq '미지급'}">
 							<input type="button" onclick="change('${dto.id}','${j_name}','${rank}')" value="지급처리" class="modify_btn">
 						</c:if>
-						<input type="button" onclick="J_PayrollRegistrationListDelete('${dto.id}','${dto.sal_num}')" value="삭제" class="delete_btn">
+						<input type="button" onclick="J_PayrollRegistrationListDelete('${dto.id}','${dto.sal_num}','${j_name}','${rank}')" value="삭제" class="delete_btn">
 					</td>
 				</tr>
 			</c:forEach>
@@ -63,8 +63,8 @@
 					<th>상태</th>
 					<td class="left_align">
 						<select name="state" id="state">
-							<option value="지급">지급</option>
 							<option value="미지급">미지급</option>
+							<option value="지급">지급</option>
 						</select>
 					</td>
 				</tr>

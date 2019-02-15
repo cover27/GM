@@ -17,9 +17,9 @@
 				<td style="text-align: center; background-color: #cccccc;">사원번호</td>
 				<td style="text-align: center; background-color: #cccccc;">성명</td>
 				<td style="text-align: center; background-color: #cccccc;">부서</td>
+				<td style="text-align: center; background-color: #cccccc;">기본급</td>
+				<td style="text-align: center; background-color: #cccccc;">추가 및 삭감</td>
 				<td style="text-align: center; background-color: #cccccc;">지급총액</td>
-				<td style="text-align: center; background-color: #cccccc;">공제총액</td>
-				<td style="text-align: center; background-color: #cccccc;">실지급액</td>
 			</tr>
 			<tr>
 				<td colspan="7" style="height: 150px;" text-align="center">
@@ -40,9 +40,9 @@
 				<td style="text-align: center; background-color: #cccccc;">사원번호</td>
 				<td style="text-align: center; background-color: #cccccc;">성명</td>
 				<td style="text-align: center; background-color: #cccccc;">부서</td>
+				<td style="text-align: center; background-color: #cccccc;">기본급</td>
+				<td style="text-align: center; background-color: #cccccc;">추가 및 삭감</td>
 				<td style="text-align: center; background-color: #cccccc;">지급총액</td>
-				<td style="text-align: center; background-color: #cccccc;">공제총액</td>
-				<td style="text-align: center; background-color: #cccccc;">실지급액</td>
 			</tr>
 			<c:forEach var="dto" items="${dtos}">
 				<tr>
@@ -56,11 +56,10 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="4"
-					style="text-align: center; background-color: #cccccc;">합계</td>
-				<td style="text-align: center; background-color: #cccccc;">${dto.salary}</td>
-				<td style="text-align: center; background-color: #cccccc;">${dto.bonussalary}</td>
-				<td style="text-align: center; background-color: #cccccc;">${dto.sumsalarybonus}</td>
+				<td colspan="4" style="text-align: center; background-color: #cccccc;">합계</td>
+				<td style="text-align: center; background-color: #cccccc;">${salary}</td>
+				<td style="text-align: center; background-color: #cccccc;">${bonussalary}</td>
+				<td style="text-align: center; background-color: #cccccc;">${sumsalarybonus}</td>
 			</tr>
 		</c:if>
 		
@@ -71,9 +70,9 @@
 				<td style="text-align: center; background-color: #cccccc;">사원번호</td>
 				<td style="text-align: center; background-color: #cccccc;">성명</td>
 				<td style="text-align: center; background-color: #cccccc;">부서</td>
+				<td style="text-align: center; background-color: #cccccc;">기본급</td>
+				<td style="text-align: center; background-color: #cccccc;">추가 및 삭감</td>
 				<td style="text-align: center; background-color: #cccccc;">지급총액</td>
-				<td style="text-align: center; background-color: #cccccc;">공제총액</td>
-				<td style="text-align: center; background-color: #cccccc;">실지급액</td>
 			</tr>
 			<c:forEach var="dto" items="${dtos}">
 				<tr>
@@ -87,11 +86,10 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="4"
-					style="text-align: center; background-color: #cccccc;">합계</td>
-				<td style="text-align: center; background-color: #cccccc;">${dto.salary}</td>
+				<td colspan="4" style="text-align: center; background-color: #cccccc;">합계</td>
+				<td style="text-align: center; background-color: #cccccc;">${salary}</td>
 				<td style="text-align: center; background-color: #cccccc;">0</td>
-				<td style="text-align: center; background-color: #cccccc;">${dto.salary}</td>
+				<td style="text-align: center; background-color: #cccccc;">${salary}</td>
 			</tr>
 		</c:if>
 	</table>
@@ -107,14 +105,14 @@
 	
 	
 	
-	<h3>공제 총액 상세정보</h3>
+	<h3>추가 및 삭감 상세정보</h3>
 	<table border="1">
 		<c:if test="${cnt2 == 0 || cnt == 0}">
 			<tr>
-				<td style="text-align: center; background-color: #cccccc;">수당번호</td>
-				<td style="text-align: center; background-color: #cccccc;">공제항목</td>
-				<td style="text-align: center; background-color: #cccccc;">공제내용</td>
-				<td style="text-align: center; background-color: #cccccc;">공제금액</td>
+				<td style="text-align: center; background-color: #cccccc;">번호</td>
+				<td style="text-align: center; background-color: #cccccc;">항목</td>
+				<td style="text-align: center; background-color: #cccccc;">사유</td>
+				<td style="text-align: center; background-color: #cccccc;">금액</td>
 			</tr>
 			<tr>
 				<td colspan="4" style="height: 150px;" text-align="center">
@@ -128,10 +126,10 @@
 		
 		<c:if test="${cnt > 0 && cnt2 > 0}">
 			<tr>
-				<td style="text-align: center; background-color: #cccccc;">수당번호</td>
-				<td style="text-align: center; background-color: #cccccc;">공제항목</td>
-				<td style="text-align: center; background-color: #cccccc;">공제내용</td>
-				<td style="text-align: center; background-color: #cccccc;">공제금액</td>
+				<td style="text-align: center; background-color: #cccccc;">번호</td>
+				<td style="text-align: center; background-color: #cccccc;">항목</td>
+				<td style="text-align: center; background-color: #cccccc;">사유</td>
+				<td style="text-align: center; background-color: #cccccc;">금액</td>
 			</tr>
 			<c:forEach var="dto2" items="${dtos2}">
 				<tr>
@@ -143,7 +141,7 @@
 			</c:forEach>
 			<tr>
 				<td colspan="3" style="text-align: center; background-color: #cccccc;">합계</td>
-				<td style="text-align: center; background-color: #cccccc;">${Sumsalarybonus}</td>
+				<td style="text-align: center; background-color: #cccccc;">${bonussalary}</td>
 			</tr>
 		</c:if>
 	</table>

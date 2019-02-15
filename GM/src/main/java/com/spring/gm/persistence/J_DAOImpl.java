@@ -194,6 +194,17 @@ public class J_DAOImpl implements J_DAO {
 		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.J_PayrollRegistrationchange", map);
 		return cnt;
 	}
+	//급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감 정보 미지급-> 지급으로 처리
+	public int ChangePayments(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.ChangePayments", map);
+		return cnt;
+	}
+	//급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감 정보  지급 -> 미지급으로 처리
+	public int ChangeUnpaid(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.ChangeUnpaid", map);
+		return cnt;
+	}
+		
 	//정보 삭제
 	@Override
 	public int J_PayrollRegistrationListDelete(Map<String, Object> map) {
@@ -348,6 +359,17 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.J_extrapayinfo(id);
 		return dtos;
 	}
+	@Override
+	public ArrayList<BonusCutVO> J_extrapayinfo2(Map<String, Object> map) {
+		ArrayList<BonusCutVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.J_extrapayinfo2(map);
+		return dtos;
+	}
+	
+	
+	
+	
 	
 	// 급여 개인회원수당 정보 있는지확인
 	@Override
@@ -400,6 +422,22 @@ public class J_DAOImpl implements J_DAO {
 		int cnt = sqlSession.delete("com.spring.gm.persistence.J_DAO.deleteInfo", num);
 		return cnt;
 	}
+	//삭제시 급여 금액 수정하기
+	@Override
+	public int modifySalary(Map<String, Object> map) {
+		int cnt = sqlSession.delete("com.spring.gm.persistence.J_DAO.modifySalary", map);
+		return cnt;
+	}
+	@Override
+	public int modifySalary2(Map<String, Object> map) {
+		int cnt = sqlSession.delete("com.spring.gm.persistence.J_DAO.modifySalary2", map);
+		return cnt;
+	}
+	
+	
+	
+	
+	
 	
 	// 개인 num에대한 id 값 가져오기
 	@Override
@@ -533,6 +571,15 @@ public class J_DAOImpl implements J_DAO {
 	}*/
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//-----------------------------급여 계산-------------------------------------------
 	//급여 계산 목록 가져오기
 	@Override
@@ -597,6 +644,23 @@ public class J_DAOImpl implements J_DAO {
 		ArrayList<join_mgsbVO> dtos = null;
 		J_DAO dao = sqlSession.getMapper(J_DAO.class);
 		dtos = dao.bonusNoneList2(map);
+		return dtos;
+	}
+	
+	
+	
+	
+	//----------------------------기타-----------------------------------
+	//전월 추가 및 삭감 총 금액
+	public int bonussalaryCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.bonussalaryCnt", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_mgsbVO> bonussalary(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.bonussalary(map);
 		return dtos;
 	}
 	
