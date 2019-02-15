@@ -110,7 +110,7 @@ public class O_ServiceImpl implements O_Service{
 	public void calendarPageNum(HttpServletRequest req, Model model) {
 		//3단계. 화면으로부터 입력받은 값을 받아온다.
 		//페이징 처리
-		int pageSize = 10;		//한페이지당 출력할 글 갯수
+		int pageSize = 5;		//한페이지당 출력할 글 갯수
 		int pageBlock = 5;		//한 블록당 페이지 갯수
 		
 		int cnt = 0;			//글 갯수
