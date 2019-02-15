@@ -21,8 +21,8 @@
 			<table>
 				<thead>
 					<tr>
-						<th colspan="4">
-							<input type="text" name="keyword" placeholder="업체명을 입력하세요." required>
+						<th colspan="4" style="border-radius:6px 6px 0 0">
+							<input type="text" name="keyword" placeholder="업체명을 입력하세요." required autofocus>
 							<input type="submit" value="검색">
 						</th>
 					</tr>
@@ -54,6 +54,6 @@
 				</c:if>
 			</table>
 		</form>
-		<input type="button" value="취소" onclick="self.close();" class="btnset">
+		<input type="button" class="cancelbtn" value="취소" onclick="self.close();" class="btnset">
 	</div>
 </div>

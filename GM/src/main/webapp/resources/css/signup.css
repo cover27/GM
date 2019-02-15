@@ -347,6 +347,11 @@ body {
     background: #fff;
     border-radius: 10px;
     box-shadow: 10px 10px 100px #555;
+    padding: 15px;
+}
+
+#findCompany input[type="submit"]:hover, #findCompany input[type="button"]:hover {
+	opacity: 0.8;
 }
 
 #findCompany h2	{
@@ -359,16 +364,32 @@ body {
 }
 
 #findCompany .findCompany table {
-    width:730px;
+    width:700px;
+    font-size: 1em;
 }
 
 #findCompany .findCompany thead {
-    width:730px; 
+	width:700px;
 }
 
 #findCompany .findCompany table thead th {
-	background: #eee;
 	padding: 10px 0;
+	border: 1px solid #eee;
+	border-right: #fff 1px solid;
+	padding: 15px;
+}
+
+#findCompany .findCompany table thead tr:first-child th:last-child {
+	border-right: 1px solid #eee;
+}
+
+#findCompany .findCompany table thead tr:last-child th {
+	border-bottom: 0;
+	background: #eee;
+}
+
+#findCompany .findCompany table thead tr:last-child th:last-child {
+	border-right: #eee 1px solid;
 }
 
 #findCompany .findCompany table thead th:nth-child(1) {
@@ -383,14 +404,44 @@ body {
 	width: 200px;
 }
 
+#findCompany .findCompany thead input[type="text"] {
+	width: 600px;
+	height: 48px;
+	padding: 10px;
+	float: left;
+	border-radius: 5px;
+}
+
+#findCompany .findCompany thead input[type="text"]:focus {
+	background: rgba(254, 255, 196, .8);
+}
+
+#findCompany .findCompany thead input[type="submit"] {
+	background: #555;
+    margin-left: 5px;
+    width: 58px;
+    height: 46px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.3em;
+    font-weight: bold;
+    border: 1px solid #555;
+    cursor: pointer;
+}
+
 #findCompany .findCompany table ,tr td {
     padding: 10px;
     text-align: center;
+    border: 1px solid #eee;
+}
+
+#findCompany .findCompany table tbody tr:first-child td {
+	border-top: 0;
 }
 
 #findCompany .findCompany tbody {
     display:block;
-    width: 730px;
+    width: 700px;
     max-height:300px;
     overflow-y:scroll;
 }
@@ -416,4 +467,26 @@ body {
     display:table;
     width:100%;
     /* table-layout:fixed; */
+}
+
+#findCompany .findCompany tbody input[type="button"] {
+    margin-left: 5px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.8em;
+    font-weight: bold;
+    border: 1px solid #777;
+    background: #777;
+    cursor: pointer;
+}
+
+#findCompany .cancelbtn {
+    border-radius: 5px;
+    width: 100%;
+    color: #fff;
+    font-size: 1em;
+    font-weight: bold;
+    border: 1px solid #777;
+    background: #777;
+    cursor: pointer;
 }

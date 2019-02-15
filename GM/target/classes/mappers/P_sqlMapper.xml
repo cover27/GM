@@ -31,4 +31,18 @@
 	<select id="getGroupName" resultType="String">
 		select g_name from groups where company=#{company} and group_rank=1 and del=0
 	</select>
+	
+	<select id="getPayGroupId" resultType="int">
+		SELECT groupid FROM groupinfo WHERE id = #{id} ORDER BY groupid DESC
+	</select>
+	
+	<select id="getPayGroups" resultType="com.spring.gm.vo.GroupsVO">
+		SELECT * FROM groups WHERE groupid = #{groupid} AND group_rank = 2
+	</select>
+	<select id="getPayment" resultType="com.spring.gm.vo.PaymentVO">
+		SELECT * FROM payment WHERE groupid = #{groupid}
+	</select>
+	<select id="countPayInfo" resultType="com.spring.gm.vo.PaymentInfoVO">
+		SELECT * FROM paymentinfo WHERE num =#{num} AND id=#{id}
+	</select>
 </mapper>
