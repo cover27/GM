@@ -254,7 +254,7 @@
 	</select>
 	
 	<select id="getMgiList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgiVO">
-		SELECT m.id, m.name, m.depart, g.g_name departName, m.rank, r.r_name rankName, m.tel, m.email_in email, f.rank_mem leader 
+		SELECT m.id, m.name, m.depart, g.g_name departName, m.rank, r.r_name rankName, m.tel, m.email_in email, f.rank_mem leader
 		    FROM member m, groupinfo f, groups g, grade r
 		    WHERE m.id = f.id
 		    AND m.depart = f.groupid
@@ -268,7 +268,7 @@
 	</select>
 	
 	<select id="getMgiList2" parameterType="int" resultType="com.spring.gm.vo.join_mgiVO">
-		SELECT m.id, m.name, m.depart, m.rank, r.r_name rankName, m.tel, m.email_in email
+		SELECT m.id, m.name, m.depart, m.rank, r.r_name rankName, m.tel, m.email_in email, m.sys_rank
 		    FROM member m, grade r
 		    WHERE m.rank = r.rank
 		    AND m.company = #{company}
@@ -305,4 +305,54 @@
 	<update id="changeleader2" parameterType="java.util.Map">
 		UPDATE groupinfo SET rank_mem = 1 WHERE groupId=#{depart} AND id=#{id}
 	</update>
+	
+	<select id="getGrades" parameterType="int" resultType="com.spring.gm.vo.Grade_visibleVO">
+		SELECT * FROM grade WHERE company = #{company} and ranking != 0 ORDER BY ranking ASC
+	</select>
+	
+	<select id="getGradeCnt" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM member WHERE rank=#{rank} AND del=0
+	</select>
+	
+	<insert id="insertGrade" parameterType="com.spring.gm.vo.GradeVO">
+		INSERT INTO grade VALUES (seq_rank.nextval, #{r_name}, #{company}, #{ranking})
+	</insert>
+	
+	<update id="updateGrade" parameterType="com.spring.gm.vo.GradeVO">
+		UPDATE grade SET r_name=#{r_name}, ranking=#{ranking}
+			WHERE rank=#{rank} 
+	</update>
+	
+	<delete id="deleteGrade" parameterType="int">
+		DELETE FROM grade WHERE rank=#{rank}
+	</delete>
+	
+	<select id="getMgiList3" parameterType="int" resultType="com.spring.gm.vo.join_mgiVO">
+		SELECT m.id, m.name, m.depart, g.g_name departName, m.rank, r.r_name rankName, m.tel, m.email_in email, f.rank_mem leader, m.sys_rank
+		    FROM member m, groupinfo f, groups g, grade r
+		    WHERE m.id = f.id
+		    AND m.depart = f.groupid
+		    AND m.depart = g.groupid
+		    AND m.rank = r.rank
+		    AND m.company = #{company}
+		    AND m.sys_rank != 0
+		    AND m.del = 0
+		    ORDER BY m.enterday ASC
+	</select>
+	
+	<update id="insertManager" parameterType="String">
+		UPDATE member SET sys_rank=1 WHERE id=#{id}
+	</update>
+	
+	<insert id="insertManager2" parameterType="String">
+		INSERT INTO authorities VALUES(#{id}, 'USER_ADMIN')
+	</insert>
+	
+	<update id="deleteManager" parameterType="String">
+		UPDATE member SET sys_rank=0 WHERE id=#{id}
+	</update>
+	
+	<delete id="deleteManager2" parameterType="String">
+		DELETE FROM authorities WHERE username=#{id} AND authority='USER_ADMIN'
+	</delete>	
 </mapper>

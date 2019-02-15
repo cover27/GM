@@ -4,7 +4,7 @@
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/payment.jsp"%>
-<%@ include file="/WEB-INF/views/pages/sub/O_listApprReferenceContent.jsp"%>
+<%@ include file="/WEB-INF/views/pages/sub/K_listApprRejectContent.jsp"%>
 <%-- <%@ include file="/WEB-INF/views/include/footer.jsp"%> --%>
 
-<!-- 결재 - 참조/열람문서함 페이지 -->
+<!-- 결재 - 반려 문서함 페이지 -->

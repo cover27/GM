@@ -35,4 +35,14 @@
 </select>
 
 
+<!-- 일정 -->
+<!-- 게시글 갯수조회 -->
+<select id="getCalendarCnt" parameterType="int">
+	select count(*) from schedule
+</select>
+
+<!-- 게시글 목록 조회 -->
+<select id="getCalendarList" resultType="com.spring.gm.vo.ScheduleVO" parameterType="java.util.Map">
+	select begin, scheduleKind, subject, num from schedule
+</select>
 </mapper>

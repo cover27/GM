@@ -115,6 +115,22 @@ public class O_Controller {
 	
 	
 	
+	/* 일정 시작 */
+	//일정 화면
+	@RequestMapping("/pages/O_calendar")
+	public String O_calendar(HttpServletRequest req, Model model) {
+		logger.info("URL : O_calendar");
+		
+		//oservice.calendarPageNum(req, model);
+		
+		return "pages/O_calendar";
+	}
+	
+	/* 일정 끝 */
+	
+	
+	
+	
 	/* 전자 결재 시작 */
 	//기안 - 기안문 작성
 	@RequestMapping("/pages/K_createApprDocFormView")
