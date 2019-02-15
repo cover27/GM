@@ -88,10 +88,20 @@ public class K_ServiceImpl implements K_Service{
 		vo.setJumin2(Integer.parseInt(req.getParameter("jumin2")));
 		vo.setGender(Integer.parseInt(req.getParameter("gender")));
 		vo.setMarry(Integer.parseInt(req.getParameter("marry")));
+		String inputWdday = req.getParameter("wdday");
+		System.out.println("확인!:::::::::::::::::::::"+inputWdday);
+		if(inputWdday.length() == 0) {
+			System.out.println("여기 타면 안됨");
+			System.out.println(inputWdday.length()+"도대체 어떻길래???????????????????????");
+			Date wdday = Date.valueOf(inputWdday);
+			vo.setWdday(wdday);
+		}
+		/*
 		if(Integer.parseInt(req.getParameter("marry")) == 1) { //미혼이라서 안쓰면 오류남
 			Date wdday = Date.valueOf(req.getParameter("wdday"));
 			vo.setWdday(wdday);
 		}
+		*/
 		vo.setFrgn(Integer.parseInt(req.getParameter("frgn")));
 		vo.setNation(req.getParameter("nation"));
 		String tel = req.getParameter("hp1") + req.getParameter("hp2") + req.getParameter("hp3");
