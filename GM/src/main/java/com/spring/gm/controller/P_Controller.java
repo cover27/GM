@@ -71,6 +71,8 @@ public class P_Controller {
 	public String P_listApprTodoView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_listApprTodoView");
 		
+		service.P_listApprTodoView(req, model);
+		
 		return "pages/P_listApprTodoView";
 	}
 	

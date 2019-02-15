@@ -1,7 +1,9 @@
 package com.spring.gm.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,8 +13,11 @@ import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.K_DAO;
 import com.spring.gm.persistence.P_DAO;
+import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.Join_payVO;
 import com.spring.gm.vo.MemberVO;
+import com.spring.gm.vo.PaymentInfoVO;
+import com.spring.gm.vo.PaymentVO;
 
 @Service
 public class P_ServiceImpl implements P_Service{
@@ -97,6 +102,41 @@ public class P_ServiceImpl implements P_Service{
 	@Override
 	public void apprDocReq(HttpServletRequest req, Model model) {
 		
-		
 	}
+
+	//결재 대기함
+	@Override
+	public void P_listApprTodoView(HttpServletRequest req, Model model) {
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		List<Integer> groupids = new ArrayList<Integer>();
+		groupids = dao.getPayGroupId(id);
+		List<GroupsVO> groups = new ArrayList<GroupsVO>();
+		GroupsVO eachGroup = new GroupsVO();
+		for(int i=0; i<groupids.size();i++) {
+			eachGroup = dao.getPayGroups(groupids.get(i));
+			groups.add(eachGroup);
+			eachGroup = null;
+		}
+		List<PaymentVO> payment = new ArrayList<PaymentVO>();
+		PaymentVO eachPayment = new PaymentVO();
+		for(int i=0; i<groups.size(); i++) {
+			eachPayment = dao.getPayment(groups.get(i).getGroupId());
+			payment.add(eachPayment);
+			eachPayment = null;
+		}
+		// content에서 유용하게 쓸예정
+		/*List<PaymentInfoVO> paymentInfo = new ArrayList<PaymentInfoVO>();
+		PaymentInfoVO eachPayInfo = new PaymentInfoVO();
+		Map<String, Object> map = new HashMap<String, Object>();
+		for(int i=0;i<payment.size();i++) {
+			map.put("num", payment.get(i).getNum());
+			map.put("id", id);
+			eachPayInfo = dao.countPayInfo(map);
+			paymentInfo.add(eachPayInfo);
+			paymentInfo = null;
+		}*/
+		
+		model.addAttribute("payment", payment);
+	}	
 }
