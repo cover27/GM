@@ -349,7 +349,7 @@
 	</insert>
 	
 	<update id="deleteManager" parameterType="String">
-		UPDATE member SET sys_rank=0 WHERE id=#{id}
+		UPDATE member SET sys_rank=2 WHERE id=#{id}
 	</update>
 	
 	<delete id="deleteManager2" parameterType="String">

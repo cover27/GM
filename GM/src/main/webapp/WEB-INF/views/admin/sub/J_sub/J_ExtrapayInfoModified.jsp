@@ -14,7 +14,6 @@
                     </td>
                     <td>
                         <select name="state" id="state">
-                            <option value="지급">지급</option>
                             <option value="미지급">미지급</option>
                         </select>
                     </td>
