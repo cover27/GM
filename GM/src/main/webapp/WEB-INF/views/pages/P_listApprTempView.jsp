@@ -4,7 +4,7 @@
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/payment.jsp"%>
-<%@ include file="/WEB-INF/views/pages/sub/K_createApprDocFormContent.jsp"%>
-<%-- <%@ include file="/WEB-INF/views/include/footer.jsp"%> --%>
+<%@ include file="/WEB-INF/views/pages/sub/P_listApprTempContent.jsp"%>
 
-<!-- 전자결재 - 기안문 작성 페이지 -->
+<!-- 기안 - 임시저장함 페이지 -->
+
