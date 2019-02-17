@@ -183,6 +183,13 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.J_PayrollRegistrationInsertList(map);
 		return dtos;
 	}
+	@Override
+	public ArrayList<join_mgsbVO> J_PayrollRegistrationInsertList2(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.J_PayrollRegistrationInsertList2(map);
+		return dtos;
+	}
 	// 개인 급여등록
 	@Override
 	public int J_PayrollRegistrationInsert(Map<String, Object> map) {

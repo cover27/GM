@@ -23,7 +23,7 @@
 			</tr>
 			<tr>
 				<td colspan="7" style="height: 150px;" text-align="center">
-					*데이터 정보가 없습니다.!!!!!!!</td>
+					*이번달 등록된 정보가 없습니다.</td>
 			</tr>
 			<tr>
 				<td colspan="4">합계</td>
@@ -116,7 +116,7 @@
 			</tr>
 			<tr>
 				<td colspan="4" style="height: 150px;" text-align="center">
-					*데이터 정보가 없습니다.!!!!!!!</td>
+					*추가 및 삭감데이터 정보가 없습니다.</td>
 			</tr>
 			<tr>
 				<td colspan="4" style="text-align: center; background-color: #cccccc;">합계</td>

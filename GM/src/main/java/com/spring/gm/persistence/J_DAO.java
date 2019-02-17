@@ -38,6 +38,7 @@ public interface J_DAO {
 	public int J_PayrollRegistrationCnt(Map<String, Object> map);
 	public ArrayList<join_msVO> J_PayrollRegistrationList(Map<String, Object> map);
 	public ArrayList<MemberVO> J_PayrollRegistrationInsertList(Map<String, Object> map);
+	public ArrayList<join_mgsbVO> J_PayrollRegistrationInsertList2(Map<String, Object> map);
 	// 개인 급여등록
 	public int J_PayrollRegistrationInsert(Map<String, Object> map);
 	//미지급 지급으로 처리

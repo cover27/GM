@@ -105,6 +105,17 @@
 	<select id="J_PayrollRegistrationInsertList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
 		SELECT id,name,tel,email_in,round(salary/12, -2) as salary,account_number FROM member where  id = #{id} and company = #{company}
 	</select>
+	<select id="J_PayrollRegistrationInsertList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
+		select m.id, m.name, m.tel, m.email_in, round(m.salary/12, -2) + sum(b.cost) as salary, m.account_number
+		from member m left join bonus_cut b on m.id = b.id
+		where  m.id = #{id} and m.company = #{company} and to_char(b.day,'yyyymm') = TO_CHAR(ADD_MONTHS(sysdate,  -1), 'YYYYMM')
+		group by  m.id, m.name, m.tel, m.email_in, round(m.salary/12, -2), m.account_number
+	</select>
+	
+	
+	
+	
+	
 	
 	<!--  개인 급여등록 -->
 	<insert id="J_PayrollRegistrationInsert" parameterType="java.util.Map">
@@ -113,13 +124,13 @@
 	</insert>
 	<!-- 미지급 지급으로 처리 -->
 	<update id="J_PayrollRegistrationchange" parameterType="java.util.Map">
-		update salary set state = '지급' where id=#{id} and to_char(day,'yyyymm')=to_char(sysdate,'yyyymm')
+		update salary set state = '지급' where id=#{id} and to_char(day,'yyyymm')=to_char(sysdate,'yyyymm') and state = '미지급'
 	</update>
 	<!-- 급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감  (이번달 -1 달의 )정보를 미지급-> 지급으로 처리 -->
 	<update id="ChangePayments" parameterType="java.util.Map">
 		update bonus_cut set state = '지급' where id=#{id} and to_char(day,'yyyymm') = TO_CHAR(ADD_MONTHS(sysdate,  -1), 'YYYYMM')
 	</update>
-	<!-- 급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감 정보  지급 -> 미지급으로 처리-->
+	<!-- 급여등록 삭제시 추가 및 삭감 미지급으로 처리-->
 	<update id="ChangeUnpaid" parameterType="java.util.Map">
 		update bonus_cut set state = '미지급' where id=#{id} and to_char(day,'yyyymm') = TO_CHAR(ADD_MONTHS(sysdate,  -1), 'YYYYMM')
 	</update>
