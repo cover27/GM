@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <form method="post" name="infoform">
-	<h3>상여 목록</h3>
+	<h3>추가 및 삭감 목록</h3>
 	<table border="1">
 		<c:if test="${cnt == 0}">
 			<tr>
@@ -16,7 +16,7 @@
 			</tr>
 			<tr>
 				<td colspan="6" style="height: 150px;" text-align="center">
-					*데이터 정보가 없습니다.!!!!!!!</td>
+					*지급 처리된 정보가 없습니다.!!!!!!!</td>
 			</tr>
 			<tr>
 				<td colspan="6">합계</td>
@@ -59,7 +59,7 @@
 
 
 
-	<h3>상여 미지급 목록</h3>
+	<h3>추가 및 삭감 미지급 목록</h3>
 	<table border="1">
 		<c:if test="${cnt2 == 0}">
 			<tr>
@@ -73,7 +73,7 @@
 			</tr>
 			<tr>
 				<td colspan="4" style="height: 150px;" text-align="center">
-					지급처리가 안된 상여 정보가 없습니다.</td>
+					지급처리가 안된  정보가 없습니다.</td>
 			</tr>
 			<tr>
 				<td colspan="6" style="text-align: center; background-color: #cccccc;">합계</td>

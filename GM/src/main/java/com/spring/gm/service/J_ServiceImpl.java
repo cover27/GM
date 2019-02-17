@@ -1021,7 +1021,7 @@ public class J_ServiceImpl implements J_Service {
 		map.put("company", company);
 		map.put("months", months);
 		
-		int	cnt = dao.mgstblCnt2(map);//상여금 정보 뽑아오기
+		int	cnt = dao.bonusNoneCnt2(map);//상여금 정보 뽑아오기
 		System.out.println("cnt : " + cnt);
 		
 		if(cnt > 0) {
@@ -1030,7 +1030,7 @@ public class J_ServiceImpl implements J_Service {
 		List<join_mgsbVO> dtos2 = dao.bonusList2(map);//사업장으로 검색
 		dtos.addAll(dtos1);
 		dtos.addAll(dtos2);
-		List<join_mgsbVO> dtos3 = dao.bonustbl(map);
+		List<join_mgsbVO> dtos3 = dao.bonustbl3(map);
 		int bonussalary = dtos3.get(0).getBonussalary();
 		System.out.println("dtos :" + dtos.toString());
 		model.addAttribute("dtos",dtos);
@@ -1048,7 +1048,7 @@ public class J_ServiceImpl implements J_Service {
 		List<join_mgsbVO> dtos2 = dao.bonusNoneList2(map);//사업장으로 검색
 		dtos.addAll(dtos1);
 		dtos.addAll(dtos2);
-		List<join_mgsbVO> dtos3 = dao.bonustbl(map);
+		List<join_mgsbVO> dtos3 = dao.bonustbl4(map);
 		int bonussalary = dtos3.get(0).getBonussalary();
 		System.out.println("dtos :" + dtos.toString());
 		model.addAttribute("dtos2",dtos);

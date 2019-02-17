@@ -454,6 +454,12 @@
      <select id="mgstblCnt2" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt from bonus_cut where id= #{id} and to_char(day,'yyyymm') = #{months}-1 and state = '지급'
      </select>
+     
+     
+     
+     
+     
+     
      <!-- 급여 조회&수당(List) -->
      <!-- 급여 부서명 가져오는  셀리리조인 -->
      <select id="mgstbl" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
@@ -476,13 +482,28 @@
      	select sum(b.cost) as bonussalary 
 		from member m,bonus_cut b
 		where m.id = b.id
-		and m.id= #{id} and to_char(day,'yyyymm') = #{months}-1 and m.company = #{company} and state = '지급'
+		and m.id= #{id} and to_char(b.day,'yyyymm') = #{months}-1 and m.company = #{company} and state = '지급'
      </select>
       <select id="bonustbl2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
      	select * from bonus_cut b,member m  
 		where m.id = b.id
-		and m.id= #{id} and to_char(day,'yyyymm') = #{months}-1 and m.company = #{company} and state = '지급'
+		and m.id= #{id} and to_char(b.day,'yyyymm') = #{months}-1 and m.company = #{company} and state = '지급'
      </select>
+     
+     <!--추가 및 삭감 이달의 정보 보기 -->
+      <select id="bonustbl3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
+     	select sum(b.cost) as bonussalary 
+		from member m,bonus_cut b
+		where m.id = b.id
+		and m.id= #{id} and to_char(b.day,'yyyymm') = #{months} and m.company = #{company} and state = '지급'
+     </select>
+     <select id="bonustbl4" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
+     	select sum(b.cost) as bonussalary 
+		from member m,bonus_cut b
+		where m.id = b.id
+		and m.id= #{id} and to_char(b.day,'yyyymm') = #{months} and m.company = #{company} and state = '미지급'
+     </select>
+     
      
      <!-- 검색 날짜가 있을 경우 -->
       <select id = "J_SalaryCalculationSearchCnt2"  parameterType="java.util.Map" resultType="int">
@@ -516,6 +537,9 @@
      
      
      <!-- 상여 미지급 목록 -->
+     <select id="bonusNoneCnt2" parameterType="java.util.Map" resultType="int">
+		select count(*) as cnt from bonus_cut where id= #{id} and to_char(day,'yyyymm') = #{months} and state = '지급'
+     </select>
      <select id="bonusNoneCnt" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt from bonus_cut where id= #{id} and to_char(day,'yyyymm') = #{months} and state = '미지급'
      </select>

@@ -74,8 +74,8 @@ public interface J_DAO {
 	//Bonus_cut 정보 가져오기
 	public ArrayList<join_mgsbVO> bonustbl(Map<String, Object> map);
 	public ArrayList<join_mgsbVO> bonustbl2(Map<String, Object> map);
-	
-	
+	public ArrayList<join_mgsbVO> bonustbl3(Map<String, Object> map);
+	public ArrayList<join_mgsbVO> bonustbl4(Map<String, Object> map);
 	
 	//------------- 기본수당 외 수당관리-------------------------------------------
 	// 회사명 가져오기
@@ -152,6 +152,7 @@ public interface J_DAO {
 	
 	//상여 미지급 목록
 	public int bonusNoneCnt(Map<String, Object> map);
+	public int bonusNoneCnt2(Map<String, Object> map);
 	public ArrayList<join_mgsbVO> bonusNoneList(Map<String, Object> map);
 	public ArrayList<join_mgsbVO> bonusNoneList2(Map<String, Object> map);
 	

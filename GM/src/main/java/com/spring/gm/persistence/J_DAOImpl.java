@@ -562,6 +562,20 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.bonustbl2(map);
 		return dtos;
 	}
+	@Override
+	public ArrayList<join_mgsbVO> bonustbl3(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.bonustbl3(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgsbVO> bonustbl4(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.bonustbl4(map);
+		return dtos;
+	}
 /*	@Override
 	public ArrayList<join_mgsbVO> mgstbl3(Map<String, Object> map) {
 		ArrayList<join_mgsbVO> dtos = null;
@@ -637,6 +651,10 @@ public class J_DAOImpl implements J_DAO {
 	@Override
 	public int bonusNoneCnt(Map<String, Object> map) {
 		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.bonusNoneCnt", map);
+		return cnt;
+	}
+	public int bonusNoneCnt2(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.bonusNoneCnt2", map);
 		return cnt;
 	}
 	@Override
