@@ -11,6 +11,7 @@ import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.Join_payVO;
 import com.spring.gm.vo.PaymentInfoVO;
 import com.spring.gm.vo.PaymentVO;
+import com.spring.gm.vo.join_groupnameVO;
 
 @Repository
 public class P_DAOImpl implements P_DAO{
@@ -46,22 +47,26 @@ public class P_DAOImpl implements P_DAO{
 		dao = sqlSession.getMapper(P_DAO.class);
 		return dao.getGroupName(company);
 	}
+	
 	@Override
-	public List<Integer> getPayGroupId(String id) {
-		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.getPayGroupId", id);
+	public int getPaymentCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getPaymentCnt", map);
 	}
 	@Override
-	public GroupsVO getPayGroups(int groupid) {
-		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getPayGroups", groupid);
+	public List<PaymentVO> getPaymentList(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.getPaymentList", map);
 	}
 	@Override
 	public PaymentVO getPayment(int groupid) {
 		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getPayment", groupid);
 	}
 	@Override
-	public PaymentInfoVO countPayInfo(Map<String, Object> map) {
-		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.countPayInfo", map);
+	public List<PaymentInfoVO> countPayInfo(int num) {
+		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.countPayInfo", num);
 	}
-	
+	@Override
+	public List<join_groupnameVO> getGroupInfo(int groupid) {
+		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.getGroupInfo", groupid);
+	}
 	
 }

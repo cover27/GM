@@ -18,9 +18,9 @@
                 	</li>
                 	<li>
                         <span><a href="<c:url value='/pages/E_memoList' />">모든 메모&nbsp;&nbsp;<span>1</span></a></span>
-                        		<%-- <c:forEach var="dto" items="${side }">
-                       				<li><a href="<c:url value='/pages/E_organVipGroupList?depart=${dto.groupId }' />">${dto.g_name}</a></li>
-                       			</c:forEach> --%>
+                        		<c:forEach var="dto" items="${side }">
+                       				<li><a href="<c:url value='/pages/E_memoList?depart=${dto.id }' />">${dto.name}</a></li>
+                       			</c:forEach>
                     </li>
                     <li>
                         <span><a href="i03.jsp">중요 메모&nbsp;&nbsp;<span>1</span></a></span>

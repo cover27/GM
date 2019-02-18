@@ -6,6 +6,7 @@ import java.util.Map;
 import com.spring.gm.vo.BoardListAndBoardsVO;
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.BoardsVO;
+import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.ReplyListVO;
 
 
@@ -71,5 +72,5 @@ public interface D_DAO {
 	public int delBoard(Map<String, Integer> map);	// 게시판 삭제
 	
 	public int boardMove(Map<String, Integer> map);	// 게시판 이동
-
+	
 }

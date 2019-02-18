@@ -32,17 +32,39 @@
 		select g_name from groups where company=#{company} and group_rank=1 and del=0
 	</select>
 	
-	<select id="getPayGroupId" resultType="int">
-		SELECT groupid FROM groupinfo WHERE id = #{id} ORDER BY groupid DESC
+	<select id="getPaymentCnt" resultType="int">
+		SELECT COUNT(*) FROM groupinfo f, groups g, payment p, paymentinfo o
+		    WHERE g.groupid = f.groupid
+		    AND g.groupid = p.groupid
+		    AND g.group_rank = 2
+		    AND o.id=f.id
+		    AND f.id= #{id}
+		    AND o.agree = #{agree}
 	</select>
 	
-	<select id="getPayGroups" resultType="com.spring.gm.vo.GroupsVO">
-		SELECT * FROM groups WHERE groupid = #{groupid} AND group_rank = 2
+	<select id="getPaymentList" parameterType="java.util.Map" resultType="com.spring.gm.vo.PaymentVO">
+		<![CDATA[
+		SELECT * FROM (SELECT p.*, rowNum rNum FROM groupinfo f, groups g, payment p, paymentinfo o
+			    WHERE g.groupid = f.groupid
+			    AND g.groupid = p.groupid
+			    AND g.group_rank = 2
+			    AND o.id=f.id
+			    AND f.id=#{id}
+			    AND o.agree = #{agree}
+			    ORDER BY p.reg_date DESC)
+		    WHERE rNum >= #{start} AND rNum <= #{end}
+		 ]]>
 	</select>
+	
 	<select id="getPayment" resultType="com.spring.gm.vo.PaymentVO">
 		SELECT * FROM payment WHERE groupid = #{groupid}
 	</select>
+	
 	<select id="countPayInfo" resultType="com.spring.gm.vo.PaymentInfoVO">
-		SELECT * FROM paymentinfo WHERE num =#{num} AND id=#{id}
+		SELECT * FROM paymentinfo WHERE num =#{num}
+	</select>
+	
+	<select id="getGroupInfo" resultType="com.spring.gm.vo.join_groupnameVO">
+		SELECT g.*, m.name FROM groupinfo g, member m WHERE m.id = g.id AND g.groupid = #{groupid} ORDER BY g.rank_mem ASC
 	</select>
 </mapper>

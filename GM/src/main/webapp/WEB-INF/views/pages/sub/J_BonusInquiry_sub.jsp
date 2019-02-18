@@ -83,7 +83,8 @@
 								value="${id}" readonly> <input type="text"
 								class="searchName" name="name" value="${name}" readonly>
 							</td>
-							<td><input type="button" onclick="searchBonusInquiry()" value="검색"></td>
+							<td><input type="button" onclick="searchBonusInquiry()"
+								value="검색"></td>
 						</tr>
 					</c:if>
 				</table>
@@ -94,7 +95,8 @@
 							<td style="text-align: center; background-color: #cccccc;">사원번호</td>
 							<td style="text-align: center; background-color: #cccccc;">성명</td>
 							<td style="text-align: center; background-color: #cccccc;">부서</td>
-							<td style="text-align: center; background-color: #cccccc;">추가 및 삭감구분</td>
+							<td style="text-align: center; background-color: #cccccc;">추가
+								및 삭감구분</td>
 							<td style="text-align: center; background-color: #cccccc;">사유</td>
 							<td style="text-align: center; background-color: #cccccc;">지급액</td>
 						</tr>
