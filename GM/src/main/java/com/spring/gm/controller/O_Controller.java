@@ -131,7 +131,7 @@ public class O_Controller {
 	public String O_calendarCreateView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendarCreateView");
 		
-		
+	
 		
 		return "pages/O_calendarCreateView";
 	}

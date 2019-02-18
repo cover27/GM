@@ -73,6 +73,7 @@ tr, th, td {
 									</tr>
 								</c:forEach>
 							</c:if>
+							
 
 							<!-- 게시글이 없으면 -->
 							<c:if test="${cnt == 0}">
