@@ -24,7 +24,7 @@
                         <ul>
                             <li><a href="#">회의실 관리</a></li>
                             <li><a href="#">공용설비 관리</a></li>
-                            <li><a href="#">휴일 관리</a></li>
+                            <!-- <li><a href="#">휴일 관리</a></li> -->
                         </ul>
                     </li>
                 </ul>
