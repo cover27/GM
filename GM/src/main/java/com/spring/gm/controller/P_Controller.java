@@ -76,6 +76,16 @@ public class P_Controller {
 		return "pages/P_listApprTodoView";
 	}
 	
+	//결재 상세 페이지
+	@RequestMapping("/pages/P_payContentForm")
+	public String P_payContentForm(HttpServletRequest req, Model model) {
+		logger.info("URL : P_payContentForm");
+		
+		service.P_payContentForm(req, model);
+		
+		return "pages/P_payContentForm";
+	}
+	
 	//결재 - 결재 진행함
 	@RequestMapping("/pages/P_listApprCompleteView")
 	public String P_listApprCompleteView(HttpServletRequest req, Model model) {
