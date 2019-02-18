@@ -167,4 +167,5 @@
 			UPDATE BOARDLIST SET num = #{num} WHERE boardnum = #{boardnum}
 		]]>
 	</update>
+	
 </mapper>
