@@ -5,9 +5,11 @@
 <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
 <script type="text/javascript">
 function addApprLine(){
-	var url="O_addApprLine";
+	var url="P_addApprLine";
 	window.open(url, "addApprLine", "menubar=no, width=1000, height=560");
 }
+
+
 </script>
 
 <style>
@@ -227,7 +229,7 @@ div{
 		<!-- 결재 선 라인 -->
 		<div id="formButtonDiv" class="btn-wrap pt10">
 		    <button id="addApprLineButton" name="addApprLineButton" type="button" class="btn btn-color5 br" onclick="addApprLine();">결재선</button>
-		    <button id="createApprDocButton" type="button" class="btn btn-color5 br">결재요청</button>
+		    <button id="createApprDocButton" type="submit" class="btn btn-color5 br">결재요청</button>
 		    <button id="addApprRefInfoButton" type="button" class="btn btn-color7 br">기결재첨부</button>
 			<button id="createApprDocTemporayButton" type="button" class="btn btn-color7 br">임시저장</button>
 			<button id="listApprDocButton" type="button" class="btn btn-color7 br">취소</button>
@@ -236,47 +238,9 @@ div{
 		<!-- 기안 용지 작성 content -->
 		<div class="content-wrap approval responsive">
 			<div class="content-write">	
-				<form id="apprDocForm" name="apprDocForm" method="post" action="/groupware/approval/work/apprWorkDoc/createApprDoc.do?OWASP_CSRFTOKEN=MH9Z-B476-OG7Y-7N0R-GGXM-44ZS-CS40-3K6R" novalidate="novalidate">
-					<input name="msie" type="hidden" value="0">
-			        <input type="hidden" name="systemId" value="GW">
-			        <input type="hidden" name="formId" value="26211286">
-			        <input type="hidden" name="formVersion" value="1">		    
-			        <input type="hidden" name="apprDocType" value="0">
-			        <textarea title="formLayoutData" name="formLayoutData" style="display:none;"></textarea>
-			        <input type="hidden" name="isLinkUrl" value="0">
-			        <input type="hidden" name="linkDataType" value="0">
-			        <textarea title="formData" name="formData" style="display:none;"></textarea>
-			        <input type="hidden" name="defLineId" value="">
-			        <input type="hidden" name="defLineUse" value="0">
-			        <input type="hidden" name="isDefLineUpdate" value="0">
-			        <input type="hidden" name="isRequestForm" value="0">		        		        		        		            
-			        <input type="hidden" name="apprId" value="">        
-			        <input type="hidden" name="registerJobTitle" value="">
-			        <textarea title="formLinkedData" name="formLinkedData" style="display:none;"></textarea>
-			        <input type="hidden" name="apprLineType" value="0">
-			        <input type="hidden" name="apprLine" value="[{&quot;type&quot;:&quot;joinUser&quot;,&quot;apprType&quot;:0,&quot;id&quot;:&quot;U260222&quot;,&quot;code&quot;:&quot;U260222&quot;,&quot;userName&quot;:&quot;오정&quot;,&quot;teamName&quot;:&quot;테스트&quot;,&quot;jobTitleName&quot;:&quot;기안&quot;,&quot;approverType&quot;:0,&quot;apprOrder&quot;:0,&quot;apprStatus&quot;:1,&quot;lineModifyAuth&quot;:1,&quot;docModifyAuth&quot;:1,&quot;readModifyAuth&quot;:1,&quot;apprDate&quot;:&quot;&quot;,&quot;name&quot;:&quot;결재 오정 기안 테스트&quot;}]">
-			        <input type="hidden" name="referenceId">
-			        <input type="hidden" name="readId">
-			        <input type="hidden" name="apprReceiveLine">
-			        <input type="hidden" name="apprDocStatus" value="1">
-			        <input type="hidden" name="isApprReceive" value="0">
-			        <input type="hidden" name="listType" value="listApprForm">
-			        <input type="hidden" name="registerMessage">
-			        <input type="hidden" name="apprRefId">
-			        <input type="hidden" name="mode" value="new">
-			        <input type="hidden" name="linkType" value="">
-			        <input type="hidden" name="popupYn" value="false">
-			        <input type="hidden" name="modalYn" value="Y">
-			        <input type="hidden" name="isEmergency">   	    			        
-			        <input type="hidden" name="appKey01" value="">
-			        <input type="hidden" name="appKey02" value="">
-			        <input type="hidden" name="appKey03" value="">
-			        <input type="hidden" name="appKey04" value="">
-			        <input type="hidden" name="appKey05" value=""> 
-			        <input type="hidden" name="isOfficial" value="0"> 
-			        <input type="hidden" name="systemType" value="0"> 
-			        <textarea title="formHtmlData" name="formHtmlData" style="display:none;"></textarea>
-			            
+				<form id="apprDocForm" name="apprDocForm" method="post" action="P_apprDocFormReqPro" novalidate="novalidate">
+			       	<input type="hidden" name="del" value="0">
+			       	<input type="hidden" name="groupId" value="">
 					
 					<h2>기안용지</h2>
 					
@@ -285,7 +249,6 @@ div{
 						<div class="fright" id="apprLine0Tr" style="display: block;">
 							<div class="fleft">	
 								<table class="appline-lst">
-									<caption></caption>
 									<tbody>	
 										<tr id="apprLine0TTr">
 											<th rowspan="2">
@@ -294,7 +257,8 @@ div{
 											<th class="apprLine last">기안</th>
 										</tr>
 										<tr id="apprLine0BTr">									
-										<td height="60" class="last">${vo.getName()}</td></tr>
+											<td height="60" class="last"><input name="apprLine0BTr1" value="${vo.getName()}" readonly="readonly"></td>
+										</tr>
 									</tbody>
 								</table>							
 							</div>		
@@ -306,7 +270,6 @@ div{
 								<table class="appline-lst">
 									<caption></caption>
 									<tbody>	
-										</tbody><tbody>	
 											<tr id="apprLine1TTr">	
 												<th rowspan="2">					
 													합<br><br class="last">의
@@ -337,16 +300,16 @@ div{
 							<tbody>							
 								<tr>
 									<th>문서번호</th>
-									<td>자동채번</td>
+									<td><input type="hidden" name="num" value="">자동채번</td>
 									<th>기안일자</th>
-									<td>${today}</td>
+									<td><input type="hidden" name="reg_date" value="${today}">${today}</td>
 								</tr>
 								<tr>
 									<th>기안자</th>
-									<td>${vo.getName()} (${vo.getR_name()})</td>
+									<td><input type="hidden" name="name" value="${vo.getName()}">${vo.getName()} (${vo.getR_name()})</td>
 									<th>기안부서</th>
 									<td>
-										<input type="hidden" name="apprGroupId" value="G153190">${vo.getG_name()}
+										<input type="hidden" name="apprGroupId" value="${vo.getG_name()}">${vo.getG_name()}
 									</td>
 								</tr>
 								<tr>
@@ -375,7 +338,7 @@ div{
 								<tr>
 									<th><span class="text-point-b">*</span>문서제목</th>
 									<td colspan="3">
-						    			<input type="text" title="문서제목" name="apprTitle" value="" class="inputbox w100p" maxlength="100" placeholder="문서제목을 입력하세요." required="required">
+						    			<input type="text" title="문서제목" name="subject" value="" class="inputbox w100p" maxlength="100" placeholder="문서제목을 입력하세요." required autofocus>
 									</td>
 								</tr>
 							</tbody>
@@ -391,11 +354,12 @@ div{
 					<!-- <div id="formLinkedHtmlDataDiv" style="border: 1px solid #e0e0e0;" class="mt10 padding10 none"></div> -->								
 					<div class="border_t1" style="border-top:none !important;">
 						<div id="editorDiv">
-							<div id="dext_frame_holderdext5" style="width:100%; height:550px;">
+							<div id="content1" style="width:100%; height:550px;">
 								<!-- text-editor를 쓰기 위함으로 class name은 ckeditor로 쓰여야 한다. -->
 								<textarea class="ckeditor" id="formEditorData" title="formEditorData" name="formEditorData">글쓰기 시작</textarea>
 								<!-- text-editor를 쓰기 위함으로 위의 textarea의 class name이 아래 쓰인다. -->
 								<script>CKEDITOR.replace('formEditorData')</script>
+								<!-- <input type="text" id="content" name="content"> --> 
 							</div>
 						</div>
 					</div>
@@ -488,34 +452,19 @@ div{
 						</div>
 					</div>
 		
-				<input type="hidden" name="OWASP_CSRFTOKEN" value="MH9Z-B476-OG7Y-7N0R-GGXM-44ZS-CS40-3K6R"></form>
-	    
-				<form id="listForm" name="listForm" method="get" action="/groupware/approval/work/apprWorkForm/listApprForm.do?OWASP_CSRFTOKEN=MH9Z-B476-OG7Y-7N0R-GGXM-44ZS-CS40-3K6R">
-				    <input type="hidden" name="topFormParentId" value="26211283">
-				    <input type="hidden" name="formParentId" value="26211283">
-				    <input type="hidden" name="formId" value="26211286">
-				    <input type="hidden" name="actionType" value="">
-				    <input type="hidden" name="sortColumn" value="">
-				    <input type="hidden" name="sortType" value="">
-				    <input type="hidden" name="usage" value="0">
-				    <input type="hidden" name="searchWord" value="">
-				    <input type="hidden" name="pageIndex" value="1">
-				    <input type="hidden" name="pagePerRecord" value="10">
-				    <input type="hidden" name="linkType" value="">
-					<input type="hidden" name="OWASP_CSRFTOKEN" value="MH9Z-B476-OG7Y-7N0R-GGXM-44ZS-CS40-3K6R">
-				</form>   
+					<div id="formButtonDiv" class="btn-wrap pt10">
+						<button id="uploadFromFileBox" type="button" class="btn btn-color7 br" onclick="">웹디스크 파일첨부</button>
+					    <button id="addApprLineButton" type="button" class="btn btn-color5 br">결재선</button>
+					    <button id="createApprDocButton" type="submit" class="btn btn-color5 br">결재요청</button>
+					    <button id="addApprRefInfoButton" type="button" class="btn btn-color7 br">기결재첨부</button>
+						<button id="createApprDocTemporayButton" type="button" class="btn btn-color7 br">임시저장</button>
+						<button id="listApprDocButton" type="button" class="btn btn-color7 br">취소</button>
+					</div>
+				</form>
 			</div>
 		</div>
 		
 		
-		<div id="formButtonDiv" class="btn-wrap pt10">
-			<button id="uploadFromFileBox" type="button" class="btn btn-color7 br" onclick="">웹디스크 파일첨부</button>
-		    <button id="addApprLineButton" type="button" class="btn btn-color5 br">결재선</button>
-		    <button id="createApprDocButton" type="button" class="btn btn-color5 br">결재요청</button>
-		    <button id="addApprRefInfoButton" type="button" class="btn btn-color7 br">기결재첨부</button>
-			<button id="createApprDocTemporayButton" type="button" class="btn btn-color7 br">임시저장</button>
-			<button id="listApprDocButton" type="button" class="btn btn-color7 br">취소</button>
-		</div>
 		
 		
 		

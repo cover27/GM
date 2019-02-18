@@ -65,7 +65,7 @@
 
 	// 행 추가
 	function addhang() {
-		var addStaffText = '<tr name="trStaff"><td><select name="type"><option value="추가">추가</option><option value="삭감">삭감</option></select></td><td><select name="state"><option value="지급">지급</option><option value="미지급">미지급</option></select></td><td><input type="text" name="cost" placeholder="금액" required ></td><td><input type="text" name="content" placeholder="사유" required ></td><td><button class="btn btn-default" name="delStaff">삭제</button></td>button class="btn btn-default" name="delStaff">삭제</button></tr>';
+		var addStaffText = '<tr name="trStaff"><td><select name="type"><option value="추가">추가</option><option value="삭감">삭감</option></select></td><td><select name="state"><option value="미지급">미지급</option></select></td><td><input type="text" name="cost" placeholder="금액" required ></td><td><input type="text" name="content" placeholder="사유" required ></td><td><button class="btn btn-default" name="delStaff">삭제</button></td>button class="btn btn-default" name="delStaff">삭제</button></tr>';
 		console.log(addStaffText);
 		var trHtml = $("tr[name=trStaff]:last"); //last를 사용하여 trStaff라는 명을 가진 마지막 태그 호출
 		trHtml.after(addStaffText); //마지막 trStaff명 뒤에 붙인다.
@@ -78,14 +78,20 @@
 	});
 
 	//개인 상여금/삭감 목록 삭제
-	function deleteInfo(num) {
+	function deleteInfo(num, id,cost,contents,state) {
 		var con_test = confirm("삭제하시겠습니까?.");
 		if (con_test == true) {
 			$.ajax({
 				url : '${pageContext.request.contextPath}/admin/deleteInfo', //컨트롤러/basic1_sub로 가라
 				type : 'POST',
-				data : "num=" + num, //전송할 데이터
-				success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
+				data : {
+					"num" : num, //전송할 데이터
+					"id" : id,
+					"cost" : cost,
+					"contents" : contents,
+					"state" : state
+				},
+					success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
 					//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
 					$('#result').html(result);
 				},

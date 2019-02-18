@@ -38,12 +38,27 @@ public interface J_DAO {
 	public int J_PayrollRegistrationCnt(Map<String, Object> map);
 	public ArrayList<join_msVO> J_PayrollRegistrationList(Map<String, Object> map);
 	public ArrayList<MemberVO> J_PayrollRegistrationInsertList(Map<String, Object> map);
+	public ArrayList<join_mgsbVO> J_PayrollRegistrationInsertList2(Map<String, Object> map);
 	// 개인 급여등록
 	public int J_PayrollRegistrationInsert(Map<String, Object> map);
 	//미지급 지급으로 처리
 	public int J_PayrollRegistrationchange(Map<String, Object> map);
+	//급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감 정보 미지급-> 지급으로 처리
+	public int ChangePayments(Map<String, Object> map);
+	//급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감 정보  지급 -> 미지급으로 처리
+	public int ChangeUnpaid(Map<String, Object> map);
+	
 	//정보 삭제
 	public int J_PayrollRegistrationListDelete(Map<String, Object> map);
+	//삭제시 급여 금액 수정하기
+	public int modifySalary(Map<String, Object> map); //빼기
+	public int modifySalary2(Map<String, Object> map);	//더하기
+	
+	//전월 추가 및 삭감 총 금액
+	public int bonussalaryCnt(Map<String, Object> map);
+	public ArrayList<join_mgsbVO> bonussalary(Map<String, Object> map);
+
+	
 	
 	
 	//급여 조회&수당(cnt)
@@ -59,8 +74,8 @@ public interface J_DAO {
 	//Bonus_cut 정보 가져오기
 	public ArrayList<join_mgsbVO> bonustbl(Map<String, Object> map);
 	public ArrayList<join_mgsbVO> bonustbl2(Map<String, Object> map);
-	
-	
+	public ArrayList<join_mgsbVO> bonustbl3(Map<String, Object> map);
+	public ArrayList<join_mgsbVO> bonustbl4(Map<String, Object> map);
 	
 	//------------- 기본수당 외 수당관리-------------------------------------------
 	// 회사명 가져오기
@@ -95,6 +110,7 @@ public interface J_DAO {
 	// 급여 개인회원수당 정보 가져오기
 	public int J_extrapayinfoCnt(String id);
 	public ArrayList<BonusCutVO> J_extrapayinfo(String id);
+	public ArrayList<BonusCutVO> J_extrapayinfo2(Map<String, Object> map);
 	// 급여 개인회원수당 정보 가져오기
 	public int J_extrapayinfoCnt2_1(Map<String, Object> map);
 	public int J_extrapayinfoCnt2_2(Map<String, Object> map);
@@ -136,6 +152,7 @@ public interface J_DAO {
 	
 	//상여 미지급 목록
 	public int bonusNoneCnt(Map<String, Object> map);
+	public int bonusNoneCnt2(Map<String, Object> map);
 	public ArrayList<join_mgsbVO> bonusNoneList(Map<String, Object> map);
 	public ArrayList<join_mgsbVO> bonusNoneList2(Map<String, Object> map);
 	

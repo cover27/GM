@@ -16,7 +16,7 @@
 		                    <td>${dto.cost}</td>
 		                    <td>${dto.content}</td>
 		                    <td>
-		                        <input type="button" value="삭제" onclick="deleteInfo('${dto.num}')">
+		                        <input type="button" value="삭제" onclick="deleteInfo('${dto.num}','${id}','${dto.cost}','${contents}','${dto.state}')">
 		                        <input type="button" value="수정" onclick="J_ExtrapayInfoModified('${dto.num}')" style="background:#d3292c;">
 		                    </td>
 		                </tr>
@@ -35,7 +35,6 @@
 		                        <option value="삭감">삭감</option>
 		                    </select></td>
 		                <td><select name="state">
-		                        <option value="지급">지급</option>
 		                        <option value="미지급">미지급</option>
 		                    </select></td>
 		                <td><input type="text" name="cost" placeholder="금액" required autofocus></td>

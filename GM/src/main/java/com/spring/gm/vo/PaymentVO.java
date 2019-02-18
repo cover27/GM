@@ -8,14 +8,22 @@ public class PaymentVO {
 	private int num; //전자결제번호
 	private String id; //아이디(FK)
 	private int groupId; //그룹번호(FK)
+	private String name; //이름
 	private String subject; //제목
 	private String content; //내용
 	private String state; //상태
 	private Timestamp reg_date; //등록일
     private Timestamp deadline; //만료일
     private int del; //삭제구분
+    
 	
-    public int getGroupId() {
+    public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getGroupId() {
 		return groupId;
 	}
 	public void setGroupId(int groupId) {
@@ -71,9 +79,9 @@ public class PaymentVO {
 	}
 	@Override
 	public String toString() {
-		return "PaymentVO [num=" + num + ", id=" + id + ", groupId=" + groupId + ", subject=" + subject + ", content="
-				+ content + ", state=" + state + ", reg_date=" + reg_date + ", deadline=" + deadline + ", del=" + del
-				+ "]";
+		return "PaymentVO [num=" + num + ", id=" + id + ", groupId=" + groupId + ", name=" + name + ", subject="
+				+ subject + ", content=" + content + ", state=" + state + ", reg_date=" + reg_date + ", deadline="
+				+ deadline + ", del=" + del + "]";
 	}
 
     

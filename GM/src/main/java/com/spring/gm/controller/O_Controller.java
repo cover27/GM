@@ -115,90 +115,27 @@ public class O_Controller {
 	
 	
 	
-	/* 전자 결재 시작 */
-	//기안 - 기안문 작성
-	@RequestMapping("/pages/O_createApprDocFormView")
-	public String O_createApprDocFormView(HttpServletRequest req, Model model) {
-		logger.info("URL : O_createApprDocFormView");
+	/* 일정 시작 */
+	//일정 화면
+	@RequestMapping("/pages/O_calendar")
+	public String O_calendar(HttpServletRequest req, Model model) {
+		logger.info("URL : O_calendar");
 		
-		oservice.createApprDoc(req, model);
+		oservice.calendarPageNum(req, model);
 		
-		return "pages/O_createApprDocFormView";
+		return "pages/O_calendar";
 	}
 	
-	//기안 - 기안문 작성 - 결재선 지정
-	@RequestMapping("/pages/O_addApprLine")
-	public String O_addApprLine(HttpServletRequest req, Model model) {
-		logger.info("URL : O_addApprLine");
+	//일정 등록
+	@RequestMapping("/pages/O_calendarCreateView")
+	public String O_calendarCreateView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_calendarCreateView");
 		
-		oservice.addApprLine(req, model);
-		oservice.createApprDoc(req, model);
+	
 		
-		return "pages/O_addApprLine";
+		return "pages/O_calendarCreateView";
 	}
 	
-	//기안 - 결재 요청함
-	@RequestMapping("/pages/O_listApprMyRequestView")
-	public String O_listApprMyRequestView(HttpServletRequest req, Model model) {
-		logger.info("URL : O_listApprMyRequestView");
-		
-		return "pages/O_listApprMyRequestView";
-	}
+	/* 일정 끝 */
 	
-	//기안 - 임시저장함
-	@RequestMapping("/pages/O_listApprTempView")
-	public String O_listApprTempView(HttpServletRequest req, Model model) {
-		logger.info("URL : O_listApprTempView");
-		
-		return "pages/O_listApprTempView";
-	}
-	
-	//결재 - 결재 대기함
-	@RequestMapping("/pages/O_listApprTodoView")
-	public String O_listApprTodoView(HttpServletRequest req, Model model) {
-		logger.info("URL : O_listApprTodoView");
-		
-		return "pages/O_listApprTodoView";
-	}
-	
-	//결재 - 결재 진행함
-	@RequestMapping("/pages/O_listApprCompleteView")
-	public String O_listApprCompleteView(HttpServletRequest req, Model model) {
-		logger.info("URL : O_listApprCompleteView");
-		
-		return "pages/O_listApprCompleteView";
-	}
-	
-	//결재 - 완료 문서함
-	@RequestMapping("/pages/O_readApprAllListView")
-	public String O_readApprAllListView(HttpServletRequest req, Model model) {
-		logger.info("URL : O_readApprAllListView");
-		
-		return "pages/O_readApprAllListView";
-	}
-	
-	//결재 - 반려 문서함
-	@RequestMapping("/pages/O_listApprRejectView")
-	public String O_listApprRejectView(HttpServletRequest req, Model model) {
-		logger.info("URL : O_listApprRejectView");
-		
-		return "pages/O_listApprRejectView";
-	}
-	
-	//결재 - 참조/열람문서함
-	@RequestMapping("/pages/O_listApprReferenceView")
-	public String O_listApprReferenceView(HttpServletRequest req, Model model) {
-		logger.info("URL : O_listApprReferenceView");
-		
-		return "pages/O_listApprReferenceView";
-	}
-	
-	//관리자 메뉴 - 결재문서관리
-	@RequestMapping("/pages/O_listApprDocAllAdminView")
-	public String O_listApprDocAllAdminView(HttpServletRequest req, Model model) {
-		logger.info("URL : O_listApprDocAllAdminView");
-		
-		return "pages/O_listApprDocAllAdminView";
-	}
-	/* 전자 결재 끝 */
 }

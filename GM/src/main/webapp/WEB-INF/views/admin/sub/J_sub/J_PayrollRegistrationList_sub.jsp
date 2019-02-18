@@ -40,7 +40,7 @@
 						<c:if test="${dto.state eq '미지급'}">
 							<input type="button" onclick="change('${dto.id}','${j_name}','${rank}')" value="지급처리" class="modify_btn">
 						</c:if>
-						<input type="button" onclick="J_PayrollRegistrationListDelete('${dto.id}','${dto.sal_num}')" value="삭제" class="delete_btn">
+						<input type="button" onclick="J_PayrollRegistrationListDelete('${dto.id}','${dto.sal_num}','${j_name}','${r_name}')" value="삭제" class="delete_btn">
 					</td>
 				</tr>
 			</c:forEach>
@@ -63,8 +63,8 @@
 					<th>상태</th>
 					<td class="left_align">
 						<select name="state" id="state">
-							<option value="지급">지급</option>
 							<option value="미지급">미지급</option>
+							<option value="지급">지급</option>
 						</select>
 					</td>
 				</tr>
@@ -94,7 +94,7 @@
 						<span>급여 기본정보 계좌번호를 등록해 주십시오.</span>
 						</c:if>
 						<c:if test="${dto.salary >0 && dto.account_number != null}" >
-						<input type="button" onclick="load4('${dto.id}','${dto.salary}','${j_name}','${rank}','${dto.account_number}','${dto.salary}')" value="등록" class="modify_btn">
+						<input type="button" onclick="load4('${dto.id}','${dto.salary}','${j_name}','${r_name}','${dto.account_number}','${dto.salary}')" value="등록" class="modify_btn">
 						</c:if>
 					</td>
 				</tr>

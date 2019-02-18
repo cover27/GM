@@ -26,7 +26,7 @@ body {
 	font-size: 1.4em;
 	font-weight: normal;
 	line-height: 1.42857143;
-	background: #eee;
+	background: #eee url(../images/main_bg.jpg) no-repeat right bottom;;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -65,10 +65,6 @@ button:hover {
     opacity: .8;
 }
 
-button:focus {
-	outline: none;
-}
-
 table {
     border-spacing: 0;
     width: 100%;
@@ -91,11 +87,7 @@ input[type="text"]:focus, input[type="password"]:focus, select {
 	background: #f7f7f7;
 }
 
-input[type="button"]:focus {
-	outline: none;
-}
-
-input[type="submit"]:focus {
+button:focus, input[type="button"]:focus, input[type="submit"]:focus, input[type="reset"]:focus {
 	outline: none;
 }
 

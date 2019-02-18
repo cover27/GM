@@ -12,6 +12,7 @@ import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.GradeVO;
+import com.spring.gm.vo.Grade_visibleVO;
 import com.spring.gm.vo.GroupInfoVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
@@ -337,6 +338,56 @@ public class K_DAOImpl implements K_DAO{
 	@Override
 	public int changeleader2(Map<String, Object> map) {
 		return sqlSession.update("com.spring.gm.persistence.K_DAO.changeleader2", map);
+	}
+
+	@Override
+	public List<Grade_visibleVO> getGrades(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getGrades", company);
+	}
+
+	@Override
+	public int getGradeCnt(int rank) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getGradeCnt", rank);
+	}
+
+	@Override
+	public int insertGrade(GradeVO vo) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertGrade", vo);
+	}
+
+	@Override
+	public int updateGrade(GradeVO vo) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateGrade", vo);
+	}
+
+	@Override
+	public int deleteGrade(int rank) {
+		return sqlSession.delete("com.spring.gm.persistence.K_DAO.deleteGrade", rank);
+	}
+	
+	@Override
+	public List<join_mgiVO> getMgiList3(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getMgiList3", company);
+	}
+
+	@Override
+	public int insertManager(String id) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.insertManager", id);
+	}
+	
+	@Override
+	public int insertManager2(String id) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertManager2", id);
+	}
+
+	@Override
+	public int deleteManager(String id) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.deleteManager", id);
+	}
+
+	@Override
+	public int deleteManager2(String id) {
+		return sqlSession.delete("com.spring.gm.persistence.K_DAO.deleteManager2", id);
 	}
 	
 }
