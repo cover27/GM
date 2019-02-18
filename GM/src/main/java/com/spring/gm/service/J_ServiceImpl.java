@@ -228,8 +228,14 @@ public class J_ServiceImpl implements J_Service {
 			model.addAttribute("dtos", dtos);
 		} else if (cnt == 0) { // 월급 정보가 없으면 인설트할 테이블에 정보 가져가기
 			System.out.println("2");
-			List<MemberVO> dtos = dao.J_PayrollRegistrationInsertList(map);
-			model.addAttribute("dtos", dtos);
+			int selectcnt = dao.bonussalaryCnt(map);
+			if(selectcnt > 0) {
+				List<join_mgsbVO> dtos = dao.J_PayrollRegistrationInsertList2(map);
+				model.addAttribute("dtos", dtos);
+			}else if(selectcnt == 0) {
+				List<MemberVO> dtos = dao.J_PayrollRegistrationInsertList(map);
+				model.addAttribute("dtos", dtos);
+			}
 		}
 		model.addAttribute("cnt", cnt);
 		model.addAttribute("r_name", r_name);
@@ -261,6 +267,10 @@ public class J_ServiceImpl implements J_Service {
 		map.put("month", month);
 		int cnt = dao.J_PayrollRegistrationInsert(map);
 		System.out.println("updatecnt :" + cnt);
+		
+		//<!-- 급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감  (이번달 -1 달의 )정보를 미지급-> 지급으로 처리 -->
+		dao.ChangePayments(map);
+		
 		List<join_msVO> dtos = dao.J_PayrollRegistrationList(map);
 		System.out.println(dtos.toString());
 		model.addAttribute("dtos", dtos);
@@ -285,8 +295,12 @@ public class J_ServiceImpl implements J_Service {
 		map.put("id", id);
 		map.put("state", state);
 		map.put("company", company);
-		dao.J_PayrollRegistrationchange(map);
-
+		int updateCnt = dao.J_PayrollRegistrationchange(map);
+		System.out.println("updateCnt : " + updateCnt);
+		
+		//<!-- 급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감  (이번달 -1 달의 )정보를 미지급-> 지급으로 처리 -->
+		dao.ChangePayments(map);
+		
 		// 지급 처리후 정보 가져오기
 		int cnt = dao.J_PayrollRegistrationCnt(map);
 		List<join_msVO> dtos = dao.J_PayrollRegistrationList(map);
@@ -306,11 +320,41 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("id :" + id);
 		String sal_num = req.getParameter("sal_num");
 		System.out.println("sal_num :" + sal_num);
+		String j_name = req.getParameter("j_name");
+		String r_name = req.getParameter("r_name");
+		
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("sal_num", sal_num);
 		map.put("company", company);
 		dao.J_PayrollRegistrationListDelete(map);
+		
+		
+		//<!-- 급여등록 삭제시 추가 및 삭감 미지급으로 처리-->
+		dao.ChangeUnpaid(map);
+		
+		int cnt = dao.J_PayrollRegistrationCnt(map);
+		System.out.println("cnt : " + cnt);
+		if (cnt > 0) { // 월급정보가 있으면 월급정보 가져오기
+			System.out.println("1");
+			List<join_msVO> dtos = dao.J_PayrollRegistrationList(map);
+			System.out.println(dtos.toString());
+			model.addAttribute("dtos", dtos);
+		} else if (cnt == 0) { // 월급 정보가 없으면 인설트할 테이블에 정보 가져가기
+			System.out.println("2");
+			int selectcnt = dao.bonussalaryCnt(map);
+			if(selectcnt > 0) {
+				List<join_mgsbVO> dtos = dao.J_PayrollRegistrationInsertList2(map);
+				model.addAttribute("dtos", dtos);
+			}else if(selectcnt == 0) {
+				List<MemberVO> dtos = dao.J_PayrollRegistrationInsertList(map);
+				model.addAttribute("dtos", dtos);
+			}
+		}
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("j_name", j_name);
+		model.addAttribute("r_name", r_name);
 	}
 
 	// ------------------- 기본수당 외 수당관리 --------------------
@@ -742,12 +786,33 @@ public class J_ServiceImpl implements J_Service {
 	public void deleteInfo(HttpServletRequest req, Model model) {
 		int num = Integer.parseInt(req.getParameter("num"));
 		System.out.println("num : " + num);
+		int cost = Integer.parseInt(req.getParameter("cost"));
+		System.out.println("cost : " + cost);
+		String state = req.getParameter("state");
+		System.out.println("state :" + state);
+		String contents = req.getParameter("contents");
+		System.out.println("contents :" + contents);
 		BonusCutVO vo = dao.numId(num);
 		String id = vo.getId();
 		System.out.println("id : " + id);
 		int cnt = dao.deleteInfo(num);
 		System.out.println("cnt:" + cnt);
-		List<BonusCutVO> dtos = dao.J_extrapayinfo(id);
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("contents", contents);
+		map.put("cost", cost);
+		
+		if(state.equals("지급")) {
+			if(cost > 0) { //금액이 +일때 뺴주기
+				dao.modifySalary(map);
+			}else if(cost < 0) {	//금액이 -일때 금액 더해주기
+				dao.modifySalary2(map);
+			}
+		}
+		
+		List<BonusCutVO> dtos = dao.J_extrapayinfo2(map);
 		System.out.println("dtos : " + dtos.toString());
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("cnt", cnt);
@@ -865,9 +930,14 @@ public class J_ServiceImpl implements J_Service {
 		dtos.get(0).setSumsalarybonus((dtos.get(0).getSalary() + dtos4.get(0).getBonussalary()));
 		System.out.println("dtos.get(0).getDay() :" + dtos.get(0).getDay());
 		
-		int Sumsalarybonus = dtos.get(0).getSalary() + dtos4.get(0).getBonussalary();
-		System.out.println("Sumsalarybonus : " + Sumsalarybonus);
-		model.addAttribute("Sumsalarybonus",Sumsalarybonus);
+		int sumsalarybonus = dtos.get(0).getSalary() + dtos4.get(0).getBonussalary();
+		int bonussalary = dtos.get(0).getBonussalary();
+		int salary = dtos.get(0).getSalary();
+		
+		System.out.println("sumsalarybonus : " + sumsalarybonus);
+		model.addAttribute("sumsalarybonus",sumsalarybonus);
+		model.addAttribute("bonussalary",bonussalary);
+		model.addAttribute("salary",salary);
 		model.addAttribute("dtos",dtos);
 		model.addAttribute("dtos2",dtos5);
 		}
@@ -881,6 +951,9 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("dtos3 :" + dtos3.toString());
 			dtos.addAll(dtos2);
 			dtos.addAll(dtos3);
+			
+			int salary = dtos.get(0).getSalary();
+			model.addAttribute("salary",salary);
 			model.addAttribute("dtos",dtos);
 		}
 		
@@ -948,7 +1021,7 @@ public class J_ServiceImpl implements J_Service {
 		map.put("company", company);
 		map.put("months", months);
 		
-		int	cnt = dao.mgstblCnt2(map);//상여금 정보 뽑아오기
+		int	cnt = dao.bonusNoneCnt2(map);//상여금 정보 뽑아오기
 		System.out.println("cnt : " + cnt);
 		
 		if(cnt > 0) {
@@ -957,7 +1030,7 @@ public class J_ServiceImpl implements J_Service {
 		List<join_mgsbVO> dtos2 = dao.bonusList2(map);//사업장으로 검색
 		dtos.addAll(dtos1);
 		dtos.addAll(dtos2);
-		List<join_mgsbVO> dtos3 = dao.bonustbl(map);
+		List<join_mgsbVO> dtos3 = dao.bonustbl3(map);
 		int bonussalary = dtos3.get(0).getBonussalary();
 		System.out.println("dtos :" + dtos.toString());
 		model.addAttribute("dtos",dtos);
@@ -975,7 +1048,7 @@ public class J_ServiceImpl implements J_Service {
 		List<join_mgsbVO> dtos2 = dao.bonusNoneList2(map);//사업장으로 검색
 		dtos.addAll(dtos1);
 		dtos.addAll(dtos2);
-		List<join_mgsbVO> dtos3 = dao.bonustbl(map);
+		List<join_mgsbVO> dtos3 = dao.bonustbl4(map);
 		int bonussalary = dtos3.get(0).getBonussalary();
 		System.out.println("dtos :" + dtos.toString());
 		model.addAttribute("dtos2",dtos);

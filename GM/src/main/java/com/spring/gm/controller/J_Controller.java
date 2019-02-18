@@ -181,13 +181,13 @@ public class J_Controller {
 	}
 
 	// 급여 대장(Payroll)
-	@RequestMapping("/pages/J_Payroll")
+	@RequestMapping("/admin/J_Payroll")
 	public String J_Payroll(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : J_Payroll");
 
-		return "pages/J_Payroll";
+		return "admin/J_Payroll";
 	}
 
 	// ==================================================================

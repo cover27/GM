@@ -83,8 +83,7 @@
 								value="${id}" readonly> <input type="text"
 								class="searchName" name="name" value="${name}" readonly>
 							</td>
-							<td><input type="button" onclick="searchBonusInquiry()"
-								value="검색"></td>
+							<td><input type="button" onclick="searchBonusInquiry()" value="검색"></td>
 						</tr>
 					</c:if>
 				</table>
