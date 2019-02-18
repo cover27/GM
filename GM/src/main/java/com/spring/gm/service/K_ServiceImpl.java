@@ -89,10 +89,7 @@ public class K_ServiceImpl implements K_Service{
 		vo.setGender(Integer.parseInt(req.getParameter("gender")));
 		vo.setMarry(Integer.parseInt(req.getParameter("marry")));
 		String inputWdday = req.getParameter("wdday");
-		System.out.println("확인!:::::::::::::::::::::"+inputWdday);
-		if(inputWdday.length() == 0) {
-			System.out.println("여기 타면 안됨");
-			System.out.println(inputWdday.length()+"도대체 어떻길래???????????????????????");
+		if(inputWdday.length() != 0) {
 			Date wdday = Date.valueOf(inputWdday);
 			vo.setWdday(wdday);
 		}
@@ -541,7 +538,7 @@ public class K_ServiceImpl implements K_Service{
 	@Override
 	public void K_restoMember(HttpServletRequest req, Model model) {
 		
-		int pageSize = 10; // 한페이지당 출력할 글 갯수
+		int pageSize = 100; // 한페이지당 출력할 글 갯수
 		int pageBlock = 5; // 한 블럭당 페이지 갯수
  
 		int cnt = 0; // 글갯수

@@ -155,16 +155,24 @@
 			<h3>기본정보</h3>
 			<div class="table_top">
 				<table>
+					<colgroup>
+            			<col width="157px" />
+            			<col width="157px" />
+            			<col width="157px" />
+            			<col width="157px" />
+            			<col width="157px" />
+            			<col width="236px" />
+            			<col width="*" />
+            		</colgroup>
 					<thead>
 						<tr>
-							<th style="width: 157px">사원번호</th>
-							<th style="width: 157px">성명</th>
-							<th style="width: 157px">직급</th>
-							<th style="width: 157px">부서</th>
-							<th style="width: 157px">입사일자</th>
-							<th style="width: 236px">휴대폰</th>
-							<th class="scrollbar_bro">E-MAIL</th>
-							<th style="width: 5px"></th>
+							<th>사원번호</th>
+							<th>성명</th>
+							<th>직급</th>
+							<th>부서</th>
+							<th>입사일자</th>
+							<th>휴대폰</th>
+							<th>E-MAIL</th>
 						</tr>
 					</thead>
 				</table>
@@ -172,14 +180,14 @@
 			<div class="salary_info">
 				<table>
 					<colgroup>
-						<col width="10%" />
-						<col width="10%" />
-						<col width="10%" />
-						<col width="10%" />
-						<col width="10%" />
-						<col width="15%" />
-						<col width="*" />
-					</colgroup>
+            			<col width="157px" />
+            			<col width="157px" />
+            			<col width="157px" />
+            			<col width="157px" />
+            			<col width="157px" />
+            			<col width="236px" />
+            			<col width="*" />
+            		</colgroup>
 					<tbody>
 						<c:if test="${cnt > 0}">
 							<c:forEach var="dto" items="${dtos}">
