@@ -16,4 +16,7 @@ public interface P_Service {
 	
 	//결재대기함
 	public void P_listApprTodoView(HttpServletRequest req, Model model);
+	
+	//결재상세페이지
+	public void P_payContentForm(HttpServletRequest req, Model model);
 }

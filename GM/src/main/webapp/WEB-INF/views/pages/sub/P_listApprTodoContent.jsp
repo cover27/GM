@@ -386,9 +386,6 @@ tbody {
 				<div class="content-list approval">		
 				<!-- listtable -->
 				<div>
-				<%
-					List<PaymentVO> payment = (List<PaymentVO>)request.getAttribute("payment");
-				%>
 				<table class="table table-striped " id="listTable">
 					<tr>
 						<th>순서</th>
@@ -398,24 +395,58 @@ tbody {
 						<th>만료일</th>
 						<th>상태</th>
 					</tr>
-				<%
-					for(int i=0; i<payment.size();i++){
-				%>
-					<tr>
-						<th><%=payment.size()-i %></th>
-						<th><%=payment.get(i).getSubject() %></th>
-						<th><%=payment.get(i).getName() %></th>
-						<th><%=payment.get(i).getReg_date() %></th>
-						<th><%=payment.get(i).getDeadline() %></th>
-						<th><%=payment.get(i).getState() %></th>
-					</tr>
-				<%
-					}
-				%>
+					<c:if test="${cnt > 0 }">
+						<c:forEach var="dto" items="${payment }">
+							<tr onclick="window.location='<c:url value='/pages/P_payContentForm?num=${dto.num }&groupid=${dto.groupId }'/>'">
+								<th>
+									${number}
+									<c:set var="number" value="${number-1}"/>
+								</th>
+								<th>${dto.subject }</th>
+								<th>${dto.name }</th>
+								<th>${dto.reg_date }</th>
+								<th>${dto.deadline }</th>
+								<th>${dto.state }</th>
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${cnt == 0 }">
+						<tr>
+							<th colspan="6">대기중인 결재문서가 없습니다.</th>
+						</tr>
+					</c:if>
 				</table>
 			</form>	
 		</div>
-		
-		
+		<table>
+			<tr>
+				<th align="center">
+					<!-- 게시글이 있으면 -->
+					<c:if test="${cnt > 0}">
+						<!-- 처음[◀◀] / 이전블록[◀]  -->
+						<c:if test="${startPage > pageBlock}">					
+							<a href="<c:url value='/pages/P_listApprTodoView'/>">[◀◀ ]</a>						
+							<a href="<c:url value='/pages/P_listApprTodoView?pageNum=${startPage - pageBlock}'/>">[◀ ]</a>
+						</c:if>
+						
+						<!-- 블록내의 페이지 번호 -->
+						<c:forEach var="i" begin="${startPage}" end="${endPage}">
+							<c:if test="${i == currentPage}">
+								<span><b>[${i}]</b></span>
+							</c:if>
+							<c:if test="${i != currentPage}">
+								<a href="<c:url value='/pages/P_listApprTodoView?pageNum=${i}'/>">[${i}]</a>
+							</c:if>
+						</c:forEach>					
+						
+						<!-- 다음 블록[▶] / 끝[▶▶]> -->
+						<c:if test="${pageCount > endPage}">					
+							<a href="<c:url value='/pages/P_listApprTodoView?pageNum=${startPage + pageBlock}'/>">[▶ ]</a>						
+							<a href="<c:url value='/pages/P_listApprTodoView?pageNum=${pageCount}'/>">[▶▶ ] </a>
+						</c:if>
+					</c:if>
+				</th>
+			</tr>
+		</table>
 	</article>
 </section>

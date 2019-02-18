@@ -22,6 +22,7 @@ public interface E_Service {
 	public void E_MyGroupManage(HttpServletRequest req, Model model);
 	
 	
+	
 	// 메모 - 첫페이지, 모든 폴더 메모 목록
 	public void E_memoList(HttpServletRequest req, Model model);
 	
