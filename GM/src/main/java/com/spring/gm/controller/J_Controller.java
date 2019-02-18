@@ -186,7 +186,8 @@ public class J_Controller {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : J_Payroll");
-
+		service.companyName(req, model);
+		
 		return "admin/J_Payroll";
 	}
 
@@ -335,4 +336,45 @@ public class J_Controller {
 		service.J_SalaryCalculationSearch(req, model);
 		return "admin/sub/J_sub/J_SalaryCalculation_sub";
 	}
+	
+	//-----------------------급여 대장------------------------------------
+	@RequestMapping("/admin/searchPayroll")
+	public String searchPayroll(HttpServletRequest req, Model model) {
+		logger.info("URL : searchPayroll");
+		service.searchPayroll(req, model);
+		return "admin/sub/J_sub/J_Payroll_sub";
+	}
+	@RequestMapping("/admin/searchPayroll2")
+	public String searchPayroll2(HttpServletRequest req, Model model) {
+		logger.info("URL : searchPayroll2");
+		service.searchPayroll2(req, model);
+		return "admin/sub/J_sub/J_Payroll_sub";
+	}
+	@RequestMapping("/admin/searchPayroll3")
+	public String searchPayroll3(HttpServletRequest req, Model model) {
+		logger.info("URL : searchPayroll3");
+		service.searchPayroll3(req, model);
+		return "admin/sub/J_sub/J_Payroll_sub";
+	}
+	
+	
+	
+	// 상여 조회(아이디 검색 정보 가져오기)
+		@RequestMapping("/admin/J_searchId_sub")
+		public String searchId2(HttpServletRequest req, Model model) {
+			logger.info("URL : searchId_sub");
+			String id = req.getParameter("id");
+			System.out.println("id = " + id);
+			if(id.length() == 0) {
+				System.out.println("1");
+				service.salaryList(req, model);
+			}else {
+				System.out.println("2");
+				service.searchId(req, model);
+			}
+			model.addAttribute("id",id);
+			return "admin/sub/J_sub/J_searchId_sub";
+		}
+	
+	
 }
