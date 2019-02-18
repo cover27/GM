@@ -102,48 +102,51 @@ function delBoard(){
 		</c:if>
 	</table>
 	
-	<!-- 페이지 컨트롤 -->	
-<c:if test="${dto.del == 0}">
-	<table>
-		<tr>
-			<th align="center">
-				<!-- 게시글이 있으면 -->
-				<c:if test="${cnt > 0}">
-					<!-- 처음[◀◀] / 이전블록[◀]  -->
-					<c:if test="${startPage > pageBlock}">					
-						<a href="<c:url value='/pages/D_boardList'/>">[◀◀ ]</a>						
-						<a href="<c:url value='/pages/D_boardList?pageNum=${startPage - pageBlock}'/>">[◀ ]</a>
-					</c:if>
-					
-					<!-- 블록내의 페이지 번호 -->
-					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<c:if test="${i == currentPage}">
-							<span><b>[${i}]</b></span>
-						</c:if>
-						<c:if test="${i != currentPage}">
-							<a href="<c:url value='/pages/D_boardList?pageNum=${i}'/>">[${i}]</a>
-						</c:if>
-					</c:forEach>					
-					
-					<!-- 다음 블록[▶] / 끝[▶▶]> -->
-					<c:if test="${pageCount > endPage}">					
-						<a href="<c:url value='/pages/D_boardList?pageNum=${startPage + pageBlock}'/>">[▶ ]</a>						
-						<a href="<c:url value='/pages/D_boardList?pageNum=${pageCount}'/>">[▶▶ ] </a>
-					</c:if>
-				</c:if>
-			</th>
-		</tr>
-		
+	<!-- 페이지 컨트롤 -->
+			<c:if test="${dto.del == 0}">
+				<table>
+					<tr>
+						<th align="center">
+							<!-- 게시글이 있으면 --> <c:if test="${cnt > 0}">
+								<!-- 처음[◀◀] / 이전블록[◀]  -->
+								<c:if test="${startPage > pageBlock}">
+									<a href="<c:url value='/pages/D_boardList'/>">[◀◀ ]</a>
+									<a
+										href="<c:url value='/pages/D_boardList?pageNum=${startPage - pageBlock}'/>">[◀
+										]</a>
+								</c:if>
 
-	</table>
-	</c:if>
-	<table>
-		<tr>
-			<th colspan="4">
-					<input type="submit" value="삭제">
-			</th>
-		</tr>
-	</table>
-</form>
+								<!-- 블록내의 페이지 번호 -->
+								<c:forEach var="i" begin="${startPage}" end="${endPage}">
+									<c:if test="${i == currentPage}">
+										<span><b>[${i}]</b></span>
+									</c:if>
+									<c:if test="${i != currentPage}">
+										<a href="<c:url value='/pages/D_boardList?pageNum=${i}'/>">[${i}]</a>
+									</c:if>
+								</c:forEach>
+
+								<!-- 다음 블록[▶] / 끝[▶▶]> -->
+								<c:if test="${pageCount > endPage}">
+									<a
+										href="<c:url value='/pages/D_boardList?pageNum=${startPage + pageBlock}'/>">[▶
+										]</a>
+									<a
+										href="<c:url value='/pages/D_boardList?pageNum=${pageCount}'/>">[▶▶
+										] </a>
+								</c:if>
+							</c:if>
+						</th>
+					</tr>
+
+
+				</table>
+			</c:if>
+			<table>
+				<tr>
+					<th colspan="4"><input type="submit" value="삭제"></th>
+				</tr>
+			</table>
+		</form>
 	</article>
 </section>

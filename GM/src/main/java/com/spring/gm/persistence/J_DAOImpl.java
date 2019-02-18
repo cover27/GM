@@ -15,6 +15,7 @@ import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgsbVO;
+import com.spring.gm.vo.join_mgsbcVO;
 import com.spring.gm.vo.join_msVO;
 import com.spring.gm.persistence.J_DAO;
 
@@ -181,6 +182,13 @@ public class J_DAOImpl implements J_DAO {
 		ArrayList<MemberVO> dtos = null;
 		J_DAO dao = sqlSession.getMapper(J_DAO.class);
 		dtos = dao.J_PayrollRegistrationInsertList(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgsbVO> J_PayrollRegistrationInsertList2(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.J_PayrollRegistrationInsertList2(map);
 		return dtos;
 	}
 	// 개인 급여등록
@@ -413,7 +421,12 @@ public class J_DAOImpl implements J_DAO {
 	// 개인 급여수당정보 업데이트
 	@Override
 	public int J_extrapayinfoUpdate(Map<String, Object> map) {
-		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.J_extrapayinfoUpdate", map);
+		int cnt = sqlSession.insert("com.spring.gm.persistence.J_DAO.J_extrapayinfoUpdate", map);
+		return cnt;
+	}
+	// 급여 등록시 수당 없으면 0원으로 처리
+	public int insertProcess(String id) {
+		int cnt = sqlSession.insert("com.spring.gm.persistence.J_DAO.insertProcess", id);
 		return cnt;
 	}
 	// 개인 급여수당정보 삭제하기
@@ -555,6 +568,20 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.bonustbl2(map);
 		return dtos;
 	}
+	@Override
+	public ArrayList<join_mgsbVO> bonustbl3(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.bonustbl3(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgsbVO> bonustbl4(Map<String, Object> map) {
+		ArrayList<join_mgsbVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.bonustbl4(map);
+		return dtos;
+	}
 /*	@Override
 	public ArrayList<join_mgsbVO> mgstbl3(Map<String, Object> map) {
 		ArrayList<join_mgsbVO> dtos = null;
@@ -632,6 +659,10 @@ public class J_DAOImpl implements J_DAO {
 		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.bonusNoneCnt", map);
 		return cnt;
 	}
+	public int bonusNoneCnt2(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.bonusNoneCnt2", map);
+		return cnt;
+	}
 	@Override
 	public ArrayList<join_mgsbVO> bonusNoneList(Map<String, Object> map) {
 		ArrayList<join_mgsbVO> dtos = null;
@@ -663,5 +694,49 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.bonussalary(map);
 		return dtos;
 	}
+	
+	//------------------급여 대장-----------------------------
+	//아이디 검색 이번년도 급여대장정보 가져오기 아이디 검색.
+	public int IdSearchCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.IdSearchCnt", map);
+		return cnt;
+	}
+	
+	@Override
+	public ArrayList<join_mgsbcVO> IdSearchList(Map<String, Object> map) {
+		ArrayList<join_mgsbcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.IdSearchList(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgsbcVO> IdSearchList2(Map<String, Object> map) {
+		ArrayList<join_mgsbcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.IdSearchList2(map);
+		return dtos;
+	}
+	
+	
+	// 년도 뽑기.
+	public int IdSearchCnt2(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.SearchCnt2", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_mgsbcVO> SearchList(Map<String, Object> map) {
+		ArrayList<join_mgsbcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.SearchList(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgsbcVO> SearchList2(Map<String, Object> map) {
+		ArrayList<join_mgsbcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.SearchList2(map);
+		return dtos;
+	}
+	
 	
 }

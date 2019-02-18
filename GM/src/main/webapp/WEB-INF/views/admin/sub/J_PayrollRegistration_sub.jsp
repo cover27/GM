@@ -36,7 +36,7 @@
 				});
 	};
 	//등록
-	function load4(id, salary, j_name, rank, account_number, salary) {
+	function load4(id, salary, j_name, r_name, account_number, salary) {
 		var month = $('#month').val();
 		var state = $('#state').val();
 		var textLength = $('#month').val().length;
@@ -55,7 +55,7 @@
 								'month' : month,
 								'state' : state,
 								'salary' : salary,
-								'rank' : rank,
+								'r_name' : r_name,
 								'j_name' : j_name,
 								'account_number' : account_number,
 								'salary' : salary

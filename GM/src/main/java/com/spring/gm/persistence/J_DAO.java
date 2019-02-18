@@ -11,6 +11,7 @@ import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgsbVO;
+import com.spring.gm.vo.join_mgsbcVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_msVO;
 public interface J_DAO {
@@ -38,6 +39,7 @@ public interface J_DAO {
 	public int J_PayrollRegistrationCnt(Map<String, Object> map);
 	public ArrayList<join_msVO> J_PayrollRegistrationList(Map<String, Object> map);
 	public ArrayList<MemberVO> J_PayrollRegistrationInsertList(Map<String, Object> map);
+	public ArrayList<join_mgsbVO> J_PayrollRegistrationInsertList2(Map<String, Object> map);
 	// 개인 급여등록
 	public int J_PayrollRegistrationInsert(Map<String, Object> map);
 	//미지급 지급으로 처리
@@ -73,8 +75,8 @@ public interface J_DAO {
 	//Bonus_cut 정보 가져오기
 	public ArrayList<join_mgsbVO> bonustbl(Map<String, Object> map);
 	public ArrayList<join_mgsbVO> bonustbl2(Map<String, Object> map);
-	
-	
+	public ArrayList<join_mgsbVO> bonustbl3(Map<String, Object> map);
+	public ArrayList<join_mgsbVO> bonustbl4(Map<String, Object> map);
 	
 	//------------- 기본수당 외 수당관리-------------------------------------------
 	// 회사명 가져오기
@@ -119,6 +121,8 @@ public interface J_DAO {
 	public ArrayList<BonusCutVO> J_extrapayinfo2_3(Map<String, Object> map);
 	// 개인 급여수당정보 업데이트
 	public int J_extrapayinfoUpdate(Map<String, Object> map);
+	// 급여 등록시 수당 없으면 0원으로 처리
+	public int insertProcess(String id);
 	// 수당 개인 급여수당정보 수정
 	public ArrayList<BonusCutVO> J_ExtrapayInfoModified(int num);
 	// 수당 개인 급여수당정보 수정
@@ -151,10 +155,18 @@ public interface J_DAO {
 	
 	//상여 미지급 목록
 	public int bonusNoneCnt(Map<String, Object> map);
+	public int bonusNoneCnt2(Map<String, Object> map);
 	public ArrayList<join_mgsbVO> bonusNoneList(Map<String, Object> map);
 	public ArrayList<join_mgsbVO> bonusNoneList2(Map<String, Object> map);
 	
 	
+	//------------------급여 대장-----------------------------
+		//아이디 검색 이번년도 급여대장정보 가져오기 아이디 검색.
+	public int IdSearchCnt(Map<String, Object> map);
+	public ArrayList<join_mgsbcVO> IdSearchList(Map<String, Object> map);
+	public ArrayList<join_mgsbcVO> IdSearchList2(Map<String, Object> map);
 	
-	
+	public int IdSearchCnt2(Map<String, Object> map);
+	public ArrayList<join_mgsbcVO> SearchList(Map<String, Object> map);
+	public ArrayList<join_mgsbcVO> SearchList2(Map<String, Object> map);
 }
