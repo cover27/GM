@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import com.sun.jmx.snmp.Timestamp;
 
-public class join_mgsbVO {
+public class join_mgsbcVO {
 	private String id; //아이디
     private String pwd; //비밀번호
     private String name; //성함
@@ -50,9 +50,13 @@ public class join_mgsbVO {
 	private int cost;
 	private String content;
 	
+	private String c_name; //사업장이름
+    private String c_address; //사업장주소
+    private int c_number; //사업자등록번호
 	
 	private int bonussalary;	//추가 및 삭감 금액 합게
 	private int sumsalarybonus;	// 기본금액 + 추가 및 삭감 금액 합게
+	private int salaryday; // 급여 날짜
 	public String getId() {
 		return id;
 	}
@@ -299,6 +303,24 @@ public class join_mgsbVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getC_name() {
+		return c_name;
+	}
+	public void setC_name(String c_name) {
+		this.c_name = c_name;
+	}
+	public String getC_address() {
+		return c_address;
+	}
+	public void setC_address(String c_address) {
+		this.c_address = c_address;
+	}
+	public int getC_number() {
+		return c_number;
+	}
+	public void setC_number(int c_number) {
+		this.c_number = c_number;
+	}
 	public int getBonussalary() {
 		return bonussalary;
 	}
@@ -311,9 +333,15 @@ public class join_mgsbVO {
 	public void setSumsalarybonus(int sumsalarybonus) {
 		this.sumsalarybonus = sumsalarybonus;
 	}
+	public int getSalaryday() {
+		return salaryday;
+	}
+	public void setSalaryday(int salaryday) {
+		this.salaryday = salaryday;
+	}
 	@Override
 	public String toString() {
-		return "join_mgsbVO [id=" + id + ", pwd=" + pwd + ", name=" + name + ", eng_name=" + eng_name + ", jumin1="
+		return "join_mgsbcVO [id=" + id + ", pwd=" + pwd + ", name=" + name + ", eng_name=" + eng_name + ", jumin1="
 				+ jumin1 + ", jumin2=" + jumin2 + ", gender=" + gender + ", marry=" + marry + ", wdday=" + wdday
 				+ ", frgn=" + frgn + ", nation=" + nation + ", tel=" + tel + ", tel_hm=" + tel_hm + ", email_in="
 				+ email_in + ", email_out=" + email_out + ", address=" + address + ", eng_address=" + eng_address
@@ -322,9 +350,11 @@ public class join_mgsbVO {
 				+ retireday + ", year=" + year + ", etc=" + etc + ", sys_rank=" + sys_rank + ", del=" + del
 				+ ", account_number=" + account_number + ", j_name=" + j_name + ", groupId=" + groupId + ", g_name="
 				+ g_name + ", group_rank=" + group_rank + ", sal_num=" + sal_num + ", day=" + day + ", state=" + state
-				+ ", num=" + num + ", type=" + type + ", cost=" + cost + ", content=" + content + ", bonussalary="
-				+ bonussalary + ", sumsalarybonus=" + sumsalarybonus + "]";
+				+ ", num=" + num + ", type=" + type + ", cost=" + cost + ", content=" + content + ", c_name=" + c_name
+				+ ", c_address=" + c_address + ", c_number=" + c_number + ", bonussalary=" + bonussalary
+				+ ", sumsalarybonus=" + sumsalarybonus + ", salaryday=" + salaryday + "]";
 	}
+	
 	
 	
 }

@@ -65,4 +65,14 @@ public interface J_Service {
 	public void searchId(HttpServletRequest req, Model model);
 	//검색 결과값으로 정보 가져오기
 	public void searchPayrollInquiry(HttpServletRequest req, Model model);
+	
+	
+	//------------------급여 대장-----------------------------
+	// 아이디별 연도로 뽑기
+	public void searchPayroll(HttpServletRequest req, Model model);
+	public void searchPayroll2(HttpServletRequest req, Model model);//이전연도
+	public void searchPayroll3(HttpServletRequest req, Model model);//다음연도
+	
+	// 총 연도로 뽑기
+	public void yearPayroll(HttpServletRequest req, Model model); //년도 검색
 }

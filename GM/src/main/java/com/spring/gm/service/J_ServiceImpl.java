@@ -19,6 +19,7 @@ import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgsbVO;
+import com.spring.gm.vo.join_mgsbcVO;
 import com.spring.gm.vo.join_msVO;
 
 @Service
@@ -229,10 +230,10 @@ public class J_ServiceImpl implements J_Service {
 		} else if (cnt == 0) { // 월급 정보가 없으면 인설트할 테이블에 정보 가져가기
 			System.out.println("2");
 			int selectcnt = dao.bonussalaryCnt(map);
-			if(selectcnt > 0) {
+			if (selectcnt > 0) {
 				List<join_mgsbVO> dtos = dao.J_PayrollRegistrationInsertList2(map);
 				model.addAttribute("dtos", dtos);
-			}else if(selectcnt == 0) {
+			} else if (selectcnt == 0) {
 				List<MemberVO> dtos = dao.J_PayrollRegistrationInsertList(map);
 				model.addAttribute("dtos", dtos);
 			}
@@ -267,10 +268,15 @@ public class J_ServiceImpl implements J_Service {
 		map.put("month", month);
 		int cnt = dao.J_PayrollRegistrationInsert(map);
 		System.out.println("updatecnt :" + cnt);
-		
-		//<!-- 급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감  (이번달 -1 달의 )정보를 미지급-> 지급으로 처리 -->
+
+		// <!-- 급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감 (이번달 -1 달의 )정보를 미지급-> 지급으로 처리 -->
 		dao.ChangePayments(map);
-		
+
+		int selectCnt = dao.J_extrapayinfoCnt(id);
+		if (selectCnt == 0) {
+			int insertCnt = dao.insertProcess(id);
+			System.out.println("insertCnt :" + insertCnt);
+		}
 		List<join_msVO> dtos = dao.J_PayrollRegistrationList(map);
 		System.out.println(dtos.toString());
 		model.addAttribute("dtos", dtos);
@@ -297,10 +303,10 @@ public class J_ServiceImpl implements J_Service {
 		map.put("company", company);
 		int updateCnt = dao.J_PayrollRegistrationchange(map);
 		System.out.println("updateCnt : " + updateCnt);
-		
-		//<!-- 급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감  (이번달 -1 달의 )정보를 미지급-> 지급으로 처리 -->
+
+		// <!-- 급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감 (이번달 -1 달의 )정보를 미지급-> 지급으로 처리 -->
 		dao.ChangePayments(map);
-		
+
 		// 지급 처리후 정보 가져오기
 		int cnt = dao.J_PayrollRegistrationCnt(map);
 		List<join_msVO> dtos = dao.J_PayrollRegistrationList(map);
@@ -322,18 +328,16 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("sal_num :" + sal_num);
 		String j_name = req.getParameter("j_name");
 		String r_name = req.getParameter("r_name");
-		
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("sal_num", sal_num);
 		map.put("company", company);
 		dao.J_PayrollRegistrationListDelete(map);
-		
-		
-		//<!-- 급여등록 삭제시 추가 및 삭감 미지급으로 처리-->
+
+		// <!-- 급여등록 삭제시 추가 및 삭감 미지급으로 처리-->
 		dao.ChangeUnpaid(map);
-		
+
 		int cnt = dao.J_PayrollRegistrationCnt(map);
 		System.out.println("cnt : " + cnt);
 		if (cnt > 0) { // 월급정보가 있으면 월급정보 가져오기
@@ -344,10 +348,10 @@ public class J_ServiceImpl implements J_Service {
 		} else if (cnt == 0) { // 월급 정보가 없으면 인설트할 테이블에 정보 가져가기
 			System.out.println("2");
 			int selectcnt = dao.bonussalaryCnt(map);
-			if(selectcnt > 0) {
+			if (selectcnt > 0) {
 				List<join_mgsbVO> dtos = dao.J_PayrollRegistrationInsertList2(map);
 				model.addAttribute("dtos", dtos);
-			}else if(selectcnt == 0) {
+			} else if (selectcnt == 0) {
 				List<MemberVO> dtos = dao.J_PayrollRegistrationInsertList(map);
 				model.addAttribute("dtos", dtos);
 			}
@@ -797,21 +801,20 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("id : " + id);
 		int cnt = dao.deleteInfo(num);
 		System.out.println("cnt:" + cnt);
-		
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("contents", contents);
 		map.put("cost", cost);
-		
-		if(state.equals("지급")) {
-			if(cost > 0) { //금액이 +일때 뺴주기
+
+		if (state.equals("지급")) {
+			if (cost > 0) { // 금액이 +일때 뺴주기
 				dao.modifySalary(map);
-			}else if(cost < 0) {	//금액이 -일때 금액 더해주기
+			} else if (cost < 0) { // 금액이 -일때 금액 더해주기
 				dao.modifySalary2(map);
 			}
 		}
-		
+
 		List<BonusCutVO> dtos = dao.J_extrapayinfo2(map);
 		System.out.println("dtos : " + dtos.toString());
 		model.addAttribute("dtos", dtos);
@@ -882,8 +885,7 @@ public class J_ServiceImpl implements J_Service {
 		}
 		model.addAttribute("cnt", cnt);
 	}
-	
-	
+
 	// ------------------급여 조회-----------------------------
 	// 급여조회 - 검색 결과값으로 정보 가져오기
 	@Override
@@ -892,7 +894,7 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("company: " + company);
 		String months = req.getParameter("month");
 		String[] month = months.split("-");
-		months = month[0]+month[1];
+		months = month[0] + month[1];
 		System.out.println("months: " + months);
 		String id = req.getParameter("id");
 		System.out.println("id: " + id);
@@ -900,49 +902,59 @@ public class J_ServiceImpl implements J_Service {
 		map.put("id", id);
 		map.put("company", company);
 		map.put("months", months);
-		
-		int cnt2 = dao.mgstblCnt(map); //급여 정보 뽑아오기
+
+		int cnt2 = dao.mgstblCnt(map); // 급여 정보 뽑아오기
 		System.out.println("cnt2 : " + cnt2);
-		int	cnt3 = dao.mgstblCnt2(map);//상여금 정보 뽑아오기
+		int cnt3 = dao.mgstblCnt2(map);// 상여금 정보 뽑아오기
 		System.out.println("cnt3 : " + cnt3);
-		if(cnt2 > 0) {cnt2 = 1;};
-		if(cnt3 > 0) {cnt3 = 1;};
+		if (cnt2 > 0) {
+			cnt2 = 1;
+		}
+		;
+		if (cnt3 > 0) {
+			cnt3 = 1;
+		}
+		;
 		int cnt = cnt2 + cnt3;
 		System.out.println("cnt : " + cnt);
-		if(cnt3 == 0 && cnt2 == 1) {cnt = 1;}
-		if(cnt3 == 1 && cnt2 == 0) {cnt = 0;}
-		
-		if(cnt == 2) { //급여 , 상여금 둘다 정보가 있을경우
-		System.out.println("급여 , 상여금 둘다 정보가 있을경우");
-		
-		List<join_mgsbVO> dtos = new ArrayList<join_mgsbVO>();
-		List<join_mgsbVO> dtos2 = dao.mgstbl(map);
-		System.out.println("dtos2 :" + dtos2.toString());
-		List<join_mgsbVO> dtos3 = dao.mgstbl2(map);
-		System.out.println("dtos3 :" + dtos3.toString());
-		List<join_mgsbVO> dtos4 = dao.bonustbl(map);
-		System.out.println("dtos4 :" + dtos4.toString());
-		List<join_mgsbVO> dtos5 = dao.bonustbl2(map);
-		dtos.addAll(dtos2);
-		dtos.addAll(dtos3);
-		
-		dtos.get(0).setBonussalary(dtos4.get(0).getBonussalary());
-		dtos.get(0).setSumsalarybonus((dtos.get(0).getSalary() + dtos4.get(0).getBonussalary()));
-		System.out.println("dtos.get(0).getDay() :" + dtos.get(0).getDay());
-		
-		int sumsalarybonus = dtos.get(0).getSalary() + dtos4.get(0).getBonussalary();
-		int bonussalary = dtos.get(0).getBonussalary();
-		int salary = dtos.get(0).getSalary();
-		
-		System.out.println("sumsalarybonus : " + sumsalarybonus);
-		model.addAttribute("sumsalarybonus",sumsalarybonus);
-		model.addAttribute("bonussalary",bonussalary);
-		model.addAttribute("salary",salary);
-		model.addAttribute("dtos",dtos);
-		model.addAttribute("dtos2",dtos5);
+		if (cnt3 == 0 && cnt2 == 1) {
+			cnt = 1;
 		}
-		
-		if(cnt == 1) { // 급여만 존재한 경우
+		if (cnt3 == 1 && cnt2 == 0) {
+			cnt = 0;
+		}
+
+		if (cnt == 2) { // 급여 , 상여금 둘다 정보가 있을경우
+			System.out.println("급여 , 상여금 둘다 정보가 있을경우");
+
+			List<join_mgsbVO> dtos = new ArrayList<join_mgsbVO>();
+			List<join_mgsbVO> dtos2 = dao.mgstbl(map);
+			System.out.println("dtos2 :" + dtos2.toString());
+			List<join_mgsbVO> dtos3 = dao.mgstbl2(map);
+			System.out.println("dtos3 :" + dtos3.toString());
+			List<join_mgsbVO> dtos4 = dao.bonustbl(map);
+			System.out.println("dtos4 :" + dtos4.toString());
+			List<join_mgsbVO> dtos5 = dao.bonustbl2(map);
+			dtos.addAll(dtos2);
+			dtos.addAll(dtos3);
+
+			dtos.get(0).setBonussalary(dtos4.get(0).getBonussalary());
+			dtos.get(0).setSumsalarybonus((dtos.get(0).getSalary() + dtos4.get(0).getBonussalary()));
+			System.out.println("dtos.get(0).getDay() :" + dtos.get(0).getDay());
+
+			int sumsalarybonus = dtos.get(0).getSalary() + dtos4.get(0).getBonussalary();
+			int bonussalary = dtos.get(0).getBonussalary();
+			int salary = dtos.get(0).getSalary();
+
+			System.out.println("sumsalarybonus : " + sumsalarybonus);
+			model.addAttribute("sumsalarybonus", sumsalarybonus);
+			model.addAttribute("bonussalary", bonussalary);
+			model.addAttribute("salary", salary);
+			model.addAttribute("dtos", dtos);
+			model.addAttribute("dtos2", dtos5);
+		}
+
+		if (cnt == 1) { // 급여만 존재한 경우
 			System.out.println("급여만 존재한 경우");
 			List<join_mgsbVO> dtos = new ArrayList<join_mgsbVO>();
 			List<join_mgsbVO> dtos2 = dao.mgstbl(map);
@@ -951,18 +963,18 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("dtos3 :" + dtos3.toString());
 			dtos.addAll(dtos2);
 			dtos.addAll(dtos3);
-			
+
 			int salary = dtos.get(0).getSalary();
-			model.addAttribute("salary",salary);
-			model.addAttribute("dtos",dtos);
+			model.addAttribute("salary", salary);
+			model.addAttribute("dtos", dtos);
 		}
-		
-		model.addAttribute("cnt" , cnt);
-		model.addAttribute("cnt2" , cnt3);
+
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("cnt2", cnt3);
 	}
-	
-	//-----------------------------급여 계산-------------------------------------------
-	//급여 계산 목록 가져오기
+
+	// -----------------------------급여 계산-------------------------------------------
+	// 급여 계산 목록 가져오기
 	@Override
 	public void J_SalaryCalculationSearch(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
@@ -975,44 +987,43 @@ public class J_ServiceImpl implements J_Service {
 		map.put("id", id);
 		map.put("company", company);
 		map.put("month", month);
-		if(month.length() == 0) { //검색 날짜가 없을경우 오늘 날짜년도로 뽑음
+		if (month.length() == 0) { // 검색 날짜가 없을경우 오늘 날짜년도로 뽑음
 			int cnt = dao.J_SalaryCalculationSearchCnt(map);
-			if(cnt > 0) {
+			if (cnt > 0) {
 				List<join_mgsbVO> dtos = dao.J_SalaryCalculationSearchList(map);
 				int sumsalarybonus = dtos.get(0).getSumsalarybonus();
-				model.addAttribute("Sumsalaybonus",sumsalarybonus);
+				model.addAttribute("Sumsalaybonus", sumsalarybonus);
 				model.addAttribute("dtos", dtos);
-				model.addAttribute("cnt",cnt);
+				model.addAttribute("cnt", cnt);
 			}
 		}
-		if(month.length() == 4) { // 검색 날짜가 있을 경우
+		if (month.length() == 4) { // 검색 날짜가 있을 경우
 			int cnt = dao.J_SalaryCalculationSearchCnt2(map);
-			if(cnt > 0) {
+			if (cnt > 0) {
 				System.out.println("여기타냐");
 				int sumsalarybonus = 0;
 				List<join_mgsbVO> dtos = dao.J_SalaryCalculationSearchList2(map);
-				for(int i=0; i < dtos.size(); i++) {
+				for (int i = 0; i < dtos.size(); i++) {
 					sumsalarybonus += dtos.get(i).getSumsalarybonus();
 				}
 				System.out.println("Sumsalaybonus: " + sumsalarybonus);
-				model.addAttribute("Sumsalaybonus",sumsalarybonus);
+				model.addAttribute("Sumsalaybonus", sumsalarybonus);
 				model.addAttribute("dtos", dtos);
-				model.addAttribute("cnt",cnt);
+				model.addAttribute("cnt", cnt);
 			}
 		}
-		model.addAttribute("company",company);
+		model.addAttribute("company", company);
 	}
 
-	
-	//-----------------------------상여조희--------------------------------------------
-	//상여 조회 목록 가져오기
+	// -----------------------------상여조희--------------------------------------------
+	// 상여 조회 목록 가져오기
 	@Override
 	public void searchBonusInquiry(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		System.out.println("company: " + company);
 		String months = req.getParameter("month");
 		String[] month = months.split("-");
-		months = month[0]+month[1];
+		months = month[0] + month[1];
 		System.out.println("months: " + months);
 		String id = req.getParameter("id");
 		System.out.println("id: " + id);
@@ -1020,43 +1031,274 @@ public class J_ServiceImpl implements J_Service {
 		map.put("id", id);
 		map.put("company", company);
 		map.put("months", months);
-		
-		int	cnt = dao.bonusNoneCnt2(map);//상여금 정보 뽑아오기
+
+		int cnt = dao.bonusNoneCnt2(map);// 상여금 정보 뽑아오기
 		System.out.println("cnt : " + cnt);
-		
-		if(cnt > 0) {
-		List<join_mgsbVO> dtos = new ArrayList<join_mgsbVO>();
-		List<join_mgsbVO> dtos1 = dao.bonusList(map); //부서로 검색
-		List<join_mgsbVO> dtos2 = dao.bonusList2(map);//사업장으로 검색
-		dtos.addAll(dtos1);
-		dtos.addAll(dtos2);
-		List<join_mgsbVO> dtos3 = dao.bonustbl3(map);
-		int bonussalary = dtos3.get(0).getBonussalary();
-		System.out.println("dtos :" + dtos.toString());
-		model.addAttribute("dtos",dtos);
-		model.addAttribute("bonussalary",bonussalary);
+
+		if (cnt > 0) {
+			List<join_mgsbVO> dtos = new ArrayList<join_mgsbVO>();
+			List<join_mgsbVO> dtos1 = dao.bonusList(map); // 부서로 검색
+			List<join_mgsbVO> dtos2 = dao.bonusList2(map);// 사업장으로 검색
+			dtos.addAll(dtos1);
+			dtos.addAll(dtos2);
+			List<join_mgsbVO> dtos3 = dao.bonustbl3(map);
+			int bonussalary = dtos3.get(0).getBonussalary();
+			System.out.println("dtos :" + dtos.toString());
+			model.addAttribute("dtos", dtos);
+			model.addAttribute("bonussalary", bonussalary);
 		}
-		
-		
-		//상여 미지급 목록 뽑아내기
-		int	cnt2 = dao.bonusNoneCnt(map);//상여금 정보 뽑아오기
+
+		// 상여 미지급 목록 뽑아내기
+		int cnt2 = dao.bonusNoneCnt(map);// 상여금 정보 뽑아오기
 		System.out.println("cnt2 : " + cnt2);
-		
-		if(cnt2 > 0) {
-		List<join_mgsbVO> dtos = new ArrayList<join_mgsbVO>();
-		List<join_mgsbVO> dtos1 = dao.bonusNoneList(map); //부서로 검색
-		List<join_mgsbVO> dtos2 = dao.bonusNoneList2(map);//사업장으로 검색
-		dtos.addAll(dtos1);
-		dtos.addAll(dtos2);
-		List<join_mgsbVO> dtos3 = dao.bonustbl4(map);
-		int bonussalary = dtos3.get(0).getBonussalary();
-		System.out.println("dtos :" + dtos.toString());
-		model.addAttribute("dtos2",dtos);
-		model.addAttribute("bonussalary2",bonussalary);
+
+		if (cnt2 > 0) {
+			List<join_mgsbVO> dtos = new ArrayList<join_mgsbVO>();
+			List<join_mgsbVO> dtos1 = dao.bonusNoneList(map); // 부서로 검색
+			List<join_mgsbVO> dtos2 = dao.bonusNoneList2(map);// 사업장으로 검색
+			dtos.addAll(dtos1);
+			dtos.addAll(dtos2);
+			List<join_mgsbVO> dtos3 = dao.bonustbl4(map);
+			int bonussalary = dtos3.get(0).getBonussalary();
+			System.out.println("dtos :" + dtos.toString());
+			model.addAttribute("dtos2", dtos);
+			model.addAttribute("bonussalary2", bonussalary);
 		}
+
+		model.addAttribute("cnt2", cnt2);
+		model.addAttribute("cnt", cnt);
+	}
+
+	// ------------------급여 대장-----------------------------
+	// 아이디 검색 이번년도 급여대장정보 가져오기 아이디 검색.
+	@Override
+	public void searchPayroll(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = req.getParameter("id");
+		int num = 0;
+		System.out.println("num :" + num);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		int cnt = dao.IdSearchCnt(map);
+		System.out.println("cnt : " + cnt);
+		int bonussalary = 0;
+		int sumsalarybonus = 0;
+		int allsalary = 0;
+		int year = 201900;
 		
-		model.addAttribute("cnt2" , cnt2);
-		model.addAttribute("cnt" , cnt);
+		List<join_mgsbcVO> dtos = new ArrayList<join_mgsbcVO>();
+		if (cnt > 0) {
+			for (int i = 1; i <= 12; i++) {
+				if (i == 1) {
+					year = 201812;
+					System.out.println("year :" + year);
+					map.put("year", year);
+					List<join_mgsbcVO> dtos1 = dao.IdSearchList(map); // 부서로 검색
+					System.out.println("dtos1 :" + dtos1.toString());
+					List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
+					if (dtos1.size() != 0) {
+						dtos1.get(0).setSalaryday(i);
+						allsalary = allsalary + dtos1.get(0).getSalary();
+						bonussalary = bonussalary + dtos1.get(0).getBonussalary();
+						sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
+					}
+					dtos.addAll(dtos1);
+					dtos.addAll(dtos2);
+					map.remove("year");
+					year = 201900;
+				} else {
+					year += i;
+					System.out.println("year :" + year);
+					map.put("year", year);
+					List<join_mgsbcVO> dtos1 = dao.IdSearchList(map); // 부서로 검색
+					System.out.println("dtos1 :" + dtos1.toString());
+					List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
+					if (dtos1.size() != 0) {
+						dtos1.get(0).setSalaryday(i);
+						allsalary = allsalary + dtos1.get(0).getSalary();
+						bonussalary = bonussalary + dtos1.get(0).getBonussalary();
+						sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
+					}
+					dtos.addAll(dtos1);
+					dtos.addAll(dtos2);
+					map.remove("year");
+					year = 201900;
+				}
+			}
+		}
+		System.out.println("dtos :" + dtos.toString());
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("allsalary", allsalary);
+		model.addAttribute("bonussalary", bonussalary);
+		model.addAttribute("sumsalarybonus", sumsalarybonus);
+		model.addAttribute("num", num);
+		model.addAttribute("year",year);
+		model.addAttribute("cnt", cnt);
+	}
+
+	// 총 연도로 뽑기
+	@Override
+	public void searchPayroll2(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = req.getParameter("id");
+		int num =0;
+		num = num - 100;
+		System.out.println("num :" + num);
+		int year = Integer.parseInt(req.getParameter("year")) + num;
+		System.out.println("year :" + year);
+		String cntyear = String.valueOf(year);
+		
+		cntyear = cntyear.substring(0,4);
+		System.out.println("cntyear :" + cntyear);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		map.put("cntyear", cntyear);
+		
+		int cnt = dao.IdSearchCnt2(map);
+		System.out.println("cnt : " + cnt);
+		int bonussalary = 0;
+		int sumsalarybonus = 0;
+		int allsalary = 0;
+
+		List<join_mgsbcVO> dtos = new ArrayList<join_mgsbcVO>();
+		if (cnt > 0) {
+			for (int i = 1; i <= 12; i++) {
+				if (num != 0) {
+
+					if (i == 1) {	//1월달 급여는 전년도 12월 급여
+						year = year + num + 12;
+						System.out.println("year :" + year);
+						map.put("year", year);
+						List<join_mgsbcVO> dtos1 = dao.IdSearchList(map); // 부서로 검색
+						System.out.println("dtos1 :" + dtos1.toString());
+						List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
+						if (dtos1.size() != 0) {
+							dtos1.get(0).setSalaryday(12);
+							allsalary = allsalary + dtos1.get(0).getSalary();
+							bonussalary = bonussalary + dtos1.get(0).getBonussalary();
+							sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
+						}
+						dtos.addAll(dtos1);
+						dtos.addAll(dtos2);
+						map.remove("year");
+						year = year - num -12;
+					} else {
+						year += i;
+						System.out.println("year :" + year);
+						map.put("year", year);
+						List<join_mgsbcVO> dtos1 = dao.IdSearchList(map); // 부서로 검색
+						System.out.println("dtos1 :" + dtos1.toString());
+						List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
+						if (dtos1.size() != 0) {
+							dtos1.get(0).setSalaryday(i-1);
+							allsalary = allsalary + dtos1.get(0).getSalary();
+							bonussalary = bonussalary + dtos1.get(0).getBonussalary();
+							sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
+						}
+						dtos.addAll(dtos1);
+						dtos.addAll(dtos2);
+						map.remove("year");
+						year = year - i;
+					}
+				}
+			}
+		}
+		System.out.println("year :" + year);
+		System.out.println("dtos :" + dtos.toString());
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("allsalary", allsalary);
+		model.addAttribute("bonussalary", bonussalary);
+		model.addAttribute("sumsalarybonus", sumsalarybonus);
+		model.addAttribute("num", num);
+		model.addAttribute("year",year);
+		model.addAttribute("cnt", cnt);
 	}
 	
+	@Override
+	public void searchPayroll3(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = req.getParameter("id");
+		int num = 0;
+		num = num + 100;
+		System.out.println("num :" + num);
+		int year = Integer.parseInt(req.getParameter("year")) + num;
+		System.out.println("year : " + year);
+		String cntyear = String.valueOf(year);
+		cntyear = cntyear.substring(0,4);
+		System.out.println("cntyear :" + cntyear);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		map.put("cntyear", cntyear);
+		
+		int cnt = dao.IdSearchCnt2(map);
+		System.out.println("cnt : " + cnt);
+		int bonussalary = 0;
+		int sumsalarybonus = 0;
+		int allsalary = 0;
+
+		List<join_mgsbcVO> dtos = new ArrayList<join_mgsbcVO>();
+		if (cnt > 0) {
+			for (int i = 1; i <= 12; i++) {
+				if (num != 0) {
+					System.out.println("year :" + year);
+					if (i == 1) {	//1월달 급여는 전년도 12월 급여
+						year = year - num + 12;
+						System.out.println("year :" + year);
+						map.put("year", year);
+						List<join_mgsbcVO> dtos1 = dao.IdSearchList(map); // 부서로 검색
+						System.out.println("dtos1 :" + dtos1.toString());
+						List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
+						if (dtos1.size() != 0) {
+							dtos1.get(0).setSalaryday(12);
+							allsalary = allsalary + dtos1.get(0).getSalary();
+							bonussalary = bonussalary + dtos1.get(0).getBonussalary();
+							sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
+						}
+						dtos.addAll(dtos1);
+						dtos.addAll(dtos2);
+						year = year + num -12;
+						map.remove("year");
+					} else {
+						year += i;
+						System.out.println("year :" + year);
+						map.put("year", year);
+						List<join_mgsbcVO> dtos1 = dao.IdSearchList(map); // 부서로 검색
+						System.out.println("dtos1 :" + dtos1.toString());
+						List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
+						if (dtos1.size() != 0) {
+							dtos1.get(0).setSalaryday(i-1);
+							allsalary = allsalary + dtos1.get(0).getSalary();
+							bonussalary = bonussalary + dtos1.get(0).getBonussalary();
+							sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
+						}
+						dtos.addAll(dtos1);
+						dtos.addAll(dtos2);
+						map.remove("year");
+						year = year - i;
+					}
+				}
+			}
+		}
+		System.out.println("dtos :" + dtos.toString());
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("allsalary", allsalary);
+		model.addAttribute("bonussalary", bonussalary);
+		model.addAttribute("sumsalarybonus", sumsalarybonus);
+		model.addAttribute("num", num);
+		model.addAttribute("year",year);
+		model.addAttribute("cnt", cnt);
+	}
+
+	
+	
+	
+	// 총 연도로 뽑기
+	@Override
+	public void yearPayroll(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
+		
+	}
 }
