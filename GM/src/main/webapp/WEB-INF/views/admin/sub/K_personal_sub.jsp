@@ -36,6 +36,7 @@
 								<div>
 									<span>연차허용일수 : </span>
 									<span><input type="text" name="day"></span>
+									<span>일</span>
 								</div>
 							</div>
 							<div class="fright">
@@ -69,6 +70,7 @@
 												<div>
 													<span>연차허용일수 : </span>
 													<span><input type="text" name="day" value="${dto.day }"></span>
+													<span>일</span>
 												</div>
 											</div>
 											<div class="fright">
@@ -85,14 +87,14 @@
 								<li>
 									<span>근무시각</span>
 									<span><input type="time" name="go" value="${attended.gos }"></span>
-									<span style="margin-left:10px;">~</span>
+									<span style="margin:0 10px;">~</span>
 									<span><input type="time" name="off" value="${attended.offs }"></span>
 								</li>
 								<li>
 									<span>휴게시각</span>
 									<span>
 										<input type="time" name="rest_start" value="${attended.rest_starts }">
-										<span style="margin-left:10px;">~</span>
+										<span style="margin:0 10px;">~</span>
 										<input type="time" name="rest_end" value="${attended.rest_ends }">
 									</span>
 								</li>
@@ -100,7 +102,7 @@
 									<span>연장근로시각</span>
 									<span>
 										<input type="time" name="over_start" value="${attended.over_starts }">
-										<span style="margin-left:10px;">~</span>
+										<span style="margin:0 10px;">~</span>
 										<input type="time" name="over_end" value="${attended.over_ends }">
 									</span>
 								</li>
@@ -111,7 +113,7 @@
 								<li>
 									<span>야간근무시각</span>
 									<span><input type="time" name="night_start" value="${attended.night_starts }"></span>
-									<span style="margin-left:10px;">~</span>
+									<span style="margin:0 10px;">~</span>
 									<span><input type="time" name="night_end" value="${attended.night_ends }"></span>
 								</li>
 								<li>
