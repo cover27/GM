@@ -272,14 +272,14 @@ public class D_DAOImpl implements D_DAO{
 	
 	@Override
 	public int confirmIdPwd(Map<String, String> map) {
-		K_DAO mapper = sqlSession.getMapper(K_DAO.class);
+		D_DAO mapper = sqlSession.getMapper(D_DAO.class);
 		int cnt = mapper.confirmIdPwd(map);
 		return cnt;
 	}
 
 	@Override
 	public MemberVO getMemberInfo(String id) {
-		K_DAO mapper = sqlSession.getMapper(K_DAO.class);
+		D_DAO mapper = sqlSession.getMapper(D_DAO.class);
 		MemberVO m = mapper.getMemberInfo(id);
 		return m;
 	}

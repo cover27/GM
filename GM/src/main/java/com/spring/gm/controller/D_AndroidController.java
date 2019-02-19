@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.gm.HomeController;
-import com.spring.gm.persistence.K_DAO;
+import com.spring.gm.persistence.D_DAO;
 import com.spring.gm.vo.MemberVO;
 
 
@@ -23,7 +23,7 @@ public class D_AndroidController {
 	
 	
 	@Autowired
-	K_DAO dao;
+	D_DAO dao;
 	
 	//앱 로그인
 	@ResponseBody//웹에서 안드로이드로 값을 전달하기 위한 어노테이션
@@ -60,7 +60,7 @@ public class D_AndroidController {
 	
 		//회원 정보
 		String id = req.getParameter("id");
-		MemberVO m = dao.memberInfo(id);
+		MemberVO m = dao.getMemberInfo(id);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("data1", m.getName());
