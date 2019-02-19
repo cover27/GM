@@ -51,8 +51,8 @@ public class join_mgsbVO {
 	private String content;
 	
 	
-	private int bonussalary;
-	private int Sumsalarybonus;
+	private int bonussalary;	//추가 및 삭감 금액 합게
+	private int sumsalarybonus;	// 기본금액 + 추가 및 삭감 금액 합게
 	public String getId() {
 		return id;
 	}
@@ -306,10 +306,10 @@ public class join_mgsbVO {
 		this.bonussalary = bonussalary;
 	}
 	public int getSumsalarybonus() {
-		return Sumsalarybonus;
+		return sumsalarybonus;
 	}
 	public void setSumsalarybonus(int sumsalarybonus) {
-		Sumsalarybonus = sumsalarybonus;
+		this.sumsalarybonus = sumsalarybonus;
 	}
 	@Override
 	public String toString() {
@@ -323,7 +323,7 @@ public class join_mgsbVO {
 				+ ", account_number=" + account_number + ", j_name=" + j_name + ", groupId=" + groupId + ", g_name="
 				+ g_name + ", group_rank=" + group_rank + ", sal_num=" + sal_num + ", day=" + day + ", state=" + state
 				+ ", num=" + num + ", type=" + type + ", cost=" + cost + ", content=" + content + ", bonussalary="
-				+ bonussalary + ", Sumsalarybonus=" + Sumsalarybonus + "]";
+				+ bonussalary + ", sumsalarybonus=" + sumsalarybonus + "]";
 	}
 	
 	

@@ -108,7 +108,7 @@
 	<select id="J_PayrollRegistrationInsertList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
 		select m.id, m.name, m.tel, m.email_in, round(m.salary/12, -2) + sum(b.cost) as salary, m.account_number
 		from member m left join bonus_cut b on m.id = b.id
-		where  m.id = #{id} and m.company = #{company} and to_char(b.day,'yyyymm') = TO_CHAR(ADD_MONTHS(sysdate,  -1), 'YYYYMM')
+		where  m.id = #{id} and m.company = #{company} and to_char(b.day,'yyyymm') = TO_CHAR(sysdate, 'YYYYMM')
 		group by  m.id, m.name, m.tel, m.email_in, round(m.salary/12, -2), m.account_number
 	</select>
 	
@@ -128,11 +128,11 @@
 	</update>
 	<!-- 급여등록에서 미지급 지급으로 처리할 시 추가 및 삭감  (이번달 -1 달의 )정보를 미지급-> 지급으로 처리 -->
 	<update id="ChangePayments" parameterType="java.util.Map">
-		update bonus_cut set state = '지급' where id=#{id} and to_char(day,'yyyymm') = TO_CHAR(ADD_MONTHS(sysdate,  -1), 'YYYYMM')
+		update bonus_cut set state = '지급' where id=#{id} and to_char(day,'yyyymm') = TO_CHAR(sysdate, 'YYYYMM')
 	</update>
 	<!-- 급여등록 삭제시 추가 및 삭감 미지급으로 처리-->
 	<update id="ChangeUnpaid" parameterType="java.util.Map">
-		update bonus_cut set state = '미지급' where id=#{id} and to_char(day,'yyyymm') = TO_CHAR(ADD_MONTHS(sysdate,  -1), 'YYYYMM')
+		update bonus_cut set state = '미지급' where id=#{id} and to_char(day,'yyyymm') = TO_CHAR(sysdate, 'YYYYMM')
 	</update>
 	
 	
@@ -152,13 +152,13 @@
 		select  count(*) as cnt
 		from bonus_cut b, member m
 		where m.id = b.id
-		and m.id = #{id} and to_char(b.day,'yyyymm') = TO_CHAR(ADD_MONTHS(sysdate,  -1), 'YYYYMM') and m.company= #{company}
+		and m.id = #{id} and to_char(b.day,'yyyymm') = TO_CHAR(sysdate, 'YYYYMM') and m.company= #{company}
 	</select>
 	<select id="bonussalary" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbVO">
 		select  sum(b.cost) as bonussalary 
 		from bonus_cut b, member m
 		where m.id = b.id
-		and m.id = #{id} and to_char(b.day,'yyyymm') = TO_CHAR(ADD_MONTHS(sysdate,  -1), 'YYYYMM') and m.company= #{company}
+		and m.id = #{id} and to_char(b.day,'yyyymm') = TO_CHAR(sysdate, 'YYYYMM') and m.company= #{company}
 	</select>
 	
 	
@@ -336,10 +336,15 @@
 	
 	
 	<!-- 개인 급여수당정보 업데이트 -->
-	<update id="J_extrapayinfoUpdate" parameterType="java.util.Map">
+	<insert id="J_extrapayinfoUpdate" parameterType="java.util.Map">
 		INSERT INTO bonus_cut (num, id, type, day, cost, content, state,  del)
 		VALUES (seq_bonus_cut.nextval,#{id}, #{type}, sysdate, #{cost}, #{content}, #{state}, 0)
-	</update>
+	</insert>
+	<!-- 급여 등록시 수당 없으면 0원으로 처리 -->
+	<insert id="insertProcess" parameterType="String">
+		INSERT INTO bonus_cut (num, id, type, day, cost, content, state,  del)
+		VALUES (seq_bonus_cut.nextval, #{id}, '기타', sysdate, 0, '이번달 추가 및 삭감 해당 없음', '지급', 0)
+	</insert>
 	<!-- 개인 급여수당정보 삭제하기 -->
 	<delete id="deleteInfo" parameterType="int">
 		delete bonus_cut where num=#{num}
@@ -452,7 +457,7 @@
               and to_char(s.day,'yyyymm') = #{months} and  m.id = #{id} and  m.company = #{company} and state = '지급'
      </select>
      <select id="mgstblCnt2" parameterType="java.util.Map" resultType="int">
-		select count(*) as cnt from bonus_cut where id= #{id} and to_char(day,'yyyymm') = #{months}-1 and state = '지급'
+		select count(*) as cnt from bonus_cut where id= #{id} and to_char(day,'yyyymm') = #{months} and state = '지급'
      </select>
      
      
@@ -555,6 +560,69 @@
 		where m.company = c.company and b.id = m.id
 		and m.id = #{id} and m.depart = #{company} and m.company = #{company} and to_char(b.day,'yyyymm')= #{months} and b.state = '미지급'
      </select>
+     
+     
+     <!-- =============================급여 대장================================== -->
+     <!-- 아이디 검색 이번년도 급여대장정보 가져오기 아이디 검색. -->
+     <select id = "IdSearchCnt" parameterType="java.util.Map" resultType = "int">
+     	select count(*) as cnt
+		from member m, groups g, salary s, companies c, bonus_cut b
+		where m.depart = g.groupid and m.id = s.id and  m.company = c.company and m.id = b.id
+		and  m.company = #{company} and to_char(s.day,'yyyy')= TO_CHAR(sysdate, 'YYYY') and m.id = #{id}
+		and to_char(b.day,'yyyy')= TO_CHAR(sysdate, 'YYYY') and s.state = '지급' and b.state = '지급'
+     </select>
+     <select id="IdSearchList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbcVO">
+     	select s.day, m.id, m.name, g.g_name, round(m.salary/12,-2) as salary, c.c_name, sum(b.cost) as bonussalary, s.salary as sumsalarybonus, m.year
+		from member m, groups g, salary s, companies c, bonus_cut b
+		where m.depart = g.groupid and m.id = s.id and  m.company = c.company and m.id = b.id
+		and m.depart != #{company} and  m.company = #{company} and to_char(s.day,'yyyymm')= #{year} and m.id = #{id}
+		and to_char(b.day,'yyyymm')= #{year} and s.state = '지급' and b.state = '지급'
+		group by s.day, m.id, m.name, g.g_name, round(m.salary/12,-2), c.c_name , s.salary, m.year
+     </select>
+     <select id="IdSearchList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbcVO">
+     	select s.day, m.id, m.name, c.c_name, round(m.salary/12,-2) as salary, sum(b.cost) as bonussalary, s.salary as sumsalarybonus, m.year
+		from member m, companies c, salary s, bonus_cut b
+		where m.depart = c.company and m.id = s.id and  m.id = b.id
+		and m.depart = #{company} and  m.company = #{company} and to_char(s.day,'yyyymm')= #{year} and m.id = #{id}
+		and to_char(b.day,'yyyymm')= #{year} and s.state = '지급' and b.state = '지급'
+		group by s.day, m.id, m.name, c.c_name, round(m.salary/12,-2), s.salary, m.year
+     </select>
+     
+     
+     
+     
+     
+     
+     
+      <select id = "SearchCnt2" parameterType="java.util.Map" resultType = "int">
+     	select count(*) as cnt
+		from member m,salary s
+		where m.id = s.id
+		and  m.company = #{company} and to_char(s.day,'yyyy')= #{cntyear} and s.state = '지급'
+     </select>
+     <select id="SearchList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbcVO">
+     	select s.day, m.id, m.name, g.g_name, round(m.salary/12,-2) as salary, c.c_name, sum(b.cost) as bonussalary, s.salary as sumsalarybonus, m.year
+		from member m, groups g, salary s, companies c, bonus_cut b
+		where m.depart = g.groupid and m.id = s.id and  m.company = c.company and m.id = b.id
+		and m.depart != #{company} and  m.company = #{company} and to_char(s.day,'yyyymm')= #{year}
+		and to_char(b.day,'yyyymm')= #{year} and s.state = '지급' and b.state = '지급'
+		group by s.day, m.id, m.name, g.g_name, round(m.salary/12,-2), c.c_name , s.salary, m.year
+     </select>
+     <select id="SearchList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgsbcVO">
+     	select s.day, m.id, m.name, c.c_name, round(m.salary/12,-2) as salary, sum(b.cost) as bonussalary, s.salary as sumsalarybonus, m.year
+		from member m, companies c, salary s, bonus_cut b
+		where m.depart = c.company and m.id = s.id and  m.id = b.id
+		and m.depart = #{company} and  m.company = #{company} and to_char(s.day,'yyyymm')= #{year}
+		and to_char(b.day,'yyyymm')= #{year} and s.state = '지급' and b.state = '지급'
+		group by s.day, m.id, m.name, c.c_name, round(m.salary/12,-2), s.salary, m.year
+     </select>
+     
+     
+     
+     
+     
+     
+     
      
      
      
