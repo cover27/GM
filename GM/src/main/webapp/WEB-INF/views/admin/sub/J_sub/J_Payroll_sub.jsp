@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
+
 <div><input type="button" onclick="searchPayroll2('${year}')" value="이전년도검색"></div>
 <div><input type="button" onclick="searchPayroll3('${year}')" value="다음년도검색"></div>
+<h2>${cntyear}년도</h2>
 <table border="1">
 	<tr>
 		<td></td>

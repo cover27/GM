@@ -137,4 +137,5 @@ public interface K_DAO {
 	
 	public int deleteManager2(String id);
 	
+	
 }

@@ -410,6 +410,7 @@ body {
 	padding: 10px;
 	float: left;
 	border-radius: 5px;
+	border: 1px solid #ddd;
 }
 
 #findCompany .findCompany thead input[type="text"]:focus {
@@ -483,6 +484,7 @@ body {
 #findCompany .cancelbtn {
     border-radius: 5px;
     width: 100%;
+    height: 48px;
     color: #fff;
     font-size: 1em;
     font-weight: bold;

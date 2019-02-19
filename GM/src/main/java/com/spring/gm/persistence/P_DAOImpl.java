@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.Join_payVO;
 import com.spring.gm.vo.PaymentInfoVO;
 import com.spring.gm.vo.PaymentVO;
@@ -67,6 +66,30 @@ public class P_DAOImpl implements P_DAO{
 	@Override
 	public List<join_groupnameVO> getGroupInfo(int groupid) {
 		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.getGroupInfo", groupid);
+	}
+	@Override
+	public int getMyOrder(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getMyOrder", map);
+	}
+	@Override
+	public int countNextMem(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.countNextMem", map);
+	}
+	@Override
+	public int finalApproveCheck(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.finalApproveCheck", map);
+	}
+	@Override
+	public int beforeApproveCheck(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.beforeApproveCheck", map);
+	}
+	@Override
+	public int updateApprove(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.P_DAO.updateApprove", map);
+	}
+	@Override
+	public int updatePayment(int num) {
+		return sqlSession.update("com.spring.gm.persistence.P_DAO.updatePayment", num);
 	}
 	
 }

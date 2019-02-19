@@ -137,7 +137,6 @@ public class E_ServiceImpl implements E_Service {
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		int depart = Integer.parseInt(req.getParameter("depart"));	// 새로운 제한조건 추가 (SQL문의 where속성문에 and되는 부분)
 
-		
 		// SQL join
 		
 		// 3. Mapper (DB) 가서 member테이블에 company가 현재 로그인 된 사용자의 company가 같은 사람만 가지고 온다.
@@ -275,7 +274,7 @@ public class E_ServiceImpl implements E_Service {
 	@Override
 	public void E_memoList(HttpServletRequest req, Model model) {
 		
-		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
 		int pageSize = 100; 	// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
@@ -291,13 +290,12 @@ public class E_ServiceImpl implements E_Service {
 		int startPage = 0;		// 시작 페이지
 		int endPage = 0;		// 마지막 페이지
 		
-		int id = 0;
+		int num = 0;
+		int del = 0;
 	
 		// 메모 게시판 폴더 갯수
-		cnt = dao.getMemoBoardsCnt(company);
-		
-		System.out.println("cnt(게시판  폴더 갯수) : " + cnt);
-
+		cnt = dao.getMemoBoardsCnt(id);
+		System.out.println("cnt(메모 게시판  폴더 갯수) : " + cnt);
 		
 		pageNum = req.getParameter("pageNum");
 		
@@ -311,31 +309,28 @@ public class E_ServiceImpl implements E_Service {
 		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
 		
 		start = (currentPage - 1) * pageSize + 1; 
+		System.out.println("start : " + start);
 		
 		end = start + pageSize - 1;
-		
-		System.out.println("start : " + start);
 		System.out.println("end : " + end);
 		
 		if(end > cnt) end = cnt;
 		
 		number = cnt - (currentPage - 1) * pageSize;  // 출력용 글번호
-		
 		System.out.println("number : " + number);
 		System.out.println("pageSize : " + pageSize);
 		
-		if(cnt > 0) {
-			//게시판 목록 조회
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("id", id);
-			map.put("start", start);
-			map.put("end", end);
-			map.put("company", company);
-			
-			List<MemoVO> dtos = dao.getMemoBoardsList(map);
-
-			model.addAttribute("b_dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
-		}
+		//게시판 목록 조회
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("del", del);
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<MemoVO> list = dao.getMemoBoardsList(map);
+		System.out.println("map : " + map);
+		
+		model.addAttribute("list", list); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
 		
 		// 시작페이지
 		startPage = (currentPage / pageBlock) * pageBlock + 1; 
@@ -348,9 +343,9 @@ public class E_ServiceImpl implements E_Service {
 		System.out.println("endPage : " + endPage);
 		System.out.println("================");
 		
-		model.addAttribute("cnt", cnt);  // 글갯수
-		model.addAttribute("number", number); // 출력용 글번호
-		model.addAttribute("pageNum", pageNum);  // 페이지번호
+		model.addAttribute("cnt", cnt);  		// 글갯수 화면에 출력
+		model.addAttribute("number", number); 	// 출력용 글번호
+		model.addAttribute("pageNum", pageNum); // 페이지번호
 		
 		if(cnt > 0) {
 			model.addAttribute("startPage", startPage);     // 시작 페이지
@@ -359,6 +354,13 @@ public class E_ServiceImpl implements E_Service {
 			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
 			model.addAttribute("currentPage", currentPage); // 현재페이지
 		}		
+		
+
+		
+
+
+		
+		
 		
 	}
 	

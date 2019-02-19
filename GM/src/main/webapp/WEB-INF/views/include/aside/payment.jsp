@@ -17,7 +17,7 @@
                         <span>기안</span>
                         <ul>
                             <li id="P_createApprDocFormView"><a href="<c:url value='/pages/P_createApprDocFormView' />">기안문 작성</a></li>
-                            <li id="P_listApprMyRequestView"><a href="<c:url value='/pages/P_listApprMyRequestView' />">결재 요청함<span>2</span></a></li>
+                            <li id="P_listApprMyRequestView"><a href="<c:url value='/pages/P_listApprMyRequestView' />">결재 요청함</a></li>
                             <li id="P_listApprTempView"><a href="<c:url value='/pages/P_listApprTempView' />">임시 저장함</a></li>
                         </ul>
                     </li>

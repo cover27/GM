@@ -719,22 +719,15 @@ public class J_DAOImpl implements J_DAO {
 	
 	
 	// 년도 뽑기.
-	public int IdSearchCnt2(Map<String, Object> map) {
-		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.SearchCnt2", map);
+	public int searchCnt2(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.searchCnt2", map);
 		return cnt;
 	}
 	@Override
-	public ArrayList<join_mgsbcVO> SearchList(Map<String, Object> map) {
+	public ArrayList<join_mgsbcVO> searchList(Map<String, Object> map) {
 		ArrayList<join_mgsbcVO> dtos = null;
 		J_DAO dao = sqlSession.getMapper(J_DAO.class);
-		dtos = dao.SearchList(map);
-		return dtos;
-	}
-	@Override
-	public ArrayList<join_mgsbcVO> SearchList2(Map<String, Object> map) {
-		ArrayList<join_mgsbcVO> dtos = null;
-		J_DAO dao = sqlSession.getMapper(J_DAO.class);
-		dtos = dao.SearchList2(map);
+		dtos = dao.searchList(map);
 		return dtos;
 	}
 	

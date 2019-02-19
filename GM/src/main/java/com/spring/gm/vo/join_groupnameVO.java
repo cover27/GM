@@ -7,6 +7,7 @@ public class join_groupnameVO {
     private int rank_mem; //멤버등급
     private int del; //삭제구분
     private String name; // 이름
+    private String r_name; // 직급명
     
 	public int getGroupId() {
 		return groupId;
@@ -37,6 +38,12 @@ public class join_groupnameVO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getR_name() {
+		return r_name;
+	}
+	public void setR_name(String r_name) {
+		this.r_name = r_name;
 	}
 	
 	@Override
