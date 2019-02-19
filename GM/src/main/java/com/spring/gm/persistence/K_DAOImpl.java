@@ -19,6 +19,7 @@ import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgiVO;
 
+
 @Repository
 public class K_DAOImpl implements K_DAO{
 
@@ -389,5 +390,6 @@ public class K_DAOImpl implements K_DAO{
 	public int deleteManager2(String id) {
 		return sqlSession.delete("com.spring.gm.persistence.K_DAO.deleteManager2", id);
 	}
+	
 	
 }
