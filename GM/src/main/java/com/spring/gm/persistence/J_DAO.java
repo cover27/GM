@@ -166,7 +166,6 @@ public interface J_DAO {
 	public ArrayList<join_mgsbcVO> IdSearchList(Map<String, Object> map);
 	public ArrayList<join_mgsbcVO> IdSearchList2(Map<String, Object> map);
 	
-	public int IdSearchCnt2(Map<String, Object> map);
-	public ArrayList<join_mgsbcVO> SearchList(Map<String, Object> map);
-	public ArrayList<join_mgsbcVO> SearchList2(Map<String, Object> map);
+	public int searchCnt2(Map<String, Object> map);
+	public ArrayList<join_mgsbcVO> searchList(Map<String, Object> map);
 }
