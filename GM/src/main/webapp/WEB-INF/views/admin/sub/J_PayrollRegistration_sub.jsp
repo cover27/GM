@@ -252,8 +252,38 @@
 				<h3>이번달 급여 목록</h3>
 			</div>
 			<div id="result" class="salary_info_result">
-				<div style="padding: 60px; text-align: center;">*위 원하시는 정보를 클릭
-					하십시오.</div>
+				<table>
+						<tr>
+							<th>급여번호</th>
+							<td></td>
+							<th>아아디</th>
+							<td></td>
+							<th>성명</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>부서</th>
+							<td></td>
+							<th>직급</th>
+							<td></td>
+							<th>상태</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>핸드폰</th>
+							<td></td>
+							<th>지급일</th>
+							<td></td>
+							<th>E-MAIL</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th style="border-bottom: 1px #c0c0c0 solid;">*이번달 급여</th>
+							<td style="border-bottom: 1px #c0c0c0 solid;"></td>
+							<th style="border-bottom: 1px #c0c0c0 solid;">*계좌번호</th>
+							<td style="border-bottom: 1px #c0c0c0 solid;" colspan="3"></td>
+						</tr>
+					</table>
 			</div>
 		</div>
 	</article>
