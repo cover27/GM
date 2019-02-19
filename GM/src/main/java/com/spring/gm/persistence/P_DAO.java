@@ -3,10 +3,10 @@ package com.spring.gm.persistence;
 import java.util.List;
 import java.util.Map;
 
-import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.Join_payVO;
 import com.spring.gm.vo.PaymentInfoVO;
 import com.spring.gm.vo.PaymentVO;
+import com.spring.gm.vo.join_groupnameVO;
 
 public interface P_DAO {
 	
@@ -19,8 +19,11 @@ public interface P_DAO {
 	public List<String> getGroupName(int company);//결재선 부서명
 	
 	//본인이 속한 결제그룹리스트를 가져오는 함수
-	public List<Integer> getPayGroupId(String id);
-	public GroupsVO getPayGroups(int groupid);
+	public int getPaymentCnt(Map<String, Object> map);
+	public List<PaymentVO> getPaymentList(Map<String, Object> map);
+	
 	public PaymentVO getPayment(int groupid);
-	public PaymentInfoVO countPayInfo(Map<String, Object> map);
+	
+	public List<PaymentInfoVO> countPayInfo(int num);
+	public List<join_groupnameVO> getGroupInfo(int groupid);
 }

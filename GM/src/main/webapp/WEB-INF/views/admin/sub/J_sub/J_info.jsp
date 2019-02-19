@@ -3,10 +3,6 @@
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="EUC-KR">
-    <title>Insert title here</title>
-</head>
 <body>
     <form action="J_infoUpdate" method="post" name="infoform">
         <table>

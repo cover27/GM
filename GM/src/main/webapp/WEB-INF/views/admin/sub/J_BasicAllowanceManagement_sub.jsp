@@ -190,18 +190,27 @@
 				<h3>기본정보</h3>
 				<div class="table_top">
 					<table>
+						<colgroup>
+	            			<col width="110px" />
+	            			<col width="110px" />
+	            			<col width="*" />
+	            		</colgroup>
 						<thead>
 					        <tr>
 					            <th>사원번호</th>
 					            <th>성명</th>
-					            <th class="scrollbar_bro">부서</th>
-					            <th style="width: 5px;"></th>
+					            <th>부서</th>
 					        </tr>
 					    </thead>
 					</table>
 				</div>
 				<div class="salary_info" style="height: 666px;">
 					<table>
+						<colgroup>
+	            			<col width="110px" />
+	            			<col width="110px" />
+	            			<col width="*" />
+	            		</colgroup>
 					    <c:if test="${cnt > 0}">
 					        <c:forEach var="dto" items="${dtos}">
 					            <tr id="ttr">
@@ -258,22 +267,35 @@
 		    	<h3>기본수당외 수당등록</h3>
 		    	<div class="table_top">
 		    		<table>
+		    			<colgroup>
+	            			<col width="110px" />
+	            			<col width="110px" />
+	            			<col width="110px" />
+	            			<col width="650px" />
+	            			<col width="*" />
+	            		</colgroup>
 			    		<thead>
 					        <tr>
 					            <th>추가/삭감</th>
 					            <th>지급/공제(상태)</th>
 					            <th>금액</th>
 					            <th>사유</th>
-					            <th class="scrollbar_bro">삭제</th>
-					            <th style="width:5px;"></th>
+					            <th>삭제</th>
 					        </tr>
 					    </thead>
 		    		</table>
 		    	</div>
 		    	<div id="result" class="fleft salary_info" style="height: 666px;">
 		            <table>
+		            	<colgroup>
+	            			<col width="110px" />
+	            			<col width="110px" />
+	            			<col width="110px" />
+	            			<col width="650px" />
+	            			<col width="*" />
+	            		</colgroup>
 		                <tr>
-		                    <td colspan="4">사원번호를 클릭 하십시오.</td>
+		                    <td colspan="5">사원번호를 클릭 하십시오.</td>
 		                </tr>
 		            </table>
 		        </div>

@@ -67,7 +67,7 @@ function confirmId(){
                         </li>
                         <li>
                             <span>*회사</span>
-                            <input type="text" class="haveBtn" name="depart_name" placeholder="회사조회를 클릭하세요." readonly>
+                            <input type="text" class="haveBtn" name="depart_name" placeholder="회사조회를 클릭하세요." style="background: #eee;" readonly>
                             <input type="button" value="회사조회" onclick="findCompany();">
                         </li>
                         <li>

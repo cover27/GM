@@ -151,7 +151,7 @@ function nextHp2(){ //다입력하면 다음칸으로 넘어가는함수
 
 function nextHp3(){ //다입력하면 다음칸으로 넘어가는함수
 	if(document.inputform.hp3.value.length >= 4){
-		document.inputform.hm1.focus();
+		document.inputform.address.focus();
 	}
 }
 

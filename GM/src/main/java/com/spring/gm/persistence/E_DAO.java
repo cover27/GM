@@ -24,6 +24,13 @@ public interface E_DAO {
 	// 조직도 - 로그인 정보 회사 이름 찾기
 	public String findCompanyName(int company);
 	
+	
+	
+	// 메모 - 메모 폴더 갯수
+	public int getMemoBoardsCnt(int company);
+	
+	// 메모 - 내 모든 메모 게시판 리스트
+	public List<MemoVO> getMemoBoardsList(Map<String, Object> map);
 
 	
 }
