@@ -270,5 +270,19 @@ public class D_DAOImpl implements D_DAO{
 		return dao.boardMove(map);
 	}
 	
+	@Override
+	public int confirmIdPwd(Map<String, String> map) {
+		D_DAO mapper = sqlSession.getMapper(D_DAO.class);
+		int cnt = mapper.confirmIdPwd(map);
+		return cnt;
+	}
+
+	@Override
+	public MemberVO getMemberInfo(String id) {
+		D_DAO mapper = sqlSession.getMapper(D_DAO.class);
+		MemberVO m = mapper.getMemberInfo(id);
+		return m;
+	}
+	
 	
 }

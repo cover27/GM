@@ -103,7 +103,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<c:url value='/pages/J_D_attendanceRegistration'/>">
                                 <h2>근태관리</h2>
                                 <span class="work_management"></span>
                             </a>
