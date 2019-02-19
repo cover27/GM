@@ -387,4 +387,113 @@ public class J_Controller {
 		}
 	
 	
+		
+		
+		
+		
+		
+		
+		
+		
+		//--------------------------------------------------------------------------------------------------------------------------
+		//---------------------------------------------근태관리------------------------------------------------------------------------
+		//일일 근태 등록
+		@RequestMapping("/pages/J_D_attendanceRegistration")
+		public String J_D_attendanceRegistration(HttpServletRequest req, Model model) {
+			logger.info("URL : J_D_attendanceRegistration");
+			return "pages/J_D_attendanceRegistration";
+		}
+		
+		//월근 근태생성/마감
+		@RequestMapping("/admin/J_M_attendanceC")
+		public String J_M_attendanceC(HttpServletRequest req, Model model) {
+			logger.info("URL : J_M_attendanceC");
+			return "admin/J_M_attendanceC";
+		}
+		
+		//월 근태 현황
+		@RequestMapping("/pages/J_M_attendanceStatus")
+		public String J_M_attendanceStatus(HttpServletRequest req, Model model) {
+			logger.info("URL : J_M_attendanceStatus");
+			return "pages/J_M_attendanceStatus";
+		}
+		
+		//휴일/연장/야간근무 조회
+		@RequestMapping("/admin/J_Lookup")
+		public String J_Lookup(HttpServletRequest req, Model model) {
+			logger.info("URL : J_Lookup");
+			return "admin/J_Lookup";
+		}
+		
+		//출장신청
+		@RequestMapping("/pages/J_applyBusiness")
+		public String J_applyBusiness(HttpServletRequest req, Model model) {
+			logger.info("URL : J_applyBusiness");
+			return "pages/J_applyBusiness";
+		}
+		//출장정산
+		@RequestMapping("/pages/J_settlement")
+		public String J_settlement(HttpServletRequest req, Model model) {
+			logger.info("URL : J_settlement");
+			return "pages/J_settlement";
+		}
+		//출장사용현황
+		@RequestMapping("/pages/J_Usage")
+		public String J_Usage(HttpServletRequest req, Model model) {
+			logger.info("URL : J_Usage");
+			return "pages/J_Usage";
+		}
+		//휴가일수 설정
+		@RequestMapping("/admin/J_SetHoliday")
+		public String J_SetHoliday(HttpServletRequest req, Model model) {
+			logger.info("URL : J_SetHoliday");
+			return "admin/J_SetHoliday";
+		}
+		//휴가일수 계산
+		@RequestMapping("/admin/J_CalculationHoliday")
+		public String J_CalculationHoliday(HttpServletRequest req, Model model) {
+			logger.info("URL : J_CalculationHoliday");
+			return "admin/J_CalculationHoliday";
+		}
+		//휴가신청
+		@RequestMapping("/pages/J_ApplyHoliday")
+		public String J_ApplyHoliday(HttpServletRequest req, Model model) {
+			logger.info("URL : J_ApplyHoliday");
+			return "pages/J_ApplyHoliday";
+		}
+		//휴가 사용현황
+		@RequestMapping("/pages/J_UseHoliday")
+		public String J_UseHoliday(HttpServletRequest req, Model model) {
+			logger.info("URL : J_UseHoliday");
+			return "pages/J_UseHoliday";
+		}
+		//휴일설정
+		@RequestMapping("/admin/J_SettingHoliday")
+		public String J_SettingHoliday(HttpServletRequest req, Model model) {
+			logger.info("URL : J_SettingHoliday");
+			return "admin/J_SettingHoliday";
+		}
+		//휴가항목설정
+		@RequestMapping("/admin/J_SetItems")
+		public String J_SetItems(HttpServletRequest req, Model model) {
+			logger.info("URL : J_SetItems");
+			return "admin/J_SetItems";
+		}
+		//근무연수별 휴가설정
+		@RequestMapping("/admin/J_SetHolidayWorking")
+		public String J_SetHolidayWorking(HttpServletRequest req, Model model) {
+			logger.info("URL : J_SetHolidayWorking");
+			return "admin/J_SetHolidayWorking";
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }
