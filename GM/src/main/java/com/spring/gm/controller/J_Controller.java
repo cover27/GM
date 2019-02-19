@@ -357,6 +357,16 @@ public class J_Controller {
 		return "admin/sub/J_sub/J_Payroll_sub";
 	}
 	
+	//년도별 검색
+	@RequestMapping("/admin/yearPayroll")
+	public String yearPayroll(HttpServletRequest req, Model model) {
+		logger.info("URL : yearPayroll");
+		service.yearPayroll(req, model);
+		return "admin/sub/J_sub/yearPayroll_sub";
+	}
+	
+	
+	
 	
 	
 	// 상여 조회(아이디 검색 정보 가져오기)
