@@ -1087,6 +1087,9 @@ public class J_ServiceImpl implements J_Service {
 		int allsalary = 0;
 		int year = 201900;
 		
+		String cntyear = String.valueOf(year);
+		cntyear = cntyear.substring(0,4);
+		
 		List<join_mgsbcVO> dtos = new ArrayList<join_mgsbcVO>();
 		if (cnt > 0) {
 			for (int i = 1; i <= 12; i++) {
@@ -1134,6 +1137,7 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("sumsalarybonus", sumsalarybonus);
 		model.addAttribute("num", num);
 		model.addAttribute("year",year);
+		model.addAttribute("cntyear",cntyear);
 		model.addAttribute("cnt", cnt);
 	}
 
@@ -1156,7 +1160,7 @@ public class J_ServiceImpl implements J_Service {
 		map.put("company", company);
 		map.put("cntyear", cntyear);
 		
-		int cnt = dao.IdSearchCnt2(map);
+		int cnt = dao.searchCnt2(map);
 		System.out.println("cnt : " + cnt);
 		int bonussalary = 0;
 		int sumsalarybonus = 0;
@@ -1213,6 +1217,7 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("sumsalarybonus", sumsalarybonus);
 		model.addAttribute("num", num);
 		model.addAttribute("year",year);
+		model.addAttribute("cntyear",cntyear);
 		model.addAttribute("cnt", cnt);
 	}
 	
@@ -1233,7 +1238,7 @@ public class J_ServiceImpl implements J_Service {
 		map.put("company", company);
 		map.put("cntyear", cntyear);
 		
-		int cnt = dao.IdSearchCnt2(map);
+		int cnt = dao.searchCnt2(map);
 		System.out.println("cnt : " + cnt);
 		int bonussalary = 0;
 		int sumsalarybonus = 0;
@@ -1289,6 +1294,7 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("sumsalarybonus", sumsalarybonus);
 		model.addAttribute("num", num);
 		model.addAttribute("year",year);
+		model.addAttribute("cntyear",cntyear);
 		model.addAttribute("cnt", cnt);
 	}
 
@@ -1298,7 +1304,45 @@ public class J_ServiceImpl implements J_Service {
 	// 총 연도로 뽑기
 	@Override
 	public void yearPayroll(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String month = req.getParameter("month");
+		model.addAttribute("month", month);
+		String cntyear = month;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cntyear", cntyear);
+		map.put("company", company);
 		
+		int cnt = dao.searchCnt2(map);
+		int salary = 0;
+		int bonussalary = 0;
+		int sumsalarybonus = 0;
+		
+		month = month + "00";
+		int year = Integer.parseInt(month);
+		System.out.println("month : " + month);
+		List<join_mgsbcVO> dtos = new ArrayList<join_mgsbcVO>();
+		if(cnt > 0) {
+			for(int i=1; i<=12; i++) {
+				year = year + i;
+				System.out.println("year :" + year);
+				map.put("year", year);
+				List<join_mgsbcVO> dtos1 = dao.searchList(map); // 부서로 검색
+				System.out.println("dtos1 :" + dtos1.toString());
+				if (dtos1.size() != 0) {
+					dtos1.get(0).setSalaryday(i);
+					salary = salary + dtos1.get(0).getSalary();
+					bonussalary = bonussalary +  dtos1.get(0).getBonussalary();
+					sumsalarybonus = sumsalarybonus +  dtos1.get(0).getSumsalarybonus();
+				}
+				dtos.addAll(dtos1);
+				year = year - i;
+				map.remove("year");
+			}
+		}
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("allsalary", salary);
+		model.addAttribute("allbonussalary", bonussalary);
+		model.addAttribute("allsumsalarybonus", sumsalarybonus);
+		model.addAttribute("cnt", cnt);
 	}
 }

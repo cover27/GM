@@ -176,6 +176,7 @@ public class P_ServiceImpl implements P_Service{
 
 	@Override
 	public void P_payContentForm(HttpServletRequest req, Model model) {
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		String num_s = req.getParameter("num");
 		int num = Integer.parseInt(num_s);
 		String groupid_s = req.getParameter("groupid");
@@ -187,9 +188,80 @@ public class P_ServiceImpl implements P_Service{
 		paymentInfo = dao.countPayInfo(num);
 		groupInfo = dao.getGroupInfo(groupid);
 		
+		model.addAttribute("id", id);
+		model.addAttribute("num", num);
 		model.addAttribute("eachPayment", eachPayment);
 		model.addAttribute("paymentInfo", paymentInfo);
 		model.addAttribute("groupInfo", groupInfo);
+	}
+
+	//결재버튼을 눌렀을 때 이므로 paymentinfo's rank가 1이상인 경우
+	@Override
+	public void P_payApprove(HttpServletRequest req, Model model) {
+		String num_s = req.getParameter("num");
+		int num = Integer.parseInt(num_s);
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		int cnt = 0; // 상태값
+		
+		// 본인 위에 다른 결재자가 있는지 확인 해봐야 한다.
+		int order = 0; //본인의 결재순위
+		int nextMem = 0; //이후에 있는 결재자 수
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("id", id);
+		order = dao.getMyOrder(map); // 지금 사용자는 몇번째 단계인가?
+		System.out.println("order : "+order);
+		map.put("order", order+1);
+		map.put("order2", order-1);
+		nextMem = dao.countNextMem(map); // 현재 사용자 위에 사람이 있는가? 0 이면 없음 아니면 있음
+		System.out.println("nextMem : "+nextMem);
+		
+		if(nextMem == 0) { // 위에 사람이 없는 경우 -> 최종결재자인 경우 본인 이외의 모든사람이 결재를 완료한 상태여야 함
+			if(dao.finalApproveCheck(map) == 0) { //결재, 합의중에 하나라도 안한사람이 0이라면 = 전부다 결재를 했다면
+				cnt = 1;
+			} else {
+				cnt = 2;
+			}
+		} else { //위에 사람이 있는경우 본인 이전의 사람이 결재를 했으면 결재를 할 수 있음
+			if(dao.beforeApproveCheck(map) == 1) { // 이전사람이 결재를 했다면
+				cnt = 1;
+			} else {
+				cnt = 2;
+			}
+		}
+		
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("num", num);
+		model.addAttribute("id", id);
+	}
+
+	@Override
+	public void P_payApprove_pro(HttpServletRequest req, Model model) {
+		String num_s = req.getParameter("num");
+		int num = Integer.parseInt(num_s);
+		String id = req.getParameter("id");
+		String content = req.getParameter("content");
+		int cnt = 0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("id", id);
+		map.put("content", content);
+		int order = dao.getMyOrder(map);
+		map.put("order", order+1);
+		int nextMem = dao.countNextMem(map);
+		int updatecnt = dao.updateApprove(map);
+		if(nextMem == 0) {
+			int updatecnt2 = dao.updatePayment(num);
+			if(updatecnt!=0&&updatecnt2!=0) {
+				cnt = 1;
+			}
+		} else {
+			cnt = updatecnt;
+		}
+		
+		model.addAttribute("cnt", cnt);
 	}
 	
 }

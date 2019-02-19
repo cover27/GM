@@ -73,4 +73,8 @@ public interface D_DAO {
 	
 	public int boardMove(Map<String, Integer> map);	// 게시판 이동
 	
+	public int confirmIdPwd(Map<String, String> map);
+
+	public MemberVO getMemberInfo(String id);
+	
 }
