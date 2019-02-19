@@ -79,6 +79,31 @@
 				}
 			});
 	};
+	// 년도별 검색
+	function yearPayroll() {
+		var month = $('#month').val();
+		var textLength = $('#month').val().length;
+		if (textLength == 0) {
+			alert("날짜를 입력해주십시오.");
+		}else if(textLength > 0 && textLength < 4){
+			alert("날짜를 다시 입력새주십시오.");
+		}else {
+			$
+					.ajax({
+						url : '${pageContext.request.contextPath}/admin/yearPayroll',
+						type : 'POST',
+						data : {
+							'month' : month
+						}, //전송할 데이터
+						success : function(result) {
+							$('#result').html(result);
+						},
+						error : function() {
+							alert('오류');
+						}
+					});
+		}
+	};
 </script>
 <section>
 	<article>
@@ -99,7 +124,11 @@
 						class="searchName" name="name"></td>
 					<td>
 					<input type="button" onclick="searchPayroll()" value="검색">
-					<input type="button" onclick="yearPayroll()" value="이번년도검색">
+					</td>
+					<td>
+					*년도별검색:
+					<input type="text" id="month" placeholder="예)2019" maxlength="4">
+					<input type="button" onclick="yearPayroll()" value="검색">
 					</td>
 				</tr>
 			</table>

@@ -7,6 +7,13 @@
 	
 	<form action="J_extrapayinfoUpdate" method="post">
 		<table>
+			<colgroup>
+				<col width="110px" />
+      			<col width="110px" />
+      			<col width="110px" />
+      			<col width="650px" />
+      			<col width="*" />
+      		</colgroup>
 		    <tbody>
 		        <c:if test="${cnt > 0}">
 		            <c:forEach var="dto" items="${dtos}">

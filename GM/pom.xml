@@ -137,6 +137,8 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>3.2.5.RELEASE</version>
 		</dependency>
+
+
 		
 		<!-- JSON converter -->
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->

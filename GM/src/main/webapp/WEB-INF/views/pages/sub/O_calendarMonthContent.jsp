@@ -1,55 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page session="true" import="java.util.*" %>
 
+<link rel="stylesheet" href="<c:url value='/resources/js/fullcalendar/fullcalendar.min.css' />">
+<link rel="stylesheet" media="print" href="<c:url value='/resources/js/fullcalendar/fullcalendar.print.min.css' />">
+<script type="text/javascript" src="<c:url value='/resources/js/fullcalendar/lib/moment.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/fullcalendar/fullcalendar.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/fullcalendar/ko.js' />"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/fullcalendar/gcal.js' />"></script>
+<script>
+
+  $(document).ready(function() {
+
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay,listMonth'
+      },
+      defaultDate: new Date(),
+      navLinks: true, // can click day/week names to navigate views
+      editable: false, //일정을 표시한 바를 마우스로 이동할 수 있게 하는 기능
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: '한글적용',
+          start: '2019-02-01',
+        },
+        {
+          title: 'Long Event',
+          start: '2019-02-07',
+          end: '2019-02-10'
+        },
+        {
+//           id: 999,
+          title: 'Repeating Event',
+          start: '2019-02-09T16:00:00'
+        }
+      ],
+      googleCalendarApiKey : "AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE",      // Google API KEY
+      eventSources : [
+          // 대한민국의 공휴일
+          {
+                googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com"
+              , className : "koHolidays"
+              , color : "#FF0000"
+              , textColor : "#FFFFFF"
+          }
+	  ]
+    });
+
+  });
+  
+</script>
 <style>
-table, tr, th, td{
-	border:1px solid;
-}
+ #calendar {
+   max-width: 85%;
+   margin: 0 auto;
+ }
 </style>
-
-
 <section>
 	<article>
 		<div class="content_header">
-			<h2>월간보기</h2>
+			<h2>일정</h2>
 		</div>
 		
-		<!-- 월간보기 내용 -->
 		<div class="content_body" style="margin-top:10px;">
-			<div class="fc-toolbar">
-				<!-- 이전다음 -->
-				<div class="fc-left" style="float:left">
-					<div class="fc-button-group">
-						<input type="button" id="prev" value="이전" onclick="prevmonth();">
-						<input type="button" id="next" value="다음"  onclick="nextmonth();">
-						<input type="button" value="오늘">
-					</div>
-				</div>
-				
-				<!-- 해당 날짜 -->
-				<div class="fc-center">
-					<h2><div id="Ymd"></div></h2>
-				</div>
-				
-				
-				<!-- 월간,주간,일간, 목록보기 툴바 -->
-				<div class="fc-right" style="float: right">
-					<div class="fc-button-group">
-						<button type="button" class="fc-corner-left">월간</button>
-						<button type="button" class="fc-corner">주간</button>
-						<button type="button" class="fc-corner">일간</button>
-						<button type="button" class="fc-corner-right">목록보기</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<!-- 달력출력 -->
-		<div class="fc-list" style="margin-top:40px;">
-			<div class="content-list">
-				
-			</div>
+		<!-- id=calendar로 API를 호출 -->
+			<div id="calendar"></div>
 		</div>
 	</article>
 </section>

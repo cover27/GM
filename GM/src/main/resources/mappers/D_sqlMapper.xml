@@ -168,4 +168,16 @@
 		]]>
 	</update>
 	
+	<select id="confirmIdPwd" resultType="int">
+		SELECT COUNT(*)
+		FROM Member
+		WHERE id = #{id} AND pwd = #{pwd}
+	</select>
+		
+	<select id="getMemberInfo" resultType="com.spring.gm.vo.MemberVO">
+		SELECT *
+		FROM Member
+		where id = #{id}
+	</select>
+	
 </mapper>

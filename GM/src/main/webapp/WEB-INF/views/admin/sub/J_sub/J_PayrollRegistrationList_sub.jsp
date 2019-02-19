@@ -9,9 +9,9 @@
 					<th>급여번호</th>
 					<td>${dto.sal_num}</td>
 					<th>아아디</th>
-					<th>${dto.id}</td>
+					<td>${dto.id}</td>
 					<th>성명</th>
-					<th>${dto.name}</td>
+					<td>${dto.name}</td>
 				</tr>
 				<tr>
 					<th>부서</th>

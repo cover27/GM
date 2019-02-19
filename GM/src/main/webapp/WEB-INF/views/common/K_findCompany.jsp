@@ -4,8 +4,15 @@
 <link rel="stylesheet" href="${path}css/signup.css">
 <script type="text/javascript">
 
+$("input[name='id']").prop("readonly",true);	// 선택된 id를 다시 변경하지 못하도록 하기
+$("input[name='id']").css("background-color","#eee");	// id 입력창 색깗 변경
+
 	function setCompany1(company){
 		opener.document.inputform.depart_name.value=company;
+		opener.document.inputform.depart_name.readOnly=true;
+		opener.document.inputform.depart_name.style.fontWeight="bold";
+		opener.document.inputform.depart_name.style.background="#eee";
+		opener.document.inputform.email1.focus();
 		self.close();
 	}
 	
