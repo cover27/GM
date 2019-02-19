@@ -366,16 +366,7 @@ tbody {
 				<!-- table-header -->
 				<div class="table-header">
 					<div class="listinfo">
-						<select name="pagePerRecord" title="페이지당 게시글 수">
-							<option value="10" selected="selected">10</option>
-							<option value="20">20</option>
-							<option value="30">30</option>
-							<option value="40">40</option>
-							<option value="50">50</option>
-						</select> 
-						<div class="totalnum">전체<span> 2</span>
-							&nbsp;&nbsp;&nbsp;<img src="/images/icon/ic_entrust2.png" alt="entrust">&nbsp;위임
-						</div>													
+						<div class="totalnum">전체<span>${cnt }</span>						</div>													
 						<div class="table-search astatus">
 						</div>			
 					</div>						
