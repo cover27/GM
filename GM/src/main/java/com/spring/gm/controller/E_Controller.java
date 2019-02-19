@@ -89,9 +89,9 @@ public class E_Controller {
 	@RequestMapping("/pages/E_memoList")
 	public String E_memoList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_memoList");
-		/*
+		
 		service.E_memoList(req, model);
-		*/
+		
 		return "pages/E_memoList";
 	}
 	
