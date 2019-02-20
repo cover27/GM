@@ -81,48 +81,6 @@ public class O_ServiceImpl implements O_Service{
 	 * }
 	 */
 
-	//일정
-	@Override
-	public void calendarSelect(HttpServletRequest req, Model model) {
-		
-		ScheduleVO vo = new ScheduleVO();
-
-		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		//vo.setNum(Integer.parseInt(req.getParameter("num")));
-		vo.setId(id);
-		vo.setScheduleKind(req.getParameter("scheduleKind"));
-		vo.setSubject(req.getParameter("subject"));
-		vo.setLocation(req.getParameter("location"));
-		vo.setContent(req.getParameter("content"));
-		//date 타입을 timeStamp로 형 변환(begin, end)
-		/*
-		java.util.Date d = null;
-		try {
-			d = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(req.getParameter("begin").replace("T"," "));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Timestamp ts = new Timestamp(d.getTime());
-		vo.setBegin(ts);
-		java.util.Date d2 = null;
-		try {
-			d2 = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(req.getParameter("end").replace("T"," "));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Timestamp ts2 = new Timestamp(d2.getTime());
-		vo.setEnd(ts2);
-		*/
-		//date 타입을 timeStamp로 형 변환 끝(begin, end)
-		
-		List<ScheduleVO> dtos = dao.selectCalendar(id);
-		System.out.println("dtos:" + dtos);
-		
-		model.addAttribute("dtos", dtos);
-	}
-
 	//일정 - 페이지넘
 	@Override
 	public void calendarPageNum(HttpServletRequest req, Model model) {
@@ -220,6 +178,17 @@ public class O_ServiceImpl implements O_Service{
 		
 	}
 
+	//일정화면 조회
+	@Override
+	public void calendarSelect(HttpServletRequest req, Model model) {
+		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		List<ScheduleVO> dtos = dao.selectCalendar(id);
+		
+		model.addAttribute("dtos", dtos);
+	}
+	
 	//일정 등록 write
 	@Override
 	public void calendarWrite(HttpServletRequest req, Model model) {
@@ -244,7 +213,7 @@ public class O_ServiceImpl implements O_Service{
 	public void calendarPro(HttpServletRequest req, Model model) {
 		
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		int num=0;
+		int num=Integer.parseInt(req.getParameter("num"));
 		int del=0;
 		int equipnum=0;
 		int teamSchedule=0;
@@ -287,6 +256,61 @@ public class O_ServiceImpl implements O_Service{
 		model.addAttribute("insertCnt", insertCnt);
 		
 		
+	}
+
+	//일정 상세 화면
+	@Override
+	public void calendarDetail(HttpServletRequest req, Model model) {
+		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		int num = Integer.parseInt(req.getParameter("num"));
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("num", num);
+		
+		ScheduleVO vo = dao.modifyBeforeCalendar(map);
+		
+		model.addAttribute("vo", vo);
+		
+	}
+
+	//일정 수정
+	@Override
+	public void calendarModify(HttpServletRequest req, Model model) {
+		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		ScheduleVO vo = new ScheduleVO();
+		vo.setScheduleKind(req.getParameter("scheduleKind"));
+		vo.setSubject(req.getParameter("subject"));
+		vo.setLocation(req.getParameter("location"));
+		vo.setContent(req.getParameter("content"));
+		//date 타입을 timeStamp로 형 변환(begin, end)
+		java.util.Date d = null;
+		try {
+			d = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(req.getParameter("begin").replace("T"," "));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Timestamp ts = new Timestamp(d.getTime());
+		vo.setBegin(ts);
+		java.util.Date d2 = null;
+		try {
+			d2 = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(req.getParameter("end").replace("T"," "));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Timestamp ts2 = new Timestamp(d2.getTime());
+		vo.setEnd(ts2);
+		//date 타입을 timeStamp로 형 변환 끝(begin, end)
+				
+		int updateCnt = dao.updateCalendar(vo);
+		System.out.println("updateCnt" + updateCnt);
+		
+		model.addAttribute("updateCnt", updateCnt);
 	}
 
 	
