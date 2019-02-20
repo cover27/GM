@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 
 public interface O_Service {
 
-	//일정
+	//일정화면 조회
 	public void calendarSelect(HttpServletRequest req, Model model);
 	
 	//일정 등록 write
@@ -17,4 +17,10 @@ public interface O_Service {
 	
 	//일정 등록 pro
 	public void calendarPro(HttpServletRequest req, Model model);
+	
+	//일정 상세화면
+	public void calendarDetail(HttpServletRequest req, Model model);
+	
+	//일정 수정
+	public void calendarModify(HttpServletRequest req, Model model);
 }

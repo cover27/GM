@@ -147,6 +147,26 @@ public class O_Controller {
 		return "pages/O_calendarPro";
 	}
 	
+	//일정 상세 화면
+	@RequestMapping("/pages/O_calendarDetail")
+	public String O_calendarDetail(HttpServletRequest req, Model model) {
+		logger.info("URL : O_calendarDetail");
+		
+		oservice.calendarDetail(req, model);
+		
+		return "pages/O_calendarDetail";
+	}
+	
+	//일정 수정
+	@RequestMapping("/pages/O_calendarModify")
+	public String O_calendarModify(HttpServletRequest req, Model model) {
+		logger.info("URL : O_calendarDetail");
+		
+		oservice.calendarModify(req, model);
+		
+		return "pages/O_calendarModify";
+	}
+	
 	/* 일정 끝 */
 	
 }

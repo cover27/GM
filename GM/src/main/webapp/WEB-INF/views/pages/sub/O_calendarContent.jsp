@@ -12,16 +12,18 @@
 <script>
 	
   $(document).ready(function() {
-	  /*
+	  //아래의 events:에 dataset 변수 값을 넘겨준다
 	   var dataset =[
 		<c:forEach var="dto" items="${dtos}">
 			{
 				"id":'<c:out value="${dto.getId()}" />',
 				"title":'<c:out value="${dto.getSubject()}" />',
-				start:'2019-02-11'
-			}
+				"start":'<c:out value="${dto.getBegin()}" />',
+				"end":'<c:out value="${dto.getEnd()}" />',
+				"num":'<c:out value="${dto.getNum()}" />'
+			},
 		</c:forEach>
-		]; */
+		]; 
 
     $('#calendar').fullCalendar({
       header: {
@@ -33,29 +35,12 @@
       navLinks: true, // can click day/week names to navigate views
       editable: false, //일정을 표시한 바를 마우스로 이동할 수 있게 하는 기능
       eventLimit: true, // allow "more" link when too many events
-      events://dataset 
-    	 [{
-          title: '한글적용',
-          start: '2019-02-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2019-02-18 09:00',
-          end: '2019-02-22 10:00'
-        },
-        {
-          title: 'asdfsdafnnklfdsanfl',
-          start: '2019-02-13 09:00',
-        },
-        {
-          title: '테스트',
-          start: '2019-02-18T07:00',
-          end: '2019-02-18T10:00'
-        },
-        {
-          title: 'Repeating Event',
-          start: '2019-02-09T16:00'
-        }]  ,
+      views:{
+    	  agenda:{
+    		  eventLimit:6
+    	  }
+      },
+      events:dataset,
       googleCalendarApiKey : "AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE",      // Google API KEY
       eventSources : [
           // 대한민국의 공휴일
@@ -69,7 +54,15 @@
 	  dayClick:function(date, jsEvent, view){	// 해당 날짜 클릭 시
 		  alert('Clicked on:' + date.format());	// 클릭한 날짜를 띄어주며
 		  $(this).css('background-color', '#ddfbff'); //해당 배경 색깔 바뀜
-	  }
+	  },
+	  eventClick:function(calEvent, jsEvent, view){
+		  alert('Event: ' + calEvent.title);
+		  $(this).css('border-color', 'red');
+		  var url='O_calendarDetail?num='+calEvent.num;
+		  window.open(url, 'O_calendarDetail', 'width=600, height=500');
+		  return false;
+	  },
+	  
     });
 
   });
