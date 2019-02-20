@@ -9,7 +9,7 @@
 
 
 		<div style="overflow-y: scroll; height:400px;">	<!-- 스크롤바 -->
-			<table style="width:1500px" align="center">
+			<table style="width:1000px" align="left">
 				<tr>
 				<!--<th>
 						<select>
@@ -21,15 +21,15 @@
 						</select>
 					</th> -->
 					<th colspan="6" align="left" style="height:25px">
-						전체&nbsp;&nbsp;  / ${cnt} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						전체&nbsp;&nbsp;  / <span>${cnt}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					</th>
 				</tr>
 				<tr>
 					<th></th>
-					<th style="width:5%">메모장번호</th>
+					<th style="width:5%">메모 폴더 게시 번호</th>
 					<th style="width:2%">아이디</th>
-					<th style="width:10%">메모장 이름</th>
-					<th style="width:10%">메모장등급</th>
+					<th style="width:10%">메모 위치한 폴더명</th>
+					<th style="width:10%">메모장등급(등록순)</th>
 					<th style="width:15%">삭제구분</th>
 				</tr>
 				

@@ -86,6 +86,26 @@ public class P_Controller {
 		return "pages/P_payContentForm";
 	}
 	
+	//결재팝업
+	@RequestMapping("/pages/P_payApprove")
+	public String P_payApprove(HttpServletRequest req, Model model) {
+		logger.info("URL : P_payApprove");
+		
+		service.P_payApprove(req, model);
+		
+		return "pages/sub/P_payApprove_sub";
+	}
+	
+	//결재진행
+	@RequestMapping("/pages/P_payApprove_pro")
+	public String P_payApprove_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : P_payApprove_pro");
+		
+		service.P_payApprove_pro(req, model);
+		
+		return "pages/sub/P_payApprove_pro";
+	}
+	
 	//결재 - 결재 진행함
 	@RequestMapping("/pages/P_listApprCompleteView")
 	public String P_listApprCompleteView(HttpServletRequest req, Model model) {

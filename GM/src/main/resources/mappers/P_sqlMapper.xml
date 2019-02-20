@@ -65,6 +65,32 @@
 	</select>
 	
 	<select id="getGroupInfo" resultType="com.spring.gm.vo.join_groupnameVO">
-		SELECT g.*, m.name FROM groupinfo g, member m WHERE m.id = g.id AND g.groupid = #{groupid} ORDER BY g.rank_mem ASC
+		SELECT g.*, m.name, r.r_name FROM groupinfo g, member m, grade r
+		    WHERE m.id = g.id 
+		    AND m.rank = r.rank
+		    AND g.groupid = #{groupid} 
+		    ORDER BY g.rank_mem ASC
 	</select>
+	
+	<select id="getMyOrder" resultType="int">
+		SELECT rank FROM paymentinfo WHERE num = #{num} AND id=#{id}
+	</select>
+	
+	<select id="countNextMem" resultType="int">
+		SELECT COUNT(*) FROM paymentinfo WHERE num = #{num} AND rank >= #{order}
+	</select>
+	
+	<select id="finalApproveCheck" resultType="int">
+		SELECT COUNT(*) FROM paymentinfo WHERE num = #{num} AND agree = 0 AND id != #{id}
+	</select>
+	<select id="beforeApproveCheck" resultType="int">
+		SELECT agree FROM paymentinfo WHERE num=#{num} and rank = #{order2}
+	</select>
+	<update id="updateApprove" parameterType="java.util.Map">
+		UPDATE paymentinfo SET result='결재완료', reg_date=sysdate, content=#{content, jdbcType=VARCHAR}, agree = 1
+			WHERE id=#{id} AND num=#{num}
+	</update>
+	<update id="updatePayment" parameterType="int">
+		UPDATE payment SET state='결재완료', reg_date=sysdate WHERE num=#{num}
+	</update>
 </mapper>
