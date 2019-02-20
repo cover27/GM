@@ -192,10 +192,16 @@ public class D_ServiceImpl implements D_Service{
 			map.put("num", num);
 			map.put("start", start);
 			map.put("end", end);
-
-			
 			List<BoardListVO> dtos = dao.getBoardArticleList(map);
-			
+			/*
+			int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+			Map<String, Object> map1 = new HashMap<String, Object>();
+			map.put("start", start);
+			map.put("end", end);
+			map.put("company", company);
+			List<BoardListAndBoardsVO> ad_dtos = dao.getAllBoardArticleList(map1);
+			model.addAttribute("ad_dtos", ad_dtos);
+			*/
 			model.addAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
 
 		}

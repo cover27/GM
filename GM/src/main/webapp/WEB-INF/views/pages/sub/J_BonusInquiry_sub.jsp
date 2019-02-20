@@ -49,64 +49,63 @@
 		<div class="content_header">
 			<h2>급여 조회</h2>
 		</div>
-		<div>
+		<div class="content">
 			<form method="post" name="searchform">
-				<table border="1" style="width: 1800px;">
-					<c:if test="${sys_rank == 1 }">
-						<!-- 관리자인경우 -->
-						<tr>
-							<th width="10%">사업장</th>
+				<div class="search-wrap">
+					<div class="form-group">
+						<c:if test="${sys_rank == 1 }">
+							<span class="bold5px">사업장 : </span>
 							<c:forEach var="dto" items="${dtoss}">
-								<td width="10%">${dto.c_name}</td>
+								<span class="bold5px">${dto.c_name}</span>
 							</c:forEach>
-							<th width="10%">*급여년월</th>
-							<td width="20%"><input type="month" id="month"></td>
-							<td width="5%">아이디</td>
-							<td width="25%"><input type="text" class="searchId" id="id">
-								<button onclick="searchId()">검색</button> <input type="text"
-								class="searchName" name="name"></td>
-							<td><input type="button" onclick="searchBonusInquiry()"
-								value="검색"></td>
+							<span class="ml50 bold5px">아이디</span>
+							<span><input type="text" class="searchId" id="id"></span>
+							<span><button onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></button></span>
+							<span class="bold5px ml50">이름 : </span>
+							<span><input type="text" class="searchName" name="name" readonly placeholder="아이디를 조회하세요." style="background: #f3f3f3;"></span>
+							<span class="ml50 bold5px">*급여년월</span>
+							<span><input type="month" id="month"></span>
+							<span><input type="button" onclick="searchBonusInquiry()" value="조회" style="background:#d3292c;"></span>
+						</c:if>
+						<c:if test="${sys_rank != 1 }">
+							<span class="bold5px">사업장 : </span>
+							<c:forEach var="dto" items="${dtoss}">
+								<span class="bold5px">${dto.c_name}</span>
+							</c:forEach>
+							<span class="ml50 bold5px">아이디</span>
+							<span><input type="text" class="searchId" id="id" value="${id}" readonly></span>
+							<span class="bold5px ml50">이름 : </span>
+							<span><input type="text" class="searchName" name="name" value="${name}" readonly></span>
+							<span class="ml50 bold5px">*급여년월</span>
+							<span><input type="month" id="month"></span>
+							<span><input type="button" onclick="searchBonusInquiry()" value="검색"></td></span>
+						</c:if>
+						<script>document.getElementById('month').value= new Date().toISOString().slice(0, 7);</script>
+					</div>
+				</div>
+				<div class="subtitle">
+					<h3>추가 및 삭감 목록</h3>
+				</div>
+				
+				<div id="result" class="salary_info_result">
+					<table>
+						<tr>
+							<th style="border-bottom: 1px #c0c0c0 solid;">등록기준일</th>
+							<th style="border-bottom: 1px #c0c0c0 solid;">사원번호</th>
+							<th style="border-bottom: 1px #c0c0c0 solid;">성명</th>
+							<th style="border-bottom: 1px #c0c0c0 solid;">부서</th>
+							<th style="border-bottom: 1px #c0c0c0 solid;">추가및 삭감구분</th>
+							<th style="border-bottom: 1px #c0c0c0 solid;">사유</th>
+							<th style="border-bottom: 1px #c0c0c0 solid;">지급액</th>
 						</tr>
-					</c:if>
-					<c:if test="${sys_rank != 1 }">
-						<!-- 관리자가 아닐경우 -->
 						<tr>
-							<th width="10%">사업장</th>
-							<c:forEach var="dto" items="${dtoss}">
-								<td width="10%">${dto.c_name}</td>
-							</c:forEach>
-							<th width="10%">*급여년월</th>
-							<td width="20%"><input type="month" id="month"></td>
-							<td width="5%">아이디</td>
-							<td width="25%"><input type="text" class="searchId" id="id"
-								value="${id}" readonly> <input type="text"
-								class="searchName" name="name" value="${name}" readonly>
+							<td colspan="7">
+								*데이터 정보가 없습니다.!!!!!!!
 							</td>
-							<td><input type="button" onclick="searchBonusInquiry()"
-								value="검색"></td>
-						</tr>
-					</c:if>
-				</table>
-				<div id="result">
-					<table border="1">
-						<tr>
-							<td style="text-align: center; background-color: #cccccc;">등록기준일</td>
-							<td style="text-align: center; background-color: #cccccc;">사원번호</td>
-							<td style="text-align: center; background-color: #cccccc;">성명</td>
-							<td style="text-align: center; background-color: #cccccc;">부서</td>
-							<td style="text-align: center; background-color: #cccccc;">추가
-								및 삭감구분</td>
-							<td style="text-align: center; background-color: #cccccc;">사유</td>
-							<td style="text-align: center; background-color: #cccccc;">지급액</td>
 						</tr>
 						<tr>
-							<td colspan="7" style="height: 150px;" text-align="center">
-								*데이터 정보가 없습니다.!!!!!!!</td>
-						</tr>
-						<tr>
-							<td colspan="6">합계</td>
-							<td style="text-align: center; background-color: #cccccc;">0</td>
+							<td colspan="6" style="border-bottom: 1px #c0c0c0 solid;">합계</td>
+							<td style="border-bottom: 1px #c0c0c0 solid;">0</td>
 						</tr>
 					</table>
 				</div>
