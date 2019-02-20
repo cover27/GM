@@ -26,4 +26,11 @@ public interface P_DAO {
 	
 	public List<PaymentInfoVO> countPayInfo(int num);
 	public List<join_groupnameVO> getGroupInfo(int groupid);
+	
+	public int getMyOrder(Map<String, Object> map);
+	public int countNextMem(Map<String, Object> map);
+	public int finalApproveCheck(Map<String, Object> map);
+	public int beforeApproveCheck(Map<String, Object> map);
+	public int updateApprove(Map<String, Object> map);
+	public int updatePayment(int num);
 }

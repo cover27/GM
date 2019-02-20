@@ -19,4 +19,10 @@ public interface P_Service {
 	
 	//결재상세페이지
 	public void P_payContentForm(HttpServletRequest req, Model model);
+	
+	//결재팝업
+	public void P_payApprove(HttpServletRequest req, Model model);
+	
+	//결재진행
+	public void P_payApprove_pro(HttpServletRequest req, Model model);
 }

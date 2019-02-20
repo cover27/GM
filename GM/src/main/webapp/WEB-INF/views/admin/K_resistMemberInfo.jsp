@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>GM</title>
+<title>${title}</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>

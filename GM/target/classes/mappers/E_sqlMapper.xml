@@ -33,16 +33,17 @@
 	
 	
 	
-	<!-- 로그인 계정의 메모 폴더 갯수 구하기 -->
+	<!-- 메모 - 로그인 계정의 메모 폴더 갯수 구하기 -->
 	<select id="getMemoBoardsCnt" resultType="int">
-		SELECT count(*) FROM memo WHERE company = #{company} and del = 0
+		SELECT count(*) FROM memo WHERE id = #{id} and del = 0
 	</select>
-
+	 
 	<!-- 메모 - 내 모든 메모 게시판 리스트 -->
 	<select id="getMemoBoardsList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemoVO">
-		SELECT * FROM memo WHERE company = #{company} AND id = #{id} and del = 0
+		<![CDATA[
+			SELECT * FROM(SELECT num, id, name, m_rank, del, rownum rNum FROM (SELECT * FROM memo WHERE id = #{id} AND del = #{del} ORDER BY num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+		]]>
 	</select>
-
 
 
 

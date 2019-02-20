@@ -201,8 +201,8 @@
                         <td></td>
                         <th>퇴직일자</th>
                         <td></td>
-                        <th colspan="2">E-MAIL</th>
-                        <td></td>
+                        <th>E-MAIL</th>
+                        <td colspan="3"></td>
                     </tr>
                 </table>
             </div>
