@@ -395,12 +395,20 @@ public class J_Controller {
 		
 		
 		
+		
+		
+		
+		
 		//--------------------------------------------------------------------------------------------------------------------------
 		//---------------------------------------------근태관리------------------------------------------------------------------------
+		
+		
+		
 		//일일 근태 등록
 		@RequestMapping("/pages/J_D_attendanceRegistration")
 		public String J_D_attendanceRegistration(HttpServletRequest req, Model model) {
 			logger.info("URL : J_D_attendanceRegistration");
+			service.GoOffList(req,model);
 			return "pages/J_D_attendanceRegistration";
 		}
 		
@@ -488,6 +496,22 @@ public class J_Controller {
 		
 		
 		
+		
+		
+		//출근시간 인서트
+		@RequestMapping("/pages/goInsert")
+		public String goInsert(HttpServletRequest req, Model model) {
+			logger.info("URL : goInsert");
+			service.goInsert(req,model);
+			return "pages/sub/J_sub/J_D_attendanceRegistration_sub";
+		}
+		//퇴근시간 업데이트
+		@RequestMapping("/pages/offUpdate")
+		public String offUpdate(HttpServletRequest req, Model model) {
+			logger.info("URL : offUpdate");
+			service.offUpdate(req,model);
+			return "pages/sub/J_sub/J_D_attendanceRegistration_sub";
+		}
 		
 		
 		

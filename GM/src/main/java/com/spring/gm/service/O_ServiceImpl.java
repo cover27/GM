@@ -185,7 +185,6 @@ public class O_ServiceImpl implements O_Service{
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
 		List<ScheduleVO> dtos = dao.selectCalendar(id);
-		System.out.println("dtos:" + dtos);
 		
 		model.addAttribute("dtos", dtos);
 	}

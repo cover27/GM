@@ -1,7 +1,9 @@
 
 package com.spring.gm.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,10 +15,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.J_DAO;
+import com.spring.gm.persistence.K_DAO;
+import com.spring.gm.vo.AttendedSetVO;
+import com.spring.gm.vo.AttendedVO;
 import com.spring.gm.vo.BonusCutVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
+import com.spring.gm.vo.join_maVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgsbVO;
 import com.spring.gm.vo.join_mgsbcVO;
@@ -27,6 +33,8 @@ public class J_ServiceImpl implements J_Service {
 
 	@Autowired
 	J_DAO dao;
+	@Autowired
+	K_DAO K_dao;
 
 	// 전체 급여 회원 뽑기
 	@Override
@@ -907,22 +915,12 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("cnt2 : " + cnt2);
 		int cnt3 = dao.mgstblCnt2(map);// 상여금 정보 뽑아오기
 		System.out.println("cnt3 : " + cnt3);
-		if (cnt2 > 0) {
-			cnt2 = 1;
-		}
-		;
-		if (cnt3 > 0) {
-			cnt3 = 1;
-		}
-		;
+		if (cnt2 > 0) {cnt2 = 1;};
+		if (cnt3 > 0) {cnt3 = 1;};
 		int cnt = cnt2 + cnt3;
 		System.out.println("cnt : " + cnt);
-		if (cnt3 == 0 && cnt2 == 1) {
-			cnt = 1;
-		}
-		if (cnt3 == 1 && cnt2 == 0) {
-			cnt = 0;
-		}
+		if (cnt3 == 0 && cnt2 == 1) {cnt = 1;}
+		if (cnt3 == 1 && cnt2 == 0) {cnt = 0;}
 
 		if (cnt == 2) { // 급여 , 상여금 둘다 정보가 있을경우
 			System.out.println("급여 , 상여금 둘다 정보가 있을경우");
@@ -1086,10 +1084,10 @@ public class J_ServiceImpl implements J_Service {
 		int sumsalarybonus = 0;
 		int allsalary = 0;
 		int year = 201900;
-		
+
 		String cntyear = String.valueOf(year);
-		cntyear = cntyear.substring(0,4);
-		
+		cntyear = cntyear.substring(0, 4);
+
 		List<join_mgsbcVO> dtos = new ArrayList<join_mgsbcVO>();
 		if (cnt > 0) {
 			for (int i = 1; i <= 12; i++) {
@@ -1136,8 +1134,8 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("bonussalary", bonussalary);
 		model.addAttribute("sumsalarybonus", sumsalarybonus);
 		model.addAttribute("num", num);
-		model.addAttribute("year",year);
-		model.addAttribute("cntyear",cntyear);
+		model.addAttribute("year", year);
+		model.addAttribute("cntyear", cntyear);
 		model.addAttribute("cnt", cnt);
 	}
 
@@ -1146,20 +1144,20 @@ public class J_ServiceImpl implements J_Service {
 	public void searchPayroll2(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		String id = req.getParameter("id");
-		int num =0;
+		int num = 0;
 		num = num - 100;
 		System.out.println("num :" + num);
 		int year = Integer.parseInt(req.getParameter("year")) + num;
 		System.out.println("year :" + year);
 		String cntyear = String.valueOf(year);
-		
-		cntyear = cntyear.substring(0,4);
+
+		cntyear = cntyear.substring(0, 4);
 		System.out.println("cntyear :" + cntyear);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("company", company);
 		map.put("cntyear", cntyear);
-		
+
 		int cnt = dao.searchCnt2(map);
 		System.out.println("cnt : " + cnt);
 		int bonussalary = 0;
@@ -1171,7 +1169,7 @@ public class J_ServiceImpl implements J_Service {
 			for (int i = 1; i <= 12; i++) {
 				if (num != 0) {
 
-					if (i == 1) {	//1월달 급여는 전년도 12월 급여
+					if (i == 1) { // 1월달 급여는 전년도 12월 급여
 						year = year + num + 12;
 						System.out.println("year :" + year);
 						map.put("year", year);
@@ -1187,7 +1185,7 @@ public class J_ServiceImpl implements J_Service {
 						dtos.addAll(dtos1);
 						dtos.addAll(dtos2);
 						map.remove("year");
-						year = year - num -12;
+						year = year - num - 12;
 					} else {
 						year += i;
 						System.out.println("year :" + year);
@@ -1196,7 +1194,7 @@ public class J_ServiceImpl implements J_Service {
 						System.out.println("dtos1 :" + dtos1.toString());
 						List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
 						if (dtos1.size() != 0) {
-							dtos1.get(0).setSalaryday(i-1);
+							dtos1.get(0).setSalaryday(i - 1);
 							allsalary = allsalary + dtos1.get(0).getSalary();
 							bonussalary = bonussalary + dtos1.get(0).getBonussalary();
 							sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
@@ -1216,11 +1214,11 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("bonussalary", bonussalary);
 		model.addAttribute("sumsalarybonus", sumsalarybonus);
 		model.addAttribute("num", num);
-		model.addAttribute("year",year);
-		model.addAttribute("cntyear",cntyear);
+		model.addAttribute("year", year);
+		model.addAttribute("cntyear", cntyear);
 		model.addAttribute("cnt", cnt);
 	}
-	
+
 	@Override
 	public void searchPayroll3(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
@@ -1231,13 +1229,13 @@ public class J_ServiceImpl implements J_Service {
 		int year = Integer.parseInt(req.getParameter("year")) + num;
 		System.out.println("year : " + year);
 		String cntyear = String.valueOf(year);
-		cntyear = cntyear.substring(0,4);
+		cntyear = cntyear.substring(0, 4);
 		System.out.println("cntyear :" + cntyear);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("company", company);
 		map.put("cntyear", cntyear);
-		
+
 		int cnt = dao.searchCnt2(map);
 		System.out.println("cnt : " + cnt);
 		int bonussalary = 0;
@@ -1249,7 +1247,7 @@ public class J_ServiceImpl implements J_Service {
 			for (int i = 1; i <= 12; i++) {
 				if (num != 0) {
 					System.out.println("year :" + year);
-					if (i == 1) {	//1월달 급여는 전년도 12월 급여
+					if (i == 1) { // 1월달 급여는 전년도 12월 급여
 						year = year - num + 12;
 						System.out.println("year :" + year);
 						map.put("year", year);
@@ -1264,7 +1262,7 @@ public class J_ServiceImpl implements J_Service {
 						}
 						dtos.addAll(dtos1);
 						dtos.addAll(dtos2);
-						year = year + num -12;
+						year = year + num - 12;
 						map.remove("year");
 					} else {
 						year += i;
@@ -1274,7 +1272,7 @@ public class J_ServiceImpl implements J_Service {
 						System.out.println("dtos1 :" + dtos1.toString());
 						List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
 						if (dtos1.size() != 0) {
-							dtos1.get(0).setSalaryday(i-1);
+							dtos1.get(0).setSalaryday(i - 1);
 							allsalary = allsalary + dtos1.get(0).getSalary();
 							bonussalary = bonussalary + dtos1.get(0).getBonussalary();
 							sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
@@ -1293,14 +1291,11 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("bonussalary", bonussalary);
 		model.addAttribute("sumsalarybonus", sumsalarybonus);
 		model.addAttribute("num", num);
-		model.addAttribute("year",year);
-		model.addAttribute("cntyear",cntyear);
+		model.addAttribute("year", year);
+		model.addAttribute("cntyear", cntyear);
 		model.addAttribute("cnt", cnt);
 	}
 
-	
-	
-	
 	// 총 연도로 뽑기
 	@Override
 	public void yearPayroll(HttpServletRequest req, Model model) {
@@ -1311,18 +1306,18 @@ public class J_ServiceImpl implements J_Service {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cntyear", cntyear);
 		map.put("company", company);
-		
+
 		int cnt = dao.searchCnt2(map);
 		int salary = 0;
 		int bonussalary = 0;
 		int sumsalarybonus = 0;
-		
+
 		month = month + "00";
 		int year = Integer.parseInt(month);
 		System.out.println("month : " + month);
 		List<join_mgsbcVO> dtos = new ArrayList<join_mgsbcVO>();
-		if(cnt > 0) {
-			for(int i=1; i<=12; i++) {
+		if (cnt > 0) {
+			for (int i = 1; i <= 12; i++) {
 				year = year + i;
 				System.out.println("year :" + year);
 				map.put("year", year);
@@ -1331,8 +1326,8 @@ public class J_ServiceImpl implements J_Service {
 				if (dtos1.size() != 0) {
 					dtos1.get(0).setSalaryday(i);
 					salary = salary + dtos1.get(0).getSalary();
-					bonussalary = bonussalary +  dtos1.get(0).getBonussalary();
-					sumsalarybonus = sumsalarybonus +  dtos1.get(0).getSumsalarybonus();
+					bonussalary = bonussalary + dtos1.get(0).getBonussalary();
+					sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
 				}
 				dtos.addAll(dtos1);
 				year = year - i;
@@ -1345,4 +1340,234 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("allsumsalarybonus", sumsalarybonus);
 		model.addAttribute("cnt", cnt);
 	}
+
+	// --------------------------------------------------------------------------------------------------------------------------
+	// ---------------------------------------------근태관리------------------------------------------------------------------------
+
+	// 시간 변경해주는 설정
+	@Override // 32400 -> '09:00' 으로 변경하는 메소드
+	public String toTime(int seconds) {
+		int hour = seconds / 3600;
+		int minute = (seconds % 3600) / 60;
+
+		String hours = "";
+		String minutes = "";
+
+		if (hour < 10) {
+			hours = "0" + String.valueOf(hour);
+		} else {
+			hours = String.valueOf(hour);
+		}
+
+		if (minute == 0) {
+			minutes = "00";
+		} else if (minute < 10) {
+			minutes = "0" + String.valueOf(minute);
+		} else {
+			minutes = String.valueOf(minute);
+		}
+
+		String time = hours + ":" + minutes;
+		return time;
+	}
+
+	@Override // 반대로 32400 <- '09:00' 으로 변경하는 메소드
+	public int toSecond(String time) {
+		String[] times = time.split(":");
+		int hour = Integer.parseInt(times[0]);
+		int minute = Integer.parseInt(times[1]);
+
+		int seconds = hour * 3600 + minute * 60;
+		return seconds;
+	}
+
+	// 출근 목록 뽑아오기
+	@Override
+	public void GoOffList(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+
+		int selectCnt = dao.GoOffCnt(map);
+		System.out.println("cnt : " + selectCnt);
+
+		if (selectCnt > 0) {
+			List<join_maVO> dtos = dao.GoOffList(map);
+			System.out.println(dtos.get(0).getGo());
+			int num = dtos.get(0).getNum();
+			System.out.println("num : " + num);
+			dtos.get(0).setGos(toTime(dtos.get(0).getGo()));
+			String gos = toTime(dtos.get(0).getGo());
+			dtos.get(0).setOffs(toTime(dtos.get(0).getOff()));
+			dtos.get(0).setWorktimes(toTime(dtos.get(0).getWorktime()));
+			dtos.get(0).setOvertimes(toTime(dtos.get(0).getOvertime()));
+			dtos.get(0).setNighttimes(toTime(dtos.get(0).getNighttime()));
+			dtos.get(0).setPerceptiontimes(toTime(dtos.get(0).getPerceptiontime()));
+			dtos.get(0).setDeparturetimes(toTime(dtos.get(0).getDeparturetime()));
+			System.out.println(toTime(dtos.get(0).getGo()));
+			model.addAttribute("dtos", dtos);
+			model.addAttribute("num", num);
+			model.addAttribute("gos", gos);
+		}
+		model.addAttribute("cnt", selectCnt);
+		model.addAttribute("id", id);
+		model.addAttribute("name", name);
+	}
+
+	// 출근시간 인서트
+	@Override
+	public void goInsert(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
+
+		AttendedSetVO attended = null;
+		attended = K_dao.getAttendedSet(company);
+
+		long times = System.currentTimeMillis();
+		SimpleDateFormat date = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+		String nowTime = date.format(new Date(times)).substring(11, 16);
+		System.out.println(nowTime);
+		int time = toSecond(nowTime);
+		int ptime = toSecond(nowTime) - attended.getGo(); // 지각시간
+		System.out.println(time + " " + ptime);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		map.put("time", time);
+		map.put("ptime", ptime);
+
+		int insertCnt = dao.goInsert(map);
+		System.out.println("insertCnt :" + insertCnt);
+		if (insertCnt > 0) {
+			List<join_maVO> dtos = dao.GoOffList(map);
+			int num = dtos.get(0).getNum();
+			dtos.get(0).setGos(toTime(dtos.get(0).getGo()));
+			String gos = toTime(dtos.get(0).getGo());
+			dtos.get(0).setOffs(toTime(dtos.get(0).getOff()));
+			dtos.get(0).setWorktimes(toTime(dtos.get(0).getWorktime()));
+			dtos.get(0).setOvertimes(toTime(dtos.get(0).getOvertime()));
+			dtos.get(0).setNighttimes(toTime(dtos.get(0).getNighttime()));
+			dtos.get(0).setPerceptiontimes(toTime(dtos.get(0).getPerceptiontime()));
+			dtos.get(0).setDeparturetimes(toTime(dtos.get(0).getDeparturetime()));
+			System.out.println(toTime(dtos.get(0).getGo()));
+			model.addAttribute("dtos", dtos);
+			model.addAttribute("num", num);
+			model.addAttribute("gos", gos);
+		}
+		model.addAttribute("cnt", insertCnt);
+		model.addAttribute("id", id);
+		model.addAttribute("name", name);
+	}
+
+	// 퇴근시간 업데이트
+	@Override
+	public void offUpdate(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
+		int num = Integer.parseInt(req.getParameter("num")); // 오늘 출퇴근 번호
+		System.out.println("num : " + num);
+		String gos = req.getParameter("gos"); // 출근시간
+		System.out.println("gos : " + gos);
+		int go = toSecond(gos);
+		System.out.println("go : " + go);
+
+		// 설정시간 가져오기
+		AttendedSetVO attended = null;
+		attended = K_dao.getAttendedSet(company);
+
+		long times = System.currentTimeMillis();
+		SimpleDateFormat date = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+		String nowTime = date.format(new Date(times)).substring(11, 16);
+		System.out.println(nowTime);
+		int time = toSecond(nowTime); // 퇴근시간
+		int wtime = toSecond(nowTime) - go; // 근무 시간
+		int ntime = 0; // 야간시간
+		int otime = 0; // 연장시간
+		int dtime = 0; // 조퇴시간
+		
+		System.out.println(time + " " + wtime);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		map.put("num", num);
+		map.put("wtime", wtime);
+		map.put("time", time);
+
+		
+		// 연장시간
+		if (time > attended.getOver_start()) { 
+			System.out.println("연장조건문");
+			if (time < attended.getOver_end()) {
+				otime = time - attended.getOver_start();
+				map.put("otime", otime);
+			} else if (time > attended.getOver_end()) {
+				otime = 79200;
+				map.put("otime", otime);
+			}
+		} else {
+			otime = 0;
+			map.put("otime", otime);
+		}
+		System.out.println("연장시간 : " + otime);
+		
+		// 야간시간
+		if (time > attended.getNight_start()) { 
+			System.out.println("야간조건문");
+			if (time < attended.getNight_end()) {
+				ntime = time - attended.getNight_start();
+				map.put("ntime", ntime);
+			} else if (time > attended.getNight_end()) {
+				ntime = 79200;
+				map.put("ntime", ntime);
+			}
+		}else {
+			ntime = 0;
+			map.put("ntime", ntime);
+		}
+		System.out.println("야간조건문 : " + ntime);
+		
+		
+		// 조퇴시간
+		if(time < attended.getOff()) {
+			System.out.println("조퇴할경우");
+			dtime = time;
+			map.put("dtime", dtime);
+		}else {
+			System.out.println("조퇴시간조건문");
+			dtime = 0;
+			map.put("dtime", dtime);
+		}
+		System.out.println("조퇴시간 : " + dtime);
+		
+		System.out.println("map : " + map.toString());
+		int updateCnt = dao.offUpdate(map);
+		System.out.println("updateCnt : " + updateCnt);
+		if (updateCnt > 0) {
+			List<join_maVO> dtos = dao.GoOffList(map);
+			num = dtos.get(0).getNum();
+			dtos.get(0).setGos(toTime(dtos.get(0).getGo()));
+			gos = toTime(dtos.get(0).getGo());
+			dtos.get(0).setOffs(toTime(dtos.get(0).getOff()));
+			dtos.get(0).setWorktimes(toTime(dtos.get(0).getWorktime()));
+			dtos.get(0).setOvertimes(toTime(dtos.get(0).getOvertime()));
+			dtos.get(0).setNighttimes(toTime(dtos.get(0).getNighttime()));
+			dtos.get(0).setPerceptiontimes(toTime(dtos.get(0).getPerceptiontime()));
+			dtos.get(0).setDeparturetimes(toTime(dtos.get(0).getDeparturetime()));
+			System.out.println(toTime(dtos.get(0).getGo()));
+			model.addAttribute("dtos", dtos);
+			model.addAttribute("num", num);
+			model.addAttribute("gos", gos);
+		}
+		model.addAttribute("cnt", updateCnt);
+		model.addAttribute("id", id);
+		model.addAttribute("name", name);
+	}
+
 }
