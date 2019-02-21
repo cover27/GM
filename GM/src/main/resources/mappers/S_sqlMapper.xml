@@ -5,7 +5,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.spring.gm.persistence.S_DAO" >
-
+	<!-- 
 	<select id="getMailBoxArticleCnt" resultType="int">
 		SELECT COUNT(*) as cnt FROM BOARDS WHERE id = #{strId}
 	</select>
@@ -15,4 +15,5 @@
 			SELECT * FROM(SELECT mail_num, id, name, rank, del, status, rownum rNum FROM (SELECT * FROM mailbox WHERE id = #{strId} ORDER BY mail_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>	
+	 -->
 </mapper>
