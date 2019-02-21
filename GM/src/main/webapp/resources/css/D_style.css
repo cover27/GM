@@ -118,12 +118,12 @@
 }
 
 .content table {
-	margin-top: 10px;
+	/* margin-top: 10px; */
 	font-size: 14px;
 	line-height: 24px;
 }
 
-.content table thead th {
+.content .table_head thead th {
 	border-right: 1px #e5e5e5 solid;
 	border-top: 1px #c0c0c0 solid;
 	border-bottom: 1px #c0c0c0 solid;
@@ -131,27 +131,36 @@
 	padding: 5px 0;
 }
 
-.content table thead th:last-child {
+.content .table_head thead th:last-child {
 	border-right: none;
 }
 
-.content table tbody tr:hover {
+.content .table_head table, .content .table_body table {
+	font-size: 14px;
+	line-height: 24px;
+}
+
+.content .table_body {
+	height: 700px;
+	overflow-y: auto;
+}
+
+.content .table_body tbody tr:hover {
 	background: #f9f9f9;
 	transition: 0.1s;
 }
 
-.content table tbody td {
+.content .table_body tbody td {
 	border-right: 1px #e5e5e5 solid;
 	border-bottom: 1px #e5e5e5 solid;
 	padding: 5px 0;
 	text-align: center;
-	cursor: pointer;
 }
 
-.content table tbody tr:last-child td {
+.content .table_body tbody tr:last-child td {
 	border-bottom: 1px #c0c0c0 solid;
 }
 
-.content table tbody td:last-child {
+.content .table_body tbody td:last-child {
 	border-right: none;
 }

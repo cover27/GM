@@ -21,6 +21,27 @@ function delBoard(){
 		document.getElementById('boardDel').submit();
 	}
 }
+
+
+function page_go(i, num) {
+	alert("게시판번호 : "+num);
+	$.ajax({
+		type : "POST",
+		data : {
+			"pageNum" : i,
+			"num" : num,
+		},
+		url : "${pageContext.request.contextPath}/pages/D_boardListPage",
+		success : function(result) {
+			alert("성공");
+			$(".table_body").html(result);
+		},
+		error : function() {
+			alert("게시판 로딩이 실패하였습니다.");
+		}
+	});
+}
+
 </script>
 <section>
     <article>
@@ -31,7 +52,7 @@ function delBoard(){
         	<form action="<c:url value='/admin/D_boardDelPro'/>" method="post" id="boardDel" onsubmit="return delBoard();">
 	            <input type="hidden" name="pageNum" value="${pageNum}">
 	            <input type="hidden" name="num" value="${num}">
-	            <div class="taboe_head">
+	            <div class="table_head">
 					<table>
 						<colgroup>
 							<col width="100px" />
@@ -51,6 +72,18 @@ function delBoard(){
 								<th>조회수</th>
 							</tr>
 						</thead>
+					</table>
+				</div>
+				<div class="table_body">
+					<table>
+						<colgroup>
+							<col width="100px" />
+							<col width="100px" />
+							<col width="*" />
+							<col width="200px" />
+							<col width="300px" />
+							<col width="100px" />
+						</colgroup>
 						<tbody>
 							<c:if test="${cnt > 0}">
 								<c:forEach var="dto" items="${dtos}">
@@ -79,8 +112,6 @@ function delBoard(){
 									</c:if>
 								</c:forEach>
 							</c:if>
-
-
 							<!-- 게시글이 없으면 -->
 							<c:if test="${cnt == 0}">
 								<tr>
@@ -89,34 +120,32 @@ function delBoard(){
 							</c:if>
 						</tbody>
 					</table>
+					<!-- 페이지 컨트롤 -->
+		            <div class="paging">
+						<c:if test="${cnt > 0}">
+						    <c:if test="${startPage > pageBlock}">
+						        <a href="<c:url value='/pages/D_boardList'/>">[◀◀]</a>
+						        <a href="<c:url value='/pages/D_boardList?pageNum=${startPage - pageBlock}&num=${num}'/>">[◀]</a>
+						    </c:if>
+						
+						    <c:forEach var="i" begin="${startPage}" end="${endPage}">
+						        <c:if test="${i == currentPage}">
+						            <span><b>[${i}]</b></span>
+						        </c:if>
+						        <c:if test="${i != currentPage}">
+						            <%-- <a href="#" onclick="page_go('${i}', '${num}')">[${i}]</a> --%>
+						            <a href="<c:url value='/pages/D_boardListPage?pageNum=${i}&num=${num}'/>">[${i}]</a>
+						        </c:if>
+						    </c:forEach>
+						
+						    <c:if test="${pageCount > endPage}">
+						        <a href="<c:url value='/pages/D_boardList?pageNum=${startPage + pageBlock}&num=${num}'/>">[▶]</a>
+						        <a href="<c:url value='/pages/D_boardList?pageNum=${pageCount}&num=${num}'/>">[▶▶]</a>
+						    </c:if>
+						</c:if>
+		            </div>	
 				</div>
-				<%-- 
-	            <!-- 페이지 컨트롤 -->
-	            <div class="paging">
-					<c:if test="${cnt > 0}">
-					    <c:if test="${startPage > pageBlock}">
-					        <a href="<c:url value='/pages/D_boardList'/>">[◀◀]</a>
-					        <a href="<c:url value='/pages/D_boardList?pageNum=${startPage - pageBlock}&num=${num}'/>">[◀]</a>
-					    </c:if>
-					
-					    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-					        <c:if test="${i == currentPage}">
-					            <span><b>[${i}]</b></span>
-					        </c:if>
-					
-					        <c:if test="${i != currentPage}">
-					            <a href="<c:url value='/pages/D_boardList?pageNum=${i}&num=${num}'/>">[${i}]</a>
-					        </c:if>
-					    </c:forEach>
-					
-					    <c:if test="${pageCount > endPage}">
-					        <a href="<c:url value='/pages/D_boardList?pageNum=${startPage + pageBlock}&num=${num}'/>">[▶]</a>
-					        <a href="<c:url value='/pages/D_boardList?pageNum=${pageCount}&num=${num}'/>">[▶▶]</a>
-					    </c:if>
-					</c:if>
-	            </div>
-	             --%>
-	            <div class="btnset fright">
+	            <div class="btnset fright mt10">
 	            	<ul>
 	            		<li><input type="button" value="글쓰기" onclick="window.location='<c:url value="/pages/D_writeForm?num=${num}&pageNum=${pageNum}" />'" style="background:#d3292c !important;"></li>
 	            		<li><input type="submit" value="삭제"></li>
