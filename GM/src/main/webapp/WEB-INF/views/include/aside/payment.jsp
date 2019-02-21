@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="${path}css/layout.css">
 <link rel="stylesheet" href="${path}css/aside.css">
 <link rel="stylesheet" href="${path}css/content.css">
-
+<%@ page import="com.spring.gm.vo.MemberVO" %>
 <aside>
 	<!-- 사용 안하는 사이드바
     <div class="sidebar"></div>
@@ -18,7 +18,6 @@
                         <ul>
                             <li id="P_createApprDocFormView"><a href="<c:url value='/pages/P_createApprDocFormView' />">기안문 작성</a></li>
                             <li id="P_listApprMyRequestView"><a href="<c:url value='/pages/P_listApprMyRequestView' />">결재 요청함</a></li>
-                            <li id="P_listApprTempView"><a href="<c:url value='/pages/P_listApprTempView' />">임시 저장함</a></li>
                         </ul>
                     </li>
                     <li>
@@ -31,14 +30,18 @@
                             <li id="P_listApprReferenceView"><a href="<c:url value='/pages/P_listApprReferenceView' />">참조/열람 문서함</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <span>관리자 메뉴</span>
-                        <ul>
-                            <li id="P_listApprDocAllAdminView"><a href="<c:url value='/pages/P_listApprDocAllAdminView' />">결재문서 관리</a></li>
-                            <!-- <li><a href="b10.jsp">양식 관리</a></li>
-                            <li><a href="b11.jsp">발신 공문 설정</a></li> -->
-                        </ul>
-                    </li>
+                    <%
+						if(((MemberVO)request.getSession().getAttribute("loginInfo")).getSys_rank() == 1){
+					%>
+	                    <li>
+	                        <span>관리자메뉴</span>
+	                        <ul>
+	                            <li id="P_managePayment"><a href="<c:url value='/pages/P_managePayment' />">결재문서관리</a></li>
+	                        </ul>
+	                    </li>
+                    <%
+						}
+                    %>
                 </ul>
             </div>
         </div>

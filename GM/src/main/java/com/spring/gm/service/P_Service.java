@@ -25,4 +25,31 @@ public interface P_Service {
 	
 	//결재진행
 	public void P_payApprove_pro(HttpServletRequest req, Model model);
+	
+	//반려팝업
+	public void P_payDeny(HttpServletRequest req, Model model);
+	
+	//반려진행
+	public void P_payDeny_pro(HttpServletRequest req, Model model);
+	
+	//합의팝업
+	public void P_payAgree(HttpServletRequest req, Model model);
+	
+	//합의진행
+	public void P_payAgree_pro(HttpServletRequest req, Model model);
+	
+	//결제진행함
+	public void P_listApprCompleteView(HttpServletRequest req, Model model);
+	
+	//완료문서함
+	public void P_readApprAllListView(HttpServletRequest req, Model model);
+	
+	//반려문서함
+	public void P_listApprRejectView(HttpServletRequest req, Model model);
+	
+	//참조/열람문서함
+	public void P_listApprReferenceView(HttpServletRequest req, Model model);
+	
+	//결재요청함
+	public void P_listApprMyRequestView(HttpServletRequest req, Model model);
 }
