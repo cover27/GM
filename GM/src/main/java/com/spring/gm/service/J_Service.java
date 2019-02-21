@@ -75,4 +75,58 @@ public interface J_Service {
 	
 	// 총 연도로 뽑기
 	public void yearPayroll(HttpServletRequest req, Model model); //년도 검색
+	
+	
+	
+	
+	//--------------------------------------------------------------------------------------------------------------------------
+	//---------------------------------------------근태관리------------------------------------------------------------------------
+	
+	// 시간 변경해주는 설정
+	public String toTime(int seconds);	//초 -> 시간
+	public int toSecond(String time);	// 시간 -> 초
+	
+	// 출근 목록 뽑아오기
+	public void GoOffList(HttpServletRequest req, Model model);
+	// 날짜로 출근 목록 뽑아오기
+	public void searchList(HttpServletRequest req, Model model);
+	
+	//출근시간 인서트
+	public void goInsert(HttpServletRequest req, Model model);
+	//퇴근시간 업데이트
+	public void offUpdate(HttpServletRequest req, Model model);
+	
+	//전체 리스트 뽑기
+	public void allList(HttpServletRequest req, Model model);
+	
+	//사원 근태 수정
+	public void modify(HttpServletRequest req, Model model);
+	// 근태 수정 업데이트
+	public void modifyUpdate(HttpServletRequest req, Model model);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -53,14 +53,14 @@ public class E_DAOImpl implements E_DAO {
 	
 	// 메모 - 메모 폴더 갯수
 	@Override
-	public int getMemoBoardsCnt(int company) {
-		return sqlSession.selectOne("com.spring.gm.persistence.E_DAO.getMemoBoardsCnt", company);
+	public int getMemoBoardsCnt(String id) {
+		return sqlSession.selectOne("com.spring.gm.persistence.E_DAO.getMemoBoardsCnt", id);
 	}	
 	
 	// 메모 - 내 모든 메모 게시판 리스트
 	@Override
 	public List<MemoVO> getMemoBoardsList(Map<String, Object> map) {
-		return sqlSession.selectOne("com.spring.gm.persistence.E_DAO.getMemoBoardsList", map);
+		return sqlSession.selectList("com.spring.gm.persistence.E_DAO.getMemoBoardsList", map);
 	}
 
 

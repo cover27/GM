@@ -395,13 +395,35 @@ public class J_Controller {
 		
 		
 		
+		
+		
+		
+		
 		//--------------------------------------------------------------------------------------------------------------------------
 		//---------------------------------------------근태관리------------------------------------------------------------------------
+		
+		
+		
 		//일일 근태 등록
 		@RequestMapping("/pages/J_D_attendanceRegistration")
 		public String J_D_attendanceRegistration(HttpServletRequest req, Model model) {
 			logger.info("URL : J_D_attendanceRegistration");
+			service.GoOffList(req,model);
 			return "pages/J_D_attendanceRegistration";
+		}
+		//날짜로 일일 근태 조회
+		@RequestMapping("/pages/searchList")
+		public String searchList(HttpServletRequest req, Model model) {
+			logger.info("URL : J_D_attendanceRegistration");
+			service.searchList(req,model);
+			return "pages/sub/J_sub/J_D_attendanceRegistration_sub";
+		}
+		//근태 관리
+		@RequestMapping("/admin/J_A_management")
+		public String J_A_management(HttpServletRequest req, Model model) {
+			logger.info("URL : J_A_management");
+			service.allList(req,model);
+			return "admin/J_A_management";
 		}
 		
 		//월근 근태생성/마감
@@ -490,8 +512,43 @@ public class J_Controller {
 		
 		
 		
+		//출근시간 인서트
+		@RequestMapping("/pages/goInsert")
+		public String goInsert(HttpServletRequest req, Model model) {
+			logger.info("URL : goInsert");
+			service.goInsert(req,model);
+			return "pages/sub/J_sub/J_D_attendanceRegistration_sub";
+		}
+		//퇴근시간 업데이트
+		@RequestMapping("/pages/offUpdate")
+		public String offUpdate(HttpServletRequest req, Model model) {
+			logger.info("URL : offUpdate");
+			service.offUpdate(req,model);
+			return "pages/sub/J_sub/J_D_attendanceRegistration_sub";
+		}
+		// 개인 
+		@RequestMapping("/pages/List")
+		public String List(HttpServletRequest req, Model model) {
+			logger.info("URL : offUpdate");
+			service.GoOffList(req,model);
+			return "pages/sub/J_sub/J_D_attendanceRegistration_sub";
+		}
 		
+		//사원 근태 수정
+		@RequestMapping("/admin/modify")
+		public String modify(HttpServletRequest req, Model model) {
+			logger.info("URL : modify");
+			service.modify(req,model);
+			return "admin/sub/J_sub/J_modify_sub";
+		}
 		
+		// 근태 수정 업데이트
+		@RequestMapping("/admin/modifyUpdate")
+		public String modifyUpdate(HttpServletRequest req, Model model) {
+			logger.info("URL : modifyUpdate");
+			service.modifyUpdate(req,model);
+			return "admin/J_A_management";
+		}
 		
 		
 		

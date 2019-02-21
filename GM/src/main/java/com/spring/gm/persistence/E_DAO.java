@@ -27,7 +27,7 @@ public interface E_DAO {
 	
 	
 	// 메모 - 메모 폴더 갯수
-	public int getMemoBoardsCnt(int company);
+	public int getMemoBoardsCnt(String id);
 	
 	// 메모 - 내 모든 메모 게시판 리스트
 	public List<MemoVO> getMemoBoardsList(Map<String, Object> map);

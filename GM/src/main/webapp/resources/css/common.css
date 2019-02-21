@@ -545,6 +545,14 @@ img {
 	background: #fbeded;
 }
 
+.find_btn {
+	width: 26.5px;
+    height: 26.5px;
+    border-radius: 0 5px 5px 0 !important;
+    right: 5px;
+    top: -1px;
+}
+
 
 /* 스크롤바 */
 /* width */

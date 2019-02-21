@@ -121,7 +121,7 @@ public class O_Controller {
 	public String O_calendar(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendar");
 		
-		oservice.calendarPageNum(req, model);
+		oservice.calendarSelect(req, model);
 		
 		return "pages/O_calendar";
 	}
@@ -130,10 +130,41 @@ public class O_Controller {
 	@RequestMapping("/pages/O_calendarCreateView")
 	public String O_calendarCreateView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendarCreateView");
-		
 	
+		oservice.calendarWrite(req, model);
 		
 		return "pages/O_calendarCreateView";
+	}
+	
+	//일정 등록 pro
+	
+	@RequestMapping("/pages/O_calendarPro")
+	public String O_calendarPro(HttpServletRequest req, Model model) {
+		logger.info("URL : O_calendarPro");
+		
+		oservice.calendarPro(req, model);
+		
+		return "pages/O_calendarPro";
+	}
+	
+	//일정 상세 화면
+	@RequestMapping("/pages/O_calendarDetail")
+	public String O_calendarDetail(HttpServletRequest req, Model model) {
+		logger.info("URL : O_calendarDetail");
+		
+		oservice.calendarDetail(req, model);
+		
+		return "pages/O_calendarDetail";
+	}
+	
+	//일정 수정
+	@RequestMapping("/pages/O_calendarModify")
+	public String O_calendarModify(HttpServletRequest req, Model model) {
+		logger.info("URL : O_calendarDetail");
+		
+		oservice.calendarModify(req, model);
+		
+		return "pages/O_calendarModify";
 	}
 	
 	/* 일정 끝 */

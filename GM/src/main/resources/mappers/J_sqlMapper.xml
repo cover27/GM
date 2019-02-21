@@ -613,6 +613,103 @@
 		and to_char(s.day,'yyyymm')= #{year} and m.company = #{company}
      </select>
     
+    
+    
+    <!-- ========================기본수당 외 수당관리=============================-->
+    <!-- 출근 목록 뽑아오기 -->
+    <select id="GoOffCnt" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} and m.id = #{id} and to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
+    </select>
+    <select id="GoOffList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_maVO">
+    	select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} 
+    	and m.id = #{id} 
+    	and to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd') 
+    	and a.result = 1 
+    </select>
+    
+      <!--    날짜로 출근 목록 뽑아오기 -->
+    <select id="searchGoOffCnt" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} and m.id = #{id} 
+    	and to_char(a.day,'yyyymmdd')=#{date}
+    </select>
+    <select id="searchGoOffList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_maVO">
+    	select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} 
+    	and m.id = #{id} 
+    	and to_char(a.day,'yyyymmdd')=#{date}
+    </select>
+    
+    
+    
+    <!-- 출근시간 인서트 -->
+    <insert id="goInsert" parameterType="java.util.Map">
+    	INSERT INTO attended(num, id, day, go, off, RESULT ,worktime , overtime , nighttime , perceptiontime ,departuretime )
+		VALUES (seq_attended.nextval,#{id}, sysdate, #{time}, 0, 1, 0, 0, 0, #{ptime}, 0)
+    </insert>
+    
+    <!-- 퇴근시간 업데이트(근무시간, 연장시간, 야간시간, 조퇴시간) -->
+    <update id="offUpdate" parameterType="java.util.Map">
+    	UPDATE attended SET off = #{time}, worktime = #{wtime}, overtime = #{otime}, nighttime = #{ntime}, departuretime = #{dtime} WHERE id=#{id} and num = #{num}
+    </update>
+    
+    
+     <!-- 사원 근태 목록 뽑아오기 -->
+    <select id="allListCnt" parameterType="int" resultType="int">
+    	select count(*) as cnt
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} and  to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
+    </select>
+    <select id="allListList" parameterType="int" resultType="com.spring.gm.vo.join_maVO">
+    	select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company}
+    	and to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd') 
+    	and a.result = 1 
+    </select>
+    
+    
+    
+    <!-- 사원 근태 수정 -->
+    <select id="modifyCnt" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} and  to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
+    	and a.num = #{num}
+    </select>
+    <select id="modifyList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_maVO">
+    	select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company}
+    	and to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd') 
+    	and a.result = 1 
+    	and a.num = #{num}
+    </select>
+    
+    <!-- 수정 업데이트 -->
+    <update id="modifyUpdate" parameterType="java.util.Map">
+    	UPDATE attended SET go = #{go} , off = #{off}, worktime = #{wtime}, overtime = #{otime}, nighttime = #{ntime}, perceptiontime = #{ptime}, departuretime = #{dtime} WHERE num = #{num}
+    </update>
+    
+    
+    
+    
+    
+    
      
      
      
