@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.O_Service;
+import com.spring.gm.vo.MemberVO;
 
 @Controller
 public class O_Controller {
@@ -25,6 +26,8 @@ public class O_Controller {
 	//업무 요청 - 업무관리 클릭 화면 및 수신업무 요청 화면
 	@RequestMapping("/pages/O_listTodoView")
 	public String O_listTodoView(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listTodoView");
 		
 		return "pages/O_listTodoView";
@@ -33,6 +36,8 @@ public class O_Controller {
 	//업무 등록 화면
 	@RequestMapping("/pages/O_createSelfTaskView")
 	public String O_createSelfTaskView(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_createSelfTaskView");
 		
 		return "pages/O_createSelfTaskView";
@@ -41,6 +46,8 @@ public class O_Controller {
 	//업무 요청 - 내가 한 업무요청 화면
 	@RequestMapping("/pages/O_listPureOrderView")
 	public String O_listPureOrderView(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listPureOrderView");
 		
 		return "pages/O_listPureOrderView";
@@ -49,6 +56,8 @@ public class O_Controller {
 	//업무 요청 - 참조 업무 요청 화면
 	@RequestMapping("/pages/O_listSubTodoView")
 	public String O_listSubTodoView(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listSubTodoView");
 		
 		return "pages/O_listSubTodoView";
@@ -57,6 +66,8 @@ public class O_Controller {
 	//업무 보고 - 내가 한 업무 보고 화면
 	@RequestMapping("/pages/O_listPureOrderReportView")
 	public String O_listPureOrderReportView(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listPureOrderReportView");
 		
 		return "pages/O_listPureOrderReportView";
@@ -65,6 +76,8 @@ public class O_Controller {
 	//업무 요청 - 업무완료함
 	@RequestMapping("/pages/O_listTodoReportView")
 	public String O_listTodoReportView(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listTodoReportView");
 		
 		return "pages/O_listTodoReportView";
@@ -73,6 +86,8 @@ public class O_Controller {
 	//업무 보관함
 	@RequestMapping("/pages/O_listMenuStoredTaskView")
 	public String O_listMenuStoredTaskView(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listMenuStoredTaskView");
 		
 		return "pages/O_listMenuStoredTaskView";
@@ -80,8 +95,10 @@ public class O_Controller {
 	
 	
 	//관리자 메뉴 - 업무 문서 관리
-	@RequestMapping("/pages/O_listAdminDocManagement")
+	@RequestMapping("/admin/O_listAdminDocManagement")
 	public String O_listAdminDocManagement(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listAdminDocManagement");
 		
 		return "admin/O_listAdminDocManagement";

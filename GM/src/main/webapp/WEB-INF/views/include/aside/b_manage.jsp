@@ -13,26 +13,42 @@
             <h2>업무관리</h2>
             <div class="category">
                 <ul>
+                	<c:if test="${sys_rank != 1}">
                 	<li>
-                        <span><a href="<c:url value='O_createSelfTaskView' />">업무 등록</a></span>
+                        <span><a href="<c:url value='/pages/O_createSelfTaskView' />">업무 등록</a></span>
                     </li>
                     <li>
                         <span>업무 요청</span>
                         <ul>
-                            <li><a href="<c:url value='O_listPureOrderView' />">내가 한 업무 요청</a></li>
-                            <li><a href="<c:url value='O_listTodoView' />">수신 업무 요청</a></li>
-                            <li><a href="<c:url value='O_listSubTodoView' />">참조 업무 요청</a></li>
-                            <li><a href="<c:url value='O_listTodoReportView' />">업무 완료함</a></li>
+                            <li><a href="<c:url value='/pages/O_listPureOrderView' />">내가 한 업무 요청</a></li>
+                            <li><a href="<c:url value='/pages/O_listTodoView' />">수신 업무 요청</a></li>
+                            <li><a href="<c:url value='/pages/O_listSubTodoView' />">참조 업무 요청</a></li>
+                            <li><a href="<c:url value='/pages/O_listTodoReportView' />">업무 완료함</a></li>
+                        </ul>
+                    </li>
+                    </c:if>
+            		<c:if test="${sys_rank == 1}">
+            		<li>
+                        <span><a href="<c:url value='/pages/O_createSelfTaskView' />">업무 등록</a></span>
+                    </li>
+                    <li>
+                        <span>업무 요청</span>
+                        <ul>
+                            <li><a href="<c:url value='/pages/O_listPureOrderView' />">내가 한 업무 요청</a></li>
+                            <li><a href="<c:url value='/pages/O_listTodoView' />">수신 업무 요청</a></li>
+                            <li><a href="<c:url value='/pages/O_listSubTodoView' />">참조 업무 요청</a></li>
+                            <li><a href="<c:url value='/pages/O_listTodoReportView' />">업무 완료함</a></li>
                         </ul>
                     </li>
                     <li>
                     	<span>관리자 메뉴</span>
                     	<ul>
                     		<li>
-                    			<a href="<c:url value='O_listAdminDocManagement' />">업무 문서 관리</a>
+                    			<a href="<c:url value='/admin/O_listAdminDocManagement' />">업무 문서 관리</a>
                     		</li>
                     	</ul>
                     </li>
+                    </c:if>
                 </ul>
             </div>
         </div>
