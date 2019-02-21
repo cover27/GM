@@ -4,6 +4,15 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-<mapper namespace="com.spring.gm.persistence.J_DAO" >
+<mapper namespace="com.spring.gm.persistence.S_DAO" >
 
+	<select id="getMailBoxArticleCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM BOARDS WHERE id = #{strId}
+	</select>
+	
+	<select id="getMailBoxArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MailBoxVO">
+		<![CDATA[
+			SELECT * FROM(SELECT mail_num, id, name, rank, del, status, rownum rNum FROM (SELECT * FROM mailbox WHERE id = #{strId} ORDER BY mail_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+		]]>
+	</select>	
 </mapper>
