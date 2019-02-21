@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <style>
 .search-wrap {
     margin: 0 0 20px;
@@ -290,215 +289,153 @@ tbody {
 <section>
 	<article>
 		<div class="content_header">
-			<h2>참조/열람 문서함</h2>
+			<h2>참조/합의 문서</h2>
 		</div>
 		
-		<!-- 참조/열람 문서함 게시글 나열 list -->
+		<!-- 결재 대기함 게시글 나열 list -->
 		<div class="content-wrap responsive pt10">
-			<form id="searchForm" method="post" action="/groupware/approval/work/apprlist/listApprReference.do?OWASP_CSRFTOKEN=9VQ9-4ZEE-ESUQ-VLNV-KMFL-J2TM-48NM-V313" novalidate="novalidate">
+			<form id="searchForm" method="post" action="/groupware/approval/work/apprlist/listApprMyRequest.do?OWASP_CSRFTOKEN=HBBI-YW0L-FXCE-F7IU-BSAG-5AQK-08FF-K8HD" novalidate="novalidate">
 				<input name="apprId" type="hidden" value="" title="hidden">
-				<input name="listType" type="hidden" value="listApprReference" title="hidden">
-				<input name="entrustUserId" type="hidden" value="" title="hidden">
+				<input name="listType" type="hidden" value="myRequestList" title="hidden">
+				<input name="linkType" type="hidden" value="" title="hidden">
+				<input name="apprIds" type="hidden" value="" title="hidden">
 				<input name="sortColumn" type="hidden" value="apprReqDate" title="정렬 컬럼">
 				<input name="sortType" type="hidden" value="DESC" title="정렬 타입 ">
-			
+			    	
 				<!-- search start-->
 				<div class="search-wrap">
-					<div class="form-group">
-						<table>
-							<caption></caption>
-							<colgroup>
-								<col style="width: 7%;">
-								<col style="width: 33%;">
-								<col style="width: 7%;">
-								<col style="width: 33%;">
-							</colgroup>	
-							<tbody>
-								<tr>
-									<th scope="row"><label for="searchUserName">기안자</label></th>
-									<td><input id="searchUserName" name="searchUserName" value="" type="text" title="기안자" class="w40p" onkeypress="apprSecrchKeyevent(event);"></td>
-									<th scope="row"><label for="searchFormName">양식명</label></th>
-									<td><input id="searchFormName" name="searchFormName" value="" type="text" title="양식명" class="w50p" onkeypress="apprSecrchKeyevent(event);"></td>
-								</tr>
-								<tr>
-									<th scope="row">
-										<select id="toggleSearchType">
-											<option value="searchApprTitle">
-												문서제목
-											</option>
-											<option value="searchApprContent">
-												문서내용
-											</option>
-											<option value="searchApprDocNo">
-												문서번호
-											</option>
-										</select>
-									</th>
-									<td>
-										<input id="inputSearchType" type="text" class="w80p" onkeypress="apprSecrchKeyevent(event);" title="문서제목" name="searchApprTitle" value="">
-									</td>
-									<th scope="row">								
-										<label>완료일</label>
-									</th>
-									<td>
-										<input type="text" title="시작일" id="searchFinishStartDate" name="searchFinishStartDate" value="" class="input-datepicker w100" placeholder="시작일">
-										<button type="button" class="btn btn-color7 br tbl-inner"><i class="icon calendar"></i></button>
-											<span>~</span>
-										<input type="text" title="종료일" id="searchFinishEndDate" name="searchFinishEndDate" value="" class="input-datepicker w100" placeholder="종료일">
-										<button type="button" class="btn btn-color7 br tbl-inner"><i class="icon calendar"></i></button>
-									</td>								
-								</tr>
-								<tr>
-									<th scope="row"><label for="searchReadYn">확인여부</label></th>
-									<td><select id="searchReadYn" title="확인여부" name="searchReadYn">
-											<option value="all">전체</option>
-											<option value="Y">확인</option>
-											<option value="N">미확인</option>
-										</select>
-									</td>
-									<th scope="row"><label for="searchApprDocStatus">문서상태</label></th>
-									<td><select id="searchApprDocStatus" title="문서상태" name="searchApprDocStatus">
-												<option value="">전체</option>
-												<option value="1">진행중</option>
-												<option value="2">완료</option>
-												<option value="3">반려</option>
-										</select>
-									</td>
-								</tr>															
-							</tbody>
-						</table>
-						<div class="search_btn">
-							<button type="button" id="searchApListButton" class="btn btn-color5 br"><i class="fa fa-search fa-fw"></i> 검색</button>
-						</div>
+				<div class="form-group">
+					<table>
+						<caption></caption>
+						<colgroup>
+							<col style="width: 7%;">
+							<col style="width: 33%;">
+							<col style="width: 7%;">
+							<col style="width: 33%;">
+						</colgroup>	
+						<tbody>
+							<tr>
+								<th scope="row"><label for="searchUserName">기안자</label></th>
+								<td><input id="searchUserName" name="searchUserName" value="" type="text" title="기안자" class="w40p" onkeypress="apprSecrchKeyevent(event);"></td>
+								<th scope="row"><label for="searchFormName">양식명</label></th>
+								<td><input id="searchFormName" name="searchFormName" value="" type="text" title="양식명" class="w50p" onkeypress="apprSecrchKeyevent(event);"></td>
+							</tr>
+							<tr>
+								<th scope="row">
+									<select id="toggleSearchType">
+										<option value="searchApprTitle">
+											문서제목
+										</option>
+										<option value="searchApprContent">
+											문서내용
+										</option>
+									</select>
+								</th>
+								<td>
+									<input id="inputSearchType" type="text" class="w80p" onkeypress="apprSecrchKeyevent(event);" title="문서제목" name="searchApprTitle" value="">
+								</td>
+								
+								<th scope="row">								
+									<label>배정일</label>
+								</th>
+								<td>
+									<input type="text" title="시작일" id="searchStartDate" name="searchStartDate" value="" class="input-datepicker w100" placeholder="시작일">
+									<button type="button" class="btn btn-color7 br tbl-inner"><i class="icon calendar"></i></button>
+										<span>~</span>
+									<input type="text" title="종료일" id="searchEndDate" name="searchEndDate" value="" class="input-datepicker w100" placeholder="종료일">
+									<button type="button" class="btn btn-color7 br tbl-inner"><i class="icon calendar"></i></button>
+								</td>										
+							</tr>
+							<tr>
+								<th scope="row"><label for="searchApprDocNo">문서번호</label></th>
+									<td><input id="searchApprDocNo" type="text" title="문서번호" name="searchApprDocNo" value="" onkeypress="apprSecrchKeyevent(event);" class="w40p">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="search_btn">
+						<button type="button" id="searchApListButton" class="btn btn-color5 br"><i class="fa fa-search fa-fw"></i> 검색</button>
 					</div>
 				</div>
+			</div>
 				<!-- search end-->	
-					
+	
+			    	
 				<!-- table-header -->
 				<div class="table-header">
 					<div class="listinfo">
-						<select name="pagePerRecord" title="페이지당 게시글 수">
-							<option value="10" selected="selected">10</option>
-							<option value="20">20</option>
-							<option value="30">30</option>
-							<option value="40">40</option>
-							<option value="50">50</option>
-						</select> 
-						<div class="totalnum">전체<span> 5</span>
-						</div>														
+						<div class="totalnum">전체<span>${cnt }</span>						</div>													
 						<div class="table-search astatus">
-							<span><i class="icon progress"></i> 진행중</span>
-							<span><i class="icon completion"></i> 완료</span>
-							<span><i class="icon reject"></i> 반려</span>
-						</div>
-					</div>					
+						</div>			
+					</div>						
 				</div>
 				<!-- //table-header -->
-									
+						    	
 				<!-- content-list approval -->
-				<div class="content-list approval">
-																	
-					<!-- listtable -->
-					<div>
-						<table class="table table-striped striped02" id="listTable">
-							<caption></caption>
-							<colgroup>
-								<col width="4%">
-								<col width="4%">
-								<col width="9%">
-								<col width="*">
-								<col width="10%">
-								<col width="11%">
-								<col width="11%">
-								<col width="11%">
-								<col width="6%">	
-							</colgroup>						
-							<thead>
-								<tr>
-									<th scope="col"><input name="allCheck" id="allCheck" title="checkbox" type="checkbox" value=""></th>
-									<th scope="col">NO</th>
-									<th scope="col">문서번호</th>
-									<th scope="col">
-										<a onclick="f_Sort('apprTitle', '');" href="#a">문서제목</a>
-										<i class="fa fa-caret-down"><span class="blind">내림차순</span></i>
-									</th>
-									<th scope="col">기안자</th>
-									<th scope="col">기안부서</th>
-									<th scope="col">
-										<a onclick="f_Sort('apprReqDate', 'DESC');" href="#a">기안일</a>
-										<i class="fa fa-caret-down active"><span class="blind">내림차순</span></i>
-									</th>
-									<th scope="col">
-										<a onclick="f_Sort('apprEndDate', '');" href="#a">완료일</a>
-										<i class="fa fa-caret-down"><span class="blind">내림차순</span></i>
-									</th>
-									<th scope="col">문서상태</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="" style="background: rgb(249, 249, 249);">
-									<td style="background: rgb(249, 249, 249);">
-									</td>
-									<td style="background: rgb(249, 249, 249);">5</td>
-									<td style="background: rgb(255, 255, 255);">
-										<div class="ellipsis" title="20190116-0001" style="cursor:default;">20190116-0001</div>
-									</td>											
-									<td class="text-left" style="background: rgb(249, 249, 249);">
-										<div class="ellipsis">
-											<a href="#a" onclick="getApprDetail('26947824','','');" title="테스트11111">테스트11111</a>
-											<span class="text-point-b"></span>	
-										</div>
-									</td>
-									<td style="background: rgb(249, 249, 249);">
-										<div class="ellipsis">
-											<span class="name">
-												<a href="#a" onclick="spro.showUserContextMenu(this, 'U260222', 'bottom')">오정</a>
-											</span>
-										</div>
-									</td>
-									<td style="background: rgb(249, 249, 249);">
-										<div class="ellipsis">테스트</div>
-									</td>
-									<td style="background: rgb(249, 249, 249);">2019.01.16 18:29</td>
-									<td style="background: rgb(249, 249, 249);"></td>
-									<td style="background: rgb(249, 249, 249);">
-										<div class="select2-container ap-status">
-											<a class="btn progress" onclick="getViewApprLine(this, '26947824');">
-												<span class="select2-category">
-													<i class="icon progress"></i>
-												</span>
-												<span class="caret">
-												</span>
-											</a>
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						
-						<!-- pagination -->	
-							
-							<div class="pagination-wrap"><ul class="pagination"><li><a href="javascript:void(0)" class="disabled"><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i><span class="none">first</span></a></li><li><a href="javascript:void(0)" class="disabled"><i class="fa fa-chevron-left"></i><span class="none">previous</span></a></li><li class="active"><a href="javascript:void(0)">1</a></li><li><a href="javascript:void(0)" class="disabled"><i class="fa fa-chevron-right"></i><span class="none">next</span></a></li><li><a href="javascript:void(0)" class="disabled"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i><span class="none">last</span></a></li></ul></div><script>pageMoveAction = function(inputName, formId, movePageIndex) { jQuery('input[name=' + inputName + ']', formId).val(movePageIndex); jQuery('input[name=action]', formId).val('pagePerRecord');};</script>
-	
-							<input id="pageIndex" name="pageIndex" type="hidden" value="1" title="현재 페이지">
-							 
-						<!--// pagination -->	
-					</div>
-					<!-- //listtable -->	
-				</div>
-				<!-- //content-list approval -->
-				<!-- button line -->
-					<div class="btn-wrap">
-						<button id="ajaxAddReadAll" type="button" class="btn btn-color5 br">
-							열람권한
-						</button>
-					</div>
-				
-				<!-- button line -->
-			
-			<input type="hidden" name="OWASP_CSRFTOKEN" value="9VQ9-4ZEE-ESUQ-VLNV-KMFL-J2TM-48NM-V313"></form>	
+				<div class="content-list approval">		
+				<!-- listtable -->
+				<div>
+				<table class="table table-striped " id="listTable">
+					<tr>
+						<th>순서</th>
+						<th>제목</th>
+						<th>기안자</th>
+						<th>요청일</th>
+						<th>만료일</th>
+						<th>상태</th>
+					</tr>
+					<c:if test="${cnt > 0 }">
+						<c:forEach var="dto" items="${payment }">
+							<tr onclick="window.location='<c:url value='/pages/P_payContentForm?num=${dto.num }&groupid=${dto.groupId }'/>'">
+								<th>
+									${number}
+									<c:set var="number" value="${number-1}"/>
+								</th>
+								<th>${dto.subject }</th>
+								<th>${dto.name }</th>
+								<th>${dto.reg_date }</th>
+								<th>${dto.deadline }</th>
+								<th>${dto.state }</th>
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${cnt == 0 }">
+						<tr>
+							<th colspan="6">문서가 없습니다.</th>
+						</tr>
+					</c:if>
+				</table>
+			</form>	
 		</div>
-		
-		
+		<table>
+			<tr>
+				<th align="center">
+					<!-- 게시글이 있으면 -->
+					<c:if test="${cnt > 0}">
+						<!-- 처음[◀◀] / 이전블록[◀]  -->
+						<c:if test="${startPage > pageBlock}">					
+							<a href="<c:url value='/pages/P_listApprTodoView'/>">[◀◀ ]</a>						
+							<a href="<c:url value='/pages/P_listApprTodoView?pageNum=${startPage - pageBlock}'/>">[◀ ]</a>
+						</c:if>
+						
+						<!-- 블록내의 페이지 번호 -->
+						<c:forEach var="i" begin="${startPage}" end="${endPage}">
+							<c:if test="${i == currentPage}">
+								<span><b>[${i}]</b></span>
+							</c:if>
+							<c:if test="${i != currentPage}">
+								<a href="<c:url value='/pages/P_listApprTodoView?pageNum=${i}'/>">[${i}]</a>
+							</c:if>
+						</c:forEach>					
+						
+						<!-- 다음 블록[▶] / 끝[▶▶]> -->
+						<c:if test="${pageCount > endPage}">					
+							<a href="<c:url value='/pages/P_listApprTodoView?pageNum=${startPage + pageBlock}'/>">[▶ ]</a>						
+							<a href="<c:url value='/pages/P_listApprTodoView?pageNum=${pageCount}'/>">[▶▶ ] </a>
+						</c:if>
+					</c:if>
+				</th>
+			</tr>
+		</table>
 	</article>
 </section>

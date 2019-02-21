@@ -76,5 +76,6 @@ public interface D_DAO {
 	public int confirmIdPwd(Map<String, String> map);
 
 	public MemberVO getMemberInfo(String id);
+
 	
 }

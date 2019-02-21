@@ -21,6 +21,12 @@ public interface P_DAO {
 	//본인이 속한 결제그룹리스트를 가져오는 함수
 	public int getPaymentCnt(Map<String, Object> map);
 	public List<PaymentVO> getPaymentList(Map<String, Object> map);
+	public int getPaymentCnt2(Map<String, Object> map);
+	public List<PaymentVO> getPaymentList2(Map<String, Object> map);
+	public int getPaymentCnt3(Map<String, Object> map);
+	public List<PaymentVO> getPaymentList3(Map<String, Object> map);
+	public int getPaymentCnt4(Map<String, Object> map);
+	public List<PaymentVO> getPaymentList4(Map<String, Object> map);
 	
 	public PaymentVO getPayment(int groupid);
 	
@@ -32,5 +38,6 @@ public interface P_DAO {
 	public int finalApproveCheck(Map<String, Object> map);
 	public int beforeApproveCheck(Map<String, Object> map);
 	public int updateApprove(Map<String, Object> map);
-	public int updatePayment(int num);
+	public int updatePayment(Map<String, Object> map);
+	public int checkRefer(Map<String, Object> map);
 }
