@@ -38,6 +38,9 @@ public interface P_Service {
 	//합의진행
 	public void P_payAgree_pro(HttpServletRequest req, Model model);
 	
+	//검색기능
+	public void P_SearchPaymentTool(HttpServletRequest req, Model model);
+	
 	//결제진행함
 	public void P_listApprCompleteView(HttpServletRequest req, Model model);
 	

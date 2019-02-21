@@ -35,7 +35,7 @@ function delBoard(){
 					<table>
 						<colgroup>
 							<col width="100px" />
-							<col width="100px" />
+							<col width="200px" />
 							<col width="*" />
 							<col width="200px" />
 							<col width="300px" />
@@ -57,7 +57,7 @@ function delBoard(){
 					<table>
 						<colgroup>
 							<col width="100px" />
-							<col width="100px" />
+							<col width="200px" />
 							<col width="*" />
 							<col width="200px" />
 							<col width="300px" />
@@ -69,11 +69,11 @@ function delBoard(){
 								<c:if test="${dto.del == 0}">
 									<tr>
 										<td><input type="checkbox" name="checkRow" value="${dto.boardnum}" /></td>
-										<td style="text-align: left; padding-left: 20px;">
+										<td>
 											<c:forEach var="dtos" items="${b_dtos}">
-											<c:if test="${dto.num == dtos.num}">
-												${dtos.b_name}
-											</c:if>
+												<c:if test="${dto.num == dtos.num}">
+													${dtos.b_name}
+												</c:if>
 											</c:forEach>
 										</td>
 										<td style="text-align: left; padding-left: 20px;">

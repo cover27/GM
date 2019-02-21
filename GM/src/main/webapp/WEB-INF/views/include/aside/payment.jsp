@@ -36,7 +36,7 @@
 	                    <li>
 	                        <span>관리자메뉴</span>
 	                        <ul>
-	                            <li id="P_managePayment"><a href="<c:url value='/pages/P_managePayment' />">결재문서관리</a></li>
+	                            <li id="P_managePayment"><a href="<c:url value='/admin/P_managePayment' />">결재문서관리</a></li>
 	                        </ul>
 	                    </li>
                     <%
