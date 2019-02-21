@@ -14,7 +14,7 @@
 	<c:if test="${deleteCnt != 0}">
 		<script type="text/javascript">
 			alert("글이 삭제되었습니다.");
-			window.location="<c:url value='/pages/D_allBoardList'/>"
+			window.location="<c:url value='/pages/D_allBoardList?num=&pageNum=${pageNum}'/>"
 		</script>
 	</c:if>
 </body>

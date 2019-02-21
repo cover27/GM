@@ -17,7 +17,7 @@
 	
 	<select id="getBoardsArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardsVO">
 		<![CDATA[
-			SELECT * FROM(SELECT num, groupId, b_name, anon, del, rownum rNum FROM (SELECT * FROM BOARDS WHERE groupId = #{company} ORDER BY num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT num, groupId, b_name, anon, del, rownum rNum FROM (SELECT * FROM BOARDS WHERE groupId = #{company} ORDER BY num ASC))
 		]]>
 	</select>
 	

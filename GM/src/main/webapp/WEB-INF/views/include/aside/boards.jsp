@@ -21,12 +21,28 @@
                         			<li id="${b_dtos.num}">
 	                        			<script type="text/javascript">
 	                        				/* 선택된 메뉴 강조 */
-	                        				if(url[1]=="/pages/D_boardList?num=${b_dtos.num}") {
+	                        				var url_page = url[1].split('&');
+	                        				// alert(url_page[0]);
+	                        				if(url_page[0]=="/pages/D_allBoardList?num=") {
+	                        					$(function(){
+	                        						$("#D_allBoardList").children().css("color", "#d3292c");
+	                        						$("#D_allBoardList").css("font-weight", "bold");
+	                        					});
+	                        				} else if(url[1]=="/pages/D_boardList?num=${b_dtos.num}") {
 	                        					$(function(){
 	                        						$("#${b_dtos.num}").children().css("color", "#d3292c");
 	                        						$("#${b_dtos.num}").css("font-weight", "bold");
 	                        					});
-
+	                        				} else if(url_page[0]=="/pages/D_boardList?num=${b_dtos.num}") {
+	                        					$(function(){
+	                        						$("#${b_dtos.num}").children().css("color", "#d3292c");
+	                        						$("#${b_dtos.num}").css("font-weight", "bold");
+	                        					});
+	                        				} else if(url_page[0]=="/pages/D_writeForm?num=${b_dtos.num}") {
+	                        					$(function(){
+	                        						$("#${b_dtos.num}").children().css("color", "#d3292c");
+	                        						$("#${b_dtos.num}").css("font-weight", "bold");
+	                        					});
 	                        				}
 	                        			</script>
                         				<a href="<c:url value='/pages/D_boardList?num=${b_dtos.num}'/>">${b_dtos.b_name}</a>

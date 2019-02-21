@@ -22,7 +22,7 @@ function delBoard(){
 	}
 }
 
-
+/*	페이징 용도로 사용하려다가 버린 ajax 
 function page_go(i, num) {
 	alert("게시판번호 : "+num);
 	$.ajax({
@@ -41,7 +41,7 @@ function page_go(i, num) {
 		}
 	});
 }
-
+ */
 </script>
 <section>
     <article>
@@ -56,7 +56,6 @@ function page_go(i, num) {
 					<table>
 						<colgroup>
 							<col width="100px" />
-							<col width="100px" />
 							<col width="*" />
 							<col width="200px" />
 							<col width="300px" />
@@ -65,7 +64,6 @@ function page_go(i, num) {
 						<thead>
 							<tr>
 								<th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allCheck()" /></th>
-								<th>글번호</th>
 								<th>글제목</th>
 								<th>작성자</th>
 								<th>작성일</th>
@@ -78,7 +76,6 @@ function page_go(i, num) {
 					<table>
 						<colgroup>
 							<col width="100px" />
-							<col width="100px" />
 							<col width="*" />
 							<col width="200px" />
 							<col width="300px" />
@@ -90,9 +87,6 @@ function page_go(i, num) {
 									<c:if test="${dto.del == 0}">
 										<tr>
 											<td><input type="checkbox" name="checkRow" value="${dto.boardnum}" /></td>
-											<td>
-												${dto.ref}
-											</td>
 											<td style="text-align: left; padding-left: 20px;">
 												<c:if test="${dto.ref_level >= 1}">
 													<c:set var="wid" value="${(dto.ref_level-1) * 10}" />
@@ -100,7 +94,7 @@ function page_go(i, num) {
 												</c:if>
 												<c:if test="${dto.ref_level > 0}"></c:if>
 												<c:if test="${dto.readcnt > 10}"></c:if>
-												<a href="<c:url value='/pages/D_boardContent?boardnum=${dto.boardnum}&num=${num}&ref_level=${dto.ref_level}&pageNum=${pageNum}&number=${number+1}'/>">
+												<a href="<c:url value='/pages/D_boardContent?num=${num}&boardnum=${dto.boardnum}&ref_level=${dto.ref_level}&pageNum=${pageNum}&number=${number+1}'/>">
 													${dto.subject}
 												</a>
 												[${dto.re_num}]
@@ -125,7 +119,7 @@ function page_go(i, num) {
 						<c:if test="${cnt > 0}">
 						    <c:if test="${startPage > pageBlock}">
 						        <a href="<c:url value='/pages/D_boardList'/>">[◀◀]</a>
-						        <a href="<c:url value='/pages/D_boardList?pageNum=${startPage - pageBlock}&num=${num}'/>">[◀]</a>
+						        <a href="<c:url value='/pages/D_boardList?num=${num}&pageNum=${startPage - pageBlock}'/>">[◀]</a>
 						    </c:if>
 						
 						    <c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -133,14 +127,13 @@ function page_go(i, num) {
 						            <span><b>[${i}]</b></span>
 						        </c:if>
 						        <c:if test="${i != currentPage}">
-						            <%-- <a href="#" onclick="page_go('${i}', '${num}')">[${i}]</a> --%>
-						            <a href="<c:url value='/pages/D_boardList?pageNum=${i}&num=${num}'/>">[${i}]</a>
+						            <a href="<c:url value='/pages/D_boardList?num=${num}&pageNum=${i}'/>">[${i}]</a>
 						        </c:if>
 						    </c:forEach>
 						
 						    <c:if test="${pageCount > endPage}">
-						        <a href="<c:url value='/pages/D_boardList?pageNum=${startPage + pageBlock}&num=${num}'/>">[▶]</a>
-						        <a href="<c:url value='/pages/D_boardList?pageNum=${pageCount}&num=${num}'/>">[▶▶]</a>
+						        <a href="<c:url value='/pages/D_boardList?num=${num}&pageNum=${startPage + pageBlock}'/>">[▶]</a>
+						        <a href="<c:url value='/pages/D_boardList?num=${num}&pageNum=${pageCount}'/>">[▶▶]</a>
 						    </c:if>
 						</c:if>
 		            </div>	
