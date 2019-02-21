@@ -134,7 +134,7 @@ function page_go(i, num) {
 						        </c:if>
 						        <c:if test="${i != currentPage}">
 						            <%-- <a href="#" onclick="page_go('${i}', '${num}')">[${i}]</a> --%>
-						            <a href="<c:url value='/pages/D_boardListPage?pageNum=${i}&num=${num}'/>">[${i}]</a>
+						            <a href="<c:url value='/pages/D_boardList?pageNum=${i}&num=${num}'/>">[${i}]</a>
 						        </c:if>
 						    </c:forEach>
 						
