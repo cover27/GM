@@ -206,8 +206,6 @@ public class D_ServiceImpl implements D_Service{
 
 		}
 
-		
-		
 		// 시작페이지
 		startPage = (currentPage / pageBlock) * pageBlock + 1; 
 		if(currentPage % pageBlock == 0) startPage -= pageBlock;

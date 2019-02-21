@@ -277,11 +277,11 @@ public class O_ServiceImpl implements O_Service{
 
 	//일정 수정
 	@Override
-	public void calendarModify(HttpServletRequest req, Model model) {
-		
+	public void calendarModify(HttpServletRequest req, Model model) {		
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
 		ScheduleVO vo = new ScheduleVO();
+		vo.setNum(Integer.parseInt(req.getParameter("num"))); // 장훈작성
 		vo.setScheduleKind(req.getParameter("scheduleKind"));
 		vo.setSubject(req.getParameter("subject"));
 		vo.setLocation(req.getParameter("location"));

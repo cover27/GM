@@ -15,7 +15,9 @@
 	<c:if test="${updateCnt != 0}">
 		<script type="text/javascript">
 			alert("일정 수정 완료했습니다.");
-			window.location="O_calendar";
+			// window.location="O_calendar";
+			opener.location.reload();
+			self.close();
 		</script>
 	</c:if>
 

@@ -18,6 +18,7 @@ table, tr, th, td{
 		<!-- 일정보기 내용 -->
 		<div class="content_body">
 			<form action="<c:url value='/pages/O_calendarModify'/>" method="post">
+			<input type="hidden" name="num" value="${vo.num}" /> <!-- 장훈수정 -->
 			<c:if test="${num != 0}">
 				<div class="content-write">
 					<div class="form-block">
