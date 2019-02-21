@@ -11,6 +11,7 @@ import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
 import com.spring.gm.vo.join_maVO;
+import com.spring.gm.vo.join_margcVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgsbVO;
 import com.spring.gm.vo.join_mgsbcVO;
@@ -189,8 +190,8 @@ public interface J_DAO {
 	public int offUpdate(Map<String, Object> map); 
 	
 	// 사원 근태 목록 뽑아오기
-	public int allListCnt(int company);
-	public ArrayList<join_maVO> allListList(int company);
+	public int allListCnt(Map<String, Object> map);
+	public ArrayList<join_maVO> allListList(Map<String, Object> map);
 	
 	//사원 근태 수정
 	public int modifyCnt(Map<String, Object> map);
@@ -199,5 +200,22 @@ public interface J_DAO {
 	// 근태 수정 업데이트
 	public int modifyUpdate(Map<String, Object> map);
 	
+	//월별 근태 정보 가져오기
+	public int monthCnt(Map<String, Object> map);
+	public ArrayList<join_margcVO> monthList(Map<String, Object> map);
+	public ArrayList<join_margcVO> monthList2(Map<String, Object> map);
 	
+	
+	//휴가 목록 뽑아오기
+	public int holidayCnt(Map<String, Object> map);
+	public ArrayList<join_margcVO> holidayList(Map<String, Object> map);
+	public ArrayList<join_margcVO> holidayList2(Map<String, Object> map);
+	//연장근무 목록 뽑아오기
+	public int overtimeCnt(Map<String, Object> map);
+	public ArrayList<join_margcVO> overtimeList(Map<String, Object> map);
+	public ArrayList<join_margcVO> overtimeList2(Map<String, Object> map);
+	//야간 목록 뽑아오기
+	public int nighttimeCnt(Map<String, Object> map);
+	public ArrayList<join_margcVO> nighttimeList(Map<String, Object> map);
+	public ArrayList<join_margcVO> nighttimeList2(Map<String, Object> map);
 }
