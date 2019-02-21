@@ -140,6 +140,16 @@ public class P_Controller {
 		return "pages/sub/P_payAgree_pro";
 	}
 	
+	//각 결재함의 검색기능
+	@RequestMapping("/pages/P_SearchPaymentTool")
+	public String P_SearchPaymentTool(HttpServletRequest req, Model model) {
+		logger.info("URL : P_SearchPaymentTool");
+		
+		service.P_SearchPaymentTool(req, model);
+		
+		return "pages/sub/P_SearchPaymentTool";
+	}
+	
 	//결재 - 결재 진행함
 	@RequestMapping("/pages/P_listApprCompleteView")
 	public String P_listApprCompleteView(HttpServletRequest req, Model model) {

@@ -294,14 +294,10 @@ tbody {
 		
 		<!-- 결재 대기함 게시글 나열 list -->
 		<div class="content-wrap responsive pt10">
-			<form id="searchForm" method="post" action="/groupware/approval/work/apprlist/listApprMyRequest.do?OWASP_CSRFTOKEN=HBBI-YW0L-FXCE-F7IU-BSAG-5AQK-08FF-K8HD" novalidate="novalidate">
-				<input name="apprId" type="hidden" value="" title="hidden">
-				<input name="listType" type="hidden" value="myRequestList" title="hidden">
-				<input name="linkType" type="hidden" value="" title="hidden">
-				<input name="apprIds" type="hidden" value="" title="hidden">
-				<input name="sortColumn" type="hidden" value="apprReqDate" title="정렬 컬럼">
-				<input name="sortType" type="hidden" value="DESC" title="정렬 타입 ">
-			    	
+			<form id="searchForm" method="post" action="P_SearchPaymentTool">
+				
+				<input type="hidden" name="sel_Payment" value="5">
+				
 				<!-- search start-->
 				<div class="search-wrap">
 				<div class="form-group">
@@ -316,45 +312,35 @@ tbody {
 						<tbody>
 							<tr>
 								<th scope="row"><label for="searchUserName">기안자</label></th>
-								<td><input id="searchUserName" name="searchUserName" value="" type="text" title="기안자" class="w40p" onkeypress="apprSecrchKeyevent(event);"></td>
-								<th scope="row"><label for="searchFormName">양식명</label></th>
-								<td><input id="searchFormName" name="searchFormName" value="" type="text" title="양식명" class="w50p" onkeypress="apprSecrchKeyevent(event);"></td>
+								<td><input id="searchUserName" name="searchUserName" value="" type="text" title="기안자" class="w40p"></td>
 							</tr>
 							<tr>
 								<th scope="row">
-									<select id="toggleSearchType">
-										<option value="searchApprTitle">
+									<select name="toggleSearchType">
+										<option value="subject">
 											문서제목
 										</option>
-										<option value="searchApprContent">
+										<option value="content">
 											문서내용
 										</option>
 									</select>
 								</th>
 								<td>
-									<input id="inputSearchType" type="text" class="w80p" onkeypress="apprSecrchKeyevent(event);" title="문서제목" name="searchApprTitle" value="">
+									<input id="inputSearchType" type="text" class="w80p" title="문서제목" name="searchApprTitle" value="">
 								</td>
-								
 								<th scope="row">								
 									<label>배정일</label>
 								</th>
 								<td>
-									<input type="text" title="시작일" id="searchStartDate" name="searchStartDate" value="" class="input-datepicker w100" placeholder="시작일">
-									<button type="button" class="btn btn-color7 br tbl-inner"><i class="icon calendar"></i></button>
+									<input type="date" title="시작일" id="searchStartDate" name="searchStartDate" value="" placeholder="시작일">
 										<span>~</span>
-									<input type="text" title="종료일" id="searchEndDate" name="searchEndDate" value="" class="input-datepicker w100" placeholder="종료일">
-									<button type="button" class="btn btn-color7 br tbl-inner"><i class="icon calendar"></i></button>
-								</td>										
-							</tr>
-							<tr>
-								<th scope="row"><label for="searchApprDocNo">문서번호</label></th>
-									<td><input id="searchApprDocNo" type="text" title="문서번호" name="searchApprDocNo" value="" onkeypress="apprSecrchKeyevent(event);" class="w40p">
-								</td>
+									<input type="date" title="종료일" id="searchEndDate" name="searchEndDate" value="" placeholder="종료일">
+								</td>									
 							</tr>
 						</tbody>
 					</table>
 					<div class="search_btn">
-						<button type="button" id="searchApListButton" class="btn btn-color5 br"><i class="fa fa-search fa-fw"></i> 검색</button>
+						<input type="submit" class="btn btn-color5 br" value="검색">
 					</div>
 				</div>
 			</div>

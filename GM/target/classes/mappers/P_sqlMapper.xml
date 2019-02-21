@@ -32,13 +32,34 @@
 		select g_name from groups where company=#{company} and group_rank=1 and del=0
 	</select>
 	
-	<select id="getPaymentCnt" resultType="int">
+	<select id="getPaymentCnt" parameterType="java.util.Map" resultType="int">
 		 SELECT COUNT(*) FROM payment p, paymentinfo o
 		    WHERE p.num = o.num
 		    AND o.id = #{id}
 		    AND p.id != #{id}
 		    AND o.agree = #{agree}
 		    AND p.state like '%'||#{state}||'%'
+		    <if test="searchUserName != null">
+		    	AND p.name like '%'||#{searchUserName}||'%'
+		    </if>
+		    <if test="searchApprTitle != null">
+		    	<if test="toggleSearchType == 'subject'">
+		    		AND p.subject like '%'||#{searchApprTitle}||'%'
+		    	</if>
+		    	<if test="toggleSearchType == 'content'">
+		    		AND p.content like '%'||#{searchApprTitle}||'%'
+		    	</if>
+		    </if>
+		    <if test="searchStartDate != null">
+		    	<![CDATA[
+		    		AND p.deadline >= #{searchStartDate}
+		    	]]>
+		    </if>
+		    <if test="searchEndDate != null">
+		    	<![CDATA[
+		    		AND p.reg_date <= #{searchEndDate}
+		    	]]>
+		    </if>
 	</select>
 	
 	<select id="getPaymentList" parameterType="java.util.Map" resultType="com.spring.gm.vo.PaymentVO">
@@ -49,6 +70,29 @@
 			    AND p.id != #{id}
 			    AND o.agree = #{agree}
 			    AND p.state like '%'||#{state}||'%'
+		]]>
+			<if test="searchUserName != null">
+		    	AND p.name like '%'||#{searchUserName}||'%'
+		    </if>
+		    <if test="searchApprTitle != null">
+		    	<if test="toggleSearchType == 'subject'">
+		    		AND p.subject like '%'||#{searchApprTitle}||'%'
+		    	</if>
+		    	<if test="toggleSearchType == 'content'">
+		    		AND p.content like '%'||#{searchApprTitle}||'%'
+		    	</if>
+		    </if>
+		    <if test="searchStartDate != null">
+		    	<![CDATA[
+		    		AND p.deadline >= #{searchStartDate}
+		    	]]>
+		    </if>
+		    <if test="searchEndDate != null">
+		    	<![CDATA[
+		    		AND p.reg_date <= #{searchEndDate}
+		    	]]>
+		    </if>
+		<![CDATA[
 			    ORDER BY p.reg_date DESC)
 		    WHERE rNum >= #{start} AND rNum <= #{end}
 		 ]]>

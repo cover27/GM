@@ -498,7 +498,7 @@ public class K_ServiceImpl implements K_Service{
 		map.put("wrkdvd", wrkdvd);
 		map.put("enterday", enterday);
 		
-		if(depart == setDepart) {
+		if(depart == setDepart && depart != company) {
 			Map<String, Object> map2 = new HashMap<String, Object>();
 			map2.put("id", id);
 			map2.put("setDepart", setDepart);
