@@ -1,18 +1,18 @@
 package com.spring.gm.vo;
 
-public class MailVO {
-	private int mail_num;	// 메일함번호	
+public class MassageBoxVO {
+	private int massage_num;	// 쪽지함
 	private String id;		// 아이디(FK)	
 	private String name;	// 이름	
 	private int rank;		// 쪽지등급	
 	private int del;		// 삭제구분
 	private int status;		// 메일 읽음/안읽음 표시
 	
-	public int getMail_num() {
-		return mail_num;
+	public int getMassage_num() {
+		return massage_num;
 	}
-	public void setMail_num(int mail_num) {
-		this.mail_num = mail_num;
+	public void setMassage_num(int massage_num) {
+		this.massage_num = massage_num;
 	}
 	public String getId() {
 		return id;

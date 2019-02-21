@@ -2,7 +2,7 @@ package com.spring.gm.vo;
 
 import java.sql.Timestamp;
 
-public class MailBoxVO {
+public class MassageVO {
 	private int num;				// 메일번호	
 	private int mail_num;			// 메일함번호(FK)	
 	private String sender;			// 아이디(FK)	
@@ -13,6 +13,7 @@ public class MailBoxVO {
 	private Timestamp sentDate;		// 메일발송일
 	private Timestamp receivedDate;	// 메일 수신일	
 	private int del;				// 삭제구분	
+	
 	public int getNum() {
 		return num;
 	}

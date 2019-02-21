@@ -633,6 +633,22 @@
     	and a.result = 1 
     </select>
     
+      <!--    날짜로 출근 목록 뽑아오기 -->
+    <select id="searchGoOffCnt" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} and m.id = #{id} 
+    	and to_char(a.day,'yyyymmdd')=#{date}
+    </select>
+    <select id="searchGoOffList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_maVO">
+    	select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} 
+    	and m.id = #{id} 
+    	and to_char(a.day,'yyyymmdd')=#{date}
+    </select>
     
     
     
@@ -648,20 +664,184 @@
     </update>
     
     
+     <!-- 사원 근태 목록 뽑아오기 -->
+    <select id="allListCnt" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} and  to_char(a.day,'yyyymmdd')=#{date}
+    </select>
+    <select id="allListList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_maVO">
+    	select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company}
+    	and to_char(a.day,'yyyymmdd')=#{date}
+    	and a.result = 1 
+    </select>
     
     
     
+    <!-- 사원 근태 수정 -->
+    <select id="modifyCnt" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} and  to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
+    	and a.num = #{num}
+    </select>
+    <select id="modifyList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_maVO">
+    	select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+    	from member m, attended a
+    	where m.id = a.id
+    	and a.num = #{num}
+    </select>
+    
+    <!-- 수정 업데이트 -->
+    <update id="modifyUpdate" parameterType="java.util.Map">
+    	UPDATE attended SET go = #{go} , off = #{off}, worktime = #{wtime}, overtime = #{otime}, nighttime = #{ntime}, perceptiontime = #{ptime}, departuretime = #{dtime} WHERE num = #{num}
+    </update>
     
     
+    <!-- 월별 근태 정보 가져오기 -->
+   	<select id="monthCnt" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} and  to_char(a.day,'yyyymm')=#{month}
+    	and m.id=#{id}
+    </select> 
+   <select id="monthList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+    	select m.id, m.name, g.g_name as j_name,r.r_name as rank_name, a.day, a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+		from member m, attended a, grade r, groups g
+		where m.id = a.id and r.rank = m.rank and m.depart = g.groupid
+		and m.company = #{company} and  to_char(a.day,'yyyymm')=#{month}
+		and m.depart != #{company}
+		and m.id= #{id}
+		order by a.day
+    </select>
+    <select id="monthList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+    	select m.id, m.name, c.c_name as j_name,r.r_name as rank_name, a.day, a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+		from member m, attended a, grade r, companies c
+		where m.id = a.id and r.rank = m.rank and m.company = c.company
+		and m.company = #{company} and  to_char(a.day,'yyyymm')=#{month}
+		and m.depart = #{company}
+		and m.id= #{id}
+		order by a.day
+    </select>
     
     
-    
-    
-    
-    
-    
-    
-    
+     <!-- 휴가 목록 뽑아오기 -->
+     <select id="holidayCnt" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+		from member m, attended a
+		where m.id = a.id
+		and m.company = #{company} and  to_char(a.day,'yyyymm')=#{month} 
+		and a.result = 3
+    </select> 
+   <select id="holidayList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+    	select m.id, m.name, g.g_name as j_name, r.r_name as rank_name,a.day, a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+		from member m, attended a, grade r, groups g
+		where m.id = a.id and r.rank = m.rank and m.depart = g.groupid
+		and m.company = #{company} 
+		and m.depart != #{company}
+		and  to_char(a.day,'yyyymm')=#{month}
+		and a.result = 3
+    </select>
+    <select id="holidayList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+    	select m.id, m.name, c.c_name as j_name, r.r_name as rank_name,a.day, a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+		from member m, attended a, grade r, companies c
+		where m.id = a.id and r.rank = m.rank and m.company = c.company
+		and m.company = #{company}
+		and m.depart = #{company}
+		and  to_char(a.day,'yyyymm')=#{month}
+		and a.result = 3
+    </select>
+     
+     <!-- 연장근무 목록 뽑아오기 -->
+     <select id="overtimeCnt" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+		from member m, attended a
+		where m.id = a.id
+		and m.company = #{company} 
+		and  to_char(a.day,'yyyymm')=#{month}
+		and a.overtime != 0
+    </select> 
+   <select id="overtimeList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+    	select m.id, m.name, g.g_name as j_name, r.r_name as rank_name,a.day, a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+		from member m, attended a, grade r, groups g
+		where m.id = a.id and r.rank = m.rank and m.depart = g.groupid
+		and m.company = #{company} 
+		and m.depart != #{company}
+		and  to_char(a.day,'yyyymm')=#{month}
+		and a.overtime != 0
+    </select>
+    <select id="overtimeList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+    	select m.id, m.name, c.c_name as j_name, r.r_name as rank_name,a.day, a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+		from member m, attended a, grade r, companies c
+		where m.id = a.id and r.rank = m.rank and m.company = c.company
+		and m.company = #{company} 
+		and m.depart = #{company}
+		and  to_char(a.day,'yyyymm')=#{month}
+		and a.overtime != 0
+    </select>
+     
+     
+     <!-- 야간 목록 뽑아오기 -->
+     <select id="nighttimeCnt" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+		from member m, attended a
+		where m.id = a.id
+		and m.company = #{company} 
+		and  to_char(a.day,'yyyymm')=#{month} 
+		and a.nighttime != 0
+    </select> 
+   <select id="nighttimeList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+    	select m.id, m.name, g.g_name as j_name, r.r_name as rank_name,a.day, a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+		from member m, attended a, grade r, groups g
+		where m.id = a.id and r.rank = m.rank and m.depart = g.groupid
+		and m.company = #{company} 
+		and m.depart != #{company}
+		and  to_char(a.day,'yyyymm')=#{month}
+		and a.nighttime != 0
+    </select>
+    <select id="nighttimeList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+    	select m.id, m.name, c.c_name as j_name, r.r_name as rank_name,a.day, a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+		from member m, attended a, grade r, companies c
+		where m.id = a.id and r.rank = m.rank and m.company = c.company
+		and m.company = #{company} 
+		and m.depart = #{company}
+		and  to_char(a.day,'yyyymm')=#{month}
+		and a.nighttime != 0
+    </select>
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
      
      
      

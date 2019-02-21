@@ -8,6 +8,8 @@ footer p {
 footer>div {
 	width: 61px;
 	margin: 0 auto;
+	position: relative;
+    bottom: 3px;
 }
 
 footer .gray_bg {

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.util.*" %>
-<%@page import="com.spring.gm.vo.PaymentVO" %>
 <style>
 .search-wrap {
     margin: 0 0 20px;
@@ -403,7 +401,7 @@ tbody {
 					</c:if>
 					<c:if test="${cnt == 0 }">
 						<tr>
-							<th colspan="6">대기중인 결재문서가 없습니다.</th>
+							<th colspan="6">문서가 없습니다.</th>
 						</tr>
 					</c:if>
 				</table>

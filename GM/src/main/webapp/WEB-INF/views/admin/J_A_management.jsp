@@ -10,7 +10,7 @@
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/work_manage.jsp"%>
-<%@ include file="/WEB-INF/views/pages/sub/J_Usage_sub.jsp"%>
+<%@ include file="/WEB-INF/views/admin/sub/J_A_management_sub.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>

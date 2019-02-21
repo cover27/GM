@@ -72,6 +72,8 @@ public class O_Controller {
 		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listPureOrderView");
 		
+		
+		
 		return "pages/O_listPureOrderView";
 	}
 	

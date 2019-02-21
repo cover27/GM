@@ -407,94 +407,87 @@ public class J_Controller {
 		//일일 근태 등록
 		@RequestMapping("/pages/J_D_attendanceRegistration")
 		public String J_D_attendanceRegistration(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
 			logger.info("URL : J_D_attendanceRegistration");
 			service.GoOffList(req,model);
 			return "pages/J_D_attendanceRegistration";
 		}
-		
-		//월근 근태생성/마감
-		@RequestMapping("/admin/J_M_attendanceC")
-		public String J_M_attendanceC(HttpServletRequest req, Model model) {
-			logger.info("URL : J_M_attendanceC");
-			return "admin/J_M_attendanceC";
+		//날짜로 일일 근태 조회
+		@RequestMapping("/pages/searchList")
+		public String searchList(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
+			logger.info("URL : J_D_attendanceRegistration");
+			service.searchList(req,model);
+			return "pages/sub/J_sub/J_D_attendanceRegistration_sub";
 		}
+		//근태 관리
+		@RequestMapping("/admin/J_A_management")
+		public String J_A_management(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
+			System.out.println("/admin/J_A_management");
+			logger.info("URL : J_A_management");
+			service.allList(req,model);
+			return "admin/J_A_management";
+		}
+		
 		
 		//월 근태 현황
 		@RequestMapping("/pages/J_M_attendanceStatus")
 		public String J_M_attendanceStatus(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
+			service.companyName(req, model);
+			service.monthList(req,model);
 			logger.info("URL : J_M_attendanceStatus");
 			return "pages/J_M_attendanceStatus";
 		}
 		
+		
 		//휴일/연장/야간근무 조회
 		@RequestMapping("/admin/J_Lookup")
 		public String J_Lookup(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
+			service.companyName(req, model);
 			logger.info("URL : J_Lookup");
 			return "admin/J_Lookup";
 		}
 		
-		//출장신청
-		@RequestMapping("/pages/J_applyBusiness")
-		public String J_applyBusiness(HttpServletRequest req, Model model) {
-			logger.info("URL : J_applyBusiness");
-			return "pages/J_applyBusiness";
-		}
-		//출장정산
-		@RequestMapping("/pages/J_settlement")
-		public String J_settlement(HttpServletRequest req, Model model) {
-			logger.info("URL : J_settlement");
-			return "pages/J_settlement";
-		}
-		//출장사용현황
-		@RequestMapping("/pages/J_Usage")
-		public String J_Usage(HttpServletRequest req, Model model) {
-			logger.info("URL : J_Usage");
-			return "pages/J_Usage";
-		}
 		//휴가일수 설정
 		@RequestMapping("/admin/J_SetHoliday")
 		public String J_SetHoliday(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
 			logger.info("URL : J_SetHoliday");
 			return "admin/J_SetHoliday";
 		}
 		//휴가일수 계산
 		@RequestMapping("/admin/J_CalculationHoliday")
 		public String J_CalculationHoliday(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
 			logger.info("URL : J_CalculationHoliday");
 			return "admin/J_CalculationHoliday";
 		}
 		//휴가신청
 		@RequestMapping("/pages/J_ApplyHoliday")
 		public String J_ApplyHoliday(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
 			logger.info("URL : J_ApplyHoliday");
 			return "pages/J_ApplyHoliday";
 		}
 		//휴가 사용현황
 		@RequestMapping("/pages/J_UseHoliday")
 		public String J_UseHoliday(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
 			logger.info("URL : J_UseHoliday");
 			return "pages/J_UseHoliday";
 		}
-		//휴일설정
-		@RequestMapping("/admin/J_SettingHoliday")
-		public String J_SettingHoliday(HttpServletRequest req, Model model) {
-			logger.info("URL : J_SettingHoliday");
-			return "admin/J_SettingHoliday";
-		}
-		//휴가항목설정
-		@RequestMapping("/admin/J_SetItems")
-		public String J_SetItems(HttpServletRequest req, Model model) {
-			logger.info("URL : J_SetItems");
-			return "admin/J_SetItems";
-		}
-		//근무연수별 휴가설정
-		@RequestMapping("/admin/J_SetHolidayWorking")
-		public String J_SetHolidayWorking(HttpServletRequest req, Model model) {
-			logger.info("URL : J_SetHolidayWorking");
-			return "admin/J_SetHolidayWorking";
-		}
-		
-		
 		
 		
 		
@@ -512,6 +505,66 @@ public class J_Controller {
 			service.offUpdate(req,model);
 			return "pages/sub/J_sub/J_D_attendanceRegistration_sub";
 		}
+		// 개인 
+		@RequestMapping("/pages/List")
+		public String List(HttpServletRequest req, Model model) {
+			System.out.println("/admin/List");
+			logger.info("URL : offUpdate");
+			service.GoOffList(req,model);
+			return "pages/sub/J_sub/J_D_attendanceRegistration_sub";
+		}
+		
+		//사원 근태 수정
+		@RequestMapping("/admin/modify")
+		public String modify(HttpServletRequest req, Model model) {
+			System.out.println("/admin/modify");
+			logger.info("URL : modify");
+			service.modify(req,model);
+			return "admin/sub/J_sub/J_modify_sub";
+		}
+		
+		// 근태 수정 업데이트
+		@RequestMapping("/admin/modifyUpdate")
+		public String modifyUpdate(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
+			System.out.println("/admin/modifyUpdate");
+			logger.info("URL : modifyUpdate");
+			service.modifyUpdate(req,model);
+			return "admin/J_A_management";
+		}
+		//휴가 목록 뽑아오기
+		@RequestMapping("/admin/holiday")
+		public String holiday(HttpServletRequest req, Model model) {
+			System.out.println("/admin/holiday");
+			logger.info("URL : holiday");
+			service.holiday(req,model);
+			return "admin/sub/J_sub/holiday";
+		}
+		//연장근무 목록 뽑아오기
+		@RequestMapping("/admin/overtime")
+		public String overtime(HttpServletRequest req, Model model) {
+			System.out.println("/admin/overtime");
+			logger.info("URL : overtime");
+			service.overtime(req,model);
+			return "admin/sub/J_sub/overtime";
+		}
+		//야간 목록 뽑아오기
+		@RequestMapping("/admin/nighttime")
+		public String nighttime(HttpServletRequest req, Model model) {
+			System.out.println("/admin/nighttime");
+			logger.info("URL : nighttime");
+			service.nighttime(req,model);
+			return "admin/sub/J_sub/nighttime";
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

@@ -15,7 +15,7 @@
 	<c:if test="${insertCnt != 0}">
 		<script type="text/javascript">
 			alert("업무 등록 완료했습니다.");
-			window.location="O_listPureOrderView?id=${id}&num=${num}";
+			window.location="O_listPureOrderView?id=${id}&todonum=${todonum}";
 		</script>
 	</c:if>
 	

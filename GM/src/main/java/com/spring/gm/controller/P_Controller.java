@@ -55,15 +55,9 @@ public class P_Controller {
 	public String P_listApprMyRequestView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_listApprMyRequestView");
 		
-		return "pages/P_listApprMyRequestView";
-	}
-	
-	//기안 - 임시저장함
-	@RequestMapping("/pages/P_listApprTempView")
-	public String P_listApprTempView(HttpServletRequest req, Model model) {
-		logger.info("URL : P_listApprTempView");
+		service.P_listApprMyRequestView(req, model);
 		
-		return "pages/P_listApprTempView";
+		return "pages/P_listApprMyRequestView";
 	}
 	
 	//결재 - 결재 대기함
@@ -106,10 +100,52 @@ public class P_Controller {
 		return "pages/sub/P_payApprove_pro";
 	}
 	
+	//반려팝업
+	@RequestMapping("/pages/P_payDeny")
+	public String P_payDeny(HttpServletRequest req, Model model) {
+		logger.info("URL : P_payDeny");
+		
+		service.P_payDeny(req, model);
+		
+		return "pages/sub/P_payDeny_sub";
+	}
+	
+	//결재진행
+	@RequestMapping("/pages/P_payDeny_pro")
+	public String P_payDeny_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : P_payDeny_pro");
+		
+		service.P_payDeny_pro(req, model);
+		
+		return "pages/sub/P_payDeny_pro";
+	}
+	
+	//합의팝업
+	@RequestMapping("/pages/P_payAgree")
+	public String P_payAgree(HttpServletRequest req, Model model) {
+		logger.info("URL : P_payAgree");
+		
+		service.P_payAgree(req, model);
+		
+		return "pages/sub/P_payAgree_sub";
+	}
+	
+	//합의진행
+	@RequestMapping("/pages/P_payAgree_pro")
+	public String P_payAgree_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : P_payAgree_pro");
+		
+		service.P_payAgree_pro(req, model);
+		
+		return "pages/sub/P_payAgree_pro";
+	}
+	
 	//결재 - 결재 진행함
 	@RequestMapping("/pages/P_listApprCompleteView")
 	public String P_listApprCompleteView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_listApprCompleteView");
+		
+		service.P_listApprCompleteView(req, model);
 		
 		return "pages/P_listApprCompleteView";
 	}
@@ -119,6 +155,8 @@ public class P_Controller {
 	public String P_readApprAllListView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_readApprAllListView");
 		
+		service.P_readApprAllListView(req, model);
+		
 		return "pages/P_readApprAllListView";
 	}
 	
@@ -126,6 +164,8 @@ public class P_Controller {
 	@RequestMapping("/pages/P_listApprRejectView")
 	public String P_listApprRejectView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_listApprRejectView");
+		
+		service.P_listApprRejectView(req, model);
 		
 		return "pages/P_listApprRejectView";
 	}
@@ -135,14 +175,9 @@ public class P_Controller {
 	public String P_listApprReferenceView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_listApprReferenceView");
 		
+		service.P_listApprReferenceView(req, model);
+		
 		return "pages/P_listApprReferenceView";
 	}
 	
-	//관리자 메뉴 - 결재문서관리
-	@RequestMapping("/pages/P_listApprDocAllAdminView")
-	public String P_listApprDocAllAdminView(HttpServletRequest req, Model model) {
-		logger.info("URL : P_listApprDocAllAdminView");
-		
-		return "pages/P_listApprDocAllAdminView";
-	}
 }

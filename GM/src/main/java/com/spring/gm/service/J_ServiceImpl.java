@@ -23,6 +23,7 @@ import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
 import com.spring.gm.vo.join_maVO;
+import com.spring.gm.vo.join_margcVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgsbVO;
 import com.spring.gm.vo.join_mgsbcVO;
@@ -915,12 +916,22 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("cnt2 : " + cnt2);
 		int cnt3 = dao.mgstblCnt2(map);// 상여금 정보 뽑아오기
 		System.out.println("cnt3 : " + cnt3);
-		if (cnt2 > 0) {cnt2 = 1;};
-		if (cnt3 > 0) {cnt3 = 1;};
+		if (cnt2 > 0) {
+			cnt2 = 1;
+		}
+		;
+		if (cnt3 > 0) {
+			cnt3 = 1;
+		}
+		;
 		int cnt = cnt2 + cnt3;
 		System.out.println("cnt : " + cnt);
-		if (cnt3 == 0 && cnt2 == 1) {cnt = 1;}
-		if (cnt3 == 1 && cnt2 == 0) {cnt = 0;}
+		if (cnt3 == 0 && cnt2 == 1) {
+			cnt = 1;
+		}
+		if (cnt3 == 1 && cnt2 == 0) {
+			cnt = 0;
+		}
 
 		if (cnt == 2) { // 급여 , 상여금 둘다 정보가 있을경우
 			System.out.println("급여 , 상여금 둘다 정보가 있을경우");
@@ -1387,6 +1398,7 @@ public class J_ServiceImpl implements J_Service {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
 		String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("company", company);
@@ -1405,6 +1417,51 @@ public class J_ServiceImpl implements J_Service {
 			dtos.get(0).setWorktimes(toTime(dtos.get(0).getWorktime()));
 			dtos.get(0).setOvertimes(toTime(dtos.get(0).getOvertime()));
 			dtos.get(0).setNighttimes(toTime(dtos.get(0).getNighttime()));
+			System.out.println(toTime(dtos.get(0).getNighttime()));
+			dtos.get(0).setPerceptiontimes(toTime(dtos.get(0).getPerceptiontime()));
+			dtos.get(0).setDeparturetimes(toTime(dtos.get(0).getDeparturetime()));
+			System.out.println(toTime(dtos.get(0).getGo()));
+			model.addAttribute("dtos", dtos);
+			model.addAttribute("num", num);
+			model.addAttribute("gos", gos);
+		}
+		model.addAttribute("cnt", selectCnt);
+		model.addAttribute("id", id);
+		model.addAttribute("name", name);
+		model.addAttribute("sys_rank", sys_rank);
+	}
+
+	// 날짜로 출근 목록 뽑아오기
+	@Override
+	public void searchList(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
+		String date = req.getParameter("date");
+		System.out.println("date : " + date);
+		String[] dates = date.split("-");
+		date = dates[0] + dates[1] + dates[2];
+		System.out.println("date: " + date);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		map.put("date", date);
+
+		int selectCnt = dao.searchGoOffCnt(map);
+		System.out.println("cnt : " + selectCnt);
+
+		if (selectCnt > 0) {
+			List<join_maVO> dtos = dao.searchGoOffList(map);
+			System.out.println(dtos.get(0).getGo());
+			int num = dtos.get(0).getNum();
+			System.out.println("num : " + num);
+			dtos.get(0).setGos(toTime(dtos.get(0).getGo()));
+			String gos = toTime(dtos.get(0).getGo());
+			dtos.get(0).setOffs(toTime(dtos.get(0).getOff()));
+			dtos.get(0).setWorktimes(toTime(dtos.get(0).getWorktime()));
+			dtos.get(0).setOvertimes(toTime(dtos.get(0).getOvertime()));
+			dtos.get(0).setNighttimes(toTime(dtos.get(0).getNighttime()));
+			System.out.println(toTime(dtos.get(0).getNighttime()));
 			dtos.get(0).setPerceptiontimes(toTime(dtos.get(0).getPerceptiontime()));
 			dtos.get(0).setDeparturetimes(toTime(dtos.get(0).getDeparturetime()));
 			System.out.println(toTime(dtos.get(0).getGo()));
@@ -1490,7 +1547,7 @@ public class J_ServiceImpl implements J_Service {
 		int ntime = 0; // 야간시간
 		int otime = 0; // 연장시간
 		int dtime = 0; // 조퇴시간
-		
+
 		System.out.println(time + " " + wtime);
 
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -1500,9 +1557,8 @@ public class J_ServiceImpl implements J_Service {
 		map.put("wtime", wtime);
 		map.put("time", time);
 
-		
 		// 연장시간
-		if (time > attended.getOver_start()) { 
+		if (time > attended.getOver_start()) {
 			System.out.println("연장조건문");
 			if (time < attended.getOver_end()) {
 				otime = time - attended.getOver_start();
@@ -1516,9 +1572,9 @@ public class J_ServiceImpl implements J_Service {
 			map.put("otime", otime);
 		}
 		System.out.println("연장시간 : " + otime);
-		
+
 		// 야간시간
-		if (time > attended.getNight_start()) { 
+		if (time > attended.getNight_start()) {
 			System.out.println("야간조건문");
 			if (time < attended.getNight_end()) {
 				ntime = time - attended.getNight_start();
@@ -1527,25 +1583,24 @@ public class J_ServiceImpl implements J_Service {
 				ntime = 79200;
 				map.put("ntime", ntime);
 			}
-		}else {
+		} else {
 			ntime = 0;
 			map.put("ntime", ntime);
 		}
 		System.out.println("야간조건문 : " + ntime);
-		
-		
+
 		// 조퇴시간
-		if(time < attended.getOff()) {
+		if (time < attended.getOff()) {
 			System.out.println("조퇴할경우");
 			dtime = time;
 			map.put("dtime", dtime);
-		}else {
+		} else {
 			System.out.println("조퇴시간조건문");
 			dtime = 0;
 			map.put("dtime", dtime);
 		}
 		System.out.println("조퇴시간 : " + dtime);
-		
+
 		System.out.println("map : " + map.toString());
 		int updateCnt = dao.offUpdate(map);
 		System.out.println("updateCnt : " + updateCnt);
@@ -1569,5 +1624,353 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 	}
+
+	// 전체 리스트 뽑기
+	@Override
+	public void allList(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String date = req.getParameter("date");
+		System.out.println("date : " + date);
+		model.addAttribute("date", date);
+
+		if (date == null) {
+			System.out.println("date 값이 없을경우");
+			long times = System.currentTimeMillis(); // 현재시간
+			SimpleDateFormat dates = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+			date = dates.format(new Date(times)).substring(0, 10);
+			System.out.println("date :" + date);
+		}
+		String[] dates = date.split("-");
+		date = dates[0] + dates[1] + dates[2];
+		System.out.println("date: " + date);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("date", date);
+		map.put("company", company);
+
+		int selectCnt = dao.allListCnt(map);
+		System.out.println("selectCnt : " + selectCnt);
+		if (selectCnt > 0) {
+			System.out.println("여기 탔어요1");
+			List<join_maVO> dtos = dao.allListList(map);
+			for (int i = 0; i <= selectCnt - 1; i++) {
+				System.out.println("i : " + i);
+				dtos.get(i).setGos(toTime(dtos.get(i).getGo()));
+				System.out.println(toTime(dtos.get(i).getGo()));
+				dtos.get(i).setOffs(toTime(dtos.get(i).getOff()));
+				dtos.get(i).setWorktimes(toTime(dtos.get(i).getWorktime()));
+				dtos.get(i).setOvertimes(toTime(dtos.get(i).getOvertime()));
+				dtos.get(i).setNighttimes(toTime(dtos.get(i).getNighttime()));
+				dtos.get(i).setPerceptiontimes(toTime(dtos.get(i).getPerceptiontime()));
+				dtos.get(i).setDeparturetimes(toTime(dtos.get(i).getDeparturetime()));
+			}
+			model.addAttribute("dtos", dtos);
+		}
+		model.addAttribute("cnt", selectCnt);
+	}
+
+	// 사원 근태 수정
+	@Override
+	public void modify(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		int num = Integer.parseInt(req.getParameter("num"));
+		String date = req.getParameter("date");	//여기서 안씀 바로 넘김
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("company", company);
+
+		System.out.println("여기 탔어요");
+		List<join_maVO> dtos = dao.modifyList(map);
+		dtos.get(0).setGos(toTime(dtos.get(0).getGo()));
+		dtos.get(0).setOffs(toTime(dtos.get(0).getOff()));
+		dtos.get(0).setWorktimes(toTime(dtos.get(0).getWorktime()));
+		dtos.get(0).setOvertimes(toTime(dtos.get(0).getOvertime()));
+		dtos.get(0).setNighttimes(toTime(dtos.get(0).getNighttime()));
+		dtos.get(0).setPerceptiontimes(toTime(dtos.get(0).getPerceptiontime()));
+		dtos.get(0).setDeparturetimes(toTime(dtos.get(0).getDeparturetime()));
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("date", date);
+	}
+
+	// 근태 수정 업데이트
+	@Override
+	public void modifyUpdate(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		int num = Integer.parseInt(req.getParameter("num"));
+		int go = toSecond((req.getParameter("go")));
+		System.out.println("go : " + go);
+		String date = req.getParameter("date");
+		model.addAttribute("date", date);
+		System.out.println("date : " + date);
+		String[] dates = date.split("-");
+		date = dates[0] + dates[1] + dates[2];
+		System.out.println("date: " + date);
+		
+		int off = toSecond((req.getParameter("off")));
+		System.out.println("off : " + off);
+		int work = toSecond((req.getParameter("work")));
+		System.out.println("work : " + work);
+		int over = toSecond((req.getParameter("over")));
+		System.out.println("over : " + over);
+		int night = toSecond((req.getParameter("night")));
+		System.out.println("night : " + night);
+		int per = toSecond((req.getParameter("per")));
+		System.out.println("per : " + per);
+		int depar = toSecond((req.getParameter("depar")));
+		System.out.println("depar : " + depar);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("num", num);
+		map.put("go", go);
+		map.put("off", off);
+		map.put("wtime", work);
+		map.put("otime", over);
+		map.put("ntime", night);
+		map.put("ptime", per);
+		map.put("dtime", depar);
+		map.put("date", date);
+
+		int updateCnt = dao.modifyUpdate(map);
+		System.out.println("updateCnt : " + updateCnt);
+		int selectCnt = dao.allListCnt(map);
+		System.out.println("selectCnt : " + selectCnt);
+		if (selectCnt > 0) {
+			System.out.println("여기 탔어요2");
+			List<join_maVO> dtos = dao.allListList(map);
+			for (int i = 0; i < selectCnt; i++) {
+				System.out.println("i : " + i);
+				dtos.get(i).setGos(toTime(dtos.get(i).getGo()));
+				dtos.get(i).setOffs(toTime(dtos.get(i).getOff()));
+				dtos.get(i).setWorktimes(toTime(dtos.get(i).getWorktime()));
+				dtos.get(i).setOvertimes(toTime(dtos.get(i).getOvertime()));
+				dtos.get(i).setNighttimes(toTime(dtos.get(i).getNighttime()));
+				dtos.get(i).setPerceptiontimes(toTime(dtos.get(i).getPerceptiontime()));
+				dtos.get(i).setDeparturetimes(toTime(dtos.get(i).getDeparturetime()));
+			}
+			model.addAttribute("dtos", dtos);
+		}
+		model.addAttribute("cnt", selectCnt);
+	}
+	
+	
+	//월별 근태 정보 가져오기
+		@Override
+		public void monthList(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+			String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
+			String id = req.getParameter("id");
+			if(sys_rank != 1) {
+				id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+			}
+		
+			String month = req.getParameter("month");
+			System.out.println("month : " + month);
+			model.addAttribute("month", month);
+			if (month == null) {	// 날짜입력이 없을경우 설정
+				System.out.println("date 값이 없을경우");
+				long day = System.currentTimeMillis(); // 이번달
+				SimpleDateFormat dates = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+				month = dates.format(new Date(day)).substring(0, 7);
+				System.out.println("month :" + month);
+			}
+			String[] months = month.split("-");
+			month = months[0] + months[1];
+			System.out.println("month: " + month);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("company", company);
+			map.put("id", id);
+			map.put("month", month);
+			
+			int selectCnt = 0;
+			
+			if(id != null) {
+				selectCnt = dao.monthCnt(map);
+				System.out.println("selectCnt : " + selectCnt);
+			}
+			
+			if(selectCnt > 0) {
+				List<join_margcVO> dtos = new ArrayList<join_margcVO>();
+				List<join_margcVO> dtos2 = dao.monthList(map);
+				List<join_margcVO> dtos3 = dao.monthList2(map);
+				dtos.addAll(dtos2);
+				dtos.addAll(dtos3);
+				System.out.println("여기 탔어요");
+				for(int i = 0; i < selectCnt; i++) {
+				System.out.println("day : " + dtos.get(i).getDay());
+				dtos.get(i).setGos(toTime(dtos.get(i).getGo()));
+				dtos.get(i).setOffs(toTime(dtos.get(i).getOff()));
+				dtos.get(i).setWorktimes(toTime(dtos.get(i).getWorktime()));
+				dtos.get(i).setOvertimes(toTime(dtos.get(i).getOvertime()));
+				dtos.get(i).setNighttimes(toTime(dtos.get(i).getNighttime()));
+				dtos.get(i).setPerceptiontimes(toTime(dtos.get(i).getPerceptiontime()));
+				dtos.get(i).setDeparturetimes(toTime(dtos.get(i).getDeparturetime()));
+				}
+				model.addAttribute("dtos", dtos);
+			}
+			model.addAttribute("cnt", selectCnt);
+			model.addAttribute("id", id);
+		}
+		//휴가 목록 뽑아오기
+		@Override
+		public void holiday(HttpServletRequest req, Model model) {
+			int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+			String month = req.getParameter("month");
+			System.out.println("month : " + month);
+			model.addAttribute("month", month);
+			if (month == null) {	// 날짜입력이 없을경우 설정
+				System.out.println("date 값이 없을경우");
+				long day = System.currentTimeMillis(); // 이번달
+				SimpleDateFormat dates = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+				month = dates.format(new Date(day)).substring(0, 7);
+				System.out.println("month :" + month);
+			}
+			String[] months = month.split("-");
+			month = months[0] + months[1];
+			System.out.println("month: " + month);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("company", company);
+			map.put("month", month);
+			
+			int selectCnt = dao.holidayCnt(map);
+			if(selectCnt > 0) {
+				List<join_margcVO> dtos = new ArrayList<join_margcVO>();
+				List<join_margcVO> dtos2 = dao.monthList(map);
+				List<join_margcVO> dtos3 = dao.monthList2(map);
+				dtos.addAll(dtos2);
+				dtos.addAll(dtos3);
+				System.out.println("여기 탔어요");
+				for(int i = 0; i < selectCnt; i++) {
+				System.out.println("day : " + dtos.get(i).getDay());
+				dtos.get(i).setGos(toTime(dtos.get(i).getGo()));
+				dtos.get(i).setOffs(toTime(dtos.get(i).getOff()));
+				dtos.get(i).setWorktimes(toTime(dtos.get(i).getWorktime()));
+				dtos.get(i).setOvertimes(toTime(dtos.get(i).getOvertime()));
+				dtos.get(i).setNighttimes(toTime(dtos.get(i).getNighttime()));
+				dtos.get(i).setPerceptiontimes(toTime(dtos.get(i).getPerceptiontime()));
+				dtos.get(i).setDeparturetimes(toTime(dtos.get(i).getDeparturetime()));
+				}
+				model.addAttribute("dtos", dtos);
+			}
+			model.addAttribute("cnt",selectCnt);
+		}
+		//연장근무 목록 뽑아오기
+		@Override
+		public void overtime(HttpServletRequest req, Model model) {
+			int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+			String month = req.getParameter("month");
+			System.out.println("month : " + month);
+			model.addAttribute("month", month);
+			if (month == null) {	// 날짜입력이 없을경우 설정
+				System.out.println("date 값이 없을경우");
+				long day = System.currentTimeMillis(); // 이번달
+				SimpleDateFormat dates = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+				month = dates.format(new Date(day)).substring(0, 7);
+				System.out.println("month :" + month);
+			}
+			String[] months = month.split("-");
+			month = months[0] + months[1];
+			System.out.println("month: " + month);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("company", company);
+			map.put("month", month);
+			
+			int selectCnt = dao.overtimeCnt(map);
+			if(selectCnt > 0) {
+				List<join_margcVO> dtos = new ArrayList<join_margcVO>();
+				List<join_margcVO> dtos2 = dao.overtimeList(map);
+				List<join_margcVO> dtos3 = dao.overtimeList2(map);
+				dtos.addAll(dtos2);
+				dtos.addAll(dtos3);
+				System.out.println("여기 탔어요");
+				for(int i = 0; i < selectCnt; i++) {
+				System.out.println("day : " + dtos.get(i).getDay());
+				dtos.get(i).setGos(toTime(dtos.get(i).getGo()));
+				dtos.get(i).setOffs(toTime(dtos.get(i).getOff()));
+				dtos.get(i).setWorktimes(toTime(dtos.get(i).getWorktime()));
+				dtos.get(i).setOvertimes(toTime(dtos.get(i).getOvertime()));
+				dtos.get(i).setNighttimes(toTime(dtos.get(i).getNighttime()));
+				dtos.get(i).setPerceptiontimes(toTime(dtos.get(i).getPerceptiontime()));
+				dtos.get(i).setDeparturetimes(toTime(dtos.get(i).getDeparturetime()));
+				}
+				model.addAttribute("dtos", dtos);
+			}
+			model.addAttribute("cnt",selectCnt);
+		}
+		//야간 목록 뽑아오기
+		@Override
+		public void nighttime(HttpServletRequest req, Model model) {
+			int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+			String month = req.getParameter("month");
+			System.out.println("month : " + month);
+			model.addAttribute("month", month);
+			if (month == null) {	// 날짜입력이 없을경우 설정
+				System.out.println("date 값이 없을경우");
+				long day = System.currentTimeMillis(); // 이번달
+				SimpleDateFormat dates = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+				month = dates.format(new Date(day)).substring(0, 7);
+				System.out.println("month :" + month);
+			}
+			String[] months = month.split("-");
+			month = months[0] + months[1];
+			System.out.println("month: " + month);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("company", company);
+			map.put("month", month);
+			
+			int selectCnt = dao.nighttimeCnt(map);
+			if(selectCnt > 0) {
+				List<join_margcVO> dtos = new ArrayList<join_margcVO>();
+				List<join_margcVO> dtos2 = dao.nighttimeList(map);
+				List<join_margcVO> dtos3 = dao.nighttimeList2(map);
+				dtos.addAll(dtos2);
+				dtos.addAll(dtos3);
+				System.out.println("여기 탔어요");
+				for(int i = 0; i < selectCnt; i++) {
+				System.out.println("day : " + dtos.get(i).getDay());
+				dtos.get(i).setGos(toTime(dtos.get(i).getGo()));
+				dtos.get(i).setOffs(toTime(dtos.get(i).getOff()));
+				dtos.get(i).setWorktimes(toTime(dtos.get(i).getWorktime()));
+				dtos.get(i).setOvertimes(toTime(dtos.get(i).getOvertime()));
+				dtos.get(i).setNighttimes(toTime(dtos.get(i).getNighttime()));
+				dtos.get(i).setPerceptiontimes(toTime(dtos.get(i).getPerceptiontime()));
+				dtos.get(i).setDeparturetimes(toTime(dtos.get(i).getDeparturetime()));
+				}
+				model.addAttribute("dtos", dtos);
+			}
+			model.addAttribute("cnt",selectCnt);
+		}
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
