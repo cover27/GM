@@ -1,5 +1,6 @@
 package com.spring.gm.vo;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 //업무관리 테이블
@@ -10,14 +11,14 @@ public class B_ManageVO {
     private int groupId; //그룹번호(FK)
     private String subject; //업무관리제목
     private String content; //업무관리내용
-    private Timestamp begin; //시작일
-    private Timestamp end; //종료일
+    private Date begin; //시작일
+    private Date end; //종료일
     private Timestamp reg_date; //등록일
     private String state; //상태
     private int del; //삭제구분
-	
     
-    public int getTodonum() {
+    
+	public int getTodonum() {
 		return todonum;
 	}
 	public void setTodonum(int todonum) {
@@ -47,16 +48,16 @@ public class B_ManageVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Timestamp getBegin() {
+	public Date getBegin() {
 		return begin;
 	}
-	public void setBegin(Timestamp begin) {
+	public void setBegin(Date begin) {
 		this.begin = begin;
 	}
-	public Timestamp getEnd() {
+	public Date getEnd() {
 		return end;
 	}
-	public void setEnd(Timestamp end) {
+	public void setEnd(Date end) {
 		this.end = end;
 	}
 	public Timestamp getReg_date() {
@@ -78,13 +79,13 @@ public class B_ManageVO {
 		this.del = del;
 	}
 	
-	
 	@Override
 	public String toString() {
-		return "B_manage [todonum=" + todonum + ", id=" + id + ", groupId=" + groupId + ", subject=" + subject
+		return "B_ManageVO [todonum=" + todonum + ", id=" + id + ", groupId=" + groupId + ", subject=" + subject
 				+ ", content=" + content + ", begin=" + begin + ", end=" + end + ", reg_date=" + reg_date + ", state="
 				+ state + ", del=" + del + "]";
 	}
+	
     
     
 }

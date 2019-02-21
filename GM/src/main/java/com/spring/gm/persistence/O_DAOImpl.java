@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.gm.vo.B_ManageVO;
 import com.spring.gm.vo.Join_payVO;
 import com.spring.gm.vo.PaymentVO;
 import com.spring.gm.vo.ScheduleVO;
@@ -100,6 +101,13 @@ public class O_DAOImpl implements O_DAO {
 	public int deleteCalendar(int num) {
 		dao = sqlSession.getMapper(O_DAO.class);
 		return dao.deleteCalendar(num);
+	}
+	
+	//업무 등록 insert-pro
+	@Override
+	public int insertTodo(B_ManageVO vo) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.insertTodo(vo);
 	}
 
 	

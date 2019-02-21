@@ -33,6 +33,16 @@ public class O_Controller {
 		return "pages/O_listTodoView";
 	}
 	
+	//TO-DO - 나의 할일 화면
+	@RequestMapping("/pages/O_listMyTodoView")
+	public String O_listMyTodoView(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
+		logger.info("URL : O_listMyTodoView");
+		
+		return "pages/O_listMyTodoView";
+	}
+	
 	//업무 등록 화면
 	@RequestMapping("/pages/O_createSelfTaskView")
 	public String O_createSelfTaskView(HttpServletRequest req, Model model) {
@@ -40,7 +50,19 @@ public class O_Controller {
 		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_createSelfTaskView");
 		
+		oservice.createSelfTaskWrite(req, model);
+		
 		return "pages/O_createSelfTaskView";
+	}
+	
+	//업무 등록 insert
+	@RequestMapping("/pages/O_createSelfTaskPro")
+	public String O_createSelfTaskPro(HttpServletRequest req, Model model) {
+		logger.info("URL : O_createSelfTaskPro");
+		
+		oservice.createSelfTaskPro(req, model);
+		
+		return "pages/O_createSelfTaskPro";
 	}
 	
 	//업무 요청 - 내가 한 업무요청 화면
@@ -164,7 +186,7 @@ public class O_Controller {
 	public String O_calendarDelete(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendarDelete");
 		
-		oservice.O_calendarDelete(req, model);
+		oservice.calendarDelete(req, model);
 		
 		return "pages/O_calendarDelete";
 	}

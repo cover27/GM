@@ -18,6 +18,12 @@
                         <span><a href="<c:url value='/pages/O_createSelfTaskView' />">업무 등록</a></span>
                     </li>
                     <li>
+                        <span>To - Do</span>
+                        <ul>
+                            <li><a href="<c:url value='/pages/O_listMyTodoView' />">나의 할 일</a></li>
+                        </ul>
+                    </li>
+                    <li>
                         <span>업무 요청</span>
                         <ul>
                             <li><a href="<c:url value='/pages/O_listPureOrderView' />">내가 한 업무 요청</a></li>
@@ -30,6 +36,12 @@
             		<c:if test="${sys_rank == 1}">
             		<li>
                         <span><a href="<c:url value='/pages/O_createSelfTaskView' />">업무 등록</a></span>
+                    </li>
+                    <li>
+                        <span>To - Do</span>
+                        <ul>
+                            <li><a href="<c:url value='/pages/O_listMyTodoView' />">나의 할 일</a></li>
+                        </ul>
                     </li>
                     <li>
                         <span>업무 요청</span>

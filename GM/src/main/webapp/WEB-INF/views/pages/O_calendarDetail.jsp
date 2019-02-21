@@ -27,7 +27,6 @@ table, tr, th, td{
 							
 								<tr>
 											<!-- 기간은 그냥 수기로 수정 해줘야함.. DB에서 불러와서 변경하지 못했음. -->
-											<!-- 단점 : datetime-local로 써서 시간이 맞지 않게 나옴... -->
 									<th scope="row"><span>*</span>기간</th>
 									<td>
 										<div>
