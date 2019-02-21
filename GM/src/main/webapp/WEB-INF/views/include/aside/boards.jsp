@@ -28,6 +28,11 @@
 	                        						$("#D_allBoardList").children().css("color", "#d3292c");
 	                        						$("#D_allBoardList").css("font-weight", "bold");
 	                        					});
+	                        				} else if(url_page[0]=="/admin/D_allBoardAdmin?num=") {
+	                        					$(function(){
+	                        						$("#D_allBoardAdmin").children().css("color", "#d3292c");
+	                        						$("#D_allBoardAdmin").css("font-weight", "bold");
+	                        					});
 	                        				} else if(url[1]=="/pages/D_boardList?num=${b_dtos.num}") {
 	                        					$(function(){
 	                        						$("#${b_dtos.num}").children().css("color", "#d3292c");
