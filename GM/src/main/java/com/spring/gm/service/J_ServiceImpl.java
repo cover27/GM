@@ -1387,6 +1387,7 @@ public class J_ServiceImpl implements J_Service {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
 		String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("company", company);
@@ -1405,6 +1406,50 @@ public class J_ServiceImpl implements J_Service {
 			dtos.get(0).setWorktimes(toTime(dtos.get(0).getWorktime()));
 			dtos.get(0).setOvertimes(toTime(dtos.get(0).getOvertime()));
 			dtos.get(0).setNighttimes(toTime(dtos.get(0).getNighttime()));
+			System.out.println(toTime(dtos.get(0).getNighttime()));
+			dtos.get(0).setPerceptiontimes(toTime(dtos.get(0).getPerceptiontime()));
+			dtos.get(0).setDeparturetimes(toTime(dtos.get(0).getDeparturetime()));
+			System.out.println(toTime(dtos.get(0).getGo()));
+			model.addAttribute("dtos", dtos);
+			model.addAttribute("num", num);
+			model.addAttribute("gos", gos);
+		}
+		model.addAttribute("cnt", selectCnt);
+		model.addAttribute("id", id);
+		model.addAttribute("name", name);
+		model.addAttribute("sys_rank", sys_rank);
+	}
+	// 날짜로 출근 목록 뽑아오기
+	@Override
+	public void searchList(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
+		String date = req.getParameter("date");
+		System.out.println("date : " + date);
+		String[] dates = date.split("-");
+		date = dates[0] + dates[1] + dates[2];
+		System.out.println("date: " + date);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		map.put("date", date);
+
+		int selectCnt = dao.searchGoOffCnt(map);
+		System.out.println("cnt : " + selectCnt);
+
+		if (selectCnt > 0) {
+			List<join_maVO> dtos = dao.searchGoOffList(map);
+			System.out.println(dtos.get(0).getGo());
+			int num = dtos.get(0).getNum();
+			System.out.println("num : " + num);
+			dtos.get(0).setGos(toTime(dtos.get(0).getGo()));
+			String gos = toTime(dtos.get(0).getGo());
+			dtos.get(0).setOffs(toTime(dtos.get(0).getOff()));
+			dtos.get(0).setWorktimes(toTime(dtos.get(0).getWorktime()));
+			dtos.get(0).setOvertimes(toTime(dtos.get(0).getOvertime()));
+			dtos.get(0).setNighttimes(toTime(dtos.get(0).getNighttime()));
+			System.out.println(toTime(dtos.get(0).getNighttime()));
 			dtos.get(0).setPerceptiontimes(toTime(dtos.get(0).getPerceptiontime()));
 			dtos.get(0).setDeparturetimes(toTime(dtos.get(0).getDeparturetime()));
 			System.out.println(toTime(dtos.get(0).getGo()));
@@ -1416,6 +1461,7 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
 	}
+	
 
 	// 출근시간 인서트
 	@Override
@@ -1570,4 +1616,120 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("name", name);
 	}
 
+	
+	
+	//전체 리스트 뽑기
+	@Override
+	public void allList(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		
+		int selectCnt = dao.allListCnt(company);
+		System.out.println("selectCnt : " + selectCnt);
+		if(selectCnt > 0) {
+			System.out.println("여기 탔어요1");
+			List<join_maVO> dtos = dao.allListList(company);
+			for(int i = 0; i <= selectCnt -1; i++){
+				System.out.println("i : " + i);
+				dtos.get(i).setGos(toTime(dtos.get(i).getGo()));
+				System.out.println(toTime(dtos.get(i).getGo()));
+				dtos.get(i).setOffs(toTime(dtos.get(i).getOff()));
+				dtos.get(i).setWorktimes(toTime(dtos.get(i).getWorktime()));
+				dtos.get(i).setOvertimes(toTime(dtos.get(i).getOvertime()));
+				dtos.get(i).setNighttimes(toTime(dtos.get(i).getNighttime()));
+				dtos.get(i).setPerceptiontimes(toTime(dtos.get(i).getPerceptiontime()));
+				dtos.get(i).setDeparturetimes(toTime(dtos.get(i).getDeparturetime()));
+			}
+			model.addAttribute("dtos", dtos);
+		}
+		model.addAttribute("cnt",selectCnt);
+	}
+	
+	//사원 근태 수정
+	@Override
+	public void modify(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		int num = Integer.parseInt(req.getParameter("num"));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("company", company);
+		
+		int selectCnt = dao.modifyCnt(map);
+		System.out.println("selectCnt : " + selectCnt);
+		if(selectCnt > 0) {
+			System.out.println("여기 탔어요");
+			List<join_maVO> dtos = dao.modifyList(map);
+			dtos.get(0).setGos(toTime(dtos.get(0).getGo()));
+			dtos.get(0).setOffs(toTime(dtos.get(0).getOff()));
+			dtos.get(0).setWorktimes(toTime(dtos.get(0).getWorktime()));
+			dtos.get(0).setOvertimes(toTime(dtos.get(0).getOvertime()));
+			dtos.get(0).setNighttimes(toTime(dtos.get(0).getNighttime()));
+			dtos.get(0).setPerceptiontimes(toTime(dtos.get(0).getPerceptiontime()));
+			dtos.get(0).setDeparturetimes(toTime(dtos.get(0).getDeparturetime()));
+			model.addAttribute("dtos", dtos);
+		}
+	}
+
+	
+	// 근태 수정 업데이트
+	@Override
+	public void modifyUpdate(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		int num = Integer.parseInt(req.getParameter("num"));
+		int go = toSecond((req.getParameter("go")));
+		System.out.println("go : " + go);
+		int off = toSecond((req.getParameter("off")));
+		System.out.println("off : " + off);
+		int work = toSecond((req.getParameter("work")));
+		System.out.println("work : " + work);
+		int over = toSecond((req.getParameter("over")));
+		System.out.println("over : " + over);
+		int night = toSecond((req.getParameter("night")));
+		System.out.println("night : " + night);
+		int per = toSecond((req.getParameter("per")));
+		System.out.println("per : " + per);
+		int depar = toSecond((req.getParameter("depar")));
+		System.out.println("depar : " + depar);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("num", num);
+		map.put("go", go);
+		map.put("off", off);
+		map.put("wtime", work);
+		map.put("otime", over);
+		map.put("ntime", night);
+		map.put("ptime", per);
+		map.put("dtime", depar);
+		
+		int updateCnt = dao.modifyUpdate(map);
+		System.out.println("updateCnt : " + updateCnt);
+		int selectCnt = dao.allListCnt(company);
+		System.out.println("selectCnt : " + selectCnt);
+		if(selectCnt > 0) {
+			System.out.println("여기 탔어요2");
+			List<join_maVO> dtos = dao.allListList(company);
+			for(int i = 0; i < selectCnt; i++){
+				System.out.println("i : " + i);
+				dtos.get(i).setGos(toTime(dtos.get(i).getGo()));
+				dtos.get(i).setOffs(toTime(dtos.get(i).getOff()));
+				dtos.get(i).setWorktimes(toTime(dtos.get(i).getWorktime()));
+				dtos.get(i).setOvertimes(toTime(dtos.get(i).getOvertime()));
+				dtos.get(i).setNighttimes(toTime(dtos.get(i).getNighttime()));
+				dtos.get(i).setPerceptiontimes(toTime(dtos.get(i).getPerceptiontime()));
+				dtos.get(i).setDeparturetimes(toTime(dtos.get(i).getDeparturetime()));
+			}
+			model.addAttribute("dtos", dtos);
+		}
+		model.addAttribute("cnt",selectCnt);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
