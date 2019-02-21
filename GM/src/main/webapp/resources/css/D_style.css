@@ -117,58 +117,30 @@
 	background: #555;
 }
 
-.content input[type="submit"], .content input[type="button"] {
-	cursor: pointer;
-	position: relative;
-	top: -3px;
-}
-
-.content .content_result input[type="submit"], .content .content_result input[type="button"] {
-	padding: 6px;
-	cursor: pointer; 
-}
-
-.content .content_result input[type="submit"] {
-	background: #d3292c;
-}
-
-.content .content_result input[type="button"] {
-	background: #555;
-}
-
-.content .table_head {
+.content table {
 	margin-top: 10px;
-	border-top: 2px #c0c0c0 solid;
-}
-
-.content .table_body {
-	overflow-y: scroll;
-	height: 701px;
-	border-bottom: 2px #c0c0c0 solid;
-}
-
-.content .table_head table, .content .table_body table {
 	font-size: 14px;
 	line-height: 24px;
 }
 
-.content .table_head table thead th {
+.content table thead th {
 	border-right: 1px #e5e5e5 solid;
+	border-top: 1px #c0c0c0 solid;
 	border-bottom: 1px #c0c0c0 solid;
 	background: #f5f5f5;
 	padding: 5px 0;
 }
 
-.content .table_head table thead th:last-child {
+.content table thead th:last-child {
 	border-right: none;
 }
 
-.content .table_body table tbody tr:hover {
-	background: #fbeded;
-	transition: 0.3s;
+.content table tbody tr:hover {
+	background: #f9f9f9;
+	transition: 0.1s;
 }
 
-.content .table_body table tbody td {
+.content table tbody td {
 	border-right: 1px #e5e5e5 solid;
 	border-bottom: 1px #e5e5e5 solid;
 	padding: 5px 0;
@@ -176,20 +148,10 @@
 	cursor: pointer;
 }
 
-.content .table_body table tbody tr:last-child td {
+.content table tbody tr:last-child td {
 	border-bottom: 1px #c0c0c0 solid;
 }
 
-.content .table_body table tbody td:last-child {
+.content table tbody td:last-child {
 	border-right: none;
-}
-
-.content .table_body table input[type="text"], .content .table_body table select {
-	width: 90%;
-	border: none;
-	background: #f7f7f7;
-}
-
-.content .table_body table input[type="text"]:focus, .content .table_body table select:focus {
-	background: #eee;
 }

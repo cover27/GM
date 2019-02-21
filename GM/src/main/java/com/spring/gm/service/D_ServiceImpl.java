@@ -153,10 +153,11 @@ public class D_ServiceImpl implements D_Service{
 		
 		int pageCount = 0;		// 페이지 갯수
 		int startPage = 0;		// 시작 페이지
-		int endPage = 0;		// 마지막 페이지		
+		int endPage = 0;		// 마지막 페이지	
+
+		int del = 0;
 		
-		String num_s = req.getParameter("num");
-		int num = Integer.parseInt(num_s);
+		int num = Integer.parseInt(req.getParameter("num"));
 		
 		
 		cnt = dao.getBoardArticleCnt();
@@ -192,6 +193,7 @@ public class D_ServiceImpl implements D_Service{
 			map.put("num", num);
 			map.put("start", start);
 			map.put("end", end);
+			map.put("del",  del);
 			List<BoardListVO> dtos = dao.getBoardArticleList(map);
 			/*
 			int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
