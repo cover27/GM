@@ -23,11 +23,11 @@ public interface D_DAO {
 	
 	public int deleteBoard(int boardnum);	//게시글 삭제
 	
-	public int getBoardArticleCnt();	//게시글 갯수
+	public int getBoardArticleCnt(int company);	//게시글 갯수
 	
 	public List<BoardListVO> getBoardArticleList(Map<String, Object> map);	//게시글 목록
 	
-	public int insertBoard(BoardListVO vo); // 게시글 생성
+	public int insertBoard(BoardListVO vo, int company); // 게시글 생성
 	
 	public BoardListVO getArticle(int boardnum);	// 게시글 상세
 	
@@ -76,5 +76,6 @@ public interface D_DAO {
 	public int confirmIdPwd(Map<String, String> map);
 
 	public MemberVO getMemberInfo(String id);
+
 	
 }

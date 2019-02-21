@@ -43,9 +43,9 @@ public class D_DAOImpl implements D_DAO{
 
 	@Override
 	// 게시글 갯수
-	public int getBoardArticleCnt() {
+	public int getBoardArticleCnt(int company) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.getBoardArticleCnt();
+		return dao.getBoardArticleCnt(company);
 	}
 
 	@Override
@@ -100,14 +100,14 @@ public class D_DAOImpl implements D_DAO{
 	
 	// 게시글 작성
 	@Override
-	public int insertBoard(BoardListVO vo) {
+	public int insertBoard(BoardListVO vo, int company) {
 		int boardnum = vo.getBoardnum();
 		int ref = vo.getRef();
 		int ref_step = vo.getRef_step();
 		int ref_level = vo.getRef_level();
 		
 		if(boardnum == 0) {
-			int cnt = getBoardArticleCnt();
+			int cnt = getBoardArticleCnt(company);
 			
 			if(cnt > 0) {
 				ref = getMaxNum() + 1;
@@ -128,7 +128,7 @@ public class D_DAOImpl implements D_DAO{
 		vo.setRef_level(ref_level);
 		
 			D_DAO dao = sqlSession.getMapper(D_DAO.class);
-			return dao.insertBoard(vo);			
+			return dao.insertBoard(vo, company);			
 	}
 	
 	// 게시글 리스트
@@ -283,6 +283,6 @@ public class D_DAOImpl implements D_DAO{
 		MemberVO m = mapper.getMemberInfo(id);
 		return m;
 	}
-	
+
 	
 }

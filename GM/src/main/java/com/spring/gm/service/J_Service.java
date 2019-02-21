@@ -104,14 +104,15 @@ public interface J_Service {
 	// 근태 수정 업데이트
 	public void modifyUpdate(HttpServletRequest req, Model model);
 	
+	//월별 근태 정보 가져오기
+	public void monthList(HttpServletRequest req, Model model);
 	
-	
-	
-	
-	
-	
-	
-	
+	//휴가 목록 뽑아오기
+	public void holiday(HttpServletRequest req, Model model);
+	//연장근무 목록 뽑아오기
+	public void overtime(HttpServletRequest req, Model model);
+	//야간 목록 뽑아오기
+	public void nighttime(HttpServletRequest req, Model model);
 	
 	
 	

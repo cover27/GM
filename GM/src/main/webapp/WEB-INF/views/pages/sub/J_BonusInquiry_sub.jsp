@@ -26,21 +26,21 @@
 			alert("날짜를 입력해주십시오.");
 		} else {
 			$
-					.ajax({
-						url : '${pageContext.request.contextPath}/pages/searchBonusInquiry',
-						type : 'POST',
-						data : {
-							'id' : id,
-							'name' : name,
-							'month' : month
-						}, //전송할 데이터
-						success : function(result) {
-							$('#result').html(result);
-						},
-						error : function() {
-							alert('오류');
-						}
-					});
+			.ajax({
+				url : '${pageContext.request.contextPath}/pages/searchBonusInquiry',
+				type : 'POST',
+				data : {
+					'id' : id,
+					'name' : name,
+					'month' : month
+				}, //전송할 데이터
+				success : function(result) {
+					$('#result').html(result);
+				},
+				error : function() {
+					alert('오류');
+				}
+			});
 		}
 	};
 </script>

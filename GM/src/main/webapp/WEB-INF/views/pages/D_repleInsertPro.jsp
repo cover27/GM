@@ -15,7 +15,7 @@
 	<c:if test="${insertCnt != 0}">
 		<script type="text/javascript">
 			alert("댓글이 생성되었습니다.");
-			window.location="D_boardContent?pageNum=${pageNum}&boardnum=${boardnum}&num=${num}&number=${number}";
+			window.location="D_boardContent?num=${num}&pageNum=${pageNum}&boardnum=${boardnum}&number=${number}";
 		</script>
 	</c:if>
 </body>
