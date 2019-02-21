@@ -281,7 +281,7 @@ public class O_ServiceImpl implements O_Service{
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
 		ScheduleVO vo = new ScheduleVO();
-		vo.setNum(Integer.parseInt(req.getParameter("num"))); // 장훈작성
+		vo.setNum(Integer.parseInt(req.getParameter("num"))); 
 		vo.setScheduleKind(req.getParameter("scheduleKind"));
 		vo.setSubject(req.getParameter("subject"));
 		vo.setLocation(req.getParameter("location"));
@@ -311,6 +311,20 @@ public class O_ServiceImpl implements O_Service{
 		System.out.println("updateCnt" + updateCnt);
 		
 		model.addAttribute("updateCnt", updateCnt);
+	}
+
+	//일정 삭제
+	@Override
+	public void O_calendarDelete(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		
+		int deleteCnt = dao.deleteCalendar(num);
+		System.out.println("deleteCnt" + deleteCnt);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
+		
+		
+		
 	}
 
 	

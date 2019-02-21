@@ -38,7 +38,13 @@
 
 <!-- 일정 수정 -->
 <update id="updateCalendar" parameterType="com.spring.gm.vo.ScheduleVO">
-	update schedule set schedulekind=#{scheduleKind}, subject=#{subject}, location=#{location}, content=#{content}, begin=#{begin}, end=#{end} where num=#{num}
+	update schedule set schedulekind=#{scheduleKind}, subject=#{subject}, location=#{location}, content=#{content}, begin=#{begin}, end=#{end} where num=#{num} and del=0
 </update>
+
+<!-- 일정 삭제 -->
+<update id="deleteCalendar">
+	update schedule set del=1 where num=#{num}
+</update>
+
 
 </mapper>

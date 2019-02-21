@@ -23,4 +23,7 @@ public interface O_Service {
 	
 	//일정 수정
 	public void calendarModify(HttpServletRequest req, Model model);
+	
+	//일정 삭제
+	public void O_calendarDelete(HttpServletRequest req, Model model);
 }

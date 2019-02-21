@@ -18,7 +18,7 @@ table, tr, th, td{
 		<!-- 일정보기 내용 -->
 		<div class="content_body">
 			<form action="<c:url value='/pages/O_calendarModify'/>" method="post">
-			<input type="hidden" name="num" value="${vo.num}" /> <!-- 장훈수정 -->
+			<input type="hidden" name="num" value="${vo.num}" /> 
 			<c:if test="${num != 0}">
 				<div class="content-write">
 					<div class="form-block">
@@ -27,6 +27,7 @@ table, tr, th, td{
 							
 								<tr>
 											<!-- 기간은 그냥 수기로 수정 해줘야함.. DB에서 불러와서 변경하지 못했음. -->
+											<!-- 단점 : datetime-local로 써서 시간이 맞지 않게 나옴... -->
 									<th scope="row"><span>*</span>기간</th>
 									<td>
 										<div>
@@ -101,7 +102,7 @@ table, tr, th, td{
 				<!-- 일정등록 저장 footer -->
 				<div class="content-footer" style="float:right; margin-top:10px;">
 					<input type="submit" value="수정">
-					<input type="button" value="삭제" onclick="">
+					<input type="button" value="삭제" onclick="window.location='<c:url value="/pages/O_calendarDelete?num=${vo.num}"/>'">
 					<input type="button" value="닫기" onclick="self.close();">
 				</div>
 				</c:if>

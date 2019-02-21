@@ -32,4 +32,8 @@ public interface O_DAO {
 	
 	//일정 수정
 	public int updateCalendar(ScheduleVO vo);
+	
+	//일정 삭제
+	public int deleteCalendar(int num);
+	
 }

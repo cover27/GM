@@ -167,15 +167,15 @@ tbody {
 <section>
 	<article>
 		<div class="content_header">
-			<h2>수신 업무 보고</h2>
+			<h2>업무완료함</h2>
 		</div>
 		
 		<div>
-			<!-- 수신 업무 보고에서 쓰이는 상단 -->
+			<!-- 업무완료함에서 쓰이는 상단 -->
 			<%@ include file="/WEB-INF/views/pages/sub/O_header/O_listTodoReportContentView.jsp"%>	
 			
 			
-			<!-- 수신 업무 보고 게시글 나열 list -->
+			<!-- 업무완료함 게시글 나열 list -->
 				<div class="content-list">
 		            <table class="table table-striped" id="tblList">
 		                <caption></caption>

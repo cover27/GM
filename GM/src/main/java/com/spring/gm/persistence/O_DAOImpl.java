@@ -94,6 +94,13 @@ public class O_DAOImpl implements O_DAO {
 		dao = sqlSession.getMapper(O_DAO.class);
 		return dao.updateCalendar(vo);
 	}
+	
+	//일정 삭제
+	@Override
+	public int deleteCalendar(int num) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.deleteCalendar(num);
+	}
 
 	
 	

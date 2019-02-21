@@ -49,7 +49,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='/pages/O_listMyTodoView' />">
+                            <a href="<c:url value='/pages/O_listTodoView' />">
                                 <h2>업무관리</h2>
                                 <span class="todo"></span>
                             </a>
