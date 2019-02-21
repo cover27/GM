@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script type="text/javascript">
 function modify(num) {
 		$.ajax({
@@ -57,6 +58,7 @@ function modify(num) {
 		<div>
 			*근무일자<input type="date" id="date"><input type="button"value="검색">
 		</div>
+		<script>document.getElementById('date').value= new Date().toISOString().slice(0, 10);</script>
 		<br> <br> 
 		<div id="result">
 		<table border="1">
