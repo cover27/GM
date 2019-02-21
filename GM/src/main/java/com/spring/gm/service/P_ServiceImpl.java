@@ -110,7 +110,7 @@ public class P_ServiceImpl implements P_Service{
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
 		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
-		int pageBlock = 3;		// 한 블럭당 페이지 갯수
+		int pageBlock = 5;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
 		int start = 0;			// 현재 페이지 시작 글번호
@@ -135,6 +135,7 @@ public class P_ServiceImpl implements P_Service{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("agree", 0);
+		map.put("state", "진행");
 		cnt = dao.getPaymentCnt(map);
 		if(cnt > 0) {
 			map.put("start", start);
@@ -171,7 +172,6 @@ public class P_ServiceImpl implements P_Service{
 			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
 			model.addAttribute("currentPage", currentPage); // 현재페이지
 		}		
-		// content에서 유용하게 쓸예정
 	}
 
 	@Override
@@ -251,9 +251,11 @@ public class P_ServiceImpl implements P_Service{
 		int order = dao.getMyOrder(map);
 		map.put("order", order+1);
 		int nextMem = dao.countNextMem(map);
+		map.put("result", "결재완료");
 		int updatecnt = dao.updateApprove(map);
 		if(nextMem == 0) {
-			int updatecnt2 = dao.updatePayment(num);
+			map.put("state", "결재완료");
+			int updatecnt2 = dao.updatePayment(map);
 			if(updatecnt!=0&&updatecnt2!=0) {
 				cnt = 1;
 			}
@@ -262,6 +264,440 @@ public class P_ServiceImpl implements P_Service{
 		}
 		
 		model.addAttribute("cnt", cnt);
+	}
+
+	@Override
+	public void P_payDeny(HttpServletRequest req, Model model) {
+		String num_s = req.getParameter("num");
+		int num = Integer.parseInt(num_s);
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		int cnt = 0; // 상태값
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("id", id);
+		int refer = dao.checkRefer(map);
+		
+		if(refer == 1) { // 합의
+			cnt = 1;
+		} else { // 결재라인
+			int order = dao.getMyOrder(map);
+			map.put("order", order+1);
+			map.put("order2", order-1);
+			int nextMem = dao.countNextMem(map);
+			if(nextMem == 0) { // 위에 사람이 없는 경우 -> 최종결재자인 경우 본인 이외의 모든사람이 결재를 완료한 상태여야 함
+				if(dao.finalApproveCheck(map) == 0) { //결재, 합의중에 하나라도 안한사람이 0이라면 = 전부다 결재를 했다면
+					cnt = 1;
+				} else {
+					cnt = 2;
+				}
+			} else { //위에 사람이 있는경우 본인 이전의 사람이 결재를 했으면 결재를 할 수 있음
+				if(dao.beforeApproveCheck(map) == 1) { // 이전사람이 결재를 했다면
+					cnt = 1;
+				} else {
+					cnt = 2;
+				}
+			}
+		}
+		model.addAttribute("num", num);
+		model.addAttribute("id", id);
+		model.addAttribute("cnt", cnt);
+	}
+
+	@Override
+	public void P_payDeny_pro(HttpServletRequest req, Model model) {
+		String num_s = req.getParameter("num");
+		int num = Integer.parseInt(num_s);
+		String id = req.getParameter("id");
+		String content = req.getParameter("content");
+		int cnt = 0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("id", id);
+		map.put("content", content);
+		map.put("result", "반려");
+		int updateCnt1 = dao.updateApprove(map);
+		map.put("state", "반려");
+		int updateCnt2 = dao.updatePayment(map);
+		if(updateCnt1!=0&&updateCnt2!=0) {
+			cnt = 1;
+		}
+		
+		model.addAttribute("cnt", cnt);
+	}
+	
+	//합의팝업
+	@Override
+	public void P_payAgree(HttpServletRequest req, Model model) {
+		String num_s = req.getParameter("num");
+		int num = Integer.parseInt(num_s);
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		model.addAttribute("num", num);
+		model.addAttribute("id", id);
+	}
+
+	@Override // 합의진행
+	public void P_payAgree_pro(HttpServletRequest req, Model model) {
+		String num_s = req.getParameter("num");
+		int num = Integer.parseInt(num_s);
+		String id = req.getParameter("id");
+		String content = req.getParameter("content");
+		int cnt = 0;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("id", id);
+		map.put("content", content);
+		map.put("result", "합의완료");
+		cnt = dao.updateApprove(map);
+		
+		model.addAttribute("cnt", cnt);
+	}
+
+	@Override //결재진행함
+	public void P_listApprCompleteView(HttpServletRequest req, Model model) {
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageBlock = 5;		// 한 블럭당 페이지 갯수
+		
+		int cnt = 0;			// 글갯수		
+		int start = 0;			// 현재 페이지 시작 글번호
+		int end = 0;			// 현재 페이지 마지막 글번호
+		int number = 0;			// 출력용 글번호
+		String pageNum = "";	// 페이지 번호
+		int currentPage = 0;	// 현재페이지
+		
+		int pageCount = 0;		// 페이지 갯수
+		int startPage = 0;		// 시작 페이지
+		int endPage = 0;		// 마지막 페이지
+		
+		pageNum = req.getParameter("pageNum");
+		
+		if(pageNum == null) {
+			pageNum = "1";	// 첫페이지를 1페이지로 지정
+		}
+		currentPage = Integer.parseInt(pageNum);
+		start = (currentPage - 1) * pageSize + 1; 
+		end = start + pageSize - 1;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("agree", 1);
+		map.put("state", "진행");
+		cnt = dao.getPaymentCnt(map);
+		if(cnt > 0) {
+			map.put("start", start);
+			map.put("end", end);
+			List<PaymentVO> payment = new ArrayList<PaymentVO>();
+			payment = dao.getPaymentList(map);
+			
+			model.addAttribute("payment", payment);
+		}
+		
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
+		number = cnt - (currentPage - 1) * pageSize;
+		if(end > cnt) end = cnt;
+		
+		// 시작페이지
+		startPage = (currentPage / pageBlock) * pageBlock + 1; 
+		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+		System.out.println("startPage : " + startPage);
+				
+		// 마지막 페이지
+		endPage = startPage + pageBlock - 1; 
+		if(endPage > pageCount) endPage = pageCount;
+		System.out.println("endPage : " + endPage);
+		System.out.println("================");
+		
+		model.addAttribute("cnt", cnt);  // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum);  // 페이지번호
+		
+		if(cnt > 0) {
+			model.addAttribute("startPage", startPage);     // 시작 페이지
+			model.addAttribute("endPage", endPage);         // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
+		}		
+	}
+
+	@Override //완료문서함
+	public void P_readApprAllListView(HttpServletRequest req, Model model) {
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageBlock = 5;		// 한 블럭당 페이지 갯수
+		
+		int cnt = 0;			// 글갯수		
+		int start = 0;			// 현재 페이지 시작 글번호
+		int end = 0;			// 현재 페이지 마지막 글번호
+		int number = 0;			// 출력용 글번호
+		String pageNum = "";	// 페이지 번호
+		int currentPage = 0;	// 현재페이지
+		
+		int pageCount = 0;		// 페이지 갯수
+		int startPage = 0;		// 시작 페이지
+		int endPage = 0;		// 마지막 페이지
+		
+		pageNum = req.getParameter("pageNum");
+		
+		if(pageNum == null) {
+			pageNum = "1";	// 첫페이지를 1페이지로 지정
+		}
+		currentPage = Integer.parseInt(pageNum);
+		start = (currentPage - 1) * pageSize + 1; 
+		end = start + pageSize - 1;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("refer", 0);
+		map.put("state", "완료");
+		cnt = dao.getPaymentCnt3(map);
+		if(cnt > 0) {
+			map.put("start", start);
+			map.put("end", end);
+			List<PaymentVO> payment = new ArrayList<PaymentVO>();
+			payment = dao.getPaymentList3(map); 
+			
+			model.addAttribute("payment", payment);
+		}
+		
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
+		number = cnt - (currentPage - 1) * pageSize;
+		if(end > cnt) end = cnt;
+		
+		// 시작페이지
+		startPage = (currentPage / pageBlock) * pageBlock + 1; 
+		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+		System.out.println("startPage : " + startPage);
+				
+		// 마지막 페이지
+		endPage = startPage + pageBlock - 1; 
+		if(endPage > pageCount) endPage = pageCount;
+		System.out.println("endPage : " + endPage);
+		System.out.println("================");
+		
+		model.addAttribute("cnt", cnt);  // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum);  // 페이지번호
+		
+		if(cnt > 0) {
+			model.addAttribute("startPage", startPage);     // 시작 페이지
+			model.addAttribute("endPage", endPage);         // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
+		}	
+	}
+
+	@Override
+	public void P_listApprRejectView(HttpServletRequest req, Model model) {
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageBlock = 5;		// 한 블럭당 페이지 갯수
+		
+		int cnt = 0;			// 글갯수		
+		int start = 0;			// 현재 페이지 시작 글번호
+		int end = 0;			// 현재 페이지 마지막 글번호
+		int number = 0;			// 출력용 글번호
+		String pageNum = "";	// 페이지 번호
+		int currentPage = 0;	// 현재페이지
+		
+		int pageCount = 0;		// 페이지 갯수
+		int startPage = 0;		// 시작 페이지
+		int endPage = 0;		// 마지막 페이지
+		
+		pageNum = req.getParameter("pageNum");
+		
+		if(pageNum == null) {
+			pageNum = "1";	// 첫페이지를 1페이지로 지정
+		}
+		currentPage = Integer.parseInt(pageNum);
+		start = (currentPage - 1) * pageSize + 1; 
+		end = start + pageSize - 1;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("state", "반려");
+		cnt = dao.getPaymentCnt2(map);
+		if(cnt > 0) {
+			map.put("start", start);
+			map.put("end", end);
+			List<PaymentVO> payment = new ArrayList<PaymentVO>();
+			payment = dao.getPaymentList2(map);
+			
+			model.addAttribute("payment", payment);
+		}
+		
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
+		number = cnt - (currentPage - 1) * pageSize;
+		if(end > cnt) end = cnt;
+		
+		// 시작페이지
+		startPage = (currentPage / pageBlock) * pageBlock + 1; 
+		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+		System.out.println("startPage : " + startPage);
+				
+		// 마지막 페이지
+		endPage = startPage + pageBlock - 1; 
+		if(endPage > pageCount) endPage = pageCount;
+		System.out.println("endPage : " + endPage);
+		System.out.println("================");
+		
+		model.addAttribute("cnt", cnt);  // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum);  // 페이지번호
+		
+		if(cnt > 0) {
+			model.addAttribute("startPage", startPage);     // 시작 페이지
+			model.addAttribute("endPage", endPage);         // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
+		}	
+	}
+
+	@Override //참조/열람문서함
+	public void P_listApprReferenceView(HttpServletRequest req, Model model) {
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageBlock = 5;		// 한 블럭당 페이지 갯수
+		
+		int cnt = 0;			// 글갯수		
+		int start = 0;			// 현재 페이지 시작 글번호
+		int end = 0;			// 현재 페이지 마지막 글번호
+		int number = 0;			// 출력용 글번호
+		String pageNum = "";	// 페이지 번호
+		int currentPage = 0;	// 현재페이지
+		
+		int pageCount = 0;		// 페이지 갯수
+		int startPage = 0;		// 시작 페이지
+		int endPage = 0;		// 마지막 페이지
+		
+		pageNum = req.getParameter("pageNum");
+		
+		if(pageNum == null) {
+			pageNum = "1";	// 첫페이지를 1페이지로 지정
+		}
+		currentPage = Integer.parseInt(pageNum);
+		start = (currentPage - 1) * pageSize + 1; 
+		end = start + pageSize - 1;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("refer", 1);
+		map.put("state", "완료");
+		cnt = dao.getPaymentCnt3(map);
+		if(cnt > 0) {
+			map.put("start", start);
+			map.put("end", end);
+			List<PaymentVO> payment = new ArrayList<PaymentVO>();
+			payment = dao.getPaymentList3(map); 
+			
+			model.addAttribute("payment", payment);
+		}
+		
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
+		number = cnt - (currentPage - 1) * pageSize;
+		if(end > cnt) end = cnt;
+		
+		// 시작페이지
+		startPage = (currentPage / pageBlock) * pageBlock + 1; 
+		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+		System.out.println("startPage : " + startPage);
+				
+		// 마지막 페이지
+		endPage = startPage + pageBlock - 1; 
+		if(endPage > pageCount) endPage = pageCount;
+		System.out.println("endPage : " + endPage);
+		System.out.println("================");
+		
+		model.addAttribute("cnt", cnt);  // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum);  // 페이지번호
+		
+		if(cnt > 0) {
+			model.addAttribute("startPage", startPage);     // 시작 페이지
+			model.addAttribute("endPage", endPage);         // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
+		}
+	}
+
+	// 결재요청함
+	@Override
+	public void P_listApprMyRequestView(HttpServletRequest req, Model model) {
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageBlock = 5;		// 한 블럭당 페이지 갯수
+		
+		int cnt = 0;			// 글갯수		
+		int start = 0;			// 현재 페이지 시작 글번호
+		int end = 0;			// 현재 페이지 마지막 글번호
+		int number = 0;			// 출력용 글번호
+		String pageNum = "";	// 페이지 번호
+		int currentPage = 0;	// 현재페이지
+		
+		int pageCount = 0;		// 페이지 갯수
+		int startPage = 0;		// 시작 페이지
+		int endPage = 0;		// 마지막 페이지
+		
+		pageNum = req.getParameter("pageNum");
+		
+		if(pageNum == null) {
+			pageNum = "1";	// 첫페이지를 1페이지로 지정
+		}
+		currentPage = Integer.parseInt(pageNum);
+		start = (currentPage - 1) * pageSize + 1; 
+		end = start + pageSize - 1;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("state", "진행");
+		cnt = dao.getPaymentCnt4(map);
+		if(cnt > 0) {
+			map.put("start", start);
+			map.put("end", end);
+			List<PaymentVO> payment = new ArrayList<PaymentVO>();
+			payment = dao.getPaymentList4(map); 
+			
+			model.addAttribute("payment", payment);
+		}
+		
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
+		number = cnt - (currentPage - 1) * pageSize;
+		if(end > cnt) end = cnt;
+		
+		// 시작페이지
+		startPage = (currentPage / pageBlock) * pageBlock + 1; 
+		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+		System.out.println("startPage : " + startPage);
+				
+		// 마지막 페이지
+		endPage = startPage + pageBlock - 1; 
+		if(endPage > pageCount) endPage = pageCount;
+		System.out.println("endPage : " + endPage);
+		System.out.println("================");
+		
+		model.addAttribute("cnt", cnt);  // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum);  // 페이지번호
+		
+		if(cnt > 0) {
+			model.addAttribute("startPage", startPage);     // 시작 페이지
+			model.addAttribute("endPage", endPage);         // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
+		}
 	}
 	
 }

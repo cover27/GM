@@ -33,24 +33,78 @@
 	</select>
 	
 	<select id="getPaymentCnt" resultType="int">
-		SELECT COUNT(*) FROM groupinfo f, groups g, payment p, paymentinfo o
-		    WHERE g.groupid = f.groupid
-		    AND g.groupid = p.groupid
-		    AND g.group_rank = 2
-		    AND o.id=f.id
-		    AND f.id= #{id}
+		 SELECT COUNT(*) FROM payment p, paymentinfo o
+		    WHERE p.num = o.num
+		    AND o.id = #{id}
+		    AND p.id != #{id}
 		    AND o.agree = #{agree}
+		    AND p.state like '%'||#{state}||'%'
 	</select>
 	
 	<select id="getPaymentList" parameterType="java.util.Map" resultType="com.spring.gm.vo.PaymentVO">
 		<![CDATA[
-		SELECT * FROM (SELECT p.*, rowNum rNum FROM groupinfo f, groups g, payment p, paymentinfo o
-			    WHERE g.groupid = f.groupid
-			    AND g.groupid = p.groupid
-			    AND g.group_rank = 2
-			    AND o.id=f.id
-			    AND f.id=#{id}
+		SELECT * FROM (SELECT p.*, rowNum rNum FROM payment p, paymentinfo o
+			    WHERE p.num = o.num
+			    AND o.id = #{id}
+			    AND p.id != #{id}
 			    AND o.agree = #{agree}
+			    AND p.state like '%'||#{state}||'%'
+			    ORDER BY p.reg_date DESC)
+		    WHERE rNum >= #{start} AND rNum <= #{end}
+		 ]]>
+	</select>
+	
+	<select id="getPaymentCnt2" resultType="int">
+		 SELECT COUNT(*) FROM payment p, paymentinfo o
+		    WHERE p.num = o.num
+		    AND o.id = #{id}
+		    AND p.state like '%'||#{state}||'%'
+	</select>
+	
+	<select id="getPaymentList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.PaymentVO">
+		<![CDATA[
+		SELECT * FROM (SELECT p.*, rowNum rNum FROM payment p, paymentinfo o
+			    WHERE p.num = o.num
+			    AND o.id = #{id}
+			    AND p.state like '%'||#{state}||'%'
+			    ORDER BY p.reg_date DESC)
+		    WHERE rNum >= #{start} AND rNum <= #{end}
+		 ]]>
+	</select>
+	
+	<select id="getPaymentCnt3" resultType="int">
+		 SELECT COUNT(*) FROM payment p, paymentinfo o
+		    WHERE p.num = o.num
+		    AND o.id = #{id}
+		    AND p.id != #{id}
+		    AND p.state like '%'||#{state}||'%'
+		    AND o.refer = #{refer}
+	</select>
+	
+	<select id="getPaymentList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.PaymentVO">
+		<![CDATA[
+			SELECT * FROM (SELECT p.*, rowNum rNum FROM payment p, paymentinfo o
+			    WHERE p.num = o.num
+			    AND o.id = #{id}
+			    AND p.id != #{id}
+			    AND p.state like '%'||#{state}||'%'
+			    AND o.refer = #{refer}
+			    ORDER BY p.reg_date DESC)
+		    WHERE rNum >= #{start} AND rNum <= #{end}
+		 ]]>
+	</select>
+	
+	<select id="getPaymentCnt4" resultType="int">
+		 SELECT COUNT(*) FROM payment p
+			    WHERE p.id =#{id}
+			    AND p.state like '%'||#{state}||'%'
+	</select>
+	
+	<select id="getPaymentList4" parameterType="java.util.Map" resultType="com.spring.gm.vo.PaymentVO">
+		<![CDATA[
+			SELECT * FROM (SELECT p.*, rowNum rNum FROM payment p
+			    WHERE p.id =#{id}
+			    AND p.state like '%'||#{state}||'%'
 			    ORDER BY p.reg_date DESC)
 		    WHERE rNum >= #{start} AND rNum <= #{end}
 		 ]]>
@@ -87,10 +141,13 @@
 		SELECT agree FROM paymentinfo WHERE num=#{num} and rank = #{order2}
 	</select>
 	<update id="updateApprove" parameterType="java.util.Map">
-		UPDATE paymentinfo SET result='결재완료', reg_date=sysdate, content=#{content, jdbcType=VARCHAR}, agree = 1
+		UPDATE paymentinfo SET result=#{result}, reg_date=sysdate, content=#{content, jdbcType=VARCHAR}, agree = 1
 			WHERE id=#{id} AND num=#{num}
 	</update>
-	<update id="updatePayment" parameterType="int">
-		UPDATE payment SET state='결재완료', reg_date=sysdate WHERE num=#{num}
+	<update id="updatePayment" parameterType="java.util.Map">
+		UPDATE payment SET state=#{state}, deadline=sysdate WHERE num=#{num}
 	</update>
+	<select id="checkRefer" resultType="int">
+		SELECT refer FROM paymentinfo WHERE id=#{id} AND num=#{num}
+	</select>
 </mapper>

@@ -527,18 +527,22 @@ img {
 	clear: both;
 }
 
-.btnset>input[type="submit"], .btnset input[type="reset"], .btnset>input[type="button"], .btnset>button {
-	cursor: pointer;
-    padding: 5px 15px;
-    border-radius: 3px;
-    border: none;
-    font-size: 1em;
-    font-weight: bold;
+.btnset ul li {
+	display: inline-block;
 }
 
-.btnset>input[type="submit"], .btnset>input[type="button"], .btnset>input[type="reset"], .btnset>button {
-	color: #fff;
-	background: #555;
+.btnset input[type="submit"], .btnset input[type="reset"], .btnset input[type="button"], .btnset button {
+	cursor: pointer !important;
+    padding: 5px 15px !important;
+    border-radius: 3px !important;
+    border: none !important;
+    font-size: 1em !important;
+    font-weight: bold !important;
+}
+
+ .btnset input[type="submit"], .btnset input[type="button"], .btnset input[type="reset"], .btnset button {
+	color: #fff !important;
+	background: #555 !important;
 }
 
 .selected {

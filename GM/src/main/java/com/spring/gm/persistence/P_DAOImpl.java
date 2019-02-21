@@ -56,6 +56,30 @@ public class P_DAOImpl implements P_DAO{
 		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.getPaymentList", map);
 	}
 	@Override
+	public int getPaymentCnt2(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getPaymentCnt2", map);
+	}
+	@Override
+	public List<PaymentVO> getPaymentList2(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.getPaymentList2", map);
+	}
+	@Override
+	public int getPaymentCnt3(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getPaymentCnt3", map);
+	}
+	@Override
+	public List<PaymentVO> getPaymentList3(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.getPaymentList3", map);
+	}
+	@Override
+	public int getPaymentCnt4(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getPaymentCnt4", map);
+	}
+	@Override
+	public List<PaymentVO> getPaymentList4(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.getPaymentList4", map);
+	}
+	@Override
 	public PaymentVO getPayment(int groupid) {
 		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getPayment", groupid);
 	}
@@ -88,8 +112,12 @@ public class P_DAOImpl implements P_DAO{
 		return sqlSession.update("com.spring.gm.persistence.P_DAO.updateApprove", map);
 	}
 	@Override
-	public int updatePayment(int num) {
-		return sqlSession.update("com.spring.gm.persistence.P_DAO.updatePayment", num);
+	public int updatePayment(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.P_DAO.updatePayment", map);
+	}
+	@Override
+	public int checkRefer(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.checkRefer", map);
 	}
 	
 }
