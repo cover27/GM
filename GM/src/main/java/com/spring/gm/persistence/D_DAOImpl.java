@@ -283,6 +283,6 @@ public class D_DAOImpl implements D_DAO{
 		MemberVO m = mapper.getMemberInfo(id);
 		return m;
 	}
-	
+
 	
 }

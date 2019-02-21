@@ -179,5 +179,5 @@
 		FROM Member
 		where id = #{id}
 	</select>
-	
+		
 </mapper>
