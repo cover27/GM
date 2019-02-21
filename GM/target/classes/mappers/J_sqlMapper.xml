@@ -633,6 +633,22 @@
     	and a.result = 1 
     </select>
     
+      <!--    날짜로 출근 목록 뽑아오기 -->
+    <select id="searchGoOffCnt" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} and m.id = #{id} 
+    	and to_char(a.day,'yyyymmdd')=#{date}
+    </select>
+    <select id="searchGoOffList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_maVO">
+    	select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} 
+    	and m.id = #{id} 
+    	and to_char(a.day,'yyyymmdd')=#{date}
+    </select>
     
     
     
@@ -648,14 +664,46 @@
     </update>
     
     
+     <!-- 사원 근태 목록 뽑아오기 -->
+    <select id="allListCnt" parameterType="int" resultType="int">
+    	select count(*) as cnt
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} and  to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
+    </select>
+    <select id="allListList" parameterType="int" resultType="com.spring.gm.vo.join_maVO">
+    	select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company}
+    	and to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd') 
+    	and a.result = 1 
+    </select>
     
     
     
+    <!-- 사원 근태 수정 -->
+    <select id="modifyCnt" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} and  to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
+    	and a.num = #{num}
+    </select>
+    <select id="modifyList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_maVO">
+    	select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company}
+    	and to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd') 
+    	and a.result = 1 
+    	and a.num = #{num}
+    </select>
     
-    
-    
-    
-    
+    <!-- 수정 업데이트 -->
+    <update id="modifyUpdate" parameterType="java.util.Map">
+    	UPDATE attended SET go = #{go} , off = #{off}, worktime = #{wtime}, overtime = #{otime}, nighttime = #{ntime}, perceptiontime = #{ptime}, departuretime = #{dtime} WHERE num = #{num}
+    </update>
     
     
     

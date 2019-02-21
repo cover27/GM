@@ -756,8 +756,19 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.GoOffList(map);
 		return dtos;
 	}
-	
-	
+	// 날짜로 출근 목록 뽑아오기
+	@Override
+	public int searchGoOffCnt(Map<String, Object> map) {
+		int selectCnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.searchGoOffCnt", map);
+		return selectCnt;
+	}
+	@Override
+	public ArrayList<join_maVO> searchGoOffList(Map<String, Object> map) {
+		ArrayList<join_maVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.searchGoOffList(map);
+		return dtos;
+	}
 	
 	//출근시간 인서트
 	@Override
@@ -772,5 +783,38 @@ public class J_DAOImpl implements J_DAO {
 		return cnt;
 	}
 	
+	// 사원 근태 목록 뽑아오기
+	@Override
+	public int allListCnt(int company) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.allListCnt", company);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_maVO> allListList(int company) {
+		ArrayList<join_maVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.allListList(company);
+		return dtos;
+	}
+	
+	//사원 근태 수정
+	@Override
+	public int  modifyCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.allListCnt", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_maVO> modifyList(Map<String, Object> map) {
+		ArrayList<join_maVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.modifyList(map);
+		return dtos;
+	}
+	
+	// 근태 수정 업데이트
+	public int  modifyUpdate(Map<String, Object> map) {
+		int updateCnt = sqlSession.update("com.spring.gm.persistence.J_DAO.modifyUpdate", map);
+		return updateCnt;
+	}
 	
 }

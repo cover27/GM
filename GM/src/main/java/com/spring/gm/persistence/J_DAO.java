@@ -179,14 +179,25 @@ public interface J_DAO {
 	// 출근 목록 뽑아오기
 	public int GoOffCnt(Map<String, Object> map);
 	public ArrayList<join_maVO> GoOffList(Map<String, Object> map);
-	
-	
+	// 날짜로 출근 목록 뽑아오기
+	public int searchGoOffCnt(Map<String, Object> map);
+	public ArrayList<join_maVO> searchGoOffList(Map<String, Object> map);
 	
 	//출근시간 인서트
 	public int goInsert(Map<String, Object> map);
 	//퇴근시간 업데이트
 	public int offUpdate(Map<String, Object> map); 
 	
+	// 사원 근태 목록 뽑아오기
+	public int allListCnt(int company);
+	public ArrayList<join_maVO> allListList(int company);
+	
+	//사원 근태 수정
+	public int modifyCnt(Map<String, Object> map);
+	public ArrayList<join_maVO> modifyList(Map<String, Object> map);
+	
+	// 근태 수정 업데이트
+	public int modifyUpdate(Map<String, Object> map);
 	
 	
 }

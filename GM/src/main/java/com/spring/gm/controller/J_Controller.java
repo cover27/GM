@@ -411,6 +411,20 @@ public class J_Controller {
 			service.GoOffList(req,model);
 			return "pages/J_D_attendanceRegistration";
 		}
+		//날짜로 일일 근태 조회
+		@RequestMapping("/pages/searchList")
+		public String searchList(HttpServletRequest req, Model model) {
+			logger.info("URL : J_D_attendanceRegistration");
+			service.searchList(req,model);
+			return "pages/sub/J_sub/J_D_attendanceRegistration_sub";
+		}
+		//근태 관리
+		@RequestMapping("/admin/J_A_management")
+		public String J_A_management(HttpServletRequest req, Model model) {
+			logger.info("URL : J_A_management");
+			service.allList(req,model);
+			return "admin/J_A_management";
+		}
 		
 		//월근 근태생성/마감
 		@RequestMapping("/admin/J_M_attendanceC")
@@ -512,10 +526,29 @@ public class J_Controller {
 			service.offUpdate(req,model);
 			return "pages/sub/J_sub/J_D_attendanceRegistration_sub";
 		}
+		// 개인 
+		@RequestMapping("/pages/List")
+		public String List(HttpServletRequest req, Model model) {
+			logger.info("URL : offUpdate");
+			service.GoOffList(req,model);
+			return "pages/sub/J_sub/J_D_attendanceRegistration_sub";
+		}
 		
+		//사원 근태 수정
+		@RequestMapping("/admin/modify")
+		public String modify(HttpServletRequest req, Model model) {
+			logger.info("URL : modify");
+			service.modify(req,model);
+			return "admin/sub/J_sub/J_modify_sub";
+		}
 		
-		
-		
+		// 근태 수정 업데이트
+		@RequestMapping("/admin/modifyUpdate")
+		public String modifyUpdate(HttpServletRequest req, Model model) {
+			logger.info("URL : modifyUpdate");
+			service.modifyUpdate(req,model);
+			return "admin/J_A_management";
+		}
 		
 		
 		

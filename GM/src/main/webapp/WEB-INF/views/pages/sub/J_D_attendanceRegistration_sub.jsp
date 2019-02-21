@@ -54,8 +54,29 @@
 	//한번더 클릭시
 	function error() {
 		alert("확인후 다시 시도해 주십시오.");
-
 	};
+	
+	//날짜 검색
+	function searchList() {
+			// alert(id);
+			var date = $('#date').val();
+			$.ajax({
+				url : '${pageContext.request.contextPath}/pages/searchList', //컨트롤러/basic1_sub로 가라
+				type : 'POST',
+				data : {
+					'date' : date
+				}, //전송할 데이터
+				success : function(result) { //콜백함수 - 정상적으로 처리되었을 때의 결과가 result에 들어간다.
+					//변수명이 반드시 .html(result)일 필요는 없으나 위 콜백함수의 변수명result와 일치해야 한다.
+					$('#result').html(result);
+				},
+				error : function() {
+					alert('오류');
+				}
+			});
+	};
+	
+	
 </script>
 <section>
 	<article>
@@ -63,10 +84,10 @@
 			<h2>일일 근태등록</h2>
 		</div>
 		<div>
-			*근무일자<input type="date" id="date"><input type="button"
-				value="검색">
+			*근무일자<input type="date" id="date"><input type="button" value="검색" onclick="searchList()">
 		</div>
-		<br> <br> *근무시간,휴일,연장,야간,지각,조퇴시간이 계산되지 않는 경우 담당에게 문의하세요.
+		<br> <br> 
+		<div>*근무시간,휴일,연장,야간,지각,조퇴시간이 계산되지 않는 경우 담당에게 문의하세요.</div>
 		<div id="result">
 			<c:if test="${cnt == 0}">
 				<input type="button" value="출근" onclick="go()">
@@ -105,48 +126,13 @@
 					<c:forEach var="dtos" items="${dtos}">
 						<td>${id}</td>
 						<td>${name}</td>
-						<c:if test="${fn:length(dtos.gos) > 0 }">
-							<td>${dtos.gos}</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.gos) == 0 }">
-							<td>00:00</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.offs) > 0 }">
-							<td>${dtos.offs}</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.offs) == 0 }">
-							<td>00:00</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.worktimes) > 0 }">
-							<td>${dtos.worktimes}</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.worktimes) == 0 }">
-							<td>00:00</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.overtimes) > 0 }">
-							<td>${dtos.overtimes}</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.overtimes) == 0 }">
-							<td>00:00</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.nighttimes) > 0 }">
-							<td>${dtos.nighttimes}</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.nighttimes) == 0 }">
-							<td>00:00</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.perceptiontimes) > 0 }">
-							<td>${dtos.perceptiontimes}</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.perceptiontimes) == 0 }">
-							<td>00:00</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.departuretimes) > 0 }">
-							<td>${dtos.departuretimes}</td>
-						</c:if>
-						<c:if test="${fn:length(dtos.departuretimes) == 0 }">
-							<td>00:00</td>
-						</c:if>
+						<td>${dtos.gos}</td>
+						<td>${dtos.offs}</td>
+						<td>${dtos.worktimes}</td>
+						<td>${dtos.overtimes}</td>
+						<td>${dtos.nighttimes}</td>
+						<c:if test="${dtos.perceptiontimes ne '00:00'}"><td style="background-color: red;">${dtos.perceptiontimes}</td></c:if>
+						<td style="background-color: yellow;">${dtos.departuretimes}</td>
 					</c:forEach>
 				</c:if>
 
