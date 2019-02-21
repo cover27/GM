@@ -1,37 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 
 <style>
 table, tr, th, td{
 	border:1px solid;
 }
-th{
-	width:120px;
-}
+
 </style>
 
 <section>
 	<article>
 		<div class="content_header">
-			<h2>일정 등록</h2>
+			<h2><center>일정 보기</center></h2>
 		</div>
 		
-		<!-- 일정등록 내용 -->
-		<div class="content_body" style="margin-top:10px;">
-			<form action="<c:url value='/pages/O_calendarPro'/>" method="post">
-			
-				<input type="hidden" name="num" value="${num}">
-				<input type="hidden" name="del" value="0">
-				<input type="hidden" name="equipnum" value="0">
-				<input type="hidden" name="teamSchedule" value="0">
-				<input type="hidden" name="groupId" value="0">
-				<input type="hidden" name="id"	value="${id}">
-			
+		<!-- 일정보기 내용 -->
+		<div class="content_body">
+			<form action="<c:url value='/pages/O_calendarModify'/>" method="post">
+			<input type="hidden" name="num" value="${vo.num}" /> <!-- 장훈수정 -->
+			<c:if test="${num != 0}">
 				<div class="content-write">
 					<div class="form-block">
-						<table>
+						<table style="width:100%">
 							<tbody>
+							
 								<tr>
+											<!-- 기간은 그냥 수기로 수정 해줘야함.. DB에서 불러와서 변경하지 못했음. -->
 									<th scope="row"><span>*</span>기간</th>
 									<td>
 										<div>
@@ -56,18 +51,19 @@ th{
 									<th scope="row"><span>*</span>제목</th>
 									<td>
 										<div class="block-form">
+											<input type="text" value="저장된 일정 :${vo.getScheduleKind()}" readonly>
 											<select name="scheduleKind">
 												<option value="출장">출장</option>
 												<option value="휴가">휴가</option>
 											</select>
-											<input type="text" name="subject" title="제목" placeholder="제목" required>
+											<input type="text" name="subject" title="제목" value="${vo.getSubject()}" required>
 										</div>
 									</td>
 								</tr>
 								<tr>
 									<th scope="row">장소</th>
 									<td>
-										<input type="text" name="location" title="장소"	placeholder="장소">
+										<input type="text" name="location" title="장소" value="${vo.getLocation()}">
 									</td>
 								</tr>
 								<!-- <tr>
@@ -89,28 +85,26 @@ th{
 										<input type="button" name="searchUser" value="검색">
 									</td>
 								</tr> -->
-								<tr style="height:400px;">
+								<tr style="height:200px;">
 									<th scope="row" style="word-break:break-all;">내용</th>
 									<td>
-										<textarea name="content" placeholder="내용" style="width:100%; height:390px;"></textarea>
+										<textarea name="content" style="width:100%; height:190px;">${vo.getContent()}</textarea>
 									</td>
 								</tr>
+								
 							</tbody>
 						</table>
 						
-						<!-- 
-						<div class="fileup">
-							<h3><span>파일 업로드</span></h3>
-							<input type="file" name="fileLoad" value="">
-						</div> -->
 					</div>
 				</div>
 				
 				<!-- 일정등록 저장 footer -->
 				<div class="content-footer" style="float:right; margin-top:10px;">
-					<input type="submit" value="저장">
-					<input type="button" value="취소" onclick="window.history.back();">
+					<input type="submit" value="수정">
+					<input type="button" value="삭제" onclick="">
+					<input type="button" value="닫기" onclick="self.close();">
 				</div>
+				</c:if>
 			</form>
 		</div>
 		

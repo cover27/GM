@@ -4,22 +4,22 @@
 <html>
 <body>
 
-	<h2>일정 등록 Pro</h2>
-	<c:if test="${insertCnt == 0}">
+	<h2>일정 수정 Pro</h2>
+	<c:if test="${updateCnt == 0}">
 		<script type="text/javascript">
-			alert("일정 등록 실패했습니다.");
+			alert("일정 수정 실패했습니다.");
 			window.history.back();
 		</script>
 	</c:if>
 	
-	<c:if test="${insertCnt != 0}">
+	<c:if test="${updateCnt != 0}">
 		<script type="text/javascript">
-			alert("일정 등록 완료했습니다.");
-			window.location="O_calendar?id=${id}&num=${num}";
+			alert("일정 수정 완료했습니다.");
+			// window.location="O_calendar";
+			opener.location.reload();
+			self.close();
 		</script>
 	</c:if>
-	
-	
-	
+
 </body>
 </html>
