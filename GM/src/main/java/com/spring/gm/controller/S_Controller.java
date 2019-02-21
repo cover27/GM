@@ -33,6 +33,7 @@ public class S_Controller {
 	public String mail(HttpServletRequest req, Model model) {
 		logger.info("URL : mail");
 		
+		service.mailBoxList(req, model);
 		return "pages/S_mail_inbox";
 	}
 }
