@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.spring.gm.vo.AttendedVO;
 import com.spring.gm.vo.BonusCutVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.SalaryVO;
+import com.spring.gm.vo.join_maVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgsbVO;
 import com.spring.gm.vo.join_mgsbcVO;
@@ -168,4 +170,34 @@ public interface J_DAO {
 	
 	public int searchCnt2(Map<String, Object> map);
 	public ArrayList<join_mgsbcVO> searchList(Map<String, Object> map);
+
+	
+	
+	
+	//--------------------------------------------------------------------------------------------------------------------------
+	//---------------------------------------------근태관리------------------------------------------------------------------------
+	// 출근 목록 뽑아오기
+	public int GoOffCnt(Map<String, Object> map);
+	public ArrayList<join_maVO> GoOffList(Map<String, Object> map);
+	// 날짜로 출근 목록 뽑아오기
+	public int searchGoOffCnt(Map<String, Object> map);
+	public ArrayList<join_maVO> searchGoOffList(Map<String, Object> map);
+	
+	//출근시간 인서트
+	public int goInsert(Map<String, Object> map);
+	//퇴근시간 업데이트
+	public int offUpdate(Map<String, Object> map); 
+	
+	// 사원 근태 목록 뽑아오기
+	public int allListCnt(int company);
+	public ArrayList<join_maVO> allListList(int company);
+	
+	//사원 근태 수정
+	public int modifyCnt(Map<String, Object> map);
+	public ArrayList<join_maVO> modifyList(Map<String, Object> map);
+	
+	// 근태 수정 업데이트
+	public int modifyUpdate(Map<String, Object> map);
+	
+	
 }

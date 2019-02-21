@@ -132,22 +132,25 @@
 		<div class="content">
 			<div class="search-wrap">
 				<div class="form-group">
-					<form action="J_PayrollRegistration" method="post"
-						name="searchform">
+					<form action="J_PayrollRegistration" method="post" name="searchform">
 						<span class="bold5px">사업장 :</span>
 						<c:forEach var="dto" items="${dtoss}">
 							<span name="search_title" id="search_title" class="bold5px">${dto.c_name}</span>
 						</c:forEach>
-						<span class="ml50"> <select name="search_title">
+						<span class="ml50">
+							<select name="search_title">
 								<!-- 성명,사원번호,부서: 일반사용자 disabled 자신의 사원번호 -->
 								<option value="allList">전체보기</option>
 								<option value="name">성명</option>
 								<option value="depart">부서</option>
 								<option value="id">사원아이디</option>
-						</select>
-						</span> <span> <input type="text" name="search_content"
-							placeholder="검색 내용">
-						</span> <span> <input type="submit" value="검색">
+							</select>
+						</span>
+						<span>
+							<input type="text" name="search_content" placeholder="검색 내용">
+						</span>
+						<span>
+							<input type="submit" value="검색">
 						</span>
 					</form>
 				</div>
@@ -252,8 +255,38 @@
 				<h3>이번달 급여 목록</h3>
 			</div>
 			<div id="result" class="salary_info_result">
-				<div style="padding: 60px; text-align: center;">*위 원하시는 정보를 클릭
-					하십시오.</div>
+				<table>
+						<tr>
+							<th>급여번호</th>
+							<td></td>
+							<th>아아디</th>
+							<td></td>
+							<th>성명</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>부서</th>
+							<td></td>
+							<th>직급</th>
+							<td></td>
+							<th>상태</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>핸드폰</th>
+							<td></td>
+							<th>지급일</th>
+							<td></td>
+							<th>E-MAIL</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th style="border-bottom: 1px #c0c0c0 solid;">*이번달 급여</th>
+							<td style="border-bottom: 1px #c0c0c0 solid;"></td>
+							<th style="border-bottom: 1px #c0c0c0 solid;">*계좌번호</th>
+							<td style="border-bottom: 1px #c0c0c0 solid;" colspan="3"></td>
+						</tr>
+					</table>
 			</div>
 		</div>
 	</article>

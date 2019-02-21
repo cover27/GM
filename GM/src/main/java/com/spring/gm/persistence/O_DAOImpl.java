@@ -65,6 +65,36 @@ public class O_DAOImpl implements O_DAO {
 		dtos= dao.getCalendarList(map);
 		return dtos;
 	}
+	//일정화면 조회
+	@Override
+	public List<ScheduleVO> selectCalendar(String id) {
+		List<ScheduleVO> dtos=null;
+		dao = sqlSession.getMapper(O_DAO.class);
+		dtos=dao.selectCalendar(id);
+		return dtos;
+	}
+	
+	//일정등록 pro
+	@Override
+	public int insertCalendar(ScheduleVO vo) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.insertCalendar(vo);
+	}
+	
+	//일정 상세 화면
+	@Override
+	public ScheduleVO modifyBeforeCalendar(Map<String, Object> map) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.modifyBeforeCalendar(map);
+	}
+	
+	//일정 수정
+	@Override
+	public int updateCalendar(ScheduleVO vo) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.updateCalendar(vo);
+	}
+
 	
 	
 

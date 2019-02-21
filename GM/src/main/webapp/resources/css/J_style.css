@@ -32,7 +32,7 @@
 	display: inline-block;
 }
 
-.content .search-wrap>.form-group>form .bold5px {
+.content .bold5px {
 	font-weight: bold;
 	margin-left: 5px;
 }
@@ -54,7 +54,11 @@
     color: #fff;
     font-weight: bold;
     position: relative;
-    top: -1px;
+    /* top: -1px; */
+}
+
+.content input[type="montn"] {
+	padding-left: 3px;
 }
 
 .content input[type="submit"] {

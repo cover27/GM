@@ -18,7 +18,15 @@ th{
 		
 		<!-- 일정등록 내용 -->
 		<div class="content_body" style="margin-top:10px;">
-			<form action="">
+			<form action="<c:url value='/pages/O_calendarPro'/>" method="post">
+			
+				<input type="hidden" name="num" value="${num}">
+				<input type="hidden" name="del" value="0">
+				<input type="hidden" name="equipnum" value="0">
+				<input type="hidden" name="teamSchedule" value="0">
+				<input type="hidden" name="groupId" value="0">
+				<input type="hidden" name="id"	value="${id}">
+			
 				<div class="content-write">
 					<div class="form-block">
 						<table>
@@ -27,20 +35,20 @@ th{
 									<th scope="row"><span>*</span>기간</th>
 									<td>
 										<div>
-											<input type="datetime-local" name="startMonth" value="조회" id="now_date">
+											<input type="datetime-local" name="begin" id="now_date" required>
 											<script>
 												document.getElementById('now_date').value = new Date().toISOString().slice(0,  16);
 											</script>
 												<span>~</span>
-											<input type="datetime-local" name="endMonth" value="조회" id="now_date2">
+											<input type="datetime-local" name="end" id="now_date2" required>
 											<script>
 												document.getElementById('now_date2').value = new Date().toISOString().slice(0,  16);
 											</script>
-											<span>
+											<!-- <span>
 												<label><input type="radio" name="radiosel">회사 일정</label>
 												<label><input type="radio" name="radiosel">부서일정</label>
 												<label><input type="radio" name="radiosel" checked>비공개</label>
-											</span>
+											</span> -->
 										</div>
 									</td>
 								</tr>
@@ -48,21 +56,21 @@ th{
 									<th scope="row"><span>*</span>제목</th>
 									<td>
 										<div class="block-form">
-											<select>
-												<option>출장</option>
-												<option>휴가</option>
+											<select name="scheduleKind">
+												<option value="출장">출장</option>
+												<option value="휴가">휴가</option>
 											</select>
-											<input type="text" name="title" title="제목" placeholder="제목">
+											<input type="text" name="subject" title="제목" placeholder="제목" required>
 										</div>
 									</td>
 								</tr>
 								<tr>
 									<th scope="row">장소</th>
 									<td>
-										<input type="text" name="place" title="장소"	placeholder="장소">
+										<input type="text" name="location" title="장소"	placeholder="장소">
 									</td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<th scope="row">회의실</th>
 									<td>
 										<input type="button" name="btnConferneceRoom" value="회의실 예약">
@@ -80,7 +88,7 @@ th{
 										<input type="text" name="selectUser" placeholder="사용자">
 										<input type="button" name="searchUser" value="검색">
 									</td>
-								</tr>
+								</tr> -->
 								<tr style="height:400px;">
 									<th scope="row" style="word-break:break-all;">내용</th>
 									<td>
@@ -90,17 +98,17 @@ th{
 							</tbody>
 						</table>
 						
-						<!-- 파일 업로드 -->
+						<!-- 
 						<div class="fileup">
 							<h3><span>파일 업로드</span></h3>
 							<input type="file" name="fileLoad" value="">
-						</div>
+						</div> -->
 					</div>
 				</div>
 				
 				<!-- 일정등록 저장 footer -->
-				<div class="content-footer" style="float:right;">
-					<input type="button" value="저장">
+				<div class="content-footer" style="float:right; margin-top:10px;">
+					<input type="submit" value="저장">
 					<input type="button" value="취소" onclick="window.history.back();">
 				</div>
 			</form>
