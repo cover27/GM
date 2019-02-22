@@ -3,44 +3,96 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.spring.gm.vo.MemberVO" %>  
+<script>
+function modify(num, b_name, anon) {
+	var selector = '.boards_tree';
+	$(selector).on('click', function(){
+	    $(selector).removeClass('boards_tree');
+	    $(this).addClass('boards_tree');
+	});
+	// alert("게시판번호 : "+num);
+	$.ajax({
+		type : "POST",
+		url : "${pageContext.request.contextPath}/admin/D_boardsUpdate",
+		data : {
+			"num" : num,
+			"b_name" : b_name,
+			"anon" : anon
+		},
+		success : function(result) {
+			// alert("성공");
+			$(".boards_tree").html(result);
+		},
+		error : function() {
+			alert("게시판 변경이 실패하였습니다.");
+		}
+	});
+}
+</script>
 	<section>
 		<article>
 			<div class="content_header">
 				<h2>게시글 상세 페이지</h2>
 			</div>
-	<table>
-		<tr>
-			<th style="width:150px;">작성자</th>
-				<td>
-					${dto.writer}
-				</td>
-			<th style="width:150px;">조회수</th>
-			<td>
-				${dto.readcnt}
-			</td>
-		</tr>
-		
-		<tr>
-
-				<th style="width:150px;">작성일</th>
-				<td>
-					<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.getReg_date()}" />
-				</td>
-		</tr>
-		
-		<tr>
-			<th>글제목</th>
-				<td colspan="3" style="width:150px;text-align:left; padding-left:10px;">
-					${dto.subject}
-				</td>
-		</tr>
-			<tr>
-				<th style="width:150px;">글내용</th>
-				<td colspan="3" style="height:300px;text-align:left; padding-left:10px;">
+			<div class="content">
+				<div class="write_head">
+					<ul>
+						<li>
+							<span><b>${dto.subject}</b></span>
+						</li>
+						<li>
+							<span>${dto.writer}</span>
+							<span style="margin:0 10px;color: #c0c0c0;">|</span>
+							<span><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.getReg_date()}" /></span>
+						</li>
+					</ul>
+				</div>
+				<div class="write_body">
 					${dto.content}
-				</td>
-			</tr>
+				</div>
+				<div class="comment mt20">
+					<form action="<c:url value='/pages/D_repleInsertPro'/>" method="post" name="D_repleInsert">
+						<input type="hidden" name="boardnum" value="${boardnum}">
+						<input type="hidden" name="writer" value="${sessionScope.loginInfo.name}">
+						<input type="hidden" name="pageNum" value="${pageNum}">
+						<input type="hidden" name="num" value="${num}">
+						<input type="hidden" name="number" value="${number}">
+						<ul>
+							<li>${sessionScope.loginInfo.name}</li>
+							<li>
+								<input type="text" class="w90p" name="content" placeholder="댓글 내용을 입력하세요!!" required>
+								<span class="btnset">
+									<input type="submit" value="작성">
+									<!-- <input type="reset" value="취소"> -->
+								</span>
+							</li>
+						</ul>
+						<c:forEach var="r_dtos" items="${r_dtos}">
+							<c:if test="${r_dtos.del == 0}">
+								<ul id="result" style="margin-top: 20px;border-top: 1px solid #e5e5e5">
+									<li>
+										<span>${r_dtos.writer}</span>
+										<span style="margin:0 10px;color: #c0c0c0;">|</span>
+										<span><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${r_dtos.reg_date}" /></span>
+									</li>
+									<li>
+										${r_dtos.content}
+									</li>
+									<li>
+										<input type="button" value="수정" onclick="modify(${r_dtos.boardnum}, ${pageNum}, ${num}, ${number}, ${r_dtos.replenum}, ${r_dtos.content})">
+										<input type="button" value="삭제" onclick="window.location='<c:url value="/pages/D_repleDeletePro?boardnum=${r_dtos.boardnum}&pageNum=${pageNum}&num=${num}&number=${number}&replenum=${r_dtos.replenum}"/>'">
+									</li>
+								</ul>
+							</c:if>
+						</c:forEach>
+					</form>
+				</div>
+				
+			</div>
 			
+			
+	<hr />
+		<table>
 			<tr>
 				<th colspan="4">
 					<c:if test="${sessionScope.loginInfo.sys_rank == 1 || sessionScope.loginInfo.name == dto.writer}">
@@ -53,27 +105,7 @@
 			</tr>
 		</table>
 		
-		<table>
-			<c:forEach var="r_dtos" items="${r_dtos}">
-			<c:if test="${r_dtos.del == 0}">
-				<tr>
-					<th style="width:150px;">작성자</th>
-					<td>${r_dtos.writer}</td>
-	
-					<th style="width:150px;">내용</th>
-					<td>${r_dtos.content}</td>
-					
-					<th>작성일</th>
-					<td>
-						<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${r_dtos.reg_date}" />
-					</td>
-
-					<td><input type="button" class="inputButton" value="글 수정" onclick="window.location='<c:url value="/pages/D_repleUpdate?boardnum=${r_dtos.boardnum}&pageNum=${pageNum}&num=${num}&number=${number}&replenum=${r_dtos.replenum}&content=${r_dtos.content}"/>'"></td>
-					<td><input type="button" class="inputButton" value="글 삭제" onclick="window.location='<c:url value="/pages/D_repleDeletePro?boardnum=${r_dtos.boardnum}&pageNum=${pageNum}&num=${num}&number=${number}&replenum=${r_dtos.replenum}"/>'"></td>
-				</tr>
-			</c:if>
-			</c:forEach>
-		</table>
+		
 		
 	<table>
 			<tr>
@@ -107,35 +139,6 @@
 </table>
 
 
-<form action="<c:url value='/pages/D_repleInsertPro'/>" method="post" name="D_repleInsert">
-		<input type="hidden" name="boardnum" value="${boardnum}">
-		<input type="hidden" name="writer" value="${sessionScope.loginInfo.name}">
-		<input type="hidden" name="pageNum" value="${pageNum}">
-		<input type="hidden" name="num" value="${num}">
-		<input type="hidden" name="number" value="${number}">
-		
-	<table>
-		<tr>
-			<th> 작성자 </th>
-			<td>
-				<%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %>
-			</td>				
-		</tr>
-		
-		<tr>
-			<th> 댓글 </th>
-			<td>
-				<textarea class="input" rows="10" cols="40" name="content" style="width:270px" placeholder="댓글 내용을 입력하세요!!" word-break:break-all></textarea>
-			</td>
-		</tr>
-		
-		<tr>
-			<th colspan="2">
-				<input class="inputButton" type="submit" value="작성">
-				<input class="inputButton" type="reset" value="취소">
-			</th>
-		</tr>
-	</table>
-</form>
+
 	</article>
 </section>

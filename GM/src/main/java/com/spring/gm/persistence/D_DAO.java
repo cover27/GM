@@ -27,7 +27,7 @@ public interface D_DAO {
 	
 	public List<BoardListVO> getBoardArticleList(Map<String, Object> map);	//게시글 목록
 	
-	public int insertBoard(BoardListVO vo, int company); // 게시글 생성
+	public int insertBoard(BoardListVO vo); // 게시글 생성
 	
 	public BoardListVO getArticle(int boardnum);	// 게시글 상세
 	
