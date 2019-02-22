@@ -4,30 +4,30 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.spring.gm.vo.MemberVO" %>  
 <script>
-function modify(num, b_name, anon) {
-	var selector = '.boards_tree';
-	$(selector).on('click', function(){
-	    $(selector).removeClass('boards_tree');
-	    $(this).addClass('boards_tree');
-	});
-	// alert("게시판번호 : "+num);
-	$.ajax({
-		type : "POST",
-		url : "${pageContext.request.contextPath}/admin/D_boardsUpdate",
-		data : {
-			"num" : num,
-			"b_name" : b_name,
-			"anon" : anon
-		},
-		success : function(result) {
-			// alert("성공");
-			$(".boards_tree").html(result);
-		},
-		error : function() {
-			alert("게시판 변경이 실패하였습니다.");
-		}
-	});
-}
+$(document).ready(function() {
+	function modify(boardnum, pageNum, num, number, replenum, content) {
+		alert("컴온");
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/pages/D_repleUpdate",
+			data : {
+				"boardnum" : boardnum,
+				"pageNum" : pageNum,
+				"num" : num,
+				"number" : number,
+				"replenum" : replenum,
+				"content" : content
+			},
+			success : function(result) {
+				// alert("성공");
+				$("#result").html(result);
+			},
+			error : function() {
+				alert("게시판 변경이 실패하였습니다.");
+			}
+		});
+	}
+});
 </script>
 	<section>
 		<article>
@@ -79,7 +79,7 @@ function modify(num, b_name, anon) {
 										${r_dtos.content}
 									</li>
 									<li>
-										<input type="button" value="수정" onclick="modify(${r_dtos.boardnum}, ${pageNum}, ${num}, ${number}, ${r_dtos.replenum}, ${r_dtos.content})">
+										<input type="button" value="수정" onclick="modify(${r_dtos.boardnum}, ${pageNum}, ${num}, ${number}, ${r_dtos.replenum}, ${r_dtos.content});">
 										<input type="button" value="삭제" onclick="window.location='<c:url value="/pages/D_repleDeletePro?boardnum=${r_dtos.boardnum}&pageNum=${pageNum}&num=${num}&number=${number}&replenum=${r_dtos.replenum}"/>'">
 									</li>
 								</ul>
