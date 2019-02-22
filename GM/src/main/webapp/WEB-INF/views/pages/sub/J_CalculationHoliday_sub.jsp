@@ -43,6 +43,38 @@ function VacationViews() {
 		});
 	}
 };
+function VacationViews2() {
+	var year = $("#year").val();
+	var yearLength = $('#year').val().length;
+	if(yearLength == 0){
+		alert("날짜를 입력해주십시오.");
+	}else {
+		$.ajax({
+			url : '${pageContext.request.contextPath}/pages/VacationViews2',
+			type : 'POST',
+			data : {
+				'year' : year,
+				'id' : id
+			}, //전송할 데이터
+			success : function(result) {
+				$('#result').html(result);
+			},
+			error : function() {
+				alert('오류');
+			}
+		});
+	}
+};
+function search() {
+	$("#search").show();
+	$("#allsearch").hide();
+}
+function allsearch() {
+	$("#allsearch").show();
+	$("#search").hide();
+}
+
+
 
 </script>
 <section>
@@ -51,8 +83,13 @@ function VacationViews() {
 			<h2>연차/휴가일수 조회</h2>
 		</div>
 		<form name="searchform">
-		<c:if test="${sys_rank == 1}">
 		<div>
+		<input type="button" onclick="search()" value="사원조회" style="background: #d3292c;">
+		<input type="button" onclick="allsearch()" value="전체조회" style="background: #d3292c;">
+		</div>
+		<br>
+		<c:if test="${sys_rank == 1}">
+		<div id="search">
 			<span class="bold5px">사업장 : </span>
 			<c:forEach var="dto" items="${dtoss}">
 				<span class="bold5px">${dto.c_name}</span>
@@ -65,6 +102,11 @@ function VacationViews() {
 			<span class="bold5px ml50">*년도별검색 : </span>
 			<span><input type="text" id="year" placeholder="예)2019" maxlength="4"></span>
 			<span><input type="button" onclick="VacationViews()" value="조회" style="background: #d3292c;"></span>
+		</div>
+		<div id="allsearch" style="display:none;">
+			<span class="bold5px ml50">*년도별검색 : </span>
+			<span><input type="text" id="year" placeholder="예)2019" maxlength="4"></span>
+			<span><input type="button" onclick="VacationViews2()" value="조회" style="background: #d3292c;"></span>
 		</div>
 		</c:if>
 		<c:if test="${sys_rank != 1}">

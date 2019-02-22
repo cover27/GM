@@ -108,8 +108,6 @@ public interface J_Service {
 	public void monthList(HttpServletRequest req, Model model);
 	
 	
-	//사원 전체 휴가/연장 목록 뽑아오기
-	public void allCalculationHoliday(HttpServletRequest req, Model model);
 	//휴가 목록 뽑아오기
 	public void holiday(HttpServletRequest req, Model model);
 	//연장근무 목록 뽑아오기
@@ -119,7 +117,8 @@ public interface J_Service {
 	
 	//연차/휴가일수 조회
 	public void VacationViews(HttpServletRequest req, Model model);
-	
+	//연차/휴가일수 조회 전체보기
+	//public void VacationViews2(HttpServletRequest req, Model model);
 	
 	
 	
