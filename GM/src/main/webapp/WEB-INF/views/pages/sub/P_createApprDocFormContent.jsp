@@ -230,8 +230,6 @@ div{
 		<div id="formButtonDiv" class="btn-wrap pt10">
 		    <button id="addApprLineButton" name="addApprLineButton" type="button" class="btn btn-color5 br" onclick="addApprLine();">결재선</button>
 		    <button id="createApprDocButton" type="submit" class="btn btn-color5 br">결재요청</button>
-		    <button id="addApprRefInfoButton" type="button" class="btn btn-color7 br">기결재첨부</button>
-			<button id="createApprDocTemporayButton" type="button" class="btn btn-color7 br">임시저장</button>
 			<button id="listApprDocButton" type="button" class="btn btn-color7 br">취소</button>
 		</div>
 		

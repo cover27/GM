@@ -205,6 +205,11 @@
 	outline: none;
 }
 
+.content .k_personal ::-webkit-scrollbar {
+	width: 0;
+	height: 0;
+}
+
 .content .k_personal .fleft .fleft {
 	display: block;
 	padding: 5px 100px;

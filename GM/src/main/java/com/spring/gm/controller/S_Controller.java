@@ -69,6 +69,7 @@ public class S_Controller {
 	public String sendMessagePro(HttpServletRequest req, Model model) {
 		logger.info("URL : S_sendMessagePro");
 		
+		service.sendMessagePro(req, model);
 		return "pages/S_sendMessagePro";		
 	}
 }

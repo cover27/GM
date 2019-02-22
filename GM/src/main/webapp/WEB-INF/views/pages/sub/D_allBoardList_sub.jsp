@@ -86,7 +86,9 @@ function delBoard(){
 											<a href="<c:url value='/pages/D_boardContent?boardnum=${dto.boardnum}&num=${dto.num}&ref_level=${dto.ref_level}&pageNum=${pageNum}&number=${number+1}'/>">
 												${dto.subject}
 											</a>
-											[${dto.re_num}]
+											<c:if test="${dto.re_num != 0}">
+												<span class="replycnt">${dto.re_num}</span>
+											</c:if>
 										</td>
 										<td>${dto.writer}</td>
 										<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.reg_date}" /></td>
@@ -113,10 +115,10 @@ function delBoard(){
 						
 						    <c:forEach var="i" begin="${startPage}" end="${endPage}">
 						        <c:if test="${i == currentPage}">
-						            <span><b>[${i}]</b></span>
+						            <span class="thisPage"><b>${i}</b></span>
 						        </c:if>
 						        <c:if test="${i != currentPage}">
-						            <a href="<c:url value='/pages/D_allBoardList?num=${num}&pageNum=${i}'/>">[${i}]</a>
+						            <a href="<c:url value='/pages/D_allBoardList?num=${num}&pageNum=${i}'/>">${i}</a>
 						        </c:if>
 						    </c:forEach>
 						

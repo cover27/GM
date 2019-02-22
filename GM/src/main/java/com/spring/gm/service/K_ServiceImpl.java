@@ -111,6 +111,7 @@ public class K_ServiceImpl implements K_Service{
 		vo.setEng_address(req.getParameter("eng_address"));
 		vo.setDepart(Integer.parseInt(req.getParameter("depart")));
 		vo.setCompany(Integer.parseInt(req.getParameter("depart")));
+		vo.setRank(Integer.parseInt(req.getParameter("depart")));
 		java.sql.Date today = new java.sql.Date(new java.util.Date().getTime());
 		vo.setEnterday(today);
 		vo.setYear(0);
@@ -183,7 +184,7 @@ public class K_ServiceImpl implements K_Service{
 	@Override
 	public void K_resistMemberInfo(HttpServletRequest req, Model model) {
 		
-		int pageSize = 10; // 한페이지당 출력할 글 갯수
+		int pageSize = 100; // 한페이지당 출력할 글 갯수
 		int pageBlock = 5; // 한 블럭당 페이지 갯수
  
 		int cnt = 0; // 글갯수
