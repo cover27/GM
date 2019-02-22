@@ -56,7 +56,6 @@
 		  $(this).css('background-color', '#ddfbff'); //해당 배경 색깔 바뀜
 	  },
 	  eventClick:function(calEvent, jsEvent, view){
-		  alert('Event: ' + calEvent.title);
 		  $(this).css('border-color', 'red');
 		  var url='O_calendarDetail?num='+calEvent.num;
 		  window.open(url, 'O_calendarDetail', 'width=600, height=500');

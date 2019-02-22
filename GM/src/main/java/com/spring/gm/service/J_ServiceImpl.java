@@ -120,6 +120,9 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("endPage : " + endPage);
 		System.out.println("================");
 
+		String companyName = K_dao.getCompanyName(company);
+		
+		model.addAttribute("companyName", companyName);
 		model.addAttribute("cnt", cnt); // 글갯수
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum); // 페이지번호
