@@ -4,12 +4,12 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2>메일</h2>
+			<h2>쪽지</h2>
 		</div>
 		<div class="content">
 			<div class="mailbox_header">
 				<ul>
-					<li>안 읽은 메일 <span>3</span>통 / 전체 메일 <span>5</span>통</li>
+					<li>안 읽은 쪽지 <span></span>통 / 전체 쪽지 <span></span>통</li>
 					<li class="mailbox_searchbox">
 						<input type="text" />
 						<span class="blind">검색</span>
@@ -57,18 +57,17 @@
 					</colgroup>
 					<tr>
 						<th><input type="checkbox" /></th>
-						<th><span class="attached_file"></span></th>
 						<th><span>보낸사람</span></th>
 						<th><span>제목</span></th>
 						<th><span>날짜</span></th>
 					</tr>
-					<tr>
-						<td><input type="checkbox" /></td>
-						<td><span>1</span></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+						<tr>
+							<td><input type="checkbox" /></td>
+							<td><span>1</span></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
 				</table>
 			</div>
 		</div>

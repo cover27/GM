@@ -9,6 +9,7 @@ public class B_ManageVO {
 	private int todonum; //업무관리번호
     private String id; //아이디(FK)
     private int groupId; //그룹번호(FK)
+    private String name; //이름
     private String subject; //업무관리제목
     private String content; //업무관리내용
     private Date begin; //시작일
@@ -16,9 +17,9 @@ public class B_ManageVO {
     private Timestamp reg_date; //등록일
     private String state; //상태
     private int del; //삭제구분
+
     
-    
-	public int getTodonum() {
+    public int getTodonum() {
 		return todonum;
 	}
 	public void setTodonum(int todonum) {
@@ -35,6 +36,12 @@ public class B_ManageVO {
 	}
 	public void setGroupId(int groupId) {
 		this.groupId = groupId;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getSubject() {
 		return subject;
@@ -81,9 +88,9 @@ public class B_ManageVO {
 	
 	@Override
 	public String toString() {
-		return "B_ManageVO [todonum=" + todonum + ", id=" + id + ", groupId=" + groupId + ", subject=" + subject
-				+ ", content=" + content + ", begin=" + begin + ", end=" + end + ", reg_date=" + reg_date + ", state="
-				+ state + ", del=" + del + "]";
+		return "B_ManageVO [todonum=" + todonum + ", id=" + id + ", groupId=" + groupId + ", name=" + name
+				+ ", subject=" + subject + ", content=" + content + ", begin=" + begin + ", end=" + end + ", reg_date="
+				+ reg_date + ", state=" + state + ", del=" + del + "]";
 	}
 	
     

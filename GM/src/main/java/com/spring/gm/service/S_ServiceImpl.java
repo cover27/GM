@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.S_DAO;
-import com.spring.gm.vo.MassageBoxVO;
-import com.spring.gm.vo.MassageVO;
+import com.spring.gm.vo.MessageBoxVO;
+import com.spring.gm.vo.MessageVO;
 import com.spring.gm.vo.MemberVO;
 
 @Service
@@ -79,7 +79,7 @@ public class S_ServiceImpl implements S_Service {
 			map.put("strId", strId);
 			map.put("del", del);
 			
-			List<MassageVO> dtos = dao.getMessageArticleList(map);
+			List<MessageVO> dtos = dao.getMessageArticleList(map);
 			
 
 			model.addAttribute("m_dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
@@ -127,6 +127,7 @@ public class S_ServiceImpl implements S_Service {
 		int pageCount = 0;		// 페이지 갯수
 		int startPage = 0;		// 시작 페이지
 		int endPage = 0;		// 마지막 페이지
+		int del=0;
 	
 		// 게시판 갯수
 		cnt = dao.getMessageBoxArticleCnt(strId);
@@ -166,11 +167,12 @@ public class S_ServiceImpl implements S_Service {
 			map.put("start", start);
 			map.put("end", end);
 			map.put("strId", strId);
+			map.put("del", del);
 			
-			List<MassageBoxVO> dtos = dao.getMessageBoxArticleList(map);
+			List<MessageBoxVO> dtos = dao.getMessageBoxArticleList(map);
 			
 
-			model.addAttribute("b_dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+			model.addAttribute("mb_dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
 
 		}
 		
@@ -197,5 +199,14 @@ public class S_ServiceImpl implements S_Service {
 			model.addAttribute("currentPage", currentPage); // 현재페이지
 		}		
 	}
+
+
+	@Override
+	public void sendMessagePro(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }
