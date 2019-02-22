@@ -22,9 +22,9 @@
             <li id="o"><a href="<c:url value='/pages/O_calendar' />">일정</a></li>
             <li id="d"><a href="<c:url value='/pages/D_allBoardList' />">게시판</a></li>
             <li id="j"><a href="<c:url value='/pages/J_D_attendanceRegistration' />">근태관리</a></li>
-
-            <li id="k"><a href="<c:url value='/admin/K_member_manage'/>">인사</a></li>
-
+			<c:if test="${sessionScope.loginInfo.sys_rank != 1}">
+            	<li id="k"><a href="<c:url value='/admin/K_member_manage'/>">인사</a></li>
+			</c:if>
             <!--
             <li class="menu_all"><a href="#"></a></li>
             -->
