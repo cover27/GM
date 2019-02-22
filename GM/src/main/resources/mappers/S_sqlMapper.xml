@@ -25,5 +25,10 @@
 			SELECT * FROM(SELECT mail_num, id, name, rank, del, status, rownum rNum FROM (SELECT * FROM massage WHERE id = #{strId} AND del = 0; ORDER BY mail_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select> -->	
+	
+	<insert id="sendMessage" parameterType="com.spring.gm.vo.MessageVO">
+		INSERT INTO Message (num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate,  del) 
+		VALUES(seq_message.nextval, #{message_num}, #{sender}, #{receiver}, #{subject}, #{content}, #{state}, #{sentDate}, #{receiveDate}, #{del}) 
+	</insert>
 
 </mapper>

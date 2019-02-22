@@ -203,7 +203,22 @@ public class S_ServiceImpl implements S_Service {
 
 	@Override
 	public void sendMessagePro(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
+		String sender = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		String receiver = req.getParameter("id");
+		String subject = req.getParameter("subject");
+		
+		MessageVO vo = new MessageVO();
+		vo.setMessage_num(0);
+		vo.setSender(sender);
+		vo.setReceiver(receiver);
+		vo.setSubject(subject);
+		vo.setContent(req.getParameter("content"));
+		vo.setState(0);
+		vo.setDel(0);
+		
+		int sendCnt = dao.sendMessage(vo);
+		
+		model.addAttribute("sendCnt", sendCnt);
 		
 	}
 

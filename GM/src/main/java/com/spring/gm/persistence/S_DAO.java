@@ -17,5 +17,7 @@ public interface S_DAO {
 	public int getMessageBoxArticleCnt(String strId); //메일박스 갯수
 	
 	public List<MessageBoxVO> getMessageBoxArticleList(Map<String, Object> map); //게시판 목록
+	
+	public int sendMessage(MessageVO vo); // 메세지 전송문
 
 }

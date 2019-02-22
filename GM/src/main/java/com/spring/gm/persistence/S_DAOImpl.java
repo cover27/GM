@@ -40,4 +40,10 @@ public class S_DAOImpl implements S_DAO {
 		return dao.getMessageBoxArticleList(map);
 	}
 
+	@Override
+	public int sendMessage(MessageVO vo) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.sendMessage(vo);
+	}
+
 }
