@@ -18,7 +18,7 @@ table, tr, th, td{
 		<!-- 일정보기 내용 -->
 		<div class="content_body">
 			<form action="<c:url value='/pages/O_calendarModify'/>" method="post">
-			<input type="hidden" name="num" value="${vo.num}" /> <!-- 장훈수정 -->
+			<input type="hidden" name="num" value="${vo.num}" /> 
 			<c:if test="${num != 0}">
 				<div class="content-write">
 					<div class="form-block">
@@ -101,7 +101,7 @@ table, tr, th, td{
 				<!-- 일정등록 저장 footer -->
 				<div class="content-footer" style="float:right; margin-top:10px;">
 					<input type="submit" value="수정">
-					<input type="button" value="삭제" onclick="">
+					<input type="button" value="삭제" onclick="window.location='<c:url value="/pages/O_calendarDelete?num=${vo.num}"/>'">
 					<input type="button" value="닫기" onclick="self.close();">
 				</div>
 				</c:if>

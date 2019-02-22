@@ -20,6 +20,7 @@
 	]]> 
 </select>
 
+<!-- 일정 시작 -->
 <!-- 일정 -->
 <select id="selectCalendar" resultType="com.spring.gm.vo.ScheduleVO" parameterType="String" >
 	select id, num, scheduleKind, subject, location, content, begin, end from schedule where id=#{id} and del=0
@@ -38,7 +39,25 @@
 
 <!-- 일정 수정 -->
 <update id="updateCalendar" parameterType="com.spring.gm.vo.ScheduleVO">
-	update schedule set schedulekind=#{scheduleKind}, subject=#{subject}, location=#{location}, content=#{content}, begin=#{begin}, end=#{end} where num=#{num}
+	update schedule set schedulekind=#{scheduleKind}, subject=#{subject}, location=#{location}, content=#{content}, begin=#{begin}, end=#{end} where num=#{num} and del=0
 </update>
+
+<!-- 일정 삭제 -->
+<update id="deleteCalendar">
+	update schedule set del=1 where num=#{num}
+</update>
+<!-- 일정 끝 -->
+
+
+
+<!-- 업무 시작 -->
+<!-- 업무 insert-pro -->
+<insert id="insertTodo" parameterType="com.spring.gm.vo.B_ManageVO">
+	insert into b_manage values(seq_b_manage.nextval, #{id}, #{groupId}, #{subject}, #{content}, #{begin}, #{end}, #{reg_date}, #{state}, 0)
+</insert>
+
+
+
+<!-- 업무 끝 -->
 
 </mapper>

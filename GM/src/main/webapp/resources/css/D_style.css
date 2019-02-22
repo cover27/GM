@@ -22,6 +22,12 @@
 .content .boards_wrap {
 	clear: both;
 	margin-top: 10px;
+	overflow-y: auto;
+	height: 680px;
+	/*
+    border: 1px solid #ddd;
+    border-radius: 10px;
+     */
 	/*
 	border-radius: 10px;
 	min-height: 250px;
