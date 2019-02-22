@@ -44,7 +44,7 @@
 		<![CDATA[
 		SELECT * 
 		FROM (SELECT boardnum, num, writer, subject, content, re_num, readcnt, ref, ref_step, ref_level, reg_date, del, rownum as rNum
-			FROM (SELECT * FROM BOARDLIST WHERE num=#{num} AND del=0 ORDER BY ref DESC, ref_step ASC) 
+			FROM (SELECT * FROM BOARDLIST WHERE num=#{num} AND del=0 ORDER BY ref DESC, ref_step ASC)
 			)
 			WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
