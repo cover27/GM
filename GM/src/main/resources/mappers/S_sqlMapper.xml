@@ -5,15 +5,25 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.spring.gm.persistence.S_DAO" >
-	<!-- 
+
+	<!-- <select id="getMailArticleCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM massagebox WHERE id = #{strId} del = 0
+	</select>
+	
+	<select id="getMailArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MailBoxVO">
+		<![CDATA[
+			SELECT * FROM(SELECT mail_num, id, name, rank, del, status, rownum rNum FROM (SELECT * FROM massagebox WHERE id = #{strId} AND del = 0; ORDER BY mail_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+		]]>
+	</select>	
+
 	<select id="getMailBoxArticleCnt" resultType="int">
-		SELECT COUNT(*) as cnt FROM BOARDS WHERE id = #{strId}
+		SELECT COUNT(*) as cnt FROM massage WHERE id = #{strId} del = 0
 	</select>
 	
 	<select id="getMailBoxArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MailBoxVO">
 		<![CDATA[
-			SELECT * FROM(SELECT mail_num, id, name, rank, del, status, rownum rNum FROM (SELECT * FROM mailbox WHERE id = #{strId} ORDER BY mail_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT mail_num, id, name, rank, del, status, rownum rNum FROM (SELECT * FROM massage WHERE id = #{strId} AND del = 0; ORDER BY mail_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
-	</select>	
-	 -->
+	</select> -->	
+
 </mapper>

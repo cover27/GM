@@ -181,39 +181,30 @@ tbody {
 		            <table class="table table-striped" id="tblList">
 		                <caption></caption>
 		                <colgroup>
-		                    <col style="width: 40px;">
-		                    <col style="width: 40px;">
-		                    <col style="width: 120px;">
-		                    <!-- <col style="width: 140px;"> -->
-		                    <col style="min-width: 200px;">
-		                    <col style="width: 100px;">
-		                    <col style="width: 100px;">
-		                    <col style="width: 100px;">
-		                    <col style="width: 100px;">
-		                    <col style="width: 100px;">
+		                    <col style="width: 10%;">
+		                    <col style="width: 30%;">
+		                    <col style="width: 10%;">
+		                    <col style="width: 10%;">
+		                    <col style="min-width: 30%;">
+		                    <col style="width: 10%;">
 		                </colgroup>
 		               
 		                <thead>
 		                    <tr>
 		                        <th scope="col"><input id="checkAll" name="" onclick="selectAllTodo()" type="checkbox" value="" title="checkAll"></th>
-		                        <th scope="col">번호</th>
 		                        <th scope="col">
-		                            <a data-sortcolumn="FOLDER" href="#">업무 보관함<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
-		                        </th>
-		                        <th scope="col">
-		                            <a data-sortcolumn="TITLE" href="#">제목<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+		                            <a data-sortcolumn="subject" href="#">제목<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
 		                        </th>
 		                        <th scope="col">담당자</th>
 		                        <th scope="col">
-		                            <a data-sortcolumn="INSERTDATE" href="#">요청일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+		                            <a data-sortcolumn="begin" href="#">요청일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
 		                        </th>
 		                        <th scope="col">
-		                            <a data-sortcolumn="DUEDATE" href="#">마감일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+		                            <a data-sortcolumn="end" href="#">마감일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
 		                        </th>
 		                        <th scope="col">
-		                            <a data-sortcolumn="TODOSTATUS" href="#">상태<i class="fa fa-caret-up active"><span class="blind">오름차순</span></i></a>
+		                            <a data-sortcolumn="state" href="#">상태<i class="fa fa-caret-up active"><span class="blind">오름차순</span></i></a>
 		                        </th>
-		                        <th scope="col">확인</th>
 		                    </tr>
 		                </thead>
 		                
@@ -223,10 +214,6 @@ tbody {
                             <tr style="background: rgb(249, 249, 249);">
                                 <td>
                                     <input name="chkid" type="checkbox" title="checkbox" value="26904787" data-status="A1">
-                                </td>
-                                <td>1</td>
-                                <td class="ellipsis">
-                                    
                                 </td>
                                 <td class="text-left">
                                     <div class="ellipsis">
@@ -241,11 +228,6 @@ tbody {
                                 <td>
                                     <a href="javascript:void(0);" onclick="todoStatusPopup('26904787', '테스트', 'A1', '0', '');">
                                     	<span class="todo-cate-box1 color2">미완료</span>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0);" onclick="todoReadStatusPopup('26904787', '테스트', 'A1', '0', '');">
-                                        <span class="todo-cate-buuton">읽음확인</span>
                                     </a>
                                 </td>
                             </tr>
