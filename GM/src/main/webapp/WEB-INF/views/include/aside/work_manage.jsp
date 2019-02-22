@@ -27,9 +27,7 @@
                 	<li>
                 		<span>휴가관리</span>
                 		<ul>
-                			<c:if test="${sys_rank == 1}">
                 			<li id="J_CalculationHoliday"><a href="<c:url value='/pages/J_CalculationHoliday'/>">연차/휴가일수 조회</a></li>
-                			</c:if>
                 			<li id="J_ApplyHoliday"><a href="<c:url value='/pages/J_ApplyHoliday'/>">휴가신청</a></li>
                 			<li id="J_UseHoliday"><a href="<c:url value='/pages/J_UseHoliday'/>">휴가 사용현황</a></li>
                 		</ul>

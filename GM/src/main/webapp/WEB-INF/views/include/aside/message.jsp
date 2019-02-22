@@ -15,20 +15,17 @@
             <div class="category">
                 <ul>
                     <li>
-                        <span>메일작성</span>
-                        <ul class="send_mail">
-                            <li><a href="a01.jsp">메일 쓰기</a></li>
-                            <li><a href="a02.jsp">내게 쓰기</a></li>
+                        <span>쪽지 작성</span>
+                        <ul class="send_message">
+                            <li><a href="<c:url value='/pages/S_sendMessageForm'/>">쪽지 쓰기</a></li>
                         </ul>
                     </li>
                     <li>
-                        <span><a href="a03.jsp">전체 메일</a></span>
+                        <span><a href="<c:url value='/pages/S_message_inbox'/>">전체 쪽지</a></span>
                         <ul>
-                            <li><a href="">받은 메일함<span>2</span></a></li>
-                            <li><a href="a05.jsp">내게 쓴 메일함</a></li>
-                            <li><a href="a06.jsp">보낸 메일함</a></li>
-                            <li><a href="a07.jsp">임시 보관함</a></li>
-                            <li><a href="a08.jsp">스팸 메일함</a></li>
+                            <li><a href="">받은 쪽지함<span>2</span></a></li>
+                            <li><a href="a06.jsp">보낸 쪽지함</a></li>
+                            <li><a href="a07.jsp">중요 쪽지함</a></li>
                             <li><a href="a09.jsp">휴지통</a></li>
                         </ul>
                     </li> 

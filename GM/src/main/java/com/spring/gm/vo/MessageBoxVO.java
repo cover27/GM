@@ -1,6 +1,6 @@
 package com.spring.gm.vo;
 
-public class MassageBoxVO {
+public class MessageBoxVO {
 	private int massage_num;	// 쪽지함
 	private String id;		// 아이디(FK)	
 	private String name;	// 이름	

@@ -935,14 +935,12 @@ public class J_DAOImpl implements J_DAO {
 	//연차 사용수 가져오기
 	@Override
 	public join_mrvdVO annual(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.annual", map);
 	}
 	// 휴가 사용수 가져오기
 	@Override
 	public join_mrvdVO vacation(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.vacation", map);
 	}
 	
 	
