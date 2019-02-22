@@ -838,6 +838,25 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.monthList2(map);
 		return dtos;
 	}
+	//월별 근태 정보 가져오기
+	@Override
+	public int  monthCnt2(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.monthCnt2", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_margcVO> monthList3(Map<String, Object> map) {
+		ArrayList<join_margcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.monthList3(map);
+		return dtos;
+	}
+	public ArrayList<join_margcVO> monthList4(Map<String, Object> map) {
+		ArrayList<join_margcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.monthList4(map);
+		return dtos;
+	}
 	
 	
 	//휴가 목록 뽑아오기

@@ -1813,7 +1813,49 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("cnt", selectCnt);
 		model.addAttribute("id", id);
 	}
+	@Override
+	public void monthList2(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
 
+		String month = req.getParameter("month");
+		System.out.println("month : " + month);
+		model.addAttribute("month", month);
+		String[] months = month.split("-");
+		month = months[0] + months[1];
+		System.out.println("month: " + month);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("month", month);
+
+
+		int selectCnt = dao.monthCnt2(map);
+		System.out.println("selectCnt : " + selectCnt);
+
+		if (selectCnt > 0) {
+			List<join_margcVO> dtos = new ArrayList<join_margcVO>();
+			List<join_margcVO> dtos2 = dao.monthList3(map);
+			List<join_margcVO> dtos3 = dao.monthList4(map);
+			dtos.addAll(dtos2);
+			dtos.addAll(dtos3);
+			System.out.println("여기 탔어요");
+			for (int i = 0; i < selectCnt; i++) {
+				System.out.println("day : " + dtos.get(i).getDay());
+				dtos.get(i).setGos(toTime(dtos.get(i).getGo()));
+				dtos.get(i).setOffs(toTime(dtos.get(i).getOff()));
+				dtos.get(i).setWorktimes(toTime(dtos.get(i).getWorktime()));
+				dtos.get(i).setOvertimes(toTime(dtos.get(i).getOvertime()));
+				dtos.get(i).setNighttimes(toTime(dtos.get(i).getNighttime()));
+				dtos.get(i).setPerceptiontimes(toTime(dtos.get(i).getPerceptiontime()));
+				dtos.get(i).setDeparturetimes(toTime(dtos.get(i).getDeparturetime()));
+			}
+			model.addAttribute("dtos", dtos);
+		}
+		model.addAttribute("cnt", selectCnt);
+	}
+	
 	// 휴가 목록 뽑아오기
 	@Override
 	public void holiday(HttpServletRequest req, Model model) {
