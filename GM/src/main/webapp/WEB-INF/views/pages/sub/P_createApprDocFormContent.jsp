@@ -9,6 +9,9 @@ function addApprLine(){
 	window.open(url, "addApprLine", "menubar=no, width=1000, height=560");
 }
 
+function cancelPay(){
+	window.location='P_listApprTodoView';
+}
 
 </script>
 
@@ -228,9 +231,9 @@ div{
 		
 		<!-- 결재 선 라인 -->
 		<div id="formButtonDiv" class="btn-wrap pt10">
-		    <button id="addApprLineButton" name="addApprLineButton" type="button" class="btn btn-color5 br" onclick="addApprLine();">결재선</button>
-		    <button id="createApprDocButton" type="submit" class="btn btn-color5 br">결재요청</button>
-			<button id="listApprDocButton" type="button" class="btn btn-color7 br">취소</button>
+		    <input type="button" name="payLine" value="결재선" onclick="addApprLine();">
+		    <input type="button" name="paySubmit" value="결재요청" onclick="document.apprDocForm.submit();">
+		    <input type="button" name="cancel" value="취소" onclick="cancelPay();">
 		</div>
 		
 		<!-- 기안 용지 작성 content -->
@@ -451,12 +454,9 @@ div{
 					</div>
 		
 					<div id="formButtonDiv" class="btn-wrap pt10">
-						<button id="uploadFromFileBox" type="button" class="btn btn-color7 br" onclick="">웹디스크 파일첨부</button>
-					    <button id="addApprLineButton" type="button" class="btn btn-color5 br">결재선</button>
-					    <button id="createApprDocButton" type="submit" class="btn btn-color5 br">결재요청</button>
-					    <button id="addApprRefInfoButton" type="button" class="btn btn-color7 br">기결재첨부</button>
-						<button id="createApprDocTemporayButton" type="button" class="btn btn-color7 br">임시저장</button>
-						<button id="listApprDocButton" type="button" class="btn btn-color7 br">취소</button>
+					    <input type="button" name="payLine" value="결재선" onclick="addApprLine();">
+					    <input type="button" name="paySubmit" value="결재요청" onclick="document.apprDocForm.submit();">
+					    <input type="button" name="cancel" value="취소" onclick="cancelPay();">
 					</div>
 				</form>
 			</div>

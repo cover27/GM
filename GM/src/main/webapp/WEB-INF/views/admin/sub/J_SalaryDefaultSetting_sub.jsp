@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.spring.gm.vo.MemberVO" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
     /* 클릭한 요소의 색깔을 변경 */
     $(function() {
@@ -119,36 +120,12 @@
                     <!-- 게시글이 없으면 -->
                     <c:if test="${cnt == 0}">
                         <tr>
-                            <td colspan="7">게시글이 없습니다. 글을 작성해주세여.</td>
+                            <td colspan="7">검색결과가 없습니다. 다시 검색해주세여.</td>
                         </tr>
                     </c:if>
                 </table>
             </div>
-            <%-- 
-            <div class="paging">
-                <c:if test="${cnt > 0}">
-                    <c:if test="${startPage > pageBlock}">
-                        <a href="J_SalaryDefaultSetting">[◀◀]</a>
-                        <a href="J_SalaryDefaultSetting?pageNum=${startPage - pageBlock}">[◀]</a>
-                    </c:if>
-
-                    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-                        <c:if test="${i == currentPage}">
-                            <span><b>[${i}]</b></span>
-                        </c:if>
-
-                        <c:if test="${i != currentPage}">
-                            <a href="J_SalaryDefaultSetting?pageNum=${i}">[${i}]</a>
-                        </c:if>
-                    </c:forEach>
-
-                    <c:if test="${pageCount > endPage}">
-                        <a href="J_SalaryDefaultSetting?pageNum=${startPage + pageBlock}">[▶]</a>
-                        <a href="J_SalaryDefaultSetting?pageNum=${pageCount}">[▶▶]</a>
-                    </c:if>
-                </c:if>
-            </div>
-             --%>
+           
             <div class="subtitle mt60">
                 <h3>상세정보(급여기본)</h3>
             </div>
