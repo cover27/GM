@@ -63,7 +63,7 @@
                             </c:if>
                         </li>
                         <li>
-                            <a href="<c:url value='#' />">
+                            <a href="<c:url value='/pages/S_message_inbox' />">
                                 <h2>쪽지</h2>
                                 <span class="message"></span>
                             </a>

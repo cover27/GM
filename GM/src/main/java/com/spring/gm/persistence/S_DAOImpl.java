@@ -17,27 +17,27 @@ public class S_DAOImpl implements S_DAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int getMailArticleCnt(String strId) {
+	public int getMessageArticleCnt(String strId) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMailArticleCnt(strId);
+		return dao.getMessageArticleCnt(strId);
 	}
 	
 	@Override
-	public List<MassageVO> getMailArticleList(Map<String, Object> map){
+	public List<MassageVO> getMessageArticleList(Map<String, Object> map){
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMailArticleList(map);
+		return dao.getMessageArticleList(map);
 	}
 	
 	@Override
-	public int getMailBoxArticleCnt(String strId) {
+	public int getMessageBoxArticleCnt(String strId) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMailBoxArticleCnt(strId);
+		return dao.getMessageBoxArticleCnt(strId);
 	}
 
 	@Override
-	public List<MassageBoxVO> getMailBoxArticleList(Map<String, Object> map) {
+	public List<MassageBoxVO> getMessageBoxArticleList(Map<String, Object> map) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMailBoxArticleList(map);
+		return dao.getMessageBoxArticleList(map);
 	}
 
 }

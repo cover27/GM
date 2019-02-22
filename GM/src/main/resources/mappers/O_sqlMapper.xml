@@ -64,8 +64,9 @@
 <!-- 내가 한 업무요청 게시글 목록 조회  -->
 <select id="getOrderList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
 	<![CDATA[
-		select * from(select name, subject, begin, end, state,rownum rNum from b_manage)
-		where rNum >= ${start} and rNum <= #{end}
+		select * from(select name, subject, begin, end, state, rownum rNum from b_manage)
+		where rNum >= #{start} and rNum <= #{end}
+		order by begin
 	]]> 
 </select>
 

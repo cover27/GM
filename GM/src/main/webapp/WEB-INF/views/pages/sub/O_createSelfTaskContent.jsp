@@ -309,7 +309,7 @@ img{
 		                        <tr style="height:400px;">
 		                        	<th scope="row">내용</th>
 		                        	<td>
-										<textarea name="content" style="width:100%; height:390px;">글쓰기 내용</textarea>
+										<textarea name="content" style="width:100%; height:390px;" required></textarea>
 									</td>
 								</tr>
 		                    </tbody>

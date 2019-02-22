@@ -377,6 +377,7 @@ public class O_ServiceImpl implements O_Service{
 	//업무관리 내가 한 업무요청
 	@Override
 	public void orderList(HttpServletRequest req, Model model) {
+		
 		//3단계. 화면으로부터 입력받은 값을 받아온다.
 		//페이징 처리
 		int pageSize = 10;		//한페이지당 출력할 글 갯수

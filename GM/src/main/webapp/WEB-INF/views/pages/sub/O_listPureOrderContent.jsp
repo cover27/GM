@@ -292,7 +292,7 @@ tbody {
 		            <input name="pageIndex" type="hidden" value="1" title="현재 페이지">
 		            
 		            <div class="btn-wrap">
-		                <button type="button" class="btn btn-color5 br" onclick="createTask();">업무 등록</button>
+		                <button type="button" class="btn btn-color5 br" onclick="window.location='O_createSelfTaskView';">업무 등록</button>
 		                <button type="button" class="btn btn-color7 br" onclick="autoComplete();">업무완료</button>
 		                <button type="button" class="btn btn-color7 br" onclick="deleteTask();">삭제</button>
 		            </div>
