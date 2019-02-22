@@ -10,5 +10,5 @@ public interface S_Service {
 
 	public void messageBoxList(HttpServletRequest req, Model model);	// 쪽지 목록
 	
-	
+	public void sendMessagePro(HttpServletRequest req, Model model);		// 쪽지 쓰기 처리
 }

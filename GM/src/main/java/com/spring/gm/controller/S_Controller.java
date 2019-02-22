@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.gm.service.J_Service;
 import com.spring.gm.service.S_Service;
 
 @Controller
@@ -17,6 +18,7 @@ public class S_Controller {
 	
 	@Autowired
 	S_Service service;
+	J_Service jservice;
 	
 	/* 선빈이 콘트롤러에 작성
 	// 로그인
@@ -33,7 +35,7 @@ public class S_Controller {
 	public String massageBox(HttpServletRequest req, Model model) {
 		logger.info("URL : S_message_inbox");
 		
-		service.messageBoxList(req, model);
+		/*service.messageBoxList(req, model);*/	
 		return "pages/S_message_inbox";
 	}
 	
@@ -50,7 +52,23 @@ public class S_Controller {
 	public String mail(HttpServletRequest req, Model model) {
 		logger.info("URL : S_message");
 		
-		service.messageList(req, model);
+		/*service.messageList(req, model);*/
 		return "pages/S_message";
+	}
+	
+	// 쪽지 쓰기
+	@RequestMapping("/pages/S_sendMessageForm")
+	public String sendMessage(HttpServletRequest req, Model model) {
+		logger.info("URL : S_sendMessageForm");
+		
+		return "pages/S_sendMessageForm";
+	}
+	
+	// 쪽지 쓰기 처리
+	@RequestMapping("/pages/S_sendMessagePro")
+	public String sendMessagePro(HttpServletRequest req, Model model) {
+		logger.info("URL : S_sendMessagePro");
+		
+		return "pages/S_sendMessagePro";		
 	}
 }

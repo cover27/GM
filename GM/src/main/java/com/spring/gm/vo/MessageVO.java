@@ -2,7 +2,7 @@ package com.spring.gm.vo;
 
 import java.sql.Timestamp;
 
-public class MassageVO {
+public class MessageVO {
 	private int num;				// 메일번호	
 	private int mail_num;			// 메일함번호(FK)	
 	private String sender;			// 아이디(FK)	
