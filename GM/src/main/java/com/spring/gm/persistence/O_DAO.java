@@ -34,7 +34,11 @@ public interface O_DAO {
 	/* 일정 끝 */
 	
 	/* 업무 시작 */
+	//업무등록 insert-pro
 	public int insertTodo(B_ManageVO vo);
+	//내가 한 업무요청  페이지넘
+	public int getOrderCnt(); //게시글 갯수 구하기
+	public List<B_ManageVO>getOrderList(Map<String, Integer> map); //게시글 목록 조회
 	/* 업무 끝 */
 	
 	
