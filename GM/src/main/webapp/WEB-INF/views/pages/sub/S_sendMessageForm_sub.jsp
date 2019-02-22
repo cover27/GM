@@ -25,14 +25,14 @@ function back(id, name) {
 		<tr>
 			<th> 보네는 사람 </th>
 			<td>
-				<%=((MemberVO)request.getSession().getAttribute("loginInfo")).getId() %>
+				<%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %>
 			</td>				
 		</tr>
 		
 		<tr>
 				<th> 받는 사람 </th>
 				<td>
-					<span><input type="text" class="searchId" id="id" name="id" value="${name}"></span>
+					<span><input type="text" class="searchId" id="Id" name="id" value="${id}"></span>
 					<span><button onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></button></span>
 					<span class="bold5px ml50">이름 : </span>
 					<span><input type="text" class="searchName" name="name" readonly placeholder="아이디를 조회하세요." style="background: #f3f3f3;"></span>
