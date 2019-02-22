@@ -1,5 +1,6 @@
 package com.spring.gm.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -133,6 +134,17 @@ public class P_ServiceImpl implements P_Service{
 		end = start + pageSize - 1;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", null);
+		map.put("toggleSearchType", null);
+		map.put("searchApprTitle", null);
+		map.put("searchStartDate", null);
+		map.put("searchEndDate", null);
+		
+		if(req.getSession().getAttribute("searchMap") != null) {
+			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
+			req.getSession().removeAttribute("searchMap");
+		}
+		
 		map.put("id", id);
 		map.put("agree", 0);
 		map.put("state", "진행");
@@ -354,6 +366,35 @@ public class P_ServiceImpl implements P_Service{
 		cnt = dao.updateApprove(map);
 		
 		model.addAttribute("cnt", cnt);
+	}
+	
+	@Override
+	public void P_SearchPaymentTool(HttpServletRequest req, Model model) {
+		String sel_Payment = req.getParameter("sel_Payment");
+		String searchUserName = req.getParameter("searchUserName");
+		String toggleSearchType = req.getParameter("toggleSearchType");
+		String searchApprTitle = req.getParameter("searchApprTitle");
+		String searchStartDate = req.getParameter("searchStartDate");
+		Date start = null;
+		Date end = null;
+		if(searchStartDate.length() != 0) {
+			start = Date.valueOf(searchStartDate);
+		}
+		String searchEndDate = req.getParameter("searchEndDate");
+		if(searchEndDate.length() != 0) {
+			end = Date.valueOf(searchEndDate);
+		}
+		
+		model.addAttribute("sel", sel_Payment);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", searchUserName);
+		map.put("toggleSearchType", toggleSearchType);
+		map.put("searchApprTitle", searchApprTitle);
+		map.put("searchStartDate", start);
+		map.put("searchEndDate", end);
+		
+		req.getSession().setAttribute("searchMap", map);
 	}
 
 	@Override //결재진행함

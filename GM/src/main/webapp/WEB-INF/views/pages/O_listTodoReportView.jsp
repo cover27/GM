@@ -7,4 +7,4 @@
 <%@ include file="/WEB-INF/views/pages/sub/O_listTodoReportContent.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 
-<!-- 업무보고 - 수신 업무 보고 페이지 -->
+<!-- 업무요청 - 업무완료함 보고 페이지 -->

@@ -1,5 +1,6 @@
 package com.spring.gm.service;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,6 +16,7 @@ import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.K_DAO;
 import com.spring.gm.persistence.O_DAO;
+import com.spring.gm.vo.B_ManageVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.ScheduleVO;
 
@@ -208,7 +210,7 @@ public class O_ServiceImpl implements O_Service{
 		model.addAttribute("del", del);
 	}
 	
-	//일정 등록 pro
+	//일정 등록 insert-pro
 	@Override
 	public void calendarPro(HttpServletRequest req, Model model) {
 		
@@ -281,7 +283,7 @@ public class O_ServiceImpl implements O_Service{
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
 		ScheduleVO vo = new ScheduleVO();
-		vo.setNum(Integer.parseInt(req.getParameter("num"))); // 장훈작성
+		vo.setNum(Integer.parseInt(req.getParameter("num"))); 
 		vo.setScheduleKind(req.getParameter("scheduleKind"));
 		vo.setSubject(req.getParameter("subject"));
 		vo.setLocation(req.getParameter("location"));
@@ -312,6 +314,66 @@ public class O_ServiceImpl implements O_Service{
 		
 		model.addAttribute("updateCnt", updateCnt);
 	}
+
+	//일정 삭제
+	@Override
+	public void calendarDelete(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		
+		int deleteCnt = dao.deleteCalendar(num);
+		System.out.println("deleteCnt" + deleteCnt);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
+		
+		
+		
+	}
+
+	//업무관리 등록 화면
+	@Override
+	public void createSelfTaskWrite(HttpServletRequest req, Model model) {
+		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		int todonum=0;
+		int groupId=0;
+		String state="미완료";
+		int del=0;
+		Timestamp reg_date = new Timestamp(System.currentTimeMillis());
+
+		model.addAttribute("id", id);
+		model.addAttribute("todonum", todonum);
+		model.addAttribute("groupId", groupId);
+		model.addAttribute("state", state);
+		model.addAttribute("del", del);
+		model.addAttribute("reg_date", reg_date);
+
+	}
+
+	//업무관리 등록 insert-pro
+	@Override
+	public void createSelfTaskPro(HttpServletRequest req, Model model) {
+		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		B_ManageVO vo = new B_ManageVO();
+		vo.setTodonum(Integer.parseInt(req.getParameter("todonum")));
+		vo.setId(id);
+		vo.setGroupId(Integer.parseInt(req.getParameter("groupId")));
+		vo.setSubject(req.getParameter("subject"));
+		vo.setContent(req.getParameter("content"));
+		vo.setBegin(Date.valueOf(req.getParameter("begin")));
+		vo.setEnd(Date.valueOf(req.getParameter("end")));
+		vo.setState(req.getParameter("state"));
+		vo.setDel(Integer.parseInt(req.getParameter("del")));
+		vo.setReg_date(new Timestamp(System.currentTimeMillis()));
+		
+		int insertCnt = dao.insertTodo(vo);
+		
+		model.addAttribute("insertCnt", insertCnt);
+		
+	}
+	
+	
 
 	
 
