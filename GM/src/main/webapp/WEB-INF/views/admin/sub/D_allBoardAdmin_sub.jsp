@@ -17,7 +17,7 @@ function allcheck(){
 function delBoardAdmin(){
 	var god = confirm("선택한것들을 삭제하시겠습니까?");
 	if(god){
-		document.boardSelect.action="<c:url value='/admin/D_boardAdminDeletePro?ref_step=#{dto.ref_step}&ref_level=${dto.ref_level}'/>"
+		document.boardSelect.action="<c:url value='/admin/D_boardAdminDeletePro'/>"
 		document.boardSelect.submit();
 	}
 }

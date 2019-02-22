@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 
 public interface S_Service {
 	
-	public void mailList(HttpServletRequest req, Model model);
+	public void messageList(HttpServletRequest req, Model model);		// 쪽지 리스트
 
-	public void mailBoxList(HttpServletRequest req, Model model);	//메일 목록
+	public void messageBoxList(HttpServletRequest req, Model model);	// 쪽지 목록
 	
 	
 }

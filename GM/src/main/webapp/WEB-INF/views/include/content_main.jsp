@@ -49,13 +49,21 @@
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value='/pages/O_listMyTodoView' />">
+                        	<c:if test="${sys_rank == 1 }">
+                            <a href="<c:url value='/pages/O_listTodoView' />">
                                 <h2>업무관리</h2>
                                 <span class="todo"></span>
                             </a>
+                            </c:if>
+                        	<c:if test="${sys_rank != 1 }">
+                            <a href="<c:url value='/pages/O_listTodoView' />">
+                                <h2>업무관리</h2>
+                                <span class="todo"></span>
+                            </a>
+                            </c:if>
                         </li>
                         <li>
-                            <a href="<c:url value='#' />">
+                            <a href="<c:url value='/pages/S_message_inbox' />">
                                 <h2>쪽지</h2>
                                 <span class="message"></span>
                             </a>

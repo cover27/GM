@@ -22,7 +22,7 @@ public class S_ServiceImpl implements S_Service {
 	S_DAO dao;
 	
 	@Override
-	public void mailList(HttpServletRequest req, Model model) {
+	public void messageList(HttpServletRequest req, Model model) {
 		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
@@ -40,7 +40,7 @@ public class S_ServiceImpl implements S_Service {
 		int del = 0;
 	
 		// 게시판 갯수
-		cnt = dao.getMailArticleCnt(strId);
+		cnt = dao.getMessageArticleCnt(strId);
 
 		
 		System.out.println("cnt(쪽지 갯수) : " + cnt);
@@ -79,7 +79,7 @@ public class S_ServiceImpl implements S_Service {
 			map.put("strId", strId);
 			map.put("del", del);
 			
-			List<MassageVO> dtos = dao.getMailArticleList(map);
+			List<MassageVO> dtos = dao.getMessageArticleList(map);
 			
 
 			model.addAttribute("m_dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
@@ -112,7 +112,7 @@ public class S_ServiceImpl implements S_Service {
 
 	
 	@Override	//보류
-	public void mailBoxList(HttpServletRequest req, Model model) {
+	public void messageBoxList(HttpServletRequest req, Model model) {
 		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
@@ -129,7 +129,7 @@ public class S_ServiceImpl implements S_Service {
 		int endPage = 0;		// 마지막 페이지
 	
 		// 게시판 갯수
-		cnt = dao.getMailBoxArticleCnt(strId);
+		cnt = dao.getMessageBoxArticleCnt(strId);
 
 		
 		System.out.println("cnt(게시판 갯수) : " + cnt);
@@ -167,7 +167,7 @@ public class S_ServiceImpl implements S_Service {
 			map.put("end", end);
 			map.put("strId", strId);
 			
-			List<MassageBoxVO> dtos = dao.getMailBoxArticleList(map);
+			List<MassageBoxVO> dtos = dao.getMessageBoxArticleList(map);
 			
 
 			model.addAttribute("b_dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
