@@ -15,6 +15,7 @@ public class BoardListVO {
     private int ref_step; //ref_step
     private int ref_level; //ref_level
     private Timestamp reg_date; //작성일시
+    private int company;	// 회사
     private int del; //삭제구분
 	
     
@@ -83,6 +84,12 @@ public class BoardListVO {
 	}
 	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
+	}
+	public int getCompany() {
+		return company;
+	}
+	public void setCompany(int company) {
+		this.company = company;
 	}
 	public int getDel() {
 		return del;
