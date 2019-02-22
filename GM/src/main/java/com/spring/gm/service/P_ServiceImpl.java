@@ -49,10 +49,6 @@ public class P_ServiceImpl implements P_Service{
 		
 		//결재선 적용 후 진입하는 서비스
 		}else {
-			
-			
-			
-			
 			//결재선 정보의 checkbox 다중 선택
 			String[] checkBoxSel = req.getParameterValues("id2");
 			List<String> list = new ArrayList<String>();
@@ -78,7 +74,7 @@ public class P_ServiceImpl implements P_Service{
 
 		
 		//회사명, 부서명, 이름명을 dtos에 담고 dtos의 크기를 비교하여 g_name의 null 값을 확인하여 null값을 회사명(a)으로 나타나도록 한다.
-		List<Join_payVO> dtos = dao.selectApprLine();
+		List<Join_payVO> dtos = dao.selectApprLine(company);
 		for(int i = 0; i<dtos.size(); i++) {
 			if(dtos.get(i).getG_name()==null) {
 				dtos.get(i).setG_name(a);
