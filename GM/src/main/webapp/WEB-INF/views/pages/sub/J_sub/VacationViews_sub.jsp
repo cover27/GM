@@ -16,6 +16,7 @@
 				<td>휴가 사용수</td>
 				<td>잔여휴가</td>
 			</tr>
+			<c:if test="${cnt >0}">
 			<c:forEach var="dto" items="${dtos}">
 			<tr>
 				<td>${dto.id}</td>
@@ -31,5 +32,11 @@
 				<td>${dto.n_vacation}</td>
 			</tr>
 			</c:forEach>
+			</c:if>
+			<c:if test="${cnt == 0}">
+				<tr>
+				<td colspan="11" style="height: 250px;">검색 내용에 대한 정보가 없습니다.</td>
+				</tr>
+			</c:if>
 		</table>
 </form>

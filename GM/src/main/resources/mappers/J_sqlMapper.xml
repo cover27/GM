@@ -816,6 +816,32 @@
     </select>
      
      
+     <!-- 멤버 정보가 있나 확인 -->
+     <select id ="memberinfo"  parameterType="java.util.Map" resultType="int">
+     <![CDATA[
+     select count(*) as cnt 
+     from member where sys_rank != 0
+     and  company=#{company}  
+     and rank is  not null 
+     and id = #{id}
+     and to_char(enterday,'yyyy') <= #{year}
+   	]]>
+   	</select>
+   	<!-- 전체사원 연차/휴가 목록 뽑기 -->
+     <select id ="memberId"  parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
+     <![CDATA[
+     select id from member where sys_rank != 0 
+     and company=#{company}  
+     and rank is  not null 
+     and to_char(enterday,'yyyy') <= #{year}
+   	 ]]>
+   	</select>
+   	
+   	
+   	
+   	
+   	
+     
      <!-- 연차 횟수 -->
      <select id="annual" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdVO">
      select sum(v.day) as u_annual
@@ -846,7 +872,7 @@
 	 and v.types = 1
      </select>
      <select id="annualList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdVO">
-     select m.id, m.name, r.r_name, m.enterday, m.year, d.day as annual 
+     select m.id, m.name, r.r_name as rank_name, m.enterday, m.year, d.day as annual 
 	from member m, grade r, dayoff d
 	where m.rank = r.rank
 	and m.company = d.company
@@ -867,7 +893,7 @@
 	 and v.types = 2
      </select>
      <select id="vacationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdVO">
-     select m.id, m.name, r.r_name, m.enterday, m.year,d.day as vacation 
+     select m.id, m.name, r.r_name as rank_name, m.enterday, m.year,d.day as vacation 
 	from member m, grade r, dayoff d
 	where m.rank = r.rank
 	and m.company = d.company
@@ -880,67 +906,8 @@
      
      
      
-     <!-- 전체사원 연차/휴가 목록 뽑기 -->
-     <!-- <select id = "memberId"  resultType="com.spring.gm.vo.MemberVO">
-     select id from member where sys_rank != 0
-   	</select> -->
      
-     <!-- 연차 횟수 -->
-    <!--  <select id="annual" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdVO">
-     select sum(v.day) as u_annual
-	 from vacation v, member m
-	 where m.id = v.id
-	 and m.company = #{company}
-	 and to_char(v.begin,'yyyy')= 2019 and to_char(v.end,'yyyy')= #{year}
-	 and types = 1
-     </select> -->
-     <!-- 휴가 횟수 -->
-     <!-- <select id="vacation" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdVO">
-     select sum(v.day) as u_vacation
-	 from vacation v, member m
-	 where m.id = v.id
-	 and m.company = #{company}
-	 and to_char(v.begin,'yyyy')= 2019 and to_char(v.end,'yyyy')= #{year}
-	 and types = 2
-     </select> -->
-     
-     <!-- 연차 -->
-   <!--   <select id="annualCnt" parameterType="java.util.Map" resultType="int">
-     select count(*) as cnt
-	 from member m, vacation v
-	 where m.id = v.id
-	 and m.company = #{company}
-	 and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
-	 and v.types = 1
-     </select>
-     <select id="annualList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdVO">
-     select m.id, m.name, r.r_name, m.enterday, m.year, d.day as annual 
-	from member m, grade r, dayoff d
-	where m.rank = r.rank
-	and m.company = d.company
-	and m.year = d.year
-	and m.company = #{company}
-	and d.types = 1 
-     </select> -->
-     
-     <!-- 휴가 -->
- <!--     <select id="vacationCnt" parameterType="java.util.Map" resultType="int">
-     select count(*) as cnt
-	 from member m, vacation v
-	 where m.id = v.id
-	 and m.company = #{company}
-	 and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
-	 and v.types = 2
-     </select>
-     <select id="vacationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdVO">
-     select m.id, m.name, r.r_name, m.enterday, m.year,d.day as vacation 
-	from member m, grade r, dayoff d
-	where m.rank = r.rank
-	and m.company = d.company
-	and m.year = d.year
-	and m.company = #{company}
-	and d.types = 2
-     </select> -->
+    
      
      
      

@@ -236,21 +236,9 @@ public interface J_DAO {
 	
 	
 	
-/*	//연차/휴가일수 조회 전체보기
-	public ArrayList<MemberVO> memberId();
-	
-	
-	public join_mrvdVO annual2(Map<String, Object> map);//연차 사용수 가져오기
-	public join_mrvdVO vacation2(Map<String, Object> map);// 휴가 사용수 가져오기
-	
-	//연차
-	public int annualCnt2(Map<String, Object> map);
-	public ArrayList<join_mrvdVO> annualList2(Map<String, Object> map);
-	//휴가
-	public int vacationCnt2(Map<String, Object> map);
-	public ArrayList<join_mrvdVO> vacationList2(Map<String, Object> map);
-		*/
-	
+	//연차/휴가일수 조회 전체보기
+	public ArrayList<MemberVO> memberId(Map<String, Object> map);
+	public int memberinfo(Map<String, Object> map);
 	
 	
 	
