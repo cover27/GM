@@ -935,14 +935,27 @@ public class J_DAOImpl implements J_DAO {
 	//연차 사용수 가져오기
 	@Override
 	public join_mrvdVO annual(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.annual", map);
 	}
 	// 휴가 사용수 가져오기
 	@Override
 	public join_mrvdVO vacation(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.vacation", map);
+	}
+	
+	
+	//연차/휴가일수 조회 전체보기
+	@Override
+	public ArrayList<MemberVO> memberId(Map<String, Object> map) {
+		ArrayList<MemberVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.memberId(map);
+		return dtos;
+	}
+	@Override
+	public int memberinfo(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.memberinfo", map);
+		return cnt;
 	}
 	
 	

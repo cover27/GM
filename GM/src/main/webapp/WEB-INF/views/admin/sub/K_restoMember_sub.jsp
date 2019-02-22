@@ -46,7 +46,7 @@
 					</table>
 				</form>
 			</div>
-			<div class="table_body" style="height:386px;">
+			<div class="table_body" style="height:540px;">
 				<table>
 					<colgroup>
 						<col width="100px" />
@@ -133,9 +133,9 @@
 		                        </c:forEach>
 		                    </select>
 		                </td>
-		                <th>
-		                    <input type="submit" value="복구">
-		                </th>
+		                <td style="text-align: right;">
+		                	<input type="submit" value="복구" style="padding: 5px 15px !important;font-size: 1em !important;width:58px;background:#d3292c;">
+		                </td>
 		            </tr>
 		        </table>
 		    </div>

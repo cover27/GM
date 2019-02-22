@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
+<%@ page import="com.spring.gm.vo.MemberVO" %>
 <header>
 	<c:if test="${sessionScope.loginInfo != null}">
 		<div class="logo">
@@ -21,10 +22,14 @@
             <li id="p"><a href="<c:url value='/pages/P_listApprTodoView' />">전자결재</a></li>
             <li id="o"><a href="<c:url value='/pages/O_calendar' />">일정</a></li>
             <li id="d"><a href="<c:url value='/pages/D_allBoardList' />">게시판</a></li>
-            <li id="j"><a href="<c:url value='/pages/J_D_attendanceRegistration' />">근태관리</a></li>
-
-            <li id="k"><a href="<c:url value='/admin/K_member_manage'/>">인사</a></li>
-
+            <%-- <li id="j"><a href="<c:url value='/pages/J_D_attendanceRegistration' />">근태관리</a></li> --%>
+			<%
+				if(((MemberVO)request.getSession().getAttribute("loginInfo")).getSys_rank() == 1){
+			%>
+            	<li id="k"><a href="<c:url value='/admin/K_member_manage'/>">인사</a></li>
+			<%
+				}
+			%>
             <!--
             <li class="menu_all"><a href="#"></a></li>
             -->

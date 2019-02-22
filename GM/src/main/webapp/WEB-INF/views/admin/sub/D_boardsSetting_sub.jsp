@@ -39,11 +39,14 @@ $(function() {
 });
 
 function modify_board(num, b_name, anon) {
+	/* 
 	var selector = '.boards_tree';
 	$(selector).on('click', function(){
 	    $(selector).removeClass('boards_tree');
 	    $(this).addClass('boards_tree');
 	});
+	 */
+	 
 	// alert("게시판번호 : "+num);
 	$.ajax({
 		type : "POST",

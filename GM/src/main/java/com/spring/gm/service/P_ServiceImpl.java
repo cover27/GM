@@ -410,7 +410,10 @@ public class P_ServiceImpl implements P_Service{
 		if(searchEndDate.length() != 0) {
 			end = Date.valueOf(searchEndDate);
 		}
-		String retire_s = req.getParameter("retire");
+		String retire_s = "";
+		if(req.getParameter("retire") != null) {
+			retire_s = req.getParameter("retire");
+		}
 		int retire = 0;
 		if(retire_s.length() != 0) {
 			retire = Integer.parseInt(retire_s);

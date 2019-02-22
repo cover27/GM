@@ -236,6 +236,11 @@ public interface J_DAO {
 	
 	
 	
+	//연차/휴가일수 조회 전체보기
+	public ArrayList<MemberVO> memberId(Map<String, Object> map);
+	public int memberinfo(Map<String, Object> map);
+	
+	
 	
 	
 	

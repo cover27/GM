@@ -262,9 +262,10 @@ public class D_ServiceImpl implements D_Service{
 	// 게시글 작성 처리
 	@Override
 	public void insertPro(HttpServletRequest req, Model model) {
-		
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		// 3단계. 입력받은 값을 받아온다.
 		int num = Integer.parseInt(req.getParameter("num"));
+		System.out.println("확인1 : " + num);
 		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		int ref = Integer.parseInt(req.getParameter("ref"));
@@ -276,6 +277,7 @@ public class D_ServiceImpl implements D_Service{
 		BoardListVO vo = new BoardListVO();
 		vo.setBoardnum(boardnum);
 		vo.setNum(num);
+		System.out.println("확인2 : " + vo.getNum());
 		vo.setWriter(req.getParameter("writer"));
 		vo.setSubject(req.getParameter("subject"));
 		vo.setContent(req.getParameter("content"));
@@ -286,13 +288,14 @@ public class D_ServiceImpl implements D_Service{
 		vo.setRef_step(ref_step);
 		vo.setRef_level(ref_level);
 		vo.setReg_date(new Timestamp(System.currentTimeMillis()));
+		vo.setCompany(company);
 		
 		
 		// 4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
 		/*BoardDAO dao = BoardDAOImpl.getInstance();*/
-		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		
 		// 5단계. 글쓰기 처리(vo를 DAO로 전달하여 SQL 실행)
-		int insertCnt = dao.insertBoard(vo, company);
+		int insertCnt = dao.insertBoard(vo);
 		
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
 		model.addAttribute("num", num);
@@ -632,6 +635,7 @@ public class D_ServiceImpl implements D_Service{
 		model.addAttribute("boardnum", boardnum);
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("r_dtos", vo);
+		model.addAttribute("writer", vo.getWriter());
 		model.addAttribute("number", number);
 		model.addAttribute("content", content);
 		model.addAttribute("replenum", replenum);

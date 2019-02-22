@@ -154,7 +154,7 @@ public class K_ServiceImpl implements K_Service{
 				for(int i=0; i<checks.length; i++) {
 					Map<String, String> map = new HashMap<String, String>();
 					map.put("id", checks[i]);
-					map.put("auth", "USER");
+					map.put("auth", "USER_CUSTOMER");
 					dao.updateAuthorities(map);
 					
 					Map<String, Object> map2 = new HashMap<String, Object>();

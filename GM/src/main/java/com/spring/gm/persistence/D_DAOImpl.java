@@ -100,14 +100,14 @@ public class D_DAOImpl implements D_DAO{
 	
 	// 게시글 작성
 	@Override
-	public int insertBoard(BoardListVO vo, int company) {
+	public int insertBoard(BoardListVO vo) {
 		int boardnum = vo.getBoardnum();
 		int ref = vo.getRef();
 		int ref_step = vo.getRef_step();
 		int ref_level = vo.getRef_level();
 		
 		if(boardnum == 0) {
-			int cnt = getBoardArticleCnt(company);
+			int cnt = getBoardArticleCnt(vo.getCompany());
 			
 			if(cnt > 0) {
 				ref = getMaxNum() + 1;
@@ -128,7 +128,7 @@ public class D_DAOImpl implements D_DAO{
 		vo.setRef_level(ref_level);
 		
 			D_DAO dao = sqlSession.getMapper(D_DAO.class);
-			return dao.insertBoard(vo, company);			
+			return dao.insertBoard(vo);
 	}
 	
 	// 게시글 리스트
