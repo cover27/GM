@@ -123,6 +123,7 @@ public class D_ServiceImpl implements D_Service{
 			map.put("num", num);
 			map.put("start", start);
 			map.put("end", end);
+			map.put("company", company);
 			List<BoardListVO> dtos = dao.getBoardArticleList(map);
 			/*
 			int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();

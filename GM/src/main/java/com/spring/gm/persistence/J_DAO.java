@@ -205,7 +205,10 @@ public interface J_DAO {
 	public int monthCnt(Map<String, Object> map);
 	public ArrayList<join_margcVO> monthList(Map<String, Object> map);
 	public ArrayList<join_margcVO> monthList2(Map<String, Object> map);
-	
+	//월별 근태 정보 가져오기(전체리스트)
+	public int monthCnt2(Map<String, Object> map);
+	public ArrayList<join_margcVO> monthList3(Map<String, Object> map);
+	public ArrayList<join_margcVO> monthList4(Map<String, Object> map);
 	
 	//휴가 목록 뽑아오기
 	public int holidayCnt(Map<String, Object> map);

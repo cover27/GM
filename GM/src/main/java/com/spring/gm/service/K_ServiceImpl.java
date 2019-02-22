@@ -111,6 +111,7 @@ public class K_ServiceImpl implements K_Service{
 		vo.setEng_address(req.getParameter("eng_address"));
 		vo.setDepart(Integer.parseInt(req.getParameter("depart")));
 		vo.setCompany(Integer.parseInt(req.getParameter("depart")));
+		vo.setRank(Integer.parseInt(req.getParameter("depart")));
 		java.sql.Date today = new java.sql.Date(new java.util.Date().getTime());
 		vo.setEnterday(today);
 		vo.setYear(0);

@@ -43,27 +43,57 @@
 			});
 		}
 	};
+	function J_M_attendanceStatus2() {
+		var month = $("#month").val();
+		window.location="J_M_attendanceStatus2?month="+month;
+	};
+	function search() {
+		$("#search").show();
+		$("#allsearch").hide();
+	}
+	function allsearch() {
+		$("#allsearch").show();
+		$("#search").hide();
+	}
+
 </script>
 <section>
 	<article>
 		<div class="content_header">
 			<h2>월 근태 현황</h2>
 		</div>
+		
+		<br>
 		<form action="J_M_attendanceStatus" method="post" name="searchform">
+		<div>
+		<input type="button" onclick="search()" value="사원조회" style="background: #d3292c;">
+		<input type="button" onclick="allsearch()" value="전체조회" style="background: #d3292c;">
+		</div>
 		<c:if test="${sys_rank == 1 }"> <!-- 관리자인경우 -->
-				<span class="bold5px">사업장 : </span>
-				<c:forEach var="dto" items="${dtoss}">
-					<span id="search_title" class="bold5px">${dto.c_name}</span>
-				</c:forEach>
-				<span class="ml50 bold5px">아이디</span>
-				<span><input type="text" class="searchId" id="id" name="id" value="${id}" required></span>
-				<span><button onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></button></span>
-				<span class="bold5px ml50">이름 : </span>
-				<span><input type="text" class="searchName" name="name" readonly placeholder="아이디를 조회하세요." style="background: #f3f3f3;"></span>
-				<span class="ml50 bold5px">*급여년월</span>
-				<span><input type="month" id="month" value="${month}" name="month"></span>
-				<span><input type="submit" value="조회" style="background:#d3292c;"></span>
-			</c:if>
+		<div id="search">
+			<span class="bold5px">사업장 : </span>
+			<c:forEach var="dto" items="${dtoss}">
+				<span id="search_title" class="bold5px">${dto.c_name}</span>
+			</c:forEach>
+			<span class="ml50 bold5px">아이디</span>
+			<span><input type="text" class="searchId" id="id" name="id" value="${id}"></span>
+			<span><button onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></button></span>
+			<span class="bold5px ml50">이름 : </span>
+			<span><input type="text" class="searchName" name="name" readonly placeholder="아이디를 조회하세요." style="background: #f3f3f3;"></span>
+			<span class="ml50 bold5px">*급여년월</span>
+			<span><input type="month" id="month" value="${month}" name="month"></span>
+			<span><input type="submit" value="조회" style="background:#d3292c;"></span>
+		</div>
+		
+		<!-- 전체 조회 -->
+		<div id="allsearch" style="display:none;">
+			<span class="bold5px ml50">*년도별검색 : </span>
+			<span><input type="month" id="month" placeholder="예)2019" maxlength="4"></span>
+			<span><input type="button" onclick="J_M_attendanceStatus2()" value="조회" style="background: #d3292c;"></span>
+		</div>
+		</c:if>
+		
+		
 		<c:if test="${sys_rank != 1 }"> <!-- 관리자가 아닐경우 -->
 				<span class="bold5px">사업장</span>
 				<c:forEach var="dto" items="${dtoss}">

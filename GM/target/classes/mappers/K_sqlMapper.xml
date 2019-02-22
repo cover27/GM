@@ -19,11 +19,11 @@
 	</select>
 
 	<insert id="registAccount" parameterType="com.spring.gm.vo.MemberVO">
-		INSERT INTO member (id, pwd, name, eng_name, jumin1, jumin2, gender, marry, wdday, frgn, nation, tel, tel_hm, email_in, address, eng_address, depart, enterday, year, sys_rank, del, company, wrkdvd)
+		INSERT INTO member (id, pwd, name, eng_name, jumin1, jumin2, gender, marry, wdday, frgn, nation, tel, tel_hm, email_in, address, eng_address, depart, enterday, year, sys_rank, del, company, wrkdvd, rank)
 		VALUES (#{id}, #{pwd}, #{name}, #{eng_name}, #{jumin1}, #{jumin2}, 
 		#{gender}, #{marry}, #{wdday, jdbcType=DATE}, #{frgn}, #{nation, jdbcType=VARCHAR}, #{tel}, #{tel_hm, jdbcType=VARCHAR}, 
 		#{email_in}, #{address}, #{eng_address, jdbcType=VARCHAR}, #{depart}, #{enterday}, 
-		#{year}, #{sys_rank}, #{del}, #{company}, 1)
+		#{year}, #{sys_rank}, #{del}, #{company}, 1, #{rank})
 	</insert>
 	
 	<insert id="registUsers" parameterType="java.util.Map">

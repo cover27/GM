@@ -4,9 +4,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="com.spring.gm.vo.MemberVO" %>  
 <script>
-$(document).ready(function() {
 	function modify(boardnum, pageNum, num, number, replenum, content) {
-		alert("컴온");
+		var selector = '.cmt_list';
+		$(selector).on('click', function(){
+		    $(selector).removeClass('cmt_list');
+		    $(this).addClass('cmt_list');
+		});
+		
+		// alert("컴온");
 		$.ajax({
 			type : "POST",
 			url : "${pageContext.request.contextPath}/pages/D_repleUpdate",
@@ -20,14 +25,13 @@ $(document).ready(function() {
 			},
 			success : function(result) {
 				// alert("성공");
-				$("#result").html(result);
+				$(".cmt_list").html(result);
 			},
 			error : function() {
 				alert("게시판 변경이 실패하였습니다.");
 			}
 		});
 	}
-});
 </script>
 	<section>
 		<article>
@@ -69,45 +73,38 @@ $(document).ready(function() {
 						</ul>
 						<c:forEach var="r_dtos" items="${r_dtos}">
 							<c:if test="${r_dtos.del == 0}">
-								<ul id="result" style="margin-top: 20px;border-top: 1px solid #e5e5e5">
+								<ul id="result" class="cmt_list" style="margin-top: 20px;border-top: 1px solid #e5e5e5">
 									<li>
 										<span>${r_dtos.writer}</span>
 										<span style="margin:0 10px;color: #c0c0c0;">|</span>
 										<span><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${r_dtos.reg_date}" /></span>
+										<c:if test="${sessionScope.loginInfo.name == r_dtos.writer}">
+											<span class="ml30">
+												<input type="button" style="background: #555;" value="수정" onclick="modify('${r_dtos.boardnum}', '${pageNum}', '${num}', '${number}', '${r_dtos.replenum}', '${r_dtos.content}');">
+											</span>
+											<span>
+												<input type="button" style="background: #d3292c;" value="삭제" onclick="window.location='<c:url value="/pages/D_repleDeletePro?boardnum=${r_dtos.boardnum}&pageNum=${pageNum}&num=${num}&number=${number}&replenum=${r_dtos.replenum}"/>'">
+											</span>
+										</c:if>
 									</li>
 									<li>
 										${r_dtos.content}
-									</li>
-									<li>
-										<input type="button" value="수정" onclick="modify(${r_dtos.boardnum}, ${pageNum}, ${num}, ${number}, ${r_dtos.replenum}, ${r_dtos.content});">
-										<input type="button" value="삭제" onclick="window.location='<c:url value="/pages/D_repleDeletePro?boardnum=${r_dtos.boardnum}&pageNum=${pageNum}&num=${num}&number=${number}&replenum=${r_dtos.replenum}"/>'">
 									</li>
 								</ul>
 							</c:if>
 						</c:forEach>
 					</form>
 				</div>
-				
-			</div>
-			
-			
-	<hr />
-		<table>
-			<tr>
-				<th colspan="4">
+				<div>
 					<c:if test="${sessionScope.loginInfo.sys_rank == 1 || sessionScope.loginInfo.name == dto.writer}">
-							<input type="button" class="inputButton" value="글 수정" onclick="window.location='<c:url value="/pages/D_boardUpdate?boardnum=${dto.boardnum}&pageNum=${pageNum}&num=${num}"/>'">
-							<input type="button" class="inputButton" value="글 삭제" onclick="window.location='<c:url value="/pages/D_boardDeletePro?boardnum=${dto.boardnum}&pageNum=${pageNum}&num=${num}&ref_level=${dto.ref_level}"/>'">
+						<input type="button" class="inputButton" value="글 수정" onclick="window.location='<c:url value="/pages/D_boardUpdate?boardnum=${dto.boardnum}&pageNum=${pageNum}&num=${num}"/>'">
+						<input type="button" class="inputButton" value="글 삭제" onclick="window.location='<c:url value="/pages/D_boardDeletePro?boardnum=${dto.boardnum}&pageNum=${pageNum}&num=${num}&ref_level=${dto.ref_level}"/>'">
 					</c:if>
-						<input type="button" class="inputButton" value="답글 쓰기" onclick="window.location='<c:url value="/pages/D_writeForm?boardnum=${dto.boardnum}&num=${num}&ref=${dto.ref}&ref_step=${dto.ref_step}&ref_level=${dto.ref_level}&pageNum=${pageNum}"/>'">
-						<input type="button" class="inputButton" value="목록 보기" onclick="window.location='<c:url value="/pages/D_boardList?pageNum=${pageNum}&boardnum=${dto.boardnum}&num=${num}"/>'">
-				</th>
-			</tr>
-		</table>
-		
-		
-		
-	<table>
+					<input type="button" class="inputButton" value="답글 쓰기" onclick="window.location='<c:url value="/pages/D_writeForm?boardnum=${dto.boardnum}&num=${num}&ref=${dto.ref}&ref_step=${dto.ref_step}&ref_level=${dto.ref_level}&pageNum=${pageNum}"/>'">
+					<input type="button" class="inputButton" value="목록 보기" onclick="window.location='<c:url value="/pages/D_boardList?pageNum=${pageNum}&boardnum=${dto.boardnum}&num=${num}"/>'">
+				</div>
+			</div>
+		<table>
 			<tr>
 				<th align="center">
 					<!-- 게시글이 있으면 -->

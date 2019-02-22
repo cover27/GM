@@ -55,7 +55,7 @@
 							</li>
 						</ul>
 						<hr>
-						<div id="field" class="fleft w49p">
+						<div id="field" class="fleft w49p" style="overflow-y:auto;max-height:760px;">
 							<input type="button" value=" 추가 " onclick="add_item()">
 							<c:forEach var="dto" items="${dayoffList }">
 								<div id="pre_set" style="clear:both;">
@@ -81,7 +81,7 @@
 								</div>
 							</c:forEach>
 						</div>
-						<div class="fright w49p">
+						<div class="fright w49p" style="overflow-y:auto;max-height:760px;">
 							<input type="submit" value="저장">
 							<ul>
 								<li>
