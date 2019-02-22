@@ -19,6 +19,7 @@ import com.spring.gm.vo.join_margcVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgsbVO;
 import com.spring.gm.vo.join_mgsbcVO;
+import com.spring.gm.vo.join_mrvdVO;
 import com.spring.gm.vo.join_msVO;
 
 import com.spring.gm.persistence.J_DAO;
@@ -902,7 +903,47 @@ public class J_DAOImpl implements J_DAO {
 		return dtos;
 	}
 	
+	//연차/휴가일수 조회
+	//연차
+	@Override
+	public int annualCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.annualCnt", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_mrvdVO> annualList(Map<String, Object> map) {
+		ArrayList<join_mrvdVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.annualList(map);
+		return dtos;
+	}
 	
+	//휴가
+	@Override
+	public int vacationCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.vacationCnt", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_mrvdVO> vacationList(Map<String, Object> map) {
+		ArrayList<join_mrvdVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.vacationList(map);
+		return dtos;
+	}
+	
+	//연차 사용수 가져오기
+	@Override
+	public join_mrvdVO annual(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	// 휴가 사용수 가져오기
+	@Override
+	public join_mrvdVO vacation(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

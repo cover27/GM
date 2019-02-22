@@ -59,14 +59,18 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2>월간 근태생성/마감</h2>
+			<h2>휴일/연장/야간근무 조희</h2>
+		</div>
+		<div>
+			*검색 날짜를 선택한 후 -> 휴일,연장,야간 버튼을 클릭하십시오.
+			
 		</div>
 		<div>
 			<span class="bold5px">사업장 :</span>
 			<c:forEach var="dto" items="${dtoss}">
 				<span name="search_title" id="search_title" class="bold5px">${dto.c_name}</span>
 			</c:forEach>
-			*근무년월<input type="month" id="month" value="${month}"><input type="button" value="검색" onclick="allList()">
+			*근무년월<input type="month" id="month" value="${month}">
 		</div>
 		<script>
 			document.getElementById('month').value = new Date().toISOString().slice(0, 7);
