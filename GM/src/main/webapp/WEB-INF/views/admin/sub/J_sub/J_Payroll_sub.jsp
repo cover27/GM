@@ -33,11 +33,11 @@
 				</tr>
 			</c:forEach>
 			<tr>
-					<td colspan="7"></td>
-					<td>${allsalary}</td>
-					<td>${bonussalary}</td>
-					<td>${sumsalarybonus}</td>
-				</tr>
+				<td colspan="6"></td>
+				<td>${allsalary}</td>
+				<td>${bonussalary}</td>
+				<td>${sumsalarybonus}</td>
+			</tr>
 		</c:if>
 		<!-- 게시글이 없으면 -->
 		<c:if test="${cnt == 0}">

@@ -729,7 +729,29 @@
 		and m.id= #{id}
 		order by a.day
     </select>
-    
+    <!-- 월별 근태 정보 가져오기 -->
+   	<select id="monthCnt2" parameterType="java.util.Map" resultType="int">
+    	select count(*) as cnt
+    	from member m, attended a
+    	where m.id = a.id
+    	and m.company = #{company} and  to_char(a.day,'yyyymm')=#{month}
+    </select> 
+   <select id="monthList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+    	select m.id, m.name, g.g_name as j_name,r.r_name as rank_name, a.day, a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+		from member m, attended a, grade r, groups g
+		where m.id = a.id and r.rank = m.rank and m.depart = g.groupid
+		and m.company = #{company} and  to_char(a.day,'yyyymm')=#{month}
+		and m.depart != #{company}
+		order by a.day
+    </select>
+    <select id="monthList4" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+    	select m.id, m.name, c.c_name as j_name,r.r_name as rank_name, a.day, a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.perceptiontime, a.departuretime 
+		from member m, attended a, grade r, companies c
+		where m.id = a.id and r.rank = m.rank and m.company = c.company
+		and m.company = #{company} and  to_char(a.day,'yyyymm')=#{month}
+		and m.depart = #{company}
+		order by a.day
+    </select>
     
      <!-- 휴가 목록 뽑아오기 -->
      <select id="holidayCnt" parameterType="java.util.Map" resultType="int">

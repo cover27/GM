@@ -444,7 +444,16 @@ public class J_Controller {
 			logger.info("URL : J_M_attendanceStatus");
 			return "pages/J_M_attendanceStatus";
 		}
-		
+		//월 근태 현황(전체사원뽑기)
+		@RequestMapping("/pages/J_M_attendanceStatus2")
+		public String J_M_attendanceStatus2(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
+			service.companyName(req, model);
+			service.monthList2(req,model);
+			logger.info("URL : J_M_attendanceStatus2");
+			return "pages/J_M_attendanceStatus";
+		}
 		
 		//휴일/연장/야간근무 조회
 		@RequestMapping("/admin/J_Lookup")

@@ -84,7 +84,7 @@ input[type="text"], input[type="password"] {
 
 input[type="text"]:focus, input[type="password"]:focus, select {
 	outline: none;
-	background: #f7f7f7;
+	background: rgba(254, 255, 196, .8);
 }
 
 button:focus, input[type="button"]:focus, input[type="submit"]:focus, input[type="reset"]:focus {
@@ -99,7 +99,7 @@ button, input, optgroup, select, textarea {
     margin: 0;
 }
 
-button {
+button, input[type="submit"], input[type="button"], input[type="reset"] {
     cursor: pointer;
 }
 

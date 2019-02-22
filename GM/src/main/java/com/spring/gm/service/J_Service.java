@@ -106,7 +106,7 @@ public interface J_Service {
 	
 	//월별 근태 정보 가져오기
 	public void monthList(HttpServletRequest req, Model model);
-	
+	public void monthList2(HttpServletRequest req, Model model);
 	
 	//휴가 목록 뽑아오기
 	public void holiday(HttpServletRequest req, Model model);
