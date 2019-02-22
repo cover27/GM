@@ -207,6 +207,32 @@ public class P_ServiceImpl implements P_Service{
 		model.addAttribute("groupInfo", groupInfo);
 	}
 
+	@Override
+	public void P_deletePayment(HttpServletRequest req, Model model) {
+		String num_s = req.getParameter("num");
+		int num = Integer.parseInt(num_s);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("del", 1);
+		
+		int cnt = dao.P_deletePayment(map);
+		model.addAttribute("cnt", cnt);
+	}
+
+	@Override
+	public void P_restoPayment(HttpServletRequest req, Model model) {
+		String num_s = req.getParameter("num");
+		int num = Integer.parseInt(num_s);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("del", 0);
+		
+		int cnt = dao.P_deletePayment(map);
+		model.addAttribute("cnt", cnt);
+	}
+
 	//결재버튼을 눌렀을 때 이므로 paymentinfo's rank가 1이상인 경우
 	@Override
 	public void P_payApprove(HttpServletRequest req, Model model) {
@@ -384,6 +410,14 @@ public class P_ServiceImpl implements P_Service{
 		if(searchEndDate.length() != 0) {
 			end = Date.valueOf(searchEndDate);
 		}
+		String retire_s = "";
+		if(req.getParameter("retire") != null) {
+			retire_s = req.getParameter("retire");
+		}
+		int retire = 0;
+		if(retire_s.length() != 0) {
+			retire = Integer.parseInt(retire_s);
+		}
 		
 		model.addAttribute("sel", sel_Payment);
 		
@@ -393,6 +427,7 @@ public class P_ServiceImpl implements P_Service{
 		map.put("searchApprTitle", searchApprTitle);
 		map.put("searchStartDate", start);
 		map.put("searchEndDate", end);
+		map.put("retire", retire);
 		
 		req.getSession().setAttribute("searchMap", map);
 	}
@@ -425,6 +460,17 @@ public class P_ServiceImpl implements P_Service{
 		end = start + pageSize - 1;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", null);
+		map.put("toggleSearchType", null);
+		map.put("searchApprTitle", null);
+		map.put("searchStartDate", null);
+		map.put("searchEndDate", null);
+		
+		if(req.getSession().getAttribute("searchMap") != null) {
+			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
+			req.getSession().removeAttribute("searchMap");
+		}
+		
 		map.put("id", id);
 		map.put("agree", 1);
 		map.put("state", "진행");
@@ -494,6 +540,17 @@ public class P_ServiceImpl implements P_Service{
 		end = start + pageSize - 1;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", null);
+		map.put("toggleSearchType", null);
+		map.put("searchApprTitle", null);
+		map.put("searchStartDate", null);
+		map.put("searchEndDate", null);
+		
+		if(req.getSession().getAttribute("searchMap") != null) {
+			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
+			req.getSession().removeAttribute("searchMap");
+		}
+		
 		map.put("id", id);
 		map.put("refer", 0);
 		map.put("state", "완료");
@@ -563,6 +620,16 @@ public class P_ServiceImpl implements P_Service{
 		end = start + pageSize - 1;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", null);
+		map.put("toggleSearchType", null);
+		map.put("searchApprTitle", null);
+		map.put("searchStartDate", null);
+		map.put("searchEndDate", null);
+		
+		if(req.getSession().getAttribute("searchMap") != null) {
+			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
+			req.getSession().removeAttribute("searchMap");
+		}
 		map.put("id", id);
 		map.put("state", "반려");
 		cnt = dao.getPaymentCnt2(map);
@@ -631,6 +698,16 @@ public class P_ServiceImpl implements P_Service{
 		end = start + pageSize - 1;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", null);
+		map.put("toggleSearchType", null);
+		map.put("searchApprTitle", null);
+		map.put("searchStartDate", null);
+		map.put("searchEndDate", null);
+		
+		if(req.getSession().getAttribute("searchMap") != null) {
+			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
+			req.getSession().removeAttribute("searchMap");
+		}
 		map.put("id", id);
 		map.put("refer", 1);
 		map.put("state", "완료");
@@ -701,6 +778,17 @@ public class P_ServiceImpl implements P_Service{
 		end = start + pageSize - 1;
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", null);
+		map.put("toggleSearchType", null);
+		map.put("searchApprTitle", null);
+		map.put("searchStartDate", null);
+		map.put("searchEndDate", null);
+		
+		if(req.getSession().getAttribute("searchMap") != null) {
+			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
+			req.getSession().removeAttribute("searchMap");
+		}
+		
 		map.put("id", id);
 		map.put("state", "진행");
 		cnt = dao.getPaymentCnt4(map);
@@ -709,6 +797,86 @@ public class P_ServiceImpl implements P_Service{
 			map.put("end", end);
 			List<PaymentVO> payment = new ArrayList<PaymentVO>();
 			payment = dao.getPaymentList4(map); 
+			
+			model.addAttribute("payment", payment);
+		}
+		
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
+		number = cnt - (currentPage - 1) * pageSize;
+		if(end > cnt) end = cnt;
+		
+		// 시작페이지
+		startPage = (currentPage / pageBlock) * pageBlock + 1; 
+		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+		System.out.println("startPage : " + startPage);
+				
+		// 마지막 페이지
+		endPage = startPage + pageBlock - 1; 
+		if(endPage > pageCount) endPage = pageCount;
+		System.out.println("endPage : " + endPage);
+		System.out.println("================");
+		
+		model.addAttribute("cnt", cnt);  // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum);  // 페이지번호
+		
+		if(cnt > 0) {
+			model.addAttribute("startPage", startPage);     // 시작 페이지
+			model.addAttribute("endPage", endPage);         // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
+		}
+	}
+
+	//결재문서관리
+	@Override
+	public void P_managePayment(HttpServletRequest req, Model model) {
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		
+		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageBlock = 5;		// 한 블럭당 페이지 갯수
+		
+		int cnt = 0;			// 글갯수		
+		int start = 0;			// 현재 페이지 시작 글번호
+		int end = 0;			// 현재 페이지 마지막 글번호
+		int number = 0;			// 출력용 글번호
+		String pageNum = "";	// 페이지 번호
+		int currentPage = 0;	// 현재페이지
+		
+		int pageCount = 0;		// 페이지 갯수
+		int startPage = 0;		// 시작 페이지
+		int endPage = 0;		// 마지막 페이지
+		
+		pageNum = req.getParameter("pageNum");
+		
+		if(pageNum == null) {
+			pageNum = "1";	// 첫페이지를 1페이지로 지정
+		}
+		currentPage = Integer.parseInt(pageNum);
+		start = (currentPage - 1) * pageSize + 1; 
+		end = start + pageSize - 1;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", null);
+		map.put("toggleSearchType", null);
+		map.put("searchApprTitle", null);
+		map.put("searchStartDate", null);
+		map.put("searchEndDate", null);
+		map.put("retire", 0);
+		
+		if(req.getSession().getAttribute("searchMap") != null) {
+			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
+			req.getSession().removeAttribute("searchMap");
+		}
+		map.put("company", company);
+		cnt = dao.getPaymentCnt5(map);
+		if(cnt > 0) {
+			map.put("start", start);
+			map.put("end", end);
+			List<PaymentVO> payment = new ArrayList<PaymentVO>();
+			payment = dao.getPaymentList5(map); 
 			
 			model.addAttribute("payment", payment);
 		}

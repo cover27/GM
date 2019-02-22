@@ -356,7 +356,7 @@ div{
 						<div id="editorDiv">
 							<div id="content1" style="width:100%; height:550px;">
 								<!-- text-editor를 쓰기 위함으로 class name은 ckeditor로 쓰여야 한다. -->
-								<textarea class="ckeditor" id="formEditorData" title="formEditorData" name="formEditorData">글쓰기 시작</textarea>
+								<textarea class="ckeditor" id="formEditorData" title="formEditorData" name="formEditorData"></textarea>
 								<!-- text-editor를 쓰기 위함으로 위의 textarea의 class name이 아래 쓰인다. -->
 								<script>CKEDITOR.replace('formEditorData')</script>
 								<!-- <input type="text" id="content" name="content"> --> 

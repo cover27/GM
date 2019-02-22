@@ -28,5 +28,7 @@ public interface O_Service {
 	public void createSelfTaskWrite(HttpServletRequest req, Model model);
 	//업무관리 등록 insert-pro
 	public void createSelfTaskPro(HttpServletRequest req, Model model);
+	//업무관리 내가 한 업무요청
+	public void orderList(HttpServletRequest req, Model model);
 	/* 업무관리 끝 */
 }

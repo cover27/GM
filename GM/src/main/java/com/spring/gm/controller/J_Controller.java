@@ -472,7 +472,12 @@ public class J_Controller {
 		@RequestMapping("/pages/J_CalculationHoliday")
 		public String J_CalculationHoliday(HttpServletRequest req, Model model) {
 			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			System.out.println("sys_rank" + sys_rank);
+			String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
+			String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
 			model.addAttribute("sys_rank",sys_rank);
+			model.addAttribute("name",name);
+			model.addAttribute("id",id);
 			service.companyName(req, model);
 			logger.info("URL : J_CalculationHoliday");
 			return "pages/J_CalculationHoliday";
@@ -567,6 +572,8 @@ public class J_Controller {
 		//연차/휴가일수 조회
 		@RequestMapping("/pages/VacationViews")
 		public String VacationViews(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
 			System.out.println("/pages/VacationViews");
 			logger.info("URL : nighttime");
 			service.VacationViews(req,model);

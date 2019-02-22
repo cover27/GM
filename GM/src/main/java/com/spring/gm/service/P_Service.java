@@ -20,6 +20,12 @@ public interface P_Service {
 	//결재상세페이지
 	public void P_payContentForm(HttpServletRequest req, Model model);
 	
+	//결재문서삭제 관리자
+	public void P_deletePayment(HttpServletRequest req, Model model);
+	
+	//결재문서복구 관리자
+	public void P_restoPayment(HttpServletRequest req, Model model);
+	
 	//결재팝업
 	public void P_payApprove(HttpServletRequest req, Model model);
 	
@@ -55,4 +61,9 @@ public interface P_Service {
 	
 	//결재요청함
 	public void P_listApprMyRequestView(HttpServletRequest req, Model model);
+	
+	//결재문서관리
+	public void P_managePayment(HttpServletRequest req, Model model);
+	
+	
 }

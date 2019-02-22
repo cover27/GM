@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.gm.service.J_Service;
 import com.spring.gm.service.O_Service;
 import com.spring.gm.vo.MemberVO;
 
@@ -20,6 +21,10 @@ public class O_Controller {
 	//오정 service
 	@Autowired
 	O_Service oservice;
+	
+	//경준 service
+	@Autowired
+	J_Service jservice;
 	
 	
 	/* 업무관리 시작 */	
@@ -47,10 +52,13 @@ public class O_Controller {
 	@RequestMapping("/pages/O_createSelfTaskView")
 	public String O_createSelfTaskView(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
 		model.addAttribute("sys_rank",sys_rank);
+		model.addAttribute("id", id);
 		logger.info("URL : O_createSelfTaskView");
 		
 		oservice.createSelfTaskWrite(req, model);
+		jservice.companyName(req, model);
 		
 		return "pages/O_createSelfTaskView";
 	}
@@ -72,19 +80,9 @@ public class O_Controller {
 		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listPureOrderView");
 		
-		
+		oservice.orderList(req, model);
 		
 		return "pages/O_listPureOrderView";
-	}
-	
-	//업무 요청 - 참조 업무 요청 화면
-	@RequestMapping("/pages/O_listSubTodoView")
-	public String O_listSubTodoView(HttpServletRequest req, Model model) {
-		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
-		model.addAttribute("sys_rank",sys_rank);
-		logger.info("URL : O_listSubTodoView");
-		
-		return "pages/O_listSubTodoView";
 	}
 	
 	//업무 보고 - 내가 한 업무 보고 화면

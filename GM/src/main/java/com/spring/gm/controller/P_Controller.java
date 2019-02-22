@@ -80,6 +80,36 @@ public class P_Controller {
 		return "pages/P_payContentForm";
 	}
 	
+	//관리자결제상세페이지
+	@RequestMapping("/admin/P_payContentForm")
+	public String P_payContentForm_admin(HttpServletRequest req, Model model) {
+		logger.info("URL : P_payContentForm_admin");
+		
+		service.P_payContentForm(req, model);
+		
+		return "admin/P_payContentForm";
+	}
+	
+	//결재문서삭제 관리자
+	@RequestMapping("/admin/P_deletePayment")
+	public String P_deletePayment(HttpServletRequest req, Model model) {
+		logger.info("URL : P_deletePayment");
+		
+		service.P_deletePayment(req, model);
+		
+		return "admin/sub/P_deletePayment";
+	}
+	
+	//결재문서 복구 관리자 
+	@RequestMapping("/admin/P_restoPayment")
+	public String P_restoPayment(HttpServletRequest req, Model model) {
+		logger.info("URL : P_restoPayment");
+		
+		service.P_restoPayment(req, model);
+		
+		return "admin/sub/P_restoPayment";
+	}
+	
 	//결재팝업
 	@RequestMapping("/pages/P_payApprove")
 	public String P_payApprove(HttpServletRequest req, Model model) {
@@ -188,6 +218,16 @@ public class P_Controller {
 		service.P_listApprReferenceView(req, model);
 		
 		return "pages/P_listApprReferenceView";
+	}
+	
+	//결재 - 관리자 결재문서관리
+	@RequestMapping("/admin/P_managePayment")
+	public String P_managePayment(HttpServletRequest req, Model model) {
+		logger.info("URL : P_managePayment");
+		
+		service.P_managePayment(req, model);
+		
+		return "admin/P_managePayment";
 	}
 	
 }

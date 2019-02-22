@@ -80,6 +80,18 @@ public class P_DAOImpl implements P_DAO{
 		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.getPaymentList4", map);
 	}
 	@Override
+	public int getPaymentCnt5(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getPaymentCnt5", map);
+	}
+	@Override
+	public List<PaymentVO> getPaymentList5(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.getPaymentList5", map);
+	}
+	@Override
+	public int P_deletePayment(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.P_DAO.P_deletePayment", map);
+	}
+	@Override
 	public PaymentVO getPayment(int groupid) {
 		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getPayment", groupid);
 	}

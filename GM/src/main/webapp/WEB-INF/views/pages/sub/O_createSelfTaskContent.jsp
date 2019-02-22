@@ -1,6 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<script type="text/javascript">
+	function searchId() {
+		var id = $('.searchId').val();
+		var url = "J_searchId_sub?id=" + id;
+		window.open(url, "J_searchId", "menubar=no, width=700, height=560");
+	}
+
+	function back(id, name) {
+		opener.document.searchform.id.value = id;
+		opener.document.searchform.name.value = name;
+		self.close();
+	}
+</script>
+
 <style>
 .content-wrap{
 	min-width:830px;
@@ -217,7 +231,7 @@ img{
 		
 		<div class="content-wrap">
 		    <div class="content-write">
-		        <form action="<c:url value='/pages/O_createSelfTaskPro'/>" method="post">
+		        <form action="<c:url value='/pages/O_createSelfTaskPro'/>" method="post" name="searchform">
 		        
 		        <input type="hidden" name="todonum" value="${todonum}">
 		        <input type="hidden" name="groupId" value="${groupId}">
@@ -260,14 +274,14 @@ img{
 		                            	<div style="position: relative;">
 			                                <div class="input-group organization">
 			                                	<div class="tagsinput">
-			                                		<input type="text" name="" title="사용자" placeholder="사용자" style="box-shadow:none; width:90%;" required>
+			                                		<input type="text" class="searchId" id="name" name="name" title="사용자" style="box-shadow:none; width:90%;" required>
 			                                	</div>
-			                                	<button type="button"class="btn btn-color7 br">검색</button>
+			                                	<button onclick="searchId()" class="btn btn-color7 br">검색</button>
 			                                </div>
 		                                </div>
 		                            </td>
 		                        </tr>
-		                        <tr>
+		                        <!-- <tr>
 		                            <th scope="row">참조자</th>
 		                            <td>
 		                                <div class="input-group organization">
@@ -277,7 +291,7 @@ img{
 			                                <button type="button"class="btn btn-color7 br">검색</button>
 		                                </div>
 		                            </td>
-		                        </tr>
+		                        </tr> -->
 		                        <tr>
 		                            <th scope="row"><label for="docId">관련업무</label></th>
 		                            <td>
@@ -295,7 +309,7 @@ img{
 		                        <tr style="height:400px;">
 		                        	<th scope="row">내용</th>
 		                        	<td>
-										<textarea name="content" style="width:100%; height:390px;">글쓰기 내용</textarea>
+										<textarea name="content" style="width:100%; height:390px;" required></textarea>
 									</td>
 								</tr>
 		                    </tbody>

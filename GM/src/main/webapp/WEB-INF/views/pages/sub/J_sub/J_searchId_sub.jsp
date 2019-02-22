@@ -41,7 +41,7 @@
 				<c:if test="${cnt > 0}">
 					<c:forEach var="dto" items="${dtos}">
 						<tr id="ttr">
-							<td>${dto.name}</td>
+							<td>${companyName}</td>
 							<td>${dto.id}</td>
 							<td>${dto.name}</td>
 							<td>${dto.j_name}</td>

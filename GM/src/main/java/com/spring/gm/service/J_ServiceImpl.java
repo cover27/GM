@@ -120,6 +120,9 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("endPage : " + endPage);
 		System.out.println("================");
 
+		String companyName = K_dao.getCompanyName(company);
+		
+		model.addAttribute("companyName", companyName);
 		model.addAttribute("cnt", cnt); // 글갯수
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum); // 페이지번호
@@ -1954,8 +1957,11 @@ public class J_ServiceImpl implements J_Service {
 	public void VacationViews(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
 		String id = req.getParameter("id");
+		System.out.println("id : " + id);
 		String year = req.getParameter("year");
-
+		System.out.println("year : " + year);
+		
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("year", year);
@@ -1974,8 +1980,8 @@ public class J_ServiceImpl implements J_Service {
 		// vacation = dao.vacation(map); // 휴가 사용수 가져오기
 
 		List<join_mrvdVO> dtos = new ArrayList<join_mrvdVO>();
-		List<join_mrvdVO> dtos2 = dao.annualList(map);
-		List<join_mrvdVO> dtos3 = dao.vacationList(map);
+		List<join_mrvdVO> dtos2 = null;
+		List<join_mrvdVO> dtos3 = null;
 
 		// 연차 사용수
 		if (annualCnt > 0) {
@@ -1986,6 +1992,7 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("연차 사용한 횟수 : " + annual.getU_annual());
 			dtos2.get(0).setN_annual(dtos2.get(0).getAnnual() - annual.getU_annual());
 			System.out.println("잔여 연차 : " + (dtos2.get(0).getAnnual() - annual.getU_annual()));
+			dtos.addAll(dtos2);
 		} else if (annualCnt == 0) {
 			System.out.println("연차 사용이 없는경우");
 			dtos2 = dao.annualList(map);
@@ -1993,6 +2000,7 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("연차 사용한 횟수 : " + dtos2.get(0).getU_annual());
 			dtos2.get(0).setN_annual(dtos2.get(0).getAnnual());
 			System.out.println("잔여 연차 : " +dtos2.get(0).getAnnual());
+			dtos.addAll(dtos2);
 		}
 		
 		// 휴가 사용수
@@ -2004,6 +2012,8 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("휴가 사용한 횟수 : " + vacation.getU_vacation());
 			dtos3.get(0).setN_vacation(dtos3.get(0).getVacation() - vacation.getU_vacation());
 			System.out.println("잔여 휴가 : " + (dtos3.get(0).getVacation() - vacation.getU_vacation()));
+			dtos.get(0).setU_vacation(dtos3.get(0).getU_vacation());
+			dtos.get(0).setN_vacation(dtos3.get(0).getN_vacation());
 		} else if (vacationCnt == 0) {
 			System.out.println("휴가 사용이 없는경우");
 			dtos3 = dao.vacationList(map);
@@ -2011,10 +2021,22 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("휴가 사용한 횟수 : " + dtos3.get(0).getU_vacation());
 			dtos3.get(0).setN_vacation(dtos3.get(0).getVacation());
 			System.out.println("잔여 휴가 : " +dtos3.get(0).getVacation());
+			dtos.get(0).setVacation(dtos3.get(0).getVacation());
+			dtos.get(0).setU_vacation(dtos3.get(0).getU_vacation());
+			dtos.get(0).setN_vacation(dtos3.get(0).getN_vacation());
 		}
-		
-		
-
+		model.addAttribute("dtos",dtos);
+		model.addAttribute("id",id);
+		model.addAttribute("year",year);
 	}
+	
+	//사원 전체 휴가/연장 목록 뽑아오기
+	@Override
+	public void allCalculationHoliday(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		
+	}
+	
+	
 
 }
