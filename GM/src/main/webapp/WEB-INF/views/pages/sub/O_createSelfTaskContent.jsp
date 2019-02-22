@@ -4,14 +4,8 @@
 <script type="text/javascript">
 	function searchId() {
 		var id = $('.searchId').val();
-		var url = "J_searchId_sub?id=" + id;
-		window.open(url, "J_searchId", "menubar=no, width=700, height=560");
-	}
-
-	function back(id, name) {
-		opener.document.searchform.id.value = id;
-		opener.document.searchform.name.value = name;
-		self.close();
+		var url = "O_searchId_sub?id=" + id;
+		window.open(url, "O_searchId", "menubar=no, width=700, height=560");
 	}
 </script>
 
@@ -259,7 +253,7 @@ img{
 											document.getElementById('now_date').valueAsDate = new Date();
 										</script>
 											<span>~</span>
-		                                <input type="date" title="업무기한" name="end" id="now_date2">
+		                                <input type="date" title="업무기한" name="end" id="now_date2" min="begin">
 		                                <script>
 											document.getElementById('now_date2').valueAsDate = new Date();
 										</script>
@@ -274,6 +268,7 @@ img{
 		                            	<div style="position: relative;">
 			                                <div class="input-group organization">
 			                                	<div class="tagsinput">
+			                                		<input type="hidden" class="searchId" id="id" name="id" style="box-shadow:none; width:90%;" readonly>
 			                                		<input type="text" class="searchId" id="name" name="name" title="사용자" style="box-shadow:none; width:90%;" required>
 			                                	</div>
 			                                	<button onclick="searchId()" class="btn btn-color7 br">검색</button>
@@ -281,17 +276,6 @@ img{
 		                                </div>
 		                            </td>
 		                        </tr>
-		                        <!-- <tr>
-		                            <th scope="row">참조자</th>
-		                            <td>
-		                                <div class="input-group organization">
-			                                <div class="tagsinput">
-			                                	<input type="text" name="" title="사용자" placeholder="사용자" style="box-shadow:none;  width:90%;">
-			                                </div>
-			                                <button type="button"class="btn btn-color7 br">검색</button>
-		                                </div>
-		                            </td>
-		                        </tr> -->
 		                        <tr>
 		                            <th scope="row"><label for="docId">관련업무</label></th>
 		                            <td>
@@ -309,7 +293,7 @@ img{
 		                        <tr style="height:400px;">
 		                        	<th scope="row">내용</th>
 		                        	<td>
-										<textarea name="content" style="width:100%; height:390px;" required></textarea>
+										<textarea name="content" style="width:100%; height:390px;"></textarea>
 									</td>
 								</tr>
 		                    </tbody>

@@ -128,6 +128,39 @@ public class O_Controller {
 	/* 업무 관리 끝 */
 	
 	
+	//검색조회
+	@RequestMapping("/pages/O_searchId_sub")
+	public String searchId(HttpServletRequest req, Model model) {
+		logger.info("URL : searchId_sub");
+		String id = req.getParameter("id");
+		System.out.println("id = " + id);
+		if(id.length() == 0) {
+			System.out.println("1");
+			jservice.salaryList(req, model);
+		}else {
+			System.out.println("2");
+			jservice.searchId(req, model);
+		}
+		model.addAttribute("id",id);
+		return "pages/sub/O_header/O_searchId_sub";
+	}
+	@RequestMapping("/pages/O_searchId_sub2")
+	public String searchId2(HttpServletRequest req, Model model) {
+		logger.info("URL : searchId_sub");
+		String id = req.getParameter("id");
+		System.out.println("id = " + id);
+		if(id.length() == 0) {
+			System.out.println("1");
+			jservice.salaryList(req, model);
+		}else {
+			System.out.println("2");
+			jservice.searchId(req, model);
+		}
+		model.addAttribute("id",id);
+		return "pages/sub/O_header/O_searchId_sub";
+	}
+	
+	
 	
 	/* 일정 시작 */
 	//일정 화면

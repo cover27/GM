@@ -248,6 +248,7 @@ public class O_ServiceImpl implements O_Service{
 			e.printStackTrace();
 		}
 		Timestamp ts2 = new Timestamp(d2.getTime());
+		
 		vo.setEnd(ts2);
 		//date 타입을 timeStamp로 형 변환 끝(begin, end)
 		vo.setGroupId(groupId);
