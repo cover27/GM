@@ -214,10 +214,6 @@
 	height: 48px;
 }
 
-.content .comment li input[type="text"]:focus {
-	background: #fff;
-}
-
 .content .comment li input:focus {
 	outline: 0;
 }
@@ -232,4 +228,17 @@
 	width: 149px;
     height: 48px;
     border-radius: 0 3px 3px 0 !important;
+}
+
+.content .comment .cmt_list input[type="button"] {
+	font-size: 0.7em;
+}
+
+.content .replycnt, .content .thisPage {
+	padding: 3px 6px;
+	font-size: 0.8em;
+	background: #ff757f;
+	color: #fff;
+	border-radius: 50%;
+	margin: 0 5px;
 }
