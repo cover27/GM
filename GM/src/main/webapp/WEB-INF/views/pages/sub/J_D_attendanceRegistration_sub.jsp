@@ -84,8 +84,11 @@
 			<h2>일일 근태등록</h2>
 		</div>
 		<div>
-			*근무일자<input type="date" id="date"><input type="button" value="검색" onclick="searchList()">
+			*근무일자<input type="date" id="date" ><input type="button" value="검색" onclick="searchList()">
 		</div>
+		<script>
+			document.getElementById('date').value = new Date().toISOString().slice(0, 10);
+		</script>
 		<br> <br> 
 		<div>*근무시간,휴일,연장,야간,지각,조퇴시간이 계산되지 않는 경우 담당에게 문의하세요.</div>
 		<div id="result">

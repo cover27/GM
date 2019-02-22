@@ -56,7 +56,7 @@
 					<span id="search_title" class="bold5px">${dto.c_name}</span>
 				</c:forEach>
 				<span class="ml50 bold5px">아이디</span>
-				<span><input type="text" class="searchId" id="id" name="id" value="${id}"></span>
+				<span><input type="text" class="searchId" id="id" name="id" value="${id}" required></span>
 				<span><button onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></button></span>
 				<span class="bold5px ml50">이름 : </span>
 				<span><input type="text" class="searchName" name="name" readonly placeholder="아이디를 조회하세요." style="background: #f3f3f3;"></span>

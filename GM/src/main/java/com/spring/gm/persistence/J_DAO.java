@@ -15,6 +15,7 @@ import com.spring.gm.vo.join_margcVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgsbVO;
 import com.spring.gm.vo.join_mgsbcVO;
+import com.spring.gm.vo.join_mrvdVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_msVO;
 public interface J_DAO {
@@ -218,4 +219,30 @@ public interface J_DAO {
 	public int nighttimeCnt(Map<String, Object> map);
 	public ArrayList<join_margcVO> nighttimeList(Map<String, Object> map);
 	public ArrayList<join_margcVO> nighttimeList2(Map<String, Object> map);
+	
+	
+	//연차/휴가일수 조회
+	public join_mrvdVO annual(Map<String, Object> map);//연차 사용수 가져오기
+	public join_mrvdVO vacation(Map<String, Object> map);// 휴가 사용수 가져오기
+	
+	//연차
+	public int annualCnt(Map<String, Object> map);
+	public ArrayList<join_mrvdVO> annualList(Map<String, Object> map);
+	//휴가
+	public int vacationCnt(Map<String, Object> map);
+	public ArrayList<join_mrvdVO> vacationList(Map<String, Object> map);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

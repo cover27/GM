@@ -114,6 +114,8 @@ public interface J_Service {
 	//야간 목록 뽑아오기
 	public void nighttime(HttpServletRequest req, Model model);
 	
+	//연차/휴가일수 조회
+	public void VacationViews(HttpServletRequest req, Model model);
 	
 	
 	
