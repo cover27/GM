@@ -27,6 +27,11 @@ public interface P_DAO {
 	public List<PaymentVO> getPaymentList3(Map<String, Object> map);
 	public int getPaymentCnt4(Map<String, Object> map);
 	public List<PaymentVO> getPaymentList4(Map<String, Object> map);
+	public int getPaymentCnt5(Map<String, Object> map);
+	public List<PaymentVO> getPaymentList5(Map<String, Object> map);
+	
+	//삭제
+	public int P_deletePayment(Map<String, Object> map);
 	
 	public PaymentVO getPayment(int groupid);
 	

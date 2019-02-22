@@ -11,7 +11,7 @@
 		<td>부서</td>
 		<td>근태종류</td>
 		<td>근태시간</td>
-		<td>근태일자</td>
+		<td>휴일일자</td>
 	</tr>
 	<c:if test="${cnt == 0}">
 		<tr>
