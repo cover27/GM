@@ -262,6 +262,16 @@ if(url.indexOf('/')){
 					$("#K_manageOrgan").children().css("color", "#d3292c");
 					$("#K_manageOrgan").css("font-weight", "bold");
 				});
+			} else if(category[0] == "K_manageRank") {
+				$(function(){
+					$("#K_manageRank").children().css("color", "#d3292c");
+					$("#K_manageRank").css("font-weight", "bold");
+				});
+			} else if(category[0] == "K_ourManager") {
+				$(function(){
+					$("#K_ourManager").children().css("color", "#d3292c");
+					$("#K_ourManager").css("font-weight", "bold");
+				});
 			}
 		}
 	}
