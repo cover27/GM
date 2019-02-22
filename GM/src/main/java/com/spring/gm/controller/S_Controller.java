@@ -28,12 +28,29 @@ public class S_Controller {
 	}
 	*/
 	
-	// 이메일
-	@RequestMapping("/pages/S_mail_inbox")
-	public String mail(HttpServletRequest req, Model model) {
-		logger.info("URL : mail");
+	// 쪽지함
+	@RequestMapping("/pages/S_message_inbox")
+	public String massageBox(HttpServletRequest req, Model model) {
+		logger.info("URL : S_message_inbox");
 		
-		service.mailBoxList(req, model);
-		return "pages/S_mail_inbox";
+		service.messageBoxList(req, model);
+		return "pages/S_message_inbox";
+	}
+	
+	// 쪽지함 만들기
+	@RequestMapping("/pages/S_createMessageBox")
+	public String createMassageBox(HttpServletRequest req, Model model) {
+		logger.info("URL : S_createMessageBox");
+		
+		return "pages/S_createMessageBox";
+	}
+	
+	// 쪽지
+	@RequestMapping("/pages/S_message")
+	public String mail(HttpServletRequest req, Model model) {
+		logger.info("URL : S_message");
+		
+		service.messageList(req, model);
+		return "pages/S_message";
 	}
 }
