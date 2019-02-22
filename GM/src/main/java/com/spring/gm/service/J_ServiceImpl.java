@@ -214,8 +214,8 @@ public class J_ServiceImpl implements J_Service {
 			List<join_mgcVO2> dtos = dao.searchinfoList(map);
 			System.out.println(dtos.toString());
 			model.addAttribute("dtos", dtos);
-			model.addAttribute("cnt", cnt);
 		}
+		model.addAttribute("cnt", cnt);
 	}
 
 	// 개인 급여등록(이번달 목록 가져오기)
