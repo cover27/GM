@@ -38,6 +38,7 @@
 		    AND o.id = #{id}
 		    AND p.id != #{id}
 		    AND o.agree = #{agree}
+		    AND p.del = 0
 		    AND p.state like '%'||#{state}||'%'
 		    <if test="searchUserName != null">
 		    	AND p.name like '%'||#{searchUserName}||'%'
@@ -69,6 +70,7 @@
 			    AND o.id = #{id}
 			    AND p.id != #{id}
 			    AND o.agree = #{agree}
+			    AND p.del = 0
 			    AND p.state like '%'||#{state}||'%'
 		]]>
 			<if test="searchUserName != null">
@@ -102,7 +104,29 @@
 		 SELECT COUNT(*) FROM payment p, paymentinfo o
 		    WHERE p.num = o.num
 		    AND o.id = #{id}
+		    AND p.del = 0
 		    AND p.state like '%'||#{state}||'%'
+		    <if test="searchUserName != null">
+		    	AND p.name like '%'||#{searchUserName}||'%'
+		    </if>
+		    <if test="searchApprTitle != null">
+		    	<if test="toggleSearchType == 'subject'">
+		    		AND p.subject like '%'||#{searchApprTitle}||'%'
+		    	</if>
+		    	<if test="toggleSearchType == 'content'">
+		    		AND p.content like '%'||#{searchApprTitle}||'%'
+		    	</if>
+		    </if>
+		    <if test="searchStartDate != null">
+		    	<![CDATA[
+		    		AND p.deadline >= #{searchStartDate}
+		    	]]>
+		    </if>
+		    <if test="searchEndDate != null">
+		    	<![CDATA[
+		    		AND p.reg_date <= #{searchEndDate}
+		    	]]>
+		    </if>
 	</select>
 	
 	<select id="getPaymentList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.PaymentVO">
@@ -111,6 +135,30 @@
 			    WHERE p.num = o.num
 			    AND o.id = #{id}
 			    AND p.state like '%'||#{state}||'%'
+			    AND p.del = 0
+		]]>
+				<if test="searchUserName != null">
+			    	AND p.name like '%'||#{searchUserName}||'%'
+			    </if>
+			    <if test="searchApprTitle != null">
+			    	<if test="toggleSearchType == 'subject'">
+			    		AND p.subject like '%'||#{searchApprTitle}||'%'
+			    	</if>
+			    	<if test="toggleSearchType == 'content'">
+			    		AND p.content like '%'||#{searchApprTitle}||'%'
+			    	</if>
+			    </if>
+			    <if test="searchStartDate != null">
+			    	<![CDATA[
+			    		AND p.deadline >= #{searchStartDate}
+			    	]]>
+			    </if>
+			    <if test="searchEndDate != null">
+			    	<![CDATA[
+			    		AND p.reg_date <= #{searchEndDate}
+			    	]]>
+			    </if>
+		<![CDATA[
 			    ORDER BY p.reg_date DESC)
 		    WHERE rNum >= #{start} AND rNum <= #{end}
 		 ]]>
@@ -122,7 +170,29 @@
 		    AND o.id = #{id}
 		    AND p.id != #{id}
 		    AND p.state like '%'||#{state}||'%'
+		    AND p.del = 0
 		    AND o.refer = #{refer}
+		    <if test="searchUserName != null">
+		    	AND p.name like '%'||#{searchUserName}||'%'
+		    </if>
+		    <if test="searchApprTitle != null">
+		    	<if test="toggleSearchType == 'subject'">
+		    		AND p.subject like '%'||#{searchApprTitle}||'%'
+		    	</if>
+		    	<if test="toggleSearchType == 'content'">
+		    		AND p.content like '%'||#{searchApprTitle}||'%'
+		    	</if>
+		    </if>
+		    <if test="searchStartDate != null">
+		    	<![CDATA[
+		    		AND p.deadline >= #{searchStartDate}
+		    	]]>
+		    </if>
+		    <if test="searchEndDate != null">
+		    	<![CDATA[
+		    		AND p.reg_date <= #{searchEndDate}
+		    	]]>
+		    </if>
 	</select>
 	
 	<select id="getPaymentList3" parameterType="java.util.Map" resultType="com.spring.gm.vo.PaymentVO">
@@ -132,7 +202,31 @@
 			    AND o.id = #{id}
 			    AND p.id != #{id}
 			    AND p.state like '%'||#{state}||'%'
+			    AND p.del = 0
 			    AND o.refer = #{refer}
+		]]>
+				<if test="searchUserName != null">
+			    	AND p.name like '%'||#{searchUserName}||'%'
+			    </if>
+			    <if test="searchApprTitle != null">
+			    	<if test="toggleSearchType == 'subject'">
+			    		AND p.subject like '%'||#{searchApprTitle}||'%'
+			    	</if>
+			    	<if test="toggleSearchType == 'content'">
+			    		AND p.content like '%'||#{searchApprTitle}||'%'
+			    	</if>
+			    </if>
+			    <if test="searchStartDate != null">
+			    	<![CDATA[
+			    		AND p.deadline >= #{searchStartDate}
+			    	]]>
+			    </if>
+			    <if test="searchEndDate != null">
+			    	<![CDATA[
+			    		AND p.reg_date <= #{searchEndDate}
+			    	]]>
+			    </if>
+		<![CDATA[
 			    ORDER BY p.reg_date DESC)
 		    WHERE rNum >= #{start} AND rNum <= #{end}
 		 ]]>
@@ -140,8 +234,30 @@
 	
 	<select id="getPaymentCnt4" resultType="int">
 		 SELECT COUNT(*) FROM payment p
-			    WHERE p.id =#{id}
-			    AND p.state like '%'||#{state}||'%'
+		    WHERE p.id =#{id}
+		    AND p.del = 0
+		    AND p.state like '%'||#{state}||'%'
+		    <if test="searchUserName != null">
+		    	AND p.name like '%'||#{searchUserName}||'%'
+		    </if>
+		    <if test="searchApprTitle != null">
+		    	<if test="toggleSearchType == 'subject'">
+		    		AND p.subject like '%'||#{searchApprTitle}||'%'
+		    	</if>
+		    	<if test="toggleSearchType == 'content'">
+		    		AND p.content like '%'||#{searchApprTitle}||'%'
+		    	</if>
+		    </if>
+		    <if test="searchStartDate != null">
+		    	<![CDATA[
+		    		AND p.deadline >= #{searchStartDate}
+		    	]]>
+		    </if>
+		    <if test="searchEndDate != null">
+		    	<![CDATA[
+		    		AND p.reg_date <= #{searchEndDate}
+		    	]]>
+		    </if>
 	</select>
 	
 	<select id="getPaymentList4" parameterType="java.util.Map" resultType="com.spring.gm.vo.PaymentVO">
@@ -149,10 +265,100 @@
 			SELECT * FROM (SELECT p.*, rowNum rNum FROM payment p
 			    WHERE p.id =#{id}
 			    AND p.state like '%'||#{state}||'%'
+			    AND p.del = 0
+		]]>
+				<if test="searchUserName != null">
+			    	AND p.name like '%'||#{searchUserName}||'%'
+			    </if>
+			    <if test="searchApprTitle != null">
+			    	<if test="toggleSearchType == 'subject'">
+			    		AND p.subject like '%'||#{searchApprTitle}||'%'
+			    	</if>
+			    	<if test="toggleSearchType == 'content'">
+			    		AND p.content like '%'||#{searchApprTitle}||'%'
+			    	</if>
+			    </if>
+			    <if test="searchStartDate != null">
+			    	<![CDATA[
+			    		AND p.deadline >= #{searchStartDate}
+			    	]]>
+			    </if>
+			    <if test="searchEndDate != null">
+			    	<![CDATA[
+			    		AND p.reg_date <= #{searchEndDate}
+			    	]]>
+			    </if>
+		<![CDATA[
 			    ORDER BY p.reg_date DESC)
 		    WHERE rNum >= #{start} AND rNum <= #{end}
 		 ]]>
 	</select>
+	
+	<select id="getPaymentCnt5" resultType="int">
+		SELECT COUNT(*) FROM payment p, groups g
+			    WHERE p.groupid = g.groupid
+                AND g.company = #{company}
+                AND p.del = #{retire}
+			    <if test="searchUserName != null">
+			    	AND p.name like '%'||#{searchUserName}||'%'
+			    </if>
+			    <if test="searchApprTitle != null">
+			    	<if test="toggleSearchType == 'subject'">
+			    		AND p.subject like '%'||#{searchApprTitle}||'%'
+			    	</if>
+			    	<if test="toggleSearchType == 'content'">
+			    		AND p.content like '%'||#{searchApprTitle}||'%'
+			    	</if>
+			    </if>
+			    <if test="searchStartDate != null">
+			    	<![CDATA[
+			    		AND p.deadline >= #{searchStartDate}
+			    	]]>
+			    </if>
+			    <if test="searchEndDate != null">
+			    	<![CDATA[
+			    		AND p.reg_date <= #{searchEndDate}
+			    	]]>
+			    </if>
+	</select>
+	
+	<select id="getPaymentList5" parameterType="java.util.Map" resultType="com.spring.gm.vo.PaymentVO">
+		<![CDATA[
+			SELECT * FROM (SELECT p.*, rowNum rNum FROM payment p, groups g
+			    WHERE p.groupid = g.groupid
+                AND g.company = #{company}
+                AND p.del = #{retire}
+		]]>
+				<if test="searchUserName != null">
+			    	AND p.name like '%'||#{searchUserName}||'%'
+			    </if>
+			    <if test="searchApprTitle != null">
+			    	<if test="toggleSearchType == 'subject'">
+			    		AND p.subject like '%'||#{searchApprTitle}||'%'
+			    	</if>
+			    	<if test="toggleSearchType == 'content'">
+			    		AND p.content like '%'||#{searchApprTitle}||'%'
+			    	</if>
+			    </if>
+			    <if test="searchStartDate != null">
+			    	<![CDATA[
+			    		AND p.deadline >= #{searchStartDate}
+			    	]]>
+			    </if>
+			    <if test="searchEndDate != null">
+			    	<![CDATA[
+			    		AND p.reg_date <= #{searchEndDate}
+			    	]]>
+			    </if>
+		<![CDATA[
+			    ORDER BY p.reg_date DESC)
+		    WHERE rNum >= #{start} AND rNum <= #{end}
+		 ]]>
+	</select>
+	
+	<update id="P_deletePayment" parameterType="java.util.Map">
+		UPDATE payment SET del = #{del} WHERE num = #{num}
+	</update>
 	
 	<select id="getPayment" resultType="com.spring.gm.vo.PaymentVO">
 		SELECT * FROM payment WHERE groupid = #{groupid}
