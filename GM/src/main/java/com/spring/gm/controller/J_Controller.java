@@ -579,7 +579,7 @@ public class J_Controller {
 			service.VacationViews(req,model);
 			return "pages/sub/J_sub/VacationViews_sub";
 		}
-	/*	//연차/휴가일수 조회 전체보기
+		//연차/휴가일수 조회 전체보기
 		@RequestMapping("/pages/VacationViews2")
 		public String VacationViews2(HttpServletRequest req, Model model) {
 			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
@@ -588,7 +588,7 @@ public class J_Controller {
 			logger.info("URL : nighttime");
 			service.VacationViews2(req,model);
 			return "pages/sub/J_sub/VacationViews_sub";
-		}*/
+		}
 		
 		
 		

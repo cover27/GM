@@ -44,8 +44,8 @@ function VacationViews() {
 	}
 };
 function VacationViews2() {
-	var year = $("#year").val();
-	var yearLength = $('#year').val().length;
+	var year = $("#year2").val();
+	var yearLength = $('#year2').val().length;
 	if(yearLength == 0){
 		alert("날짜를 입력해주십시오.");
 	}else {
@@ -53,8 +53,7 @@ function VacationViews2() {
 			url : '${pageContext.request.contextPath}/pages/VacationViews2',
 			type : 'POST',
 			data : {
-				'year' : year,
-				'id' : id
+				'year' : year
 			}, //전송할 데이터
 			success : function(result) {
 				$('#result').html(result);
@@ -105,7 +104,7 @@ function allsearch() {
 		</div>
 		<div id="allsearch" style="display:none;">
 			<span class="bold5px ml50">*년도별검색 : </span>
-			<span><input type="text" id="year" placeholder="예)2019" maxlength="4"></span>
+			<span><input type="text" id="year2" placeholder="예)2019" maxlength="4"></span>
 			<span><input type="button" onclick="VacationViews2()" value="조회" style="background: #d3292c;"></span>
 		</div>
 		</c:if>
@@ -145,6 +144,17 @@ function allsearch() {
 				<td colspan="11" style="height: 250px;">정보가 없습니다.</td>
 			</tr>
 		</table>
+		</div>
+		<div>
+			<pre>
+			 처리순서 : 휴가일수 조회 -> 사용 휴가일수  집계 처리 -> 휴가일수 자동계산 후 출력
+			 휴가일수 조회시 전년도 결근일수에 따라서 바뀔수 있습니다.
+			 휴가일수  : 휴가일수 미사용시 자동계산하여 상여금으로 처리 후 마감 처리를 하면  조회를 할 수 없습니다.
+			 휴가일수  조회는 해당년도 12월 31일로 마감처리가 됩니다.
+			 수정을 원하는 경우에는 인사 관리자에게 요청하여 관리자가 직접 수정할 수 있습니다.
+			 [휴가일수설정(최초1회)] 메뉴에서 이관한 자료를 삭제(재이관)하는 방법은 다음과 같습니다.
+			 [연차/휴가일수 조회] 메뉴에서 해당 사원 자료를 삭제 할 수 없습니다.
+			</pre>
 		</div>
 	</article>
 </section>
