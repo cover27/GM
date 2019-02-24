@@ -10,7 +10,7 @@ import com.spring.gm.vo.MessageVO;
 
 public interface S_DAO {
 	
-	public int getMessageArticleCnt(String strId);
+	public List<MessageVO> getMessageArticleCnt(Map<String, Object> map);
 	
 	public List<MessageVO> getMessageArticleList(Map<String, Object> map);
 	

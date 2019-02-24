@@ -17,9 +17,9 @@ public class S_DAOImpl implements S_DAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int getMessageArticleCnt(String strId) {
+	public List<MessageVO> getMessageArticleCnt(Map<String, Object> map) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMessageArticleCnt(strId);
+		return dao.getMessageArticleCnt(map);
 	}
 	
 	@Override
