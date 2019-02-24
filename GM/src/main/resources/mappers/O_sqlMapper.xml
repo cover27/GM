@@ -65,8 +65,9 @@
 <select id="getOrderList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
 	<![CDATA[
 		select * from
-			(select name, subject, begin, end, state, rownum rNum from
-				(select * from b_manage where id=#{id} and del=0))
+			(select g.r_name, m.name, b.todonum, b.subject, b.begin, b.end, b.state, rownum rNum from
+				(select * from b_manage where id=#{id} and del=0) b, member m, grade g 
+					where m.id=b.id and m.rank=g.rank)		
 		where rNum >= #{start} and rNum <= #{end}
 		order by rNum desc
 	]]> 

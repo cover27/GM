@@ -219,11 +219,11 @@ tbody {
 		                                </td>
 		                                <td class="text-left">
 		                                    <div class="ellipsis">
-		                                        <a href="javascript:void(0);" onclick="goURL('26904787')" title="테스트">${dto.subject }</a> 
+		                                        <a href="<c:url value='/pages/O_readOrderView?todonum=${dto.todonum}'/>" title="테스트">${dto.subject }</a> 
 		                                    </div>
 		                                </td>
 		                                <td>
-		                                    <div class="ellipsis" title="">${dto.name}</div>
+		                                    <div class="ellipsis" title="">${dto.name}(${dto.r_name})</div>
 		                                </td>
 		                                <td>${dto.begin}</td>
 		                                <td>${dto.end}</td>

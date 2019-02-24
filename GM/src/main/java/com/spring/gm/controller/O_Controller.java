@@ -85,6 +85,15 @@ public class O_Controller {
 		return "pages/O_listPureOrderView";
 	}
 	
+	//업무요청 - 내가 한 업무요청 조회 화면
+	@RequestMapping("/pages/O_readOrderView")
+	public String O_readOrderView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_readOrderView");
+		
+		
+		return "pages/O_readOrderView";
+	}
+	
 	//업무 보고 - 내가 한 업무 보고 화면
 	@RequestMapping("/pages/O_listPureOrderReportView")
 	public String O_listPureOrderReportView(HttpServletRequest req, Model model) {
