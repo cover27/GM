@@ -978,6 +978,41 @@ public class J_DAOImpl implements J_DAO {
 	}
 	
 	
+	//휴가신청내역 가져오기
+	@Override
+	public int vacationapplicationCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.vacationapplicationCnt", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_mrvdVO> vacationapplicationList(Map<String, Object> map) {
+		ArrayList<join_mrvdVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.vacationapplicationList(map);
+		return dtos;
+	}
+	
+	//휴가 신청하기
+	//전차
+	@Override
+	public int leaveapplicationInsert(Map<String, Object> map) {
+		int cnt = sqlSession.insert("com.spring.gm.persistence.J_DAO.leaveapplicationInsert", map);
+		return cnt;
+	}
+	//반차
+	@Override
+	public int leaveapplicationInsert2(Map<String, Object> map) {
+		int cnt = sqlSession.insert("com.spring.gm.persistence.J_DAO.leaveapplicationInsert2", map);
+		return cnt;
+	}
+	//휴가 신청취소하기
+	@Override
+	public int cancelapplication(Map<String, Object> map) {
+		int cnt = sqlSession.delete("com.spring.gm.persistence.J_DAO.cancelapplication", map);
+		return cnt;
+	}
+	
+	
 	
 	
 	

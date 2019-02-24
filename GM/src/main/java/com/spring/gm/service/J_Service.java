@@ -120,11 +120,13 @@ public interface J_Service {
 	//연차/휴가일수 조회 전체보기
 	public void VacationViews2(HttpServletRequest req, Model model);
 	
+	//휴가신청내역 가져오기
+	public void vacationapplication(HttpServletRequest req, Model model);
 	
-	
-	
-	
-	
+	//휴가 신청하기
+	public void leaveapplication(HttpServletRequest req, Model model);
+	//휴가 신청취소하기
+	public void cancelapplication(HttpServletRequest req, Model model);
 	
 	
 	
