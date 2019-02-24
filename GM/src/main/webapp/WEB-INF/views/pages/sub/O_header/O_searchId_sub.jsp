@@ -3,15 +3,15 @@
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <script type="text/javascript">
     function back(id,name){
-    	opener.document.searchform.id.value=id;
-    	opener.document.searchform.name.value=name;
+    	opener.document.searchform123.id.value=id;
+    	opener.document.searchform123.name.value=name;
     	self.close();
     }
-    function searchId2(){
-    	var id = $('.searchId').val();
-    	window.location="O_searchId_sub?id="+id;
-    }
 </script>
+    <!-- function searchId123(){
+    	var id = $('.searchId1233').val();
+    	window.location="O_searchId_sub123?id="+id;
+    } -->
 <style>
 	tr:last-child td {
 		border-bottom: 1px #c0c0c0 solid !important;
@@ -21,10 +21,10 @@
 <div class="content">
 	<div class="search-wrap" style="margin-bottom: 0">
 		<div class="form-group">
-			<form action="" method="post" name="searchform">
+			<form action="" method="post" name="searchform123">
 				<span class="bold5px">아이디 : </span>
-				<span><input type="text" class="searchId" value="${id}" name="id"></span>
-				<span><input type="button" class="searchId" name="id" onclick="searchId2();" value="검색"></span>
+				<span><input type="text" class="searchp" value="${id}" name="id"></span>
+				<span><input type="button" class="searchp" name="id" onclick="window.location='O_searchId_sub?id=${id}'" value="검색"></span>
 			</form>
 		</div>
 	</div>

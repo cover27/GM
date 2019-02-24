@@ -2,11 +2,16 @@
     pageEncoding="UTF-8"%>
 
 <script type="text/javascript">
-	function searchId() {
-		var id = $('.searchId').val();
+	function searchIdPlease() {
+		var id = $('.searchp').val();
 		var url = "O_searchId_sub?id=" + id;
 		window.open(url, "O_searchId", "menubar=no, width=700, height=560");
 	}
+    function back(id,name){
+    	opener.document.searchform123.id.value=id;
+    	opener.document.searchform123.name.value=name;
+    	self.close();
+    }
 </script>
 
 <style>
@@ -225,7 +230,7 @@ img{
 		
 		<div class="content-wrap">
 		    <div class="content-write">
-		        <form action="<c:url value='/pages/O_createSelfTaskPro'/>" method="post" name="searchform">
+		        <form action="<c:url value='/pages/O_createSelfTaskPro'/>" method="post" name="searchform123">
 		        
 		        <input type="hidden" name="todonum" value="${todonum}">
 		        <input type="hidden" name="groupId" value="${groupId}">
@@ -268,10 +273,10 @@ img{
 		                            	<div style="position: relative;">
 			                                <div class="input-group organization">
 			                                	<div class="tagsinput">
-			                                		<input type="hidden" class="searchId" id="id" name="id" style="box-shadow:none; width:90%;" readonly>
-			                                		<input type="text" class="searchId" id="name" name="name" title="사용자" style="box-shadow:none; width:90%;" required>
+			                                		<input type="hidden" class="searchp" id="id" name="id" style="box-shadow:none; width:90%;" readonly>
+			                                		<input type="text" class="searchp" id="name" name="name" title="사용자" style="box-shadow:none; width:90%;" required>
 			                                	</div>
-			                                	<button onclick="searchId()" class="btn btn-color7 br">검색</button>
+			                                	<button onclick="searchIdPlease()" class="btn btn-color7 br">검색</button>
 			                                </div>
 		                                </div>
 		                            </td>
