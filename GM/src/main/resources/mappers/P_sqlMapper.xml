@@ -25,6 +25,7 @@
 		join companies c on m.company = c.company
 		left join grade r on m.rank = r.rank
 		where m.del=0
+		AND m.company=#{company}
 	</select>
 	
 	<!-- 전자결재 - 기안문 - 결재선  회사에 그룹등급이 1인 부서명-->

@@ -17,15 +17,21 @@ public class S_DAOImpl implements S_DAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int getMessageArticleCnt(String strId) {
+	public int getMessageArticleCnt(String receiver) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMessageArticleCnt(strId);
+		return dao.getMessageArticleCnt(receiver);
 	}
 	
 	@Override
 	public List<MessageVO> getMessageArticleList(Map<String, Object> map){
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
 		return dao.getMessageArticleList(map);
+	}
+	
+	@Override
+	public int readCnt() {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.readCnt();
 	}
 	
 	@Override
@@ -45,5 +51,7 @@ public class S_DAOImpl implements S_DAO {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
 		return dao.sendMessage(vo);
 	}
+
+
 
 }

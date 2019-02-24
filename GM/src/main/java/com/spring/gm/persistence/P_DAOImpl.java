@@ -36,9 +36,9 @@ public class P_DAOImpl implements P_DAO{
 
 	//전자결재 - 기안문 - 결재선 select 조인
 	@Override
-	public List<Join_payVO> selectApprLine() {
+	public List<Join_payVO> selectApprLine(int company) {
 		dao = sqlSession.getMapper(P_DAO.class);
-		return dao.selectApprLine();
+		return dao.selectApprLine(company);
 	}
 	//전자결재 - 기안문 - 결재선  회사에 그룹등급이 1인 부서명
 	@Override
