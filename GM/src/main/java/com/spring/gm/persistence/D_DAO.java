@@ -23,7 +23,9 @@ public interface D_DAO {
 	
 	public int deleteBoard(int boardnum);	//게시글 삭제
 	
-	public int getBoardArticleCnt(int company);	//게시글 갯수
+	public int getBoardArticleCnt(int company);	//게시글 갯수(모든게시물)
+	
+	public int getUserBoardArticleCnt(Map<String, Object> map);	//게시글 갯수
 	
 	public List<BoardListVO> getBoardArticleList(Map<String, Object> map);	//게시글 목록
 	

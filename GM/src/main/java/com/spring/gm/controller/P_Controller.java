@@ -35,9 +35,8 @@ public class P_Controller {
 		logger.info("URL : P_addApprLine");
 		
 		service.addApprLine(req, model);
-		service.createApprDoc(req, model);
 		
-		return "pages/P_addApprLine";
+		return "pages/sub/P_addApprLine";
 	}
 	
 	//기안 - 기안문 작성 - 결재 요청

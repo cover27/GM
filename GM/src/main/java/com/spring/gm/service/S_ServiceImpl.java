@@ -1,5 +1,6 @@
 package com.spring.gm.service;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,7 @@ public class S_ServiceImpl implements S_Service {
 	
 	@Override
 	public void messageList(HttpServletRequest req, Model model) {
-		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		String receiver = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
@@ -37,10 +38,9 @@ public class S_ServiceImpl implements S_Service {
 		int pageCount = 0;		// 페이지 갯수
 		int startPage = 0;		// 시작 페이지
 		int endPage = 0;		// 마지막 페이지
-		int del = 0;
 	
 		// 게시판 갯수
-		cnt = dao.getMessageArticleCnt(strId);
+		cnt = dao.getMessageArticleCnt(receiver);
 
 		
 		System.out.println("cnt(쪽지 갯수) : " + cnt);
@@ -76,8 +76,7 @@ public class S_ServiceImpl implements S_Service {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
-			map.put("strId", strId);
-			map.put("del", del);
+			map.put("receiver", receiver);
 			
 			List<MessageVO> dtos = dao.getMessageArticleList(map);
 			
@@ -203,7 +202,24 @@ public class S_ServiceImpl implements S_Service {
 
 	@Override
 	public void sendMessagePro(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
+		String sender = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		String receiver = req.getParameter("id");
+		String subject = req.getParameter("subject");
+		
+		MessageVO vo = new MessageVO();
+		vo.setMessage_num(0);
+		vo.setSender(sender);
+		vo.setReceiver(receiver);
+		vo.setSubject(subject);
+		vo.setContent(req.getParameter("content"));
+		vo.setState(0);
+		vo.setDel(0);
+		vo.setSentDate(new Timestamp(System.currentTimeMillis()));
+		vo.setReceiveDate(new Timestamp(System.currentTimeMillis()));
+		
+		int sendCnt = dao.sendMessage(vo);
+		
+		model.addAttribute("sendCnt", sendCnt);
 		
 	}
 

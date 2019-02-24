@@ -53,11 +53,13 @@ public class join_mrvdVO {
 	
 	
 	//휴가
-	private Timestamp begin;
-	private Timestamp end;
-	private String content;
-	private String state;
-	private int deduct;
+	private Date begin;	//휴가시작일
+	private Date end;		//휴가끝나는일
+	private String content;		//휴가사유
+	private String state;		//신청상태
+	private int deduct;			//공제
+	private Date applicationdate; //휴가신청일
+	private int fullhalfday;	//전일/반
 	public String getId() {
 		return id;
 	}
@@ -304,16 +306,16 @@ public class join_mrvdVO {
 	public void setN_vacation(int n_vacation) {
 		this.n_vacation = n_vacation;
 	}
-	public Timestamp getBegin() {
+	public Date getBegin() {
 		return begin;
 	}
-	public void setBegin(Timestamp begin) {
+	public void setBegin(Date begin) {
 		this.begin = begin;
 	}
-	public Timestamp getEnd() {
+	public Date getEnd() {
 		return end;
 	}
-	public void setEnd(Timestamp end) {
+	public void setEnd(Date end) {
 		this.end = end;
 	}
 	public String getContent() {
@@ -334,6 +336,18 @@ public class join_mrvdVO {
 	public void setDeduct(int deduct) {
 		this.deduct = deduct;
 	}
+	public Date getApplicationdate() {
+		return applicationdate;
+	}
+	public void setApplicationdate(Date applicationdate) {
+		this.applicationdate = applicationdate;
+	}
+	public int getFullhalfday() {
+		return fullhalfday;
+	}
+	public void setFullhalfday(int fullhalfday) {
+		this.fullhalfday = fullhalfday;
+	}
 	@Override
 	public String toString() {
 		return "join_mrvdVO [id=" + id + ", pwd=" + pwd + ", name=" + name + ", eng_name=" + eng_name + ", jumin1="
@@ -347,9 +361,10 @@ public class join_mrvdVO {
 				+ types + ", day=" + day + ", annual=" + annual + ", u_annual=" + u_annual + ", n_annual=" + n_annual
 				+ ", vacation=" + vacation + ", u_vacation=" + u_vacation + ", n_vacation=" + n_vacation + ", begin="
 				+ begin + ", end=" + end + ", content=" + content + ", state=" + state + ", deduct=" + deduct
-				+ ", getId()=" + getId() + ", getPwd()=" + getPwd() + ", getName()=" + getName() + ", getEng_name()="
-				+ getEng_name() + ", getJumin1()=" + getJumin1() + ", getJumin2()=" + getJumin2() + ", getGender()="
-				+ getGender() + ", getMarry()=" + getMarry() + ", getWdday()=" + getWdday() + ", getFrgn()=" + getFrgn()
+				+ ", applicationdate=" + applicationdate + ", fullhalfday=" + fullhalfday + ", getId()=" + getId()
+				+ ", getPwd()=" + getPwd() + ", getName()=" + getName() + ", getEng_name()=" + getEng_name()
+				+ ", getJumin1()=" + getJumin1() + ", getJumin2()=" + getJumin2() + ", getGender()=" + getGender()
+				+ ", getMarry()=" + getMarry() + ", getWdday()=" + getWdday() + ", getFrgn()=" + getFrgn()
 				+ ", getNation()=" + getNation() + ", getTel()=" + getTel() + ", getTel_hm()=" + getTel_hm()
 				+ ", getEmail_in()=" + getEmail_in() + ", getEmail_out()=" + getEmail_out() + ", getAddress()="
 				+ getAddress() + ", getEng_address()=" + getEng_address() + ", getDepart()=" + getDepart()
@@ -363,10 +378,10 @@ public class join_mrvdVO {
 				+ getN_annual() + ", getVacation()=" + getVacation() + ", getU_vacation()=" + getU_vacation()
 				+ ", getN_vacation()=" + getN_vacation() + ", getBegin()=" + getBegin() + ", getEnd()=" + getEnd()
 				+ ", getContent()=" + getContent() + ", getState()=" + getState() + ", getDeduct()=" + getDeduct()
+				+ ", getApplicationdate()=" + getApplicationdate() + ", getFullhalfday()=" + getFullhalfday()
 				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
 				+ "]";
 	}
-	
 	
 	
 }

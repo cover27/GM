@@ -444,7 +444,16 @@ public class J_Controller {
 			logger.info("URL : J_M_attendanceStatus");
 			return "pages/J_M_attendanceStatus";
 		}
-		
+		//월 근태 현황(전체사원뽑기)
+		@RequestMapping("/pages/J_M_attendanceStatus2")
+		public String J_M_attendanceStatus2(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
+			service.companyName(req, model);
+			service.monthList2(req,model);
+			logger.info("URL : J_M_attendanceStatus2");
+			return "pages/J_M_attendanceStatus";
+		}
 		
 		//휴일/연장/야간근무 조회
 		@RequestMapping("/admin/J_Lookup")
@@ -485,9 +494,10 @@ public class J_Controller {
 		//휴가신청
 		@RequestMapping("/pages/J_ApplyHoliday")
 		public String J_ApplyHoliday(HttpServletRequest req, Model model) {
-			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
-			model.addAttribute("sys_rank",sys_rank);
+
 			logger.info("URL : J_ApplyHoliday");
+			service.companyName(req, model);
+			service.vacationapplication(req, model);
 			return "pages/J_ApplyHoliday";
 		}
 		//휴가 사용현황
@@ -495,6 +505,7 @@ public class J_Controller {
 		public String J_UseHoliday(HttpServletRequest req, Model model) {
 			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 			model.addAttribute("sys_rank",sys_rank);
+			service.companyName(req, model);
 			logger.info("URL : J_UseHoliday");
 			return "pages/J_UseHoliday";
 		}
@@ -579,7 +590,7 @@ public class J_Controller {
 			service.VacationViews(req,model);
 			return "pages/sub/J_sub/VacationViews_sub";
 		}
-	/*	//연차/휴가일수 조회 전체보기
+		//연차/휴가일수 조회 전체보기
 		@RequestMapping("/pages/VacationViews2")
 		public String VacationViews2(HttpServletRequest req, Model model) {
 			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
@@ -588,11 +599,25 @@ public class J_Controller {
 			logger.info("URL : nighttime");
 			service.VacationViews2(req,model);
 			return "pages/sub/J_sub/VacationViews_sub";
-		}*/
+		}
 		
 		
-		
-		
+		//휴가 신청하기
+		@RequestMapping("/pages/leaveapplication")
+		public String leaveapplication(HttpServletRequest req, Model model) {
+			logger.info("URL : leaveapplication");
+			service.companyName(req, model);
+			service.leaveapplication(req, model);
+			return "pages/J_ApplyHoliday";
+		}
+		//휴가 신청취소하기
+		@RequestMapping("/pages/cancelapplication")
+		public String cancelapplication(HttpServletRequest req, Model model) {
+			logger.info("URL : cancelapplication");
+			service.companyName(req, model);
+			service.cancelapplication(req, model);
+			return "pages/J_ApplyHoliday";
+		}
 		
 		
 		

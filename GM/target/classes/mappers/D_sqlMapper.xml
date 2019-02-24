@@ -39,6 +39,9 @@
 		select count(*) as cnt from boardlist b, boards r where b.num = r.num and r.groupid = #{company} and b.del=0
 	</select>
 	
+	<select id="getUserBoardArticleCnt" resultType="int">
+		select count(*) as cnt from boardlist b, boards r where b.num = r.num and r.groupid = #{company} and b.del=0 and b.num=#{num}
+	</select>
 	 
 	<select id="getBoardArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.BoardListVO">
 		<![CDATA[

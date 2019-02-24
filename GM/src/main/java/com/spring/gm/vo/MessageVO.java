@@ -4,15 +4,16 @@ import java.sql.Timestamp;
 
 public class MessageVO {
 	private int num;				// 메일번호	
-	private int mail_num;			// 메일함번호(FK)	
+	private int message_num;			// 메일함번호(FK)	
 	private String sender;			// 아이디(FK)	
 	private String receiver;		// 아이디(FK)	
 	private String subject;			// 제목	
 	private String content;			// 내용	
-	private String state;			// 상태
+	private int state;			// 상태
 	private Timestamp sentDate;		// 메일발송일
-	private Timestamp receivedDate;	// 메일 수신일	
+	private Timestamp receiveDate;	// 메일 수신일	
 	private int del;				// 삭제구분	
+	private int readCnt;			// 조회수
 	
 	public int getNum() {
 		return num;
@@ -20,11 +21,11 @@ public class MessageVO {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public int getMail_num() {
-		return mail_num;
+	public int getMessage_num() {
+		return message_num;
 	}
-	public void setMail_num(int mail_num) {
-		this.mail_num = mail_num;
+	public void setMessage_num(int message_num) {
+		this.message_num = message_num;
 	}
 	public String getSender() {
 		return sender;
@@ -50,10 +51,10 @@ public class MessageVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getState() {
+	public int getState() {
 		return state;
 	}
-	public void setState(String state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 	public Timestamp getSentDate() {
@@ -62,11 +63,11 @@ public class MessageVO {
 	public void setSentDate(Timestamp sentDate) {
 		this.sentDate = sentDate;
 	}
-	public Timestamp getReceivedDate() {
-		return receivedDate;
+	public Timestamp getReceiveDate() {
+		return receiveDate;
 	}
-	public void setReceivedDate(Timestamp receivedDate) {
-		this.receivedDate = receivedDate;
+	public void setReceiveDate(Timestamp receivedDate) {
+		this.receiveDate = receivedDate;
 	}
 	public int getDel() {
 		return del;
@@ -74,6 +75,14 @@ public class MessageVO {
 	public void setDel(int del) {
 		this.del = del;
 	}
+	public int getReadCnt() {
+		return readCnt;
+	}
+	public void setReadCnt(int readCnt) {
+		this.readCnt = readCnt;
+	}
+	
+	
 
 	
 }

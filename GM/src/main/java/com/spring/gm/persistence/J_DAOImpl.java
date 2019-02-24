@@ -838,6 +838,25 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.monthList2(map);
 		return dtos;
 	}
+	//월별 근태 정보 가져오기
+	@Override
+	public int  monthCnt2(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.monthCnt2", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_margcVO> monthList3(Map<String, Object> map) {
+		ArrayList<join_margcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.monthList3(map);
+		return dtos;
+	}
+	public ArrayList<join_margcVO> monthList4(Map<String, Object> map) {
+		ArrayList<join_margcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.monthList4(map);
+		return dtos;
+	}
 	
 	
 	//휴가 목록 뽑아오기
@@ -943,57 +962,59 @@ public class J_DAOImpl implements J_DAO {
 		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.vacation", map);
 	}
 	
-	/*
+	
 	//연차/휴가일수 조회 전체보기
 	@Override
-	public ArrayList<MemberVO> memberId() {
+	public ArrayList<MemberVO> memberId(Map<String, Object> map) {
 		ArrayList<MemberVO> dtos = null;
 		J_DAO dao = sqlSession.getMapper(J_DAO.class);
-		dtos = dao.memberId();
+		dtos = dao.memberId(map);
+		return dtos;
+	}
+	@Override
+	public int memberinfo(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.memberinfo", map);
+		return cnt;
+	}
+	
+	
+	//휴가신청내역 가져오기
+	@Override
+	public int vacationapplicationCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.vacationapplicationCnt", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_mrvdVO> vacationapplicationList(Map<String, Object> map) {
+		ArrayList<join_mrvdVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.vacationapplicationList(map);
 		return dtos;
 	}
 	
-	//연차
-		@Override
-		public int annualCnt2(Map<String, Object> map) {
-			int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.annualCnt2", map);
-			return cnt;
-		}
-		@Override
-		public ArrayList<join_mrvdVO> annualList2(Map<String, Object> map) {
-			ArrayList<join_mrvdVO> dtos = null;
-			J_DAO dao = sqlSession.getMapper(J_DAO.class);
-			dtos = dao.annualList2(map);
-			return dtos;
-		}
-		
-		//휴가
-		@Override
-		public int vacationCnt2(Map<String, Object> map) {
-			int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.vacationCnt2", map);
-			return cnt;
-		}
-		@Override
-		public ArrayList<join_mrvdVO> vacationList2(Map<String, Object> map) {
-			ArrayList<join_mrvdVO> dtos = null;
-			J_DAO dao = sqlSession.getMapper(J_DAO.class);
-			dtos = dao.vacationList2(map);
-			return dtos;
-		}
-		
-		//연차 사용수 가져오기
-		@Override
-		public join_mrvdVO annual2(Map<String, Object> map) {
-			return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.annual2", map);
-		}
-		// 휴가 사용수 가져오기
-		@Override
-		public join_mrvdVO vacation2(Map<String, Object> map) {
-			return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.vacation2", map);
-		}
+	//휴가 신청하기
+	//전차
+	@Override
+	public int leaveapplicationInsert(Map<String, Object> map) {
+		int cnt = sqlSession.insert("com.spring.gm.persistence.J_DAO.leaveapplicationInsert", map);
+		return cnt;
+	}
+	//반차
+	@Override
+	public int leaveapplicationInsert2(Map<String, Object> map) {
+		int cnt = sqlSession.insert("com.spring.gm.persistence.J_DAO.leaveapplicationInsert2", map);
+		return cnt;
+	}
+	//휴가 신청취소하기
+	@Override
+	public int cancelapplication(Map<String, Object> map) {
+		int cnt = sqlSession.delete("com.spring.gm.persistence.J_DAO.cancelapplication", map);
+		return cnt;
+	}
 	
 	
-	*/
+	
+	
 	
 	
 	

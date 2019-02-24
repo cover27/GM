@@ -12,10 +12,10 @@
 			<th style="border-bottom: 1px #c0c0c0 solid;">부서</th>
 			<th style="border-bottom: 1px #c0c0c0 solid;">회사명</th>
 			<th style="border-bottom: 1px #c0c0c0 solid;">연차</th>
+			<th style="border-bottom: 1px #c0c0c0 solid;">지급날짜</th>
 			<th style="border-bottom: 1px #c0c0c0 solid;">기본급</th>
 			<th style="border-bottom: 1px #c0c0c0 solid;">추가 및 삭감금</th>
 			<th style="border-bottom: 1px #c0c0c0 solid;">실제 수령금액</th>
-			<th style="border-bottom: 1px #c0c0c0 solid;">지급날짜</th>
 		</tr>
 		<c:if test="${cnt > 0}">
 			<c:forEach var="dto" items="${dtos}">
@@ -26,18 +26,18 @@
 					<td>${dto.g_name}</td>
 					<td>${dto.c_name}</td>
 					<td>${dto.year}</td>
+					<td>${dto.day}</td>
 					<td>${dto.salary}</td>
 					<td>${dto.bonussalary}</td>
 					<td>${dto.sumsalarybonus}</td>
-					<td>${dto.day}</td>
 				</tr>
 			</c:forEach>
 			<tr>
-					<td colspan="7"></td>
-					<td>${allsalary}</td>
-					<td>${bonussalary}</td>
-					<td>${sumsalarybonus}</td>
-				</tr>
+				<td colspan="7"></td>
+				<td>${allsalary}</td>
+				<td>${bonussalary}</td>
+				<td>${sumsalarybonus}</td>
+			</tr>
 		</c:if>
 		<!-- 게시글이 없으면 -->
 		<c:if test="${cnt == 0}">

@@ -205,7 +205,10 @@ public interface J_DAO {
 	public int monthCnt(Map<String, Object> map);
 	public ArrayList<join_margcVO> monthList(Map<String, Object> map);
 	public ArrayList<join_margcVO> monthList2(Map<String, Object> map);
-	
+	//월별 근태 정보 가져오기(전체리스트)
+	public int monthCnt2(Map<String, Object> map);
+	public ArrayList<join_margcVO> monthList3(Map<String, Object> map);
+	public ArrayList<join_margcVO> monthList4(Map<String, Object> map);
 	
 	//휴가 목록 뽑아오기
 	public int holidayCnt(Map<String, Object> map);
@@ -236,30 +239,22 @@ public interface J_DAO {
 	
 	
 	
-/*	//연차/휴가일수 조회 전체보기
-	public ArrayList<MemberVO> memberId();
+	//연차/휴가일수 조회 전체보기
+	public ArrayList<MemberVO> memberId(Map<String, Object> map);
+	public int memberinfo(Map<String, Object> map);
 	
 	
-	public join_mrvdVO annual2(Map<String, Object> map);//연차 사용수 가져오기
-	public join_mrvdVO vacation2(Map<String, Object> map);// 휴가 사용수 가져오기
+	//휴가신청내역 가져오기
+	public int vacationapplicationCnt(Map<String, Object> map);
+	public ArrayList<join_mrvdVO> vacationapplicationList(Map<String, Object> map);
 	
-	//연차
-	public int annualCnt2(Map<String, Object> map);
-	public ArrayList<join_mrvdVO> annualList2(Map<String, Object> map);
-	//휴가
-	public int vacationCnt2(Map<String, Object> map);
-	public ArrayList<join_mrvdVO> vacationList2(Map<String, Object> map);
-		*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//휴가 신청하기
+	//전차
+	public int leaveapplicationInsert(Map<String, Object> map);
+	//반차
+	public int leaveapplicationInsert2(Map<String, Object> map);
+	//휴가 신청취소하기
+	public int cancelapplication(Map<String, Object> map);
 	
 	
 }

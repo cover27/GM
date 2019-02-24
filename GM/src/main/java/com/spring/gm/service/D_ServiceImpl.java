@@ -88,9 +88,13 @@ public class D_ServiceImpl implements D_Service{
 		int endPage = 0;		// 마지막 페이지		
 		
 		int num = Integer.parseInt(req.getParameter("num"));
-		
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
-		cnt = dao.getBoardArticleCnt(company);
+		
+		Map<String, Object> cntMap = new HashMap<String, Object>();
+		cntMap.put("num", num);
+		cntMap.put("company", company);
+		
+		cnt = dao.getUserBoardArticleCnt(cntMap);
 		
 		pageNum = req.getParameter("pageNum");
 		
@@ -123,6 +127,7 @@ public class D_ServiceImpl implements D_Service{
 			map.put("num", num);
 			map.put("start", start);
 			map.put("end", end);
+			map.put("company", company);
 			List<BoardListVO> dtos = dao.getBoardArticleList(map);
 			/*
 			int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();

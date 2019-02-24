@@ -15,7 +15,7 @@ public interface P_DAO {
 	public Join_payVO createAppDocForm2(String id); // 회사 조인
 	
 	//전자결재 - 기안문 - 결재선
-	public List<Join_payVO> selectApprLine(); //결재선 조회 조인문
+	public List<Join_payVO> selectApprLine(int company); //결재선 조회 조인문
 	public List<String> getGroupName(int company);//결재선 부서명
 	
 	//본인이 속한 결제그룹리스트를 가져오는 함수
