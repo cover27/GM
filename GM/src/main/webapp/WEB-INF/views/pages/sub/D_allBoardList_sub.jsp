@@ -79,7 +79,7 @@ function delBoard(){
 										<td style="text-align: left; padding-left: 20px;">
 											<c:if test="${dto.ref_level >= 1}">
 												<c:set var="wid" value="${(dto.ref_level-1) * 10}" />
-												<i class="fa fa-reply fa-rotate-180"></i>
+												<i class="fa fa-reply fa-rotate-180 ml20"></i>
 											</c:if>
 											<c:if test="${dto.ref_level > 0}"></c:if>
 											<c:if test="${dto.readcnt > 10}"></c:if>
