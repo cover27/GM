@@ -30,14 +30,24 @@ public class S_Controller {
 	}
 	*/
 	
-	// 쪽지함
+
 	@RequestMapping("/pages/S_message_inbox")
 	public String massageBox(HttpServletRequest req, Model model) {
 		logger.info("URL : S_message_inbox");
 		
-		/*service.messageBoxList(req, model);*/	
+		/*service.messageList(req, model);*/
 		return "pages/S_message_inbox";
 	}
+	
+	@RequestMapping("/pages/S_receiveMessage")
+	public String receiveMessage(HttpServletRequest req, Model model) {
+		logger.info("URL : S_receiveMessage");
+		
+		
+		service.messageList(req, model);
+		return "/pages/S_receiveMessage";
+	}
+	
 	
 	// 쪽지함 만들기
 	@RequestMapping("/pages/S_createMessageBox")
