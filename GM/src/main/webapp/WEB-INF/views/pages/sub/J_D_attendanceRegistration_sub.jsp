@@ -85,18 +85,18 @@
 		</div>
 		<div class="content">
 			<div class="search-wrap">
-					<div class="form-group">
-						<span class="bold5px">근무일자</span>
-						<span>
-							<input type="date" id="date" >
-						</span>
-						<span>
-							<input type="button" value="검색" onclick="searchList()" style="background: #d3292c;">
-						</span>
-						<span class="fright" style="font-size: 12px;position: relative; top: 4px;">
-							※ 근무시간,휴일,연장,야간,지각,조퇴시간이 계산되지 않는 경우 담당에게 문의하세요.
-						</span>
-					</div>
+				<div class="form-group">
+					<span class="bold5px">근무일자</span>
+					<span>
+						<input type="date" id="date" >
+					</span>
+					<span>
+						<input type="button" value="검색" onclick="searchList()" style="background: #d3292c;">
+					</span>
+					<span class="fright" style="font-size: 12px;position: relative; top: 4px;">
+						※ 근무시간,휴일,연장,야간,지각,조퇴시간이 계산되지 않는 경우 담당에게 문의하세요.
+					</span>
+				</div>
 			</div>
 			<script>
 				document.getElementById('date').value = new Date().toISOString().slice(0, 10);
