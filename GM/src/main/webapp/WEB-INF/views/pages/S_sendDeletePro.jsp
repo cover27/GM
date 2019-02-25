@@ -4,18 +4,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <body>
-	<h3 align="center"> 쪽지 전송 처리</h3>
-	<c:if test="${sendCnt == 0}">
+	<h3 align="center"> 쪽지 전송취소 처리</h3>
+	<c:if test="${cancelCnt == 0}">
 		<script type="text/javascript">
-		alert("전송이 실패했습니다.");
+		alert("전송취소처리가 실패했습니다.");
 		window.history.back();
 		</script>
 	</c:if>
 	
-	<c:if test="${sendCnt != 0}">
+	<c:if test="${cancelCnt != 0}">
 		<script type="text/javascript">
-			alert("전송되었습니다.");
-			window.location="S_receiveMessage?pageNum=${pageNum}&num=${num}";
+			alert("전송취소 되었습니다.");
+			window.location="S_sendMessageList?pageNum=${pageNum}&num=${num}";
 		</script>
 	</c:if>
 </body>

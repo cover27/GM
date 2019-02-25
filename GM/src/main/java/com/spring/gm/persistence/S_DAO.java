@@ -29,6 +29,9 @@ public interface S_DAO {
 	// 보넨 쪽지 리스트
 	public List<MessageVO> sendMessageArticleList(Map<String, Object> map);
 	
+	// 보넨 쪽지 삭제
+	public int sendDelete(Map<String, Integer> map);
+	
 	// 휴지통 보네기
 	public int garbage(Map<String, Integer> map);
 	
@@ -37,5 +40,8 @@ public interface S_DAO {
 	
 	// 휴지통 쪽지 리스트
 	public List<MessageVO> getGarbageList(Map<String, Object> map);
+	
+	// 휴지통 삭제 처리
+	public int delgarbage(Map<String, Integer> map);
 
 }
