@@ -248,20 +248,18 @@ public class S_ServiceImpl implements S_Service {
 	public void moveGarbage(HttpServletRequest req, Model model) {
 		int moveCnt = 0;
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-		int num = Integer.parseInt(req.getParameter("nums"));
 		String [] message = req.getParameterValues("checkRow");
 		
 		if(message != null && message.length > 0) {
 			for(int i=0; i<message.length; i++) {
 				Map<String, Integer> map = new HashMap<String, Integer>();
-					map.put("boardnum", Integer.parseInt(message[i]));
+					map.put("num", Integer.parseInt(message[i]));
 					moveCnt = dao.garbage(map);
 			}
 		}
 		
 		model.addAttribute("moveCnt", moveCnt);
 		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("num", num);
 	}
 
 
@@ -350,6 +348,44 @@ public class S_ServiceImpl implements S_Service {
 			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
 			model.addAttribute("currentPage", currentPage); // 현재페이지
 		}		
+	}
+
+
+	@Override
+	public void delGarbage(HttpServletRequest req, Model model) {
+		int deleteCnt = 0;
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		String [] message = req.getParameterValues("checkRow");
+		
+		if(message != null && message.length > 0) {
+			for(int i=0; i<message.length; i++) {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+					map.put("num", Integer.parseInt(message[i]));
+					deleteCnt = dao.garbage(map);
+			}
+		}
+		
+		model.addAttribute("deleteCnt", deleteCnt);
+		model.addAttribute("pageNum", pageNum);
+	}
+
+
+	@Override
+	public void sendDeletePro(HttpServletRequest req, Model model) {
+		int cancelCnt = 0;
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		String [] sendMessage = req.getParameterValues("checkRow");
+		
+		if(sendMessage != null && sendMessage.length > 0) {
+			for(int i=0; i<sendMessage.length; i++) {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+					map.put("num", Integer.parseInt(sendMessage[i]));
+					cancelCnt = dao.sendDelete(map);
+			}
+		}
+		
+		model.addAttribute("cancelCnt", cancelCnt);
+		model.addAttribute("pageNum", pageNum);
 	}
 
 

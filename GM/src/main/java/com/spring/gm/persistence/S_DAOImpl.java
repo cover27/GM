@@ -76,6 +76,18 @@ public class S_DAOImpl implements S_DAO {
 		return dao.getGarbageList(map);
 	}
 
+	@Override
+	public int delgarbage(Map<String, Integer> map) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.delgarbage(map);
+	}
+
+	@Override
+	public int sendDelete(Map<String, Integer> map) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.sendDelete(map);
+	}
+
 
 
 

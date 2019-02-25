@@ -20,7 +20,6 @@ table, tr, th, td{
 		<div class="content-wrap">
 		    <div class="content-view">
 		    	<div class="form-block" style="margin-top:10px;">
-		    		
 		    		<table class="table">
 		    			<colgroup>
                    			<col width="120px">
@@ -28,49 +27,52 @@ table, tr, th, td{
                    			<col width="120px">
                    			<col width="*">
                 		</colgroup>
-                		<tbody>
-                			<tr>
-                				<th scope="row">제목</th>
-                				<td title="제목">제목</td>
-                				<th scope="row">상태</th>
-                				<td >상태값</td>
-                			</tr>
-                			<tr>
-                				<th scope="row">지시자</th>
-                				<td colspan="3">이름(직급명)</td>
-                			</tr>
-                			<tr>
-                				<th scope="row">업무기한</th>
-                				<td colspan="3">기한</td>
-                			</tr>
-                			<tr>
-                				<th scope="row">등록일</th>
-                				<td>날짜</td>
-                				<th scope="row">수정일</th>
-                				<td></td>
-                			</tr>
-                			<tr>
-                				<th scope="row">담당자</th>
-                				<td colspan="3">이름</td>
-                			</tr>
-                			<tr>
-                				<th scope="row">내용</th>
-                				<td colspan="3">내용</td>
-                			</tr>
-                			<tr>
-                				<th scope="row">첨부파일</th>
-                				<td colspan="3"></td>
-                			</tr>
-                			<tr>
-                				<th scope="row">관련업무</th>
-                				<td colspan="3"></td>
-                			</tr>
-                			<tr>
-                				<th scope="row">관련결재</th>
-                				<td colspan="3"></td>
-                			</tr>
-                		</tbody>
+                		<c:forEach var="dto" items="${dtos}">
+	                		<tbody>
+	                			<tr>
+	                				<th scope="row">제목</th>
+	                				<td title="제목">${dto.subject}</td>
+	                				<th scope="row">상태</th>
+	                				<td >${dto.state}</td>
+	                			</tr>
+	                			<tr>
+	                				<th scope="row">지시자</th>
+	                				<td colspan="3">${dto.name}(${dto.r_name})</td>
+	                			</tr>
+	                			<tr>
+	                				<th scope="row">업무기한</th>
+	                				<td colspan="3">${dto.begin}~${dto.end}</td>
+	                			</tr>
+	                			<tr>
+	                				<th scope="row">등록일</th>
+	                				<td>${dto.reg_date}</td>
+	                				<th scope="row">수정일</th>
+	                				<td>${dto.reg_date2}</td>
+	                			</tr>
+	                			<tr>
+	                				<th scope="row">담당자</th>
+	                				<td colspan="3">${dto.b_name}</td>
+	                			</tr>
+	                			<tr>
+	                				<th scope="row">내용</th>
+	                				<td colspan="3">${dto.content}</td>
+	                			</tr>
+	                			<tr>
+	                				<th scope="row">첨부파일</th>
+	                				<td colspan="3"></td>
+	                			</tr>
+	                			<tr>
+	                				<th scope="row">관련업무</th>
+	                				<td colspan="3"></td>
+	                			</tr>
+	                			<tr>
+	                				<th scope="row">관련결재</th>
+	                				<td colspan="3"></td>
+	                			</tr>
+	                		</tbody>
+                		</c:forEach>
 		    		</table>
+		    		
 		    		<div class="inform-wrap rejectClass">
 		    			<div class="statement">
 		    				<h4>처리 내역</h4>
@@ -81,7 +83,7 @@ table, tr, th, td{
 		    					<tbody>
 		    						<tr>
 		    							<th scope="row">담당자</th>
-		    							<td>담당자명(직급명)</td>
+		    							<td>담당자명</td>
 		    							<th scope="row">최종수정일</th>
 		    							<td></td>
 		    						</tr>
@@ -101,8 +103,8 @@ table, tr, th, td{
 		    </div>
 		    
 		    <div >
-                <button type="button" class="btn btn-color7 br" onclick="">수정</button>
-                <button type="button" class="btn btn-color7 br" onclick="deleteTask();">삭제</button>
+                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/O_updateTaskView?todonum=${todonum}&id=${id}'/>'">수정</button>
+                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/O_updateTaskDeletePro?todonum=${todonum}&id=${id}'/>'">삭제</button>
                 <button type="button" class="btn btn-color7 br" onclick="window.history.back();">목록</button>
 		    </div>
 		    
