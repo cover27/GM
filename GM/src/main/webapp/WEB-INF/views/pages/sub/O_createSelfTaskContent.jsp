@@ -237,6 +237,7 @@ img{
 		        <input type="hidden" name="state" value="${state}">
 		        <input type="hidden" name="del" value="${del}">
 		        <input type="hidden" name="reg_date" value="${reg_date}">
+		        <input type="hidden" name="reg_date2" value="${reg_date2}">
 		            
 		            <div class="form-block">
 		                <table class="table">

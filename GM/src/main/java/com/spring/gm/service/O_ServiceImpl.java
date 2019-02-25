@@ -340,6 +340,7 @@ public class O_ServiceImpl implements O_Service{
 		String state="미완료";
 		int del=0;
 		Timestamp reg_date = new Timestamp(System.currentTimeMillis());
+		Timestamp reg_date2= new Timestamp(System.currentTimeMillis());
 
 		model.addAttribute("id", id);
 		model.addAttribute("todonum", todonum);
@@ -347,6 +348,7 @@ public class O_ServiceImpl implements O_Service{
 		model.addAttribute("state", state);
 		model.addAttribute("del", del);
 		model.addAttribute("reg_date", reg_date);
+		model.addAttribute("reg_date2", reg_date2);
 
 	}
 
@@ -368,6 +370,7 @@ public class O_ServiceImpl implements O_Service{
 		vo.setState(req.getParameter("state"));
 		vo.setDel(Integer.parseInt(req.getParameter("del")));
 		vo.setReg_date(new Timestamp(System.currentTimeMillis()));
+		vo.setReg_date2(new Timestamp(System.currentTimeMillis()));
 		
 		int insertCnt = dao.insertTodo(vo);
 		
@@ -520,7 +523,7 @@ public class O_ServiceImpl implements O_Service{
 		vo.setB_name(req.getParameter("b_name"));
 		vo.setContent(req.getParameter("content"));
 		vo.setState(req.getParameter("state"));
-		vo.setReg_date(new Timestamp(System.currentTimeMillis()));
+		vo.setReg_date2(new Timestamp(System.currentTimeMillis()));
 		vo.setTodonum(todonum);
 		vo.setId(id);
 		

@@ -47,7 +47,7 @@ table, tr, th, td{
 	                				<th scope="row">등록일</th>
 	                				<td>${dto.reg_date}</td>
 	                				<th scope="row">수정일</th>
-	                				<td></td>
+	                				<td>${dto.reg_date2}</td>
 	                			</tr>
 	                			<tr>
 	                				<th scope="row">담당자</th>

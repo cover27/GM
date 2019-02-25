@@ -15,6 +15,7 @@ public class B_ManageVO {
     private Date begin; //시작일
     private Date end; //종료일
     private Timestamp reg_date; //등록일
+    private Timestamp reg_date2; //수정일
     private String state; //상태
     private int del; //삭제구분
     private String r_name; //직급이름
@@ -74,6 +75,12 @@ public class B_ManageVO {
 	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
+	public Timestamp getReg_date2() {
+		return reg_date2;
+	}
+	public void setReg_date2(Timestamp reg_date2) {
+		this.reg_date2 = reg_date2;
+	}
 	public String getState() {
 		return state;
 	}
@@ -98,14 +105,14 @@ public class B_ManageVO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	@Override
 	public String toString() {
 		return "B_ManageVO [todonum=" + todonum + ", id=" + id + ", groupId=" + groupId + ", b_name=" + b_name
 				+ ", subject=" + subject + ", content=" + content + ", begin=" + begin + ", end=" + end + ", reg_date="
-				+ reg_date + ", state=" + state + ", del=" + del + ", r_name=" + r_name + ", name=" + name + "]";
+				+ reg_date + ", reg_date2=" + reg_date2 + ", state=" + state + ", del=" + del + ", r_name=" + r_name
+				+ ", name=" + name + "]";
 	}
-
-	
     
     
 }
