@@ -90,6 +90,16 @@
 	update b_manage set b_name=#{b_name}, subject=#{subject}, content=#{content}, begin=#{begin}, end=#{end}, reg_date2=#{reg_date2}, state=#{state}, id=#{id} where todonum=#{todonum}
 </update>
 
+<!-- 업무관리 업무요청 삭제 pro -->
+<update id="deleteTaskPro">
+	update b_manage set del=1 where todonum=#{todonum}
+</update>
+
+
+
+
+
+
 <!-- 업무 끝 -->
 
 </mapper>

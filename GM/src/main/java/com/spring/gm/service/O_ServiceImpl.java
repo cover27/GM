@@ -536,6 +536,19 @@ public class O_ServiceImpl implements O_Service{
 		model.addAttribute("todonum", todonum);
 		
 	}
+
+	//업무관리 업무요청 수정 pro
+	@Override
+	public void updateTaskDeletePro(HttpServletRequest req, Model model) {
+		
+		int todonum = Integer.parseInt(req.getParameter("todonum"));
+		
+		int deleteCnt = dao.deleteTaskPro(todonum);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
+		
+		
+	}
 	
 	
 

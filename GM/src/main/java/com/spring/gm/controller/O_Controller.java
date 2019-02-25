@@ -124,6 +124,16 @@ public class O_Controller {
 		return "pages/O_updateTaskPro";
 	}
 	
+	//업무요청 - 업무요청 삭제 Pro
+	@RequestMapping("/pages/O_updateTaskDeletePro")
+	public String O_updateTaskDeletePro(HttpServletRequest req, Model model) {
+		logger.info("URL : O_updateTaskDeletePro");
+		
+		oservice.updateTaskDeletePro(req, model);
+		
+		return "pages/O_updateTaskDeletePro";
+	}
+	
 	//업무 요청 - 업무완료함
 	@RequestMapping("/pages/O_listTodoReportView")
 	public String O_listTodoReportView(HttpServletRequest req, Model model) {

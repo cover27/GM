@@ -104,7 +104,7 @@ table, tr, th, td{
 		    
 		    <div >
                 <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/O_updateTaskView?todonum=${todonum}&id=${id}'/>'">수정</button>
-                <button type="button" class="btn btn-color7 br" onclick="deleteTask();">삭제</button>
+                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/O_updateTaskDeletePro?todonum=${todonum}&id=${id}'/>'">삭제</button>
                 <button type="button" class="btn btn-color7 br" onclick="window.history.back();">목록</button>
 		    </div>
 		    

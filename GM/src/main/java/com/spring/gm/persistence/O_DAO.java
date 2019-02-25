@@ -45,6 +45,8 @@ public interface O_DAO {
 	public B_ManageVO udpateTaskView(int todonum);
 	//업무관리 업무요청 수정 pro
 	public int updateTaskPro(B_ManageVO vo);
+	//업무관리 업무요청 삭제 pro
+	public int deleteTaskPro(int todonum);
 	/* 업무 끝 */
 	
 	

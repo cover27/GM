@@ -147,6 +147,13 @@ public class O_DAOImpl implements O_DAO {
 		dao = sqlSession.getMapper(O_DAO.class);
 		return dao.updateTaskPro(vo);
 	}
+	
+	//업무관리 업무요청 삭제 pro
+	@Override
+	public int deleteTaskPro(int todonum) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.deleteTaskPro(todonum);
+	}
 
 	
 	
