@@ -211,9 +211,9 @@ public class D_DAOImpl implements D_DAO{
 
 	// 댓글 갯수
 	@Override
-	public int getRepleArticleCnt() {
+	public int getRepleArticleCnt(int boardnum) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.getRepleArticleCnt();
+		return dao.getRepleArticleCnt(boardnum);
 	}
 
 	@Override
