@@ -30,6 +30,13 @@ function cancelapplication(num) {
 	}
 };
 function handler(e){
+var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
+    
+    var today = new Date('2014-12-25').getDay();
+    var todayLabel = week[today];
+    alert(todayLabel);
+
+
 	var strDate1 = $('#begin').val();
 	var strDate2 = $('#end').val();
 	var arr1 = strDate1.split('-');

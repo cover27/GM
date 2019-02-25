@@ -5,7 +5,7 @@
 <script type="text/javascript">
 
 // 체크박스 전체선택
-function allcheck(){
+function allmove(){
       if( $("#th_checkAll").is(':checked') ){
         $("input[name=checkRow]").prop("checked", true);
       }else{
@@ -15,8 +15,8 @@ function allcheck(){
 
 //삭제할거 정보이전
 function moveGarbage(){
-	var god = confirm("선택한것들을 휴지통으로 보네시겠습니까?");
-	if(god){
+	var move = confirm("선택된것을 휴지통으로 보네시겠습니까?");
+	if(move){
 		document.messageMoveGarbage.action="<c:url value='/pages/S_moveGarbagePro'/>"
 		document.messageMoveGarbage.submit();
 	}
@@ -30,7 +30,6 @@ function moveGarbage(){
         <div class="content">
         	<form method="post" id="messageMoveGarbage" name="messageMoveGarbage">
 	            <input type="hidden" name="pageNum" value="${pageNum}">
-	            <input type="hidden" name="num" value="${num}">
 	            <div class="table_head">
 					<table>
 						<colgroup>
@@ -42,7 +41,7 @@ function moveGarbage(){
 						</colgroup>
 						<thead>
 							<tr>
-								<th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allCheck()" /></th>
+								<th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allmove()" /></th>
 								<th>쪽지 제목</th>
 								<th>작성자</th>
 								<th>작성일</th>
@@ -112,7 +111,7 @@ function moveGarbage(){
 				</div>
 	            <div class="btnset fright mt10">
 	            	<ul>
-	            		<li><input type="submit" value="삭제"></li>
+	            		<li><input type="submit" value="삭제" onclick="moveGarbage()"></li>
 	            	</ul>
 	            </div>
 	        </form>

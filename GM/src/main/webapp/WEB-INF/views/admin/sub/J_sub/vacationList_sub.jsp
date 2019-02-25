@@ -4,8 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script>
-function managementInsert(id,name,fullhalfday,begin,end,day) {
-	window.location="managementInsert?id="+id +"&name=" + name + "&fullhalfday=" + fullhalfday + "&begin=" + begin + "&end=" + end + "&day=" + day;
+function managementInsert(id,name,fullhalfday,begin,end,day,date) {
+	window.location="managementInsert?id="+id +"&name=" + name + "&fullhalfday=" + fullhalfday + "&begin=" + begin + "&end=" + end + "&day=" + day + "&date="+ date;
 };
 
 /* function managementInsert(id,name,fullhalfday,begin,end,day) {
@@ -77,7 +77,7 @@ function managementInsert(id,name,fullhalfday,begin,end,day) {
 					<c:if test="${dtos.fullhalfday == 1}">${dtos.day}일</c:if>
 					<c:if test="${dtos.fullhalfday == 2}">${dtos.day/2}일</c:if>
 					</td>
-					<td><input type="button" value="근태처리" onclick="managementInsert('${dtos.id}','${dtos.name}','${dtos.fullhalfday}','${dtos.begin}','${dtos.end}','${dtos.day}')"></td>
+					<td><input type="button" value="근태처리" onclick="managementInsert('${dtos.id}','${dtos.name}','${dtos.fullhalfday}','${dtos.begin}','${dtos.end}','${dtos.day}','${date}')"></td>
 				</tr>
 			</c:forEach>
 			</c:if>

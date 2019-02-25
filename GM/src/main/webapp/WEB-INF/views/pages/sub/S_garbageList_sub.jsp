@@ -2,13 +2,33 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script type="text/javascript">
+
+// 체크박스 전체선택
+function allCheck(){
+      if( $("#th_checkAll").is(':checked') ){
+        $("input[name=checkRow]").prop("checked", true);
+      }else{
+        $("input[name=checkRow]").prop("checked", false);
+      }
+}
+
+//삭제할거 정보이전
+function deletegarbage(){
+	var deletePro = confirm("선택하신것을 삭제하시겠습니까?");
+	if(deletePro){
+		document.garbage.action="<c:url value='/pages/S_delGarbagePro'/>"
+		document.garbage.submit();
+	}
+}
+</script>
 <section>
     <article>
         <div class="content_header">
             <h2>쪽지 전송 목록</h2>
         </div>
         <div class="content">
-        	<form action="<c:url value='/admin/D_boardDelPro'/>" method="post" id="boardDel" onsubmit="return delBoard();">
+        	<form method="post" id="garbage" name="garbage">
 	            <input type="hidden" name="pageNum" value="${pageNum}">
 	            <input type="hidden" name="num" value="${num}">
 	            <div class="table_head">
@@ -93,7 +113,7 @@
 				</div>
 	            <div class="btnset fright mt10">
 	            	<ul>
-	            		<li><input type="submit" value="삭제"></li>
+	            		<li><input type="submit" value="삭제" onclick="deletegarbage()"></li>
 	            	</ul>
 	            </div>
 	        </form>

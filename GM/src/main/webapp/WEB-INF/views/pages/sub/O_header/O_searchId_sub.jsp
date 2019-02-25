@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <script type="text/javascript">
-    function back(id,name){
+    function back(id,b_name){
     	opener.document.searchform123.id.value=id;
-    	opener.document.searchform123.name.value=name;
+    	opener.document.searchform123.b_name.value=b_name;
     	self.close();
     }
 </script>

@@ -660,7 +660,7 @@
      <!-- 휴가처리 출근 인서트(전차) -->
     <insert id="managementInsert" parameterType="java.util.Map">
     	INSERT INTO attended(num, id, day, go, off, RESULT ,worktime , overtime , nighttime , perceptiontime ,departuretime )
-		VALUES (seq_attended.nextval,#{id}, to_date(#{start},'yyyy/mm/dd'), 0, 0, 3, 0, 0, 0, 0)
+		VALUES (seq_attended.nextval,#{id}, to_date(#{start},'yyyy/mm/dd'), 0, 0, 3, 0, 0, 0, 0,0)
     </insert>
     <!-- 반차일경우 퇴근시간 업데이트 -->
     <update id="managementUpdate" parameterType="java.util.Map">

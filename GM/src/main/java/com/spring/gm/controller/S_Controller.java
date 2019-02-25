@@ -99,4 +99,20 @@ public class S_Controller {
 		service.garbageList(req, model);
 		return "pages/S_garbageList";
 	}
+	
+	@RequestMapping("/pages/S_delGarbagePro")
+	public String delGarbage(HttpServletRequest req, Model model) {
+		logger.info("URL : S_delGarbage");
+		
+		service.delGarbage(req, model);
+		return "pages/S_delGarbagePro";
+	}
+	
+	@RequestMapping("/pages/S_sendDeletePro")
+	public String sendDeletePro(HttpServletRequest req, Model model) {
+		logger.info("URL : S_sendDeletePro");
+		
+		service.sendDeletePro(req, model);
+		return "pages/S_sendDeletePro";		
+	}
 }

@@ -30,5 +30,13 @@ public interface O_Service {
 	public void createSelfTaskPro(HttpServletRequest req, Model model);
 	//업무관리 내가 한 업무요청
 	public void orderList(HttpServletRequest req, Model model);
+	//업무관리 내가 한 요청업무 상세 조회
+	public void readOrderList(HttpServletRequest req, Model model);
+	//업무관리 업무요청 수정 화면
+	public void updateTaskView(HttpServletRequest req, Model model);
+	//업무관리 업무요청 수정 pro
+	public void updateTaskPro(HttpServletRequest req, Model model);
+	//업무관리 업무요청 삭제 pro
+	public void updateTaskDeletePro(HttpServletRequest req, Model model);
 	/* 업무관리 끝 */
 }
