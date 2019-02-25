@@ -28,8 +28,6 @@
 						</li>
 						<li>
 							<span>${sessionScope.loginInfo.name}</span>
-							<span style="margin:0 10px;color: #c0c0c0;">|</span>
-							<span><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.getReg_date()}" /></span>
 						</li>
 					</ul>
 				</div>
