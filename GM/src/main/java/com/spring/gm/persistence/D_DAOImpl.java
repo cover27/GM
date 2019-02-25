@@ -42,11 +42,19 @@ public class D_DAOImpl implements D_DAO{
 	}
 
 	@Override
-	// 게시글 갯수
+	// 게시글 갯수(모든게시판)
 	public int getBoardArticleCnt(int company) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
 		return dao.getBoardArticleCnt(company);
 	}
+	
+	@Override
+	// 게시글 갯수
+	public int getUserBoardArticleCnt(Map<String, Object> map) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.getUserBoardArticleCnt(map);
+	}
+
 
 	@Override
 	// 게시글 목록
@@ -203,9 +211,9 @@ public class D_DAOImpl implements D_DAO{
 
 	// 댓글 갯수
 	@Override
-	public int getRepleArticleCnt() {
+	public int getRepleArticleCnt(int boardnum) {
 		D_DAO dao = sqlSession.getMapper(D_DAO.class);
-		return dao.getRepleArticleCnt();
+		return dao.getRepleArticleCnt(boardnum);
 	}
 
 	@Override

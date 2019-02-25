@@ -21,12 +21,11 @@
                         </ul>
                     </li>
                     <li>
-                        <span><a href="<c:url value='/pages/S_message_inbox'/>">전체 쪽지</a></span>
+                        <span><a href="a04.jsp">전체 쪽지</a></span>
                         <ul>
-                            <li><a href="">받은 쪽지함<span>2</span></a></li>
-                            <li><a href="a06.jsp">보낸 쪽지함</a></li>
-                            <li><a href="a07.jsp">중요 쪽지함</a></li>
-                            <li><a href="a09.jsp">휴지통</a></li>
+                            <li><a href="<c:url value='/pages/S_receiveMessage'/>">받은 쪽지함<span>2</span></a></li>
+                            <li><a href="<c:url value='/pages/S_sendMessageList'/>">보낸 쪽지함</a></li>
+                            <li><a href="<c:url value='/pages/S_garbageList'/>">휴지통</a></li>
                         </ul>
                     </li> 
                 </ul>

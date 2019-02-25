@@ -66,7 +66,7 @@ public class P_Controller {
 		
 		service.apprDocReq(req, model);
 		
-		return "pages/P_apprDocFormReqPro";
+		return "pages/sub/P_apprDocFormReqPro";
 	}
 	
 	//기안 - 결재 요청함

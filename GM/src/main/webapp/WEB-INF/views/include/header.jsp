@@ -5,23 +5,26 @@
 	<c:if test="${sessionScope.loginInfo != null}">
 		<div class="logo">
             <a href="<c:url value='/main'/>">
-                <img src="https://ezportal.bizmeka.com/images/common/logo_bizmeka_2.png">
+                <!-- <img src="https://ezportal.bizmeka.com/images/common/logo_bizmeka_2.png"> -->
+                <img src="${path}images/logo.png">
             </a>
         </div>
 	</c:if>
 	<c:if test="${sessionScope.loginInfo == null}">
-		<div class="logo" style="position: relative; left: 0; margin: 0 auto;">
+		<div class="logo" style="position: relative; left: -50px; margin: 0 auto;">
 			<a href="<c:url value='/login'/>">
-				<img src="https://ezportal.bizmeka.com/images/common/logo_bizmeka_2.png" style="margin-top: 4px;">
+				<!-- <img src="https://ezportal.bizmeka.com/images/common/logo_bizmeka_2.png" style="margin-top: 4px;"> -->
+				<img src="${path}images/logo.png" style="margin-top: 4px;">
 			</a>
         </div>
 	</c:if>
        <c:if test="${sessionScope.loginInfo != null}">
         <ul class="topmenu">
-            <li id="s"><a href="<c:url value='/pages/S_mail_inbox' />">메일</a></li>
-            <li id="p"><a href="<c:url value='/pages/P_listApprTodoView' />">전자결재</a></li>
+            <%-- <li id="s"><a href="<c:url value='/pages/S_mail_inbox' />">메일</a></li> --%>
             <li id="o"><a href="<c:url value='/pages/O_calendar' />">일정</a></li>
+            <li id="p"><a href="<c:url value='/pages/P_listApprTodoView' />">전자결재</a></li>
             <li id="d"><a href="<c:url value='/pages/D_allBoardList' />">게시판</a></li>
+            <li id="s"><a href="<c:url value='/pages/S_message_inbox' />">쪽지</a></li>
             <%-- <li id="j"><a href="<c:url value='/pages/J_D_attendanceRegistration' />">근태관리</a></li> --%>
 			<%
 				if(((MemberVO)request.getSession().getAttribute("loginInfo")).getSys_rank() == 1){

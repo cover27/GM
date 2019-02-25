@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.ui.Model;
+
 import com.spring.gm.vo.AttendedVO;
 import com.spring.gm.vo.BonusCutVO;
 import com.spring.gm.vo.CompaniesVO;
@@ -15,7 +19,7 @@ import com.spring.gm.vo.join_margcVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgsbVO;
 import com.spring.gm.vo.join_mgsbcVO;
-import com.spring.gm.vo.join_mrvdVO;
+import com.spring.gm.vo.join_mrvdgcVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_msVO;
 public interface J_DAO {
@@ -187,6 +191,12 @@ public interface J_DAO {
 	
 	//출근시간 인서트
 	public int goInsert(Map<String, Object> map);
+	//휴가승인 확인후근태 처리
+	public int managementInsert(Map<String, Object> map);
+	//반차일경우 퇴근시간 업데이트
+	public int managementUpdate(Map<String, Object> map);
+	
+	
 	//퇴근시간 업데이트
 	public int offUpdate(Map<String, Object> map); 
 	
@@ -225,15 +235,15 @@ public interface J_DAO {
 	
 	
 	//연차/휴가일수 조회
-	public join_mrvdVO annual(Map<String, Object> map);//연차 사용수 가져오기
-	public join_mrvdVO vacation(Map<String, Object> map);// 휴가 사용수 가져오기
+	public join_mrvdgcVO annual(Map<String, Object> map);//연차 사용수 가져오기
+	public join_mrvdgcVO vacation(Map<String, Object> map);// 휴가 사용수 가져오기
 	
 	//연차
 	public int annualCnt(Map<String, Object> map);
-	public ArrayList<join_mrvdVO> annualList(Map<String, Object> map);
+	public ArrayList<join_mrvdgcVO> annualList(Map<String, Object> map);
 	//휴가
 	public int vacationCnt(Map<String, Object> map);
-	public ArrayList<join_mrvdVO> vacationList(Map<String, Object> map);
+	public ArrayList<join_mrvdgcVO> vacationList(Map<String, Object> map);
 	
 	
 	
@@ -244,13 +254,32 @@ public interface J_DAO {
 	public int memberinfo(Map<String, Object> map);
 	
 	
+	//휴가신청내역 가져오기
+	public int vacationapplicationCnt(Map<String, Object> map);
+	public ArrayList<join_mrvdgcVO> vacationapplicationList(Map<String, Object> map);
+	
+	//휴가 신청하기
+	//전차
+	public int leaveapplicationInsert(Map<String, Object> map);
+	//반차
+	public int leaveapplicationInsert2(Map<String, Object> map);
+	//휴가 신청취소하기
+	public int cancelapplication(Map<String, Object> map);
 	
 	
+	// 아이디 검색 휴가사용 현황
+	public int vacationUHCnt(Map<String, Object> map);
+	public ArrayList<join_mrvdgcVO> vacationUHList(Map<String, Object> map);
+	public ArrayList<join_mrvdgcVO> vacationUHList2(Map<String, Object> map);
+	
+	//휴가승인목록 확인
+	public int vacationCnt2(Map<String, Object> map);
+	public ArrayList<join_mrvdgcVO> vacationList2(Map<String, Object> map);
+	public ArrayList<join_mrvdgcVO> vacationList3(Map<String, Object> map);
 	
 	
-	
-	
-	
+	//출근 num가지고오기
+	public join_maVO getNum(Map<String, Object> map);
 	
 	
 }

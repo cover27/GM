@@ -15,7 +15,7 @@
 	<c:if test="${sendCnt != 0}">
 		<script type="text/javascript">
 			alert("전송되었습니다.");
-			window.location="S_sendMessage_inbox";
+			window.location="S_receiveMessage?pageNum=${pageNum}&num=${num}";
 		</script>
 	</c:if>
 </body>

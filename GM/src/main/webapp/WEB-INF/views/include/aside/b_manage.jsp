@@ -47,7 +47,6 @@
                         <ul>
                             <li><a href="<c:url value='/pages/O_listPureOrderView' />">내가 한 업무 요청</a></li>
                             <li><a href="<c:url value='/pages/O_listTodoView' />">수신 업무 요청</a></li>
-                            <li><a href="<c:url value='/pages/O_listSubTodoView' />">참조 업무 요청</a></li>
                             <li><a href="<c:url value='/pages/O_listTodoReportView' />">업무 완료함</a></li>
                         </ul>
                     </li>

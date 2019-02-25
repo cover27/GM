@@ -17,9 +17,9 @@ public class S_DAOImpl implements S_DAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int getMessageArticleCnt(String strId) {
+	public int getMessageArticleCnt(String receiver) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMessageArticleCnt(strId);
+		return dao.getMessageArticleCnt(receiver);
 	}
 	
 	@Override
@@ -29,15 +29,9 @@ public class S_DAOImpl implements S_DAO {
 	}
 	
 	@Override
-	public int getMessageBoxArticleCnt(String strId) {
+	public int readCnt() {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMessageBoxArticleCnt(strId);
-	}
-
-	@Override
-	public List<MessageBoxVO> getMessageBoxArticleList(Map<String, Object> map) {
-		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMessageBoxArticleList(map);
+		return dao.readCnt();
 	}
 
 	@Override
@@ -45,5 +39,56 @@ public class S_DAOImpl implements S_DAO {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
 		return dao.sendMessage(vo);
 	}
+	
+	@Override
+	public int sendMessageData(MessageVO vo) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.sendMessageData(vo);
+	}
+
+	@Override
+	public int sendMessageArticleCnt(String sendId) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.sendMessageArticleCnt(sendId);
+	}
+
+	@Override
+	public List<MessageVO> sendMessageArticleList(Map<String, Object> map) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.sendMessageArticleList(map);
+	}
+
+	@Override
+	public int garbage(Map<String, Integer> map) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.garbage(map);
+	}
+
+	@Override
+	public int getGarbageCnt(String strId) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.getGarbageCnt(strId);
+	}
+
+	@Override
+	public List<MessageVO> getGarbageList(Map<String, Object> map) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.getGarbageList(map);
+	}
+
+	@Override
+	public int delgarbage(Map<String, Integer> map) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.delgarbage(map);
+	}
+
+	@Override
+	public int sendDelete(Map<String, Integer> map) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.sendDelete(map);
+	}
+
+
+
 
 }

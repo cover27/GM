@@ -248,6 +248,7 @@ public class O_ServiceImpl implements O_Service{
 			e.printStackTrace();
 		}
 		Timestamp ts2 = new Timestamp(d2.getTime());
+		
 		vo.setEnd(ts2);
 		//date 타입을 timeStamp로 형 변환 끝(begin, end)
 		vo.setGroupId(groupId);
@@ -339,6 +340,7 @@ public class O_ServiceImpl implements O_Service{
 		String state="미완료";
 		int del=0;
 		Timestamp reg_date = new Timestamp(System.currentTimeMillis());
+		Timestamp reg_date2= new Timestamp(System.currentTimeMillis());
 
 		model.addAttribute("id", id);
 		model.addAttribute("todonum", todonum);
@@ -346,6 +348,7 @@ public class O_ServiceImpl implements O_Service{
 		model.addAttribute("state", state);
 		model.addAttribute("del", del);
 		model.addAttribute("reg_date", reg_date);
+		model.addAttribute("reg_date2", reg_date2);
 
 	}
 
@@ -359,7 +362,7 @@ public class O_ServiceImpl implements O_Service{
 		vo.setTodonum(Integer.parseInt(req.getParameter("todonum")));
 		vo.setId(id);
 		vo.setGroupId(Integer.parseInt(req.getParameter("groupId")));
-		vo.setName(req.getParameter("name"));
+		vo.setB_name(req.getParameter("b_name"));
 		vo.setSubject(req.getParameter("subject"));
 		vo.setContent(req.getParameter("content"));
 		vo.setBegin(Date.valueOf(req.getParameter("begin")));
@@ -367,6 +370,7 @@ public class O_ServiceImpl implements O_Service{
 		vo.setState(req.getParameter("state"));
 		vo.setDel(Integer.parseInt(req.getParameter("del")));
 		vo.setReg_date(new Timestamp(System.currentTimeMillis()));
+		vo.setReg_date2(new Timestamp(System.currentTimeMillis()));
 		
 		int insertCnt = dao.insertTodo(vo);
 		
@@ -377,6 +381,8 @@ public class O_ServiceImpl implements O_Service{
 	//업무관리 내가 한 업무요청
 	@Override
 	public void orderList(HttpServletRequest req, Model model) {
+		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
 		//3단계. 화면으로부터 입력받은 값을 받아온다.
 		//페이징 처리
@@ -397,7 +403,7 @@ public class O_ServiceImpl implements O_Service{
 		//4단계. 다형성 적용, 싱글톤 방식으로 DAO 객체 생성
 				
 		//5-1단계. 글 갯수 구하기
-		cnt = dao.getOrderCnt();
+		cnt = dao.getOrderCnt(id);
 
 		System.out.println("cnt : " + cnt); //먼저 테이블에 30건을 insert함
 		
@@ -437,9 +443,10 @@ public class O_ServiceImpl implements O_Service{
 		if(cnt > 0) {
 			//5-2단계. 게시글 목록 조회
 			
-			Map<String, Integer> map = new HashMap<String, Integer>();
+			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
+			map.put("id", id);
 			
 			List<B_ManageVO> dtos = dao.getOrderList(map);
 			
@@ -469,6 +476,76 @@ public class O_ServiceImpl implements O_Service{
 			model.addAttribute("pageCount", pageCount);		//페이지 갯수
 			model.addAttribute("currentPage", currentPage);	//현재 페이지
 		}
+		
+		
+	}
+
+	//업무관리 내가 한 요청업무 상세 조회
+	@Override
+	public void readOrderList(HttpServletRequest req, Model model) {
+		
+		int todonum = Integer.parseInt(req.getParameter("todonum"));
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		List<B_ManageVO> dtos = dao.readOrderList(todonum);
+		
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("todonum", todonum);
+		model.addAttribute("id", id);
+		
+	}
+
+	//업무관리 업무요청 수정 화면
+	@Override
+	public void updateTaskView(HttpServletRequest req, Model model) {
+		
+		int todonum = Integer.parseInt(req.getParameter("todonum"));
+		
+		B_ManageVO vo = dao.udpateTaskView(todonum);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("todonum", todonum);
+		
+		
+	}
+
+	//업무관리 업무요청 수정 pro
+	@Override
+	public void updateTaskPro(HttpServletRequest req, Model model) {
+		
+		int todonum = Integer.parseInt(req.getParameter("todonum"));
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		B_ManageVO vo = new B_ManageVO();
+		vo.setSubject(req.getParameter("subject"));
+		vo.setBegin(Date.valueOf(req.getParameter("begin")));
+		vo.setEnd(Date.valueOf(req.getParameter("end")));
+		vo.setB_name(req.getParameter("b_name"));
+		vo.setContent(req.getParameter("content"));
+		vo.setState(req.getParameter("state"));
+		vo.setReg_date2(new Timestamp(System.currentTimeMillis()));
+		vo.setTodonum(todonum);
+		vo.setId(id);
+		
+		
+		System.out.println("akadskfkk" + vo.toString());
+		
+		int updateCnt = dao.updateTaskPro(vo);
+		
+		model.addAttribute("updateCnt", updateCnt);
+		model.addAttribute("todonum", todonum);
+		
+	}
+
+	//업무관리 업무요청 수정 pro
+	@Override
+	public void updateTaskDeletePro(HttpServletRequest req, Model model) {
+		
+		int todonum = Integer.parseInt(req.getParameter("todonum"));
+		
+		int deleteCnt = dao.deleteTaskPro(todonum);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
 		
 		
 	}

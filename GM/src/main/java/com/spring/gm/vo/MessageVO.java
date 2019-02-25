@@ -11,8 +11,9 @@ public class MessageVO {
 	private String content;			// 내용	
 	private int state;			// 상태
 	private Timestamp sentDate;		// 메일발송일
-	private Timestamp receivedDate;	// 메일 수신일	
+	private Timestamp receiveDate;	// 메일 수신일	
 	private int del;				// 삭제구분	
+	private int readCnt;			// 조회수
 	
 	public int getNum() {
 		return num;
@@ -62,11 +63,11 @@ public class MessageVO {
 	public void setSentDate(Timestamp sentDate) {
 		this.sentDate = sentDate;
 	}
-	public Timestamp getReceivedDate() {
-		return receivedDate;
+	public Timestamp getReceiveDate() {
+		return receiveDate;
 	}
-	public void setReceivedDate(Timestamp receivedDate) {
-		this.receivedDate = receivedDate;
+	public void setReceiveDate(Timestamp receivedDate) {
+		this.receiveDate = receivedDate;
 	}
 	public int getDel() {
 		return del;
@@ -74,6 +75,14 @@ public class MessageVO {
 	public void setDel(int del) {
 		this.del = del;
 	}
+	public int getReadCnt() {
+		return readCnt;
+	}
+	public void setReadCnt(int readCnt) {
+		this.readCnt = readCnt;
+	}
+	
+	
 
 	
 }

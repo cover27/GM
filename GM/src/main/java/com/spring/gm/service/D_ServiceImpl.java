@@ -88,9 +88,13 @@ public class D_ServiceImpl implements D_Service{
 		int endPage = 0;		// 마지막 페이지		
 		
 		int num = Integer.parseInt(req.getParameter("num"));
-		
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
-		cnt = dao.getBoardArticleCnt(company);
+		
+		Map<String, Object> cntMap = new HashMap<String, Object>();
+		cntMap.put("num", num);
+		cntMap.put("company", company);
+		
+		cnt = dao.getUserBoardArticleCnt(cntMap);
 		
 		pageNum = req.getParameter("pageNum");
 		
@@ -408,7 +412,6 @@ public class D_ServiceImpl implements D_Service{
 
 	@Override
 	public void repleList(HttpServletRequest req, Model model) {
-		
 		int pageSize = 18; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
@@ -426,7 +429,7 @@ public class D_ServiceImpl implements D_Service{
 		String boardnum_s = req.getParameter("boardnum");
 		int boardnum = Integer.parseInt(boardnum_s);
 		
-		cnt = dao.getRepleArticleCnt();
+		cnt = dao.getRepleArticleCnt(boardnum);
 		
 		System.out.println("cnt : " + cnt);
 		
@@ -702,6 +705,7 @@ public class D_ServiceImpl implements D_Service{
 					map.put("boardnum", Integer.parseInt(moveArr[i]));
 					map.put("num", Integer.parseInt(nums[i]));
 					updateCnt = dao.boardMove(map);
+
 			}
 		}
 		

@@ -53,22 +53,52 @@
 <!-- 업무 시작 -->
 <!-- 업무 insert-pro -->
 <insert id="insertTodo" parameterType="com.spring.gm.vo.B_ManageVO">
-	insert into b_manage values(seq_b_manage.nextval, #{id}, #{groupId}, #{name}, #{subject}, #{content}, #{begin}, #{end}, #{reg_date}, #{state}, 0)
+	insert into b_manage values(seq_b_manage.nextval, #{id}, #{groupId}, #{b_name}, #{subject}, #{content}, #{begin}, #{end}, #{reg_date}, #{state}, 0 , #{reg_date2})
 </insert>
 
 <!-- 내가 한 업무요청 게시글 갯수 조회  -->
-<select id="getOrderCnt" resultType="int">
-	select count(*) from b_manage
+<select id="getOrderCnt" resultType="int" parameterType="String">
+	select count(*) from b_manage where id=#{id} and del=0
 </select>
 
 <!-- 내가 한 업무요청 게시글 목록 조회  -->
 <select id="getOrderList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
 	<![CDATA[
-		select * from(select name, subject, begin, end, state, rownum rNum from b_manage)
+		select * from
+			(select b.b_name, b.todonum, b.subject, b.begin, b.end, b.state, rownum rNum from
+				(select * from b_manage where id=#{id} and del=0) b, member m
+					where m.id=b.id)		
 		where rNum >= #{start} and rNum <= #{end}
-		order by begin
+		order by rNum desc
 	]]> 
 </select>
+
+<!-- 내가 한 업무요청 상세조회 -->
+<select id="readOrderList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="int">
+	select g.r_name, m.name, b.subject, b.state, b.begin, b.end, b.reg_date, b.reg_date2, b.b_name, b.content 
+	from b_manage b, member m, grade g 
+	where m.id=b.id and m.rank=g.rank and b.todonum=#{todonum} and b.del=0
+</select>
+
+<!-- 업무관리 업무요청 수정 화면 -->
+<select id="udpateTaskView" resultType="com.spring.gm.vo.B_ManageVO" parameterType="int">
+	select subject, begin, end, b_name, content from b_manage where todonum=#{todonum}
+</select>
+
+<!-- 업무관리 업무요청 수정 pro -->
+<update id="updateTaskPro" parameterType="com.spring.gm.vo.B_ManageVO">
+	update b_manage set b_name=#{b_name}, subject=#{subject}, content=#{content}, begin=#{begin}, end=#{end}, reg_date2=#{reg_date2}, state=#{state}, id=#{id} where todonum=#{todonum}
+</update>
+
+<!-- 업무관리 업무요청 삭제 pro -->
+<update id="deleteTaskPro">
+	update b_manage set del=1 where todonum=#{todonum}
+</update>
+
+
+
+
+
 
 <!-- 업무 끝 -->
 

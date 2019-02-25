@@ -104,6 +104,12 @@ public interface J_Service {
 	// 근태 수정 업데이트
 	public void modifyUpdate(HttpServletRequest req, Model model);
 	
+	//휴가승인목록 확인
+	public void vacationList(HttpServletRequest req, Model model);
+	//휴가승인 확인후근태 처리
+	public void managementInsert(HttpServletRequest req, Model model);
+	
+	
 	//월별 근태 정보 가져오기
 	public void monthList(HttpServletRequest req, Model model);
 	public void monthList2(HttpServletRequest req, Model model);
@@ -120,18 +126,18 @@ public interface J_Service {
 	//연차/휴가일수 조회 전체보기
 	public void VacationViews2(HttpServletRequest req, Model model);
 	
+	//휴가신청내역 가져오기
+	public void vacationapplication(HttpServletRequest req, Model model);
 	
+	//휴가 신청하기
+	public void leaveapplication(HttpServletRequest req, Model model);
+	//휴가 신청취소하기
+	public void cancelapplication(HttpServletRequest req, Model model);
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	//아이디 검색 휴가사용 현황
+	public void vacationUH(HttpServletRequest req, Model model);
+	//이버년년도 검색 휴가사용 현황(관리자)
+	public void vacationUH2(HttpServletRequest req, Model model);
 	
 	
 }

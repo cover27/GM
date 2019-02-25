@@ -82,7 +82,7 @@ input[type="text"], input[type="password"] {
     /* box-shadow: 0 3px 3px #f4f4f4 inset; */
 }
 
-input[type="text"]:focus, input[type="password"]:focus, select {
+input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
 	outline: none;
 	background: rgba(254, 255, 196, .8);
 }
@@ -516,11 +516,6 @@ img {
     border-radius: 2px;
     cursor: pointer;
     white-space: nowrap;
-}
-
-/* 텍스트 에디터 글쓰기창 크기 변경 */
-#cke_1_contents {
-	height: 400px !important;
 }
 
 .clear {

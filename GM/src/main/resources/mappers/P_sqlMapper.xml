@@ -64,7 +64,7 @@
 	</insert>
 	
 	<insert id="insertPaymentInfo" parameterType="java.util.Map">
-		INSERT INTO paymentinfo VALUES(seq_paymentinfo.nextval, #{groupid}, #{id},
+		INSERT INTO paymentinfo VALUES(seq_paymentinfo.nextval, #{num}, #{id},
 			#{result}, #{order}, sysdate, null, #{refer}, #{agree})
 	</insert>
 	

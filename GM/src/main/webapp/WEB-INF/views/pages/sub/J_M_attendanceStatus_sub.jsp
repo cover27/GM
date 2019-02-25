@@ -119,6 +119,7 @@
 		<font color="red">■</font>	: 지각
 		<font color="yellow">■</font>	: 조퇴
 		<font color="green">■</font>	: 휴가
+		<font color="blue">■</font>	: 반차
 		</div>
 		<div id="result">
 		<table border="1">
@@ -150,6 +151,7 @@
 						<c:if test="${dtos.departuretimes ne '00:00'}"><font color="yellow">■</font></c:if>
 						<c:if test="${dtos.departuretimes ne '00:00'}"><font color="red">■</font></c:if>
 						<c:if test="${dtos.result eq '3'}"><font color="green">■</font></c:if>
+						<c:if test="${dtos.result eq '4'}"><font color="blue">■</font></c:if>
 						</td>
 						<!-- dtos.departuretimes : 조퇴
 						dtos.perceptiontimes : 지각 -->
@@ -158,7 +160,7 @@
 			</c:if>
 			<c:if test="${cnt == 0}">
 			<tr>
-				<td>데이터 정보가 없습니다</td>
+				<td colspan="9" style="height: 250px;">데이터 정보가 없습니다.</td>
 			</tr>
 			</c:if>
 		</table>

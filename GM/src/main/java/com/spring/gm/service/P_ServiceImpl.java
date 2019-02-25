@@ -178,6 +178,7 @@ public class P_ServiceImpl implements P_Service{
 		insertCnt = dao.insertPayment(map);
 		cnt = (cnt!=0&&insertCnt!=0)?1:0;
 		int paymentNum = dao.getPaymentNum(groupid);
+		map.put("num", paymentNum);
 		for(int i=0; i<ids.length;i++) {
 			map.put("id", ids[i]);
 			map.put("order", Integer.parseInt(orders[i]));
