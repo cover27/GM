@@ -82,7 +82,7 @@ input[type="text"], input[type="password"] {
     /* box-shadow: 0 3px 3px #f4f4f4 inset; */
 }
 
-input[type="text"]:focus, input[type="password"]:focus, select {
+input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
 	outline: none;
 	background: rgba(254, 255, 196, .8);
 }
