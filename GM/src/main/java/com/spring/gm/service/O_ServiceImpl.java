@@ -248,6 +248,7 @@ public class O_ServiceImpl implements O_Service{
 			e.printStackTrace();
 		}
 		Timestamp ts2 = new Timestamp(d2.getTime());
+		
 		vo.setEnd(ts2);
 		//date 타입을 timeStamp로 형 변환 끝(begin, end)
 		vo.setGroupId(groupId);
@@ -378,6 +379,8 @@ public class O_ServiceImpl implements O_Service{
 	@Override
 	public void orderList(HttpServletRequest req, Model model) {
 		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
 		//3단계. 화면으로부터 입력받은 값을 받아온다.
 		//페이징 처리
 		int pageSize = 10;		//한페이지당 출력할 글 갯수
@@ -397,7 +400,7 @@ public class O_ServiceImpl implements O_Service{
 		//4단계. 다형성 적용, 싱글톤 방식으로 DAO 객체 생성
 				
 		//5-1단계. 글 갯수 구하기
-		cnt = dao.getOrderCnt();
+		cnt = dao.getOrderCnt(id);
 
 		System.out.println("cnt : " + cnt); //먼저 테이블에 30건을 insert함
 		
@@ -437,9 +440,10 @@ public class O_ServiceImpl implements O_Service{
 		if(cnt > 0) {
 			//5-2단계. 게시글 목록 조회
 			
-			Map<String, Integer> map = new HashMap<String, Integer>();
+			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
+			map.put("id", id);
 			
 			List<B_ManageVO> dtos = dao.getOrderList(map);
 			

@@ -17,9 +17,9 @@ public class B_ManageVO {
     private Timestamp reg_date; //등록일
     private String state; //상태
     private int del; //삭제구분
-
+    private String r_name; //직급이름
     
-    public int getTodonum() {
+	public int getTodonum() {
 		return todonum;
 	}
 	public void setTodonum(int todonum) {
@@ -85,13 +85,20 @@ public class B_ManageVO {
 	public void setDel(int del) {
 		this.del = del;
 	}
+	public String getR_name() {
+		return r_name;
+	}
+	public void setR_name(String r_name) {
+		this.r_name = r_name;
+	}
 	
 	@Override
 	public String toString() {
 		return "B_ManageVO [todonum=" + todonum + ", id=" + id + ", groupId=" + groupId + ", name=" + name
 				+ ", subject=" + subject + ", content=" + content + ", begin=" + begin + ", end=" + end + ", reg_date="
-				+ reg_date + ", state=" + state + ", del=" + del + "]";
+				+ reg_date + ", state=" + state + ", del=" + del + ", r_name=" + r_name + "]";
 	}
+
 	
     
     

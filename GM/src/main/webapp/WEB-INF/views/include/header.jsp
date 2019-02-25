@@ -5,14 +5,16 @@
 	<c:if test="${sessionScope.loginInfo != null}">
 		<div class="logo">
             <a href="<c:url value='/main'/>">
-                <img src="https://ezportal.bizmeka.com/images/common/logo_bizmeka_2.png">
+                <!-- <img src="https://ezportal.bizmeka.com/images/common/logo_bizmeka_2.png"> -->
+                <img src="${path}images/logo.png">
             </a>
         </div>
 	</c:if>
 	<c:if test="${sessionScope.loginInfo == null}">
-		<div class="logo" style="position: relative; left: 0; margin: 0 auto;">
+		<div class="logo" style="position: relative; left: -50px; margin: 0 auto;">
 			<a href="<c:url value='/login'/>">
-				<img src="https://ezportal.bizmeka.com/images/common/logo_bizmeka_2.png" style="margin-top: 4px;">
+				<!-- <img src="https://ezportal.bizmeka.com/images/common/logo_bizmeka_2.png" style="margin-top: 4px;"> -->
+				<img src="${path}images/logo.png" style="margin-top: 4px;">
 			</a>
         </div>
 	</c:if>

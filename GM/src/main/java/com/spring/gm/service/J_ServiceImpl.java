@@ -2164,5 +2164,124 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("cnt",dto.size());
 	}
 	
+	//휴가신청내역 가져오기
+	@Override
+	public void vacationapplication(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		model.addAttribute("name",name);
+		model.addAttribute("id",id);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("id", id);
+		
+		int selectCnt = dao.vacationapplicationCnt(map);
+		System.out.println("selectCnt : " + selectCnt);
+		
+		if(selectCnt > 0 ) {
+			List<join_mrvdVO> dtos = dao.vacationapplicationList(map);
+			model.addAttribute("dtos",dtos);
+		}
+		model.addAttribute("cnt",selectCnt);
+		
+	}
+
+	//휴가 신청하기
+	@Override
+	public void leaveapplication(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		System.out.println("company" + company);
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		System.out.println("id" + id);
+		String applicationdate = req.getParameter("applicationdate"); //신청일
+		String[] applicationdates = applicationdate.split("-");
+		applicationdate = applicationdates[0] + applicationdates[1] + applicationdates[2];
+		System.out.println("신청일" + applicationdate);
+		int fullhalfday = Integer.parseInt(req.getParameter("fullhalfday"));	//전일/반일 구분
+		System.out.println("전일/반일 구분" + fullhalfday);
+		String begin = req.getParameter("begin"); //시작일
+		String[] begins = begin.split("-");
+		begin = begins[0] + begins[1] + begins[2];
+		System.out.println("시작일" + begin);
+		String end = "";
+		if(fullhalfday == 2) {
+			end = req.getParameter("end"); //끝나는일
+			String[] ends = end.split("-");
+			end = ends[0] + ends[1] + ends[2];
+			System.out.println("끝나는일" + end);
+		}else if (fullhalfday ==1) {
+			end = req.getParameter("begin"); //시작일
+			String[] ends = end.split("-");
+			end = ends[0] + ends[1] + ends[2];
+			System.out.println("끝나는일" + end);
+		}
+		int types = Integer.parseInt(req.getParameter("types"));	//휴가/연차 구분
+		System.out.println("휴가/연차 구분" + types);
+		String day =req.getParameter("day"); //휴가일수
+		System.out.println("휴가일수" + day);
+		String content = req.getParameter("content"); //휴가사유
+		System.out.println("휴가사유" + content);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("id", id);
+		map.put("applicationdate", applicationdate); //신청일
+		map.put("begin", begin);	//시작일
+		map.put("end", end);	//끝나는일
+		map.put("types", types);	//휴가/연차 구분
+		map.put("fullhalfday", fullhalfday);	//전일/반일 구분
+		map.put("day", day);	//휴가일수
+		map.put("content", content); 	//휴가사유
+		
+		int insertCnt = 0;
+		if(fullhalfday == 2) {
+			insertCnt = dao.leaveapplicationInsert2(map);
+		}else if(fullhalfday == 1) {
+			insertCnt = dao.leaveapplicationInsert(map);
+		}
+		System.out.println("insertCnt : " + insertCnt);
+		if(insertCnt > 0) {
+			int selectCnt = dao.vacationapplicationCnt(map);
+			System.out.println("selectCnt : " + selectCnt);
+			
+			if(selectCnt > 0 ) {
+				List<join_mrvdVO> dtos = dao.vacationapplicationList(map);
+				model.addAttribute("dtos",dtos);
+			}
+			model.addAttribute("cnt",selectCnt);
+		}
+	}
+	
+	
+	//휴가 신청취소하기
+	@Override
+	public void cancelapplication(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		System.out.println("company" + company);
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		System.out.println("id" + id);
+		int num = Integer.parseInt(req.getParameter("num"));
+		System.out.println("num" + num);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("id", id);
+		map.put("num", num); //휴가번호
+		
+		int deleteCnt = dao.cancelapplication(map);
+		if(deleteCnt > 0) {
+				int selectCnt = dao.vacationapplicationCnt(map);
+				System.out.println("selectCnt : " + selectCnt);
+				
+				if(selectCnt > 0 ) {
+					List<join_mrvdVO> dtos = dao.vacationapplicationList(map);
+					model.addAttribute("dtos",dtos);
+				}
+				model.addAttribute("cnt",selectCnt);
+			}
+		}
+	
 
 }

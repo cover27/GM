@@ -2,17 +2,16 @@
     pageEncoding="UTF-8"%>
 
 <script type="text/javascript">
-	function searchId() {
-		var id = $('.searchId').val();
-		var url = "J_searchId_sub?id=" + id;
-		window.open(url, "J_searchId", "menubar=no, width=700, height=560");
+	function searchIdPlease() {
+		var id = $('.searchp').val();
+		var url = "O_searchId_sub?id=" + id;
+		window.open(url, "O_searchId", "menubar=no, width=700, height=560");
 	}
-
-	function back(id, name) {
-		opener.document.searchform.id.value = id;
-		opener.document.searchform.name.value = name;
-		self.close();
-	}
+    function back(id,name){
+    	opener.document.searchform123.id.value=id;
+    	opener.document.searchform123.name.value=name;
+    	self.close();
+    }
 </script>
 
 <style>
@@ -231,7 +230,7 @@ img{
 		
 		<div class="content-wrap">
 		    <div class="content-write">
-		        <form action="<c:url value='/pages/O_createSelfTaskPro'/>" method="post" name="searchform">
+		        <form action="<c:url value='/pages/O_createSelfTaskPro'/>" method="post" name="searchform123">
 		        
 		        <input type="hidden" name="todonum" value="${todonum}">
 		        <input type="hidden" name="groupId" value="${groupId}">
@@ -259,7 +258,7 @@ img{
 											document.getElementById('now_date').valueAsDate = new Date();
 										</script>
 											<span>~</span>
-		                                <input type="date" title="업무기한" name="end" id="now_date2">
+		                                <input type="date" title="업무기한" name="end" id="now_date2" min="begin">
 		                                <script>
 											document.getElementById('now_date2').valueAsDate = new Date();
 										</script>
@@ -274,24 +273,14 @@ img{
 		                            	<div style="position: relative;">
 			                                <div class="input-group organization">
 			                                	<div class="tagsinput">
-			                                		<input type="text" class="searchId" id="name" name="name" title="사용자" style="box-shadow:none; width:90%;" required>
+			                                		<input type="hidden" class="searchp" id="id" name="id" style="box-shadow:none; width:90%;" readonly>
+			                                		<input type="text" class="searchp" id="name" name="name" title="사용자" style="box-shadow:none; width:90%;" required>
 			                                	</div>
-			                                	<button onclick="searchId()" class="btn btn-color7 br">검색</button>
+			                                	<button onclick="searchIdPlease()" class="btn btn-color7 br">검색</button>
 			                                </div>
 		                                </div>
 		                            </td>
 		                        </tr>
-		                        <!-- <tr>
-		                            <th scope="row">참조자</th>
-		                            <td>
-		                                <div class="input-group organization">
-			                                <div class="tagsinput">
-			                                	<input type="text" name="" title="사용자" placeholder="사용자" style="box-shadow:none;  width:90%;">
-			                                </div>
-			                                <button type="button"class="btn btn-color7 br">검색</button>
-		                                </div>
-		                            </td>
-		                        </tr> -->
 		                        <tr>
 		                            <th scope="row"><label for="docId">관련업무</label></th>
 		                            <td>
@@ -309,7 +298,7 @@ img{
 		                        <tr style="height:400px;">
 		                        	<th scope="row">내용</th>
 		                        	<td>
-										<textarea name="content" style="width:100%; height:390px;" required></textarea>
+										<textarea name="content" style="width:100%; height:390px;"></textarea>
 									</td>
 								</tr>
 		                    </tbody>

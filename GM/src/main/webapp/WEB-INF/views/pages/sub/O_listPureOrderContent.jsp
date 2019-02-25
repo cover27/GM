@@ -219,11 +219,11 @@ tbody {
 		                                </td>
 		                                <td class="text-left">
 		                                    <div class="ellipsis">
-		                                        <a href="javascript:void(0);" onclick="goURL('26904787')" title="테스트">${dto.subject }</a> 
+		                                        <a href="<c:url value='/pages/O_readOrderView?todonum=${dto.todonum}'/>" title="테스트">${dto.subject }</a> 
 		                                    </div>
 		                                </td>
 		                                <td>
-		                                    <div class="ellipsis" title="손장훈">${dto.name}</div>
+		                                    <div class="ellipsis" title="">${dto.name}(${dto.r_name})</div>
 		                                </td>
 		                                <td>${dto.begin}</td>
 		                                <td>${dto.end}</td>
@@ -263,8 +263,8 @@ tbody {
 										<script>console.log('${pageBlock}');</script>
 		
 										<c:if test="${startPage > pageBlock}">
-											<a href="O_calendar">[◀◀]</a>
-											<a href="O_calendar?pageNum=${endPage - pageBlock}">[◀]</a>
+											<a href="O_listPureOrderView">[◀◀]</a>
+											<a href="O_listPureOrderView?pageNum=${endPage - pageBlock}">[◀]</a>
 										</c:if>
 		
 										<!-- 중간에 들어갈 페이지 -->
@@ -273,14 +273,14 @@ tbody {
 												<span><b>[${i}]</b></span>
 											</c:if>
 											<c:if test="${i!=currentPage}">
-												<a href="O_calendar?pageNum=${i}">[${i}]</a>
+												<a href="O_listPureOrderView?pageNum=${i}">[${i}]</a>
 											</c:if>
 										</c:forEach>
 		
 										<!-- 다음[▶] / 마지막[▶▶]  -->
 										<c:if test="${pageCount > endPage}">
-											<a href="O_calendar?pageNum=${startPage + pageBlock}">[▶]</a>
-											<a href="O_calendar?pageNum=${pageCount}">[▶▶]</a>
+											<a href="O_listPureOrderView?pageNum=${startPage + pageBlock}">[▶]</a>
+											<a href="O_listPureOrderView?pageNum=${pageCount}">[▶▶]</a>
 										</c:if>
 									</c:if>
 								</th>

@@ -85,6 +85,15 @@ public class O_Controller {
 		return "pages/O_listPureOrderView";
 	}
 	
+	//업무요청 - 내가 한 업무요청 조회 화면
+	@RequestMapping("/pages/O_readOrderView")
+	public String O_readOrderView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_readOrderView");
+		
+		
+		return "pages/O_readOrderView";
+	}
+	
 	//업무 보고 - 내가 한 업무 보고 화면
 	@RequestMapping("/pages/O_listPureOrderReportView")
 	public String O_listPureOrderReportView(HttpServletRequest req, Model model) {
@@ -126,6 +135,24 @@ public class O_Controller {
 		return "admin/O_listAdminDocManagement";
 	}
 	/* 업무 관리 끝 */
+	
+	
+	//검색조회
+	@RequestMapping("/pages/O_searchId_sub")
+	public String searchIdPlease(HttpServletRequest req, Model model) {
+		logger.info("URL : searchId_sub");
+		String id = req.getParameter("id");
+		System.out.println("id = " + id);
+		if(id.length() == 0) {
+			System.out.println("1");
+			jservice.salaryList(req, model);
+		}else {
+			System.out.println("2");
+			jservice.searchId(req, model);
+		}
+		model.addAttribute("id",id);
+		return "pages/sub/O_header/O_searchId_sub";
+	}
 	
 	
 	

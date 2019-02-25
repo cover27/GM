@@ -112,13 +112,13 @@ public class O_DAOImpl implements O_DAO {
 	
 	//내가 한 업무요청 게시글 갯수 조회
 	@Override
-	public int getOrderCnt() {
-		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.getOrderCnt");
+	public int getOrderCnt(String id) {
+		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.getOrderCnt", id);
 	}
 	
 	//내가 한 업무요청 게시글 목록 조회
 	@Override
-	public List<B_ManageVO> getOrderList(Map<String, Integer> map) {
+	public List<B_ManageVO> getOrderList(Map<String, Object> map) {
 		List<B_ManageVO> dtos=null;
 		dao = sqlSession.getMapper(O_DAO.class);
 		dtos= dao.getOrderList(map);
