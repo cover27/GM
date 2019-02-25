@@ -105,7 +105,7 @@
 	
 	<select id="getRepleArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.ReplyListVO">
 		<![CDATA[
-			SELECT * FROM(SELECT replenum, boardnum, content, writer, reref, reref_step, reref_level, reg_date, del, rownum rNum FROM (SELECT * FROM REPLYLIST ORDER BY replenum ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT replenum, boardnum, content, writer, reref, reref_step, reref_level, reg_date, del, rownum rNum FROM (SELECT * FROM REPLYLIST WHERE boardnum = #{boardnum} ORDER BY replenum ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>
 	
