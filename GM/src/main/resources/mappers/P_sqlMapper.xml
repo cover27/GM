@@ -19,7 +19,7 @@
 		and m.id=#{id}
 	</select>
 	<!-- 전자결재 - 기안문 - 결재선 select 조인 -->
-	<select id="selectApprLine" resultType="com.spring.gm.vo.Join_payVO">
+	<select id="selectApprLine" resultType="com.spring.gm.vo.Join_payVO2">
 		select m.name, m.id, g.g_name, c.c_name, r.r_name
 		from member m left join groups g on m.depart = g.groupid
 		join companies c on m.company = c.company
@@ -28,10 +28,45 @@
 		AND m.company=#{company}
 	</select>
 	
+	<select id="getApprline" resultType="com.spring.gm.vo.Join_payVO2">
+		select m.name, m.id, g.g_name, c.c_name, r.r_name
+		from member m left join groups g on m.depart = g.groupid
+		join companies c on m.company = c.company
+		left join grade r on m.rank = r.rank
+		where m.del=0
+		AND m.id=#{id}
+	</select>
+	
 	<!-- 전자결재 - 기안문 - 결재선  회사에 그룹등급이 1인 부서명-->
 	<select id="getGroupName" resultType="String">
 		select g_name from groups where company=#{company} and group_rank=1 and del=0
 	</select>
+	
+	<insert id="insertGroupPayment" parameterType="int">
+		INSERT INTO groups VALUES(seq_groups.nextval, #{company}, null, 2, 0)
+	</insert>
+	
+	<select id="getSeqGroups" resultType="int">
+		SELECT MAX(groupId) FROM groups WHERE group_rank = 2
+	</select>
+	
+	<insert id="insertPayment" parameterType="java.util.Map">
+		INSERT INTO payment VALUES
+			(seq_payment.nextval, #{id}, #{groupid}, #{name}, #{subject}, #{content}, '결재진행중', sysdate, sysdate+15, 0)
+	</insert>
+	
+	<select id="getPaymentNum" resultType="int">
+		SELECT num FROM payment WHERE groupid = #{groupid} AND del = 0
+	</select>
+	
+	<insert id="insertGroupinfoPayment" parameterType="java.util.Map">
+		INSERT INTO groupinfo VALUES(#{groupid}, #{id}, #{order}, 0)
+	</insert>
+	
+	<insert id="insertPaymentInfo" parameterType="java.util.Map">
+		INSERT INTO paymentinfo VALUES(seq_paymentinfo.nextval, #{groupid}, #{id},
+			#{result}, #{order}, sysdate, null, #{refer}, #{agree})
+	</insert>
 	
 	<select id="getPaymentCnt" parameterType="java.util.Map" resultType="int">
 		 SELECT COUNT(*) FROM payment p, paymentinfo o
@@ -371,7 +406,7 @@
 	
 	<select id="getGroupInfo" resultType="com.spring.gm.vo.join_groupnameVO">
 		SELECT g.*, m.name, r.r_name FROM groupinfo g, member m, grade r
-		    WHERE m.id = g.id 
+		    WHERE m.id = g.id
 		    AND m.rank = r.rank
 		    AND g.groupid = #{groupid} 
 		    ORDER BY g.rank_mem ASC

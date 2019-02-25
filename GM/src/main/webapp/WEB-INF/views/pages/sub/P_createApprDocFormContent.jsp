@@ -222,7 +222,7 @@ div{
 
 </style>
 
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <section>
 	<article>
 		<div class="content_header">
@@ -245,49 +245,45 @@ div{
 					
 					<h2>기안용지</h2>
 					
-					<!-- 결재 sign 부분 -->
-					<div class="appline-wrap">
-						<div class="fright" id="apprLine0Tr" style="display: block;">
-							<div class="fleft">	
-								<table class="appline-lst">
-									<tbody>	
-										<tr id="apprLine0TTr">
-											<th rowspan="2">
-												결<br><br class="last">재
-											</th>
-											<th class="apprLine last">기안</th>
-										</tr>
-										<tr id="apprLine0BTr">									
-											<td height="60" class="last"><input name="apprLine0BTr1" value="${vo.getName()}" readonly="readonly"></td>
-										</tr>
-									</tbody>
-								</table>							
-							</div>		
-						</div>
-						
-						
-						<div class="clearfix">
-							<div class="fright" id="apprLine1Tr" style="display: none; width: 0px;">
-								<table class="appline-lst">
-									<caption></caption>
-									<tbody>	
-											<tr id="apprLine1TTr">	
-												<th rowspan="2">					
-													합<br><br class="last">의
-												</th>
-											<th class="apprLine last">-</th>
-										</tr>
-										<tr id="apprLine1BTr">	
-											<td height="60" class="last">합의자</td>								
-										</tr>
-									</tbody>
-								</table>						
-							</div>		
-						</div>
-					</div>
-										
-						
-					
+					<!-- 결재 sign 부분 -->					
+					<table border="1">
+						<tr>
+							<c:forEach var="line" items="${sessionScope.payLine }">
+								<c:if test="${line.order == 1}">
+									<th>기안</th>
+								</c:if>
+								<c:if test="${line.order > 1}">
+									<th>결재</th>
+								</c:if>
+							</c:forEach>
+						</tr>
+						<tr>
+							<c:forEach var="line" items="${sessionScope.payLine }">
+								<c:if test="${line.order != 0}">
+									<th>${line.r_name }<br>${line.name }</th>
+								</c:if>
+							</c:forEach>
+						</tr>
+						<tr>
+							<c:forEach var="line" items="${sessionScope.payLine }">
+								<c:if test="${line.order == 0}">
+									<th>합의</th>
+								</c:if>
+							</c:forEach>
+						</tr>
+						<tr>
+							<c:forEach var="line" items="${sessionScope.payLine }">
+								<c:if test="${line.order == 0}">
+									<th>${line.r_name }<br>${line.name }</th>
+								</c:if>
+								<input type="hidden" name="id" value="${line.id }">
+								<input type="hidden" name="order" value="${line.order }"> 
+							</c:forEach>
+						</tr>
+					</table>
+					<%
+						request.getSession().removeAttribute("payLine");
+					%>
 					<div class="form-block bdr-t">
 	
 						<table class="table separate">
@@ -309,49 +305,27 @@ div{
 									<th>기안자</th>
 									<td><input type="hidden" name="name" value="${vo.getName()}">${vo.getName()} (${vo.getR_name()})</td>
 									<th>기안부서</th>
-									<td>
-										<input type="hidden" name="apprGroupId" value="${vo.getG_name()}">${vo.getG_name()}
-									</td>
-								</tr>
-								<tr>
-									<th>참조자</th>
-									<td>
-										<div id="selectReferenceId" class="input-group organization">
-											<div id="selectReferenceId_div" class="tagsinput">
-												<input type="text" title="사용자" id="selectReferenceId_input" placeholder="사용자" style="box-shadow:none;">
-											</div>
-											<a href="#a" title="사용자" class="btn input-group-addon btn-color5 br">
-												<i class="icon man-plus"></i><span class="none">사용자</span>
-											</a>
-										</div>
-									</td>
-									<th>기결재첨부</th>
-									<td> 
-								        <span id="apprRefInfoUl"></span>
-									</td>
-								</tr>
-								<tr id="apprReceiveLineTr" style="display: none;">
-									<th scope="row">수신처</th>
-									<td colspan="3">
-										<div id="apprReceiveLineInfoDiv">쓰지 않음</div>
-									</td>
+									<c:if test="${vo.getG_name() != null }">
+										<td>
+											<input type="hidden" name="apprGroupId" value="${vo.getG_name()}">${vo.getG_name()}
+										</td>
+									</c:if>
+									<c:if test="${vo.getG_name() == null }">
+										<td>
+											<input type="hidden" name="apprGroupId" value="${vo.getC_name()}">${vo.getC_name()}
+										</td>
+									</c:if>
 								</tr>
 								<tr>
 									<th><span class="text-point-b">*</span>문서제목</th>
 									<td colspan="3">
-						    			<input type="text" title="문서제목" name="subject" value="" class="inputbox w100p" maxlength="100" placeholder="문서제목을 입력하세요." required autofocus>
+						    			<input type="text" name="subject" class="inputbox w100p" maxlength="100" placeholder="문서제목을 입력하세요." required autofocus>
 									</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					
-						
-			        <!--  template의 jsp 호출 시작-->
-					
-						
-					
-					<!--  template의 jsp 호출 끝-->
 					<!-- <div id="formLinkedHtmlDataDiv" style="border: 1px solid #e0e0e0;" class="mt10 padding10 none"></div> -->								
 					<div class="border_t1" style="border-top:none !important;">
 						<div id="editorDiv">
@@ -364,94 +338,6 @@ div{
 							</div>
 						</div>
 					</div>
-					
-					
-					
-				<div id="fileUploadDiv" class="">
-					<div class="fileup">
-						<div class="fileup_t">
-							<h3>파일 업로드</h3>
-							<div class="extendButton">
-								<a href="#a">
-									<img src="/js/plupload-2.1.8/js/jquery.ui.plupload/img/ic_fileup_opened.gif" alt="접기" title="접기" border="0">
-								</a>
-							</div>
-						</div>
-						<div class="fileup_c">
-							<div class="fileAttach mt10"></div>
-							<div class="fileAttach mt10"></div>
-							<div id="o_1d220s3b61uaa9l31l8uqa1tdm1">
-								<div class="plupload_wrapper">
-									<div class="ui-widget-content plupload_container ui-resizable plupload_view_list" id="o_1d220s3b61uaa9l31l8uqa1tdm1_container">
-										<div class="ui-state-default ui-widget-header plupload_header">
-											<div class="plupload_header_content">
-												<div class="plupload_logo"> </div>
-												<div class="plupload_header_title">파일 선택</div>
-												<div class="plupload_header_text">파일을 업로드 큐에 추가한 후 시작 버튼을 클릭하십시오.</div>
-											</div>
-										</div>
-										<table class="plupload_filelist plupload_filelist_header ui-widget-header">
-											<tbody>
-												<tr>
-													<td class="plupload_cell plupload_file_name">파일명</td>
-													<td class="plupload_cell plupload_file_status">상태</td>
-													<td class="plupload_cell plupload_file_size">크기</td>
-													<td class="plupload_cell plupload_file_action">&nbsp;</td>
-												</tr>
-											</tbody>
-										</table>
-										<div class="plupload_content plupload_dropbox" id="o_1d220s3b61uaa9l31l8uqa1tdm1_dropbox">
-										<div class="plupload_droptext">이곳에 파일을 드래그 하세요.</div>
-											<ul class="plupload_filelist_content" id="o_1d220s3b61uaa9l31l8uqa1tdm1_filelist" unselectable="on"> </ul>
-											<div class="plupload_clearer">&nbsp;</div>
-										</div>
-										
-										<table class="plupload_filelist plupload_filelist_footer ui-widget-header">
-											<tbody>
-												<tr>
-													<td class="plupload_cell plupload_file_name">
-														<div class="plupload_buttons" id="o_1d220s3b61uaa9l31l8uqa1tdm1_buttons"><!-- Visible -->
-															<a class="plupload_button plupload_add" id="o_1d220s3b61uaa9l31l8uqa1tdm1_browse" style="position: relative; z-index: 1;">파일 추가</a>&nbsp;
-															<a class="plupload_button plupload_start" id="o_1d220s3b61uaa9l31l8uqa1tdm1_start">업로드 시작</a>&nbsp;
-															<a class="plupload_button plupload_stop plupload_hidden" id="o_1d220s3b61uaa9l31l8uqa1tdm1_stop">업로드 중지</a>&nbsp;
-															<div id="html5_1d220s3bq18olkug12kt1poqm0s4_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 0px; left: 0px; width: 66px; height: 26px; overflow: hidden; z-index: 0;">
-																<input id="html5_1d220s3bq18olkug12kt1poqm0s4" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" multiple="" accept="text/plain,.asc,.txt,.text,.diff,.log,text/html,.xhtml,text/rtf,.rtf,.xml,.vcf,text/csv,.csv,image/bmp,.bmp,image/gif,.gif,image/jpeg,.jpeg,.jpg,image/png,.png,image/tiff,.tiff,.tif,application/zip,.zip,.alz,.rar,.jar,.tar,.bat,application/msword,.doc,.dot,application/pdf,.pdf,application/pgp-signature,.pgp,application/postscript,.ps,.ai,.eps,.rtf,application/vnd.ms-excel,.xls,.xlb,application/vnd.ms-powerpoint,.ppt,.pps,.pot,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx,application/vnd.openxmlformats-officedocument.presentationml.presentation,.pptx,application/vnd.openxmlformats-officedocument.presentationml.slideshow,.ppsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.xlsx,.hwp,.dwg,.dws,.dxf,.dwt,.plt,audio/x-wav,.wav,audio/x-ms-wma,.wma,audio/mpeg,.mpga,.mpega,.mp2,.mp3,audio/x-m4a,.m4a,video/avi,.avi,video/x-matroska,.mkv,video/mpeg,.mpeg,.mpg,.mpe,video/quicktime,.qt,.mov,video/mp4,.mp4,video/x-m4v,.m4v,video/x-flv,.flv,video/vnd.rn-realvideo,.rv,application/x-shockwave-flash,.swf,.swfl,.pages,.keynote,.a01,.a02,.a03,.a04,.a05,.a06,.a07,.a08,.a09,.a10,.a11,.a12,.a13,.a14,.a15,.a16,.a17,.a18,.a19,.a20,.extension,application/vnd.openxmlformats-officedocument.wordprocessingml.template,.dotx,application/vnd.openxmlformats-officedocument.presentationml.template,.potx,.xlt,.xltx,.7z,audio/aac,.aac,audio/aiff,.aiff,audio/flac,.flac,audio/ogg,.ogg,.fla,image/photoshop,.psd,video/3gpp,.3gp,.ts,video/webm,.webm,.gul,.odt,.ods,.odp,.xlsm,.stp,.catpart,.igs,.ap">
-															</div>
-														</div>
-														<div class="plupload_view_switch ui-buttonset" style="display: block; position: static;">
-															<input type="radio" id="o_1d220s3b61uaa9l31l8uqa1tdm1_view_list" name="view_mode_o_1d220s3b61uaa9l31l8uqa1tdm1" checked="checked" value="" class="ui-corner-left" style="display: none;">
-															<label class="plupload_button" for="o_1d220s3b61uaa9l31l8uqa1tdm1_view_list" data-view="list" style="display: none;">목록보기</label>
-															<input type="radio" id="o_1d220s3b61uaa9l31l8uqa1tdm1_view_thumbs" name="view_mode_o_1d220s3b61uaa9l31l8uqa1tdm1" value="" class="ui-corner-right" style="display: none;">
-															<label class="plupload_button" for="o_1d220s3b61uaa9l31l8uqa1tdm1_view_thumbs" data-view="thumbs" style="display: inline-block;">미리보기</label>
-														</div>
-														<div class="plupload_started plupload_hidden"><!-- Hidden -->
-															<div class="plupload_progress plupload_right">
-																<div class="plupload_progress_container ui-progressbar ui-widget ui-widget-content ui-corner-all" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-																	<div class="ui-progressbar-value ui-widget-header ui-corner-left" style="display: none; width: 0%;"></div>
-																</div>
-															</div>
-															<div class="plupload_cell plupload_upload_status"></div>
-															<div class="plupload_clearer">&nbsp;</div>
-														</div>
-													</td>
-													<td class="plupload_file_status">
-														<span class="plupload_total_status">0%</span>
-													</td>
-													<td class="plupload_file_size" style="width: 130px;">
-														<span class="plupload_total_file_size" style="color: rgb(66, 69, 74);">0 B</span> / <span><b>500 MB</b></span>
-													</td>
-													<td class="plupload_file_action"></td>
-												</tr>
-												</tbody>
-											</table>
-											<div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div>
-										</div>
-										<input class="plupload_count" value="0" type="hidden" id="o_1d220s3b61uaa9l31l8uqa1tdm1_count" name="o_1d220s3b61uaa9l31l8uqa1tdm1_count">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 		
 					<div id="formButtonDiv" class="btn-wrap pt10">
 					    <input type="button" name="payLine" value="결재선" onclick="addApprLine();">
@@ -461,9 +347,6 @@ div{
 				</form>
 			</div>
 		</div>
-		
-		
-		
 		
 		
 	</article>
