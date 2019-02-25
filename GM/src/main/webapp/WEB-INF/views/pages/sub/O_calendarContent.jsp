@@ -8,7 +8,7 @@
 <!-- ko.js는 영문을 한글로 바꿔주는 스크립트 -->
 <script type="text/javascript" src="<c:url value='/resources/js/fullcalendar/ko.js' />"></script>
 <!-- gcal.js는 google 캘린더의 데이터를 사용하여 공휴일을 받아오도록 설정하는 스크립트 -->
-<script type="text/javascript" src="<c:url value='/resources/js/fullcalendar/gcal.js' />"></script>
+<%-- <script type="text/javascript" src="<c:url value='/resources/js/fullcalendar/gcal.js' />"></script> --%>
 <script>
 	
   $(document).ready(function() {
@@ -58,7 +58,7 @@
 	  eventClick:function(calEvent, jsEvent, view){
 		  $(this).css('border-color', 'red');
 		  var url='O_calendarDetail?num='+calEvent.num;
-		  window.open(url, 'O_calendarDetail', 'width=600, height=500');
+		  window.open(url, 'O_calendarDetail', 'width=1000, height=810');
 		  return false;
 	  },
 	  
@@ -67,19 +67,13 @@
   });
   
 </script>
-<style>
- #calendar {
-   max-width: 85%;
-   margin: 0 auto;
- }
-</style>
 <section>
 	<article>
 		<div class="content_header">
 			<h2>일정</h2>
 		</div>
 		
-		<div class="content_body" style="margin-top:10px;">
+		<div class="content" style="margin-top:10px;">
 		<!-- id=calendar로 API를 호출 -->
 			<div id="calendar"></div>
 		</div>
