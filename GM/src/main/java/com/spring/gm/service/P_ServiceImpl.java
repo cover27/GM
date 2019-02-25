@@ -104,12 +104,17 @@ public class P_ServiceImpl implements P_Service{
 		
 		String[] ids = req.getParameterValues("id");
 		String[] orders = req.getParameterValues("order");
-		
+		int counts = 1;
 		List<Join_payVO2> payLine = new ArrayList<Join_payVO2>();
 		Join_payVO2 eachPayLine = new Join_payVO2();
 		for(int i=0;i<ids.length;i++) {
 			eachPayLine = dao.getApprline(ids[i]);
-			eachPayLine.setOrder(Integer.parseInt(orders[i]));
+			if(Integer.parseInt(orders[i]) != 0) {
+				eachPayLine.setOrder(counts);
+				counts++;
+			} else {
+				eachPayLine.setOrder(0);
+			}
 			payLine.add(eachPayLine);
 		}
 		
@@ -141,12 +146,18 @@ public class P_ServiceImpl implements P_Service{
 		String[] ids = req.getParameterValues("id");
 		String[] orders = req.getParameterValues("order");
 		String before = req.getParameter("before");
+		int counts = 1;
 		
 		List<Join_payVO2> payLine = new ArrayList<Join_payVO2>();
 		Join_payVO2 eachPayLine = new Join_payVO2();
 		for(int i=0;i<ids.length;i++) {
 			eachPayLine = dao.getApprline(ids[i]);
-			eachPayLine.setOrder(Integer.parseInt(orders[i]));
+			if(Integer.parseInt(orders[i]) != 0) {
+				eachPayLine.setOrder(counts);
+				counts++;
+			} else {
+				eachPayLine.setOrder(0);
+			}
 			payLine.add(eachPayLine);
 		}
 		
