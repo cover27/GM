@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="${path}css/layout.css">
 <link rel="stylesheet" href="${path}css/aside.css">
 <link rel="stylesheet" href="${path}css/content.css">
+<link rel="stylesheet" href="${path}css/O_style.css" />
 
 <aside>
 	<!-- 사용 안하는 사이드바
@@ -14,10 +15,10 @@
             <div class="category">
                 <ul>
                     <li>
-                        <span><a href="<c:url value='/pages/O_calendarCreateView' />">일정 등록</a></span>
+                        <span id="O_calendarCreateView"><a href="<c:url value='/pages/O_calendarCreateView' />">일정 등록</a></span>
                     </li>
                     <li>
-                        <span><a href="<c:url value='/pages/O_calendar' />">일정</a></span>
+                        <span id="O_calendar"><a href="<c:url value='/pages/O_calendar' />">일정</a></span>
                     </li>
                     <!-- <li>
                         <span>관리자 메뉴</span>

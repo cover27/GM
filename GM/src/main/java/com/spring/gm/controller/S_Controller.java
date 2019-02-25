@@ -49,14 +49,6 @@ public class S_Controller {
 	}
 	
 	
-	// 쪽지함 만들기
-	@RequestMapping("/pages/S_createMessageBox")
-	public String createMassageBox(HttpServletRequest req, Model model) {
-		logger.info("URL : S_createMessageBox");
-		
-		return "pages/S_createMessageBox";
-	}
-	
 	// 쪽지
 	@RequestMapping("/pages/S_message")
 	public String mail(HttpServletRequest req, Model model) {
@@ -80,6 +72,47 @@ public class S_Controller {
 		logger.info("URL : S_sendMessagePro");
 		
 		service.sendMessagePro(req, model);
+		service.sendMessageData(req, model);
 		return "pages/S_sendMessagePro";		
+	}
+	
+	@RequestMapping("/pages/S_sendMessageList")
+	public String sendMessageList(HttpServletRequest req, Model model) {
+		logger.info("URL : S_sendMessageList");
+		
+		service.sendList(req, model);
+		return "pages/S_sendMessageList";
+	}
+	
+	@RequestMapping("/pages/S_moveGarbagePro")
+	public String moveGarbage(HttpServletRequest req, Model model) {
+		logger.info("URL : S_moveGarbagePro");
+		
+		service.moveGarbage(req, model);
+		return "pages/S_moveGarbagePro";
+	}
+	
+	@RequestMapping("/pages/S_garbageList")
+	public String garbageList(HttpServletRequest req, Model model) {
+		logger.info("URL : S_garbageList");
+		
+		service.garbageList(req, model);
+		return "pages/S_garbageList";
+	}
+	
+	@RequestMapping("/pages/S_delGarbagePro")
+	public String delGarbage(HttpServletRequest req, Model model) {
+		logger.info("URL : S_delGarbage");
+		
+		service.delGarbage(req, model);
+		return "pages/S_delGarbagePro";
+	}
+	
+	@RequestMapping("/pages/S_sendDeletePro")
+	public String sendDeletePro(HttpServletRequest req, Model model) {
+		logger.info("URL : S_sendDeletePro");
+		
+		service.sendDeletePro(req, model);
+		return "pages/S_sendDeletePro";		
 	}
 }

@@ -86,11 +86,8 @@ section #portlet_main {
 section .main_menu>ul>li {
     position: relative;
     float: left;
-    /* CEO리포트 지우고 변경됨
-    width: 292px;
-    height: 190px;
-     */
-    width: 288px;
+    /* width: 288px; */
+    width: 490px;
     height: 256px;
     margin: 0 8px 8px 0;
     text-align: center;
@@ -100,6 +97,11 @@ section .main_menu>ul>li {
     border-radius: 10px;
 }
 
+section .main_menu>ul>li:hover {
+	cursor: pointer;
+	background: #eee;
+}
+
 section .main_menu>ul>li>a {
     width: 154px;
     padding-top: 54px;
@@ -107,23 +109,23 @@ section .main_menu>ul>li>a {
     text-decoration: none;
 }
 
-section .main_menu>ul>li>a>h2 {
+section .main_menu>ul>li h2 {
     position: absolute;
-    left: 0;
-    top: 50px;
+    left: 50px;
+    top: 92px;
     height: 39px;
     width: 100%;
     padding-top: 28px;
-    font-size: 16px;
+    font-size: 26px;
     font-weight: bold;
     line-height: 16px;
     color: #333;
 }
 
-section .main_menu>ul>li>a>span {
+section .main_menu>ul>li span {
     position: absolute;
-    top: 55%;
-    left: 50%;
+    top: 45%;
+    left: 40%;
     margin: -40px 0 0 -55px;
     width: 110px;
     height: 110px;
@@ -132,87 +134,66 @@ section .main_menu>ul>li>a>span {
 }
 
 /* 메인 아이콘 */
-section .main_menu>ul>li>a>.mail {
+section .main_menu>ul>li .mail {
     background-position: 0 -110px;
 }
 
-section .main_menu>ul>li>a>.approval {
+section .main_menu>ul>li .approval {
     background-position: 0 -330px;
 }
 
-section .main_menu>ul>li>a>.board {
+section .main_menu>ul>li .board {
     background-position: 0 -220px;
 }
 
-section .main_menu>ul>li>a>.planner {
+section .main_menu>ul>li .planner {
     background-position: 0 -440px;
 }
 
-section .main_menu>ul>li>a>.todo {
+section .main_menu>ul>li .todo {
     background-position: -110px -1432px;
 }
 
-section .main_menu>ul>li>a>.message {
+section .main_menu>ul>li .message {
     background-position: -110px -550px;
 }
 
-section .main_menu>ul>li>a>.contact {
+section .main_menu>ul>li .contact {
     background-position: 0 -660px;
 }
 
-section .main_menu>ul>li>a>.organization {
+section .main_menu>ul>li .organization {
     background-position: 0 -550px;
 }
 
-section .main_menu>ul>li>a>.note {
+section .main_menu>ul>li .note {
     background-position: -110px -769px;
 }
 
-section .main_menu>ul>li>a>.poll {
+section .main_menu>ul>li .poll {
     background-position: -110px -440px;
 }
 
-section .main_menu>ul>li>a>.messenger {
+section .main_menu>ul>li .messenger {
     background-position: -110px -992px;
 }
 
-section .main_menu>ul>li>a>.webdisk {
+section .main_menu>ul>li .webdisk {
     background-position: -112px -2309px;
 }
 
-section .main_menu>ul>li>a>.member_management {
+section .main_menu>ul>li .member_management {
     background-position: -4px -660px;
 }
 
-section .main_menu>ul>li>a>.work_management {
+section .main_menu>ul>li .work_management {
     background-position: 0px -880px;
 }
 
-section .main_menu>ul>li>a>.salary_management {
+section .main_menu>ul>li .salary_management {
     background-position: -110px 0;
 }
 
-section .main_menu>ul>li>a>.ceo_report {
+section .main_menu>ul>li .ceo_report {
     background-position: -110px -990px;
 }
-
-/* 우측 사이드바
-section #portlet_right {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    z-index: 1;
-}
-
-section .private {
-    background: #fff;
-    width: 200px;
-    position: absolute;
-    right: 0;
-    top: 0px;
-    z-index: 10;
-    border-left: 1px solid #c5c5c5;
-    min-height: 1021px;
-}
-*/

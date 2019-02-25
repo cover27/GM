@@ -26,6 +26,15 @@
 		var date = $("#date").val();
 		window.location="J_A_management?date=" + date; 
 	};
+	//휴가승인된 목록 보기	
+	function vacationList() {
+		var date = $('#date').val();
+		var url = "vacationList?date=" + date;
+		window.open(url, "vacationList", "menubar=no, width=1000, height=560");
+	}
+	
+	
+
 </script>
 <section>
 	<article>
@@ -43,6 +52,7 @@
 		</c:if>
 		<br>
 		<br>
+		<input type="button" value="휴가승인목록" onclick="vacationList()">
 		<div id="result">
 			<table border="1">
 				<tr>

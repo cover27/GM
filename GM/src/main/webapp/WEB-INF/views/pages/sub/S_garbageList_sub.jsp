@@ -5,7 +5,7 @@
 <script type="text/javascript">
 
 // 체크박스 전체선택
-function allmove(){
+function allCheck(){
       if( $("#th_checkAll").is(':checked') ){
         $("input[name=checkRow]").prop("checked", true);
       }else{
@@ -14,22 +14,23 @@ function allmove(){
 }
 
 //삭제할거 정보이전
-function moveGarbage(){
-	var move = confirm("선택된것을 휴지통으로 보네시겠습니까?");
-	if(move){
-		document.messageMoveGarbage.action="<c:url value='/pages/S_moveGarbagePro'/>"
-		document.messageMoveGarbage.submit();
+function deletegarbage(){
+	var deletePro = confirm("선택하신것을 삭제하시겠습니까?");
+	if(deletePro){
+		document.garbage.action="<c:url value='/pages/S_delGarbagePro'/>"
+		document.garbage.submit();
 	}
 }
 </script>
 <section>
     <article>
         <div class="content_header">
-            <h2>쪽지 목록</h2>
+            <h2>쪽지 전송 목록</h2>
         </div>
         <div class="content">
-        	<form method="post" id="messageMoveGarbage" name="messageMoveGarbage">
+        	<form method="post" id="garbage" name="garbage">
 	            <input type="hidden" name="pageNum" value="${pageNum}">
+	            <input type="hidden" name="num" value="${num}">
 	            <div class="table_head">
 					<table>
 						<colgroup>
@@ -41,8 +42,9 @@ function moveGarbage(){
 						</colgroup>
 						<thead>
 							<tr>
-								<th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allmove()" /></th>
+								<th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allCheck()" /></th>
 								<th>쪽지 제목</th>
+								<th>수신자</th>
 								<th>작성자</th>
 								<th>작성일</th>
 								<th>읽음 안읽음 여부</th>
@@ -61,7 +63,7 @@ function moveGarbage(){
 						</colgroup>
 						<tbody>
 							<c:if test="${cnt > 0}">
-								<c:forEach var="dto" items="${m_dtos}">
+								<c:forEach var="dto" items="${g_dtos}">
 									<c:if test="${dto.del == 0}">
 										<tr>
 											<td><input type="checkbox" name="checkRow" value="${dto.num}" /></td>
@@ -70,8 +72,8 @@ function moveGarbage(){
 													${dto.subject}
 												</a>
 											</td>
-											<td>${dto.sender}</td>
-											<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.sentDate}" /></td>
+											<td>${dto.receiver}</td>
+											<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.receiveDate}" /></td>
 											<td></td><!-- 읽음 안읽음 여부만 -->
 										</tr>
 									</c:if>
@@ -89,8 +91,8 @@ function moveGarbage(){
 		            <div class="paging">
 						<c:if test="${cnt > 0}">
 						    <c:if test="${startPage > pageBlock}">
-						        <a href="<c:url value='/pages/S_receiveMessage'/>">[◀◀]</a>
-						        <a href="<c:url value='/pages/S_receiveMessage?num=${num}&pageNum=${startPage - pageBlock}'/>">[◀]</a>
+						        <a href="<c:url value='/pages/S_sendMessageList'/>">[◀◀]</a>
+						        <a href="<c:url value='/pages/S_sendMessageList?num=${num}&pageNum=${startPage - pageBlock}'/>">[◀]</a>
 						    </c:if>
 						
 						    <c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -98,20 +100,20 @@ function moveGarbage(){
 						            <span class="thisPage"><b>${i}</b></span>
 						        </c:if>
 						        <c:if test="${i != currentPage}">
-						            <a href="<c:url value='/pages/S_receiveMessage?num=${num}&pageNum=${i}'/>">${i}</a>
+						            <a href="<c:url value='/pages/S_sendMessageList?num=${num}&pageNum=${i}'/>">${i}</a>
 						        </c:if>
 						    </c:forEach>
 						
 						    <c:if test="${pageCount > endPage}">
-						        <a href="<c:url value='/pages/S_receiveMessage?num=${num}&pageNum=${startPage + pageBlock}'/>">[▶]</a>
-						        <a href="<c:url value='/pages/S_receiveMessage?num=${num}&pageNum=${pageCount}'/>">[▶▶]</a>
+						        <a href="<c:url value='/pages/S_sendMessageList?num=${num}&pageNum=${startPage + pageBlock}'/>">[▶]</a>
+						        <a href="<c:url value='/pages/S_sendMessageList?num=${num}&pageNum=${pageCount}'/>">[▶▶]</a>
 						    </c:if>
 						</c:if>
 		            </div>	
 				</div>
 	            <div class="btnset fright mt10">
 	            	<ul>
-	            		<li><input type="submit" value="삭제" onclick="moveGarbage()"></li>
+	            		<li><input type="submit" value="삭제" onclick="deletegarbage()"></li>
 	            	</ul>
 	            </div>
 	        </form>
