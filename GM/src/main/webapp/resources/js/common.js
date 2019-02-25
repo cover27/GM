@@ -420,3 +420,54 @@ if(url.indexOf('/')){
 	}
 }
 /* aside 일정 끝 */
+
+/* aside 근태관리 */
+//alert(window.location.href);
+var url = window.location.href.split('gm');
+if(url.indexOf('/')){
+	var url_split = url[1].split('/');
+	if(url_split.length > 2){
+		if(url_split.indexOf('?')){
+			var category = url_split[2].split('?');
+
+			if(category[0] == "J_D_attendanceRegistration"){
+				// alert("됨");
+				$(function(){
+					$("#J_D_attendanceRegistration").children().css("color", "#d3292c");
+					$("#J_D_attendanceRegistration").css("font-weight", "bold");
+				});
+			} else if(category[0] == "J_A_management") {
+				$(function(){
+					$("#J_A_management").children().css("color", "#d3292c");
+					$("#J_A_management").css("font-weight", "bold");
+				});
+			} else if(category[0] == "J_Lookup") {
+				$(function(){
+					$("#J_Lookup").children().css("color", "#d3292c");
+					$("#J_Lookup").css("font-weight", "bold");
+				});
+			} else if(category[0] == "J_M_attendanceStatus") {
+				$(function(){
+					$("#J_M_attendanceStatus").children().css("color", "#d3292c");
+					$("#J_M_attendanceStatus").css("font-weight", "bold");
+				});
+			} else if(category[0] == "J_CalculationHoliday") {
+				$(function(){
+					$("#J_CalculationHoliday").children().css("color", "#d3292c");
+					$("#J_CalculationHoliday").css("font-weight", "bold");
+				});
+			} else if(category[0] == "J_ApplyHoliday") {
+				$(function(){
+					$("#J_ApplyHoliday").children().css("color", "#d3292c");
+					$("#J_ApplyHoliday").css("font-weight", "bold");
+				});
+			} else if(category[0] == "J_UseHoliday") {
+				$(function(){
+					$("#J_UseHoliday").children().css("color", "#d3292c");
+					$("#J_UseHoliday").css("font-weight", "bold");
+				});
+			}
+		}
+	}
+}
+/* aside 근태관리 끝 */
