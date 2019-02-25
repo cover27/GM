@@ -360,7 +360,7 @@ public class O_ServiceImpl implements O_Service{
 		vo.setTodonum(Integer.parseInt(req.getParameter("todonum")));
 		vo.setId(id);
 		vo.setGroupId(Integer.parseInt(req.getParameter("groupId")));
-		vo.setName(req.getParameter("name"));
+		vo.setB_name(req.getParameter("b_name"));
 		vo.setSubject(req.getParameter("subject"));
 		vo.setContent(req.getParameter("content"));
 		vo.setBegin(Date.valueOf(req.getParameter("begin")));
@@ -474,6 +474,63 @@ public class O_ServiceImpl implements O_Service{
 			model.addAttribute("currentPage", currentPage);	//현재 페이지
 		}
 		
+		
+	}
+
+	//업무관리 내가 한 요청업무 상세 조회
+	@Override
+	public void readOrderList(HttpServletRequest req, Model model) {
+		
+		int todonum = Integer.parseInt(req.getParameter("todonum"));
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		List<B_ManageVO> dtos = dao.readOrderList(todonum);
+		
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("todonum", todonum);
+		model.addAttribute("id", id);
+		
+	}
+
+	//업무관리 업무요청 수정 화면
+	@Override
+	public void updateTaskView(HttpServletRequest req, Model model) {
+		
+		int todonum = Integer.parseInt(req.getParameter("todonum"));
+		
+		B_ManageVO vo = dao.udpateTaskView(todonum);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("todonum", todonum);
+		
+		
+	}
+
+	//업무관리 업무요청 수정 pro
+	@Override
+	public void updateTaskPro(HttpServletRequest req, Model model) {
+		
+		int todonum = Integer.parseInt(req.getParameter("todonum"));
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		B_ManageVO vo = new B_ManageVO();
+		vo.setSubject(req.getParameter("subject"));
+		vo.setBegin(Date.valueOf(req.getParameter("begin")));
+		vo.setEnd(Date.valueOf(req.getParameter("end")));
+		vo.setB_name(req.getParameter("b_name"));
+		vo.setContent(req.getParameter("content"));
+		vo.setState(req.getParameter("state"));
+		vo.setReg_date(new Timestamp(System.currentTimeMillis()));
+		vo.setTodonum(todonum);
+		vo.setId(id);
+		
+		
+		System.out.println("akadskfkk" + vo.toString());
+		
+		int updateCnt = dao.updateTaskPro(vo);
+		
+		model.addAttribute("updateCnt", updateCnt);
+		model.addAttribute("todonum", todonum);
 		
 	}
 	

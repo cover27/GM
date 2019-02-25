@@ -39,6 +39,12 @@ public interface O_DAO {
 	//내가 한 업무요청  페이지넘
 	public int getOrderCnt(String id); //게시글 갯수 구하기
 	public List<B_ManageVO> getOrderList(Map<String, Object> map); //게시글 목록 조회
+	//내가 한 업무요청 상세조회
+	public List<B_ManageVO> readOrderList(int todonum);
+	//업무관리 업무요청 수정 화면
+	public B_ManageVO udpateTaskView(int todonum);
+	//업무관리 업무요청 수정 pro
+	public int updateTaskPro(B_ManageVO vo);
 	/* 업무 끝 */
 	
 	

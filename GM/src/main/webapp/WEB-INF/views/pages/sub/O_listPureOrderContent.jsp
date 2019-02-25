@@ -223,7 +223,7 @@ tbody {
 		                                    </div>
 		                                </td>
 		                                <td>
-		                                    <div class="ellipsis" title="">${dto.name}(${dto.r_name})</div>
+		                                    <div class="ellipsis" title="">${dto.b_name}</div>
 		                                </td>
 		                                <td>${dto.begin}</td>
 		                                <td>${dto.end}</td>

@@ -225,18 +225,16 @@ img{
 <section>
 	<article>
 		<div class="content_header">
-			<h2>업무 등록</h2>
+			<h2>업무 요청 수정</h2>
 		</div>
 		
 		<div class="content-wrap">
 		    <div class="content-write">
-		        <form action="<c:url value='/pages/O_createSelfTaskPro'/>" method="post" name="searchform123">
+		        <form action="<c:url value='/pages/O_updateTaskPro'/>" method="post" name="searchform123">
 		        
 		        <input type="hidden" name="todonum" value="${todonum}">
-		        <input type="hidden" name="groupId" value="${groupId}">
-		        <input type="hidden" name="state" value="${state}">
-		        <input type="hidden" name="del" value="${del}">
-		        <input type="hidden" name="reg_date" value="${reg_date}">
+		        <input type="hidden" name="state" value="미완료">
+		        <input type="hidden" name="del" value="0">
 		            
 		            <div class="form-block">
 		                <table class="table">
@@ -246,22 +244,16 @@ img{
 		                            <th scope="row"><span class="text-point-b">*</span>제목</th>
 		                            <td>
 		                                <div>
-		                                	<input type="text" title="제목" name="subject" class="form-control" placeholder="제목을 입력하세요." required>
+		                                	<input type="text" title="제목" name="subject" class="form-control" value="${vo.subject}" required>
 		                                </div>
 		                            </td>
 		                        </tr>
 		                        <tr>
 		                            <th scope="row"><span class="text-point-b">*</span>업무기한</th>
 		                            <td>
-		                                <input type="date" title="업무기한" name="begin" id="now_date">
-		                                <script>
-											document.getElementById('now_date').valueAsDate = new Date();
-										</script>
+		                                <input type="date" title="업무기한" name="begin" id="now_date" value="${vo.begin}">
 											<span>~</span>
-		                                <input type="date" title="업무기한" name="end" id="now_date2" min="begin">
-		                                <script>
-											document.getElementById('now_date2').valueAsDate = new Date();
-										</script>
+		                                <input type="date" title="업무기한" name="end" id="now_date2" min="begin" value="${vo.end}">
 		                            </td>
 		                        </tr>
 		                        <tr>
@@ -274,7 +266,7 @@ img{
 			                                <div class="input-group organization">
 			                                	<div class="tagsinput">
 			                                		<input type="hidden" class="searchp" id="id" name="id" style="box-shadow:none; width:90%;" readonly>
-			                                		<input type="text" class="searchp" id="b_name" name="b_name" title="사용자" style="box-shadow:none; width:90%;" required>
+			                                		<input type="text" class="searchp" id="b_name" name="b_name" title="사용자" value="${vo.b_name}" style="box-shadow:none; width:90%;" required>
 			                                	</div>
 			                                	<button onclick="searchIdPlease()" class="btn btn-color7 br">검색</button>
 			                                </div>
@@ -298,7 +290,7 @@ img{
 		                        <tr style="height:400px;">
 		                        	<th scope="row">내용</th>
 		                        	<td>
-										<textarea name="content" style="width:100%; height:390px;"></textarea>
+										<textarea name="content" style="width:100%; height:390px;">${vo.content}</textarea>
 									</td>
 								</tr>
 		                    </tbody>
