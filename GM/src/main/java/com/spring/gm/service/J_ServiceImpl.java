@@ -3,10 +3,13 @@ package com.spring.gm.service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,7 +30,7 @@ import com.spring.gm.vo.join_margcVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgsbVO;
 import com.spring.gm.vo.join_mgsbcVO;
-import com.spring.gm.vo.join_mrvdVO;
+import com.spring.gm.vo.join_mrvdgcVO;
 import com.spring.gm.vo.join_msVO;
 
 @Service
@@ -119,7 +122,7 @@ public class J_ServiceImpl implements J_Service {
 			endPage = pageCount;
 		System.out.println("endPage : " + endPage);
 		System.out.println("================");
-		
+
 		String companyName = K_dao.getCompanyName(company);
 		model.addAttribute("companyName", companyName);
 		model.addAttribute("cnt", cnt); // 글갯수
@@ -1756,6 +1759,113 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("cnt", selectCnt);
 	}
 
+	
+	//휴가승인목록 확인
+	@Override
+	public void vacationList(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String date = req.getParameter("date");
+		model.addAttribute("date", date);
+		System.out.println("date : " + date);
+		String[] dates = date.split("-");
+		date = dates[0] + dates[1] + dates[2];
+		System.out.println("date: " + date);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("date", date);
+		map.put("company", company);
+		
+		int selectCnt = dao.vacationCnt2(map);
+		System.out.println("selectCnt : " + selectCnt);
+		if(selectCnt > 0) {
+			List<join_mrvdgcVO> dtos = new ArrayList<join_mrvdgcVO>();
+			List<join_mrvdgcVO> dtos2 = dao.vacationList2(map);
+			List<join_mrvdgcVO> dtos3 = dao.vacationList3(map);
+			dtos.addAll(dtos2);
+			dtos.addAll(dtos3);
+			model.addAttribute("dtos",dtos);
+		}
+		model.addAttribute("cnt", selectCnt);
+	}
+	
+	//휴가승인 확인후근태 처리
+	@Override
+	public void managementInsert(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = req.getParameter("id");
+		System.out.println("id: " + id);
+		String name = req.getParameter("name");
+		System.out.println("name: " + name);
+		int fullhalfday = Integer.parseInt(req.getParameter("fullhalfday"));
+		System.out.println("fullhalfday: " + fullhalfday);
+		String begin = req.getParameter("begin");
+		System.out.println("begin: " + begin);
+		String end = req.getParameter("end");
+		System.out.println("end: " + end);
+		int day = Integer.parseInt(req.getParameter("day"));
+		System.out.println("day: " + day);
+		
+		/*String[] begins = begin.split("-");
+		begin = begins[0] + begins[1] + begins[2];
+		System.out.println("begin: " + begin);*/
+		
+
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("id", id);
+		
+		int insertCnt = 0;
+		if(fullhalfday == 1) {
+			System.out.println("전차");
+			for(int i =0; i<day; i++) {
+				int start = Integer.parseInt(begin) + i;
+				System.out.println("start : " + start);
+				map.put("start",start);
+				insertCnt = dao.managementInsert(map);
+			}
+			System.out.println("insertCnt : " + insertCnt);
+			if(insertCnt > 0) {
+				int selectCnt = dao.vacationCnt2(map);
+				System.out.println("selectCnt : " + selectCnt);
+				if(selectCnt > 0) {
+					List<join_mrvdgcVO> dtos = new ArrayList<join_mrvdgcVO>();
+					List<join_mrvdgcVO> dtos2 = dao.vacationList2(map);
+					List<join_mrvdgcVO> dtos3 = dao.vacationList3(map);
+					dtos.addAll(dtos2);
+					dtos.addAll(dtos3);
+					model.addAttribute("dtos",dtos);
+				}
+				model.addAttribute("cnt", selectCnt);
+			}
+		}else if(fullhalfday == 2) {	//반차일경우
+			System.out.println("반차");
+			join_maVO num = dao.getNum(map);
+			map.put("num", num);
+			int UpdateCnt = dao.managementUpdate(map);
+			System.out.println("insertCnt : " + insertCnt);
+			if(UpdateCnt > 0) {
+				int selectCnt = dao.vacationCnt2(map);
+				System.out.println("selectCnt : " + selectCnt);
+				if(selectCnt > 0) {
+					List<join_mrvdgcVO> dtos = new ArrayList<join_mrvdgcVO>();
+					List<join_mrvdgcVO> dtos2 = dao.vacationList2(map);
+					List<join_mrvdgcVO> dtos3 = dao.vacationList3(map);
+					dtos.addAll(dtos2);
+					dtos.addAll(dtos3);
+					model.addAttribute("dtos",dtos);
+				}
+				model.addAttribute("cnt", selectCnt);
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
 	// 월별 근태 정보 가져오기
 	@Override
 	public void monthList(HttpServletRequest req, Model model) {
@@ -1815,6 +1925,7 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("cnt", selectCnt);
 		model.addAttribute("id", id);
 	}
+
 	@Override
 	public void monthList2(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
@@ -1831,7 +1942,6 @@ public class J_ServiceImpl implements J_Service {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("month", month);
-
 
 		int selectCnt = dao.monthCnt2(map);
 		System.out.println("selectCnt : " + selectCnt);
@@ -1857,7 +1967,7 @@ public class J_ServiceImpl implements J_Service {
 		}
 		model.addAttribute("cnt", selectCnt);
 	}
-	
+
 	// 휴가 목록 뽑아오기
 	@Override
 	public void holiday(HttpServletRequest req, Model model) {
@@ -2001,8 +2111,7 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("id : " + id);
 		String year = req.getParameter("year");
 		System.out.println("year : " + year);
-		
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("year", year);
@@ -2011,7 +2120,7 @@ public class J_ServiceImpl implements J_Service {
 		int selectCnt = dao.memberinfo(map);
 		System.out.println("cnt : " + selectCnt);
 		model.addAttribute("cnt", selectCnt);
-		
+
 		// 연차 사용수
 		int annualCnt = dao.annualCnt(map);
 		System.out.println("annualCnt : " + annualCnt);
@@ -2019,15 +2128,14 @@ public class J_ServiceImpl implements J_Service {
 		int vacationCnt = dao.vacationCnt(map);
 		System.out.println("vacationCnt : " + vacationCnt);
 
-		
-		join_mrvdVO annual = null;
-		join_mrvdVO vacation = null;
+		join_mrvdgcVO annual = null;
+		join_mrvdgcVO vacation = null;
 		// annual = dao.annual(map); //연차 사용수 가져오기
 		// vacation = dao.vacation(map); // 휴가 사용수 가져오기
 
-		List<join_mrvdVO> dtos = new ArrayList<join_mrvdVO>();
-		List<join_mrvdVO> dtos2 = null;
-		List<join_mrvdVO> dtos3 = null;
+		List<join_mrvdgcVO> dtos = new ArrayList<join_mrvdgcVO>();
+		List<join_mrvdgcVO> dtos2 = null;
+		List<join_mrvdgcVO> dtos3 = null;
 
 		// 연차 사용수
 		if (annualCnt > 0) {
@@ -2045,10 +2153,10 @@ public class J_ServiceImpl implements J_Service {
 			dtos2.get(0).setU_annual(0);
 			System.out.println("연차 사용한 횟수 : " + dtos2.get(0).getU_annual());
 			dtos2.get(0).setN_annual(dtos2.get(0).getAnnual());
-			System.out.println("잔여 연차 : " +dtos2.get(0).getAnnual());
+			System.out.println("잔여 연차 : " + dtos2.get(0).getAnnual());
 			dtos.addAll(dtos2);
 		}
-		
+
 		// 휴가 사용수
 		if (vacationCnt > 0) {
 			System.out.println("휴가 사용이 있을시");
@@ -2066,196 +2174,190 @@ public class J_ServiceImpl implements J_Service {
 			dtos3.get(0).setU_vacation(0);
 			System.out.println("휴가 사용한 횟수 : " + dtos3.get(0).getU_vacation());
 			dtos3.get(0).setN_vacation(dtos3.get(0).getVacation());
-			System.out.println("잔여 휴가 : " +dtos3.get(0).getVacation());
+			System.out.println("잔여 휴가 : " + dtos3.get(0).getVacation());
 			dtos.get(0).setVacation(dtos3.get(0).getVacation());
 			dtos.get(0).setU_vacation(dtos3.get(0).getU_vacation());
 			dtos.get(0).setN_vacation(dtos3.get(0).getN_vacation());
 		}
-		model.addAttribute("dtos",dtos);
-		model.addAttribute("id",id);
-		model.addAttribute("year",year);
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("id", id);
+		model.addAttribute("year", year);
 	}
-	
-	//사원 전체 휴가/연장 목록 뽑아오기
+
+	// 사원 전체 휴가/연장 목록 뽑아오기
 	@Override
 	public void VacationViews2(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
 		String year = req.getParameter("year");
 		System.out.println("year : " + year);
-		
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("year", year);
-		
-		
-		List<join_mrvdVO> dtos = new ArrayList<join_mrvdVO>();
-		List<MemberVO> dto = dao.memberId( map);
-		for(int j=0; j < dto.size(); j++) {
+
+		List<join_mrvdgcVO> dtos = new ArrayList<join_mrvdgcVO>();
+		List<MemberVO> dto = dao.memberId(map);
+		for (int j = 0; j < dto.size(); j++) {
 			map.remove("id");
 			String id = dto.get(j).getId();
 			System.out.println("id : " + id);
 			map.put("id", id);
-		
-		
-		// 연차 사용수
-		int annualCnt = dao.annualCnt(map);
-		System.out.println("annualCnt2 : " + annualCnt);
-		// 휴가 사용수
-		int vacationCnt = dao.vacationCnt(map);
-		System.out.println("vacationCnt2 : " + vacationCnt);
 
-		
-		join_mrvdVO annual = null;
-		join_mrvdVO vacation = null;
-		// annual = dao.annual(map); //연차 사용수 가져오기
-		// vacation = dao.vacation(map); // 휴가 사용수 가져오기
+			// 연차 사용수
+			int annualCnt = dao.annualCnt(map);
+			System.out.println("annualCnt2 : " + annualCnt);
+			// 휴가 사용수
+			int vacationCnt = dao.vacationCnt(map);
+			System.out.println("vacationCnt2 : " + vacationCnt);
 
+			join_mrvdgcVO annual = null;
+			join_mrvdgcVO vacation = null;
+			// annual = dao.annual(map); //연차 사용수 가져오기
+			// vacation = dao.vacation(map); // 휴가 사용수 가져오기
 
-		// 연차 사용수
-		if (annualCnt > 0) {
-			System.out.println("연차 사용이 있을시");
-			List<join_mrvdVO> dtos2 = dao.annualList(map);
-			annual = dao.annual(map);
-			dtos2.get(0).setU_annual(annual.getU_annual());
-			System.out.println("연차 사용한 횟수 : " + annual.getU_annual());
-			dtos2.get(0).setN_annual(dtos2.get(0).getAnnual() - annual.getU_annual());
-			System.out.println("잔여 연차 : " + (dtos2.get(0).getAnnual() - annual.getU_annual()));
-			dtos.addAll(j, dtos2);
-		} else if (annualCnt == 0) {
-			System.out.println("연차 사용이 없는경우");
-			List<join_mrvdVO> dtos2 = dao.annualList(map);
-			System.out.println("dtos2사이즈 :" + dtos2.size());
-			System.out.println("dtos2 : " + dtos2.toString());
-			dtos2.get(0).setU_annual(0);
-			System.out.println("연차 사용한 횟수 : " + dtos2.get(0).getU_annual());
-			dtos2.get(0).setN_annual(dtos2.get(0).getAnnual());
-			System.out.println("잔여 연차 : " +dtos2.get(0).getAnnual());
-			dtos.addAll(j, dtos2);
+			// 연차 사용수
+			if (annualCnt > 0) {
+				System.out.println("연차 사용이 있을시");
+				List<join_mrvdgcVO> dtos2 = dao.annualList(map);
+				annual = dao.annual(map);
+				dtos2.get(0).setU_annual(annual.getU_annual());
+				System.out.println("연차 사용한 횟수 : " + annual.getU_annual());
+				dtos2.get(0).setN_annual(dtos2.get(0).getAnnual() - annual.getU_annual());
+				System.out.println("잔여 연차 : " + (dtos2.get(0).getAnnual() - annual.getU_annual()));
+				dtos.addAll(j, dtos2);
+			} else if (annualCnt == 0) {
+				System.out.println("연차 사용이 없는경우");
+				List<join_mrvdgcVO> dtos2 = dao.annualList(map);
+				System.out.println("dtos2사이즈 :" + dtos2.size());
+				System.out.println("dtos2 : " + dtos2.toString());
+				dtos2.get(0).setU_annual(0);
+				System.out.println("연차 사용한 횟수 : " + dtos2.get(0).getU_annual());
+				dtos2.get(0).setN_annual(dtos2.get(0).getAnnual());
+				System.out.println("잔여 연차 : " + dtos2.get(0).getAnnual());
+				dtos.addAll(j, dtos2);
+			}
+
+			// 휴가 사용수
+			if (vacationCnt > 0) {
+				System.out.println("휴가 사용이 있을시");
+				List<join_mrvdgcVO> dtos3 = dao.vacationList(map);
+				vacation = dao.vacation(map);
+				dtos3.get(0).setU_vacation(vacation.getU_vacation());
+				System.out.println("휴가 사용한 횟수 : " + vacation.getU_vacation());
+				dtos3.get(0).setN_vacation(dtos3.get(0).getVacation() - vacation.getU_vacation());
+				System.out.println("잔여 휴가 : " + (dtos3.get(0).getVacation() - vacation.getU_vacation()));
+				dtos.get(j).setU_vacation(dtos3.get(0).getU_vacation());
+				dtos.get(j).setN_vacation(dtos3.get(0).getN_vacation());
+			} else if (vacationCnt == 0) {
+				System.out.println("휴가 사용이 없는경우");
+				List<join_mrvdgcVO> dtos3 = dao.vacationList(map);
+				dtos3.get(0).setU_vacation(0);
+				System.out.println("휴가 사용한 횟수 : " + dtos3.get(0).getU_vacation());
+				dtos3.get(0).setN_vacation(dtos3.get(0).getVacation());
+				System.out.println("잔여 휴가 : " + dtos3.get(0).getVacation());
+				dtos.get(j).setVacation(dtos3.get(0).getVacation());
+				dtos.get(j).setU_vacation(dtos3.get(0).getU_vacation());
+				dtos.get(j).setN_vacation(dtos3.get(0).getN_vacation());
+				System.out.println("dtos 갯수 : " + dtos.size());
+			}
 		}
-		
-		// 휴가 사용수
-		if (vacationCnt > 0) {
-			System.out.println("휴가 사용이 있을시");
-			List<join_mrvdVO> dtos3 = dao.vacationList(map);
-			vacation = dao.vacation(map);
-			dtos3.get(0).setU_vacation(vacation.getU_vacation());
-			System.out.println("휴가 사용한 횟수 : " + vacation.getU_vacation());
-			dtos3.get(0).setN_vacation(dtos3.get(0).getVacation() - vacation.getU_vacation());
-			System.out.println("잔여 휴가 : " + (dtos3.get(0).getVacation() - vacation.getU_vacation()));
-			dtos.get(j).setU_vacation(dtos3.get(0).getU_vacation());
-			dtos.get(j).setN_vacation(dtos3.get(0).getN_vacation());
-		} else if (vacationCnt == 0) {
-			System.out.println("휴가 사용이 없는경우");
-			List<join_mrvdVO> dtos3 = dao.vacationList(map);
-			dtos3.get(0).setU_vacation(0);
-			System.out.println("휴가 사용한 횟수 : " + dtos3.get(0).getU_vacation());
-			dtos3.get(0).setN_vacation(dtos3.get(0).getVacation());
-			System.out.println("잔여 휴가 : " +dtos3.get(0).getVacation());
-			dtos.get(j).setVacation(dtos3.get(0).getVacation());
-			dtos.get(j).setU_vacation(dtos3.get(0).getU_vacation());
-			dtos.get(j).setN_vacation(dtos3.get(0).getN_vacation());
-			System.out.println("dtos 갯수 : " + dtos.size());
-		}
-		}
-		model.addAttribute("dtos",dtos);
+		model.addAttribute("dtos", dtos);
 		System.out.println(dtos.toString());
-		model.addAttribute("year",year);
-		model.addAttribute("cnt",dto.size());
+		model.addAttribute("year", year);
+		model.addAttribute("cnt", dto.size());
 	}
-	
-	//휴가신청내역 가져오기
+
+	// 휴가신청내역 가져오기
 	@Override
 	public void vacationapplication(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		String name = ((MemberVO) req.getSession().getAttribute("loginInfo")).getName();
 		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
-		model.addAttribute("name",name);
-		model.addAttribute("id",id);
-		
+		model.addAttribute("name", name);
+		model.addAttribute("id", id);
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("id", id);
-		
+
 		int selectCnt = dao.vacationapplicationCnt(map);
 		System.out.println("selectCnt : " + selectCnt);
-		
-		if(selectCnt > 0 ) {
-			List<join_mrvdVO> dtos = dao.vacationapplicationList(map);
-			model.addAttribute("dtos",dtos);
+
+		if (selectCnt > 0) {
+			List<join_mrvdgcVO> dtos = dao.vacationapplicationList(map);
+			model.addAttribute("dtos", dtos);
 		}
-		model.addAttribute("cnt",selectCnt);
-		
+		model.addAttribute("cnt", selectCnt);
+
 	}
 
-	//휴가 신청하기
+	// 휴가 신청하기
 	@Override
 	public void leaveapplication(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		System.out.println("company" + company);
 		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
 		System.out.println("id" + id);
-		String applicationdate = req.getParameter("applicationdate"); //신청일
+		String applicationdate = req.getParameter("applicationdate"); // 신청일
 		String[] applicationdates = applicationdate.split("-");
 		applicationdate = applicationdates[0] + applicationdates[1] + applicationdates[2];
 		System.out.println("신청일" + applicationdate);
-		int fullhalfday = Integer.parseInt(req.getParameter("fullhalfday"));	//전일/반일 구분
+		int fullhalfday = Integer.parseInt(req.getParameter("fullhalfday")); // 전일/반일 구분
 		System.out.println("전일/반일 구분" + fullhalfday);
-		String begin = req.getParameter("begin"); //시작일
+		String begin = req.getParameter("begin"); // 시작일
 		String[] begins = begin.split("-");
 		begin = begins[0] + begins[1] + begins[2];
 		System.out.println("시작일" + begin);
 		String end = "";
-		if(fullhalfday == 2) {
-			end = req.getParameter("end"); //끝나는일
+		if (fullhalfday == 2) {
+			end = req.getParameter("end"); // 끝나는일
 			String[] ends = end.split("-");
 			end = ends[0] + ends[1] + ends[2];
 			System.out.println("끝나는일" + end);
-		}else if (fullhalfday ==1) {
-			end = req.getParameter("begin"); //시작일
+		} else if (fullhalfday == 1) {
+			end = req.getParameter("begin"); // 시작일
 			String[] ends = end.split("-");
 			end = ends[0] + ends[1] + ends[2];
 			System.out.println("끝나는일" + end);
 		}
-		int types = Integer.parseInt(req.getParameter("types"));	//휴가/연차 구분
+		int types = Integer.parseInt(req.getParameter("types")); // 휴가/연차 구분
 		System.out.println("휴가/연차 구분" + types);
-		String day =req.getParameter("day"); //휴가일수
+		String day = req.getParameter("day"); // 휴가일수
 		System.out.println("휴가일수" + day);
-		String content = req.getParameter("content"); //휴가사유
+		String content = req.getParameter("content"); // 휴가사유
 		System.out.println("휴가사유" + content);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("id", id);
-		map.put("applicationdate", applicationdate); //신청일
-		map.put("begin", begin);	//시작일
-		map.put("end", end);	//끝나는일
-		map.put("types", types);	//휴가/연차 구분
-		map.put("fullhalfday", fullhalfday);	//전일/반일 구분
-		map.put("day", day);	//휴가일수
-		map.put("content", content); 	//휴가사유
-		
+		map.put("applicationdate", applicationdate); // 신청일
+		map.put("begin", begin); // 시작일
+		map.put("end", end); // 끝나는일
+		map.put("types", types); // 휴가/연차 구분
+		map.put("fullhalfday", fullhalfday); // 전일/반일 구분
+		map.put("day", day); // 휴가일수
+		map.put("content", content); // 휴가사유
+
 		int insertCnt = 0;
-		if(fullhalfday == 2) {
+		if (fullhalfday == 2) {
 			insertCnt = dao.leaveapplicationInsert2(map);
-		}else if(fullhalfday == 1) {
+		} else if (fullhalfday == 1) {
 			insertCnt = dao.leaveapplicationInsert(map);
 		}
 		System.out.println("insertCnt : " + insertCnt);
-		if(insertCnt > 0) {
+		if (insertCnt > 0) {
 			int selectCnt = dao.vacationapplicationCnt(map);
 			System.out.println("selectCnt : " + selectCnt);
-			
-			if(selectCnt > 0 ) {
-				List<join_mrvdVO> dtos = dao.vacationapplicationList(map);
-				model.addAttribute("dtos",dtos);
+
+			if (selectCnt > 0) {
+				List<join_mrvdgcVO> dtos = dao.vacationapplicationList(map);
+				model.addAttribute("dtos", dtos);
 			}
-			model.addAttribute("cnt",selectCnt);
+			model.addAttribute("cnt", selectCnt);
 		}
 	}
-	
-	
-	//휴가 신청취소하기
+
+	// 휴가 신청취소하기
 	@Override
 	public void cancelapplication(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
@@ -2264,24 +2366,68 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("id" + id);
 		int num = Integer.parseInt(req.getParameter("num"));
 		System.out.println("num" + num);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("id", id);
-		map.put("num", num); //휴가번호
-		
+		map.put("num", num); // 휴가번호
+
 		int deleteCnt = dao.cancelapplication(map);
-		if(deleteCnt > 0) {
-				int selectCnt = dao.vacationapplicationCnt(map);
-				System.out.println("selectCnt : " + selectCnt);
-				
-				if(selectCnt > 0 ) {
-					List<join_mrvdVO> dtos = dao.vacationapplicationList(map);
-					model.addAttribute("dtos",dtos);
-				}
-				model.addAttribute("cnt",selectCnt);
+		if (deleteCnt > 0) {
+			int selectCnt = dao.vacationapplicationCnt(map);
+			System.out.println("selectCnt : " + selectCnt);
+
+			if (selectCnt > 0) {
+				List<join_mrvdgcVO> dtos = dao.vacationapplicationList(map);
+				model.addAttribute("dtos", dtos);
 			}
+			model.addAttribute("cnt", selectCnt);
 		}
-	
+	}
+
+	// 아이디 검색 휴가사용 현황
+	@Override
+	public void vacationUH(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = req.getParameter("id");
+		int year = Integer.parseInt(req.getParameter("year"));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("id", id);
+		map.put("year", year);
+		
+		int selectCnt = dao.vacationUHCnt(map);
+		System.out.println("selectCnt : " + selectCnt);
+		if(selectCnt > 0) {
+			List<join_mrvdgcVO> dtos = new ArrayList<join_mrvdgcVO>();
+			List<join_mrvdgcVO> dtos2 = dao.vacationUHList(map);
+			List<join_mrvdgcVO> dtos3 = dao.vacationUHList2(map);
+			dtos.addAll(dtos2);
+			dtos.addAll(dtos3);
+			model.addAttribute("dtos",dtos);
+		}
+		
+		int selectCnt2 = dao.vacationapplicationCnt(map);
+		System.out.println("selectCnt : " + selectCnt);
+
+		if (selectCnt2 > 0) {
+			List<join_mrvdgcVO> dtos2 = dao.vacationapplicationList(map);
+			model.addAttribute("dtos2", dtos2);
+		}
+		model.addAttribute("cnt2",selectCnt2);
+		model.addAttribute("cnt",selectCnt);
+		model.addAttribute("id",id);
+		model.addAttribute("year",year);
+	}
+
+	// 이버년년도 검색 휴가사용 현황(관리자)
+	@Override
+	public void vacationUH2(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		int year = Integer.parseInt(req.getParameter("year"));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("year", year);
+	}
 
 }
