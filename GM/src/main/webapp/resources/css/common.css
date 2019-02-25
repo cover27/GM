@@ -518,11 +518,6 @@ img {
     white-space: nowrap;
 }
 
-/* 텍스트 에디터 글쓰기창 크기 변경 */
-#cke_1_contents {
-	height: 400px !important;
-}
-
 .clear {
 	clear: both;
 }
