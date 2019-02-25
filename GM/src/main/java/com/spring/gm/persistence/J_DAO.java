@@ -244,13 +244,17 @@ public interface J_DAO {
 	public int memberinfo(Map<String, Object> map);
 	
 	
+	//휴가신청내역 가져오기
+	public int vacationapplicationCnt(Map<String, Object> map);
+	public ArrayList<join_mrvdVO> vacationapplicationList(Map<String, Object> map);
 	
-	
-	
-	
-	
-	
-	
+	//휴가 신청하기
+	//전차
+	public int leaveapplicationInsert(Map<String, Object> map);
+	//반차
+	public int leaveapplicationInsert2(Map<String, Object> map);
+	//휴가 신청취소하기
+	public int cancelapplication(Map<String, Object> map);
 	
 	
 }

@@ -30,15 +30,11 @@ table, tr, th, td{
 									<th scope="row"><span>*</span>기간</th>
 									<td>
 										<div>
-											<input type="datetime-local" name="begin" id="now_date" required>
-											<script>
-												document.getElementById('now_date').value = new Date().toISOString().slice(0,  16);
-											</script>
+											<input type="text" name="begin" id="now_date" value="${vo.getBegin()}" required>
+											<%-- <input type="datetime-local" name="begin" id="now_date" value="${vo.getBegin()}" required> --%>
 												<span>~</span>
-											<input type="datetime-local" name="end" id="now_date2" required>
-											<script>
-												document.getElementById('now_date2').value = new Date().toISOString().slice(0,  16);
-											</script>
+											<input type="text" name="end" id="now_date2" value="${vo.getEnd()}" min="${vo.getBegin()}" required>
+											<%-- <input type="datetime-local" name="end" id="now_date2" value="${vo.getEnd()}" min="${vo.getBegin()}" required> --%>
 											<!-- <span>
 												<label><input type="radio" name="radiosel">회사 일정</label>
 												<label><input type="radio" name="radiosel">부서일정</label>

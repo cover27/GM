@@ -6,17 +6,21 @@
     
 <mapper namespace="com.spring.gm.persistence.S_DAO" >
 
-	<!-- <select id="getMailArticleCnt" resultType="int">
-		SELECT COUNT(*) as cnt FROM massagebox WHERE id = #{strId} del = 0
+	<select id="getMessageArticleCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM message WHERE receiver=#{receiver} AND del=0 AND message_num=0
 	</select>
 	
-	<select id="getMailArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MailBoxVO">
+	<select id="getMessageArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MessageVO">
 		<![CDATA[
-			SELECT * FROM(SELECT mail_num, id, name, rank, del, status, rownum rNum FROM (SELECT * FROM massagebox WHERE id = #{strId} AND del = 0; ORDER BY mail_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate, del ,rownum rNum FROM (SELECT * FROM message WHERE receiver = #{receiver} AND del = 0 AND message_num = 0 ORDER BY message_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>	
+	
+<!-- 	<update id="readCnt" parameterType="int">
+		UPDATE Message SET readCnt = readCnt + 1 WHERE num = #{num}
+	</update> -->
 
-	<select id="getMailBoxArticleCnt" resultType="int">
+	<!-- <select id="getMailBoxArticleCnt" resultType="int">
 		SELECT COUNT(*) as cnt FROM massage WHERE id = #{strId} del = 0
 	</select>
 	
@@ -24,7 +28,7 @@
 		<![CDATA[
 			SELECT * FROM(SELECT mail_num, id, name, rank, del, status, rownum rNum FROM (SELECT * FROM massage WHERE id = #{strId} AND del = 0; ORDER BY mail_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
-	</select> -->	
+	</select>--> 
 	
 	<insert id="sendMessage" parameterType="com.spring.gm.vo.MessageVO">
 		INSERT INTO Message (num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate,  del) 
