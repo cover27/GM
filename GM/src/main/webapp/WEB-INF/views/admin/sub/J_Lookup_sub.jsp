@@ -83,6 +83,14 @@
 			<div id="result">
 				<div class="table_top">
 					<table>
+						<colgroup>
+							<col width="198px" />
+							<col width="198px" />
+							<col width="198px" />
+							<col width="197px" />
+							<col width="197px" />
+							<col width="*" />
+						</colgroup>
 						<thead>
 							<tr>
 								<th>등록번호</th>
@@ -97,8 +105,16 @@
 						</thead>
 					</table>
 				</div>
-				<div class="salary_info">
+				<div class="salary_info" style="height:700px;">
 					<table>
+						<colgroup>
+							<col width="198px" />
+							<col width="198px" />
+							<col width="198px" />
+							<col width="197px" />
+							<col width="197px" />
+							<col width="*" />
+						</colgroup>
 						<tbody>
 							<tr>
 								<td colspan="8" style="height: 250px;">정보가 없습니다.</td>

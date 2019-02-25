@@ -4,6 +4,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <div class="table_top">
 	<table>
+		<colgroup>
+			<col width="198px" />
+			<col width="198px" />
+			<col width="198px" />
+			<col width="197px" />
+			<col width="197px" />
+			<col width="*" />
+		</colgroup>
 		<thead>
 			<tr>
 				<th>등록번호</th>
@@ -18,8 +26,16 @@
 		</thead>
 	</table>
 </div>
-<div class="salary_info">
+<div class="salary_info" style="height:700px;">
 	<table>
+		<colgroup>
+			<col width="198px" />
+			<col width="198px" />
+			<col width="198px" />
+			<col width="197px" />
+			<col width="197px" />
+			<col width="*" />
+		</colgroup>
 		<tbody>
 			<c:if test="${cnt == 0}">
 				<tr>
