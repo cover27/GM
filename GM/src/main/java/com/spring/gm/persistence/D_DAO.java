@@ -53,7 +53,7 @@ public interface D_DAO {
 	
 	public List<ReplyListVO> getRepleArticleList(Map<String, Object> map);	// 댓글 목록
 	
-	public int getRepleArticleCnt();	// 댓글 갯수
+	public int getRepleArticleCnt(int boardnum);	// 댓글 갯수
 	
 	public int deleteReple(int replenum);	// 댓글 삭제
 	

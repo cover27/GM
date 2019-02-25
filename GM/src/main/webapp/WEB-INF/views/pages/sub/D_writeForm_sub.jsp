@@ -4,51 +4,46 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ page import="com.spring.gm.vo.MemberVO" %>  
 <%@ page import="com.spring.gm.vo.BoardsVO" %>
+<!-- text-editor를 쓰기 위한 script 파일 설정으로 아래 textarea가 있어야 한다. -->
+<script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
 <section>
 	<article>
 		<div class="content_header">
 			<h2>게시글 작성</h2>
 		</div>
-		<%-- <%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %> --%>
-	<form action="<c:url value='/pages/D_writePro'/>" method="post" name="D_writeForm">
-		<input type="hidden" name="num" value="${num}">
-		<input type="hidden" name="writer" value="${sessionScope.loginInfo.name}">
-		<input type="hidden" name="boardnum" value="${boardnum}">
-		<input type="hidden" name="ref" value="${ref}">
-		<input type="hidden" name="ref_step" value="${ref_step}">
-		<input type="hidden" name="ref_level" value="${ref_level}">
-		<input type="hidden" name="pageNum" value="${pageNum}">
-	<table align="center">
-		<tr>
-			<th> 작성자 </th>
-			<td>
-				<%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %>
-			</td>				
-		</tr>
-			
-		<tr>
-			<th> 제목 </th>
-			<td>
-				<input class="input" type="text" name="subject" maxlength="50" style="width:270px" placeholder="제목을 입력하세요!!" required> 
-			</td>
-		</tr>
-			
-		<tr>
-			<th> 내용 </th>
-			<td>
-				<textarea class="input" rows="10" cols="40" name="content" style="width:270px" placeholder="글내용을 입력하세요!!" word-break:break-all></textarea>
-			</td>
-		</tr>
-			
-		<tr>
-			<th colspan="2">
-				<input class="inputButton" type="submit" value="작성">
-				<input class="inputButton" type="reset" value="취소">
-				<input class="inputButton" type="button" value="목록"
-						onclick="window.location=<c:url value='/pages/D_boardList?pageNum=${pageNum}&num=${num}'/>">
-			</th>
-		</tr>
-	</table>	
-	</form>		
+		<div class="content">
+			<form action="<c:url value='/pages/D_writePro'/>" method="post" name="D_writeForm">
+				<input type="hidden" name="num" value="${num}">
+				<input type="hidden" name="writer" value="${sessionScope.loginInfo.name}">
+				<input type="hidden" name="boardnum" value="${boardnum}">
+				<input type="hidden" name="ref" value="${ref}">
+				<input type="hidden" name="ref_step" value="${ref_step}">
+				<input type="hidden" name="ref_level" value="${ref_level}">
+				<input type="hidden" name="pageNum" value="${pageNum}">
+				
+				<div class="write_head">
+					<ul>
+						<li>
+							<span><b><input type="text" name="subject" maxlength="50" style="width:100%;height: 48px;" placeholder="제목을 입력하세요!!" required autofocus></b></span>
+						</li>
+						<li>
+							<span>${sessionScope.loginInfo.name}</span>
+						</li>
+					</ul>
+				</div>
+				<div class="write_body mt10" style="padding: 0;">
+					<!-- text-editor를 쓰기 위함으로 class name은 ckeditor로 쓰여야 한다. -->
+					<textarea class="ckeditor" id="formEditorData" title="formEditorData" name="content" placeholder="글내용을 입력하세요!!"></textarea>
+					<!-- text-editor를 쓰기 위함으로 위의 textarea의 class name이 아래 쓰인다. -->
+					<script>CKEDITOR.replace('formEditorData')</script>
+					<!-- <input type="text" id="content" name="content"> --> 
+				</div>
+				<div style="margin-bottom:60px;padding-top: 20px;" class="btnset fright">
+					<input type="submit" value="작성">
+					<input type="reset" value="취소">
+					<input type="button" value="목록" onclick="window.location=<c:url value='/pages/D_boardList?pageNum=${pageNum}&num=${num}'/>">
+				</div>
+			</form>	
+		</div>
 	</article>
 </section>

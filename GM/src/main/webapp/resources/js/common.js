@@ -394,3 +394,29 @@ if(url.indexOf('/')){
 	}
 }
 /* aside 전자결재 끝 */
+
+/* aside 일정 */
+//alert(window.location.href);
+var url = window.location.href.split('gm');
+if(url.indexOf('/')){
+	var url_split = url[1].split('/');
+	if(url_split.length > 2){
+		if(url_split.indexOf('?')){
+			var category = url_split[2].split('?');
+
+			if(category[0] == "O_calendar"){
+				// alert("됨");
+				$(function(){
+					$("#O_calendar").children().css("color", "#d3292c");
+					$("#O_calendar").css("font-weight", "bold");
+				});
+			} else if(category[0] == "O_calendarCreateView") {
+				$(function(){
+					$("#O_calendarCreateView").children().css("color", "#d3292c");
+					$("#O_calendarCreateView").css("font-weight", "bold");
+				});
+			}
+		}
+	}
+}
+/* aside 일정 끝 */
