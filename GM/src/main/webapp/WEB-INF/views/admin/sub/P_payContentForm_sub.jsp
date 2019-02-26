@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+<script type="text/javascript">
+	function download(num){
+		window.location="<c:url value='/pages/downloadFile?fileNum='/>"+num;
+	}
+</script>
 <section>
 	<article>
 		<div class="content_header">
@@ -91,9 +97,37 @@
 				<td>${eachPayment.deadline }</td>
 			</tr>
 			<tr>
-				<td>${eachPayment.content }</td>
+				<th>첨부파일</th>
+				<c:if test="${attachList == null }">
+					<td colspan="3">첨부파일이 없습니다.</td>
+				</c:if>
+				<c:if test="${attachList != null }">
+					<td colspan="3">
+						<ul>
+							<c:forEach var="dto" items="${attachList }">
+								<li>
+									<input type="hidden" value="${dto.num }" id="fileNum">
+									${dto.title }&nbsp;(${Math.round(dto.filesize/1024) }Byte)
+									<input type="button" value="다운로드" onclick="download('${dto.num}');">
+								</li>
+							</c:forEach>
+						</ul>
+					</td>
+				</c:if>
 			</tr>
 		</table>
+		<br>
+		<div class="border_t1" style="border-top:none !important;">
+			<div id="editorDiv">
+				<div id="content1" style="width:100%; height:550px;">
+					<!-- text-editor를 쓰기 위함으로 class name은 ckeditor로 쓰여야 한다. -->
+					<textarea class="ckeditor" id="formEditorData" title="formEditorData" name="formEditorData">${eachPayment.content }</textarea>
+					<!-- text-editor를 쓰기 위함으로 위의 textarea의 class name이 아래 쓰인다. -->
+					<script>CKEDITOR.replace('formEditorData')</script>
+					<!-- <input type="text" id="content" name="content"> --> 
+				</div>
+			</div>
+		</div>
 		<br>
 		<table>
 			<tr>
