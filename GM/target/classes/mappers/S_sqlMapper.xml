@@ -16,6 +16,10 @@
 		]]>
 	</select>	
 	
+	<select id="content" parameterType="int" resultType="com.spring.gm.vo.MessageVO">
+		SELECT * FROM Message WHERE num = #{num}
+	</select>
+	
 	<insert id="sendMessage" parameterType="com.spring.gm.vo.MessageVO">
 		INSERT INTO Message (num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate,  del) 
 		VALUES(seq_message.nextval, #{message_num}, #{sender}, #{receiver}, #{subject}, #{content}, #{state}, #{sentDate}, #{receiveDate}, #{del}) 
@@ -59,5 +63,15 @@
 			UPDATE message SET del = 1 WHERE num = #{num}
 		]]>
 	</update>
+	
+	<select id="getMessageBoxArticleCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM messagebox WHERE id=#{strId} AND del=0
+	</select>
+	
+	<select id="getMessageboxArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MessageBoxVO">
+		<![CDATA[
+			SELECT * FROM(SELECT message_num, id, name, status, rank, del ,rownum rNum FROM (SELECT * FROM messagebox WHERE id = #{strId} AND del = 0 ORDER BY message_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+		]]>
+	</select>	
 
 </mapper>
