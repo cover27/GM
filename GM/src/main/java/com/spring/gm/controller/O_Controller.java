@@ -29,7 +29,7 @@ public class O_Controller {
 	
 	/* 업무관리 시작 */	
 	//업무 요청 - 업무관리 클릭 화면 및 수신업무 요청 화면
-	@RequestMapping("/pages/O_listTodoView")
+	@RequestMapping("/pages/W_listTodoView")
 	public String O_listTodoView(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		model.addAttribute("sys_rank",sys_rank);
@@ -39,7 +39,7 @@ public class O_Controller {
 	}
 	
 	//업무요청 - 수신 업무 요청 조회 
-	@RequestMapping("/pages/O_readSubTodoView")
+	@RequestMapping("/pages/W_readSubTodoView")
 	public String O_readSubTodoView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_readSubTodoView");
 		
@@ -48,7 +48,7 @@ public class O_Controller {
 	}
 	
 	//TO-DO - 나의 할일 화면
-	@RequestMapping("/pages/O_listMyTodoView")
+	@RequestMapping("/pages/W_listMyTodoView")
 	public String O_listMyTodoView(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		model.addAttribute("sys_rank",sys_rank);
@@ -58,7 +58,7 @@ public class O_Controller {
 	}
 	
 	//업무 등록 화면
-	@RequestMapping("/pages/O_createSelfTaskView")
+	@RequestMapping("/pages/W_createSelfTaskView")
 	public String O_createSelfTaskView(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
@@ -67,13 +67,13 @@ public class O_Controller {
 		logger.info("URL : O_createSelfTaskView");
 		
 		oservice.createSelfTaskWrite(req, model);
-		jservice.companyName(req, model);
+		//jservice.companyName(req, model);
 		
 		return "pages/O_createSelfTaskView";
 	}
 	
 	//업무 등록 insert
-	@RequestMapping("/pages/O_createSelfTaskPro")
+	@RequestMapping("/pages/W_createSelfTaskPro")
 	public String O_createSelfTaskPro(HttpServletRequest req, Model model) {
 		logger.info("URL : O_createSelfTaskPro");
 		
@@ -83,7 +83,7 @@ public class O_Controller {
 	}
 	
 	//업무 요청 - 내가 한 업무요청 화면
-	@RequestMapping("/pages/O_listPureOrderView")
+	@RequestMapping("/pages/W_listPureOrderView")
 	public String O_listPureOrderView(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		model.addAttribute("sys_rank",sys_rank);
@@ -95,7 +95,7 @@ public class O_Controller {
 	}
 	
 	//업무요청 - 내가 한 업무요청 상세 조회 화면
-	@RequestMapping("/pages/O_readOrderView")
+	@RequestMapping("/pages/W_readOrderView")
 	public String O_readOrderView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_readOrderView");
 		
@@ -105,7 +105,7 @@ public class O_Controller {
 	}
 	
 	//업무요청 - 업무요청 수정 화면
-	@RequestMapping("/pages/O_updateTaskView")
+	@RequestMapping("/pages/W_updateTaskView")
 	public String O_updateTaskView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_updateTaskView");
 		
@@ -115,7 +115,7 @@ public class O_Controller {
 	}
 	
 	//업무요청 - 업무요청 수정 Pro
-	@RequestMapping("/pages/O_updateTaskPro")
+	@RequestMapping("/pages/W_updateTaskPro")
 	public String O_updateTaskPro(HttpServletRequest req, Model model) {
 		logger.info("URL : O_updateTaskPro");
 		
@@ -125,7 +125,7 @@ public class O_Controller {
 	}
 	
 	//업무요청 - 업무요청 삭제 Pro
-	@RequestMapping("/pages/O_updateTaskDeletePro")
+	@RequestMapping("/pages/W_updateTaskDeletePro")
 	public String O_updateTaskDeletePro(HttpServletRequest req, Model model) {
 		logger.info("URL : O_updateTaskDeletePro");
 		
@@ -135,7 +135,7 @@ public class O_Controller {
 	}
 	
 	//업무 요청 - 업무완료함
-	@RequestMapping("/pages/O_listTodoReportView")
+	@RequestMapping("/pages/W_listTodoReportView")
 	public String O_listTodoReportView(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		model.addAttribute("sys_rank",sys_rank);
@@ -145,7 +145,7 @@ public class O_Controller {
 	}
 	
 	//관리자 메뉴 - 업무 문서 관리
-	@RequestMapping("/admin/O_listAdminDocManagement")
+	@RequestMapping("/admin/W_listAdminDocManagement")
 	public String O_listAdminDocManagement(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		model.addAttribute("sys_rank",sys_rank);
@@ -157,7 +157,7 @@ public class O_Controller {
 	
 	
 	//검색조회
-	@RequestMapping("/pages/O_searchId_sub")
+	@RequestMapping("/pages/W_searchId_sub")
 	public String searchIdPlease(HttpServletRequest req, Model model) {
 		logger.info("URL : searchId_sub");
 		String id = req.getParameter("id");

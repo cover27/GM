@@ -43,13 +43,13 @@
                         	<span class="planner"></span>
                         </li>
                         <c:if test="${sys_rank == 1 }">
-	                        <li onclick="window.location='<c:url value="/pages/O_listTodoView" />'">
+	                        <li onclick="window.location='<c:url value="/pages/W_listTodoView" />'">
 	                        	<h2>업무관리</h2>
 	                        	<span class="todo"></span>
 	                        </li>
                         </c:if>
                         <c:if test="${sys_rank != 1 }">
-                        	<li onclick="window.location='<c:url value="/pages/O_listTodoView" />'">
+                        	<li onclick="window.location='<c:url value="/pages/W_listTodoView" />'">
                         		<h2>업무관리</h2>
                         		<span class="todo"></span>
                         	</li>

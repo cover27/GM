@@ -15,7 +15,7 @@
 	<c:if test="${updateCnt != 0}">
 		<script type="text/javascript">
 			alert("업무 삭제 완료했습니다.");
-			window.location="O_listPureOrderView";
+			window.location="W_listPureOrderView";
 		</script>
 	</c:if>
 	
