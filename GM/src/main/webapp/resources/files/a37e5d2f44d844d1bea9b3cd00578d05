@@ -1,0 +1,5 @@
+num number
+boardnum number
+original_name varchar2
+stored_name varchar2
+filesize number
