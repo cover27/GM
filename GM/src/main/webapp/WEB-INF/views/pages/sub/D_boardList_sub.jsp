@@ -101,9 +101,26 @@ function page_go(i, num) {
 													<span class="replycnt">${dto.re_num}</span>
 												</c:if>
 											</td>
-											<td>${dto.writer}</td>
-											<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.reg_date}" /></td>
-											<td>${dto.readcnt}</td>
+													<td>
+														<c:forEach var="dtos" items="${b_dtos}">
+															<c:if test="${dto.num == dtos.num}">
+															<c:if test="${dtos.anon == 0}">														
+																${dto.writer}
+															</c:if>
+															</c:if>
+														</c:forEach>
+														
+														<c:forEach var="dtos" items="${b_dtos}">
+															<c:if test="${dto.num == dtos.num}">
+															<c:if test="${dtos.anon != 0}">
+																************
+															</c:if>
+															</c:if>
+														</c:forEach>														
+														
+													</td>
+												<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.reg_date}" /></td>
+												<td>${dto.readcnt}</td>
 										</tr>
 									</c:if>
 								</c:forEach>

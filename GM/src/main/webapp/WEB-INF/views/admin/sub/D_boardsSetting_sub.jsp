@@ -112,7 +112,13 @@ function delete_board(num) {
         							<span>${b_dtos.b_name}</span>
         						</a>
         						 --%>
-        						<a href="#" onclick="modify_board('${b_dtos.num}', '${b_dtos.b_name}', '${b_dtos.anon}')"><span>${b_dtos.b_name}</span></a>
+        						<a href="#" onclick="modify_board('${b_dtos.num}', '${b_dtos.b_name}', '${b_dtos.anon}')">
+        						<span>
+        							${b_dtos.b_name}
+        								<c:if test="${b_dtos.anon == 1}">
+											<span>(익명)</span>
+										</c:if>
+        						</span></a>
         						<span class="hover_view">
         							<button class="modify_btn" onclick="modify_board('${b_dtos.num}', '${b_dtos.b_name}', '${b_dtos.anon}')">수정</button>
         							<button class="delete_btn" onclick="delete_board('${b_dtos.num}')">삭제</button>
