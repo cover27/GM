@@ -38,6 +38,15 @@ public class O_Controller {
 		return "pages/O_listTodoView";
 	}
 	
+	//업무요청 - 수신 업무 요청 조회 
+	@RequestMapping("/pages/O_readSubTodoView")
+	public String O_readSubTodoView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_readSubTodoView");
+		
+		
+		return "pages/O_readSubTodoView";
+	}
+	
 	//TO-DO - 나의 할일 화면
 	@RequestMapping("/pages/O_listMyTodoView")
 	public String O_listMyTodoView(HttpServletRequest req, Model model) {
@@ -85,23 +94,44 @@ public class O_Controller {
 		return "pages/O_listPureOrderView";
 	}
 	
-	//업무요청 - 내가 한 업무요청 조회 화면
+	//업무요청 - 내가 한 업무요청 상세 조회 화면
 	@RequestMapping("/pages/O_readOrderView")
 	public String O_readOrderView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_readOrderView");
 		
+		oservice.readOrderList(req, model);
 		
 		return "pages/O_readOrderView";
 	}
 	
-	//업무 보고 - 내가 한 업무 보고 화면
-	@RequestMapping("/pages/O_listPureOrderReportView")
-	public String O_listPureOrderReportView(HttpServletRequest req, Model model) {
-		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
-		model.addAttribute("sys_rank",sys_rank);
-		logger.info("URL : O_listPureOrderReportView");
+	//업무요청 - 업무요청 수정 화면
+	@RequestMapping("/pages/O_updateTaskView")
+	public String O_updateTaskView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_updateTaskView");
 		
-		return "pages/O_listPureOrderReportView";
+		oservice.updateTaskView(req, model);
+		
+		return "pages/O_updateTaskView";
+	}
+	
+	//업무요청 - 업무요청 수정 Pro
+	@RequestMapping("/pages/O_updateTaskPro")
+	public String O_updateTaskPro(HttpServletRequest req, Model model) {
+		logger.info("URL : O_updateTaskPro");
+		
+		oservice.updateTaskPro(req, model);
+		
+		return "pages/O_updateTaskPro";
+	}
+	
+	//업무요청 - 업무요청 삭제 Pro
+	@RequestMapping("/pages/O_updateTaskDeletePro")
+	public String O_updateTaskDeletePro(HttpServletRequest req, Model model) {
+		logger.info("URL : O_updateTaskDeletePro");
+		
+		oservice.updateTaskDeletePro(req, model);
+		
+		return "pages/O_updateTaskDeletePro";
 	}
 	
 	//업무 요청 - 업무완료함
@@ -113,17 +143,6 @@ public class O_Controller {
 		
 		return "pages/O_listTodoReportView";
 	}
-	
-	//업무 보관함
-	@RequestMapping("/pages/O_listMenuStoredTaskView")
-	public String O_listMenuStoredTaskView(HttpServletRequest req, Model model) {
-		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
-		model.addAttribute("sys_rank",sys_rank);
-		logger.info("URL : O_listMenuStoredTaskView");
-		
-		return "pages/O_listMenuStoredTaskView";
-	}
-	
 	
 	//관리자 메뉴 - 업무 문서 관리
 	@RequestMapping("/admin/O_listAdminDocManagement")

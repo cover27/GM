@@ -192,19 +192,19 @@ tbody {
 			            <tr>
 			                <th scope="col">번호</th>
 			                <th scope="col">
-			                    <a data-sortcolumn="TASKTYPE" href="#">유형<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+			                    <a data-sortcolumn="TASKTYPE" href="#">유형</a>
 			                </th>
 			                <th scope="col">
-			                    <a data-sortcolumn="CATEGORYNAME" href="#">업무 유형<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+			                    <a data-sortcolumn="CATEGORYNAME" href="#">업무 유형</a>
 			                </th>
 			                <th scope="col">
-			                    <a data-sortcolumn="TITLE" href="#">제목<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+			                    <a data-sortcolumn="TITLE" href="#">제목</a>
 			                </th>
 			                <th scope="col">
-			                    <a data-sortcolumn="REGISTER" href="#">등록자<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+			                    <a data-sortcolumn="REGISTER" href="#">등록자</a>
 			                </th>
 			                <th scope="col">
-			                    <a data-sortcolumn="REGISTDATE" href="#">등록일<i class="fa fa-caret-down active"><span class="blind">내림차순</span></i></a>
+			                    <a data-sortcolumn="REGISTDATE" href="#">등록일</a>
 			                </th>
 			                <th scope="col">상태</th>
 			                <th scope="col">확인</th>

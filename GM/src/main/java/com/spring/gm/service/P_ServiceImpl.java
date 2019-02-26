@@ -14,7 +14,7 @@ import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.K_DAO;
 import com.spring.gm.persistence.P_DAO;
-import com.spring.gm.vo.Join_payVO;
+import com.spring.gm.vo.Join_payVO2;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.PaymentInfoVO;
 import com.spring.gm.vo.PaymentVO;
@@ -31,37 +31,21 @@ public class P_ServiceImpl implements P_Service{
 	//전자결재 - 기안문 작성
 	@Override
 	public void createApprDoc(HttpServletRequest req, Model model) {
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		Join_payVO2 eachPayLine = dao.getApprline(id);
 		
 		//아무 것도 작성하지 않고 첫 진입시의 서비스
-		if(req.getParameterValues("memName")==null) {
-			String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-			int depart = ((MemberVO)req.getSession().getAttribute("loginInfo")).getDepart();
+		if(req.getSession().getAttribute("payLine") == null || req.getParameter("before") == null) {
+			req.getSession().removeAttribute("payLine");
+			List<Join_payVO2> payLine = new ArrayList<Join_payVO2>();
+			eachPayLine.setOrder(1);
+			payLine.add(eachPayLine);
+			req.getSession().setAttribute("payLine", payLine);
 			
-			//기안문 클릭 시 select문
-			Join_payVO vo = new Join_payVO();
-			
-			if(depart < 410000000) { // 부서를 가지고 있는 경우
-				vo = dao.createAppDocForm(id);
-			} else { // 부서가 없어서 회사이름이 들어가는 경우
-				vo = dao.createAppDocForm2(id);
-			}
-			model.addAttribute("vo", vo);
-		
 		//결재선 적용 후 진입하는 서비스
-		}else {
-			//결재선 정보의 checkbox 다중 선택
-			String[] checkBoxSel = req.getParameterValues("id2");
-			List<String> list = new ArrayList<String>();
-			
-			for(int i=0; i<checkBoxSel.length; i++) {
-				list.add(checkBoxSel[i]); 
-			}
-		  
-			model.addAttribute("list", list);
 		}
 		
-		
-		
+		model.addAttribute("vo", eachPayLine);
 	}
 
 	//전자결재 - 결재선 지정
@@ -71,16 +55,14 @@ public class P_ServiceImpl implements P_Service{
 		int company=((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		//선빈이가 만든 sql에 회사에 대한 정보가 들어 있음
 		String a = dao2.getCompanyName(company);
-
 		
 		//회사명, 부서명, 이름명을 dtos에 담고 dtos의 크기를 비교하여 g_name의 null 값을 확인하여 null값을 회사명(a)으로 나타나도록 한다.
-		List<Join_payVO> dtos = dao.selectApprLine(company);
+		List<Join_payVO2> dtos = dao.selectApprLine(company);
 		for(int i = 0; i<dtos.size(); i++) {
 			if(dtos.get(i).getG_name()==null) {
 				dtos.get(i).setG_name(a);
 			}
 		}
-		System.out.print(dtos);
 		
 		//a에 회사명 정보가 들어가 있음
 		List<String> dname = new ArrayList<String>();
@@ -92,13 +74,145 @@ public class P_ServiceImpl implements P_Service{
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("dname", dname);
 		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		Join_payVO2 eachPayLine = dao.getApprline(id);
+		List<Join_payVO2> payLine = new ArrayList<Join_payVO2>();
+		eachPayLine.setOrder(1);
+		payLine.add(eachPayLine);
+		req.getSession().setAttribute("payLine", payLine);
 		
+	}
+	
+	@Override
+	public void P_payLinePro(HttpServletRequest req, Model model) {
+		int company=((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		String a = dao2.getCompanyName(company);
+		List<Join_payVO2> dtos = dao.selectApprLine(company);
+		for(int i = 0; i<dtos.size(); i++) {
+			if(dtos.get(i).getG_name()==null) {
+				dtos.get(i).setG_name(a);
+			}
+		}
+		List<String> dname = new ArrayList<String>();
+		dname.add(a);
+		//전자결재 - 기안문 - 결재선  회사에 그룹등급이 1인 부서명
+		List<String> dname2 = dao.getGroupName(company);
+		dname.addAll(dname2);
+		
+		model.addAttribute("dtos", dtos);
+		model.addAttribute("dname", dname);
+		
+		String[] ids = req.getParameterValues("id");
+		String[] orders = req.getParameterValues("order");
+		int counts = 1;
+		List<Join_payVO2> payLine = new ArrayList<Join_payVO2>();
+		Join_payVO2 eachPayLine = new Join_payVO2();
+		for(int i=0;i<ids.length;i++) {
+			eachPayLine = dao.getApprline(ids[i]);
+			if(Integer.parseInt(orders[i]) != 0) {
+				eachPayLine.setOrder(counts);
+				counts++;
+			} else {
+				eachPayLine.setOrder(0);
+			}
+			payLine.add(eachPayLine);
+		}
+		
+		String strId = req.getParameter("select");
+		int pay = Integer.parseInt(req.getParameter("pay"));
+		System.out.println("select : "+strId);
+		System.out.println("pay : "+pay);
+		int order = 0;
+		int count = 0;
+		for(int i=0; i<payLine.size(); i++) {
+			if(payLine.get(i).getOrder() != 0) {
+				count += 1;
+			}
+		}
+		if(pay == 2) {
+			order = 0;
+		} else {
+			order = count+1;
+		}
+		
+		eachPayLine = dao.getApprline(strId);
+		eachPayLine.setOrder(order);
+		payLine.add(eachPayLine);
+		req.getSession().setAttribute("payLine", payLine);
+	}
+	
+	@Override
+	public void P_resistPayLine(HttpServletRequest req, Model model) {
+		String[] ids = req.getParameterValues("id");
+		String[] orders = req.getParameterValues("order");
+		String before = req.getParameter("before");
+		int counts = 1;
+		
+		List<Join_payVO2> payLine = new ArrayList<Join_payVO2>();
+		Join_payVO2 eachPayLine = new Join_payVO2();
+		for(int i=0;i<ids.length;i++) {
+			eachPayLine = dao.getApprline(ids[i]);
+			if(Integer.parseInt(orders[i]) != 0) {
+				eachPayLine.setOrder(counts);
+				counts++;
+			} else {
+				eachPayLine.setOrder(0);
+			}
+			payLine.add(eachPayLine);
+		}
+		
+		model.addAttribute("before", before);
+		req.getSession().setAttribute("payLine", payLine);
 	}
 
 	//결재요청
 	@Override
 	public void apprDocReq(HttpServletRequest req, Model model) {
+		int company=((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		String id=((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		String name=((MemberVO)req.getSession().getAttribute("loginInfo")).getName();
+		String subject = req.getParameter("subject");
+		String content = req.getParameter("formEditorData");
+		String[] ids = req.getParameterValues("id");
+		String[] orders = req.getParameterValues("order");
+		int cnt = 1;
 		
+		int insertCnt = dao.insertGroupPayment(company);
+		cnt = (cnt!=0&&insertCnt!=0)?1:0;
+		int groupid = dao.getSeqGroups();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("groupid", groupid);
+		map.put("id", id);
+		map.put("name", name);
+		map.put("subject", subject);
+		map.put("content", content);
+		insertCnt = dao.insertPayment(map);
+		cnt = (cnt!=0&&insertCnt!=0)?1:0;
+		int paymentNum = dao.getPaymentNum(groupid);
+		map.put("num", paymentNum);
+		for(int i=0; i<ids.length;i++) {
+			map.put("id", ids[i]);
+			map.put("order", Integer.parseInt(orders[i]));
+			int insertCnt2 = dao.insertGroupinfoPayment(map);
+			cnt = (cnt!=0&&insertCnt2!=0)?1:0;
+			if(Integer.parseInt(orders[i]) == 0) {
+				map.put("result", "합의대기");
+				map.put("refer", 1);
+				map.put("agree", 0);
+			} else if(Integer.parseInt(orders[i]) == 1) {
+				map.put("result", "요청");
+				map.put("refer", 0);
+				map.put("agree", 1);
+			} else if(Integer.parseInt(orders[i]) > 1) {
+				map.put("result", "결재대기");
+				map.put("refer", 0);
+				map.put("agree", 0);
+			}
+			int insertCnt3 = dao.insertPaymentInfo(map);
+			cnt = (cnt!=0&&insertCnt3!=0)?1:0;
+		}
+		
+		model.addAttribute("cnt", cnt);
 	}
 
 	//결재 대기함

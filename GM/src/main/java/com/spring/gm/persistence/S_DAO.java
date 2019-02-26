@@ -52,5 +52,8 @@ public interface S_DAO {
 	
 	// 나의 쪽지함 리스트
 	public List<MessageVO> getMessageBoxArticleList(Map<String, Object> map);
+	
+	// 조회수 증가
+	public int addReadCnt(int num);
 
 }

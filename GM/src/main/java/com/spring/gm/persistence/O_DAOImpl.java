@@ -124,6 +124,36 @@ public class O_DAOImpl implements O_DAO {
 		dtos= dao.getOrderList(map);
 		return dtos;
 	}
+	
+	//내가 한 업무요청 상세조회
+	@Override
+	public List<B_ManageVO> readOrderList(int todonum) {
+		List<B_ManageVO> dtos=null;
+		dao = sqlSession.getMapper(O_DAO.class);
+		dtos= dao.readOrderList(todonum);
+		return dtos;
+	}
+	
+	//업무관리 업무요청 수정 화면
+	@Override
+	public B_ManageVO udpateTaskView(int todonum) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.udpateTaskView(todonum);
+	}
+	
+	//업무관리 업무요청 수정 pro
+	@Override
+	public int updateTaskPro(B_ManageVO vo) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.updateTaskPro(vo);
+	}
+	
+	//업무관리 업무요청 삭제 pro
+	@Override
+	public int deleteTaskPro(int todonum) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.deleteTaskPro(todonum);
+	}
 
 	
 	

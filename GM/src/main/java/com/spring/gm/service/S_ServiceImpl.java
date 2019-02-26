@@ -117,6 +117,8 @@ public class S_ServiceImpl implements S_Service {
 		int number = Integer.parseInt(req.getParameter("number"));
 		
 		MessageVO vo = dao.content(num);
+		
+		dao.addReadCnt(num);
 
 		model.addAttribute("ct_dto", vo);
 		model.addAttribute("message_num", message_num);
@@ -142,6 +144,7 @@ public class S_ServiceImpl implements S_Service {
 		vo.setDel(0);
 		vo.setSentDate(new Timestamp(System.currentTimeMillis()));
 		vo.setReceiveDate(new Timestamp(System.currentTimeMillis()));
+		vo.setReadCnt(0);
 		
 		int sendCnt = dao.sendMessage(vo);
 		
@@ -165,6 +168,7 @@ public class S_ServiceImpl implements S_Service {
 		vo.setDel(0);
 		vo.setSentDate(new Timestamp(System.currentTimeMillis()));
 		vo.setReceiveDate(new Timestamp(System.currentTimeMillis()));
+		vo.setReadCnt(0);
 		
 		int sendCnt = dao.sendMessage(vo);
 		

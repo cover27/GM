@@ -15,7 +15,8 @@
         // obj.parentNode 를 이용하여 삭제
         // document.getElementById('field').removeChild(obj.parentNode);
     }
-
+	
+    
 </script>
 <section>
 	<article>

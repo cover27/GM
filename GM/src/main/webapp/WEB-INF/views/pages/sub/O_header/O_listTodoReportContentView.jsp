@@ -123,7 +123,7 @@ i.icon{
 	border:1px solid #aaa;
 }
 .btn-color7{
-	background:#fff;
+	/* background:#fff; */
 	color:#111;
 }
 .tbl-inner{
@@ -197,35 +197,9 @@ select{
 			</div>
 			
 			<div class="table-search" style="right:262px;">
-				<div class="input-unread w180">
-                     <div class="ui-step-wrap">
-                         <div class="ui-step-todo">
-                             <div class="step-bar"></div>
-                             <label for="statusNotComplete" style="left: 0%;">
-	                             <input type="checkbox" name="statusCode" title="미확인" id="statusNotComplete" value="0" checked="">
-	                             <span class="box"></span><span class="txt">미확인</span>
-                             </label><!-- 미완료 -->
-                             <label for="statusComplete" style="left: 50%;">
-	                             <input type="checkbox" name="statusCode" title="승인완료" id="statusComplete" value="1" checked="">
-	                             <span class="box"></span><span class="txt">승인완료</span>
-                             </label><!-- 완료 -->
-                             <label for="statusReject" style="left: 100%;">
-	                             <input type="checkbox" name="statusCode" title="반려" id="statusReject" value="20" checked="">
-	                             <span class="box"></span><span class="txt">반려</span>
-                             </label><!-- 반려 -->
-                         </div>
-                    </div>
-                </div>
-				
-				<input id="startDate" type="text" title="날짜시작" name="" class="input-datepicker w100" placeholder="From" value="" readonly="readonly">
-				<button type="button" class="btn btn-color7 br tbl-inner">
-					<i class="icon calendar"></i>
-				</button>
-				<span>~</span>
-				<input id="endDate" type="text" title="날짜끝" name="" class="input-datepicker w100" placeholder="To" value="" readonly="readonly">
-				<button type="button" class="btn btn-color7 br tbl-inner">
-					<i class="icon calendar"></i>
-				</button>
+				<input id="begin" type="date" title="날짜시작" name="begin" class="input-datepicker w100" value="">
+					<span>~</span>
+				<input id="end" type="date" title="날짜끝" name="end" class="input-datepicker w100" value="" >
 			</div>
 			
 			<div class="table-search">

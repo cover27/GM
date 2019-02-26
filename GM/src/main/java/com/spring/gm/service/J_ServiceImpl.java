@@ -1792,6 +1792,7 @@ public class J_ServiceImpl implements J_Service {
 	@Override
 	public void managementInsert(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String date = req.getParameter("date");
 		String id = req.getParameter("id");
 		System.out.println("id: " + id);
 		String name = req.getParameter("name");
@@ -1805,23 +1806,33 @@ public class J_ServiceImpl implements J_Service {
 		int day = Integer.parseInt(req.getParameter("day"));
 		System.out.println("day: " + day);
 		
-		/*String[] begins = begin.split("-");
+		String[] begins = begin.split("-");
 		begin = begins[0] + begins[1] + begins[2];
-		System.out.println("begin: " + begin);*/
+		System.out.println("begin: " + begin);
 		
 
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("id", id);
-		
+		map.put("date", date);
 		int insertCnt = 0;
 		if(fullhalfday == 1) {
 			System.out.println("전차");
 			for(int i =0; i<day; i++) {
 				int start = Integer.parseInt(begin) + i;
-				System.out.println("start : " + start);
-				map.put("start",start);
+				String startday = Integer.toString(start);
+				System.out.println("startday :" + startday);
+				String year = startday.substring(0,4);
+				System.out.println("year :" + year);
+				String month = startday.substring(4,6);
+				System.out.println("month :" + month);
+				String day2 = startday.substring(6,8);
+				System.out.println("day2 :" + day2);
+				String dates = year + "-" + month + "-" + day2;
+				System.out.println("dates :" + dates);
+						
+				map.put("start",dates);
 				insertCnt = dao.managementInsert(map);
 			}
 			System.out.println("insertCnt : " + insertCnt);
@@ -1866,6 +1877,11 @@ public class J_ServiceImpl implements J_Service {
 	
 	
 	
+	private String String(int start) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	// 월별 근태 정보 가져오기
 	@Override
 	public void monthList(HttpServletRequest req, Model model) {
@@ -1993,8 +2009,8 @@ public class J_ServiceImpl implements J_Service {
 		int selectCnt = dao.holidayCnt(map);
 		if (selectCnt > 0) {
 			List<join_margcVO> dtos = new ArrayList<join_margcVO>();
-			List<join_margcVO> dtos2 = dao.monthList(map);
-			List<join_margcVO> dtos3 = dao.monthList2(map);
+			List<join_margcVO> dtos2 = dao.holidayList(map);
+			List<join_margcVO> dtos3 = dao.holidayList2(map);
 			dtos.addAll(dtos2);
 			dtos.addAll(dtos3);
 			System.out.println("여기 탔어요");
