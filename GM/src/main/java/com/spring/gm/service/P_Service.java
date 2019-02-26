@@ -11,6 +11,12 @@ public interface P_Service {
 	//결재선 지정
 	public void addApprLine(HttpServletRequest req, Model model);
 	
+	//결재선 지정 추가
+	public void P_payLinePro(HttpServletRequest req, Model model);
+	
+	//결재선 확정
+	public void P_resistPayLine(HttpServletRequest req, Model model);
+	
 	//결재 요청
 	public void apprDocReq(HttpServletRequest req, Model model);
 	

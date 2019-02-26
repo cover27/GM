@@ -80,7 +80,7 @@ function sendDeletePro(){
 							<!-- 게시글이 없으면 -->
 							<c:if test="${cnt == 0}">
 								<tr>
-									<td colspan="6" align="center">게시글이 없습니다. 글을 작성해주세요.!!</td>
+									<td colspan="6" align="center">쪽지를 보넨적이 없습니다.!!</td>
 								</tr>
 							</c:if>
 						</tbody>

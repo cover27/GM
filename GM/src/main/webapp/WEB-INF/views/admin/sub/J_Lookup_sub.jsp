@@ -61,46 +61,68 @@
 		<div class="content_header">
 			<h2>휴일/연장/야간근무 조희</h2>
 		</div>
-		<div>
-			*검색 날짜를 선택한 후 -> 휴일,연장,야간 버튼을 클릭하십시오.
+		<div class="content">
+			<div class="search-wrap">
+				<div class="form-group">
+					<span class="bold5px">사업장 :</span>
+					<c:forEach var="dto" items="${dtoss}">
+						<span name="search_title" id="search_title" class="bold5px">${dto.c_name}</span>
+					</c:forEach>
+					<span class="ml50">*근무년월</span>
+					<span><input type="month" id="month" value="${month}"></span>
+					<span style="font-size: 12px;">※ 검색 날짜를 선택한 후 -> 휴일,연장,야간 버튼을 클릭하십시오.</span>
+					<span class="ml50"><input type="button" value="휴일" onclick="holiday()"></span>
+					<span><input type="button" value="연장" onclick="overtime()"></span>
+					<span><input type="button" value="야간" onclick="nighttime()"></span>
+				</div>
+			</div>
+			<script>
+				document.getElementById('month').value = new Date().toISOString().slice(0, 7);
+			</script>
 			
-		</div>
-		<div>
-			<span class="bold5px">사업장 :</span>
-			<c:forEach var="dto" items="${dtoss}">
-				<span name="search_title" id="search_title" class="bold5px">${dto.c_name}</span>
-			</c:forEach>
-			*근무년월<input type="month" id="month" value="${month}">
-		</div>
-		<script>
-			document.getElementById('month').value = new Date().toISOString().slice(0, 7);
-		</script>
-		<br>
-		<br>
-		<br>
-
-		<div>
-			<span>휴일/연장/야간 근무조회</span>
-			<input type="button" value="휴일" onclick="holiday()">
-			<input type="button" value="연장" onclick="overtime()">
-			<input type="button" value="야간" onclick="nighttime()">
-		</div>
-		<div id="result">
-			<table border="1">
-				<tr>
-					<td>등록번호</td>
-					<td>사원번호</td>
-					<td>성명</td>
-					<td>직급</td>
-					<td>부서</td>
-					<td>근태종류</td>
-					<td>근태시간</td>
-					<td>근태일자</td>
-				</tr>
-				<tr>
-					<td colspan="8" style="height: 250px;">정보가 없습니다.</td>
-				</tr>
-			</table>
+			<div id="result">
+				<div class="table_top">
+					<table>
+						<colgroup>
+							<col width="198px" />
+							<col width="198px" />
+							<col width="198px" />
+							<col width="197px" />
+							<col width="197px" />
+							<col width="*" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th>등록번호</th>
+								<th>사원번호</th>
+								<th>성명</th>
+								<th>직급</th>
+								<th>부서</th>
+								<th>근태종류</th>
+								<th>근태시간</th>
+								<th>근태일자</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div class="salary_info" style="height:700px;">
+					<table>
+						<colgroup>
+							<col width="198px" />
+							<col width="198px" />
+							<col width="198px" />
+							<col width="197px" />
+							<col width="197px" />
+							<col width="*" />
+						</colgroup>
+						<tbody>
+							<tr>
+								<td colspan="8" style="height: 250px;">정보가 없습니다.</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</article>
 </section>

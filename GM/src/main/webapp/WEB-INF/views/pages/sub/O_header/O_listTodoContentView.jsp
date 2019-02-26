@@ -123,7 +123,7 @@ i.icon{
 	border:1px solid #aaa;
 }
 .btn-color7{
-	background:#fff;
+	/* background:#fff; */
 	color:#111;
 }
 .tbl-inner{
@@ -197,46 +197,9 @@ select{
 			</div>
 			
 			<div class="table-search" style="right:262px;">
-				<div class="input-unread">
-					<label>
-						<i class="icon imp"></i>중요
-					</label>
-					<input type="checkbox" id="checkboxPriority" title="중요" value="1">
-				</div>
-				
-				<div class="input-unread w180">
-                     <div class="ui-step-wrap">
-                         <div class="ui-step-todo">
-                             <div class="step-bar"></div>
-                             <label for="statusReject" style="left: 0%;"><!-- 반려 -->
-                             	<input type="checkbox" name="statusCode" title="반려" id="statusReject" value="20" checked="">
-                             	<span class="box"></span><span class="txt">반려</span>
-                             </label>
-                             <label for="statusDelay" style="left: 33.3%;"><!-- 지연 -->
-	                             <input type="checkbox" name="statusCode" title="지연" id="statusDelay" value="11" checked="">
-	                             <span class="box"></span><span class="txt">지연</span>
-                             </label>
-                             <label for="statusNotComplete" style="left: 66.6%;"><!-- 미완료 -->
-	                             <input type="checkbox" name="statusCode" title="미완료" id="statusNotComplete" value="12" checked="">
-	                             <span class="box"></span><span class="txt">미완료</span>
-                             </label>
-                             <label for="statusComplete" style="left: 100%;"><!-- 완료 -->
-	                             <input type="checkbox" name="statusCode" title="완료" id="statusComplete" value="1" checked="">
-	                             <span class="box"></span><span class="txt">완료</span>
-                             </label>
-                         </div>
-                    </div>
-                </div>
-				
-				<input id="startDate" type="text" title="날짜시작" name="" class="input-datepicker w100" placeholder="From" value="" readonly="readonly">
-				<button type="button" class="btn btn-color7 br tbl-inner">
-					<i class="icon calendar"></i>
-				</button>
-				<span>~</span>
-				<input id="endDate" type="text" title="날짜끝" name="" class="input-datepicker w100" placeholder="To" value="" readonly="readonly">
-				<button type="button" class="btn btn-color7 br tbl-inner">
-					<i class="icon calendar"></i>
-				</button>
+				<input id="begin" type="date" title="날짜시작" name="begin" class="input-datepicker w100" value="">
+					<span>~</span>
+				<input id="end" type="date" title="날짜끝" name="end" class="input-datepicker w100" value="" >
 			</div>
 			
 			<div class="table-search">

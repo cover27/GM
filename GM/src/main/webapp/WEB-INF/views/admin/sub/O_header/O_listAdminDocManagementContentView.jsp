@@ -123,7 +123,7 @@ i.icon{
 	border:1px solid #aaa;
 }
 .btn-color7{
-	background:#fff;
+	/* background:#fff; */
 	color:#111;
 }
 .tbl-inner{
@@ -196,17 +196,11 @@ select{
 			<div class="totalnum">전체<span></span></div>
 			</div>
 			
-			<div class="table-search" style="right:239px;">
-	            <input id="startDate" type="text" title="날짜시작" name="" class="input-datepicker w100" placeholder="From" value="" readonly="readonly">
-	            <button type="button" class="btn btn-color7 br tbl-inner">
-	            	<i class="icon calendar"></i>
-	            </button>
-	            <span>~</span>
-	            <input id="endDate" type="text" title="날짜끝" name="" class="input-datepicker w100" placeholder="To" value="" readonly="readonly">
-	            <button type="button" class="btn btn-color7 br tbl-inner">
-	           		<i class="icon calendar"></i>
-	            </button>
-	        </div>
+			<div class="table-search" style="right:262px;">
+				<input id="begin" type="date" title="날짜시작" name="begin" class="input-datepicker w100" value="">
+					<span>~</span>
+				<input id="end" type="date" title="날짜끝" name="end" class="input-datepicker w100" value="" >
+			</div>
 			
 			<div class="table-search">
 				<div class="input-search">

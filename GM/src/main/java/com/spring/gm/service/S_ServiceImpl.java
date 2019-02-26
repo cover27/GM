@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.S_DAO;
 import com.spring.gm.vo.MessageVO;
+import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.MemberVO;
 
 @Service
@@ -107,6 +108,24 @@ public class S_ServiceImpl implements S_Service {
 			model.addAttribute("currentPage", currentPage); // 현재페이지
 		}		
 	}
+	
+	@Override
+	public void messageContent(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int message_num = Integer.parseInt((req.getParameter("message_num")));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int number = Integer.parseInt(req.getParameter("number"));
+		
+		MessageVO vo = dao.content(num);
+		
+		dao.addReadCnt(num);
+
+		model.addAttribute("ct_dto", vo);
+		model.addAttribute("message_num", message_num);
+		model.addAttribute("num", num);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("number", number);
+	}		
 
 
 	@Override
@@ -125,6 +144,7 @@ public class S_ServiceImpl implements S_Service {
 		vo.setDel(0);
 		vo.setSentDate(new Timestamp(System.currentTimeMillis()));
 		vo.setReceiveDate(new Timestamp(System.currentTimeMillis()));
+		vo.setReadCnt(0);
 		
 		int sendCnt = dao.sendMessage(vo);
 		
@@ -148,6 +168,7 @@ public class S_ServiceImpl implements S_Service {
 		vo.setDel(0);
 		vo.setSentDate(new Timestamp(System.currentTimeMillis()));
 		vo.setReceiveDate(new Timestamp(System.currentTimeMillis()));
+		vo.setReadCnt(0);
 		
 		int sendCnt = dao.sendMessage(vo);
 		
@@ -387,6 +408,34 @@ public class S_ServiceImpl implements S_Service {
 		model.addAttribute("cancelCnt", cancelCnt);
 		model.addAttribute("pageNum", pageNum);
 	}
+
+
+	@Override
+	public void messageBoxList(HttpServletRequest req, Model model) {
+		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		int cnt = 0;			// 글갯수		
+	
+		// 게시판 갯수
+		cnt = dao.getMessageBoxArticleCnt(strId);
+
+		
+		if(cnt > 0) {
+			//게시판 목록 조회
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("strId", strId);
+			
+			List<MessageVO> dtos = dao.getMessageBoxArticleList(map);
+			
+
+			model.addAttribute("mb_dtos", dtos);
+
+		}
+
+		model.addAttribute("cnt", cnt);  // 글갯수
+
+		}
+
+
 
 
 }

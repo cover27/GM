@@ -39,6 +39,26 @@ public class P_Controller {
 		return "pages/sub/P_addApprLine";
 	}
 	
+	//기안 - 결재선 추가
+	@RequestMapping("/pages/P_payLinePro")
+	public String P_payLinePro(HttpServletRequest req, Model model) {
+		logger.info("URL : P_payLinePro");
+		
+		service.P_payLinePro(req, model);
+		
+		return "pages/sub/P_addApprLine";
+	}
+	
+	//기안 - 결재선 확정
+	@RequestMapping("/pages/P_resistPayLine")
+	public String P_resistPayLine(HttpServletRequest req, Model model) {
+		logger.info("URL : P_resistPayLine");
+		
+		service.P_resistPayLine(req, model);
+		
+		return "pages/sub/P_resistPayLine";
+	}
+	
 	//기안 - 기안문 작성 - 결재 요청
 	@RequestMapping("/pages/P_apprDocFormReqPro")
 	public String P_apprDocFormReqPro(HttpServletRequest req, Model model) {
@@ -46,7 +66,7 @@ public class P_Controller {
 		
 		service.apprDocReq(req, model);
 		
-		return "pages/P_apprDocFormReqPro";
+		return "pages/sub/P_apprDocFormReqPro";
 	}
 	
 	//기안 - 결재 요청함

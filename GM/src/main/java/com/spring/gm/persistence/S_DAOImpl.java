@@ -7,7 +7,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.gm.vo.MessageBoxVO;
 import com.spring.gm.vo.MessageVO;
 
 @Repository
@@ -26,6 +25,13 @@ public class S_DAOImpl implements S_DAO {
 	public List<MessageVO> getMessageArticleList(Map<String, Object> map){
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
 		return dao.getMessageArticleList(map);
+	}
+	
+	@Override
+	public MessageVO content(int num) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		MessageVO vo = dao.content(num);
+		return vo;
 	}
 	
 	@Override
@@ -86,6 +92,24 @@ public class S_DAOImpl implements S_DAO {
 	public int sendDelete(Map<String, Integer> map) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
 		return dao.sendDelete(map);
+	}
+
+	@Override
+	public int getMessageBoxArticleCnt(String strId) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.getMessageBoxArticleCnt(strId);
+	}
+
+	@Override
+	public List<MessageVO> getMessageBoxArticleList(Map<String, Object> map) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.getMessageBoxArticleList(map);
+	}
+
+	@Override
+	public int addReadCnt(int num) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.addReadCnt(num);
 	}
 
 

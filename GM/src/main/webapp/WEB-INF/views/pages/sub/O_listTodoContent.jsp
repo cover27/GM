@@ -193,25 +193,25 @@ tbody {
 	                        <th scope="col"><input id="checkAll" name="" onclick="selectAllTodo()" type="checkbox" value="" title="checkAll"></th>
 	                        <th scope="col">번호</th>
 	                        <th scope="col">
-	                            <a data-sortcolumn="PRIORITY" href="#">중요<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+	                            <a data-sortcolumn="PRIORITY" href="#">중요</a>
 	                        </th>
 	                        <th scope="col">
-	                            <a data-sortcolumn="FOLDER" href="#">업무 보관함<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+	                            <a data-sortcolumn="FOLDER" href="#">업무 보관함</a>
 	                        </th>
 	                        <th scope="col">
-	                            <a data-sortcolumn="TITLE" href="#">제목<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+	                            <a data-sortcolumn="TITLE" href="#">제목</a>
 	                        </th>
 	                        <th scope="col">
-	                            <a data-sortcolumn="REGISTERNAME" href="#">요청자<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+	                            <a data-sortcolumn="REGISTERNAME" href="#">요청자</a>
 	                        </th>
 	                        <th scope="col">
-	                            <a data-sortcolumn="INSERTDATE" href="#">요청일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+	                            <a data-sortcolumn="INSERTDATE" href="#">요청일</a>
 	                        </th>
 	                        <th scope="col">
-	                            <a data-sortcolumn="DUEDATE" href="#">마감일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+	                            <a data-sortcolumn="DUEDATE" href="#">마감일</a>
 	                        </th>
 	                        <th scope="col">
-	                            <a data-sortcolumn="TODOSTATUS" href="#">상태<i class="fa fa-caret-up active"><span class="blind">오름차순</span></i></a>
+	                            <a data-sortcolumn="TODOSTATUS" href="#">상태</a>
 	                        </th>
 	                        <th scope="col">확인</th>
 	                    </tr>

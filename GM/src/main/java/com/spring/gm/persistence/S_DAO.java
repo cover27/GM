@@ -14,6 +14,9 @@ public interface S_DAO {
 	// 받은 쪽지 리스트
 	public List<MessageVO> getMessageArticleList(Map<String, Object> map);
 	
+	// 쪽지 상세페이지
+	public MessageVO content(int num);
+	
 	// 메세지 전송
 	public int sendMessage(MessageVO vo);
 	
@@ -43,5 +46,14 @@ public interface S_DAO {
 	
 	// 휴지통 삭제 처리
 	public int delgarbage(Map<String, Integer> map);
+	
+	// 나의 쪽지함 갯수
+	public int getMessageBoxArticleCnt(String strId);
+	
+	// 나의 쪽지함 리스트
+	public List<MessageVO> getMessageBoxArticleList(Map<String, Object> map);
+	
+	// 조회수 증가
+	public int addReadCnt(int num);
 
 }

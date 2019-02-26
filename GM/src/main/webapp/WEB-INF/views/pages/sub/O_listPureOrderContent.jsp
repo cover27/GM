@@ -193,17 +193,17 @@ tbody {
 		                    <tr>
 		                        <th scope="col"><input id="checkAll" name="" onclick="selectAllTodo()" type="checkbox" value="" title="checkAll"></th>
 		                        <th scope="col">
-		                            <a data-sortcolumn="subject" href="#">제목<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+		                            <a data-sortcolumn="subject" href="#">제목</a>
 		                        </th>
 		                        <th scope="col">담당자</th>
 		                        <th scope="col">
-		                            <a data-sortcolumn="begin" href="#">요청일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+		                            <a data-sortcolumn="begin" href="#">요청일</a>
 		                        </th>
 		                        <th scope="col">
-		                            <a data-sortcolumn="end" href="#">마감일<i class="fa fa-caret-up"><span class="blind">오름차순</span></i></a>
+		                            <a data-sortcolumn="end" href="#">마감일</a>
 		                        </th>
 		                        <th scope="col">
-		                            <a data-sortcolumn="state" href="#">상태<i class="fa fa-caret-up active"><span class="blind">오름차순</span></i></a>
+		                            <a data-sortcolumn="state" href="#">상태</a>
 		                        </th>
 		                    </tr>
 		                </thead>
