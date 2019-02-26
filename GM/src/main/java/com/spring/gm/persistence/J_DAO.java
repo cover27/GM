@@ -245,8 +245,10 @@ public interface J_DAO {
 	public int vacationCnt(Map<String, Object> map);
 	public ArrayList<join_mrvdgcVO> vacationList(Map<String, Object> map);
 	
-	
-	
+	//회원 연차 가져오기
+	public join_mrvdgcVO memberyear(Map<String, Object> map);
+	//회사 연차 가져오기
+	public join_mrvdgcVO companyyear(Map<String, Object> map);
 	
 	
 	//연차/휴가일수 조회 전체보기
