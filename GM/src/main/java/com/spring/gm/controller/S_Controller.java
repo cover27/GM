@@ -123,4 +123,21 @@ public class S_Controller {
 		service.messageContent(req, model);
 		return "pages/S_contentMessage";		
 	}
+	
+	@RequestMapping("/pages/S_createMessageForm")
+	public String createMessageForm(HttpServletRequest req, Model model) {
+		logger.info("URL : S_createMessageForm");
+		
+		return "pages/S_createMessageForm";	
+	}
+	
+	@RequestMapping("/pages/S_createMessagePro")
+	public String createMessagePro(HttpServletRequest req, Model model) {
+		logger.info("URL : S_createMessagePro");
+		
+		service.createMessageBoxPro(req, model);
+		return "pages/S_createMessagePro";	
+	}
+	
+	
 }

@@ -26,4 +26,6 @@ public interface S_Service {
 	public void delGarbage(HttpServletRequest req, Model model);		// 휴지통 내용물 삭제처리
 	
 	public void messageBoxList(HttpServletRequest req, Model model);	// 나의 쪽지함 리스트
+	
+	public void createMessageBoxPro(HttpServletRequest req, Model model);	// 나의 쪽지함 생성처리
 }

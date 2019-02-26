@@ -15,6 +15,7 @@ import com.spring.gm.persistence.S_DAO;
 import com.spring.gm.vo.MessageVO;
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.MemberVO;
+import com.spring.gm.vo.MessageBoxVO;
 
 @Service
 public class S_ServiceImpl implements S_Service {
@@ -435,7 +436,22 @@ public class S_ServiceImpl implements S_Service {
 
 		}
 
-
-
+	@Override
+	public void createMessageBoxPro(HttpServletRequest req, Model model) {
+		int message_num = Integer.parseInt(req.getParameter("message_num"));
+		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		String name = req.getParameter("name");
+		
+		MessageBoxVO vo = new MessageBoxVO();
+		vo.setMessage_num(message_num);
+		vo.setId(strId);
+		vo.setName(name);
+		vo.setDel(0);
+		
+		int creCnt = dao.createMessageBox(vo);
+		
+		model.addAttribute("creCnt", creCnt);
+		
+	}
 
 }

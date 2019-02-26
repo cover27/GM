@@ -5,7 +5,7 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2>게시글 상세 페이지</h2>
+			<h2>쪽지 상세 페이지</h2>
 		</div>
 		<div class="content">
 			<div class="write_head">
