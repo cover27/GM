@@ -108,12 +108,12 @@ while(true) {
 		        		</thead>
 		        	</table>
 		        </div>
-		        <div class="salary_info" style="height: 320px;">
+		        <div class="salary_info" style="height: 289px;">
 		            <table>
 		                <tbody>
 		                	<c:if test="${cnt == 0}">
 			                    <tr>
-			                        <td colspan="9" style="height:320px;">*데이터 정보가 없습니다.</td>
+			                        <td colspan="9" style="height:286px;">*데이터 정보가 없습니다.</td>
 			                    </tr>
 			                </c:if>
 			                <c:if test="${cnt > 0}">
@@ -150,44 +150,82 @@ while(true) {
 		            </table>
 		        </div>
 		        <h3 class="mt30">*휴가신청</h3>
-		        <div>
-		            
-		            <table border="1">
-		                <tr>
-		                    <td>휴가신청일</td>
-		                    <td><input type="date" name="applicationdate" id="applicationdate"></td>
-		                    <td>휴가구분</td>
-		                    <td>
-		                        <select name="types">
-		                            <option value="1">휴가</option>
-		                            <option value="2">연차</option>
-		                        </select>
-		                    </td>
-		                    <td>전일/반일</td>
-		                    <td>
-		                        <input name="fullhalfday" type="checkbox" value="1" onclick="doOpenCheck(this); " checked>전차
-		                        <input name="fullhalfday" type="checkbox" value="2" onclick="doOpenCheck(this);">반차
-		                    </td>
-		                </tr>
-		                <tr>
-		                    <td>휴가기간</td>
-		                    <td colspan="3"><input type="date" id="begin" name="begin"> ~ <div id="end2"><input type="date" id="end" name="end" onchange="handler(event);"></div>
-		                    </td>
-		                    <td>일수</td>
-		                    <td><input type="text" style="width:100px;" name="day" id="day" required></td>
-		                    <td>휴가사유</td>
-		                    <td><input type="text" name="content"></td>
-		                </tr>
+		        <div class="salary_info_result mt10">
+		            <table>
+		            	<colgroup>
+		            		<col width="10%" />
+		            		<col width="23%" />
+		            		<col width="10%" />
+		            		<col width="23%" />
+		            		<col width="10%" />
+		            		<col width="23%" />
+		            	</colgroup>
+		                <tbody>
+			                <tr>
+			                    <th>휴가신청일</th>
+			                    <td><input type="date" name="applicationdate" id="applicationdate"></td>
+			                    <th>휴가구분</th>
+			                    <td>
+			                        <select name="types">
+			                            <option value="1">휴가</option>
+			                            <option value="2">연차</option>
+			                        </select>
+			                    </td>
+			                    <th>전일/반일</th>
+								<td>
+									<span style="position: relative; top: 2px;">
+										<label>
+											<input name="fullhalfday" type="checkbox" value="1" onclick="doOpenCheck(this); " checked style="width: 14px;">
+											<span style="position: relative; bottom: 3px;">전차</span>
+										</label>
+									</span>
+									<span class="ml50" style="position: relative; top: 2px;">
+										<label>
+											<input name="fullhalfday" type="checkbox" value="2" onclick="doOpenCheck(this);" style="width: 14px;">
+											<span style="position: relative; bottom: 3px;">반차</span>
+										</label>
+									</span>
+								</td>
+							</tr>
+			                <tr>
+			                    <th>휴가기간</th>
+			                    <td>
+			                    	<input type="date" id="begin" name="begin" style="width:45%;"><span style="margin: 0 9px;"> ~ </span><span id="end2"><input type="date" id="end" name="end" onchange="handler(event);" style="width:45%;"></span>
+			                    </td>
+			                    <th>일수</th>
+			                    <td>
+			                    	<input type="text" name="day" id="day" required>
+			                    </td>
+			                    <th>휴가사유</th>
+			                    <td><input type="text" name="content"></td>
+			                </tr>
+		                </tbody>
 		            </table>
-		            <input type="submit" method="post" value="신청">
-		            <pre>
-						 휴가구분은 [휴가항목설정]에서 추가 또는 변경할 수 있습니다.
-						 휴가신청 작성 후 전자결재 처리 순서입니다
-						    1)최초 입력 후(전자결재 사용시) : 휴가 신청 등록 -> 전자결재(완료)
-						    2)최초 입력 후(전자결재 미사용시) : 휴가 신청 등록과 동시에 전자결재(자동승인) 처리
-						 [휴가신청] 메뉴에서 전자결재가 완료(승인) 된 경우, 해당 휴가내역은 수정, 삭제가 불가합니다. 실제사용여부를 미체크 후 재등록하시기 바랍니다.
-						 휴가신청시, 각종 휴일을 휴가기간에서 제외하시고자 할 경우, [휴일설정]에서 해당 일자를 휴일로 지정하시기 바랍니다.
-					</pre>
+		            <div class="fright mt10"><input type="submit" value="신청"></div>
+		            <div class="notice" style="margin-top: 60px;">
+		            	<ul>
+		            		<li>
+		            			휴가구분은 [휴가항목설정]에서 추가 또는 변경할 수 있습니다.
+		            		</li>
+		            		<li>
+		            			휴가신청 작성 후 전자결재 처리 순서입니다
+		            			<ol>
+		            				<li style="list-style:decimal;">
+		            					최초 입력 후(전자결재 사용시) : 휴가 신청 등록 -> 전자결재(완료)
+		            				</li>
+		            				<li style="list-style:decimal;">
+		            					최초 입력 후(전자결재 미사용시) : 휴가 신청 등록과 동시에 전자결재(자동승인) 처리
+		            				</li>
+		            			</ol>
+		            		</li>
+		            		<li>
+		            			[휴가신청] 메뉴에서 전자결재가 완료(승인) 된 경우, 해당 휴가내역은 수정, 삭제가 불가합니다. 실제사용여부를 미체크 후 재등록하시기 바랍니다.
+		            		</li>
+		            		<li>
+		            			휴가신청시, 각종 휴일을 휴가기간에서 제외하시고자 할 경우, [휴일설정]에서 해당 일자를 휴일로 지정하시기 바랍니다.
+		            		</li>
+		            	</ul>
+		            </div>
 		        </div>
 		        <script>
 		            document.getElementById('applicationdate').value = new Date().toISOString().slice(0, 10);
