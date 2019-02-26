@@ -2,6 +2,8 @@ package com.spring.gm.persistence;
 
 import java.util.List;
 import java.util.Map;
+
+import com.spring.gm.vo.MessageBoxVO;
 import com.spring.gm.vo.MessageVO;
 
 
@@ -55,5 +57,8 @@ public interface S_DAO {
 	
 	// 조회수 증가
 	public int addReadCnt(int num);
+	
+	// 메세지함 생성
+	public int createMessageBox(MessageBoxVO vo);
 
 }

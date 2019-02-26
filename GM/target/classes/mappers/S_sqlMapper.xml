@@ -22,7 +22,7 @@
 	
 	<insert id="sendMessage" parameterType="com.spring.gm.vo.MessageVO">
 		INSERT INTO Message (num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate,  del, readCnt) 
-		VALUES(seq_message.nextval, #{message_num}, #{sender}, #{receiver}, #{subject}, #{content}, #{state}, #{sentDate}, #{receiveDate}, #{del}) 
+		VALUES(seq_message.nextval, #{message_num}, #{sender}, #{receiver}, #{subject}, #{content}, #{state}, #{sentDate}, #{receiveDate}, #{readCnt}, #{del}) 
 	</insert>
 	
 	<insert id="sendMessageData" parameterType="com.spring.gm.vo.MessageVO">
@@ -77,5 +77,10 @@
 	<update id="addReadCnt" parameterType="int">
 		UPDATE message SET readCnt = readCnt + 1 WHERE num = #{num}
 	</update>
+	
+	<insert id="createMessageBox" parameterType="com.spring.gm.vo.MessageBoxVO">
+		INSERT INTO messagebox (message_num, id, name, del) 
+		VALUES(seq_messagebox, #{message_num}, #{id}, #{name}, #{del}) 
+	</insert>
 
 </mapper>

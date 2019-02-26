@@ -31,6 +31,9 @@
                     
                     <li>
                     	<span><a href="a04.jsp">나의 쪽지함</a></span>
+                    	<ul>
+                    		
+                    	</ul>
                     </li>
                 </ul>
             </div>
