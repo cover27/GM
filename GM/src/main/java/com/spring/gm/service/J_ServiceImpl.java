@@ -1,6 +1,8 @@
 
 package com.spring.gm.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Calendar;
 
 
 
@@ -1790,15 +1793,12 @@ public class J_ServiceImpl implements J_Service {
 	
 	//휴가승인 확인후근태 처리
 	@Override
-	public void managementInsert(HttpServletRequest req, Model model) {
+	public void managementInsert(HttpServletRequest req, Model model) throws ParseException {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		String date = req.getParameter("date");
 		String id = req.getParameter("id");
-		System.out.println("id: " + id);
 		String name = req.getParameter("name");
-		System.out.println("name: " + name);
 		int fullhalfday = Integer.parseInt(req.getParameter("fullhalfday"));
-		System.out.println("fullhalfday: " + fullhalfday);
 		String begin = req.getParameter("begin");
 		System.out.println("begin: " + begin);
 		String end = req.getParameter("end");
@@ -1820,7 +1820,10 @@ public class J_ServiceImpl implements J_Service {
 		if(fullhalfday == 1) {
 			System.out.println("전차");
 			for(int i =0; i<day; i++) {
+				
 				int start = Integer.parseInt(begin) + i;
+				begin = Integer.toString(start);
+				System.out.println("begin : " + begin);
 				String startday = Integer.toString(start);
 				System.out.println("startday :" + startday);
 				String year = startday.substring(0,4);
@@ -1832,8 +1835,43 @@ public class J_ServiceImpl implements J_Service {
 				String dates = year + "-" + month + "-" + day2;
 				System.out.println("dates :" + dates);
 						
-				map.put("start",dates);
-				insertCnt = dao.managementInsert(map);
+				String inputDate = begin;
+				DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+				Date datea = dateFormat.parse(inputDate);
+
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(datea);
+
+				System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+				int number = calendar.get(Calendar.DAY_OF_WEEK);
+				if(number == 7 || number == 1) {
+					System.out.println("주말 제외 타나?");
+					start = start + 1;
+					System.out.println("begin : " + begin);
+				}else if(number != 7 && number != 1) {
+					System.out.println("주말 아닐때");
+					map.put("start",dates);
+					System.out.println("start : " + start);
+					insertCnt = dao.managementInsert(map);
+				}
+				/*String inputDate = dates;
+
+				DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+				Date datee = dateFormat.parse(inputDate);
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(datee);
+				System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+				String week = Integer.toString(calendar.get(Calendar.DAY_OF_WEEK));
+				System.out.println("week : " + week);
+				if(week.equals("토요일") || week.equals("일요일")) {
+					System.out.println("주말 제외 타나?");
+					begin = begin + 2;
+					System.out.println("begin : " + begin);
+				}else if(!week.equals("토요일") && !week.equals("일요일")) {
+					System.out.println("주말 아닐때");
+					map.put("start",dates);
+					insertCnt = dao.managementInsert(map);
+				}*/
 			}
 			System.out.println("insertCnt : " + insertCnt);
 			if(insertCnt > 0) {
@@ -2128,11 +2166,22 @@ public class J_ServiceImpl implements J_Service {
 		String year = req.getParameter("year");
 		System.out.println("year : " + year);
 
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("year", year);
 		map.put("id", id);
 
+		join_mrvdgcVO memberyears = dao.memberyear(map);//회원 연차 가져오기
+		int memberyear = memberyears.getYear();
+		map.put("memberyear", memberyear);
+		System.out.println("memberyear : "  + memberyear);
+		
+		join_mrvdgcVO companyyears = dao.companyyear(map);//회사 연차 가져오기
+		int companyyear = companyyears.getYear();
+		map.put("companyyear", companyyear);
+		System.out.println("companyyear : "  + companyyear);
+		
 		int selectCnt = dao.memberinfo(map);
 		System.out.println("cnt : " + selectCnt);
 		model.addAttribute("cnt", selectCnt);
@@ -2163,6 +2212,10 @@ public class J_ServiceImpl implements J_Service {
 			dtos2.get(0).setN_annual(dtos2.get(0).getAnnual() - annual.getU_annual());
 			System.out.println("잔여 연차 : " + (dtos2.get(0).getAnnual() - annual.getU_annual()));
 			dtos.addAll(dtos2);
+			
+			
+			
+			
 		} else if (annualCnt == 0) {
 			System.out.println("연차 사용이 없는경우");
 			dtos2 = dao.annualList(map);
@@ -2182,6 +2235,7 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("휴가 사용한 횟수 : " + vacation.getU_vacation());
 			dtos3.get(0).setN_vacation(dtos3.get(0).getVacation() - vacation.getU_vacation());
 			System.out.println("잔여 휴가 : " + (dtos3.get(0).getVacation() - vacation.getU_vacation()));
+			dtos.get(0).setVacation(dtos3.get(0).getVacation());
 			dtos.get(0).setU_vacation(dtos3.get(0).getU_vacation());
 			dtos.get(0).setN_vacation(dtos3.get(0).getN_vacation());
 		} else if (vacationCnt == 0) {
@@ -2219,6 +2273,18 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("id : " + id);
 			map.put("id", id);
 
+			join_mrvdgcVO memberyears = dao.memberyear(map);//회원 연차 가져오기
+			map.remove("memberyear");
+			int memberyear = memberyears.getYear();
+			map.put("memberyear", memberyear);
+			System.out.println("memberyear : "  + memberyear);
+			
+			join_mrvdgcVO companyyears = dao.companyyear(map);//회사 연차 가져오기
+			map.remove("companyyear");
+			int companyyear = companyyears.getYear();
+			map.put("companyyear", companyyear);
+			System.out.println("companyyear : "  + companyyear);
+			
 			// 연차 사용수
 			int annualCnt = dao.annualCnt(map);
 			System.out.println("annualCnt2 : " + annualCnt);

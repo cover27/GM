@@ -9,6 +9,8 @@ public interface S_Service {
 	
 	public void messageList(HttpServletRequest req, Model model);		// 받은쪽지 리스트
 	
+	public void messageContent(HttpServletRequest req, Model model);	// 쪽지 상세페이지
+	
 	public void sendMessagePro(HttpServletRequest req, Model model);		// 쪽지 쓰기 처리
 	
 	public void sendList(HttpServletRequest req, Model model);			// 보넨쪽지 목록
@@ -22,4 +24,8 @@ public interface S_Service {
 	public void garbageList(HttpServletRequest req, Model model);		// 휴지통 목록
 	
 	public void delGarbage(HttpServletRequest req, Model model);		// 휴지통 내용물 삭제처리
+	
+	public void messageBoxList(HttpServletRequest req, Model model);	// 나의 쪽지함 리스트
+	
+	public void createMessageBoxPro(HttpServletRequest req, Model model);	// 나의 쪽지함 생성처리
 }

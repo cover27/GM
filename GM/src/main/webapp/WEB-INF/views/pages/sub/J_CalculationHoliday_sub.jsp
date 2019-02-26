@@ -81,80 +81,122 @@ function allsearch() {
 		<div class="content_header">
 			<h2>연차/휴가일수 조회</h2>
 		</div>
-		<form name="searchform">
-		<div>
-		<input type="button" onclick="search()" value="사원조회" style="background: #d3292c;">
-		<input type="button" onclick="allsearch()" value="전체조회" style="background: #d3292c;">
-		</div>
-		<br>
-		<c:if test="${sys_rank == 1}">
-		<div id="search">
-			<span class="bold5px">사업장 : </span>
-			<c:forEach var="dto" items="${dtoss}">
-				<span class="bold5px">${dto.c_name}</span>
-			</c:forEach>
-			<span class="ml50 bold5px">아이디</span> 
-			<span><input type="text" class="searchId" id="id" required autofocus></span>
-			<span><button onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></button></span> 
-			<span><input type="text" class="searchName" name="name" ></span>
-			<span class="ml50"><b></b></span>
-			<span class="bold5px ml50">*년도별검색 : </span>
-			<span><input type="text" id="year" placeholder="예)2019" maxlength="4"></span>
-			<span><input type="button" onclick="VacationViews()" value="조회" style="background: #d3292c;"></span>
-		</div>
-		<div id="allsearch" style="display:none;">
-			<span class="bold5px ml50">*년도별검색 : </span>
-			<span><input type="text" id="year2" placeholder="예)2019" maxlength="4"></span>
-			<span><input type="button" onclick="VacationViews2()" value="조회" style="background: #d3292c;"></span>
-		</div>
-		</c:if>
-		<c:if test="${sys_rank != 1}">
-		<div>
-			<span class="bold5px">사업장 : </span>
-			<c:forEach var="dto" items="${dtoss}">
-				<span class="bold5px">${dto.c_name}</span>
-			</c:forEach>
-			<span class="ml50 bold5px">아이디</span>
-			<span><input type="text" class="searchId" id="id" value="${id}" readonly></span>
-			<span class="bold5px ml50">이름 : </span>
-			<span><input type="text" class="searchName" name="name" value="${name}" readonly></span>
-			<span class="ml50 bold5px">*급여년월</span>
-			<span><input type="text" id="year" placeholder="예)2019" maxlength="4"></span>
-			<span><input type="button" onclick="VacationViews()" value="조회" style="background: #d3292c;"></span>
-		</div>
-		</c:if>
-		</form>
-		<div>휴가일수계산</div>
-		<div id="result">
-		<table border="1">
-			<tr>
-				<td>사원번호</td>
-				<td>성명</td>
-				<td>직급</td>
-				<td>입사일</td>
-				<td>연차</td>
-				<td>연차 설정횟수</td>
-				<td>사용연차</td>
-				<td>잔여연차</td>
-				<td>휴가  설정횟수</td>
-				<td>휴가 사용수</td>
-				<td>잔여휴가</td>
-			</tr>
-			<tr>
-				<td colspan="11" style="height: 250px;">정보가 없습니다.</td>
-			</tr>
-		</table>
-		</div>
-		<div>
-			<pre>
-			 처리순서 : 휴가일수 조회 -> 사용 휴가일수  집계 처리 -> 휴가일수 자동계산 후 출력
-			 휴가일수 조회시 전년도 결근일수에 따라서 바뀔수 있습니다.
-			 휴가일수  : 휴가일수 미사용시 자동계산하여 상여금으로 처리 후 마감 처리를 하면  조회를 할 수 없습니다.
-			 휴가일수  조회는 해당년도 12월 31일로 마감처리가 됩니다.
-			 수정을 원하는 경우에는 인사 관리자에게 요청하여 관리자가 직접 수정할 수 있습니다.
-			 [휴가일수설정(최초1회)] 메뉴에서 이관한 자료를 삭제(재이관)하는 방법은 다음과 같습니다.
-			 [연차/휴가일수 조회] 메뉴에서 해당 사원 자료를 삭제 할 수 없습니다.
-			</pre>
+		<div class="content">
+			<form name="searchform">
+			    <div>
+			        <span><input type="button" onclick="search()" value="사원조회" style="background: #d3292c; border: solid 1px #d3292c;"></span>
+			        <span><input type="button" onclick="allsearch()" value="전체조회" style="background: #d3292c; border: solid 1px #d3292c;"></span>
+			    </div>
+			    <div class="search-wrap mt10" style="height: 38px;">
+					<div class="form-group">
+						<c:if test="${sys_rank == 1}">
+					        <div id="search">
+					            <span class="bold5px">사업장 : </span>
+					            <c:forEach var="dto" items="${dtoss}">
+					                <span class="bold5px">${dto.c_name}</span>
+					            </c:forEach>
+					            <span class="ml50 bold5px">아이디</span>
+					            <span><input type="text" class="searchId" id="id" required autofocus></span>
+					            <span><button onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></button></span>
+					            <span><input type="text" class="searchName" name="name"></span>
+					            <span class="ml50"><b></b></span>
+					            <span class="bold5px ml50">*년도별검색 : </span>
+					            <span><input type="text" id="year" placeholder="예)2019" maxlength="4"></span>
+					            <span><input type="button" onclick="VacationViews()" value="조회" style="background: #d3292c;"></span>
+					        </div>
+					        <div id="allsearch" style="display:none;">
+					            <span class="bold5px ml50">*년도별검색 : </span>
+					            <span><input type="text" id="year2" placeholder="예)2019" maxlength="4"></span>
+					            <span><input type="button" onclick="VacationViews2()" value="조회" style="background: #d3292c;"></span>
+					        </div>
+					    </c:if>
+					    <c:if test="${sys_rank != 1}">
+					        <div>
+					            <span class="bold5px">사업장 : </span>
+					            <c:forEach var="dto" items="${dtoss}">
+					                <span class="bold5px">${dto.c_name}</span>
+					            </c:forEach>
+					            <span class="ml50 bold5px">아이디</span>
+					            <span><input type="text" class="searchId" id="id" value="${id}" readonly></span>
+					            <span class="bold5px ml50">이름 : </span>
+					            <span><input type="text" class="searchName" name="name" value="${name}" readonly></span>
+					            <span class="ml50 bold5px">*급여년월</span>
+					            <span><input type="text" id="year" placeholder="예)2019" maxlength="4"></span>
+					            <span><input type="button" onclick="VacationViews()" value="조회" style="background: #d3292c;"></span>
+					        </div>
+					    </c:if>
+					</div>
+				</div>
+			</form>
+			<h3>휴가일수계산</h3>
+			<div id="result" class="mt20">
+				<div class="table_top">
+					<table>
+						<colgroup>
+							<col width="145px" />
+							<col width="145px" />
+							<col width="145px" />
+							<col width="143px" />
+							<col width="143px" />
+							<col width="143px" />
+							<col width="143px" />
+							<col width="143px" />
+							<col width="143px" />
+							<col width="143px" />
+							<col width="*" />
+						</colgroup>
+						<thead>
+							<tr>
+					            <th>사원번호</th>
+					            <th>성명</th>
+					            <th>직급</th>
+					            <th>입사일</th>
+					            <th>연차</th>
+					            <th>연차 설정횟수</th>
+					            <th>사용연차</th>
+					            <th>잔여연차</th>
+					            <th>휴가 설정횟수</th>
+					            <th>휴가 사용수</th>
+					            <th>잔여휴가</th>
+					        </tr>
+						</thead>
+					</table>
+				</div>
+			    <div class="salary_info">
+			    	<table>
+			    		<tbody>
+			    			<tr>
+			    				<td colspan="11" style="height: 384px;">정보가 없습니다.</td>
+			    			</tr>
+			    		</tbody>
+			    	</table>
+			    </div>
+			</div>
+			<div class="notice mt30">
+				<ul>
+					<li>
+						처리순서 : 휴가일수 조회 -> 사용 휴가일수  집계 처리 -> 휴가일수 자동계산 후 출력
+					</li>
+					<li>
+						휴가일수 조회시 전년도 결근일수에 따라서 바뀔수 있습니다.
+					</li>
+					<li>
+						휴가일수  : 휴가일수 미사용시 자동계산하여 상여금으로 처리 후 마감 처리를 하면  조회를 할 수 없습니다.
+					</li>
+					<li>
+						휴가일수  조회는 해당년도 12월 31일로 마감처리가 됩니다.
+					</li>
+					<li>
+						수정을 원하는 경우에는 인사 관리자에게 요청하여 관리자가 직접 수정할 수 있습니다.
+					</li>
+					<li>
+						[휴가일수설정(최초1회)] 메뉴에서 이관한 자료를 삭제(재이관)하는 방법은 다음과 같습니다.
+					</li>
+					<li>
+						[연차/휴가일수 조회] 메뉴에서 해당 사원 자료를 삭제 할 수 없습니다.
+					</li>
+				</ul>
+			</div>
 		</div>
 	</article>
 </section>

@@ -1,6 +1,8 @@
 package com.spring.gm.controller;
 
 
+import java.text.ParseException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -442,7 +444,7 @@ public class J_Controller {
 		}
 		//휴가승인 확인후근태 처리
 		@RequestMapping("/admin/managementInsert")
-		public String managementInsert(HttpServletRequest req, Model model) {
+		public String managementInsert(HttpServletRequest req, Model model) throws ParseException {
 			System.out.println("/admin/J_A_management");
 			logger.info("URL : J_A_management");
 			service.managementInsert(req,model);

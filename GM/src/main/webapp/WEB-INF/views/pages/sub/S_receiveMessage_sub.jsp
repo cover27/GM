@@ -66,7 +66,7 @@ function moveGarbage(){
 										<tr>
 											<td><input type="checkbox" name="checkRow" value="${dto.num}" /></td>
 											<td style="text-align: left; padding-left: 20px;">
-												<a href="<c:url value=''/>">
+												<a href="<c:url value='/pages/S_contentMessage?num=${dto.num}&message_num=${dto.message_num}&pageNum=${pageNum}&number=${number}'/>">
 													${dto.subject}
 												</a>
 											</td>
@@ -80,7 +80,7 @@ function moveGarbage(){
 							<!-- 게시글이 없으면 -->
 							<c:if test="${cnt == 0}">
 								<tr>
-									<td colspan="6" align="center">게시글이 없습니다. 글을 작성해주세요.!!</td>
+									<td colspan="6" align="center">받은쪽지가 없습니다.</td>
 								</tr>
 							</c:if>
 						</tbody>

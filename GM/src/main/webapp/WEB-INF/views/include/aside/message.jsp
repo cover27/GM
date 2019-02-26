@@ -28,6 +28,13 @@
                             <li><a href="<c:url value='/pages/S_garbageList'/>">휴지통</a></li>
                         </ul>
                     </li> 
+                    
+                    <li>
+                    	<span><a href="a04.jsp">나의 쪽지함</a></span>
+                    	<ul>
+                    		
+                    	</ul>
+                    </li>
                 </ul>
             </div>
         </div>
