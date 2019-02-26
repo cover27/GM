@@ -2194,6 +2194,7 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("vacationCnt : " + vacationCnt);
 
 		join_mrvdgcVO annual = null;
+		join_mrvdgcVO annual2 = null;
 		join_mrvdgcVO vacation = null;
 		// annual = dao.annual(map); //연차 사용수 가져오기
 		// vacation = dao.vacation(map); // 휴가 사용수 가져오기
@@ -2207,15 +2208,13 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("연차 사용이 있을시");
 			dtos2 = dao.annualList(map);
 			annual = dao.annual(map);
-			dtos2.get(0).setU_annual(annual.getU_annual());
+			annual2 = dao.annual2(map);
+			float fu_annual = annual.getU_annual() + annual2.getU_annual();
+			dtos2.get(0).setFu_annual(fu_annual);	//사용한 연차 수
 			System.out.println("연차 사용한 횟수 : " + annual.getU_annual());
-			dtos2.get(0).setN_annual(dtos2.get(0).getAnnual() - annual.getU_annual());
+			dtos2.get(0).setFn_annual(dtos2.get(0).getAnnual() - fu_annual); //잔여연차
 			System.out.println("잔여 연차 : " + (dtos2.get(0).getAnnual() - annual.getU_annual()));
 			dtos.addAll(dtos2);
-			
-			
-			
-			
 		} else if (annualCnt == 0) {
 			System.out.println("연차 사용이 없는경우");
 			dtos2 = dao.annualList(map);

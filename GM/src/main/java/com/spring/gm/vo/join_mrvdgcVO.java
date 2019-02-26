@@ -45,7 +45,9 @@ public class join_mrvdgcVO {
 	private int types;
 	private int day;
 	private int annual; //연차
+	private float fu_annual;
 	private int u_annual; //연차 사용횟수
+	private float fn_annual;
 	private int n_annual; //연차 남은횟수
 	private int vacation; //휴가
 	private int u_vacation; //휴가 사용횟수
@@ -362,12 +364,28 @@ public class join_mrvdgcVO {
 		this.annual = annual;
 	}
 
+	public float getFu_annual() {
+		return fu_annual;
+	}
+
+	public void setFu_annual(float fu_annual) {
+		this.fu_annual = fu_annual;
+	}
+
 	public int getU_annual() {
 		return u_annual;
 	}
 
 	public void setU_annual(int u_annual) {
 		this.u_annual = u_annual;
+	}
+
+	public float getFn_annual() {
+		return fn_annual;
+	}
+
+	public void setFn_annual(float fn_annual) {
+		this.fn_annual = fn_annual;
 	}
 
 	public int getN_annual() {
@@ -516,7 +534,7 @@ public class join_mrvdgcVO {
 
 	@Override
 	public String toString() {
-		return "join_mrvdVO [id=" + id + ", pwd=" + pwd + ", name=" + name + ", eng_name=" + eng_name + ", jumin1="
+		return "join_mrvdgcVO [id=" + id + ", pwd=" + pwd + ", name=" + name + ", eng_name=" + eng_name + ", jumin1="
 				+ jumin1 + ", jumin2=" + jumin2 + ", gender=" + gender + ", marry=" + marry + ", wdday=" + wdday
 				+ ", frgn=" + frgn + ", nation=" + nation + ", tel=" + tel + ", tel_hm=" + tel_hm + ", email_in="
 				+ email_in + ", email_out=" + email_out + ", address=" + address + ", eng_address=" + eng_address
@@ -524,36 +542,37 @@ public class join_mrvdgcVO {
 				+ ", contract=" + contract + ", wrkdvd=" + wrkdvd + ", position=" + position + ", enterday=" + enterday
 				+ ", retireday=" + retireday + ", year=" + year + ", etc=" + etc + ", sys_rank=" + sys_rank + ", del="
 				+ del + ", account_number=" + account_number + ", company=" + company + ", num=" + num + ", types="
-				+ types + ", day=" + day + ", annual=" + annual + ", u_annual=" + u_annual + ", n_annual=" + n_annual
-				+ ", vacation=" + vacation + ", u_vacation=" + u_vacation + ", n_vacation=" + n_vacation + ", begin="
-				+ begin + ", end=" + end + ", content=" + content + ", state=" + state + ", deduct=" + deduct
-				+ ", applicationdate=" + applicationdate + ", fullhalfday=" + fullhalfday + ", c_name=" + c_name
-				+ ", c_address=" + c_address + ", c_number=" + c_number + ", groupId=" + groupId + ", g_name=" + g_name
-				+ ", group_rank=" + group_rank + ", j_name=" + j_name + ", getId()=" + getId() + ", getPwd()="
-				+ getPwd() + ", getName()=" + getName() + ", getEng_name()=" + getEng_name() + ", getJumin1()="
-				+ getJumin1() + ", getJumin2()=" + getJumin2() + ", getGender()=" + getGender() + ", getMarry()="
-				+ getMarry() + ", getWdday()=" + getWdday() + ", getFrgn()=" + getFrgn() + ", getNation()="
-				+ getNation() + ", getTel()=" + getTel() + ", getTel_hm()=" + getTel_hm() + ", getEmail_in()="
-				+ getEmail_in() + ", getEmail_out()=" + getEmail_out() + ", getAddress()=" + getAddress()
-				+ ", getEng_address()=" + getEng_address() + ", getDepart()=" + getDepart() + ", getRank()=" + getRank()
-				+ ", getRank_name()=" + getRank_name() + ", getSalary()=" + getSalary() + ", getContract()="
-				+ getContract() + ", getWrkdvd()=" + getWrkdvd() + ", getPosition()=" + getPosition()
-				+ ", getEnterday()=" + getEnterday() + ", getRetireday()=" + getRetireday() + ", getYear()=" + getYear()
-				+ ", getEtc()=" + getEtc() + ", getSys_rank()=" + getSys_rank() + ", getDel()=" + getDel()
-				+ ", getAccount_number()=" + getAccount_number() + ", getCompany()=" + getCompany() + ", getNum()="
-				+ getNum() + ", getTypes()=" + getTypes() + ", getDay()=" + getDay() + ", getAnnual()=" + getAnnual()
-				+ ", getU_annual()=" + getU_annual() + ", getN_annual()=" + getN_annual() + ", getVacation()="
-				+ getVacation() + ", getU_vacation()=" + getU_vacation() + ", getN_vacation()=" + getN_vacation()
-				+ ", getBegin()=" + getBegin() + ", getEnd()=" + getEnd() + ", getContent()=" + getContent()
-				+ ", getState()=" + getState() + ", getDeduct()=" + getDeduct() + ", getApplicationdate()="
-				+ getApplicationdate() + ", getFullhalfday()=" + getFullhalfday() + ", getC_name()=" + getC_name()
-				+ ", getC_address()=" + getC_address() + ", getC_number()=" + getC_number() + ", getGroupId()="
-				+ getGroupId() + ", getG_name()=" + getG_name() + ", getGroup_rank()=" + getGroup_rank()
-				+ ", getJ_name()=" + getJ_name() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+				+ types + ", day=" + day + ", annual=" + annual + ", fu_annual=" + fu_annual + ", u_annual=" + u_annual
+				+ ", fn_annual=" + fn_annual + ", n_annual=" + n_annual + ", vacation=" + vacation + ", u_vacation="
+				+ u_vacation + ", n_vacation=" + n_vacation + ", begin=" + begin + ", end=" + end + ", content="
+				+ content + ", state=" + state + ", deduct=" + deduct + ", applicationdate=" + applicationdate
+				+ ", fullhalfday=" + fullhalfday + ", c_name=" + c_name + ", c_address=" + c_address + ", c_number="
+				+ c_number + ", groupId=" + groupId + ", g_name=" + g_name + ", group_rank=" + group_rank + ", j_name="
+				+ j_name + ", getId()=" + getId() + ", getPwd()=" + getPwd() + ", getName()=" + getName()
+				+ ", getEng_name()=" + getEng_name() + ", getJumin1()=" + getJumin1() + ", getJumin2()=" + getJumin2()
+				+ ", getGender()=" + getGender() + ", getMarry()=" + getMarry() + ", getWdday()=" + getWdday()
+				+ ", getFrgn()=" + getFrgn() + ", getNation()=" + getNation() + ", getTel()=" + getTel()
+				+ ", getTel_hm()=" + getTel_hm() + ", getEmail_in()=" + getEmail_in() + ", getEmail_out()="
+				+ getEmail_out() + ", getAddress()=" + getAddress() + ", getEng_address()=" + getEng_address()
+				+ ", getDepart()=" + getDepart() + ", getRank()=" + getRank() + ", getRank_name()=" + getRank_name()
+				+ ", getSalary()=" + getSalary() + ", getContract()=" + getContract() + ", getWrkdvd()=" + getWrkdvd()
+				+ ", getPosition()=" + getPosition() + ", getEnterday()=" + getEnterday() + ", getRetireday()="
+				+ getRetireday() + ", getYear()=" + getYear() + ", getEtc()=" + getEtc() + ", getSys_rank()="
+				+ getSys_rank() + ", getDel()=" + getDel() + ", getAccount_number()=" + getAccount_number()
+				+ ", getCompany()=" + getCompany() + ", getNum()=" + getNum() + ", getTypes()=" + getTypes()
+				+ ", getDay()=" + getDay() + ", getAnnual()=" + getAnnual() + ", getFu_annual()=" + getFu_annual()
+				+ ", getU_annual()=" + getU_annual() + ", getFn_annual()=" + getFn_annual() + ", getN_annual()="
+				+ getN_annual() + ", getVacation()=" + getVacation() + ", getU_vacation()=" + getU_vacation()
+				+ ", getN_vacation()=" + getN_vacation() + ", getBegin()=" + getBegin() + ", getEnd()=" + getEnd()
+				+ ", getContent()=" + getContent() + ", getState()=" + getState() + ", getDeduct()=" + getDeduct()
+				+ ", getApplicationdate()=" + getApplicationdate() + ", getFullhalfday()=" + getFullhalfday()
+				+ ", getC_name()=" + getC_name() + ", getC_address()=" + getC_address() + ", getC_number()="
+				+ getC_number() + ", getGroupId()=" + getGroupId() + ", getG_name()=" + getG_name()
+				+ ", getGroup_rank()=" + getGroup_rank() + ", getJ_name()=" + getJ_name() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
-    
-    
+
+	
     
 	
 	
