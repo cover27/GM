@@ -67,6 +67,17 @@ while(true) {
 	//document.write("* 일수 차이 : " + parseInt(diff/currDay) + " 일<br/>");
 }
 
+//셀렉트 박스 선택시
+function chageLangSelect(){
+	var aaa = $('select').val();
+	// 2는 연차
+	// 1는 휴가
+	if(aaa == 2){
+		$("#qksck").show();
+	}else if(aaa == 1){
+		$("#qksck").hide();
+	}
+}
 
 </script>
 <section>
@@ -166,7 +177,7 @@ while(true) {
 			                    <td><input type="date" name="applicationdate" id="applicationdate"></td>
 			                    <th>휴가구분</th>
 			                    <td>
-			                        <select name="types">
+			                        <select name="types" onchange="chageLangSelect()" id="select">
 			                            <option value="1">휴가</option>
 			                            <option value="2">연차</option>
 			                        </select>
@@ -179,7 +190,7 @@ while(true) {
 											<span style="position: relative; bottom: 3px;">전차</span>
 										</label>
 									</span>
-									<span class="ml50" style="position: relative; top: 2px;">
+									<span class="ml50" style="position: relative; top: 2px; display:none;" id="qksck">
 										<label>
 											<input name="fullhalfday" type="checkbox" value="2" onclick="doOpenCheck(this);" style="width: 14px;">
 											<span style="position: relative; bottom: 3px;">반차</span>
