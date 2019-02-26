@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.gm.vo.Join_payVO;
+import com.spring.gm.vo.Join_payVO2;
 import com.spring.gm.vo.PaymentInfoVO;
 import com.spring.gm.vo.PaymentVO;
 import com.spring.gm.vo.join_groupnameVO;
@@ -36,9 +37,14 @@ public class P_DAOImpl implements P_DAO{
 
 	//전자결재 - 기안문 - 결재선 select 조인
 	@Override
-	public List<Join_payVO> selectApprLine(int company) {
+	public List<Join_payVO2> selectApprLine(int company) {
 		dao = sqlSession.getMapper(P_DAO.class);
 		return dao.selectApprLine(company);
+	}
+	@Override
+	public Join_payVO2 getApprline(String id) {
+		dao = sqlSession.getMapper(P_DAO.class);
+		return dao.getApprline(id);
 	}
 	//전자결재 - 기안문 - 결재선  회사에 그룹등급이 1인 부서명
 	@Override
@@ -46,7 +52,30 @@ public class P_DAOImpl implements P_DAO{
 		dao = sqlSession.getMapper(P_DAO.class);
 		return dao.getGroupName(company);
 	}
-	
+	@Override
+	public int insertGroupPayment(int company) {
+		return sqlSession.insert("com.spring.gm.persistence.P_DAO.insertGroupPayment", company);
+	}
+	@Override
+	public int getSeqGroups() {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getSeqGroups");
+	}
+	@Override
+	public int insertPayment(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.P_DAO.insertPayment", map);
+	}
+	@Override
+	public int getPaymentNum(int groupid) {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getPaymentNum", groupid);
+	}
+	@Override
+	public int insertGroupinfoPayment(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.P_DAO.insertGroupinfoPayment", map);
+	}
+	@Override
+	public int insertPaymentInfo(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.P_DAO.insertPaymentInfo", map);
+	}
 	@Override
 	public int getPaymentCnt(Map<String, Object> map) {
 		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getPaymentCnt", map);

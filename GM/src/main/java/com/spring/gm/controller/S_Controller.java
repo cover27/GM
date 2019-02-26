@@ -115,4 +115,12 @@ public class S_Controller {
 		service.sendDeletePro(req, model);
 		return "pages/S_sendDeletePro";		
 	}
+	
+	@RequestMapping("/pages/S_contentMessage")
+	public String contentMessage(HttpServletRequest req, Model model) {
+		logger.info("URL : S_contentMessage");
+		
+		service.messageContent(req, model);
+		return "pages/S_contentMessage";		
+	}
 }
