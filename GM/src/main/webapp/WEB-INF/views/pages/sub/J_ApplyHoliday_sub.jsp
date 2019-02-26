@@ -30,22 +30,39 @@ function cancelapplication(num) {
 	}
 };
 function handler(e){
-var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
-    
-    var today = new Date('2014-12-25').getDay();
-    var todayLabel = week[today];
-    alert(todayLabel);
+	var strDate = $('#begin').val();
+	var endDate = $('#end').val();
+	
+	var date1 = new Date(strDate); // 2017-11-30
+    var date2 = new Date(endDate); // 2017-12-6
+    var count = 0;
+while(true) {  
+    var temp_date = date1;
+    if(temp_date.getTime() > date2.getTime()) {
+        console.log("count : " + count);
+        break;
+    } else {
+        var tmp = temp_date.getDay();
+        if(tmp == 0 || tmp == 6) {
+            // 주말
+            console.log("주말");
+        } else {
+            // 평일
+            console.log("평일");
+            count++;         
+        }
+        temp_date.setDate(date1.getDate() + 1); 
+    }
+}
+	
 
-
-	var strDate1 = $('#begin').val();
-	var strDate2 = $('#end').val();
-	var arr1 = strDate1.split('-');
-	var arr2 = strDate2.split('-');
+	/* var arr1 = strDate.split('-');
+	var arr2 = endDate.split('-');
 	var dat1 = new Date(arr1[0], arr1[1], arr1[2]);
 	var dat2 = new Date(arr2[0], arr2[1], arr2[2]);
 	var diff = dat2 - dat1;
-	var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
-	document.getElementById("day").value = parseInt(diff/currDay);
+	var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨 */
+	document.getElementById("day").value =  count;
 	
 	//document.write("* 일수 차이 : " + parseInt(diff/currDay) + " 일<br/>");
 }
