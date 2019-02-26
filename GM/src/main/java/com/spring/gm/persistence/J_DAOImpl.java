@@ -969,6 +969,16 @@ public class J_DAOImpl implements J_DAO {
 		return dtos;
 	}
 	
+	
+	//반차 사용 횟수
+	@Override
+	public int fullhalfdayCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.fullhalfdayCnt", map);
+		return cnt;
+	}
+	
+	
+	
 	//연차 사용수 가져오기
 	@Override
 	public join_mrvdgcVO annual(Map<String, Object> map) {

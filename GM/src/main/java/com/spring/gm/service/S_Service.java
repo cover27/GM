@@ -28,4 +28,9 @@ public interface S_Service {
 	public void messageBoxList(HttpServletRequest req, Model model);	// 나의 쪽지함 리스트
 	
 	public void createMessageBoxPro(HttpServletRequest req, Model model);	// 나의 쪽지함 생성처리
+	
+	public void messageBoxModifyForm(HttpServletRequest req, Model model);		// 메세지함 수정폼
+	
+	public void messageBoxModifyPro(HttpServletRequest req, Model model);		// 메세지함 수정처리
+	
 }

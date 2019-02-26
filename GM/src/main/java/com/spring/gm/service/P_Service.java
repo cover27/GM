@@ -3,6 +3,9 @@ package com.spring.gm.service;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.spring.gm.vo.AttachVO;
 
 public interface P_Service {
 	//기안문 작성
@@ -18,13 +21,19 @@ public interface P_Service {
 	public void P_resistPayLine(HttpServletRequest req, Model model);
 	
 	//결재 요청
-	public void apprDocReq(HttpServletRequest req, Model model);
+	public void apprDocReq(MultipartFile file, HttpServletRequest req, Model model);
+	
+	//랜덤 파일이름 만들기
+	public String getRandomString();
 	
 	//결재대기함
 	public void P_listApprTodoView(HttpServletRequest req, Model model);
 	
 	//결재상세페이지
 	public void P_payContentForm(HttpServletRequest req, Model model);
+	
+	//파일 다운로드
+	public AttachVO downloadFile(HttpServletRequest req);
 	
 	//결재문서삭제 관리자
 	public void P_deletePayment(HttpServletRequest req, Model model);
