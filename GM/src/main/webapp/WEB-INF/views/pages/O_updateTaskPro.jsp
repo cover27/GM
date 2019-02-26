@@ -7,15 +7,15 @@
 	<h2>업무 수정 Pro</h2>
 	<c:if test="${updateCnt == 0}">
 		<script type="text/javascript">
-			alert("업무 등록 실패했습니다.");
+			alert("업무 수정 실패했습니다.");
 			window.history.back();
 		</script>
 	</c:if>
 	
 	<c:if test="${updateCnt != 0}">
 		<script type="text/javascript">
-			alert("업무 등록 완료했습니다.");
-			window.location="O_readOrderView?todonum=${todonum}";
+			alert("업무 수정 완료했습니다.");
+			window.location="W_readOrderView?todonum=${todonum}";
 		</script>
 	</c:if>
 	

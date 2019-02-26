@@ -219,7 +219,7 @@ tbody {
 		                                </td>
 		                                <td class="text-left">
 		                                    <div class="ellipsis">
-		                                        <a href="<c:url value='/pages/O_readOrderView?todonum=${dto.todonum}'/>" title="테스트">${dto.subject }</a> 
+		                                        <a href="<c:url value='/pages/W_readOrderView?todonum=${dto.todonum}'/>" title="테스트">${dto.subject }</a> 
 		                                    </div>
 		                                </td>
 		                                <td>
@@ -263,8 +263,8 @@ tbody {
 										<script>console.log('${pageBlock}');</script>
 		
 										<c:if test="${startPage > pageBlock}">
-											<a href="O_listPureOrderView">[◀◀]</a>
-											<a href="O_listPureOrderView?pageNum=${endPage - pageBlock}">[◀]</a>
+											<a href="W_listPureOrderView">[◀◀]</a>
+											<a href="W_listPureOrderView?pageNum=${endPage - pageBlock}">[◀]</a>
 										</c:if>
 		
 										<!-- 중간에 들어갈 페이지 -->
@@ -273,14 +273,14 @@ tbody {
 												<span><b>[${i}]</b></span>
 											</c:if>
 											<c:if test="${i!=currentPage}">
-												<a href="O_listPureOrderView?pageNum=${i}">[${i}]</a>
+												<a href="W_listPureOrderView?pageNum=${i}">[${i}]</a>
 											</c:if>
 										</c:forEach>
 		
 										<!-- 다음[▶] / 마지막[▶▶]  -->
 										<c:if test="${pageCount > endPage}">
-											<a href="O_listPureOrderView?pageNum=${startPage + pageBlock}">[▶]</a>
-											<a href="O_listPureOrderView?pageNum=${pageCount}">[▶▶]</a>
+											<a href="W_listPureOrderView?pageNum=${startPage + pageBlock}">[▶]</a>
+											<a href="W_listPureOrderView?pageNum=${pageCount}">[▶▶]</a>
 										</c:if>
 									</c:if>
 								</th>
@@ -292,7 +292,7 @@ tbody {
 		            <input name="pageIndex" type="hidden" value="1" title="현재 페이지">
 		            
 		            <div class="btn-wrap">
-		                <button type="button" class="btn btn-color5 br" onclick="window.location='O_createSelfTaskView';">업무 등록</button>
+		                <button type="button" class="btn btn-color5 br" onclick="window.location='W_createSelfTaskView';">업무 등록</button>
 		                <button type="button" class="btn btn-color7 br" onclick="autoComplete();">업무완료</button>
 		                <button type="button" class="btn btn-color7 br" onclick="deleteTask();">삭제</button>
 		            </div>

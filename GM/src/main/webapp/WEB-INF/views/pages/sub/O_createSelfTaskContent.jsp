@@ -4,8 +4,8 @@
 <script type="text/javascript">
 	function searchIdPlease() {
 		var id = $('.searchp').val();
-		var url = "O_searchId_sub?id=" + id;
-		window.open(url, "O_searchId", "menubar=no, width=700, height=560");
+		var url = "W_searchId_sub?id=" + id;
+		window.open(url, "W_searchId", "menubar=no, width=700, height=560");
 	}
     function back(id,b_name){
     	opener.document.searchform123.id.value=id;
@@ -230,7 +230,7 @@ img{
 		
 		<div class="content-wrap">
 		    <div class="content-write">
-		        <form action="<c:url value='/pages/O_createSelfTaskPro'/>" method="post" name="searchform123">
+		        <form action="<c:url value='/pages/W_createSelfTaskPro'/>" method="post" name="searchform123">
 		        
 		        <input type="hidden" name="todonum" value="${todonum}">
 		        <input type="hidden" name="groupId" value="${groupId}">

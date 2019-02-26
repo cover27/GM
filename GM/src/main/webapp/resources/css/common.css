@@ -103,7 +103,7 @@ button, input[type="submit"], input[type="button"], input[type="reset"] {
     cursor: pointer;
 }
 
-select {
+select, input[type="date"] {
     height: 27px;
     padding: 3px;
     color: #111;

@@ -86,6 +86,9 @@ function board_move(){
 											<c:forEach var="dtos" items="${b_dtos}">
 												<c:if test="${dto.num == dtos.num}">
 													${dtos.b_name}
+													<c:if test="${dtos.anon == 1}">
+														<span>(익명)</span>
+													</c:if>													
 												</c:if>
 											</c:forEach>
 										</td>
@@ -95,7 +98,12 @@ function board_move(){
 												<c:forEach var="dtos" items="${b_dtos}">
 													<c:if test="${dto.num != dtos.num}">
 														<c:if test="${dtos.del == 0}">
-															<option value="${dtos.num}"> ${dtos.b_name}</option>
+															<option value="${dtos.num}"> 
+																${dtos.b_name}
+																<c:if test="${dtos.anon == 1}">
+																	<span>(익명)</span>
+																</c:if>
+															</option>
 														</c:if>
 				   									</c:if>
 				   								</c:forEach>

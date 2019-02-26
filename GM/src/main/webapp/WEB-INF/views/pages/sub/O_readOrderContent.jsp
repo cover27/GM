@@ -73,10 +73,13 @@ table, tr, th, td{
                 		</c:forEach>
 		    		</table>
 		    		
+		    		<br>
+		    		<br>
+		    		
 		    		<div class="inform-wrap rejectClass">
 		    			<div class="statement">
-		    				<h4>처리 내역</h4>
-		    				<span>상태값</span>
+		    				<h4 style="float:left;">처리 내역</h4>
+		    				<span style="float:right;">상태값</span>
 		    			</div>
 		    			<div class="form-block">
 		    				<table class="table">
@@ -103,9 +106,9 @@ table, tr, th, td{
 		    </div>
 		    
 		    <div >
-                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/O_updateTaskView?todonum=${todonum}&id=${id}'/>'">수정</button>
-                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/O_updateTaskDeletePro?todonum=${todonum}&id=${id}'/>'">삭제</button>
-                <button type="button" class="btn btn-color7 br" onclick="window.history.back();">목록</button>
+                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/W_updateTaskView?todonum=${todonum}&id=${id}'/>'">수정</button>
+                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/W_updateTaskDeletePro?todonum=${todonum}&id=${id}'/>'">삭제</button>
+                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/W_listPureOrderView'/>'">목록</button>
 		    </div>
 		    
 		</div>
