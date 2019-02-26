@@ -979,6 +979,18 @@ public class J_DAOImpl implements J_DAO {
 		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.vacation", map);
 	}
 	
+
+	//회원 연차 가져오기
+	@Override
+	public join_mrvdgcVO memberyear(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.memberyear", map);
+	}
+	//회사 연차 가져오기
+	@Override
+	public join_mrvdgcVO companyyear(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.companyyear", map);
+	}
+	
 	
 	//연차/휴가일수 조회 전체보기
 	@Override

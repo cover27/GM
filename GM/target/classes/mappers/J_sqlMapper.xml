@@ -877,16 +877,25 @@
    	 ]]>
    	</select>
    	
-   	
-   	
-   	
-   	
+   	<!-- 회원 연차 가져오가 -->
+   	<select id="memberyear" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
+   	select year from member 
+    where id=#{id} and company=#{company}
+   	</select>
+   	<!-- 해당 회사 연차 가져고이 -->
+   	<select id="companyyear" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
+   	<![CDATA[
+   	select max(year) as year from dayoff 
+	where year <=#{memberyear}  and company = #{company}
+	]]>
+     </select>
      
      <!-- 연차 횟수 -->
      <select id="annual" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
      select sum(v.day) as u_annual
 	 from vacation v, member m
-	 where m.id = v.id and m.id=#{id}
+	 where m.id = v.id 
+	 and m.id=#{id}
 	 and m.company = #{company}
 	 and to_char(v.begin,'yyyy')= 2019 and to_char(v.end,'yyyy')= #{year}
 	 and types = 1
@@ -895,7 +904,8 @@
      <select id="vacation" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
      select sum(v.day) as u_vacation
 	 from vacation v, member m
-	 where m.id = v.id and m.id=#{id}
+	 where m.id = v.id 
+	 and m.id=#{id}
 	 and m.company = #{company}
 	 and to_char(v.begin,'yyyy')= 2019 and to_char(v.end,'yyyy')= #{year}
 	 and types = 2
@@ -916,7 +926,7 @@
 	from member m, grade r, dayoff d
 	where m.rank = r.rank
 	and m.company = d.company
-	and m.year = d.year
+	and #{companyyear} = d.year
 	and m.id = #{id}
 	and m.company = #{company}
 	and d.types = 1
@@ -937,7 +947,6 @@
 	from member m, grade r, dayoff d
 	where m.rank = r.rank
 	and m.company = d.company
-	and m.year = d.year
 	and m.id = #{id}
 	and m.company = #{company}
 	and d.types = 2

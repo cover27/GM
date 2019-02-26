@@ -2166,11 +2166,22 @@ public class J_ServiceImpl implements J_Service {
 		String year = req.getParameter("year");
 		System.out.println("year : " + year);
 
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("year", year);
 		map.put("id", id);
 
+		join_mrvdgcVO memberyears = dao.memberyear(map);//회원 연차 가져오기
+		int memberyear = memberyears.getYear();
+		map.put("memberyear", memberyear);
+		System.out.println("memberyear : "  + memberyear);
+		
+		join_mrvdgcVO companyyears = dao.companyyear(map);//회사 연차 가져오기
+		int companyyear = companyyears.getYear();
+		map.put("companyyear", companyyear);
+		System.out.println("companyyear : "  + companyyear);
+		
 		int selectCnt = dao.memberinfo(map);
 		System.out.println("cnt : " + selectCnt);
 		model.addAttribute("cnt", selectCnt);
@@ -2201,6 +2212,10 @@ public class J_ServiceImpl implements J_Service {
 			dtos2.get(0).setN_annual(dtos2.get(0).getAnnual() - annual.getU_annual());
 			System.out.println("잔여 연차 : " + (dtos2.get(0).getAnnual() - annual.getU_annual()));
 			dtos.addAll(dtos2);
+			
+			
+			
+			
 		} else if (annualCnt == 0) {
 			System.out.println("연차 사용이 없는경우");
 			dtos2 = dao.annualList(map);
@@ -2220,6 +2235,7 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("휴가 사용한 횟수 : " + vacation.getU_vacation());
 			dtos3.get(0).setN_vacation(dtos3.get(0).getVacation() - vacation.getU_vacation());
 			System.out.println("잔여 휴가 : " + (dtos3.get(0).getVacation() - vacation.getU_vacation()));
+			dtos.get(0).setVacation(dtos3.get(0).getVacation());
 			dtos.get(0).setU_vacation(dtos3.get(0).getU_vacation());
 			dtos.get(0).setN_vacation(dtos3.get(0).getN_vacation());
 		} else if (vacationCnt == 0) {
@@ -2257,6 +2273,18 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("id : " + id);
 			map.put("id", id);
 
+			join_mrvdgcVO memberyears = dao.memberyear(map);//회원 연차 가져오기
+			map.remove("memberyear");
+			int memberyear = memberyears.getYear();
+			map.put("memberyear", memberyear);
+			System.out.println("memberyear : "  + memberyear);
+			
+			join_mrvdgcVO companyyears = dao.companyyear(map);//회사 연차 가져오기
+			map.remove("companyyear");
+			int companyyear = companyyears.getYear();
+			map.put("companyyear", companyyear);
+			System.out.println("companyyear : "  + companyyear);
+			
 			// 연차 사용수
 			int annualCnt = dao.annualCnt(map);
 			System.out.println("annualCnt2 : " + annualCnt);
