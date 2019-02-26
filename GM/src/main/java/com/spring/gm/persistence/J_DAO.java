@@ -239,6 +239,9 @@ public interface J_DAO {
 	public join_mrvdgcVO annual2(Map<String, Object> map);//연차 사용수 가져오기
 	public join_mrvdgcVO vacation(Map<String, Object> map);// 휴가 사용수 가져오기
 	
+	
+	//반차 사용 횟수
+	public int fullhalfdayCnt(Map<String, Object> map);
 	//연차
 	public int annualCnt(Map<String, Object> map);
 	public ArrayList<join_mrvdgcVO> annualList(Map<String, Object> map);

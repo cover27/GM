@@ -25,8 +25,8 @@
 				<td>${dto.enterday}</td>
 				<td>${dto.year}</td>
 				<td>${dto.annual}</td>
-				<td>${dto.u_annual}</td>
-				<td>${dto.n_annual}</td>
+				<td>${dto.su_annual}</td>
+				<td>${dto.sn_annual}</td>
 				<td>${dto.vacation}</td>
 				<td>${dto.u_vacation}</td>
 				<td>${dto.n_vacation}</td>

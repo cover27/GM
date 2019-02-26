@@ -518,7 +518,8 @@ public class J_Controller {
 		//휴가신청
 		@RequestMapping("/pages/J_ApplyHoliday")
 		public String J_ApplyHoliday(HttpServletRequest req, Model model) {
-
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
 			logger.info("URL : J_ApplyHoliday");
 			service.companyName(req, model);
 			service.vacationapplication(req, model);
@@ -654,6 +655,8 @@ public class J_Controller {
 		//휴가 신청하기
 		@RequestMapping("/pages/leaveapplication")
 		public String leaveapplication(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
 			logger.info("URL : leaveapplication");
 			service.companyName(req, model);
 			service.leaveapplication(req, model);
@@ -662,6 +665,8 @@ public class J_Controller {
 		//휴가 신청취소하기
 		@RequestMapping("/pages/cancelapplication")
 		public String cancelapplication(HttpServletRequest req, Model model) {
+			int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+			model.addAttribute("sys_rank",sys_rank);
 			logger.info("URL : cancelapplication");
 			service.companyName(req, model);
 			service.cancelapplication(req, model);
