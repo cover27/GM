@@ -1853,6 +1853,7 @@ public class J_ServiceImpl implements J_Service {
 					map.put("start",dates);
 					System.out.println("start : " + start);
 					insertCnt = dao.managementInsert(map);
+				}
 				/*String inputDate = dates;
 
 				DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
