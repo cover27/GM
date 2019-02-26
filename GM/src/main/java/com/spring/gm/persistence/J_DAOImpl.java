@@ -954,6 +954,7 @@ public class J_DAOImpl implements J_DAO {
 		return dtos;
 	}
 	
+	
 	//휴가
 	@Override
 	public int vacationCnt(Map<String, Object> map) {
@@ -968,15 +969,41 @@ public class J_DAOImpl implements J_DAO {
 		return dtos;
 	}
 	
+	
+	//반차 사용 횟수
+	@Override
+	public int fullhalfdayCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.fullhalfdayCnt", map);
+		return cnt;
+	}
+	
+	
+	
 	//연차 사용수 가져오기
 	@Override
 	public join_mrvdgcVO annual(Map<String, Object> map) {
 		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.annual", map);
 	}
+	@Override
+	public join_mrvdgcVO annual2(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.annual2", map);
+	}
 	// 휴가 사용수 가져오기
 	@Override
 	public join_mrvdgcVO vacation(Map<String, Object> map) {
 		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.vacation", map);
+	}
+	
+
+	//회원 연차 가져오기
+	@Override
+	public join_mrvdgcVO memberyear(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.memberyear", map);
+	}
+	//회사 연차 가져오기
+	@Override
+	public join_mrvdgcVO companyyear(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.J_DAO.companyyear", map);
 	}
 	
 	

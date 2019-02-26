@@ -50,7 +50,12 @@
 	                        					});
 	                        				}
 	                        			</script>
-                        				<a href="<c:url value='/pages/D_boardList?num=${b_dtos.num}'/>">${b_dtos.b_name}</a>
+                        				<a href="<c:url value='/pages/D_boardList?num=${b_dtos.num}'/>">
+                        					${b_dtos.b_name}
+                        					<c:if test="${b_dtos.anon == 1}">
+												<span>(익명)</span>
+											</c:if>
+                        				</a>
                         			</li>  
                         		</c:if>                      	
                         	</c:forEach>

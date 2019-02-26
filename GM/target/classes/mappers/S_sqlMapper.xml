@@ -12,13 +12,17 @@
 	
 	<select id="getMessageArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MessageVO">
 		<![CDATA[
-			SELECT * FROM(SELECT num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate, del ,rownum rNum FROM (SELECT * FROM message WHERE receiver = #{receiver} AND del = 0 AND message_num = 1 AND state = 0 ORDER BY message_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate, del, readCnt, rownum rNum FROM (SELECT * FROM message WHERE receiver = #{receiver} AND del = 0 AND message_num = 1 AND state = 0 ORDER BY message_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>	
 	
+	<select id="content" parameterType="int" resultType="com.spring.gm.vo.MessageVO">
+		SELECT * FROM Message WHERE num = #{num}
+	</select>
+	
 	<insert id="sendMessage" parameterType="com.spring.gm.vo.MessageVO">
-		INSERT INTO Message (num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate,  del) 
-		VALUES(seq_message.nextval, #{message_num}, #{sender}, #{receiver}, #{subject}, #{content}, #{state}, #{sentDate}, #{receiveDate}, #{del}) 
+		INSERT INTO Message (num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate,  del, readCnt) 
+		VALUES(seq_message.nextval, #{message_num}, #{sender}, #{receiver}, #{subject}, #{content}, #{state}, #{sentDate}, #{receiveDate}, #{readCnt}, #{del}) 
 	</insert>
 	
 	<insert id="sendMessageData" parameterType="com.spring.gm.vo.MessageVO">
@@ -58,6 +62,33 @@
 		<![CDATA[
 			UPDATE message SET del = 1 WHERE num = #{num}
 		]]>
+	</update>
+	
+	<select id="getMessageBoxArticleCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM messagebox WHERE id=#{strId} AND del=0
+	</select>
+	
+	<select id="getMessageboxArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MessageBoxVO">
+		<![CDATA[
+			SELECT * FROM(SELECT message_num, id, name, del ,rownum rNum FROM (SELECT * FROM messagebox WHERE id = #{strId} AND del = 0 ORDER BY message_num ASC))
+		]]>
+	</select>	
+	
+	<update id="addReadCnt" parameterType="int">
+		UPDATE message SET readCnt = readCnt + 1 WHERE num = #{num}
+	</update>
+	
+	<insert id="createMessageBox" parameterType="com.spring.gm.vo.MessageBoxVO">
+		INSERT INTO messagebox (message_num, id, name, del) 
+		VALUES(seq_messagebox, #{message_num}, #{id}, #{name}, #{del}) 
+	</insert>
+	
+	<select id="getMessageBoxArticle" parameterType="int" resultType="com.spring.gm.vo.com.spring.gm.vo.MessageBoxVO">
+		SELECT * FROM messagebox WHERE message_num = #{message_num}
+	</select>
+	
+	<update id="MessageBoxModifyPro" parameterType="com.spring.gm.vo.MessageBoxVO">
+		UPDATE BOARDS SET name = #{name} WHERE message_num = #{message_num}
 	</update>
 
 </mapper>

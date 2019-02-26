@@ -1,6 +1,9 @@
 
 package com.spring.gm.service;
 
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -8,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Calendar;
 
 
 
@@ -1790,15 +1794,12 @@ public class J_ServiceImpl implements J_Service {
 	
 	//휴가승인 확인후근태 처리
 	@Override
-	public void managementInsert(HttpServletRequest req, Model model) {
+	public void managementInsert(HttpServletRequest req, Model model) throws ParseException {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		String date = req.getParameter("date");
 		String id = req.getParameter("id");
-		System.out.println("id: " + id);
 		String name = req.getParameter("name");
-		System.out.println("name: " + name);
 		int fullhalfday = Integer.parseInt(req.getParameter("fullhalfday"));
-		System.out.println("fullhalfday: " + fullhalfday);
 		String begin = req.getParameter("begin");
 		System.out.println("begin: " + begin);
 		String end = req.getParameter("end");
@@ -1820,7 +1821,10 @@ public class J_ServiceImpl implements J_Service {
 		if(fullhalfday == 1) {
 			System.out.println("전차");
 			for(int i =0; i<day; i++) {
+				
 				int start = Integer.parseInt(begin) + i;
+				begin = Integer.toString(start);
+				System.out.println("begin : " + begin);
 				String startday = Integer.toString(start);
 				System.out.println("startday :" + startday);
 				String year = startday.substring(0,4);
@@ -1832,8 +1836,43 @@ public class J_ServiceImpl implements J_Service {
 				String dates = year + "-" + month + "-" + day2;
 				System.out.println("dates :" + dates);
 						
-				map.put("start",dates);
-				insertCnt = dao.managementInsert(map);
+				String inputDate = begin;
+				DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+				Date datea = dateFormat.parse(inputDate);
+
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(datea);
+
+				System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+				int number = calendar.get(Calendar.DAY_OF_WEEK);
+				if(number == 7 || number == 1) {
+					System.out.println("주말 제외 타나?");
+					start = start + 1;
+					System.out.println("begin : " + begin);
+				}else if(number != 7 && number != 1) {
+					System.out.println("주말 아닐때");
+					map.put("start",dates);
+					System.out.println("start : " + start);
+					insertCnt = dao.managementInsert(map);
+				}
+				/*String inputDate = dates;
+
+				DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+				Date datee = dateFormat.parse(inputDate);
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(datee);
+				System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+				String week = Integer.toString(calendar.get(Calendar.DAY_OF_WEEK));
+				System.out.println("week : " + week);
+				if(week.equals("토요일") || week.equals("일요일")) {
+					System.out.println("주말 제외 타나?");
+					begin = begin + 2;
+					System.out.println("begin : " + begin);
+				}else if(!week.equals("토요일") && !week.equals("일요일")) {
+					System.out.println("주말 아닐때");
+					map.put("start",dates);
+					insertCnt = dao.managementInsert(map);
+				}*/
 			}
 			System.out.println("insertCnt : " + insertCnt);
 			if(insertCnt > 0) {
@@ -2128,11 +2167,22 @@ public class J_ServiceImpl implements J_Service {
 		String year = req.getParameter("year");
 		System.out.println("year : " + year);
 
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("year", year);
 		map.put("id", id);
 
+		join_mrvdgcVO memberyears = dao.memberyear(map);//회원 연차 가져오기
+		int memberyear = memberyears.getYear();
+		map.put("memberyear", memberyear);
+		System.out.println("memberyear : "  + memberyear);
+		
+		join_mrvdgcVO companyyears = dao.companyyear(map);//회사 연차 가져오기
+		int companyyear = companyyears.getYear();
+		map.put("companyyear", companyyear);
+		System.out.println("companyyear : "  + companyyear);
+		
 		int selectCnt = dao.memberinfo(map);
 		System.out.println("cnt : " + selectCnt);
 		model.addAttribute("cnt", selectCnt);
@@ -2145,6 +2195,7 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("vacationCnt : " + vacationCnt);
 
 		join_mrvdgcVO annual = null;
+		join_mrvdgcVO annual2 = null;
 		join_mrvdgcVO vacation = null;
 		// annual = dao.annual(map); //연차 사용수 가져오기
 		// vacation = dao.vacation(map); // 휴가 사용수 가져오기
@@ -2153,22 +2204,39 @@ public class J_ServiceImpl implements J_Service {
 		List<join_mrvdgcVO> dtos2 = null;
 		List<join_mrvdgcVO> dtos3 = null;
 
+		int fullhalfdayCnt = dao.fullhalfdayCnt(map);
+		System.out.println("fullhalfdayCnt :" + fullhalfdayCnt);
 		// 연차 사용수
 		if (annualCnt > 0) {
 			System.out.println("연차 사용이 있을시");
 			dtos2 = dao.annualList(map);
 			annual = dao.annual(map);
-			dtos2.get(0).setU_annual(annual.getU_annual());
+			//annual2 = dao.annual2(map);
+			DecimalFormat df=new DecimalFormat("0.#");
+			
+			float fu_annual = 0;
+				fu_annual =(float) (annual.getU_annual() - (fullhalfdayCnt * 0.5)); //사용 연차수.
+				System.out.println("fu_annual : " + fu_annual);
+				String su_annual =  df.format(fu_annual);
+				System.out.println("su_annual : " + su_annual);
+			
+			dtos2.get(0).setSu_annual(su_annual);	//사용한 연차 수
 			System.out.println("연차 사용한 횟수 : " + annual.getU_annual());
-			dtos2.get(0).setN_annual(dtos2.get(0).getAnnual() - annual.getU_annual());
-			System.out.println("잔여 연차 : " + (dtos2.get(0).getAnnual() - annual.getU_annual()));
+			
+			float fn_annual = (float)(dtos2.get(0).getAnnual() - fu_annual);
+			System.out.println("fn_annual : " + fn_annual);
+			String sn_annual =  df.format(fn_annual);
+			System.out.println("sn_annual : " + sn_annual);
+			
+			dtos2.get(0).setSn_annual(sn_annual); //잔여연차
+			System.out.println("잔여 연차 : " + dtos2.get(0).getSn_annual());
 			dtos.addAll(dtos2);
 		} else if (annualCnt == 0) {
 			System.out.println("연차 사용이 없는경우");
 			dtos2 = dao.annualList(map);
-			dtos2.get(0).setU_annual(0);
+			dtos2.get(0).setSu_annual(Integer.toString(0));
 			System.out.println("연차 사용한 횟수 : " + dtos2.get(0).getU_annual());
-			dtos2.get(0).setN_annual(dtos2.get(0).getAnnual());
+			dtos2.get(0).setSn_annual(Integer.toString(dtos2.get(0).getAnnual()));
 			System.out.println("잔여 연차 : " + dtos2.get(0).getAnnual());
 			dtos.addAll(dtos2);
 		}
@@ -2182,6 +2250,7 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("휴가 사용한 횟수 : " + vacation.getU_vacation());
 			dtos3.get(0).setN_vacation(dtos3.get(0).getVacation() - vacation.getU_vacation());
 			System.out.println("잔여 휴가 : " + (dtos3.get(0).getVacation() - vacation.getU_vacation()));
+			dtos.get(0).setVacation(dtos3.get(0).getVacation());
 			dtos.get(0).setU_vacation(dtos3.get(0).getU_vacation());
 			dtos.get(0).setN_vacation(dtos3.get(0).getN_vacation());
 		} else if (vacationCnt == 0) {
@@ -2219,6 +2288,18 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("id : " + id);
 			map.put("id", id);
 
+			join_mrvdgcVO memberyears = dao.memberyear(map);//회원 연차 가져오기
+			map.remove("memberyear");
+			int memberyear = memberyears.getYear();
+			map.put("memberyear", memberyear);
+			System.out.println("memberyear : "  + memberyear);
+			
+			join_mrvdgcVO companyyears = dao.companyyear(map);//회사 연차 가져오기
+			map.remove("companyyear");
+			int companyyear = companyyears.getYear();
+			map.put("companyyear", companyyear);
+			System.out.println("companyyear : "  + companyyear);
+			
 			// 연차 사용수
 			int annualCnt = dao.annualCnt(map);
 			System.out.println("annualCnt2 : " + annualCnt);
@@ -2231,24 +2312,42 @@ public class J_ServiceImpl implements J_Service {
 			// annual = dao.annual(map); //연차 사용수 가져오기
 			// vacation = dao.vacation(map); // 휴가 사용수 가져오기
 
+			
+			int fullhalfdayCnt = dao.fullhalfdayCnt(map);
+			System.out.println("fullhalfdayCnt :" + fullhalfdayCnt);
+			
 			// 연차 사용수
 			if (annualCnt > 0) {
 				System.out.println("연차 사용이 있을시");
 				List<join_mrvdgcVO> dtos2 = dao.annualList(map);
 				annual = dao.annual(map);
-				dtos2.get(0).setU_annual(annual.getU_annual());
+				DecimalFormat df=new DecimalFormat("0.#");
+				
+				float fu_annual = 0;
+				fu_annual =(float) (annual.getU_annual() - (fullhalfdayCnt * 0.5)); //사용 연차수.
+				System.out.println("fu_annual : " + fu_annual);
+				String su_annual =  df.format(fu_annual);
+				System.out.println("su_annual : " + su_annual);
+				
+				dtos2.get(0).setSu_annual(su_annual);	//사용한 연차 수
 				System.out.println("연차 사용한 횟수 : " + annual.getU_annual());
-				dtos2.get(0).setN_annual(dtos2.get(0).getAnnual() - annual.getU_annual());
-				System.out.println("잔여 연차 : " + (dtos2.get(0).getAnnual() - annual.getU_annual()));
+				
+				float fn_annual = (float)(dtos2.get(0).getAnnual() - fu_annual);
+				System.out.println("fn_annual : " + fn_annual);
+				String sn_annual =  df.format(fn_annual);
+				System.out.println("sn_annual : " + sn_annual);
+				
+				dtos2.get(0).setSn_annual(sn_annual); //잔여연차
+				System.out.println("잔여 연차 : " + dtos2.get(0).getSn_annual());
 				dtos.addAll(j, dtos2);
 			} else if (annualCnt == 0) {
 				System.out.println("연차 사용이 없는경우");
 				List<join_mrvdgcVO> dtos2 = dao.annualList(map);
 				System.out.println("dtos2사이즈 :" + dtos2.size());
 				System.out.println("dtos2 : " + dtos2.toString());
-				dtos2.get(0).setU_annual(0);
+				dtos2.get(0).setSu_annual(Integer.toString(0));
 				System.out.println("연차 사용한 횟수 : " + dtos2.get(0).getU_annual());
-				dtos2.get(0).setN_annual(dtos2.get(0).getAnnual());
+				dtos2.get(0).setSn_annual(Integer.toString(dtos2.get(0).getAnnual()));
 				System.out.println("잔여 연차 : " + dtos2.get(0).getAnnual());
 				dtos.addAll(j, dtos2);
 			}

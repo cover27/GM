@@ -1,5 +1,6 @@
 package com.spring.gm.service;
 
+import java.text.ParseException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -107,7 +108,7 @@ public interface J_Service {
 	//휴가승인목록 확인
 	public void vacationList(HttpServletRequest req, Model model);
 	//휴가승인 확인후근태 처리
-	public void managementInsert(HttpServletRequest req, Model model);
+	public void managementInsert(HttpServletRequest req, Model model) throws ParseException;
 	
 	
 	//월별 근태 정보 가져오기

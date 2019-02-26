@@ -115,4 +115,37 @@ public class S_Controller {
 		service.sendDeletePro(req, model);
 		return "pages/S_sendDeletePro";		
 	}
+	
+	@RequestMapping("/pages/S_contentMessage")
+	public String contentMessage(HttpServletRequest req, Model model) {
+		logger.info("URL : S_contentMessage");
+		
+		service.messageContent(req, model);
+		return "pages/S_contentMessage";		
+	}
+	
+	@RequestMapping("/pages/S_createMessageForm")
+	public String createMessageForm(HttpServletRequest req, Model model) {
+		logger.info("URL : S_createMessageForm");
+		
+		return "pages/S_createMessageForm";	
+	}
+	
+	@RequestMapping("/pages/S_createMessagePro")
+	public String createMessagePro(HttpServletRequest req, Model model) {
+		logger.info("URL : S_createMessagePro");
+		
+		service.createMessageBoxPro(req, model);
+		return "pages/S_createMessagePro";	
+	}
+	
+	@RequestMapping("/pages/S_messageBoxSetting")
+	public String messageBoxSetting(HttpServletRequest req, Model model) {
+		logger.info("URL : S_messageBoxSetting");
+		
+		service.messageBoxList(req, model);
+		return "pages/S_messageBoxSetting";	
+	}
+	
+	
 }

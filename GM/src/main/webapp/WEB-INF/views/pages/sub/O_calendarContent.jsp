@@ -51,10 +51,12 @@
               , textColor : "#FFFFFF"
           }
 	  ],
-	  dayClick:function(date, jsEvent, view){	// 해당 날짜 클릭 시
-		  alert('Clicked on:' + date.format());	// 클릭한 날짜를 띄어주며
+	 /* 
+	 	dayClick:function(date, jsEvent, view){	// 해당 날짜 클릭 시
+		  console.log('Clicked on:' + date.format());	// 클릭한 날짜를 띄어주며
 		  $(this).css('background-color', '#ddfbff'); //해당 배경 색깔 바뀜
-	  },
+	 	 },
+	  */
 	  eventClick:function(calEvent, jsEvent, view){
 		  $(this).css('border-color', 'red');
 		  var url='O_calendarDetail?num='+calEvent.num;

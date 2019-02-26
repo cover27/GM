@@ -28,6 +28,13 @@
                             <li><a href="<c:url value='/pages/S_garbageList'/>">휴지통</a></li>
                         </ul>
                     </li> 
+                    
+                    <li>
+                    	<span><a href="<c:url value='/pages/S_messageBoxSetting'/>">나의 쪽지함 관리</a></span>
+                    	<ul>
+                    		
+                    	</ul>
+                    </li>
                 </ul>
             </div>
         </div>
