@@ -246,3 +246,7 @@
 #cke_1_contents {
 	height: 400px !important;
 }
+
+.content select {
+	width: 90%;
+}
