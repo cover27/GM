@@ -389,6 +389,11 @@ if(url.indexOf('/')){
 					$("#P_listApprDocAllAdminView").children().css("color", "#d3292c");
 					$("#P_listApprDocAllAdminView").css("font-weight", "bold");
 				});
+			} else if(category[0] == "P_managePayment") {
+				$(function(){
+					$("#P_managePayment").children().css("color", "#d3292c");
+					$("#P_managePayment").css("font-weight", "bold");
+				});
 			}
 		}
 	}

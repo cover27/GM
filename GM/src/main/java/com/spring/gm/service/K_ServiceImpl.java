@@ -24,6 +24,7 @@ import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgiVO;
+import com.spring.gm.vo.join_mvrVO;
 
 @Service
 public class K_ServiceImpl implements K_Service{
@@ -958,6 +959,44 @@ public class K_ServiceImpl implements K_Service{
 		}
 		
 		model.addAttribute("cnt", cnt);
+	}
+
+	@Override
+	public void K_appHoliday(HttpServletRequest req, Model model) {
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		List<join_mvrVO> holidayList = new ArrayList<join_mvrVO>();
+		holidayList = dao.getAppHoliday(company);
+		
+		model.addAttribute("list", holidayList);
+	}
+
+	@Override
+	public void K_appHoliday_pro(HttpServletRequest req, Model model) {
+		int appcan = Integer.parseInt(req.getParameter("appcan"));
+		int state = 0;
+		
+		if(req.getParameterValues("check") != null){ //클릭이 되어 있어야됨
+			String[] checks = req.getParameterValues("check");
+			if(appcan == 0) { //승인한다면
+				for(int i=0; i<checks.length; i++) {
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("num", checks[i]);
+					map.put("state", 1);
+					dao.handleHoliday(map);
+				}
+			} else { //취소한다면 
+				for(int i=0; i<checks.length; i++) {
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("num", checks[i]);
+					map.put("state", 3);
+					dao.handleHoliday(map);
+				}
+			}
+			state = 1;
+		} else { // 클릭이 안되어 있음. 클릭하라고 경고창쓰
+			state = -1;
+		}
+		req.setAttribute("state", state);
 	}		
 	
 }
