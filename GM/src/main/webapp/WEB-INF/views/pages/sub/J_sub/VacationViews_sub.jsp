@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <form method="post" name="infoform">
-<<<<<<< HEAD
 	<table border="1">
 			<tr>
 				<td>사원번호</td>
@@ -34,8 +33,6 @@
 			</tr>
 			</c:forEach>
 			</c:if>
-			<c:if test="${cnt == 0}">
-=======
 	<div class="table_top">
 		<table>
 			<colgroup>
@@ -52,7 +49,6 @@
 				<col width="*" />
 			</colgroup>
 			<thead>
->>>>>>> branch 'master' of https://github.com/cover27/GM.git
 				<tr>
 					<th>사원번호</th>
 					<th>성명</th>
