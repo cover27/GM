@@ -216,13 +216,14 @@
 
 .content .sign table {
 	width: auto;
-	line-height: 28px;
-	font-size: 14px;
+	line-height: 24px;
+	font-size: 12px;
 }
 
 .content .sign table td, .content .sign table th {
 	border: 1px solid #c3c6c9;
-	width: 80px;
+    min-width: 150px;
+    padding: 0 3px;
 }
 
 .content .sign table th {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ page import="java.util.*" %>
+<%@ page import="com.spring.gm.vo.Join_payVO2" %>
 <!-- text-editor를 쓰기 위한 script 파일 설정으로 아래 textarea가 있어야 한다. -->
 <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
 <script type="text/javascript">
@@ -35,10 +36,44 @@ function cancelPay(){
 				<form name="apprDocForm" method="post" action="P_apprDocFormReqPro" enctype="multipart/form-data">
 			       	<input type="hidden" name="del" value="0">
 					<h3 class="mb10">기안용지</h3>
-					<!-- 결재 sign 부분 -->					
+					<!-- 결재 sign 부분 -->	
+					<%
+						List<Join_payVO2> payLine = (List<Join_payVO2>)request.getSession().getAttribute("payLine");
+						//표 만맞추기위해 빈칸의 이름을 empty로 지정
+						int countPay = 0;
+						int countapp = 0;
+						int direction = 0;
+						int countEmpty = 0;
+						for(int i=0;i<payLine.size();i++) {
+							if(payLine.get(i).getOrder() == 0) {
+								countapp++;
+							} else {
+								countPay++;
+							}
+						}
+						if(countapp>countPay) {
+							direction = 1;
+							countEmpty = countapp - countPay;
+						} else if(countapp<countPay){
+							direction = 2;
+							countEmpty = countPay - countapp;
+						} else {
+							direction = 0;
+						}
+					
+				%>		
 					<div class="sign fright mr10 mb10">
 						<table>
 							<tr>
+								<c:if test="<%=direction == 1 %>">
+									<%
+										for(int i=0; i<countEmpty; i++){
+									%>
+										<th class="empty"></th>
+									<%
+										}
+									%>
+								</c:if>
 								<c:forEach var="line" items="${sessionScope.payLine }">
 									<c:if test="${line.order == 1}">
 										<th>기안</th>
@@ -49,6 +84,15 @@ function cancelPay(){
 								</c:forEach>
 							</tr>
 							<tr>
+								<c:if test="<%=direction == 1 %>">
+									<%
+										for(int i=0; i<countEmpty; i++){
+									%>
+										<td class="empty"></td>
+									<%
+										}
+									%>
+								</c:if>
 								<c:forEach var="line" items="${sessionScope.payLine }">
 									<c:if test="${line.order != 0}">
 										<td>${line.r_name }<br>${line.name }</td>
@@ -56,13 +100,31 @@ function cancelPay(){
 								</c:forEach>
 							</tr>
 							<tr>
+								<c:if test="<%=direction == 2 %>">
+									<%
+										for(int i=0; i<countEmpty; i++){
+									%>
+										<th class="empty"></th>
+									<%
+										}
+									%>
+								</c:if>
 								<c:forEach var="line" items="${sessionScope.payLine }">
 									<c:if test="${line.order == 0}">
-										<td>합의</td>
+										<th>합의</th>
 									</c:if>
 								</c:forEach>
 							</tr>
 							<tr>
+								<c:if test="<%=direction == 2 %>">
+									<%
+										for(int i=0; i<countEmpty; i++){
+									%>
+										<td class="empty"></td>
+									<%
+										}
+									%>
+								</c:if>
 								<c:forEach var="line" items="${sessionScope.payLine }">
 									<c:if test="${line.order == 0}">
 										<td>${line.r_name }<br>${line.name }</td>
@@ -77,8 +139,7 @@ function cancelPay(){
 						request.getSession().removeAttribute("payLine");
 					%>
 					<div id="result" class="clear">
-	
-						<table class="table separate">
+						<table>
 							<caption></caption>
 							<colgroup>
 								<col style="width: 15%;">
@@ -140,7 +201,7 @@ function cancelPay(){
 						</div>
 					</div>
 		
-					<div class="btnset mt30 mb10">
+					<div class="btnset mt30 mb50">
 					    <input type="button" name="payLine" value="결재선" onclick="addApprLine();">
 					    <input type="button" name="paySubmit" value="결재요청" onclick="document.apprDocForm.submit();">
 					    <input type="button" name="cancel" value="취소" onclick="cancelPay();">
