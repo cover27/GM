@@ -55,6 +55,10 @@
 <insert id="insertTodo" parameterType="com.spring.gm.vo.B_ManageVO">
 	insert into b_manage values(seq_b_manage.nextval, #{id}, #{groupId}, #{b_name}, #{subject}, #{content}, #{begin}, #{end}, #{reg_date}, #{state}, 0 , #{reg_date2})
 </insert>
+<!-- 업무 insert-pro -->
+<insert id="insertTodoInfo" parameterType="com.spring.gm.vo.B_ManageInfoVO">
+	insert into b_manageinfo values(seq_b_manageinfo.nextval, seq_b_manage.currval, #{id}, 0, null, null, 0)
+</insert>
 
 <!-- 내가 한 업무요청 게시글 갯수 조회  -->
 <select id="getOrderCnt" resultType="int" parameterType="String">
@@ -78,6 +82,11 @@
 	select g.r_name, m.name, b.subject, b.state, b.begin, b.end, b.reg_date, b.reg_date2, b.b_name, b.content 
 	from b_manage b, member m, grade g 
 	where m.id=b.id and m.rank=g.rank and b.todonum=#{todonum} and b.del=0
+</select>
+<select id="readOrderListInfo" resultType="com.spring.gm.vo.B_ManageInfoVO" parameterType="int">
+	select i.id, i.content, i.reg_date, b.b_name
+	from b_manage b, b_manageinfo i
+	where b.todonum=i.todonum and b.todonum=#{todonum} and b.del=0
 </select>
 
 <!-- 업무관리 업무요청 수정 화면 -->

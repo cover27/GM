@@ -5,17 +5,17 @@
 <body>
 
 	<h2>업무 등록 Pro</h2>
-	<c:if test="${insertCnt == 0}">
+	<c:if test="${insertCnt == 0 && insertCnt2 == 0}">
 		<script type="text/javascript">
 			alert("업무 등록 실패했습니다.");
 			window.history.back();
 		</script>
 	</c:if>
 	
-	<c:if test="${insertCnt != 0}">
+	<c:if test="${insertCnt != 0 && insertCnt2 != 0}">
 		<script type="text/javascript">
 			alert("업무 등록 완료했습니다.");
-			window.location="W_listPureOrderView?id=${id}&todonum=${todonum}";
+			window.location="W_listPureOrderView";
 		</script>
 	</c:if>
 	

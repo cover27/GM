@@ -83,22 +83,24 @@ table, tr, th, td{
 		    			</div>
 		    			<div class="form-block">
 		    				<table class="table">
-		    					<tbody>
-		    						<tr>
-		    							<th scope="row">담당자</th>
-		    							<td>담당자명</td>
-		    							<th scope="row">최종수정일</th>
-		    							<td></td>
-		    						</tr>
-		    						<tr>
-		    							<th scope="row">내용</th>
-		    							<td colspan="3"></td>
-		    						</tr>
-		    						<tr>
-		    							<th scope="row">첨부파일</th>
-		    							<td colspan="3"></td>
-		    						</tr>
-		    					</tbody>
+			    				<c:forEach var="dto2" items="${dtos2}">
+			    					<tbody>
+			    						<tr>
+			    							<th scope="row">담당자</th>
+			    							<td>${dto2.b_name}</td>
+			    							<th scope="row">최종수정일</th>
+			    							<td>${dto2.reg_date}</td>
+			    						</tr>
+			    						<tr>
+			    							<th scope="row">내용</th>
+			    							<td colspan="3">${dto2.content}</td>
+			    						</tr>
+			    						<tr>
+			    							<th scope="row">첨부파일</th>
+			    							<td colspan="3"></td>
+			    						</tr>
+			    					</tbody>
+			    				</c:forEach>
 		    				</table>
 		    			</div>
 		    		</div>

@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.K_DAO;
 import com.spring.gm.persistence.O_DAO;
+import com.spring.gm.vo.B_ManageInfoVO;
 import com.spring.gm.vo.B_ManageVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.ScheduleVO;
@@ -374,6 +375,13 @@ public class O_ServiceImpl implements O_Service{
 		
 		int insertCnt = dao.insertTodo(vo);
 		
+		if(insertCnt != 0) {
+			B_ManageInfoVO vo2 = new B_ManageInfoVO();
+			vo2.setId(req.getParameter("id"));
+			int insertCnt2 = dao.insertTodoInfo(vo2);
+			model.addAttribute("insertCnt2", insertCnt2);
+		}
+		
 		model.addAttribute("insertCnt", insertCnt);
 		
 	}
@@ -488,8 +496,12 @@ public class O_ServiceImpl implements O_Service{
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
 		List<B_ManageVO> dtos = dao.readOrderList(todonum);
+		System.out.println("dtos :" + dtos);
+		List<B_ManageInfoVO> dtos2 = dao.readOrderListInfo(todonum);
+		System.out.println("dtos2 :" + dtos2);
 		
 		model.addAttribute("dtos", dtos);
+		model.addAttribute("dtos2", dtos2);
 		model.addAttribute("todonum", todonum);
 		model.addAttribute("id", id);
 		

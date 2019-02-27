@@ -3,6 +3,7 @@ package com.spring.gm.persistence;
 import java.util.List;
 import java.util.Map;
 
+import com.spring.gm.vo.B_ManageInfoVO;
 import com.spring.gm.vo.B_ManageVO;
 import com.spring.gm.vo.Join_payVO;
 import com.spring.gm.vo.ScheduleVO;
@@ -36,11 +37,13 @@ public interface O_DAO {
 	/* 업무 시작 */
 	//업무등록 insert-pro
 	public int insertTodo(B_ManageVO vo);
+	public int insertTodoInfo(B_ManageInfoVO vo2);
 	//내가 한 업무요청  페이지넘
 	public int getOrderCnt(String id); //게시글 갯수 구하기
 	public List<B_ManageVO> getOrderList(Map<String, Object> map); //게시글 목록 조회
 	//내가 한 업무요청 상세조회
 	public List<B_ManageVO> readOrderList(int todonum);
+	public List<B_ManageInfoVO> readOrderListInfo(int todonum);
 	//업무관리 업무요청 수정 화면
 	public B_ManageVO udpateTaskView(int todonum);
 	//업무관리 업무요청 수정 pro

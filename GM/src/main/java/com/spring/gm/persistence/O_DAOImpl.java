@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.gm.vo.B_ManageInfoVO;
 import com.spring.gm.vo.B_ManageVO;
 import com.spring.gm.vo.Join_payVO;
 import com.spring.gm.vo.PaymentVO;
@@ -109,6 +110,12 @@ public class O_DAOImpl implements O_DAO {
 		dao = sqlSession.getMapper(O_DAO.class);
 		return dao.insertTodo(vo);
 	}
+	//업무 등록 insert-pro
+	@Override
+	public int insertTodoInfo(B_ManageInfoVO vo) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.insertTodoInfo(vo);
+	}
 	
 	//내가 한 업무요청 게시글 갯수 조회
 	@Override
@@ -132,6 +139,13 @@ public class O_DAOImpl implements O_DAO {
 		dao = sqlSession.getMapper(O_DAO.class);
 		dtos= dao.readOrderList(todonum);
 		return dtos;
+	}
+	@Override
+	public List<B_ManageInfoVO> readOrderListInfo(int todonum) {
+		List<B_ManageInfoVO> dtos2=null;
+		dao = sqlSession.getMapper(O_DAO.class);
+		dtos2= dao.readOrderListInfo(todonum);
+		return dtos2;
 	}
 	
 	//업무관리 업무요청 수정 화면
