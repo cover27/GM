@@ -135,7 +135,7 @@ public class S_Controller {
 	public String createMessagePro(HttpServletRequest req, Model model) {
 		logger.info("URL : S_createMessagePro");
 		
-		service.createMessageBoxPro(req, model);
+		/*service.createMessageBoxPro(req, model);*/
 		return "pages/S_createMessagePro";	
 	}
 	
@@ -143,7 +143,7 @@ public class S_Controller {
 	public String messageBoxSetting(HttpServletRequest req, Model model) {
 		logger.info("URL : S_messageBoxSetting");
 		
-		service.messageBoxList(req, model);
+		/*service.messageBoxList(req, model);*/
 		return "pages/S_messageBoxSetting";	
 	}
 	
