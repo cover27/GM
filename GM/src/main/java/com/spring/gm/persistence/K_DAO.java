@@ -142,4 +142,11 @@ public interface K_DAO {
 	
 	public int handleHoliday(Map<String, Object> map);
 	
+	public List<CompaniesVO> getComList();
+	
+	public List<CompaniesVO> getSearchComList(String search);
+	
+	public List<MemberVO> getAdminList(int company);
+	
+	public List<CompaniesVO> getAppComList();
 }

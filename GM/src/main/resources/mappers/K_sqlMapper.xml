@@ -369,4 +369,21 @@
 		UPDATE vacation SET state = #{state} WHERE num = #{num}
 	</update>
 	
+	<select id="getComList" resultType="com.spring.gm.vo.CompaniesVO">
+		SELECT * FROM companies WHERE company != 0
+	</select>
+	
+	<select id="getSearchComList" resultType="com.spring.gm.vo.CompaniesVO">
+		SELECT * FROM companies WHERE company != 0
+			AND c_name like '%'||#{search}||'%'
+	</select>
+	
+	<select id="getAdminList" resultType="com.spring.gm.vo.MemberVO">
+		SELECT * FROM member WHERE del = 0
+			AND company = #{company} AND sys_rank = 1
+	</select>
+	
+	<select id="getAppComList" resultType="com.spring.gm.vo.CompaniesVO">
+		SELECT * FROM companies WHERE del > 1
+	</select>
 </mapper>
