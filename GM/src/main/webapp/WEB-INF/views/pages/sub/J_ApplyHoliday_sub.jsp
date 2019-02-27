@@ -184,18 +184,26 @@ function chageLangSelect(){
 			                    </td>
 			                    <th>전일/반일</th>
 								<td>
-									<span style="position: relative; top: 2px;">
-										<label>
-											<input name="fullhalfday" type="checkbox" value="1" onclick="doOpenCheck(this); " checked style="width: 14px;">
-											<span style="position: relative; bottom: 3px;">전차</span>
-										</label>
-									</span>
-									<span class="ml50" style="position: relative; top: 2px; display:none;" id="qksck">
-										<label>
-											<input name="fullhalfday" type="checkbox" value="2" onclick="doOpenCheck(this);" style="width: 14px;">
-											<span style="position: relative; bottom: 3px;">반차</span>
-										</label>
-									</span>
+									<table>
+										<tr>
+											<td style="border:0;">
+												<span style="position: relative; top: 2px;">
+													<label>
+														<input name="fullhalfday" type="checkbox" value="1" onclick="doOpenCheck(this); " checked style="width: 14px;">
+														<span style="position: relative; bottom: 3px;">전차</span>
+													</label>
+												</span>
+											</td>
+											<td style="border:0; text-align: left;">
+												<span class="ml50" style="position: relative; top: 2px; display:none;" id="qksck">
+													<label>
+														<input name="fullhalfday" type="checkbox" value="2" onclick="doOpenCheck(this);" style="width: 14px;">
+														<span style="position: relative; bottom: 3px;">반차</span>
+													</label>
+												</span>
+											</td>
+										</tr>
+									</table>
 								</td>
 							</tr>
 			                <tr>

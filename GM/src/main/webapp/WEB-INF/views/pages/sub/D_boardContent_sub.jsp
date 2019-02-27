@@ -64,7 +64,7 @@
 					<ul>
 						<li>${sessionScope.loginInfo.name}</li>
 						<li>
-							<input type="text" class="w90p" name="content" placeholder="댓글 내용을 입력하세요!!" required>
+							<input type="text" class="w90p" name="content" placeholder="댓글 내용을 입력하세요!!">
 							<span class="btnset">
 								<input type="submit" value="작성">
 								<!-- <input type="reset" value="취소"> -->

@@ -250,3 +250,7 @@
 .content select {
 	width: 90%;
 }
+
+.boardSettingSelect {
+	width: 80px !important;
+}

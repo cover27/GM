@@ -9,9 +9,9 @@
 </head>
 <body>
 <!-- 게시글 목록 -->
-<%@ include file="/WEB-INF/views/include/header.jsp"%>
-<%@ include file="/WEB-INF/views/include/aside/boards.jsp"%>
+<%-- <%@ include file="/WEB-INF/views/include/header.jsp"%> --%>
+<%-- <%@ include file="/WEB-INF/views/include/aside/boards.jsp"%> --%>
 <%@ include file="/WEB-INF/views/pages/sub/D_repleUpdate_sub.jsp"%>
-<%@ include file="/WEB-INF/views/include/footer.jsp"%>
+<%-- <%@ include file="/WEB-INF/views/include/footer.jsp"%> --%>
 </body>
 </html>
