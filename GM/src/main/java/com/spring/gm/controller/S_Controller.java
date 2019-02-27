@@ -124,11 +124,12 @@ public class S_Controller {
 		return "pages/S_contentMessage";		
 	}
 	
-	@RequestMapping("/pages/myInfo")
+	@RequestMapping("/pages/S_memberInfo")
 	public String myInfo(HttpServletRequest req, Model model) {
-		logger.info("URL : S_contentMessage");
+		logger.info("URL : S_memberInfo");
 		
-		return "pages/myInfo";		
+		/*service.memberInfo(req, model);*/
+		return "pages/S_memberInfo";		
 	}	
 	
 	
