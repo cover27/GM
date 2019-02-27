@@ -331,10 +331,10 @@ tbody {
 								<th scope="row"><label for="searchUserName">기안자</label></th>
 								<td><input id="searchUserName" name="searchUserName" value="${sessionScope.searchMap.searchUserName }" type="text" title="기안자" class="w40p"></td>
 								<th scope="row"><label for="checkRetire">삭제글</label></th>
-								<c:if test="${sessionScope.searchMap.retire == 0}">
+								<c:if test="${sessionScope.searchMap.retire != 1}">
 									<td><input type="checkbox" name="retire" value="1"></td>
 								</c:if>
-								<c:if test="${sessionScope.searchMap.retire != 0}">
+								<c:if test="${sessionScope.searchMap.retire == 1}">
 									<td><input type="checkbox" name="retire" value="1" checked></td>
 								</c:if>
 							</tr>
