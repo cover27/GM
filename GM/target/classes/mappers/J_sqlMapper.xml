@@ -873,6 +873,11 @@
 		(seq_attended.nextval,#{id}, sysdate, #{time}, 0, 1, 0, 0, 0,
 		#{ptime}, 0)
 	</insert>
+	
+	<!-- 휴가승인할때 state 상태 업데이트하기 -->
+	<update id="vacationstate" parameterType="java.util.Map">
+		UPDATE attended SET state = 1 WHERE num = #{num};
+	</update>
 	<!-- 휴가처리 출근 인서트(전차) -->
 	<insert id="managementInsert" parameterType="java.util.Map">
 		INSERT INTO attended(num, id, day, go, off, RESULT ,worktime , overtime ,
@@ -890,8 +895,10 @@
 	<select id="getNum" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_maVO">
 		select a.num
-		from member m, attended a
+		from member m, attended a, vacation v
 		where m.id = a.id
+		and m.id = v.id
+		and a.day = v.begin
 		and m.company = #{company}
 		and m.id = #{id}
 	</select>
@@ -1454,24 +1461,22 @@
 		where m.id = v.id
 		and m.company = #{company}
 		and to_char(v.applicationdate,'yyyymmdd') = #{date}
-		and v.state = 1
+		and v.state = 0
 	</select>
 	<select id="vacationList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
 		select v.num, m.id, m.name, g.g_name as j_name, r.r_name as rank_name,v.day,
 		v.types, v.fullhalfday, v.applicationdate,v.begin, v.end
-		from member m,
-		vacation v, groups g, grade r
+		from member m, vacation v, groups g, grade r
 		where m.id = v.id
 		and m.rank = r.rank
-		and
-		m.depart = g.groupid
+		and m.depart = g.groupid
 		and m.depart != #{company}
 		and m.company =
 		#{company}
 		and to_char(v.applicationdate,'yyyymmdd') = #{date}
 		and
-		v.state = 1
+		v.state = 0
 	</select>
 	<select id="vacationList3" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1484,7 +1489,7 @@
 		and m.depart = #{company}
 		and m.company = #{company}
 		and to_char(v.applicationdate,'yyyymmdd') = #{date}
-		and v.state = 1
+		and v.state = 0
 	</select>
 
 

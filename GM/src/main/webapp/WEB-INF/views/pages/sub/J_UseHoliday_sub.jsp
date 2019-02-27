@@ -47,10 +47,12 @@ function cancelapplication(num) {
 		</div>
 		<div class="content">
 			<form action="vacationUH" method="post" name="searchform">
+				<c:if test="${sys_rank == 1 }">
 				<div>
 					<input type="button" onclick="search()" value="사원조회" style="background: #d3292c;">
 					<input type="button" onclick="allsearch()" value="전체조회" style="background: #d3292c;">
 				</div>
+				</c:if>
 				<div class="search-wrap mt10" style="height: 38px;">
 				    <div class="form-group">
 				        <c:if test="${sys_rank == 1 }">

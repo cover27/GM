@@ -779,6 +779,12 @@ public class J_DAOImpl implements J_DAO {
 		return cnt;
 	}
 	//휴가승인 확인후근태 처리
+	//휴가승인할때 state 상태 업데이트하기
+	@Override
+	public int vacationstate(Map<String, Object> map) {
+		int cnt = sqlSession.insert("com.spring.gm.persistence.J_DAO.vacationstate", map);
+		return cnt;
+	}
 	@Override
 	public int managementInsert(Map<String, Object> map) {
 		int cnt = sqlSession.insert("com.spring.gm.persistence.J_DAO.managementInsert", map);

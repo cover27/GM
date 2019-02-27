@@ -215,8 +215,8 @@ function chageLangSelect(){
 			                    <th>휴가기간</th>
 			                    <td>
 			                    	<span style="margin: 0 9px;"><input type="date" id="begin" name="begin" style="width:45%;"></span>
-			                    	<span id="end3" style="display:none;"> ~ </span>
-			                    	<span id="end2" style="display:none;"><input type="date" id="end" name="end" onchange="handler(event);" style="width:45%;"></span>
+			                    	<span id="end3" > ~ </span>
+			                    	<span id="end2" ><input type="date" id="end" name="end" onchange="handler(event);" style="width:45%;"></span>
 			                    </td>
 			                    <th>일수</th>
 			                    <td>
