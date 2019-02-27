@@ -12,7 +12,8 @@
 
 	<security:http use-expressions="true">
 		<security:intercept-url pattern="/admin/**" access="hasRole('USER_ADMIN')"/>
-		<security:intercept-url pattern="/pages/**" access="hasAnyRole('USER_ADMIN', 'USER_CUSTOMER')"/>
+		<security:intercept-url pattern="/pages/**" access="hasAnyRole('USER_MASTER', 'USER_ADMIN', 'USER_CUSTOMER')"/>
+		<security:intercept-url pattern="/master/**" access="hasAnyRole('USER_MASTER')"/>
 		<security:intercept-url pattern="/**" access="permitAll"/>
 		<security:form-login login-page="/login"
 				username-parameter="id"

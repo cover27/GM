@@ -130,7 +130,7 @@
 						</c:forEach>
 						<span class="ml50 bold5px">아이디</span>
 						<span><input type="text" class="searchId" id="id"></span>
-						<span><button onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></button></span>
+						<span><a href="#" onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></a></span>
 						<span><input type="text" class="searchName" name="name"></span>
 						<span><input type="button" onclick="searchPayroll()" value="조회" style="background:#d3292c;"></span>
 						<span class="fright">

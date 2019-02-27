@@ -99,7 +99,7 @@ button, input, optgroup, select, textarea {
     margin: 0;
 }
 
-button, input[type="submit"], input[type="button"], input[type="reset"] {
+button, input[type="submit"], input[type="button"], input[type="reset"], input[type="file"] {
     cursor: pointer;
 }
 
@@ -272,6 +272,7 @@ img {
 /* 레이아웃을 위한 태그 */
 
 /* width, height */
+.w5p { width:5% !important; }
 .w10p { width:10% !important; }
 .w16p { width:16.6666% !important; }
 .w20p { width:20% !important; }
@@ -362,6 +363,7 @@ img {
 .mt25 { margin-top:25px !important; }
 .mt30 { margin-top:30px !important; }
 .mt35 { margin-top:35px !important; }
+.mt40 { margin-top:40px !important; }
 .mt60 { margin-top:60px !important; }
 .mt70 { margin-top:70px !important; }
 
@@ -409,6 +411,7 @@ img {
 .mb15 { margin-bottom:15px !important; }
 .mb20 { margin-bottom:20px !important; }
 .mb30 { margin-bottom:30px !important; }
+.mb50 { margin-bottom:50px !important; }
 
 .padding0 { padding:0 !important; }
 .padding5 { padding:5px !important; }
@@ -585,3 +588,57 @@ img {
 ::-webkit-scrollbar-thumb:hover {
 	background: #c0c0c0; 
 }
+
+.aside_btn {
+	color: #ffffff;
+    text-shadow: 0 1px black;
+    position: relative;
+    background: #555;
+    padding: 5px 15px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0px 4px 0px #333;
+    width: 200px;
+}
+
+.aside_btn:hover {
+	top: 3px;
+	background: #333;
+	box-shadow:0px 2px 0px #333;
+}
+
+.aside_edit:after {
+	content: "";
+	margin-left: 10px;
+	padding-right:14px;
+	width: 14px;
+	background:url(../images/edit_icon.png) no-repeat 0 50%;;
+}
+
+/* 
+.file_label {
+	display: inline-block;
+	padding: 0 5px;
+	color: #fff;
+	background-color: #555;
+	border: #555 1px solid;
+	cursor: pointer;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+.file_label:hover {
+	opacity: 0.8;
+}
+
+input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+ */

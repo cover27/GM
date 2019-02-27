@@ -272,6 +272,11 @@ if(url.indexOf('/')){
 					$("#K_ourManager").children().css("color", "#d3292c");
 					$("#K_ourManager").css("font-weight", "bold");
 				});
+			} else if(category[0] == "K_appHoliday") {
+				$(function(){
+					$("#K_appHoliday").children().css("color", "#d3292c");
+					$("#K_appHoliday").css("font-weight", "bold");
+				});
 			}
 		}
 	}
@@ -389,6 +394,11 @@ if(url.indexOf('/')){
 					$("#P_listApprDocAllAdminView").children().css("color", "#d3292c");
 					$("#P_listApprDocAllAdminView").css("font-weight", "bold");
 				});
+			} else if(category[0] == "P_managePayment") {
+				$(function(){
+					$("#P_managePayment").children().css("color", "#d3292c");
+					$("#P_managePayment").css("font-weight", "bold");
+				});
 			}
 		}
 	}
@@ -462,6 +472,11 @@ if(url.indexOf('/')){
 					$("#J_ApplyHoliday").css("font-weight", "bold");
 				});
 			} else if(category[0] == "J_UseHoliday") {
+				$(function(){
+					$("#J_UseHoliday").children().css("color", "#d3292c");
+					$("#J_UseHoliday").css("font-weight", "bold");
+				});
+			} else if(category[0] == "vacationUH") {
 				$(function(){
 					$("#J_UseHoliday").children().css("color", "#d3292c");
 					$("#J_UseHoliday").css("font-weight", "bold");

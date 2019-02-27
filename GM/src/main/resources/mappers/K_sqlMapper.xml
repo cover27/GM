@@ -356,4 +356,61 @@
 		DELETE FROM authorities WHERE username=#{id} AND authority='USER_ADMIN'
 	</delete>	
 	
+	<select id="getAppHoliday" parameterType="int" resultType="com.spring.gm.vo.join_mvrVO">
+		select v.*, m.name, r.r_name from vacation v, grade r, member m
+		    where v.id = m.id
+		    and m.rank = r.rank
+		    and v.state = 2
+		    and m.company = #{company}
+		    and m.del = 0
+	</select>
+	
+	<update id="handleHoliday" parameterType="java.util.Map">
+		UPDATE vacation SET state = #{state} WHERE num = #{num}
+	</update>
+	
+	<select id="getComList" resultType="com.spring.gm.vo.CompaniesVO">
+		SELECT * FROM companies WHERE company != 0
+	</select>
+	
+	<select id="getSearchComList" resultType="com.spring.gm.vo.CompaniesVO">
+		SELECT * FROM companies WHERE company != 0
+			AND c_name like '%'||#{search}||'%'
+	</select>
+	
+	<select id="getAdminList" resultType="com.spring.gm.vo.MemberVO">
+		SELECT * FROM member WHERE del = 0
+			AND company = #{company} AND sys_rank = 1
+	</select>
+	
+	<select id="getAppComList" resultType="com.spring.gm.vo.CompaniesMemberVO">
+		SELECT c.*, m.id, m.name FROM companies c, member m 
+    		WHERE m.company=c.company AND c.del > 1 AND sys_rank = 1
+	</select>
+	
+	<update id="handlecompany" parameterType="java.util.Map">
+		UPDATE companies SET del = #{del} WHERE company =#{company}
+	</update>
+	
+	<select id="getComInfoId" resultType="String">
+		SELECT id FROM member WHERE company = #{company} AND sys_rank = 1;
+	</select>
+	
+	<select id="getNoticeCnt" resultType="int">
+		SELECT COUNT(*) FROM boardlist WHERE num = 10 AND del = 0
+	</select>
+	
+	<select id="getNoticeList" resultType="com.spring.gm.vo.BoardListVO">
+		<![CDATA[
+			SELECT * FROM(
+				SELECT m.*, rownum rNum FROM boardlist m
+				WHERE m.del = 0 AND m.num = 10
+				)
+			WHERE rNum >=  #{start} AND rNum <= #{end}
+		]]>
+	</select>
+	
+	<insert id="insertNotice" parameterType="java.util.Map">
+		INSERT INTO boardlist VALUES(boardlist_seq.nextval, 10, '시스템 관리자', #{subject}, #{content}, 0,0,0,0,sysdate,0,0,0)
+	</insert>
 </mapper>

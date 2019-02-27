@@ -315,6 +315,7 @@ public class J_Controller {
 	//검색 결과값으로 정보 가져오기
 	@RequestMapping("/pages/searchPayrollInquiry")
 	public String searchPayrollInquiry(HttpServletRequest req, Model model) {
+		System.out.println("searchPayrollInquiry : ");
 		logger.info("URL : searchPayrollInquiry");
 		service.searchPayrollInquiry(req, model);
 		return "pages/sub/J_sub/J_PayrollInquiry_sub";
@@ -445,8 +446,8 @@ public class J_Controller {
 		//휴가승인 확인후근태 처리
 		@RequestMapping("/admin/managementInsert")
 		public String managementInsert(HttpServletRequest req, Model model) throws ParseException {
-			System.out.println("/admin/J_A_management");
-			logger.info("URL : J_A_management");
+			System.out.println("/admin/managementInsert");
+			logger.info("URL : managementInsert");
 			service.managementInsert(req,model);
 			return "admin/sub/J_sub/vacationList_sub";
 		}
@@ -670,7 +671,7 @@ public class J_Controller {
 			logger.info("URL : cancelapplication");
 			service.companyName(req, model);
 			service.cancelapplication(req, model);
-			return "pages/J_ApplyHoliday";
+			return "pages/J_UseHoliday";
 		}
 		
 		

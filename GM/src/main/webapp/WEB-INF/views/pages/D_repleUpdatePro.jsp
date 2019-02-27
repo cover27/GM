@@ -14,7 +14,7 @@
 	<c:if test="${updateCnt != 0}">
 		<script type="text/javascript">
 			alert("댓글이 수정되었습니다.");
-			window.location="D_boardList?pageNum=${pageNum}&num=${num}";
+			window.location="D_boardContent?pageNum=${pageNum}&num=${num}&boardnum=${boardnum}&number=${number+1}";
 		</script>
 	</c:if>
 </body>

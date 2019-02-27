@@ -220,7 +220,7 @@ public class P_ServiceImpl implements P_Service{
 			cnt = (cnt!=0&&insertCnt3!=0)?1:0;
 		}
 		
-		if(file != null) {
+		if(file.getOriginalFilename().length() != 0) {
 			String stored_title = getRandomString();
 			String title = file.getOriginalFilename();
 			long size = file.getSize();
@@ -291,6 +291,14 @@ public class P_ServiceImpl implements P_Service{
 		currentPage = Integer.parseInt(pageNum);
 		start = (currentPage - 1) * pageSize + 1; 
 		end = start + pageSize - 1;
+		
+		int search = 0;
+		if(req.getParameter("search") != null) {
+			search = Integer.parseInt(req.getParameter("search"));
+		}
+		if(search == 0) {
+			req.getSession().removeAttribute("searchMap");
+		}
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchUserName", null);
@@ -630,6 +638,14 @@ public class P_ServiceImpl implements P_Service{
 		start = (currentPage - 1) * pageSize + 1; 
 		end = start + pageSize - 1;
 		
+		int search = 0;
+		if(req.getParameter("search") != null) {
+			search = Integer.parseInt(req.getParameter("search"));
+		}
+		if(search == 0) {
+			req.getSession().removeAttribute("searchMap");
+		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchUserName", null);
 		map.put("toggleSearchType", null);
@@ -709,6 +725,14 @@ public class P_ServiceImpl implements P_Service{
 		currentPage = Integer.parseInt(pageNum);
 		start = (currentPage - 1) * pageSize + 1; 
 		end = start + pageSize - 1;
+		
+		int search = 0;
+		if(req.getParameter("search") != null) {
+			search = Integer.parseInt(req.getParameter("search"));
+		}
+		if(search == 0) {
+			req.getSession().removeAttribute("searchMap");
+		}
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchUserName", null);
@@ -790,6 +814,14 @@ public class P_ServiceImpl implements P_Service{
 		start = (currentPage - 1) * pageSize + 1; 
 		end = start + pageSize - 1;
 		
+		int search = 0;
+		if(req.getParameter("search") != null) {
+			search = Integer.parseInt(req.getParameter("search"));
+		}
+		if(search == 0) {
+			req.getSession().removeAttribute("searchMap");
+		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchUserName", null);
 		map.put("toggleSearchType", null);
@@ -867,6 +899,14 @@ public class P_ServiceImpl implements P_Service{
 		currentPage = Integer.parseInt(pageNum);
 		start = (currentPage - 1) * pageSize + 1; 
 		end = start + pageSize - 1;
+		
+		int search = 0;
+		if(req.getParameter("search") != null) {
+			search = Integer.parseInt(req.getParameter("search"));
+		}
+		if(search == 0) {
+			req.getSession().removeAttribute("searchMap");
+		}
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchUserName", null);
@@ -948,6 +988,14 @@ public class P_ServiceImpl implements P_Service{
 		start = (currentPage - 1) * pageSize + 1; 
 		end = start + pageSize - 1;
 		
+		int search = 0;
+		if(req.getParameter("search") != null) {
+			search = Integer.parseInt(req.getParameter("search"));
+		}
+		if(search == 0) {
+			req.getSession().removeAttribute("searchMap");
+		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchUserName", null);
 		map.put("toggleSearchType", null);
@@ -1003,8 +1051,11 @@ public class P_ServiceImpl implements P_Service{
 	//결재문서관리
 	@Override
 	public void P_managePayment(HttpServletRequest req, Model model) {
-		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		int search = 0;
+		if(req.getParameter("search") != null) {
+			search = Integer.parseInt(req.getParameter("search"));
+		}
 		
 		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 5;		// 한 블럭당 페이지 갯수
@@ -1029,6 +1080,10 @@ public class P_ServiceImpl implements P_Service{
 		start = (currentPage - 1) * pageSize + 1; 
 		end = start + pageSize - 1;
 		
+		if(search == 0) {
+			req.getSession().removeAttribute("searchMap");
+		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchUserName", null);
 		map.put("toggleSearchType", null);
@@ -1039,7 +1094,6 @@ public class P_ServiceImpl implements P_Service{
 		
 		if(req.getSession().getAttribute("searchMap") != null) {
 			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
-			req.getSession().removeAttribute("searchMap");
 		}
 		map.put("company", company);
 		cnt = dao.getPaymentCnt5(map);

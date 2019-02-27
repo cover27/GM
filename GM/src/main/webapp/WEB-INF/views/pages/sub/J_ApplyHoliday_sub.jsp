@@ -12,9 +12,11 @@ function doOpenCheck(chk){
             obj[i].checked = false;
         }else if (obj[0] == chk){
         	$("#end2").show();
+        	$("#end3").show();
         	document.getElementById("day").value = '';
         }else if(obj[1] == chk){
         	$("#end2").hide();
+        	$("#end3").hide();
         	document.getElementById("day").value = '0.5';
         }
     }
@@ -74,11 +76,14 @@ function chageLangSelect(){
 	// 1는 휴가
 	if(aaa == 2){
 		$("#qksck").show();
+		$("#end2").show();
+		$("#end3").show();
 	}else if(aaa == 1){
 		$("#qksck").hide();
+		$("#end2").show();
+		$("#end3").show();
 	}
 }
-
 </script>
 <section>
 	<article>
@@ -151,6 +156,7 @@ function chageLangSelect(){
 			                            <td>
 			                                <c:if test="${dto.state == 2}">승인대기</c:if>
 			                                <c:if test="${dto.state == 3}">승인취소</c:if>
+			                                <c:if test="${dto.state == 0}">휴가처리중</c:if>
 			                            </td>
 			                            <td>${dto.content}</td>
 			                            <td><input type="button" value="신청취소" onclick="cancelapplication('${dto.num}')"></td>
@@ -184,24 +190,34 @@ function chageLangSelect(){
 			                    </td>
 			                    <th>전일/반일</th>
 								<td>
-									<span style="position: relative; top: 2px;">
-										<label>
-											<input name="fullhalfday" type="checkbox" value="1" onclick="doOpenCheck(this); " checked style="width: 14px;">
-											<span style="position: relative; bottom: 3px;">전차</span>
-										</label>
-									</span>
-									<span class="ml50" style="position: relative; top: 2px; display:none;" id="qksck">
-										<label>
-											<input name="fullhalfday" type="checkbox" value="2" onclick="doOpenCheck(this);" style="width: 14px;">
-											<span style="position: relative; bottom: 3px;">반차</span>
-										</label>
-									</span>
+									<table>
+										<tr>
+											<td style="border:0;">
+												<span style="position: relative; top: 2px;">
+													<label>
+														<input name="fullhalfday" type="checkbox" value="1" onclick="doOpenCheck(this); " checked style="width: 14px;">
+														<span style="position: relative; bottom: 3px;">전차</span>
+													</label>
+												</span>
+											</td>
+											<td style="border:0; text-align: left;">
+												<span class="ml50" style="position: relative; top: 2px; display:none;" id="qksck">
+													<label>
+														<input name="fullhalfday" type="checkbox" value="2" onclick="doOpenCheck(this);" style="width: 14px;">
+														<span style="position: relative; bottom: 3px;">반차</span>
+													</label>
+												</span>
+											</td>
+										</tr>
+									</table>
 								</td>
 							</tr>
 			                <tr>
 			                    <th>휴가기간</th>
 			                    <td>
-			                    	<input type="date" id="begin" name="begin" style="width:45%;"><span style="margin: 0 9px;"> ~ </span><span id="end2"><input type="date" id="end" name="end" onchange="handler(event);" style="width:45%;"></span>
+			                    	<span style="margin: 0 9px;"><input type="date" id="begin" name="begin" style="width:45%;"></span>
+			                    	<span id="end3" > ~ </span>
+			                    	<span id="end2" ><input type="date" id="end" name="end" onchange="handler(event);" style="width:45%;"></span>
 			                    </td>
 			                    <th>일수</th>
 			                    <td>

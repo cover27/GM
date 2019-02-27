@@ -15,7 +15,7 @@
             <div class="category">
                 <ul>
                     <li>
-                        <span id="O_calendarCreateView"><a href="<c:url value='/pages/O_calendarCreateView' />">일정 등록</a></span>
+                        <span id="O_calendarCreateView"><a href="<c:url value='/pages/O_calendarCreateView' />" class="aside_edit">일정 등록</a></span>
                     </li>
                     <li>
                         <span id="O_calendar"><a href="<c:url value='/pages/O_calendar' />">일정</a></span>
