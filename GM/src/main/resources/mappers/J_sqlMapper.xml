@@ -876,15 +876,12 @@
 	
 	<!-- 휴가승인할때 state 상태 업데이트하기 -->
 	<update id="vacationstate" parameterType="java.util.Map">
-		UPDATE attended SET state = 1 WHERE num = #{num};
+		UPDATE vacation SET state = 1 WHERE num = #{num}
 	</update>
 	<!-- 휴가처리 출근 인서트(전차) -->
 	<insert id="managementInsert" parameterType="java.util.Map">
-		INSERT INTO attended(num, id, day, go, off, RESULT ,worktime , overtime ,
-		nighttime , perceptiontime ,departuretime )
-		VALUES
-		(seq_attended.nextval,#{id}, to_date(#{start},'yyyy/mm/dd'), 0, 0, 3,
-		0, 0, 0, 0,0)
+		INSERT INTO attended(num, id, day, go, off, RESULT ,worktime , overtime ,nighttime , perceptiontime ,departuretime)
+		VALUES(seq_attended.nextval,#{id}, to_date(#{start},'yyyy-mm-dd'), 0, 0, 3,0, 0, 0, 0,0)
 	</insert>
 	<!-- 반차일경우 퇴근시간 업데이트 -->
 	<update id="managementUpdate" parameterType="java.util.Map">
@@ -918,6 +915,7 @@
 		from member m, attended a
 		where m.id = a.id
 		and m.company = #{company} and to_char(a.day,'yyyymmdd')=#{date}
+		and a.result = 1
 	</select>
 	<select id="allListList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_maVO">
@@ -1460,7 +1458,7 @@
 		from member m, vacation v
 		where m.id = v.id
 		and m.company = #{company}
-		and to_char(v.applicationdate,'yyyymmdd') = #{date}
+		and to_char(v.begin,'yyyymmdd') = #{date}
 		and v.state = 0
 	</select>
 	<select id="vacationList2" parameterType="java.util.Map"
@@ -1474,9 +1472,8 @@
 		and m.depart != #{company}
 		and m.company =
 		#{company}
-		and to_char(v.applicationdate,'yyyymmdd') = #{date}
-		and
-		v.state = 0
+		and to_char(v.begin,'yyyymmdd') = #{date}
+		and v.state = 0
 	</select>
 	<select id="vacationList3" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1488,7 +1485,7 @@
 		and m.company = c.company
 		and m.depart = #{company}
 		and m.company = #{company}
-		and to_char(v.applicationdate,'yyyymmdd') = #{date}
+		and to_char(v.begin,'yyyymmdd') = #{date}
 		and v.state = 0
 	</select>
 

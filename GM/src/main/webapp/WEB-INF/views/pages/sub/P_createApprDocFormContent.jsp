@@ -7,7 +7,7 @@
 <script type="text/javascript">
 function addApprLine(){
 	var url="P_addApprLine";
-	window.open(url, "addApprLine", "menubar=no, width=1000, height=560");
+	window.open(url, "addApprLine", "menubar=no, width=1000, height=800");
 }
 
 function cancelPay(){

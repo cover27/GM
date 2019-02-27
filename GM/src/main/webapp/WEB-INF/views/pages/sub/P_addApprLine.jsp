@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
+<link rel="stylesheet" href="${path}css/P_style.css" />
 <script type="text/javascript">
 	function checkMember(){
 		if(!document.payLine.select.value){
@@ -41,88 +42,119 @@
 	}
 </script>
 <html>
+<head>
+	<style>
+		body {
+			background: #fff;
+		}
+	</style>
 </head>
 <body>
-	<h3>결재선지정</h3>
-	<div>
-		<form name="payLine" method="post">
-			<div class="w50p fleft">
-				<table border="1">
-					<c:forEach var="dname" items="${dname }">
-						<tr>
-							<td>${dname }</td>
-							<td></td>
-						</tr>
-						<c:forEach var="dto" items="${dtos }">
-							<c:if test="${dto.g_name == dname}">
-								<tr>
-									<td><input type="radio" name="select" value="${dto.id }"></td>
-									<td>${dto.name }&nbsp;${dto.r_name }</td>
-								</tr>
-							</c:if>
+	<div class="content" style="padding:20px;overflow-y: scroll;">
+		<h3 class="mb10">결재선지정</h3>
+		<div>
+			<form name="payLine" method="post">
+				<div class="w30p fleft payleft">
+					<table>
+						<c:forEach var="dname" items="${dname }">
+							<tr>
+								<th>${dname }</th>
+							</tr>
+							<c:forEach var="dto" items="${dtos }">
+								<c:if test="${dto.g_name == dname}">
+									<tr>
+										<td>
+											<label>
+												<input type="radio" name="select" value="${dto.id }">
+												<span class="ml10">${dto.name }</span>
+												<span class="ml10">${dto.r_name }</span>
+											</label>
+										</td>
+									</tr>
+								</c:if>
+							</c:forEach>
 						</c:forEach>
-					</c:forEach>
-					<tr>
-						<td>
-							<input type="radio" name="pay" value="1" checked >결재<br>
-							<input type="radio" name="pay" value="2">합의
-						</td>
-						<td><input type="button" value="추가" onclick="mySubmit(1);"></td>
-					</tr>
-				</table>
-			</div>
-			<div class="w50p fright" id="rightfield">
-				<table border="1">
-					<tr>
-						<th>구분</th>
-						<th>이름</th>
-						<th></th>
-					</tr>
-					<%
-						int i = 1;
-					%>
-					<c:forEach var="line" items="${sessionScope.payLine }">
+					</table>
+				</div>
+				<div class="w10p fleft ml30 howpay mt40">
+					<ul>
+						<li>
+							<label>
+								<input type="radio" name="pay" value="1" checked >
+								<span class="ml5">결재</span>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" name="pay" value="2">
+								<span class="ml5">합의</span>
+							</label>
+						</li>
+						<li class="mt30">
+							<input type="button" value="추가" onclick="mySubmit(1);" style="width:100%; height: 36px;">
+						</li>
+						<li class="mt10">
+							<input type="button" value="결재선 지정" onclick="mySubmit(2);" style="width: 100%; height: 36px; background: #d3292c;">
+						</li>
+					</ul>
+				</div>
+				<div class="w55p fright payright" id="rightfield">
+					<table>
+						<colgroup>
+							<col width="100px" />
+							<col width="*" />
+							<col width="200px" />
+						</colgroup>
 						<tr>
-							<c:if test="${line.order == 1 }">
-								<th>
-									기안
-									<input type="hidden" name="order" value="<%=i %>">
-									<%
-										i++;
-									%>
-								</th>
-							</c:if>
-							<c:if test="${line.order == 0 }">
-								<th>
-									<input type="hidden" name="order" value="0">
-									합의
-								</th>
-							</c:if>
-							<c:if test="${line.order > 1 }">
-								<th>
-									결재
-									<input type="hidden" name="order" value="<%=i %>">
-									<%
-										i++;
-									%>
-								</th>
-							</c:if>
-							<th>
-								${line.name }&nbsp;${line.r_name }
-								<input type="hidden" name="id" value="${line.id }">
-							</th>
-							<th>
-								<input type="button" value="삭제" onclick="remove_item(this);">
-								<input type="button" value="위" onclick="moveUp(this);">
-								<input type="button" value="아래" onclick="moveDown(this);">
-							</th>
+							<th>구분</th>
+							<th>이름</th>
+							<th>순서</th>
 						</tr>
-					</c:forEach>
-				</table>
-				<input type="hidden" name="before" value="0">
-				<input type="button" value="결재선지정" onclick="mySubmit(2);">
-			</div>
-		</form>
+						<%
+							int i = 1;
+						%>
+						<c:forEach var="line" items="${sessionScope.payLine }">
+							<tr>
+								<c:if test="${line.order == 1 }">
+									<td>
+										기안
+										<input type="hidden" name="order" value="<%=i %>">
+										<%
+											i++;
+										%>
+									</td>
+								</c:if>
+								<c:if test="${line.order == 0 }">
+									<td>
+										<input type="hidden" name="order" value="0">
+										합의
+									</td>
+								</c:if>
+								<c:if test="${line.order > 1 }">
+									<td>
+										결재
+										<input type="hidden" name="order" value="<%=i %>">
+										<%
+											i++;
+										%>
+									</td>
+								</c:if>
+								<td>
+									${line.name }&nbsp;${line.r_name }
+									<input type="hidden" name="id" value="${line.id }">
+								</td>
+								<td>
+									<input type="button" onclick="moveUp(this);" class="upBtn">
+									<input type="button" onclick="moveDown(this);" class="downBtn">
+									<input type="button" value="삭제" onclick="remove_item(this);" style="background: #d3292c;">
+								</td>
+							</tr>
+						</c:forEach>
+					</table>
+					<input type="hidden" name="before" value="0">
+				</div>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
