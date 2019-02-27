@@ -153,9 +153,9 @@
 
 .content #result {
 	margin-top: 10px;
-	height: 0px;
+	margin-bottom: 10px;
 	border-top: 2px #c0c0c0 solid;
-	border-bottom: 2px #c0c0c0 solid;
+	border-bottom: 1px #c0c0c0 solid;
 }
 
 .content #result table {
@@ -205,94 +205,6 @@
 	outline: none;
 }
 
-.content .k_personal ::-webkit-scrollbar {
-	width: 0;
-	height: 0;
-}
-
-.content .k_personal .fleft .fleft {
-	display: block;
-	padding: 5px 100px;
-	border: 1px solid #ddd;
-	border-radius: 10px;
-	margin: 5px 0;
-	line-height: 36px;
-	width: 632px;
-}
-
-.content .k_personal .fright input[type="button"] {
-	width: 130px;
-    margin-top: 6px;
-    height: 84px;
-    font-size: 1em;
-    color: #555;
-    background: #eee;
-    border: #ddd 1px solid;
-    border-radius: 10px;
-}
-
-.content .k_personal .fleft input[type="button"] {
-	width: 100%;
-	font-size: 1em;
-	height: 48px;
-}
-
-.content .k_personal .fright input[type="submit"] {
-	width: 100%;
-	font-size: 1em;
-	height: 48px;
-}
-
-.content .k_personal .fright li {
-	display: block;
-	padding: 0 100px;
-	border: 1px solid #ddd;
-	border-radius: 10px;
-	margin: 5px 0;
-	line-height: 48px;
-}
-
-.content .k_personal li input[type="time"] {
-	border: 1px solid #c3c6c9;
-	height: 27px;
-	padding: 5px;
-}
-
-.content .k_personal span:first-child {
-	width: 132px;
-	font-weight: bold;
-	display: inline-block;
-}
-
-.content .organ_btnset {
-	width: 262px;
-	margin: 20px auto;
-}
-
-.content .organ_btnset li {
-	margin: 20px 0;
-}
-
-.content .organ_btnset li input[type="text"] {
-	width: 178px;
-	position: relative;
-	bottom: 2px;
-}
-
-.content .organ_btnset li input[type="button"], .content .organ_btnset li input[type="submit"] {
-	font-size: 1em;
-	padding: 5px 10px
-}
-
-.content .leader {
-	width: 22px;
-    height: 17px;
-    display: inline-block;
-    background: url(../images/leader.gif) no-repeat 0 50%;
-    position: relative;
-    top: 4px;
-}
-
 .content .cnt {
 	padding: 3px 6px;
     font-size: 0.8em;
@@ -300,4 +212,28 @@
     color: #fff;
     border-radius: 50%;
     margin: 0 5px;
+}
+
+.content .sign table {
+	width: auto;
+	line-height: 24px;
+	font-size: 12px;
+}
+
+.content .sign table td, .content .sign table th {
+	border: 1px solid #c3c6c9;
+    min-width: 150px;
+    padding: 0 3px;
+}
+
+.content .sign table th {
+	background: #f8f8f8;
+}
+
+.content .sign table td {
+	text-align: center;
+}
+
+#cke_1_contents {
+	height: 360px !important;
 }

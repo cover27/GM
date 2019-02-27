@@ -44,12 +44,12 @@
 					<td>${dto.j_name}</td>
 					<td>${dto.type}</td>
 					<td>${dto.content}</td>
-					<td>${dto.cost}</td>
+					<td><fmt:formatNumber value="${dto.cost}" pattern="#,###" />원</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td colspan="6" style="border-bottom: 1px #c0c0c0 solid;">합계</td>
-				<td style="border-bottom: 1px #c0c0c0 solid;">${bonussalary}</td>
+				<td style="border-bottom: 1px #c0c0c0 solid;"><fmt:formatNumber value="${bonussalary}" pattern="#,###" />원</td>
 			</tr>
 		</c:if>
 	</table>
@@ -99,12 +99,12 @@
 					<td>${dto.j_name}</td>
 					<td>${dto.type}</td>
 					<td>${dto.content}</td>
-					<td>${dto.cost}</td>
+					<td><fmt:formatNumber value="${dto.cost}" pattern="#,###" />원</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td colspan="6" style="border-bottom: 1px #c0c0c0 solid;">합계</td>
-				<td>${bonussalary2}</td>
+				<td><fmt:formatNumber value="${bonussalary2}" pattern="#,###" />원</td>
 			</tr>
 		</c:if>
 	</table>
