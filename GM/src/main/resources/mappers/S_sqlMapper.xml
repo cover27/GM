@@ -83,12 +83,12 @@
 		VALUES(seq_messagebox, #{message_num}, #{id}, #{name}, #{del}) 
 	</insert>
 	
-<!-- 	<select id="getMessageBoxArticle" parameterType="int" resultType="com.spring.gm.vo.com.spring.gm.vo.MessageBoxVO">
+	<select id="getMessageBoxArticle" parameterType="int" resultType="com.spring.gm.vo.MessageBoxVO">
 		SELECT * FROM messagebox WHERE message_num = #{message_num}
 	</select>
 	
 	<update id="MessageBoxModifyPro" parameterType="com.spring.gm.vo.MessageBoxVO">
 		UPDATE messagebox SET name = #{name} WHERE message_num = #{message_num}
-	</update> -->
+	</update>
 
 </mapper>
