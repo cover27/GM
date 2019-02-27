@@ -1460,7 +1460,7 @@
 		from member m, vacation v
 		where m.id = v.id
 		and m.company = #{company}
-		and to_char(v.applicationdate,'yyyymmdd') = #{date}
+		and to_char(v.begin,'yyyymmdd') = #{date}
 		and v.state = 0
 	</select>
 	<select id="vacationList2" parameterType="java.util.Map"
@@ -1474,9 +1474,8 @@
 		and m.depart != #{company}
 		and m.company =
 		#{company}
-		and to_char(v.applicationdate,'yyyymmdd') = #{date}
-		and
-		v.state = 0
+		and to_char(v.begin,'yyyymmdd') = #{date}
+		and v.state = 0
 	</select>
 	<select id="vacationList3" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1488,7 +1487,7 @@
 		and m.company = c.company
 		and m.depart = #{company}
 		and m.company = #{company}
-		and to_char(v.applicationdate,'yyyymmdd') = #{date}
+		and to_char(v.begin,'yyyymmdd') = #{date}
 		and v.state = 0
 	</select>
 
