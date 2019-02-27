@@ -20,17 +20,21 @@
 	</c:if>
        <c:if test="${sessionScope.loginInfo != null}">
         <ul class="topmenu">
-            <%-- <li id="s"><a href="<c:url value='/pages/S_mail_inbox' />">메일</a></li> --%>
-            <li id="o"><a href="<c:url value='/pages/O_calendar' />">일정</a></li>
-            <li id="p"><a href="<c:url value='/pages/P_listApprTodoView' />">전자결재</a></li>
-            <li id="d"><a href="<c:url value='/pages/D_allBoardList' />">게시판</a></li>
-            <li id="s"><a href="<c:url value='/pages/S_message_inbox' />">쪽지</a></li>
-            <%-- <li id="j"><a href="<c:url value='/pages/J_D_attendanceRegistration' />">근태관리</a></li> --%>
-			<%
-				if(((MemberVO)request.getSession().getAttribute("loginInfo")).getSys_rank() == 1){
+        	<%
+				if(((MemberVO)request.getSession().getAttribute("loginInfo")).getSys_rank() != 9){
 			%>
-            	<li id="k"><a href="<c:url value='/admin/K_resistMemberInfo'/>">인사</a></li>
+	            <%-- <li id="s"><a href="<c:url value='/pages/S_mail_inbox' />">메일</a></li> --%>
+	            <li id="o"><a href="<c:url value='/pages/O_calendar' />">일정</a></li>
+	            <li id="p"><a href="<c:url value='/pages/P_listApprTodoView' />">전자결재</a></li>
+	            <li id="d"><a href="<c:url value='/pages/D_allBoardList' />">게시판</a></li>
+	            <li id="s"><a href="<c:url value='/pages/S_message_inbox' />">쪽지</a></li>
+	            <%-- <li id="j"><a href="<c:url value='/pages/J_D_attendanceRegistration' />">근태관리</a></li> --%>
+				<%
+					if(((MemberVO)request.getSession().getAttribute("loginInfo")).getSys_rank() == 1){
+				%>
+	            	<li id="k"><a href="<c:url value='/admin/K_resistMemberInfo'/>">인사</a></li>
 			<%
+					}
 				}
 			%>
             <!--
