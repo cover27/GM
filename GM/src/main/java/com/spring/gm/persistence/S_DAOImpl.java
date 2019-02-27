@@ -96,39 +96,9 @@ public class S_DAOImpl implements S_DAO {
 	}
 
 	@Override
-	public int getMessageBoxArticleCnt(String strId) {
-		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMessageBoxArticleCnt(strId);
-	}
-
-	@Override
-	public List<MessageVO> getMessageBoxArticleList(Map<String, Object> map) {
-		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMessageBoxArticleList(map);
-	}
-
-	@Override
 	public int addReadCnt(int num) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
 		return dao.addReadCnt(num);
-	}
-
-	@Override
-	public int createMessageBox(MessageBoxVO vo) {
-		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.createMessageBox(vo);
-	}
-
-	@Override
-	public MessageBoxVO getMessageBoxArticle(int num) {
-		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMessageBoxArticle(num);
-	}
-
-	@Override
-	public int MessageBoxModifyPro(MessageBoxVO vo) {
-		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.MessageBoxModifyPro(vo);
 	}
 
 

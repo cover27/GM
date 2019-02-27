@@ -50,22 +50,7 @@ public interface S_DAO {
 	// 휴지통 삭제 처리
 	public int delgarbage(Map<String, Integer> map);
 	
-	// 나의 쪽지함 갯수
-	public int getMessageBoxArticleCnt(String strId);
-	
-	// 나의 쪽지함 리스트
-	public List<MessageVO> getMessageBoxArticleList(Map<String, Object> map);
-	
 	// 조회수 증가
 	public int addReadCnt(int num);
-	
-	// 메세지함 생성
-	public int createMessageBox(MessageBoxVO vo);
-	
-	// 메세지함 수정폼
-	public MessageBoxVO getMessageBoxArticle(int num);
-	
-	// 메세지 수정 처리
-	public int MessageBoxModifyPro(MessageBoxVO vo);
 
 }
