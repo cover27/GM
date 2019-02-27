@@ -2361,6 +2361,7 @@ public class J_ServiceImpl implements J_Service {
 				System.out.println("휴가 사용한 횟수 : " + vacation.getU_vacation());
 				dtos3.get(0).setN_vacation(dtos3.get(0).getVacation() - vacation.getU_vacation());
 				System.out.println("잔여 휴가 : " + (dtos3.get(0).getVacation() - vacation.getU_vacation()));
+				dtos.get(j).setVacation(dtos3.get(0).getVacation());
 				dtos.get(j).setU_vacation(dtos3.get(0).getU_vacation());
 				dtos.get(j).setN_vacation(dtos3.get(0).getN_vacation());
 			} else if (vacationCnt == 0) {
