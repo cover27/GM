@@ -246,3 +246,11 @@
 #cke_1_contents {
 	height: 400px !important;
 }
+
+.content select {
+	width: 90%;
+}
+
+.boardSettingSelect {
+	width: 80px !important;
+}

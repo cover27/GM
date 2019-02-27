@@ -45,7 +45,7 @@
 			<form action="modifyUpdate" method="post">
 				<div class="search-wrap">
 			    	<div class="form-group">
-				        <span>*근무일자</span>
+				        <span class="bold5px">*근무일자</span>
 				        <span><input type="date" id="date" name="date" value="${date}" style="position:relative; top: 0;"></span>
 				        <span><input type="button" value="검색" onclick="allList()"></span>
 			    	</div>
