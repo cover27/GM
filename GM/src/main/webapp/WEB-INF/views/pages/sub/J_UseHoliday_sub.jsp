@@ -16,7 +16,7 @@ function back(id, name) {
 	self.close();
 }
 function vacationUH2() {
-	var month = $("#month").val();
+	var year = $("#year2").val();
 	window.location="vacationUH2?year="+year;
 };
 function search() {
@@ -27,6 +27,18 @@ function allsearch() {
 	$("#allsearch").show();
 	$("#search").hide();
 }
+//삭제
+function cancelapplication(num) {
+	var year = $('#year').val();
+	var con_test = confirm("휴가신청 취소 하시겠습니까?.");
+	if (con_test == true) {
+
+	window.location="cancelapplication?num="+num + "&year=" + year;
+	} else if (con_test == false) {
+		return false;
+	}
+	};
+
 </script>
 <section>
 	<article>
@@ -49,8 +61,8 @@ function allsearch() {
 				                    <span class="bold5px">${dto.c_name}</span>
 				                </c:forEach>
 				                <span class="ml50 bold5px">아이디</span>
-				                <span><input type="text" id="id" name="id" value="${id}"></span>
-				                <span><button onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></button></span>
+				                <span><input type="text" class="searchId" id="id" name="id" value="${id}"></span>
+				                <span><a href="#" onclick="searchId()" class="fa fa-search fa-fw"></a></span>
 				                <span class="bold5px ml50">이름 : </span>
 				                <span><input type="text" class="searchName" name="name" readonly placeholder="아이디를 조회하세요." style="background: #f3f3f3;"></span>
 				                <span class="ml50 bold5px">*급여년월</span>
@@ -61,7 +73,7 @@ function allsearch() {
 				            <!-- 전체 조회 -->
 				            <div id="allsearch" style="display:none;">
 				                <span class="bold5px ml50">*년도별검색 : </span>
-				                <span><input type="text" id="year" placeholder="예)2019" maxlength="4"></span>
+				                <span><input type="text" id="year2" placeholder="예)2019" maxlength="4" value="${year}"></span>
 				                <span><input type="button" onclick="vacationUH2()" value="조회" style="background: #d3292c;"></span>
 				            </div>
 				        </c:if>
@@ -76,13 +88,13 @@ function allsearch() {
 				            <span class="bold5px ml50">이름 : </span>
 				            <span><input type="text" class="searchName" name="name" value="${name}" readonly placeholder="아이디를 조회하세요."></span>
 				            <span class="bold5px ml50">*급여년월</span>
-				            <span><input type="text" id="year" value="${year}" name="month" maxlength="4" placeholder="예)2019"></span>
+				            <span><input type="text" id="year" value="${year}" name="year" maxlength="4" placeholder="예)2019"></span>
 				            <span><input type="submit" value="조회" style="background:#d3292c;"></span>
 				        </c:if>
 				        <c:if test="${month == null}">
 				            <script>
 				                document.getElementById('year').value = new Date().toISOString().slice(0, 4);
-				
+				                document.getElementById('year2').value = new Date().toISOString().slice(0, 4);
 				            </script>
 				        </c:if>
 				
@@ -172,7 +184,7 @@ function allsearch() {
 					</tbody>
 				</table>
 			</div>
-			<h3 class="mt30">*휴가신청내역 : <span style="color:d3292c;">${cnt}</span></h3>
+			<h3 class="mt30">*휴가신청내역 : <span style="color:d3292c;">${cnt2}</span></h3>
 			<div class="table_top mt10">
 				<table>
 					<colgroup>

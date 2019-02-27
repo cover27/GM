@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <form method="post" name="infoform">
 	
 	<!--
@@ -49,16 +50,16 @@
 					<td>${dto.id}</td>
 					<td>${dto.name}</td>
 					<td>${dto.j_name}</td>
-					<td>${dto.salary}</td>
-					<td>${dto.bonussalary}</td>
-					<td>${dto.sumsalarybonus}</td>
+					<td><fmt:formatNumber value="${dto.salary}" pattern="#,###" />원</td>
+					<td><fmt:formatNumber value="${dto.bonussalary}" pattern="#,###" />원</td>
+					<td><fmt:formatNumber value="${dto.sumsalarybonus}" pattern="#,###" />원</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td colspan="4">합계</td>
-				<td>${salary}</td>
-				<td>${bonussalary}</td>
-				<td>${sumsalarybonus}</td>
+				<td><fmt:formatNumber value="${salary}" pattern="#,###" />원</td>
+				<td><fmt:formatNumber value="${bonussalary}" pattern="#,###" />원</td>
+				<td><fmt:formatNumber value="${sumsalarybonus}" pattern="#,###" />원</td>
 			</tr>
 		</c:if>
 		
@@ -79,16 +80,16 @@
 					<td>${dto.id}</td>
 					<td>${dto.name}</td>
 					<td>${dto.j_name}</td>
-					<td>${dto.salary}</td>
+					<td><fmt:formatNumber value="${dto.salary}" pattern="#,###" />원</td>
 					<td>0</td>
-					<td>${dto.salary}</td>
+					<td><fmt:formatNumber value="${dto.salary}" pattern="#,###" />원</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td colspan="4">합계</td>
-				<td>${salary}</td>
+				<td><fmt:formatNumber value="${salary}" pattern="#,###" />원</td>
 				<td>0</td>
-				<td>${salary}</td>
+				<td><fmt:formatNumber value="${salary}" pattern="#,###" />원</td>
 			</tr>
 		</c:if>
 	</table>
@@ -126,12 +127,12 @@
 					<td>${dto2.num}</td>
 					<td>${dto2.type}</td>
 					<td>${dto2.content}</td>
-					<td>${dto2.cost}</td>
+					<td><fmt:formatNumber value="${dto2.cost}" pattern="#,###" />원</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td colspan="3">합계</td>
-				<td>${bonussalary}</td>
+				<td><fmt:formatNumber value="${bonussalary}" pattern="#,###" />원</td>
 			</tr>
 		</c:if>
 	</table>

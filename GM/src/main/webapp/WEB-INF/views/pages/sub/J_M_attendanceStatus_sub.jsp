@@ -3,7 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <script type="text/javascript">
+	//날짜 정렬
+
+
 	function searchId() {
 		var id = $('.searchId').val();
 		var url = "J_searchId_sub?id=" + id;
@@ -44,7 +48,7 @@
 		}
 	};
 	function J_M_attendanceStatus2() {
-		var month = $("#month").val();
+		var month = $("#month2").val();
 		window.location="J_M_attendanceStatus2?month="+month;
 	};
 	function search() {
@@ -77,9 +81,9 @@
 								<c:forEach var="dto" items="${dtoss}">
 									<span id="search_title" class="bold5px">${dto.c_name}</span>
 								</c:forEach>
-								<span class="ml50 bold5px">아이디</span> <span><input
-									type="text" class="searchId" id="id" name="id" value="${id}"></span>
-								<span><button onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></button></span>
+								<span class="ml50 bold5px">아이디</span> 
+								<span><input type="text" class="searchId" id="id" name="id" value="${id}"></span>
+								<span><a href="#" onclick="searchId()" class="fa fa-search fa-fw"></a></span>
 								<span class="bold5px ml50">이름 : </span>
 								<span><input type="text" class="searchName" name="name" readonly placeholder="아이디를 조회하세요." style="background: #f3f3f3;"></span>
 								<span class="ml50 bold5px">*급여년월</span>
@@ -90,7 +94,7 @@
 							<!-- 전체 조회 -->
 							<div id="allsearch" style="display: none;">
 								<span class="bold5px">*년도별검색 : </span>
-								<span><input type="month" id="month" placeholder="예)2019" maxlength="4"></span>
+								<span><input type="month" id="month2" placeholder="예)2019" maxlength="4"></span>
 								<span><input type="button" onclick="J_M_attendanceStatus2()" value="조회" style="background: #d3292c;"></span>
 							</div>
 						</c:if>
@@ -110,8 +114,8 @@
 					</c:if>
 					<c:if test="${month == null}">
 						<script>
-							document.getElementById('month').value = new Date()
-									.toISOString().slice(0, 7);
+							document.getElementById('month').value = new Date().toISOString().slice(0, 7);
+							document.getElementById('month2').value = new Date().toISOString().slice(0, 7);
 						</script>
 					</c:if>
 					</div>
@@ -155,14 +159,18 @@
 										<td>${dtos.gos}</td>
 										<td>${dtos.offs}</td>
 										<td>${dtos.worktimes}</td>
-										<td><font color="darkGray">■</font> <c:if
+										<td><font color="darkGray">■</font> 
+											<c:if
 												test="${dtos.departuretimes ne '00:00'}">
 												<font color="yellow">■</font>
-											</c:if> <c:if test="${dtos.departuretimes ne '00:00'}">
+											</c:if> 
+											<c:if test="${dtos.departuretimes ne '00:00'}">
 												<font color="red">■</font>
-											</c:if> <c:if test="${dtos.result eq '3'}">
+											</c:if> 
+											<c:if test="${dtos.result == 3}">
 												<font color="green">■</font>
-											</c:if> <c:if test="${dtos.result eq '4'}">
+											</c:if> 
+											<c:if test="${dtos.result == 4}">
 												<font color="blue">■</font>
 											</c:if></td>
 										<!--
