@@ -99,7 +99,7 @@ button, input, optgroup, select, textarea {
     margin: 0;
 }
 
-button, input[type="submit"], input[type="button"], input[type="reset"] {
+button, input[type="submit"], input[type="button"], input[type="reset"], input[type="file"] {
     cursor: pointer;
 }
 
@@ -611,3 +611,31 @@ img {
 	width: 14px;
 	background:url(../images/edit_icon.png) no-repeat 0 50%;;
 }
+
+/* 
+.file_label {
+	display: inline-block;
+	padding: 0 5px;
+	color: #fff;
+	background-color: #555;
+	border: #555 1px solid;
+	cursor: pointer;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+.file_label:hover {
+	opacity: 0.8;
+}
+
+input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+ */

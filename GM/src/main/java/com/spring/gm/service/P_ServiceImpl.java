@@ -220,7 +220,7 @@ public class P_ServiceImpl implements P_Service{
 			cnt = (cnt!=0&&insertCnt3!=0)?1:0;
 		}
 		
-		if(file != null) {
+		if(file.getOriginalFilename().length() != 0) {
 			String stored_title = getRandomString();
 			String title = file.getOriginalFilename();
 			long size = file.getSize();
