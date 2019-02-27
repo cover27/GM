@@ -29,7 +29,7 @@
 			<%
 				if(((MemberVO)request.getSession().getAttribute("loginInfo")).getSys_rank() == 1){
 			%>
-            	<li id="k"><a href="<c:url value='/admin/K_member_manage'/>">인사</a></li>
+            	<li id="k"><a href="<c:url value='/admin/K_resistMemberInfo'/>">인사</a></li>
 			<%
 				}
 			%>

@@ -72,4 +72,7 @@ public interface K_Service {
 	
 	public void K_deleteManager(HttpServletRequest req, Model model);
 	
+	public void K_appHoliday(HttpServletRequest req, Model model);
+	
+	public void K_appHoliday_pro(HttpServletRequest req, Model model);
 }
