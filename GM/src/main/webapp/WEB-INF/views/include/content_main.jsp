@@ -156,14 +156,16 @@ $(document).ready(function(){
 	                        	</div>
                         	</div>
                         </li>
-                        <li onclick="window.location='<c:url value="/admin/K_resistMemberInfo"/>'" class="member_management_bg">
+                        <c:if test="${sys_rank == 1 }">
+                        	<li onclick="window.location='<c:url value="/admin/K_resistMemberInfo"/>'" class="member_management_bg">
                                 <div class="menu_wrap member_management_wrap">
 	                                <div>
 		                                <div class="member_management"></div>
 		                                <h2>인사</h2>
 	                                </div>
                                 </div>
-                        </li>
+                        	</li>
+                        </c:if>
                         <li onclick="window.location='<c:url value="/pages/J_D_attendanceRegistration"/>'" class="work_management_bg">
                         	<div class="menu_wrap work_management_wrap">
 	                        	<div>
@@ -183,7 +185,7 @@ $(document).ready(function(){
                         	</li>
                         </c:if>
                         <c:if test="${sys_rank != 1 }">
-                        <li onclick="window.location='<c:url value="/admin/J_SalaryDefaultSetting"/>'">
+                        <li onclick="window.location='<c:url value="/pages/J_PayrollInquiry"/>'" class="salary_management_bg">
                         	<div class="menu_wrap salary_management_wrap">
 	                        	<div>
 		                        	<div class="salary_management"></div>
