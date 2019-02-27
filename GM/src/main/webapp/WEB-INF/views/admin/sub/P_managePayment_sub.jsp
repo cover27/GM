@@ -285,7 +285,24 @@ tbody {
     border-color: inherit;
 }
 </style>
-
+<script type="text/javascript">
+	function movepage(pageNum){
+		var search = 0;
+		if(!document.searchForm.searchUserName.value){
+			search = 1;
+		} else if(!document.searchForm.retire.value){
+			search = 1;
+		} else if(!document.searchForm.searchApprTitle.value){
+			search = 1;
+		} else if(!document.searchForm.searchStartDate.value){
+			search = 1;
+		} else if(!document.searchForm.searchEndDate.value){
+			search = 1;
+		} 
+		
+		window.location="<c:url value='/admin/P_managePayment?pageNum='/>"+pageNum+"&search="+search;
+	}
+</script>
 <section>
 	<article>
 		<div class="content_header">
@@ -294,7 +311,7 @@ tbody {
 		
 		<!-- 결재 대기함 게시글 나열 list -->
 		<div class="content-wrap responsive pt10">
-			<form id="searchForm" method="post" action="<c:url value='/pages/P_SearchPaymentTool' />">
+			<form id="searchForm" name="searchForm" method="post" action="<c:url value='/pages/P_SearchPaymentTool' />">
 				
 				<input type="hidden" name="sel_Payment" value="7">
 				
@@ -312,44 +329,58 @@ tbody {
 						<tbody>
 							<tr>
 								<th scope="row"><label for="searchUserName">기안자</label></th>
-								<td><input id="searchUserName" name="searchUserName" value="" type="text" title="기안자" class="w40p"></td>
+								<td><input id="searchUserName" name="searchUserName" value="${sessionScope.searchMap.searchUserName }" type="text" title="기안자" class="w40p"></td>
 								<th scope="row"><label for="checkRetire">삭제글</label></th>
-								<td><input type="checkbox" name="retire" value="1"></td>
+								<c:if test="${sessionScope.searchMap.retire == 0}">
+									<td><input type="checkbox" name="retire" value="1"></td>
+								</c:if>
+								<c:if test="${sessionScope.searchMap.retire != 0}">
+									<td><input type="checkbox" name="retire" value="1" checked></td>
+								</c:if>
 							</tr>
 							<tr>
 								<th scope="row">
 									<select name="toggleSearchType">
-										<option value="subject">
-											문서제목
-										</option>
-										<option value="content">
-											문서내용
-										</option>
+										<c:if test="${sessionScope.searchMap.toggleSearchType != 'content'}">
+											<option value="subject" selected>
+												문서제목
+											</option>
+											<option value="content">
+												문서내용
+											</option>
+										</c:if>
+										<c:if test="${sessionScope.searchMap.toggleSearchType == 'content'}">
+											<option value="subject">
+												문서제목
+											</option>
+											<option value="content" selected>
+												문서내용
+											</option>
+										</c:if>
 									</select>
 								</th>
 								<td>
-									<input id="inputSearchType" type="text" class="w80p" title="문서제목" name="searchApprTitle" value="">
+									<input id="inputSearchType" type="text" class="w80p" title="문서제목" name="searchApprTitle" value="${sessionScope.searchMap.searchApprTitle }">
 								</td>
 								<th scope="row">								
 									<label>배정일</label>
 								</th>
 								<td>
-									<input type="date" title="시작일" id="searchStartDate" name="searchStartDate" value="" placeholder="시작일">
+									<input type="date" title="시작일" id="searchStartDate" name="searchStartDate" value="${sessionScope.searchMap.searchStartDate }" placeholder="시작일">
 										<span>~</span>
-									<input type="date" title="종료일" id="searchEndDate" name="searchEndDate" value="" placeholder="종료일">
+									<input type="date" title="종료일" id="searchEndDate" name="searchEndDate" value="${sessionScope.searchMap.searchEndDate }" placeholder="종료일">
 								</td>									
 							</tr>
 						</tbody>
 					</table>
 					<div class="search_btn">
-						<input type="submit" class="btn btn-color5 br" value="검색">
+						<input type="submit" value="검색">
 					</div>
 				</div>
 			</div>
 				<!-- search end-->	
 	
 			    	
-				<!-- table-header -->
 				<div class="table-header">
 					<div class="listinfo">
 						<div class="totalnum">전체<span>${cnt }</span>						</div>													
@@ -401,9 +432,13 @@ tbody {
 					<!-- 게시글이 있으면 -->
 					<c:if test="${cnt > 0}">
 						<!-- 처음[◀◀] / 이전블록[◀]  -->
+						<%-- <c:if test="${startPage > pageBlock}">					
+							<a href="<c:url value='/admin/P_managePayment'/>">[◀◀ ]</a>						
+							<a href="<c:url value='/admin/P_managePayment?pageNum=${startPage - pageBlock}'/>">[◀ ]</a>
+						</c:if> --%>
 						<c:if test="${startPage > pageBlock}">					
-							<a href="<c:url value='/pages/P_listApprTodoView'/>">[◀◀ ]</a>						
-							<a href="<c:url value='/pages/P_listApprTodoView?pageNum=${startPage - pageBlock}'/>">[◀ ]</a>
+							<a href="javascript:movepage(1)">[◀◀ ]</a>						
+							<a href="javascript:movepage('${startPage - pageBlock}')">[◀ ]</a>
 						</c:if>
 						
 						<!-- 블록내의 페이지 번호 -->
@@ -411,15 +446,22 @@ tbody {
 							<c:if test="${i == currentPage}">
 								<span><b>[${i}]</b></span>
 							</c:if>
+							<%-- <c:if test="${i != currentPage}">
+								<a href="<c:url value='/admin/P_managePayment?pageNum=${i}'/>">[${i}]</a>
+							</c:if> --%>
 							<c:if test="${i != currentPage}">
-								<a href="<c:url value='/pages/P_listApprTodoView?pageNum=${i}'/>">[${i}]</a>
+								<a href="javascript:movepage('${i}')">[${i}]</a>
 							</c:if>
 						</c:forEach>					
 						
 						<!-- 다음 블록[▶] / 끝[▶▶]> -->
+						<%-- <c:if test="${pageCount > endPage}">					
+							<a href="<c:url value='/admin/P_managePayment?pageNum=${startPage + pageBlock}'/>">[▶ ]</a>						
+							<a href="<c:url value='/admin/P_managePayment?pageNum=${pageCount}'/>">[▶▶ ] </a>
+						</c:if> --%>
 						<c:if test="${pageCount > endPage}">					
-							<a href="<c:url value='/pages/P_listApprTodoView?pageNum=${startPage + pageBlock}'/>">[▶ ]</a>						
-							<a href="<c:url value='/pages/P_listApprTodoView?pageNum=${pageCount}'/>">[▶▶ ] </a>
+							<a href="javascript:movepage('${startPage + pageBlock}')">[▶ ]</a>						
+							<a href="javascript:movepage('${pageCount}')">[▶▶ ] </a>
 						</c:if>
 					</c:if>
 				</th>
