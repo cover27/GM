@@ -156,7 +156,7 @@ $(document).ready(function(){
 	                        	</div>
                         	</div>
                         </li>
-                        <li onclick="window.location='<c:url value="/admin/K_member_manage"/>'" class="member_management_bg">
+                        <li onclick="window.location='<c:url value="/admin/K_resistMemberInfo"/>'" class="member_management_bg">
                                 <div class="menu_wrap member_management_wrap">
 	                                <div>
 		                                <div class="member_management"></div>

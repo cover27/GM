@@ -18,6 +18,7 @@ import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgiVO;
+import com.spring.gm.vo.join_mvrVO;
 
 
 @Repository
@@ -390,6 +391,15 @@ public class K_DAOImpl implements K_DAO{
 	public int deleteManager2(String id) {
 		return sqlSession.delete("com.spring.gm.persistence.K_DAO.deleteManager2", id);
 	}
-	
+
+	@Override
+	public List<join_mvrVO> getAppHoliday(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getAppHoliday", company);
+	}
+
+	@Override
+	public int handleHoliday(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.handleHoliday", map);
+	}
 	
 }

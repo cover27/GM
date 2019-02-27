@@ -17,7 +17,6 @@
                 	<li>
                 		<span>인사정보</span>
                 		<ul>
-                			<li id="K_member_manage"><a href="<c:url value='/admin/K_member_manage' />">가입대기 승인/취소</a></li>
                 			<li id="K_resistMemberInfo"><a href="<c:url value='/admin/K_resistMemberInfo' />">인사정보 등록</a></li>
                 		</ul>
                 	</li>
@@ -34,6 +33,13 @@
                 			<li id="K_manageOrgan"><a href="<c:url value='/admin/K_manageOrgan' />">사용자 조직도 관리</a></li>
                 			<li id="K_manageRank"><a href="K_manageRank">직급 관리</a></li>
                 			<li id="K_ourManager"><a href="K_ourManager">우리회사 관리자</a></li>
+                		</ul>
+                	</li>
+                	<li>
+                		<span>승인/취소</span>
+                		<ul>
+                			<li id="K_member_manage"><a href="<c:url value='/admin/K_member_manage' />">가입대기 승인/취소</a></li>
+                			<li id="K_appHoliday"><a href="<c:url value='/admin/K_appHoliday' />">휴무 승인/취소</a></li>
                 		</ul>
                 	</li>
                 </ul>

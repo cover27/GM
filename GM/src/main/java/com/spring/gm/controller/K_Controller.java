@@ -377,4 +377,23 @@ public class K_Controller {
 		return "admin/sub/K_deleteManager";
 	}
 	
+	//휴무 승인/취소
+	@RequestMapping("admin/K_appHoliday")
+	public String K_appHoliday(HttpServletRequest req, Model model) {
+		logger.info("URL : K_appHoliday");
+		
+		service.K_appHoliday(req, model);
+		
+		return "admin/K_appHoliday";
+	}
+	
+	//휴무 승인취소 처리
+	@RequestMapping("admin/K_appHoliday_pro")
+	public String K_appHoliday_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : K_appHoliday_pro");
+		
+		service.K_appHoliday_pro(req, model);
+		
+		return "admin/K_appHoliday_pro";
+	}
 }

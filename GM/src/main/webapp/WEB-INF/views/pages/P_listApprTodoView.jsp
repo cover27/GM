@@ -5,6 +5,6 @@
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/payment.jsp"%>
 <%@ include file="/WEB-INF/views/pages/sub/P_listApprTodoContent.jsp"%>
-<%-- <%@ include file="/WEB-INF/views/include/footer.jsp"%> --%>
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 
 <!-- 결재 - 결재대기함 페이지 -->

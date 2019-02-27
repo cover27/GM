@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.MessageBoxVO;
 import com.spring.gm.vo.MessageVO;
 
@@ -96,42 +97,21 @@ public class S_DAOImpl implements S_DAO {
 	}
 
 	@Override
-	public int getMessageBoxArticleCnt(String strId) {
-		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMessageBoxArticleCnt(strId);
-	}
-
-	@Override
-	public List<MessageVO> getMessageBoxArticleList(Map<String, Object> map) {
-		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMessageBoxArticleList(map);
-	}
-
-	@Override
 	public int addReadCnt(int num) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
 		return dao.addReadCnt(num);
 	}
 
 	@Override
-	public int createMessageBox(MessageBoxVO vo) {
+	public int getMemberCnt(String strId) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.createMessageBox(vo);
+		return dao.getMemberCnt(strId);
 	}
 
 	@Override
-	public MessageBoxVO getMessageBoxArticle(int num) {
+	public List<MemberVO> getMemberList(Map<String, Object> map) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMessageBoxArticle(num);
+		return dao.getMemberList(map);
 	}
-
-	@Override
-	public int MessageBoxModifyPro(MessageBoxVO vo) {
-		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.MessageBoxModifyPro(vo);
-	}
-
-
-
 
 }

@@ -30,14 +30,14 @@ public class S_Controller {
 	}
 	*/
 	
-
 	@RequestMapping("/pages/S_message_inbox")
-	public String massageBox(HttpServletRequest req, Model model) {
+	public String S_message_inbox(HttpServletRequest req, Model model) {
 		logger.info("URL : S_message_inbox");
-		
-		/*service.messageList(req, model);*/
-		return "pages/S_message_inbox";
+
+		service.messageList(req, model);
+		return "/pages/S_message_inbox";
 	}
+
 	
 	@RequestMapping("/pages/S_receiveMessage")
 	public String receiveMessage(HttpServletRequest req, Model model) {
@@ -124,28 +124,13 @@ public class S_Controller {
 		return "pages/S_contentMessage";		
 	}
 	
-	@RequestMapping("/pages/S_createMessageForm")
-	public String createMessageForm(HttpServletRequest req, Model model) {
-		logger.info("URL : S_createMessageForm");
+	@RequestMapping("/pages/myInfo")
+	public String myInfo(HttpServletRequest req, Model model) {
+		logger.info("URL : S_contentMessage");
 		
-		return "pages/S_createMessageForm";	
-	}
+		return "pages/myInfo";		
+	}	
 	
-	@RequestMapping("/pages/S_createMessagePro")
-	public String createMessagePro(HttpServletRequest req, Model model) {
-		logger.info("URL : S_createMessagePro");
-		
-		/*service.createMessageBoxPro(req, model);*/
-		return "pages/S_createMessagePro";	
-	}
-	
-	@RequestMapping("/pages/S_messageBoxSetting")
-	public String messageBoxSetting(HttpServletRequest req, Model model) {
-		logger.info("URL : S_messageBoxSetting");
-		
-		/*service.messageBoxList(req, model);*/
-		return "pages/S_messageBoxSetting";	
-	}
 	
 	
 }

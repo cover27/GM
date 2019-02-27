@@ -356,4 +356,17 @@
 		DELETE FROM authorities WHERE username=#{id} AND authority='USER_ADMIN'
 	</delete>	
 	
+	<select id="getAppHoliday" parameterType="int" resultType="com.spring.gm.vo.join_mvrVO">
+		select v.*, m.name, r.r_name from vacation v, grade r, member m
+		    where v.id = m.id
+		    and m.rank = r.rank
+		    and v.state = 2
+		    and m.company = #{company}
+		    and m.del = 0
+	</select>
+	
+	<update id="handleHoliday" parameterType="java.util.Map">
+		UPDATE vacation SET state = #{state} WHERE num = #{num}
+	</update>
+	
 </mapper>

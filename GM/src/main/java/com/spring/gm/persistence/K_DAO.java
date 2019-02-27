@@ -14,6 +14,7 @@ import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgiVO;
+import com.spring.gm.vo.join_mvrVO;
 
 public interface K_DAO {
 
@@ -137,5 +138,8 @@ public interface K_DAO {
 	
 	public int deleteManager2(String id);
 	
+	public List<join_mvrVO> getAppHoliday(int company);
+	
+	public int handleHoliday(Map<String, Object> map);
 	
 }
