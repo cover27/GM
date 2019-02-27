@@ -77,32 +77,33 @@ table, tr, th, td{
 		    		<br>
 		    		
 		    		<div class="inform-wrap rejectClass">
-		    			<div class="statement">
-		    				<h4 style="float:left;">처리 내역</h4>
-		    				<span style="float:right;">상태값</span>
-		    			</div>
-		    			<div class="form-block">
-		    				<table class="table">
-			    				<c:forEach var="dto2" items="${dtos2}">
-			    					<tbody>
-			    						<tr>
-			    							<th scope="row">담당자</th>
-			    							<td>${dto2.b_name}</td>
-			    							<th scope="row">최종수정일</th>
-			    							<td>${dto2.reg_date}</td>
-			    						</tr>
-			    						<tr>
-			    							<th scope="row">내용</th>
-			    							<td colspan="3">${dto2.content}</td>
-			    						</tr>
-			    						<tr>
-			    							<th scope="row">첨부파일</th>
-			    							<td colspan="3"></td>
-			    						</tr>
-			    					</tbody>
-			    				</c:forEach>
-		    				</table>
-		    			</div>
+		    			<c:forEach var="dto2" items="${dtos2}">
+			    			<div class="statement">
+			    				<h4 style="float:left;">처리 내역</h4>
+			    				<span style="float:right;">${dto2.state}</span>
+			    			</div>
+			    			<div class="form-block">
+			    				<table class="table">
+				    				
+				    					<tbody>
+				    						<tr>
+				    							<th scope="row">담당자</th>
+				    							<td>${dto2.b_name}</td>
+				    							<th scope="row">최종수정일</th>
+				    							<td>${dto2.reg_date}</td>
+				    						</tr>
+				    						<tr>
+				    							<th scope="row">내용</th>
+				    							<td colspan="3">${dto2.content}</td>
+				    						</tr>
+				    						<tr>
+				    							<th scope="row">첨부파일</th>
+				    							<td colspan="3"></td>
+				    						</tr>
+				    					</tbody>
+			    				</table>
+			    			</div>
+			    		</c:forEach>
 		    		</div>
 		    	</div>
 		    </div>

@@ -38,5 +38,13 @@ public interface O_Service {
 	public void updateTaskPro(HttpServletRequest req, Model model);
 	//업무관리 업무요청 삭제 pro
 	public void updateTaskDeletePro(HttpServletRequest req, Model model);
+	//업무관리 수신 업무 요청 화면
+	public void listTodo(HttpServletRequest req, Model model);
+	//업무요청 - 수신 업무 요청 상세 조회 처리 - pro
+	public void readSubTodoSuccessPro(HttpServletRequest req, Model model);
+	//업무요청 - 업무 완료함 화면
+	public void completeList(HttpServletRequest req, Model model);
+	//관리자 메뉴 - 업무 문서 관리
+	public void adminTodoList(HttpServletRequest req, Model model);
 	/* 업무관리 끝 */
 }

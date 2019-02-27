@@ -1,6 +1,5 @@
 package com.spring.gm.vo;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 //업무관리 상세 테이블
@@ -11,17 +10,11 @@ public class B_ManageInfoVO {
 	private String id; //아이디(FK)
     private int progress; //진척율
     private String content; //업무내용
-    private Date reg_date; //최종수정일
+    private Timestamp reg_date; //최종수정일
     private int del; //삭제구분
     private String b_name;
+    private String state;
     
-    
-	public String getB_name() {
-		return b_name;
-	}
-	public void setB_name(String b_name) {
-		this.b_name = b_name;
-	}
 	public int getDonum() {
 		return donum;
 	}
@@ -52,10 +45,10 @@ public class B_ManageInfoVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getReg_date() {
+	public Timestamp getReg_date() {
 		return reg_date;
 	}
-	public void setReg_date(Date reg_date) {
+	public void setReg_date(Timestamp reg_date) {
 		this.reg_date = reg_date;
 	}
 	public int getDel() {
@@ -64,13 +57,24 @@ public class B_ManageInfoVO {
 	public void setDel(int del) {
 		this.del = del;
 	}
+	public String getB_name() {
+		return b_name;
+	}
+	public void setB_name(String b_name) {
+		this.b_name = b_name;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	
 	@Override
 	public String toString() {
 		return "B_ManageInfoVO [donum=" + donum + ", todonum=" + todonum + ", id=" + id + ", progress=" + progress
-				+ ", content=" + content + ", reg_date=" + reg_date + ", del=" + del + ", b_name=" + b_name + "]";
+				+ ", content=" + content + ", reg_date=" + reg_date + ", del=" + del + ", b_name=" + b_name + ", state="
+				+ state + "]";
 	}
 	
-    
-    
 }

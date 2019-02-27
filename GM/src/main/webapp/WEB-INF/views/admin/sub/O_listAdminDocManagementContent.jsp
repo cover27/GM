@@ -179,24 +179,14 @@ tbody {
 	            <table class="table table-striped" id="tblList">
 	                <caption></caption>
 					<colgroup>
-	                    <col style="width: 40px;">
-	                    <col style="width: 80px;">
-	                    <col style="width: 120px;">
-	                    <col style="width: *;">
-	                    <col style="width: 90px;">
-	                    <col style="width: 120px;">
-	                    <col style="width: 100px;">
-	                    <col style="width: 100px;">
+	                    <col style="min-width: 50%;">
+	                    <col style="width: 15%;">
+	                    <col style="width: 15%;">
+	                    <col style="width: 15%;">
+	                    <col style="width: 15%;">
                		</colgroup>
 	                <thead>
 			            <tr>
-			                <th scope="col">번호</th>
-			                <th scope="col">
-			                    <a data-sortcolumn="TASKTYPE" href="#">유형</a>
-			                </th>
-			                <th scope="col">
-			                    <a data-sortcolumn="CATEGORYNAME" href="#">업무 유형</a>
-			                </th>
 			                <th scope="col">
 			                    <a data-sortcolumn="TITLE" href="#">제목</a>
 			                </th>
@@ -204,76 +194,73 @@ tbody {
 			                    <a data-sortcolumn="REGISTER" href="#">등록자</a>
 			                </th>
 			                <th scope="col">
-			                    <a data-sortcolumn="REGISTDATE" href="#">등록일</a>
+			                    <a data-sortcolumn="begin" href="#">등록일</a>
 			                </th>
-			                <th scope="col">상태</th>
-			                <th scope="col">확인</th>
+			                <th scope="col">
+	                            <a data-sortcolumn="end" href="#">마감일</a>
+	                        </th>
+			                <th scope="col">업무 처리 상태</th>
 			            </tr>
 			        </thead>
 	                
 	                
 	                <!-- 게시글 나열 list -->
 	                <tbody>
-	                    <tr class="important" style="background: rgb(249, 249, 249);">
-                        <td>1</td>
-                        <td>업무 보고</td>
-                        <td>업무 유형</td>
-                        <td class="text-left">
-                            <div class="ellipsis" title="업무보고">업무보고</div>
-                        </td>
-                        <td>오정</td>
-                        <td>등록일</td>
-                        <td>
-                            <a href="javascript:void(0);" onclick="todoStatusPopup('26950244', '업무보고');">
-                            	<span class="todo-cate-box2">완료</span>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="javascript:void(0);" onclick="todoReadStatusPopup('26950244', '2','업무보고', 'B', '0', '');">
-                            	<span class="todo-cate-buuton">읽음확인</span>
-                            </a>
-                        </td>
-                    </tr>
+	                <c:if test = "${cnt > 0}">
+						<c:forEach var="dto" items="${dtos}">
+		                    <tr class="important" style="background: rgb(249, 249, 249);">
+		                        <td>${dto.subject}</td>
+		                        <td>${dto.name}(${dto.id})</td>
+		                        <td>${dto.begin}</td>
+		                        <td>${dto.end}</td>
+		                        <td>${dto.state}</td>
+	                   		</tr>
+	                    </c:forEach>
+                    </c:if>
+                    
+                    <c:if test="${cnt == 0}">
+						<tr>
+							<td colspan="6" align="center">업무 문서 내역이 없습니다.</td>
+						</tr>
+					</c:if>
+                    
 		        	</tbody>
 	            </table>
 	            
 	            
 	            <!-- 게시물 아래 <<, >> 버튼 및 업무등록, 완료 버튼 -->
 	            <div class="pagination-wrap">
-	            	<ul class="pagination">
-	            		<li>
-	            			<a href="javascript:void(0)" class="disabled">
-	            				<i class="fa fa-chevron-left"></i>
-	            				<i class="fa fa-chevron-left"></i>
-	            				<span class="none">first</span>
-	            			</a>
-	            		</li>
-	            		<li>
-	            			<a href="javascript:void(0)" class="disabled">
-	            				<i class="fa fa-chevron-left"></i>
-	            				<span class="none">previous</span>
-	            			</a>
-	            		</li>
-	            		<li class="active">
-	            			<a href="javascript:void(0)">1</a>
-	            		</li>
-	            		<li>
-	            			<a href="javascript:void(0)" class="disabled">
-	            				<i class="fa fa-chevron-right"></i>
-	            				<span class="none">next</span>
-	            			</a>
-	            		</li>
-	            		<li>
-	            			<a href="javascript:void(0)" class="disabled">
-	            				<i class="fa fa-chevron-right"></i>
-	            				<i class="fa fa-chevron-right"></i>
-	            				<span class="none">last</span>
-	            			</a></li>
-	            	</ul>
-	            </div>
-	            <script>pageMoveAction = function(inputName, formId, movePageIndex) { jQuery('input[name=' + inputName + ']', formId).val(movePageIndex); jQuery('input[name=action]', formId).val('pagePerRecord');};</script>
-	           
-	            <input name="pageIndex" type="hidden" value="1" title="현재 페이지">
+		            	<table>
+							<tr>
+								<th align="center">
+									<!-- 게시글이 있으면 -->
+									<c:if test="${cnt > 0}">
+										<!-- 처음[◀◀] / 이전블록[◀]  -->
+										<c:if test="${startPage > pageBlock}">
+											<a href="<c:url value='/admin/W_listAdminDocManagement'/>">[◀◀]</a>
+											<a href="<c:url value='/admin/W_listAdminDocManagement?pageNum=${endPage - pageBlock}'/>">[◀]</a>
+										</c:if>
+		
+										<!-- 중간에 들어갈 페이지 -->
+										<c:forEach var="i" begin="${startPage}" end="${endPage}">
+											<c:if test="${i==currentPage}">
+												<span><b>[${i}]</b></span>
+											</c:if>
+											<c:if test="${i!=currentPage}">
+												<a href="<c:url value='/admin/W_listAdminDocManagement?pageNum=${i}'/>">[${i}]</a>
+											</c:if>
+										</c:forEach>
+		
+										<!-- 다음[▶] / 마지막[▶▶]  -->
+										<c:if test="${pageCount > endPage}">
+											<a href="<c:url value='/admin/W_listAdminDocManagement?pageNum=${startPage + pageBlock}'/>">[▶]</a>
+											<a href="<c:url value='/admin/W_listAdminDocManagement?pageNum=${pageCount}'/>">[▶▶]</a>
+										</c:if>
+									</c:if>
+								</th>
+							</tr>
+						</table>
+		            </div>
 	            
         </div>
 		
