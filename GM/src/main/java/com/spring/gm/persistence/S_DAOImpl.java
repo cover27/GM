@@ -119,6 +119,18 @@ public class S_DAOImpl implements S_DAO {
 		return dao.createMessageBox(vo);
 	}
 
+	@Override
+	public MessageBoxVO getMessageBoxArticle(int num) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.getMessageBoxArticle(num);
+	}
+
+	@Override
+	public int MessageBoxModifyPro(MessageBoxVO vo) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.MessageBoxModifyPro(vo);
+	}
+
 
 
 

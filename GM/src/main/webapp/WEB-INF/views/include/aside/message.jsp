@@ -30,7 +30,7 @@
                     </li> 
                     
                     <li>
-                    	<span><a href="a04.jsp">나의 쪽지함</a></span>
+                    	<span><a href="<c:url value='/pages/S_messageBoxSetting'/>">나의 쪽지함 관리</a></span>
                     	<ul>
                     		
                     	</ul>

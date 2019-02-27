@@ -38,7 +38,10 @@
 		<beans:constructor-arg ref="sqlSessionFactory" />
 	</beans:bean>
 	
-	<!-- 경준 추가 -->
-
-	<!-- 경준 종료 -->
+	<!-- 파일 업로드 -->
+	<!-- FILE UPLOAD SETTING -->
+	<beans:bean id="multipartResolver"
+	    class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</beans:bean>
+	
 </beans:beans>

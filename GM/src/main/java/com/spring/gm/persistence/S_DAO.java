@@ -3,6 +3,7 @@ package com.spring.gm.persistence;
 import java.util.List;
 import java.util.Map;
 
+import com.spring.gm.vo.BoardsVO;
 import com.spring.gm.vo.MessageBoxVO;
 import com.spring.gm.vo.MessageVO;
 
@@ -60,5 +61,11 @@ public interface S_DAO {
 	
 	// 메세지함 생성
 	public int createMessageBox(MessageBoxVO vo);
+	
+	// 메세지함 수정폼
+	public MessageBoxVO getMessageBoxArticle(int num);
+	
+	// 메세지 수정 처리
+	public int MessageBoxModifyPro(MessageBoxVO vo);
 
 }

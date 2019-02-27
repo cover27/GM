@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.gm.vo.AttachVO;
 import com.spring.gm.vo.Join_payVO;
 import com.spring.gm.vo.Join_payVO2;
 import com.spring.gm.vo.PaymentInfoVO;
@@ -77,6 +78,10 @@ public class P_DAOImpl implements P_DAO{
 		return sqlSession.insert("com.spring.gm.persistence.P_DAO.insertPaymentInfo", map);
 	}
 	@Override
+	public int insertAttach(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.P_DAO.insertAttach", map);
+	}
+	@Override
 	public int getPaymentCnt(Map<String, Object> map) {
 		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getPaymentCnt", map);
 	}
@@ -131,6 +136,14 @@ public class P_DAOImpl implements P_DAO{
 	@Override
 	public List<join_groupnameVO> getGroupInfo(int groupid) {
 		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.getGroupInfo", groupid);
+	}
+	@Override
+	public List<AttachVO> getAttachList(int num) {
+		return sqlSession.selectList("com.spring.gm.persistence.P_DAO.getAttachList", num);
+	}
+	@Override
+	public AttachVO getAttachFile(int num) {
+		return sqlSession.selectOne("com.spring.gm.persistence.P_DAO.getAttachFile", num);
 	}
 	@Override
 	public int getMyOrder(Map<String, Object> map) {

@@ -114,6 +114,16 @@ select {
     background: #fff;
 }
 
+input[type="date"] {
+    height: 27px;
+    padding: 3px;
+    color: #111;
+    border: 1px solid #c3c6c9;
+    border-radius: 2px;
+    position: relative;
+    background: #fff;
+}
+
 .underline, a.underline {
     text-decoration: underline;
 }

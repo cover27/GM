@@ -1,19 +1,24 @@
 package com.spring.gm.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.gm.persistence.K_DAO;
 import com.spring.gm.persistence.P_DAO;
+import com.spring.gm.vo.AttachVO;
 import com.spring.gm.vo.Join_payVO2;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.PaymentInfoVO;
@@ -167,7 +172,7 @@ public class P_ServiceImpl implements P_Service{
 
 	//결재요청
 	@Override
-	public void apprDocReq(HttpServletRequest req, Model model) {
+	public void apprDocReq(MultipartFile file, HttpServletRequest req, Model model) {
 		int company=((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		String id=((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		String name=((MemberVO)req.getSession().getAttribute("loginInfo")).getName();
@@ -186,6 +191,9 @@ public class P_ServiceImpl implements P_Service{
 		map.put("name", name);
 		map.put("subject", subject);
 		map.put("content", content);
+		System.out.println("groupid : "+groupid);
+		System.out.println("subject : "+subject);
+		System.out.println("content : "+content);
 		insertCnt = dao.insertPayment(map);
 		cnt = (cnt!=0&&insertCnt!=0)?1:0;
 		int paymentNum = dao.getPaymentNum(groupid);
@@ -212,9 +220,50 @@ public class P_ServiceImpl implements P_Service{
 			cnt = (cnt!=0&&insertCnt3!=0)?1:0;
 		}
 		
+		if(file != null) {
+			String stored_title = getRandomString();
+			String title = file.getOriginalFilename();
+			long size = file.getSize();
+			
+			// 선빈 pc임 첨부파일 쓸거면 각자 자기 pc url 적어놓으셈
+			// 선빈 : C:\\DEV43_\\git\\GM\\GM\\src\\main\\webapp\\resources\\files\\
+			// 장훈
+			// 원영
+			// 킹정
+			// 경준
+			
+			File f = new File("C:\\DEV43_\\git\\GM\\GM\\src\\main\\webapp\\resources\\files\\"+stored_title);
+			
+			try {
+				file.transferTo(f);
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Map<String, Object> map2 = new HashMap<String, Object>();
+			map2.put("title", title);
+			map2.put("contentNum", paymentNum);
+			map2.put("stored_title", stored_title);
+			map2.put("filesize", size);
+			System.out.println("title : "+title);
+			System.out.println("size : "+size);
+			System.out.println("contentNum : "+paymentNum);
+			System.out.println("stored_title : "+stored_title);
+			int attachCnt = dao.insertAttach(map2);
+			cnt = (cnt!=0&&attachCnt!=0)?1:0;
+		}
+		
 		model.addAttribute("cnt", cnt);
+		
 	}
 
+	//랜덤파일이름 만들기
+	@Override
+	public String getRandomString() {
+		return UUID.randomUUID().toString().replaceAll("-", "");
+	}
+	
 	//결재 대기함
 	@Override
 	public void P_listApprTodoView(HttpServletRequest req, Model model) {
@@ -223,7 +272,7 @@ public class P_ServiceImpl implements P_Service{
 		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 5;		// 한 블럭당 페이지 갯수
 		
-		int cnt = 0;			// 글갯수		
+		int cnt = 0;			// 글갯수
 		int start = 0;			// 현재 페이지 시작 글번호
 		int end = 0;			// 현재 페이지 마지막 글번호
 		int number = 0;			// 출력용 글번호
@@ -315,6 +364,18 @@ public class P_ServiceImpl implements P_Service{
 		model.addAttribute("eachPayment", eachPayment);
 		model.addAttribute("paymentInfo", paymentInfo);
 		model.addAttribute("groupInfo", groupInfo);
+		
+		List<AttachVO> attachList = new ArrayList<AttachVO>();
+		attachList = dao.getAttachList(num);
+		model.addAttribute("attachList", attachList);
+		
+	}
+	
+	@Override
+	public AttachVO downloadFile(HttpServletRequest req) {
+		int num = Integer.parseInt(req.getParameter("fileNum"));
+		System.out.println("num : "+num);
+		return dao.getAttachFile(num);
 	}
 
 	@Override

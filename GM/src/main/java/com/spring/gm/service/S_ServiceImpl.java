@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.S_DAO;
 import com.spring.gm.vo.MessageVO;
-import com.spring.gm.vo.BoardListVO;
+import com.spring.gm.vo.BoardsVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.MessageBoxVO;
 
@@ -454,4 +454,30 @@ public class S_ServiceImpl implements S_Service {
 		
 	}
 
+	@Override
+	public void messageBoxModifyForm(HttpServletRequest req, Model model) {
+		int message_num = Integer.parseInt(req.getParameter("message_num"));
+		String name = req.getParameter("name");
+		
+		MessageBoxVO vo = new MessageBoxVO();
+		vo = dao.getMessageBoxArticle(message_num);
+		
+		model.addAttribute("message_num",message_num);
+		model.addAttribute("mvo", vo);
+		model.addAttribute("name", name);
+	}
+
+	@Override
+	public void messageBoxModifyPro(HttpServletRequest req, Model model) {
+		int message_num = Integer.parseInt(req.getParameter("message_num"));
+
+		MessageBoxVO vo = new MessageBoxVO();
+		vo.setName(req.getParameter("b_name"));
+		vo.setMessage_num(message_num);
+
+		int updateCnt = dao.MessageBoxModifyPro(vo);
+
+		model.addAttribute("message_num", message_num);
+		model.addAttribute("updateCnt", updateCnt);
+	}
 }

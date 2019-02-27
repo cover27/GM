@@ -239,9 +239,8 @@ div{
 		<!-- 기안 용지 작성 content -->
 		<div class="content-wrap approval responsive">
 			<div class="content-write">	
-				<form id="apprDocForm" name="apprDocForm" method="post" action="P_apprDocFormReqPro" novalidate="novalidate">
+				<form id="apprDocForm" name="apprDocForm" method="post" action="P_apprDocFormReqPro" enctype="multipart/form-data">
 			       	<input type="hidden" name="del" value="0">
-			       	<input type="hidden" name="groupId" value="">
 					
 					<h2>기안용지</h2>
 					
@@ -320,6 +319,14 @@ div{
 									<th><span class="text-point-b">*</span>문서제목</th>
 									<td colspan="3">
 						    			<input type="text" name="subject" class="inputbox w100p" maxlength="100" placeholder="문서제목을 입력하세요." required autofocus>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										첨부파일
+									</th>
+									<td colspan="3">
+										<input type="file" name="file">
 									</td>
 								</tr>
 							</tbody>

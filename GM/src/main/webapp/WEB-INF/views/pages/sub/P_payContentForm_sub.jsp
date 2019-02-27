@@ -17,6 +17,10 @@
 		var url="P_payAgree?num="+num;
 		window.open(url, "confirm", "menubar=no, width=600, height=300");
 	}
+	
+	function download(num){
+		window.location='downloadFile?fileNum='+num;
+	}
 </script>
 <section>
 	<article>
@@ -106,6 +110,25 @@
 				<td>${eachPayment.reg_date }</td>
 				<th>만료일</th>
 				<td>${eachPayment.deadline }</td>
+			</tr>
+			<tr>
+				<th>첨부파일</th>
+				<c:if test="${attachList == null }">
+					<td colspan="3">첨부파일이 없습니다.</td>
+				</c:if>
+				<c:if test="${attachList != null }">
+					<td colspan="3">
+						<ul>
+							<c:forEach var="dto" items="${attachList }">
+								<li>
+									<input type="hidden" value="${dto.num }" id="fileNum">
+									${dto.title }&nbsp;(${Math.round(dto.filesize/1024) }Byte)
+									<input type="button" value="다운로드" onclick="download('${dto.num}');">
+								</li>
+							</c:forEach>
+						</ul>
+					</td>
+				</c:if>
 			</tr>
 		</table>
 		<br>

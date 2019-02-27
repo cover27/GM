@@ -139,5 +139,13 @@ public class S_Controller {
 		return "pages/S_createMessagePro";	
 	}
 	
+	@RequestMapping("/pages/S_messageBoxSetting")
+	public String messageBoxSetting(HttpServletRequest req, Model model) {
+		logger.info("URL : S_messageBoxSetting");
+		
+		service.messageBoxList(req, model);
+		return "pages/S_messageBoxSetting";	
+	}
+	
 	
 }

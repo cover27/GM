@@ -68,6 +68,10 @@
 			#{result}, #{order}, sysdate, null, #{refer}, #{agree})
 	</insert>
 	
+	<insert id="insertAttach" parameterType="java.util.Map">
+		INSERT INTO attach VALUES(seq_attach.nextval, #{contentNum}, #{title}, #{stored_title}, #{filesize})
+	</insert>
+	
 	<select id="getPaymentCnt" parameterType="java.util.Map" resultType="int">
 		 SELECT COUNT(*) FROM payment p, paymentinfo o
 		    WHERE p.num = o.num
@@ -410,6 +414,14 @@
 		    AND m.rank = r.rank
 		    AND g.groupid = #{groupid} 
 		    ORDER BY g.rank_mem ASC
+	</select>
+	
+	<select id="getAttachList" resultType="com.spring.gm.vo.AttachVO">
+		SELECT * FROM attach WHERE contentNum=#{num}
+	</select>
+	
+	<select id="getAttachFile" resultType="com.spring.gm.vo.AttachVO">
+		SELECT * FROM attach WHERE num=#{num}
 	</select>
 	
 	<select id="getMyOrder" resultType="int">

@@ -30,7 +30,7 @@
 	function vacationList() {
 		var date = $('#date').val();
 		var url = "vacationList?date=" + date;
-		window.open(url, "vacationList", "menubar=no, width=1000, height=560");
+		window.open(url, "vacationList", "menubar=no, width=1000, height=520");
 	}
 	
 	
@@ -38,62 +38,97 @@
 </script>
 <section>
 	<article>
-		<form action="modifyUpdate" method="post">
 		<div class="content_header">
 			<h2>사원 근태 관리</h2>
 		</div>
-		<div>
-			*근무일자<input type="date" id="date" name="date" value="${date}"><input type="button" value="검색" onclick="allList()">
+		<div class="content">
+			<form action="modifyUpdate" method="post">
+				<div class="search-wrap">
+			    	<div class="form-group">
+				        <span class="bold5px">*근무일자</span>
+				        <span><input type="date" id="date" name="date" value="${date}" style="position:relative; top: 0;"></span>
+				        <span><input type="button" value="검색" onclick="allList()"></span>
+			    	</div>
+			    </div>
+			    <c:if test="${date == null}">
+			        <script>
+			            document.getElementById('date').value = new Date().toISOString().slice(0, 10);
+					</script>
+			    </c:if>
+			    <input type="button" value="휴가승인목록" onclick="vacationList()">
+			    <div id="result" class="mt20">
+			    	<div class="table_top">
+			    		<table>
+			    			<colgroup>
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="*" />
+			    			</colgroup>
+			    			<thead>
+				    			<tr>
+					                <th>등록번호</th>
+					                <th>사원 번호</th>
+					                <th>성명</th>
+					                <th>출근시간</th>
+					                <th>퇴근시간</th>
+					                <th>근무시간</th>
+					                <th>연장근로</th>
+					                <th>야간근로</th>
+					                <th>지각시간</th>
+					                <th>조퇴시간</th>
+					                <th>기능</th>
+					            </tr>
+			    			</thead>
+			    		</table>
+			    	</div>
+			        <div class="salary_info">
+				        <table>
+				            <tbody>
+					            <c:if test="${cnt == 0}">
+					                <tr>
+					                    <td width="100%">데이터 정보가 없습니다.</td>
+					                </tr>
+					            </c:if>
+					            <c:if test="${cnt > 0}">
+					                <c:forEach var="dtos" items="${dtos}">
+					                    <tr>
+					                        <td>${dtos.num}</td>
+					                        <td>${dtos.id}</td>
+					                        <td>${dtos.name}</td>
+					                        <td>${dtos.gos}</td>
+					                        <td>${dtos.offs}</td>
+					                        <td>${dtos.worktimes}</td>
+					                        <td>${dtos.overtimes}</td>
+					                        <td>${dtos.nighttimes}</td>
+					                        <c:if test="${dtos.perceptiontimes ne '00:00'}">
+					                            <td style="background-color: red;">${dtos.perceptiontimes}</td>
+					                        </c:if>
+					                        <c:if test="${dtos.perceptiontimes eq '00:00'}">
+					                            <td>${dtos.perceptiontimes}</td>
+					                        </c:if>
+					                        <c:if test="${dtos.departuretimes ne '00:00'}">
+					                            <td style="background-color: yellow;">${dtos.departuretimes}</td>
+					                        </c:if>
+					                        <c:if test="${dtos.departuretimes eq '00:00'}">
+					                            <td>${dtos.departuretimes}</td>
+					                        </c:if>
+					                        <td><input type="button" value="변경" onclick="modify('${dtos.num}')"></td>
+					                    </tr>
+					                </c:forEach>
+					            </c:if>
+				            </tbody>
+				        </table>
+			        </div>
+			    </div>
+			</form>
 		</div>
-		<c:if test="${date == null}">
-		<script>
-			document.getElementById('date').value = new Date().toISOString().slice(0, 10);
-		</script>
-		</c:if>
-		<br>
-		<br>
-		<input type="button" value="휴가승인목록" onclick="vacationList()">
-		<div id="result">
-			<table border="1">
-				<tr>
-					<td>등록번호</td>
-					<td>사원 번호</td>
-					<td>성명</td>
-					<td>출근시간</td>
-					<td>퇴근시간</td>
-					<td>근무시간</td>
-					<td>연장근로</td>
-					<td>야간근로</td>
-					<td>지각시간</td>
-					<td>조퇴시간</td>
-					<td>기능</td>
-				</tr>
-				<c:if test="${cnt == 0}">
-					<tr>
-						<td width="100%">데이터 정보가 없습니다.</td>
-					</tr>
-				</c:if>
-				<c:if test="${cnt > 0}">
-					<c:forEach var="dtos" items="${dtos}">
-						<tr>
-							<td>${dtos.num}</td>
-							<td>${dtos.id}</td>
-							<td>${dtos.name}</td>
-							<td>${dtos.gos}</td>
-							<td>${dtos.offs}</td>
-							<td>${dtos.worktimes}</td>
-							<td>${dtos.overtimes}</td>
-							<td>${dtos.nighttimes}</td>
-							<c:if test="${dtos.perceptiontimes ne '00:00'}"><td style="background-color: red;">${dtos.perceptiontimes}</td></c:if>
-							<c:if test="${dtos.perceptiontimes eq '00:00'}"><td>${dtos.perceptiontimes}</td></c:if>
-							<c:if test="${dtos.departuretimes ne '00:00'}"><td style="background-color: yellow;">${dtos.departuretimes}</td></c:if>
-							<c:if test="${dtos.departuretimes eq '00:00'}"><td>${dtos.departuretimes}</td></c:if>
-							<td><input type="button" value="변경" onclick="modify('${dtos.num}')"></td>
-						</tr>
-					</c:forEach>
-				</c:if>
-			</table>
-		</div>
-		</form>
 	</article>
 </section>

@@ -890,6 +890,23 @@
 	]]>
      </select>
      
+     <!-- 반차 사용 횟수 -->
+     <select id="fullhalfdayCnt" parameterType="java.util.Map" resultType="int">
+     select count(*) as cnt
+     from vacation v, member m
+	 where m.id = v.id 
+	 and m.id=#{id}
+	 and m.company = #{company}
+	 and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
+	 and types = 1
+     </select>
+     
+     
+     
+     
+     
+     
+     
      <!-- 연차 횟수 -->
      <select id="annual" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
      select sum(v.day) as u_annual
@@ -897,8 +914,19 @@
 	 where m.id = v.id 
 	 and m.id=#{id}
 	 and m.company = #{company}
-	 and to_char(v.begin,'yyyy')= 2019 and to_char(v.end,'yyyy')= #{year}
+	 and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
 	 and types = 1
+     </select>
+     <!-- 연차 횟수 -->
+     <select id="annual2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
+     select sum(v.day)/2 as u_annual
+	 from vacation v, member m
+	 where m.id = v.id 
+	 and m.id=#{id}
+	 and m.company = #{company}
+	 and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
+	 and types = 1
+     and v.fullhalfday = 2
      </select>
      <!-- 휴가 횟수 -->
      <select id="vacation" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
