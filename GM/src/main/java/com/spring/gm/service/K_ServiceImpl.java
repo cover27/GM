@@ -995,6 +995,7 @@ public class K_ServiceImpl implements K_Service{
 			state = 1;
 		} else { // 클릭이 안되어 있음. 클릭하라고 경고창쓰
 			state = -1;
+			
 		}
 		req.setAttribute("state", state);
 	}		
