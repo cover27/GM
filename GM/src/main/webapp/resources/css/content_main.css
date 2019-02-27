@@ -90,7 +90,8 @@ section .main_menu>ul>li {
     height: 256px;
     margin: 0 8px 8px 0;
     text-align: center;
-    background: #fff;
+    background: linear-gradient(to bottom right, #fff, #ddd);
+    background: url('../images/main_icon_bg.png');
 	border: 1px #c4c4c4 solid;
     box-shadow: 0 1px 0 #bbb;
     border-radius: 10px;
@@ -105,7 +106,7 @@ section .main_menu>ul>li {
 section .main_menu>ul>li .menu_wrap {
 	margin: 55px 0;
 	width: 488px;
-	background: rgba(255, 255, 255, 0.5);
+	/* background: rgba(255, 255, 255, 0.5); */
     /* width: 110px; */
     /* border-radius: 5px; */
 }
@@ -127,6 +128,7 @@ section .main_menu>ul>li h2 {
     color: #333;
 }
 
+/* 
 section .main_menu>ul .approval_bg {
 	background-image: url('../images/01.png');
 	background-size: cover;
@@ -180,6 +182,7 @@ section .main_menu>ul .salary_management_bg {
 	background-size: cover;
 	cursor: pointer;
 }
+ */
 
 section .main_menu>ul .approval_bg:hover {
 	background-image: url('../images/01_hover.png');

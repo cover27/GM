@@ -272,6 +272,7 @@ img {
 /* 레이아웃을 위한 태그 */
 
 /* width, height */
+.w5p { width:5% !important; }
 .w10p { width:10% !important; }
 .w16p { width:16.6666% !important; }
 .w20p { width:20% !important; }
@@ -362,6 +363,7 @@ img {
 .mt25 { margin-top:25px !important; }
 .mt30 { margin-top:30px !important; }
 .mt35 { margin-top:35px !important; }
+.mt40 { margin-top:40px !important; }
 .mt60 { margin-top:60px !important; }
 .mt70 { margin-top:70px !important; }
 
