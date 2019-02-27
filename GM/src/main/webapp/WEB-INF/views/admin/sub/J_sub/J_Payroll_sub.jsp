@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="${path}css/J_style.css" />
 <h3 class="mt20 mb10">${cntyear}년도</h3>
 <div style="border-top: 2px #c0c0c0 solid;">
@@ -27,16 +28,16 @@
 					<td>${dto.c_name}</td>
 					<td>${dto.year}</td>
 					<td>${dto.day}</td>
-					<td>${dto.salary}</td>
-					<td>${dto.bonussalary}</td>
-					<td>${dto.sumsalarybonus}</td>
+					<td><fmt:formatNumber value="${dto.salary}" pattern="#,###" />원</td>
+					<td><fmt:formatNumber value="${dto.bonussalary}" pattern="#,###" />원</td>
+					<td><fmt:formatNumber value="${dto.sumsalarybonus}" pattern="#,###" />원</td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td colspan="7"></td>
-				<td>${allsalary}</td>
-				<td>${bonussalary}</td>
-				<td>${sumsalarybonus}</td>
+				<td><fmt:formatNumber value="${allsalary}" pattern="#,###" />원</td>
+				<td><fmt:formatNumber value="${bonussalary}" pattern="#,###" />원</td>
+				<td><fmt:formatNumber value="${sumsalarybonus}" pattern="#,###" />원</td>
 			</tr>
 		</c:if>
 		<!-- 게시글이 없으면 -->

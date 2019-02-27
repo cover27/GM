@@ -36,12 +36,12 @@
 				<td>${dto.id}</td>
 				<td>${dto.day}</td>
 				<td>${dto.state}</td>
-				<td>${dto.salary}</td>
+				<td><fmt:formatNumber value="${dto.salary}" pattern="#,###" />원</td>
 			</tr>
 		</c:forEach>
 		<tr>
 			<td colspan="4">합계</td>
-			<td>${Sumsalaybonus}</td>
+			<td><fmt:formatNumber value="${Sumsalaybonus}" pattern="#,###" />원</td>
 		</tr>
 	</c:if>
 </table>

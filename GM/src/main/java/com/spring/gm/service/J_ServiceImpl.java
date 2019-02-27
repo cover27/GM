@@ -2161,7 +2161,8 @@ public class J_ServiceImpl implements J_Service {
 	// 연차/휴가일수 조회
 	@Override
 	public void VacationViews(HttpServletRequest req, Model model) {
-		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		System.out.println("company : " + company);
 		String id = req.getParameter("id");
 		System.out.println("id : " + id);
 		String year = req.getParameter("year");
@@ -2336,7 +2337,7 @@ public class J_ServiceImpl implements J_Service {
 				System.out.println("fn_annual : " + fn_annual);
 				String sn_annual =  df.format(fn_annual);
 				System.out.println("sn_annual : " + sn_annual);
-				
+	
 				dtos2.get(0).setSn_annual(sn_annual); //잔여연차
 				System.out.println("잔여 연차 : " + dtos2.get(0).getSn_annual());
 				dtos.addAll(j, dtos2);
@@ -2431,7 +2432,7 @@ public class J_ServiceImpl implements J_Service {
 			end = ends[0] + ends[1] + ends[2];
 			System.out.println("끝나는일" + end);
 		} else if (fullhalfday == 1) {
-			end = req.getParameter("begin"); // 시작일
+			end = req.getParameter("end"); // 시작일
 			String[] ends = end.split("-");
 			end = ends[0] + ends[1] + ends[2];
 			System.out.println("끝나는일" + end);
@@ -2482,23 +2483,40 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("id" + id);
 		int num = Integer.parseInt(req.getParameter("num"));
 		System.out.println("num" + num);
+		String year = req.getParameter("year");
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("id", id);
 		map.put("num", num); // 휴가번호
+		map.put("year", year); // 휴가번호
+
 
 		int deleteCnt = dao.cancelapplication(map);
+		System.out.println("deleteCnt : " + deleteCnt);
 		if (deleteCnt > 0) {
-			int selectCnt = dao.vacationapplicationCnt(map);
+			int selectCnt = dao.vacationUHCnt(map);
 			System.out.println("selectCnt : " + selectCnt);
-
-			if (selectCnt > 0) {
-				List<join_mrvdgcVO> dtos = dao.vacationapplicationList(map);
-				model.addAttribute("dtos", dtos);
+			if(selectCnt > 0) {
+				List<join_mrvdgcVO> dtos = new ArrayList<join_mrvdgcVO>();
+				List<join_mrvdgcVO> dtos2 = dao.vacationUHList(map);
+				List<join_mrvdgcVO> dtos3 = dao.vacationUHList2(map);
+				dtos.addAll(dtos2);
+				dtos.addAll(dtos3);
+				model.addAttribute("dtos",dtos);
+			}
+			
+			int selectCnt2 = dao.vacationapplicationCnt(map);
+			System.out.println("selectCnt : " + selectCnt);
+				model.addAttribute("cnt2",selectCnt2);
+			if (selectCnt2 > 0) {
+				List<join_mrvdgcVO> dtos2 = dao.vacationapplicationList(map);
+				model.addAttribute("dtos2", dtos2);
 			}
 			model.addAttribute("cnt", selectCnt);
 		}
+		model.addAttribute("id", id);
+		model.addAttribute("year", year);
 	}
 
 	// 아이디 검색 휴가사용 현황
@@ -2506,7 +2524,8 @@ public class J_ServiceImpl implements J_Service {
 	public void vacationUH(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		String id = req.getParameter("id");
-		int year = Integer.parseInt(req.getParameter("year"));
+		String year = req.getParameter("year");
+		System.out.println("year:" + year);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("id", id);
@@ -2540,10 +2559,35 @@ public class J_ServiceImpl implements J_Service {
 	@Override
 	public void vacationUH2(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = req.getParameter("id");
 		int year = Integer.parseInt(req.getParameter("year"));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
+		map.put("id", id);
 		map.put("year", year);
+		
+		int selectCnt = dao.vacationUHCnt2(map);
+		System.out.println("selectCnt : " + selectCnt);
+		if(selectCnt > 0) {
+			List<join_mrvdgcVO> dtos = new ArrayList<join_mrvdgcVO>();
+			List<join_mrvdgcVO> dtos2 = dao.vacationUHList3(map);
+			List<join_mrvdgcVO> dtos3 = dao.vacationUHList4(map);
+			dtos.addAll(dtos2);
+			dtos.addAll(dtos3);
+			model.addAttribute("dtos",dtos);
+		}
+		
+		int selectCnt2 = dao.vacationapplicationCnt2(map);
+		System.out.println("selectCnt : " + selectCnt);
+
+		if (selectCnt2 > 0) {
+			List<join_mrvdgcVO> dtos2 = dao.vacationapplicationList2(map);
+			model.addAttribute("dtos2", dtos2);
+		}
+		model.addAttribute("cnt2",selectCnt2);
+		model.addAttribute("cnt",selectCnt);
+		model.addAttribute("id",id);
+		model.addAttribute("year",year);
 	}
 
 }

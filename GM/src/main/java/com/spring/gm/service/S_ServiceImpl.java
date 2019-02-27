@@ -409,4 +409,24 @@ public class S_ServiceImpl implements S_Service {
 		model.addAttribute("cancelCnt", cancelCnt);
 		model.addAttribute("pageNum", pageNum);
 	}
+
+	@Override
+	public void memberInfo(HttpServletRequest req, Model model) {
+		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		int cnt = 0;
+		
+		cnt = dao.getMemberCnt(strId);
+		
+		if(cnt > 0) {
+			// 회원 목록 조회
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("strId", strId);
+			
+			List<MemberVO> dtos = dao.getMemberList(map);
+			
+
+			model.addAttribute("member_dtos", dtos);
+
+		}
+	}
 }

@@ -21,7 +21,7 @@
                         </ul>
                     </li>
                     <li>
-                        <span><a href="a04.jsp">전체 쪽지</a></span>
+                        <span><a>쪽지함</a></span>
                         <ul>
                             <li><a href="<c:url value='/pages/S_receiveMessage'/>">받은 쪽지함<span>2</span></a></li>
                             <li><a href="<c:url value='/pages/S_sendMessageList'/>">보낸 쪽지함</a></li>

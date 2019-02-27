@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.spring.gm.vo.BoardsVO;
+import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.MessageBoxVO;
 import com.spring.gm.vo.MessageVO;
 
@@ -52,5 +53,11 @@ public interface S_DAO {
 	
 	// 조회수 증가
 	public int addReadCnt(int num);
+	
+	// 회원 정보 갯수
+	public int getMemberCnt(String strId);
+	
+	// 회원 정보 리스트
+	public List<MemberVO> getMemberList(Map<String, Object> map);
 
 }

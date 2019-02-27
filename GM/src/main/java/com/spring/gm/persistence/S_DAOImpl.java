@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.MessageBoxVO;
 import com.spring.gm.vo.MessageVO;
 
@@ -101,7 +102,16 @@ public class S_DAOImpl implements S_DAO {
 		return dao.addReadCnt(num);
 	}
 
+	@Override
+	public int getMemberCnt(String strId) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.getMemberCnt(strId);
+	}
 
-
+	@Override
+	public List<MemberVO> getMemberList(Map<String, Object> map) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.getMemberList(map);
+	}
 
 }
