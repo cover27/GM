@@ -30,14 +30,14 @@ public class S_Controller {
 	}
 	*/
 	
-
 	@RequestMapping("/pages/S_message_inbox")
-	public String massageBox(HttpServletRequest req, Model model) {
+	public String S_message_inbox(HttpServletRequest req, Model model) {
 		logger.info("URL : S_message_inbox");
-		
-		/*service.messageList(req, model);*/
-		return "pages/S_message_inbox";
+
+		service.messageList(req, model);
+		return "/pages/S_message_inbox";
 	}
+
 	
 	@RequestMapping("/pages/S_receiveMessage")
 	public String receiveMessage(HttpServletRequest req, Model model) {
@@ -123,6 +123,14 @@ public class S_Controller {
 		service.messageContent(req, model);
 		return "pages/S_contentMessage";		
 	}
+	
+	@RequestMapping("/pages/myInfo")
+	public String myInfo(HttpServletRequest req, Model model) {
+		logger.info("URL : S_contentMessage");
+		
+		return "pages/myInfo";		
+	}	
+	
 	
 	
 }
