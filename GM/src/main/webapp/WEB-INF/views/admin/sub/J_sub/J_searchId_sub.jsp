@@ -52,7 +52,7 @@
 				<!-- 게시글이 없으면 -->
 				<c:if test="${cnt == 0}">
 					<tr>
-						<td colspan="3" align="center">정보가 없습니다.</td>
+						<td colspan="6" align="center">정보가 없습니다.</td>
 					</tr>
 				</c:if>
 			</tbody>
