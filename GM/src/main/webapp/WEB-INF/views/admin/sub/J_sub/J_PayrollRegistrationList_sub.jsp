@@ -31,7 +31,7 @@
 				</tr>
 				<tr>
 					<th>*이번달 급여</th>
-					<td>${dto.salary}원</td>
+					<td><fmt:formatNumber value="${dto.salary}" pattern="#,###" />원</td>
 					<th>*계좌번호</th>
 					<td colspan="3">${dto.account_number}</td>
 				</tr>
@@ -78,7 +78,7 @@
 				</tr>
 				<tr>
 					<th>*이번달 급여</th>
-					<td id="salary">${dto.salary}</td>
+					<td id="salary"><fmt:formatNumber value="${dto.salary}" pattern="#,###" />원</td>
 					<th>*계좌번호</th>
 					<td colspan="3">${dto.account_number}</td>
 				</tr>

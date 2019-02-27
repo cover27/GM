@@ -67,6 +67,15 @@
 	<update id="addReadCnt" parameterType="int">
 		UPDATE message SET readCnt = readCnt + 1 WHERE num = #{num}
 	</update>
-
+	
+<!-- 	<select id="getMemberCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM member WHERE id = #{strId} AND del=0
+	</select>
+	
+	<select id="getMemberList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
+		<![CDATA[
+			SELECT * FROM member WHERE id = #{strId} and del = 0
+		]]>
+	</select>	 -->
 
 </mapper>

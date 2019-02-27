@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="${path}css/content.css">
 <link rel="stylesheet" href="${path}css/J_style.css">
 <script>
-function managementInsert(id,name,fullhalfday,begin,end,day,date) {
-	window.location="managementInsert?id="+id +"&name=" + name + "&fullhalfday=" + fullhalfday + "&begin=" + begin + "&end=" + end + "&day=" + day + "&date="+ date;
+function managementInsert(num,id,name,fullhalfday,begin,end,day,date) {
+	window.location="managementInsert?num="+num +"&id="+id +"&name=" + name + "&fullhalfday=" + fullhalfday + "&begin=" + begin + "&end=" + end + "&day=" + day + "&date="+ date;
 };
 
 /* function managementInsert(id,name,fullhalfday,begin,end,day) {
@@ -87,8 +87,7 @@ function managementInsert(id,name,fullhalfday,begin,end,day,date) {
 								<td>${dtos.end}</td>
 								<td><c:if test="${dtos.fullhalfday == 1}">${dtos.day}일</c:if>
 									<c:if test="${dtos.fullhalfday == 2}">${dtos.day/2}일</c:if></td>
-								<td><input type="button" value="근태처리"
-									onclick="managementInsert('${dtos.id}','${dtos.name}','${dtos.fullhalfday}','${dtos.begin}','${dtos.end}','${dtos.day}','${date}')"></td>
+								<td><input type="button" value="근태처리" onclick="managementInsert('${dtos.num}','${dtos.id}','${dtos.name}','${dtos.fullhalfday}','${dtos.begin}','${dtos.end}','${dtos.day}','${date}')"></td>
 							</tr>
 						</c:forEach>
 					</c:if>

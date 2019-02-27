@@ -12,9 +12,11 @@ function doOpenCheck(chk){
             obj[i].checked = false;
         }else if (obj[0] == chk){
         	$("#end2").show();
+        	$("#end3").show();
         	document.getElementById("day").value = '';
         }else if(obj[1] == chk){
         	$("#end2").hide();
+        	$("#end3").hide();
         	document.getElementById("day").value = '0.5';
         }
     }
@@ -74,11 +76,14 @@ function chageLangSelect(){
 	// 1는 휴가
 	if(aaa == 2){
 		$("#qksck").show();
+		$("#end2").show();
+		$("#end3").show();
 	}else if(aaa == 1){
 		$("#qksck").hide();
+		$("#end2").show();
+		$("#end3").show();
 	}
 }
-
 </script>
 <section>
 	<article>
@@ -209,7 +214,9 @@ function chageLangSelect(){
 			                <tr>
 			                    <th>휴가기간</th>
 			                    <td>
-			                    	<input type="date" id="begin" name="begin" style="width:45%;"><span style="margin: 0 9px;"> ~ </span><span id="end2"><input type="date" id="end" name="end" onchange="handler(event);" style="width:45%;"></span>
+			                    	<span style="margin: 0 9px;"><input type="date" id="begin" name="begin" style="width:45%;"></span>
+			                    	<span id="end3" > ~ </span>
+			                    	<span id="end2" ><input type="date" id="end" name="end" onchange="handler(event);" style="width:45%;"></span>
 			                    </td>
 			                    <th>일수</th>
 			                    <td>

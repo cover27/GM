@@ -97,7 +97,7 @@ function allsearch() {
 					            </c:forEach>
 					            <span class="ml50 bold5px">아이디</span>
 					            <span><input type="text" class="searchId" id="id" required autofocus></span>
-					            <span><button onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></button></span>
+					            <span><a href="#" onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></a></span>
 					            <span><input type="text" class="searchName" name="name"></span>
 					            <span class="ml50"><b></b></span>
 					            <span class="bold5px ml50">*년도별검색 : </span>

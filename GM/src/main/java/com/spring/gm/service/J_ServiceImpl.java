@@ -1796,8 +1796,10 @@ public class J_ServiceImpl implements J_Service {
 	@Override
 	public void managementInsert(HttpServletRequest req, Model model) throws ParseException {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String nums = req.getParameter("num");
 		String date = req.getParameter("date");
 		String id = req.getParameter("id");
+		System.out.println("id: " + id);
 		String name = req.getParameter("name");
 		int fullhalfday = Integer.parseInt(req.getParameter("fullhalfday"));
 		String begin = req.getParameter("begin");
@@ -1817,12 +1819,19 @@ public class J_ServiceImpl implements J_Service {
 		map.put("company", company);
 		map.put("id", id);
 		map.put("date", date);
+		map.put("num", nums);
+		
+		int updateCnt = dao.vacationstate(map);
+		System.out.println("updateCnt : " + updateCnt);
 		int insertCnt = 0;
 		if(fullhalfday == 1) {
 			System.out.println("전차");
 			for(int i =0; i<day; i++) {
-				
+				System.out.println("=========================");
+				System.out.println("i : " + i);
+				System.out.println("begin : " + Integer.parseInt(begin));
 				int start = Integer.parseInt(begin) + i;
+				System.out.println("start : "  + start);
 				begin = Integer.toString(start);
 				System.out.println("begin : " + begin);
 				String startday = Integer.toString(start);
@@ -1847,32 +1856,16 @@ public class J_ServiceImpl implements J_Service {
 				int number = calendar.get(Calendar.DAY_OF_WEEK);
 				if(number == 7 || number == 1) {
 					System.out.println("주말 제외 타나?");
-					start = start + 1;
+					i--;
 					System.out.println("begin : " + begin);
 				}else if(number != 7 && number != 1) {
 					System.out.println("주말 아닐때");
 					map.put("start",dates);
 					System.out.println("start : " + start);
 					insertCnt = dao.managementInsert(map);
+					begin = Integer.toString((Integer.parseInt(begin) - i));
 				}
-				/*String inputDate = dates;
-
-				DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-				Date datee = dateFormat.parse(inputDate);
-				Calendar calendar = Calendar.getInstance();
-				calendar.setTime(datee);
-				System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
-				String week = Integer.toString(calendar.get(Calendar.DAY_OF_WEEK));
-				System.out.println("week : " + week);
-				if(week.equals("토요일") || week.equals("일요일")) {
-					System.out.println("주말 제외 타나?");
-					begin = begin + 2;
-					System.out.println("begin : " + begin);
-				}else if(!week.equals("토요일") && !week.equals("일요일")) {
-					System.out.println("주말 아닐때");
-					map.put("start",dates);
-					insertCnt = dao.managementInsert(map);
-				}*/
+				start = 0;
 			}
 			System.out.println("insertCnt : " + insertCnt);
 			if(insertCnt > 0) {
@@ -1891,9 +1884,10 @@ public class J_ServiceImpl implements J_Service {
 		}else if(fullhalfday == 2) {	//반차일경우
 			System.out.println("반차");
 			join_maVO num = dao.getNum(map);
-			map.put("num", num);
+			System.out.println("num :" + num.getNum());
+			map.put("num", num.getNum());
 			int UpdateCnt = dao.managementUpdate(map);
-			System.out.println("insertCnt : " + insertCnt);
+			System.out.println("UpdateCnt : " + UpdateCnt);
 			if(UpdateCnt > 0) {
 				int selectCnt = dao.vacationCnt2(map);
 				System.out.println("selectCnt : " + selectCnt);
@@ -2161,7 +2155,8 @@ public class J_ServiceImpl implements J_Service {
 	// 연차/휴가일수 조회
 	@Override
 	public void VacationViews(HttpServletRequest req, Model model) {
-		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		System.out.println("company : " + company);
 		String id = req.getParameter("id");
 		System.out.println("id : " + id);
 		String year = req.getParameter("year");
@@ -2336,7 +2331,7 @@ public class J_ServiceImpl implements J_Service {
 				System.out.println("fn_annual : " + fn_annual);
 				String sn_annual =  df.format(fn_annual);
 				System.out.println("sn_annual : " + sn_annual);
-				
+	
 				dtos2.get(0).setSn_annual(sn_annual); //잔여연차
 				System.out.println("잔여 연차 : " + dtos2.get(0).getSn_annual());
 				dtos.addAll(j, dtos2);
@@ -2431,7 +2426,7 @@ public class J_ServiceImpl implements J_Service {
 			end = ends[0] + ends[1] + ends[2];
 			System.out.println("끝나는일" + end);
 		} else if (fullhalfday == 1) {
-			end = req.getParameter("begin"); // 시작일
+			end = req.getParameter("end"); // 시작일
 			String[] ends = end.split("-");
 			end = ends[0] + ends[1] + ends[2];
 			System.out.println("끝나는일" + end);
@@ -2482,23 +2477,40 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("id" + id);
 		int num = Integer.parseInt(req.getParameter("num"));
 		System.out.println("num" + num);
+		String year = req.getParameter("year");
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("id", id);
 		map.put("num", num); // 휴가번호
+		map.put("year", year); // 휴가번호
+
 
 		int deleteCnt = dao.cancelapplication(map);
+		System.out.println("deleteCnt : " + deleteCnt);
 		if (deleteCnt > 0) {
-			int selectCnt = dao.vacationapplicationCnt(map);
+			int selectCnt = dao.vacationUHCnt(map);
 			System.out.println("selectCnt : " + selectCnt);
-
-			if (selectCnt > 0) {
-				List<join_mrvdgcVO> dtos = dao.vacationapplicationList(map);
-				model.addAttribute("dtos", dtos);
+			if(selectCnt > 0) {
+				List<join_mrvdgcVO> dtos = new ArrayList<join_mrvdgcVO>();
+				List<join_mrvdgcVO> dtos2 = dao.vacationUHList(map);
+				List<join_mrvdgcVO> dtos3 = dao.vacationUHList2(map);
+				dtos.addAll(dtos2);
+				dtos.addAll(dtos3);
+				model.addAttribute("dtos",dtos);
+			}
+			
+			int selectCnt2 = dao.vacationapplicationCnt(map);
+			System.out.println("selectCnt : " + selectCnt);
+				model.addAttribute("cnt2",selectCnt2);
+			if (selectCnt2 > 0) {
+				List<join_mrvdgcVO> dtos2 = dao.vacationapplicationList(map);
+				model.addAttribute("dtos2", dtos2);
 			}
 			model.addAttribute("cnt", selectCnt);
 		}
+		model.addAttribute("id", id);
+		model.addAttribute("year", year);
 	}
 
 	// 아이디 검색 휴가사용 현황
@@ -2506,7 +2518,8 @@ public class J_ServiceImpl implements J_Service {
 	public void vacationUH(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		String id = req.getParameter("id");
-		int year = Integer.parseInt(req.getParameter("year"));
+		String year = req.getParameter("year");
+		System.out.println("year:" + year);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("id", id);
@@ -2540,10 +2553,35 @@ public class J_ServiceImpl implements J_Service {
 	@Override
 	public void vacationUH2(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = req.getParameter("id");
 		int year = Integer.parseInt(req.getParameter("year"));
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
+		map.put("id", id);
 		map.put("year", year);
+		
+		int selectCnt = dao.vacationUHCnt2(map);
+		System.out.println("selectCnt : " + selectCnt);
+		if(selectCnt > 0) {
+			List<join_mrvdgcVO> dtos = new ArrayList<join_mrvdgcVO>();
+			List<join_mrvdgcVO> dtos2 = dao.vacationUHList3(map);
+			List<join_mrvdgcVO> dtos3 = dao.vacationUHList4(map);
+			dtos.addAll(dtos2);
+			dtos.addAll(dtos3);
+			model.addAttribute("dtos",dtos);
+		}
+		
+		int selectCnt2 = dao.vacationapplicationCnt2(map);
+		System.out.println("selectCnt : " + selectCnt);
+
+		if (selectCnt2 > 0) {
+			List<join_mrvdgcVO> dtos2 = dao.vacationapplicationList2(map);
+			model.addAttribute("dtos2", dtos2);
+		}
+		model.addAttribute("cnt2",selectCnt2);
+		model.addAttribute("cnt",selectCnt);
+		model.addAttribute("id",id);
+		model.addAttribute("year",year);
 	}
 
 }
