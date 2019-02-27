@@ -433,4 +433,43 @@ public class K_Controller {
 		
 		return "master/appCompanies";
 	}
+	
+	//시스템관리자 - 회사 가입승인취소 처리
+	@RequestMapping("master/appCompanies_pro")
+	public String appCompanies_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : appCompanies_pro");
+		
+		service.appCompanies(req, model);
+		
+		return "master/appCompanies_pro";
+	}
+	
+	//공지사항
+	@RequestMapping("pages/K_noticeBoard")
+	public String K_noticeBoard(HttpServletRequest req, Model model) {
+		logger.info("URL : K_noticeBoard");
+		
+		service.K_noticeBoard(req, model);
+		
+		return "pages/K_noticeBoard";
+	}
+	
+	//공지사항 글쓰기
+	@RequestMapping("master/K_noticeWrite")
+	public String K_noticeWrite(HttpServletRequest req, Model model) {
+		logger.info("URL : K_noticeWrite");
+		
+		return "master/K_noticeWrite";
+	}
+	
+	//공지사항 글쓰기 처리
+	@RequestMapping("master/K_noticeWritePro")
+	public String K_noticeWritePro(HttpServletRequest req, Model model) {
+		logger.info("URL : K_noticeWritePro");
+		
+		service.K_noticeWritePro(req, model);
+		
+		return "master/sub/K_noticeWritePro";
+	}
+	
 }

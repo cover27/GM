@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.gm.vo.AttendedSetVO;
+import com.spring.gm.vo.BoardListVO;
+import com.spring.gm.vo.CompaniesMemberVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.GradeVO;
@@ -418,8 +420,33 @@ public class K_DAOImpl implements K_DAO{
 	}
 
 	@Override
-	public List<CompaniesVO> getAppComList() {
-		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getComList");
+	public List<CompaniesMemberVO> getAppComList() {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getAppComList");
+	}
+
+	@Override
+	public int handlecompany(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.handlecompany", map);
+	}
+
+	@Override
+	public String getComInfoId(int company) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getComInfoId", company);
+	}
+
+	@Override
+	public int getNoticeCnt() {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getNoticeCnt");
+	}
+
+	@Override
+	public List<BoardListVO> getNoticeList(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getNoticeList", map);
+	}
+
+	@Override
+	public int insertNotice(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertNotice", map);
 	}
 	
 }

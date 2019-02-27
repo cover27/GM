@@ -8,9 +8,8 @@ public class CompaniesMemberVO {
     private int c_number; //사업자등록번호
     private int del; //삭제구분
     private String id; // 신청자 아이디
-    
+    private String name; // 신청자 이름
 	
-    
     public int getCompany() {
 		return company;
 	}
@@ -41,11 +40,17 @@ public class CompaniesMemberVO {
 	public void setDel(int del) {
 		this.del = del;
 	}
-	
-	@Override
-	public String toString() {
-		return "CompaniesVO [company=" + company + ", c_name=" + c_name + ", c_address=" + c_address + ", c_number="
-				+ c_number + ", del=" + del + "]";
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
     
     
