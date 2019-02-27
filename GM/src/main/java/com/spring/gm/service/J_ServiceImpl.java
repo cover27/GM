@@ -1796,8 +1796,10 @@ public class J_ServiceImpl implements J_Service {
 	@Override
 	public void managementInsert(HttpServletRequest req, Model model) throws ParseException {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String nums = req.getParameter("num");
 		String date = req.getParameter("date");
 		String id = req.getParameter("id");
+		System.out.println("id: " + id);
 		String name = req.getParameter("name");
 		int fullhalfday = Integer.parseInt(req.getParameter("fullhalfday"));
 		String begin = req.getParameter("begin");
@@ -1817,12 +1819,19 @@ public class J_ServiceImpl implements J_Service {
 		map.put("company", company);
 		map.put("id", id);
 		map.put("date", date);
+		map.put("num", nums);
+		
+		int updateCnt = dao.vacationstate(map);
+		System.out.println("updateCnt : " + updateCnt);
 		int insertCnt = 0;
 		if(fullhalfday == 1) {
 			System.out.println("전차");
 			for(int i =0; i<day; i++) {
-				
+				System.out.println("=========================");
+				System.out.println("i : " + i);
+				System.out.println("begin : " + Integer.parseInt(begin));
 				int start = Integer.parseInt(begin) + i;
+				System.out.println("start : "  + start);
 				begin = Integer.toString(start);
 				System.out.println("begin : " + begin);
 				String startday = Integer.toString(start);
@@ -1847,32 +1856,16 @@ public class J_ServiceImpl implements J_Service {
 				int number = calendar.get(Calendar.DAY_OF_WEEK);
 				if(number == 7 || number == 1) {
 					System.out.println("주말 제외 타나?");
-					start = start + 1;
+					i--;
 					System.out.println("begin : " + begin);
 				}else if(number != 7 && number != 1) {
 					System.out.println("주말 아닐때");
 					map.put("start",dates);
 					System.out.println("start : " + start);
 					insertCnt = dao.managementInsert(map);
+					begin = Integer.toString((Integer.parseInt(begin) - i));
 				}
-				/*String inputDate = dates;
-
-				DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-				Date datee = dateFormat.parse(inputDate);
-				Calendar calendar = Calendar.getInstance();
-				calendar.setTime(datee);
-				System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
-				String week = Integer.toString(calendar.get(Calendar.DAY_OF_WEEK));
-				System.out.println("week : " + week);
-				if(week.equals("토요일") || week.equals("일요일")) {
-					System.out.println("주말 제외 타나?");
-					begin = begin + 2;
-					System.out.println("begin : " + begin);
-				}else if(!week.equals("토요일") && !week.equals("일요일")) {
-					System.out.println("주말 아닐때");
-					map.put("start",dates);
-					insertCnt = dao.managementInsert(map);
-				}*/
+				start = 0;
 			}
 			System.out.println("insertCnt : " + insertCnt);
 			if(insertCnt > 0) {
@@ -1891,9 +1884,10 @@ public class J_ServiceImpl implements J_Service {
 		}else if(fullhalfday == 2) {	//반차일경우
 			System.out.println("반차");
 			join_maVO num = dao.getNum(map);
-			map.put("num", num);
+			System.out.println("num :" + num.getNum());
+			map.put("num", num.getNum());
 			int UpdateCnt = dao.managementUpdate(map);
-			System.out.println("insertCnt : " + insertCnt);
+			System.out.println("UpdateCnt : " + UpdateCnt);
 			if(UpdateCnt > 0) {
 				int selectCnt = dao.vacationCnt2(map);
 				System.out.println("selectCnt : " + selectCnt);

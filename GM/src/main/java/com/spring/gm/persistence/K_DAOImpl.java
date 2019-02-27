@@ -401,5 +401,25 @@ public class K_DAOImpl implements K_DAO{
 	public int handleHoliday(Map<String, Object> map) {
 		return sqlSession.update("com.spring.gm.persistence.K_DAO.handleHoliday", map);
 	}
+
+	@Override
+	public List<CompaniesVO> getComList() {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getComList");
+	}
+
+	@Override
+	public List<CompaniesVO> getSearchComList(String search) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getSearchComList", search);
+	}
+
+	@Override
+	public List<MemberVO> getAdminList(int company) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getAdminList", company);
+	}
+
+	@Override
+	public List<CompaniesVO> getAppComList() {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getComList");
+	}
 	
 }

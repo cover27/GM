@@ -94,7 +94,7 @@
 							<!-- 전체 조회 -->
 							<div id="allsearch" style="display: none;">
 								<span class="bold5px">*년도별검색 : </span>
-								<span><input type="month" id="month2" placeholder="예)2019" maxlength="4"></span>
+								<span><input type="month" id="month2" placeholder="예)2019" maxlength="4"  value="${month}"></span>
 								<span><input type="button" onclick="J_M_attendanceStatus2()" value="조회" style="background: #d3292c;"></span>
 							</div>
 						</c:if>

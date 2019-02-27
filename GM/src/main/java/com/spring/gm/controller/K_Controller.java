@@ -53,10 +53,17 @@ public class K_Controller {
 		// 경주니
 		System.out.println("vo확인"+((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank());
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
-		System.out.println("sys_rank" +  sys_rank);
+		System.out.println("sys_rank : " +  sys_rank);
 		model.addAttribute("sys_rank",sys_rank);
 		
-		return "common/main";
+		String url = "";
+		//최고관리자가 로그인하면 관리자화면으로 이동
+		if(sys_rank != 9) {
+			url = "common/main";
+		} else {
+			url = "master/main";
+		}
+		return url;
 	}
 	
 	// 회원가입화면
@@ -395,5 +402,35 @@ public class K_Controller {
 		service.K_appHoliday_pro(req, model);
 		
 		return "admin/K_appHoliday_pro";
+	}
+	
+	//시스템관리자 - 회사목록
+	@RequestMapping("master/companiesList")
+	public String companiesList(HttpServletRequest req, Model model) {
+		logger.info("URL : companiesList");
+		
+		service.companiesList(req, model);
+		
+		return "master/companiesList";
+	}
+	
+	//시스템관리자 - 회사목록 - 상세인원 확인
+	@RequestMapping("master/adminList")
+	public String adminList(HttpServletRequest req, Model model) {
+		logger.info("URL : adminList");
+		
+		service.adminList(req, model);
+		
+		return "master/sub/adminList";
+	}
+	
+	//시스템관리자 - 회사 가입 승인
+	@RequestMapping("master/appCompanies")
+	public String appCompanies(HttpServletRequest req, Model model) {
+		logger.info("URL : appCompanies");
+		
+		service.appCompanies(req, model);
+		
+		return "master/appCompanies";
 	}
 }

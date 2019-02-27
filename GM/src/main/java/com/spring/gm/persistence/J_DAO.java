@@ -191,6 +191,9 @@ public interface J_DAO {
 	
 	//출근시간 인서트
 	public int goInsert(Map<String, Object> map);
+	
+	//휴가승인할때 state 상태 업데이트하기
+	public int vacationstate(Map<String, Object> map);
 	//휴가승인 확인후근태 처리
 	public int managementInsert(Map<String, Object> map);
 	//반차일경우 퇴근시간 업데이트

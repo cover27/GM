@@ -981,7 +981,7 @@ public class K_ServiceImpl implements K_Service{
 				for(int i=0; i<checks.length; i++) {
 					Map<String, Object> map = new HashMap<String, Object>();
 					map.put("num", checks[i]);
-					map.put("state", 1);
+					map.put("state", 0);
 					dao.handleHoliday(map);
 				}
 			} else { //취소한다면 
@@ -997,6 +997,42 @@ public class K_ServiceImpl implements K_Service{
 			state = -1;
 		}
 		req.setAttribute("state", state);
-	}		
+	}
+
+	@Override
+	public void companiesList(HttpServletRequest req, Model model) {
+		List<CompaniesVO> list = new ArrayList<CompaniesVO>();
+		if(req.getParameter("search") == null) {
+			list = dao.getComList();
+		} else {
+			String search = req.getParameter("search");
+			list = dao.getSearchComList(search);
+			model.addAttribute("search", search);
+		}
+		
+		model.addAttribute("list", list);
+	}
+
+	@Override
+	public void adminList(HttpServletRequest req, Model model) {
+		String company_s = req.getParameter("company");
+		int companyLength = company_s.length();
+		String company_sub = company_s.substring(0, companyLength-5);
+		int company = Integer.parseInt(company_sub);
+		
+		List<MemberVO> adminList = new ArrayList<MemberVO>();
+		adminList = dao.getAdminList(company);
+		String companyName = dao.getCompanyName(company);
+		
+		model.addAttribute("adminList", adminList);
+		model.addAttribute("companyName", companyName);
+	}
+
+	@Override
+	public void appCompanies(HttpServletRequest req, Model model) {
+		List<CompaniesVO> list = new ArrayList<CompaniesVO>();
+		list = dao.getAppComList();
+		model.addAttribute("list", list);
+	}
 	
 }
