@@ -1,15 +1,23 @@
 package com.spring.gm.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.net.URLEncoder;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.gm.service.P_Service;
+import com.spring.gm.vo.AttachVO;
 
 @Controller
 public class P_Controller {
@@ -61,10 +69,11 @@ public class P_Controller {
 	
 	//기안 - 기안문 작성 - 결재 요청
 	@RequestMapping("/pages/P_apprDocFormReqPro")
-	public String P_apprDocFormReqPro(HttpServletRequest req, Model model) {
+	public String P_apprDocFormReqPro(@RequestParam("file") MultipartFile file, 
+			HttpServletRequest req, Model model) {
 		logger.info("URL : P_apprDocFormReqPro");
 		
-		service.apprDocReq(req, model);
+		service.apprDocReq(file, req, model);
 		
 		return "pages/sub/P_apprDocFormReqPro";
 	}
@@ -98,6 +107,27 @@ public class P_Controller {
 		
 		return "pages/P_payContentForm";
 	}
+	
+	//다운로드
+	@RequestMapping("/pages/downloadFile")
+	public void downloadFile(HttpServletRequest req, HttpServletResponse res) throws Exception{
+		logger.info("URL : downloadFile");
+		AttachVO vo = service.downloadFile(req);
+		
+        String original_File_Name = vo.getTitle();
+        String stored_File_Name = vo.getStored_title();
+         
+        byte[] fileByte = FileUtils.readFileToByteArray(new File("C:\\DEV43_\\git\\GM\\GM\\src\\main\\webapp\\resources\\files\\"+stored_File_Name));
+         
+        res.setContentType("application/octet-stream");
+        res.setContentLength(fileByte.length);
+        res.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(original_File_Name,"UTF-8")+"\";");
+        res.setHeader("Content-Transfer-Encoding", "binary");
+        res.getOutputStream().write(fileByte);
+          
+        res.getOutputStream().flush();
+        res.getOutputStream().close();
+    }
 	
 	//관리자결제상세페이지
 	@RequestMapping("/admin/P_payContentForm")

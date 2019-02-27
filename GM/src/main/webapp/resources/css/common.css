@@ -103,7 +103,7 @@ button, input[type="submit"], input[type="button"], input[type="reset"] {
     cursor: pointer;
 }
 
-select, input[type="date"] {
+select {
     height: 27px;
     padding: 3px;
     color: #111;
@@ -111,6 +111,16 @@ select, input[type="date"] {
     border-radius: 2px;
     position: relative;
     top: 2px;
+    background: #fff;
+}
+
+input[type="date"] {
+    height: 27px;
+    padding: 3px;
+    color: #111;
+    border: 1px solid #c3c6c9;
+    border-radius: 2px;
+    position: relative;
     background: #fff;
 }
 

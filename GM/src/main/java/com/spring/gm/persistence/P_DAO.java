@@ -3,6 +3,7 @@ package com.spring.gm.persistence;
 import java.util.List;
 import java.util.Map;
 
+import com.spring.gm.vo.AttachVO;
 import com.spring.gm.vo.Join_payVO;
 import com.spring.gm.vo.Join_payVO2;
 import com.spring.gm.vo.PaymentInfoVO;
@@ -28,6 +29,9 @@ public interface P_DAO {
 	public int insertGroupinfoPayment(Map<String, Object> map);
 	public int insertPaymentInfo(Map<String, Object> map);
 	
+	//첨부파일 등록
+	public int insertAttach(Map<String, Object> map);
+	
 	//본인이 속한 결제그룹리스트를 가져오는 함수
 	public int getPaymentCnt(Map<String, Object> map);
 	public List<PaymentVO> getPaymentList(Map<String, Object> map);
@@ -47,6 +51,10 @@ public interface P_DAO {
 	
 	public List<PaymentInfoVO> countPayInfo(int num);
 	public List<join_groupnameVO> getGroupInfo(int groupid);
+	
+	//첨부파일 정보 받아오기
+	public List<AttachVO> getAttachList(int num);
+	public AttachVO getAttachFile(int num);
 	
 	public int getMyOrder(Map<String, Object> map);
 	public int countNextMem(Map<String, Object> map);
