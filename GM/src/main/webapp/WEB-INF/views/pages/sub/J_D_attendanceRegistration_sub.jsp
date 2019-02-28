@@ -181,7 +181,7 @@
 							</c:forEach>
 						</c:if>
 						<c:if test="${cnt > 1}">
-								<td>출근관리 문제가 생겼습니다. 관리자에게 문의 하십시오.</td>
+								<td colspan="7" style="height: 384px;">출근관리 문제가 생겼습니다. 관리자에게 문의 하십시오.</td>
 						</c:if>
 					</table>
 				</div>
