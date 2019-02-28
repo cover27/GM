@@ -7,21 +7,22 @@
 	<div class="table_head">
 		<table class="result_table">
 			<colgroup>
-				<col width="200px" />
-				<col width="200px" />
+				<col width="80px" />
+				<col width="100px" />
+				<col width="100px" />
 				<col width="200px" />
 				<col width="*" />
 			</colgroup>
 			<thead>
 				<tr>
-					<th>${companyName }&nbsp;의 관리자 목록</th>
+					<td colspan="5" style="border-bottom: 1px #c0c0c0 solid;"><span style="font-weight: bold;">${companyName }</span><span>의 관리자 목록</span></td>
 				</tr>
 				<tr>
-					<td>선택</td>
-					<td>아이디</td>
-					<td>이름</td>
-					<td>전화번호</td>
-					<td>이메일</td>
+					<th>선택</th>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>전화번호</th>
+					<th>이메일</th>
 				</tr>
 				<c:if test="${adminList.size() == 0 }">
 					<tr>
@@ -31,13 +32,20 @@
 			</thead>
 		</table>
 	</div>
-	<div class="table_body">
+	<div class="table_body" style="height: 641px;">
 		<form action="#" name="messageform" method="post">
 			<table>
+				<colgroup>
+					<col width="80px" />
+					<col width="100px" />
+					<col width="100px" />
+					<col width="200px" />
+					<col width="*" />
+				</colgroup>
 				<tbody>
 					<c:forEach var="dto" items="${adminList }">
 						<tr>
-							<th><input type="radio" name="select" value="${dto.id }"></th>
+							<td><input type="radio" name="select" value="${dto.id }"></td>
 							<td>${dto.id }</td>
 							<td>${dto.name }</td>
 							<td>${dto.tel }</td>
@@ -45,13 +53,11 @@
 						</tr>
 					</c:forEach>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td><input type="button" value="쪽지보내기" onclick="sendMessage();"></td>
-					</tr>
-				</tfoot>
 			</table>
 		</form>
+		<div class="btnset">
+			<input type="button" value="쪽지보내기" onclick="sendMessage();">
+		</div>
 	</div>
 </body>
 </html>
