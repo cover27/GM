@@ -167,13 +167,13 @@
 					<!-- 블록내의 페이지 번호 -->
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<c:if test="${i == currentPage}">
-							<span><b>[${i}]</b></span>
+							<span class="thisPage"><b>${i}</b></span>
 						</c:if>
 						<%-- <c:if test="${i != currentPage}">
 							<a href="<c:url value='/admin/P_managePayment?pageNum=${i}'/>">[${i}]</a>
 						</c:if> --%>
 						<c:if test="${i != currentPage}">
-							<a href="javascript:movepage('${i}')">[${i}]</a>
+							<a href="javascript:movepage('${i}')">${i}</a>
 						</c:if>
 					</c:forEach>					
 					

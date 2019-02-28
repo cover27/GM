@@ -269,7 +269,7 @@ public class P_ServiceImpl implements P_Service{
 	public void P_listApprTodoView(HttpServletRequest req, Model model) {
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
-		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 5;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수
@@ -615,7 +615,7 @@ public class P_ServiceImpl implements P_Service{
 	public void P_listApprCompleteView(HttpServletRequest req, Model model) {
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
-		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 5;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -703,7 +703,7 @@ public class P_ServiceImpl implements P_Service{
 	public void P_readApprAllListView(HttpServletRequest req, Model model) {
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
-		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 5;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -791,7 +791,7 @@ public class P_ServiceImpl implements P_Service{
 	public void P_listApprRejectView(HttpServletRequest req, Model model) {
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
-		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 5;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -877,7 +877,7 @@ public class P_ServiceImpl implements P_Service{
 	public void P_listApprReferenceView(HttpServletRequest req, Model model) {
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
-		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 5;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -965,7 +965,7 @@ public class P_ServiceImpl implements P_Service{
 	public void P_listApprMyRequestView(HttpServletRequest req, Model model) {
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
-		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 5;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -1057,7 +1057,7 @@ public class P_ServiceImpl implements P_Service{
 			search = Integer.parseInt(req.getParameter("search"));
 		}
 		
-		int pageSize = 10; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 5;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
