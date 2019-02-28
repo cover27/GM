@@ -44,6 +44,12 @@ public class K_ServiceImpl implements K_Service{
 		 vo = dao.memberInfo(id); // 아이디로 해당 정보를 불러옴 
 		 req.getSession().setAttribute("loginInfo", vo);
 		
+		 BoardListVO notice = new BoardListVO();
+		 notice = dao.getMainNotice();
+		 
+		 System.out.println("제목 : "+notice.getSubject());
+		 
+		 req.setAttribute("notice", notice);
 	}
 
 	@Override
@@ -1152,6 +1158,80 @@ public class K_ServiceImpl implements K_Service{
 		
 		model.addAttribute("cnt", cnt);
 		
+	}
+
+	@Override
+	public void K_noticeContent(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO)req.getSession().getAttribute("loginInfo")).getSys_rank();
+		
+		String num_s = req.getParameter("num");
+		int num = Integer.parseInt(num_s);
+		
+		dao.addNoticeReadCnt(num);
+		BoardListVO vo = new BoardListVO();
+		vo = dao.getNoticeContent(num);
+		model.addAttribute("vo", vo);
+		model.addAttribute("sys_rank", sys_rank);
+		
+	}
+
+	@Override
+	public void K_updateNotice(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		
+		BoardListVO vo = new BoardListVO();
+		vo = dao.getNoticeContent(num);
+		
+		model.addAttribute("boardnum", num);
+		model.addAttribute("vo", vo);
+	}
+
+	@Override
+	public void K_updateNotice_pro(HttpServletRequest req, Model model) {
+		String subject = req.getParameter("subject");
+		String content = req.getParameter("formEditorData");
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		
+		System.out.println("subject : "+subject);
+		System.out.println("content : "+content);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardnum", boardnum);
+		map.put("subject", subject);
+		map.put("content", content);
+		int cnt = dao.updateNotice(map);
+		
+		model.addAttribute("cnt", cnt);
+	}
+
+	@Override
+	public void K_deleteNotice(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int cnt = dao.deleteNotice(num);
+		model.addAttribute("cnt", cnt);
+	}
+
+	@Override
+	public void K_sendingMessage(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		model.addAttribute("id", id);
+		String name = dao.getName(id);
+		model.addAttribute("name", name);
+	}
+
+	@Override
+	public void K_sendMessage_pro(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		String subject = req.getParameter("subject");
+		String content = req.getParameter("content");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("subject", subject);
+		map.put("content", content);
+		
+		int cnt = dao.sendMessage_pro(map);
+		model.addAttribute("cnt", cnt);
 	}
 	
 }

@@ -38,7 +38,7 @@ public class S_Controller {
 		return "/pages/S_message_inbox";
 	}
 
-	
+	/*
 	@RequestMapping("/pages/S_receiveMessage")
 	public String receiveMessage(HttpServletRequest req, Model model) {
 		logger.info("URL : S_receiveMessage");
@@ -47,7 +47,7 @@ public class S_Controller {
 		service.messageList(req, model);
 		return "/pages/S_receiveMessage";
 	}
-	
+	*/
 	
 	// 쪽지
 	@RequestMapping("/pages/S_message")
@@ -113,6 +113,7 @@ public class S_Controller {
 		logger.info("URL : S_sendDeletePro");
 		
 		service.sendDeletePro(req, model);
+		service.sendDelPro(req, model);
 		return "pages/S_sendDeletePro";		
 	}
 	
@@ -124,13 +125,33 @@ public class S_Controller {
 		return "pages/S_contentMessage";		
 	}
 	
-	@RequestMapping("/pages/myInfo")
-	public String myInfo(HttpServletRequest req, Model model) {
-		logger.info("URL : S_contentMessage");
+	@RequestMapping("/pages/S_messageDeletePro")
+	public String contentDelete(HttpServletRequest req, Model model) {
+		logger.info("URL : S_messageDeletePro");
+		service.contentDelete(req, model);
+		return "pages/S_messageDeletePro";	
+	}
+	
+	@RequestMapping("/pages/S_sendcontentMessage")
+	public String endcontentMessage(HttpServletRequest req, Model model) {
+		logger.info("URL : S_sendcontentMessage");
 		
-		return "pages/myInfo";		
-	}	
+		service.messageContent(req, model);
+		return "pages/S_sendcontentMessage";	
+	}
 	
+	@RequestMapping("/pages/S_sendMessageDeletePro")
+	public String sendContentDelete(HttpServletRequest req, Model model) {
+		logger.info("URL : S_sendMessageDeletePro");
+		service.contentDelete(req, model);
+		return "pages/S_sendMessageDeletePro";	
+	}
 	
+	@RequestMapping("/pages/S_contentDelPro")
+	public String contentDelPro(HttpServletRequest req, Model model) {
+		logger.info("URL : S_contentDelPro");
+		service.contentDelete(req, model);
+		return "pages/S_contentDelPro";	
+	}
 	
 }

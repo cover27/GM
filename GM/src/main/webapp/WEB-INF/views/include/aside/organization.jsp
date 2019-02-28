@@ -26,6 +26,7 @@
                        			</c:forEach>
                         </ul>
                     </li>
+                    <%--
                     <li>
                         <span>개인그룹</span>
                         <ul>
@@ -35,9 +36,10 @@
                     <li>
                         <span><a href="<c:url value='/pages/E_myGroupManage' />">개인그룹 관리</a></span>
                     </li>
-                    <%-- <li>
+                    --%>
+                    <li>
                         <span><a href="<c:url value='/pages/E_orgMyFavoritMemList' />">자주 연락하는 사람 관리</a></span>
-                    </li> --%>
+                    </li>
                 </ul>
             </div>
         </div>

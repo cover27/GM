@@ -31,7 +31,7 @@
 										document.getElementById('now_date').value = new Date().toISOString().slice(0,  16);
 									</script>
 										<span>~</span>
-									<input type="datetime-local" name="end" id="now_date2" min="${vo.begin}" required>
+									<input type="datetime-local" name="end" id="now_date2"  required>
 									<script>
 										document.getElementById('now_date2').value = new Date().toISOString().slice(0,  16);
 									</script>

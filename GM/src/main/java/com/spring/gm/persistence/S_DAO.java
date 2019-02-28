@@ -39,6 +39,9 @@ public interface S_DAO {
 	// 보넨 쪽지 삭제
 	public int sendDelete(Map<String, Integer> map);
 	
+	// 보넨 쪽지의 받은 상대방 쪽지 삭제
+	public int sendDel(Map<String, Integer> map);
+	
 	// 휴지통 보네기
 	public int garbage(Map<String, Integer> map);
 	
@@ -54,10 +57,10 @@ public interface S_DAO {
 	// 조회수 증가
 	public int addReadCnt(int num);
 	
-	// 회원 정보 갯수
-	public int getMemberCnt(String strId);
+	// 상세페이지 삭제
+	public int deleteMessage(int num);
 	
-	// 회원 정보 리스트
-	public List<MemberVO> getMemberList(Map<String, Object> map);
+	// 보넨메세지 삭제
+	public int sendDeleteMessage(int num);
 
 }

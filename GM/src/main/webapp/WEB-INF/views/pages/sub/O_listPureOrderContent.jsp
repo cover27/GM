@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<<<<<<< HEAD
 <style>
 .content-list{
 	border-top:1px solid #d1d1d1;
@@ -179,14 +180,17 @@ i.icon{
 	vertical-align:middle;
 }
 </style>
+=======
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 
 <section>
 	<article>
 		<div class="content_header">
 			<h2>내가 한 업무요청</h2>
 		</div>
-		
+				<div class="content">
 		<!-- 내가 한 업무요청 상단  -->
+<<<<<<< HEAD
 	
 		<div class="">
 			<form action="<c:url value='/pages/W_searchTodoTool'/>" method="post">
@@ -226,6 +230,12 @@ i.icon{
 				
 				<!-- 내가 한 업무요청 게시글 나열 list -->
 				<div class="content-list">
+=======
+		<%@ include file="/WEB-INF/views/pages/sub/O_header/O_listPureOrderContentView.jsp" %>
+		
+		<!-- 내가 한 업무요청 게시글 나열 list -->
+				
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 		            <table class="table table-striped" id="tblList">
 		                <caption></caption>
 		                <colgroup>

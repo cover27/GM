@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <style>
 .content-list{
 	border-top:1px solid #d1d1d1;
@@ -175,12 +176,14 @@ i.icon{
 	vertical-align:middle;
 }
 </style>
+=======
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 <section>
 	<article>
 		<div class="content_header">
 			<h2>수신 업무 요청</h2>
 		</div>
-		<div>
+		<div class="content">
 			<!-- 수신 업무 요청에서 쓰이는 상단 -->
 		<form action="<c:url value='/pages/W_searchTodoTool'/>" method="post">
 		<input type="hidden" name="sel_Payment" value="2">
@@ -329,6 +332,7 @@ i.icon{
 	            </div>
 	            
 	        </div>
+<<<<<<< HEAD
            </form>
 		</div>	
 		
@@ -337,5 +341,8 @@ i.icon{
 		
 		
 		
+=======
+		</div>
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 	</article>
 </section>

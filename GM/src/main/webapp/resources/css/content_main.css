@@ -39,10 +39,16 @@ section .notice h2 i {
 }
 
 section .notice_title {
-    top: 22px;
-    overflow: hidden;
-    position: relative;
-    height: 0px;
+	position: relative;
+    top: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+section .notice_title a {
+	/* color: #d3292c; */
+	color: #555;
 }
 
 section .date_wrap {
@@ -97,11 +103,11 @@ section .main_menu>ul>li {
     border-radius: 10px;
 }
 
-/* section .main_menu>ul>li:hover {
+section .main_menu>ul>li:hover {
 	cursor: pointer;
-	background: #eee;
-	transition: 0.2s;
-} */
+	/* background: #eee;
+	transition: 0.2s; */
+}
 
 section .main_menu>ul>li .menu_wrap {
 	margin: 55px 0;
