@@ -830,6 +830,7 @@
 		where m.id = a.id
 		and m.company = #{company} and m.id = #{id} and
 		to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
+		and a.result = 1
 	</select>
 	<select id="GoOffList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_maVO">
