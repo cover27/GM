@@ -261,6 +261,11 @@ function findCompany(){
 	window.open(url, "confirm", "menubar=no, width=800, height=600");
 }
 
+function companyInfo(){
+	var url="companyInfo";
+	window.open(url, "confirm", "menubar=no, width=800, height=600");
+}
+
 function nextJumin(){
 	if(document.inputform.jumin1.value.length >= 6){
 		document.inputform.jumin2.focus();
