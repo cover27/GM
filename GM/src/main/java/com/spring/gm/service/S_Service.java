@@ -19,6 +19,8 @@ public interface S_Service {
 	
 	public void sendDeletePro(HttpServletRequest req, Model model);		// 보넨 메세지 삭제
 	
+	public void sendDelPro(HttpServletRequest req, Model model);	// 보넨 메세지 삭제할 경우 상대방 받은 메세지도 삭제
+	
 	public void moveGarbage(HttpServletRequest req, Model model);		// 휴지통 보네기
 	
 	public void garbageList(HttpServletRequest req, Model model);		// 휴지통 목록
