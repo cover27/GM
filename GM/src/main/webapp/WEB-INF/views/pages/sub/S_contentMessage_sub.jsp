@@ -10,8 +10,6 @@
 		<div class="content">
 		<form action="<c:url value='/pages/S_messageDeletePro'/>" method="post" id="messageMoveGarbage" name="messageMoveGarbage">
 			<input type="hidden" name="pageNum" value="${pageNum}">
-			<input type="hidden" name="num" value="${ct_dto.num}">
-			<input type="hidden" name="message_num" value="${ct_dto.message_num}">
 			<div class="write_head">
 				<ul>
 					<li>
