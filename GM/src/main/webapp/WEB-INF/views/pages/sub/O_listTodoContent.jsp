@@ -161,6 +161,19 @@ tbody {
 	overlow:hidden;
 	-o-text-overflow:ellipsis;
 }
+i.icon.imp{
+	width:13px;
+	height:13px;
+	margin:0 0 2px 0;
+	background-position:-83px -55px;
+}
+i.icon{
+	disply:inline-block;
+	background-image:url('../images/common/ic_common.png');
+	margin:0 4px;
+	background-repeat:no-repeat;
+	vertical-align:middle;
+}
 </style>
 <section>
 	<article>
@@ -169,7 +182,37 @@ tbody {
 		</div>
 		<div>
 			<!-- 수신 업무 요청에서 쓰이는 상단 -->
-			<%@ include file="/WEB-INF/views/pages/sub/O_header/O_listTodoContentView.jsp"%>	
+		<form action="<c:url value='/pages/W_searchTodoTool'/>" method="post">
+		<input type="hidden" name="sel_Payment" value="2">
+			<div class="content-wrap">	<!-- 수신업무요청의 content 전체 view -->
+				<div class="table-header">		<!-- 수신업무요청의 content 상위 view -->
+				
+				<h3>전체<span class="ml10 cnt">${cnt }</span></h3>
+				
+					<div class="table-search">
+						<span>
+							<label class="bold5px">요청자<input name="searchUserName" value="" type="text" title="요청자" class="ml10" placeholder="요청자 이름 입력"></label>
+						</span>
+						<span>
+							<select name="toggleSearchType" title="검색타입">
+		                        <option value="subject">업무제목</option>
+		                        <option value="content">업무내용</option>
+							</select>
+						</span>
+	                    <span>
+	                    	<input name="searchApprTitle" value="" type="text" class="w150 aTitle" title="문서제목" placeholder="검색어">
+	                    </span>	
+						<span>
+							<input id="begin" type="date" title="날짜시작" name="searchStartDate" value="">
+								<span>~</span>
+							<input id="end" type="date" title="날짜끝" name="searchEndDate" value="" >
+						</span>
+		                <span>
+			               <i class="fa fa-search"><input type="submit" value="검색" id="searchMessageListButton" class="btn btn-color5"></i>
+		                </span>
+					</div>
+				</div>	
+			</div>
 			
 			
 			<!-- 수신 업무 요청 게시글 나열 list -->
@@ -285,7 +328,9 @@ tbody {
 	                <button type="button" class="btn btn-color5 br" onclick="window.location='<c:url value='/pages/W_createSelfTaskView'/>'">업무 등록</button>
 	                <button type="button" class="btn btn-color7 br" onclick="autoComplete()">업무완료</button>
 	            </div>
+	            
 	        </div>
+           </form>
 		</div>	
 		
 		

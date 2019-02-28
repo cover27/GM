@@ -33,8 +33,7 @@
 			</tr>
 			<tr>
 				<td>
-					<textarea name="content">
-					</textarea>
+					<textarea name="content"></textarea>
 				</td>
 			</tr>
 			<tr>
