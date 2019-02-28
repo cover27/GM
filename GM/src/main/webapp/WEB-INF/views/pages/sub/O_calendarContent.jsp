@@ -68,6 +68,8 @@
   });
   
 </script>
+<style>
+</style>
 <section>
 	<article>
 		<div class="content_header">

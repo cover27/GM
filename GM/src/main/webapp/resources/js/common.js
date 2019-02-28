@@ -43,7 +43,13 @@ if (url.indexOf('/')) {
 					$("#p").children().css("color", "#d3292c");
 					$("#p").css("font-weight", "bold");
 				});
-			}	
+			} else if(category[0] == "W"){
+				// alert("됨");
+				$(function(){
+					$("#w").children().css("color", "#d3292c");
+					$("#w").css("font-weight", "bold");
+				});
+			}
 		}
 	}
 }
@@ -683,3 +689,49 @@ if(url.indexOf('/')){
 	}
 }
 /* aside 시스템관리자 끝 */
+
+/* aside 업무관리 */
+//alert(window.location.href);
+var url = window.location.href.split('gm');
+if(url.indexOf('/')){
+	var url_split = url[1].split('/');
+	if(url_split.length > 2){
+		if(url_split.indexOf('?')){
+			var category = url_split[2].split('?');
+
+			if(category[0] == "W_createSelfTaskView"){
+				// alert("됨");
+				$(function(){
+					$("#W_createSelfTaskView").children().css("color", "#d3292c");
+					$("#W_createSelfTaskView").css("font-weight", "bold");
+				});
+			} else if(category[0] == "W_listMyTodoView") {
+				$(function(){
+					$("#W_listMyTodoView").children().css("color", "#d3292c");
+					$("#W_listMyTodoView").css("font-weight", "bold");
+				});
+			} else if(category[0] == "W_listPureOrderView") {
+				$(function(){
+					$("#W_listPureOrderView").children().css("color", "#d3292c");
+					$("#W_listPureOrderView").css("font-weight", "bold");
+				});
+			} else if(category[0] == "W_listTodoView") {
+				$(function(){
+					$("#W_listTodoView").children().css("color", "#d3292c");
+					$("#W_listTodoView").css("font-weight", "bold");
+				});
+			} else if(category[0] == "W_listTodoReportView") {
+				$(function(){
+					$("#W_listTodoReportView").children().css("color", "#d3292c");
+					$("#W_listTodoReportView").css("font-weight", "bold");
+				});
+			} else if(category[0] == "W_listAdminDocManagement") {
+				$(function(){
+					$("#W_listAdminDocManagement").children().css("color", "#d3292c");
+					$("#W_listAdminDocManagement").css("font-weight", "bold");
+				});
+			}
+		}
+	}
+}
+/* aside 업무관리 끝 */
