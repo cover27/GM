@@ -24,6 +24,20 @@
 		window.location='downloadFile?fileNum='+num;
 	}
 </script>
+<style>
+	.cke_top, #cke_1_bottom {
+		display: none;
+	}
+	
+	#cke_1_contents {
+		height: 200px !important;
+	}
+	
+	.cke_chrome {
+		border: none;
+		border-bottom: 1px #c0c0c0 solid;
+	}
+</style>
 <section>
 	<article>
 		<div class="content_header">
@@ -191,6 +205,17 @@
 					</tr>
 				</table>
 				<div class="border_t1" style="border-top:none !important;">
+					<div id="editorDiv">
+						<div id="content1">
+							<!-- text-editor를 쓰기 위함으로 class name은 ckeditor로 쓰여야 한다. -->
+							<textarea class="ckeditor" id="formEditorData" title="formEditorData" name="formEditorData" readonly>${eachPayment.content }</textarea>
+							<!-- text-editor를 쓰기 위함으로 위의 textarea의 class name이 아래 쓰인다. -->
+							<script>CKEDITOR.replace('formEditorData')</script>
+							<!-- <input type="text" id="content" name="content"> --> 
+						</div>
+					</div>
+				</div>
+				<%-- <div class="border_t1" style="border-top:none !important;">
 					<table style="min-height: 200px;">
 						<tbody>
 							<tr>
@@ -200,7 +225,7 @@
 							</tr>
 						</tbody>
 					</table>
-				</div>
+				</div> --%>
 				<div class="btn_set mt10 mb10 fright">
 					<c:forEach var="dto" items="${paymentInfo }">
 						<c:if test="${dto.id == id }">

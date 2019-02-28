@@ -83,8 +83,22 @@ public class E_Controller {
 	
 	
 
+
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 이 아래로 사용하지 않음
 	// 메모 게시판
 	@RequestMapping("/pages/E_memoList")
 	public String E_memoList(HttpServletRequest req, Model model) {

@@ -59,7 +59,7 @@
 					<td>00:00</td>
 				</tr>
 			</c:if>
-			<c:if test="${cnt > 0}">
+			<c:if test="${cnt == 1}">
 				<c:forEach var="dtos" items="${dtos}">
 					<td>${id}</td>
 					<td>${name}</td>
@@ -78,6 +78,9 @@
 					<c:if test="${fn:length(dtos.departuretimes) > 0 }"><td>${dtos.departuretimes}</td></c:if>
 					<c:if test="${fn:length(dtos.departuretimes) == 0 }"><td>00:00</td></c:if>
 				</c:forEach>
+			</c:if>
+			<c:if test="${cnt > 1}">
+					<td colspan="9" style="height: 384px;">출근관리 문제가 생겼습니다. 관리자에게 문의 하십시오.</td>
 			</c:if>
 		</tbody>
 	</table>

@@ -35,16 +35,29 @@ public class O_Controller {
 		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listTodoView");
 		
+		oservice.listTodo(req, model);
+		
 		return "pages/O_listTodoView";
 	}
 	
-	//업무요청 - 수신 업무 요청 조회 
+	//업무요청 - 수신 업무 요청 상세 조회 화면
 	@RequestMapping("/pages/W_readSubTodoView")
 	public String O_readSubTodoView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_readSubTodoView");
 		
+		oservice.readOrderList(req, model);
 		
 		return "pages/O_readSubTodoView";
+	}
+	
+	//업무요청 - 수신 업무 요청 상세 조회 처리 항목 pro
+	@RequestMapping("/pages/W_readSubTodoSuccessPro")
+	public String O_readSubTodoSuccessPro(HttpServletRequest req, Model model) {
+		logger.info("URL : O_readSubTodoSuccessPro");
+		
+		oservice.readSubTodoSuccessPro(req, model);
+		
+		return "pages/O_readSubTodoSuccessPro";
 	}
 	
 	//TO-DO - 나의 할일 화면
@@ -134,12 +147,14 @@ public class O_Controller {
 		return "pages/O_updateTaskDeletePro";
 	}
 	
-	//업무 요청 - 업무완료함
+	//업무 요청 - 업무완료함 조회
 	@RequestMapping("/pages/W_listTodoReportView")
 	public String O_listTodoReportView(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listTodoReportView");
+		
+		oservice.completeList(req, model);
 		
 		return "pages/O_listTodoReportView";
 	}
@@ -150,6 +165,8 @@ public class O_Controller {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listAdminDocManagement");
+		
+		oservice.adminTodoList(req, model);
 		
 		return "admin/O_listAdminDocManagement";
 	}

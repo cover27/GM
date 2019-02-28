@@ -180,28 +180,15 @@ tbody {
 		            <table class="table table-striped" id="tblList">
 		                <caption></caption>
 		                <colgroup>
-		                    <col style="width: 40px;">
-		                    <col style="width: 40px;">
-		                    <col style="width: 120px;">
-		                    <col style="width: 120px;">
-		                    <col style="min-width: 200px;">
-		                    <col style="width: 100px;">
-		                    <col style="width: 100px;">
-		                    <col style="width: 100px;">
-		                    <col style="width: 100px;">
-		                    <!-- <col style="width: 140px;"> -->
+		                    <col style="min-width: 50%;">
+		                    <col style="width: 15%;">
+		                    <col style="width: 15%;">
+		                    <col style="width: 15%;">
+		                    <col style="width: 15%;">
 		                </colgroup>
 		               
 		                <thead>
 		                    <tr>
-		                        <th scope="col"><input id="checkAll" name="" onclick="selectAllTodo()" type="checkbox" value="" title="checkAll"></th>
-		                        <th scope="col">번호</th>
-		                        <th scope="col">
-		                            <a data-sortcolumn="FOLDER" href="#">업무 보관함</a>
-		                        </th>
-		                        <th scope="col">
-		                            <a data-sortcolumn="CATEGORY" href="#">업무 보고 유형</a>
-		                        </th>
 		                        <th scope="col">
 		                            <a data-sortcolumn="TITLE" href="#">제목</a>
 		                        </th>
@@ -210,47 +197,38 @@ tbody {
 		                            <a data-sortcolumn="STARTDATE" href="#">요청일</a>
 		                        </th>
 		                        <th scope="col">
+		                            <a data-sortcolumn="end" href="#">마감일</a>
+		                        </th>
+		                        <th scope="col">
 		                            <a data-sortcolumn="TODOSTATUS" href="#">상태</a>
 		                        </th>
-		                        <th scope="col">확인</th>
 		                    </tr>
 		                </thead>
 		                
 		                
 		                <!-- 게시글 나열 list -->
 		                <tbody>
-                            <tr style="background: rgb(249, 249, 249);">
-                                <td>
-                                    <input name="chkid" type="checkbox" title="checkbox" value="26950244">
-                                </td>
-                                <td>1</td>
-		                        <td class="ellipsis">
+		                	<c:if test = "${cnt > 0}">
+								<c:forEach var="dto" items="${dtos}">
+		                            <tr style="background: rgb(249, 249, 249);">
+		                                <td>${dto.subject}</td>
+		                                <td>
+		                                    <div class="ellipsis">${dto.b_name}</div>
+		                                </td>
+		                                <td>${dto.begin}</td>
+		                                <td>${dto.end}</td>
+		                                <td>${dto.state}</td>
+		                            </tr>
+		                        </c:forEach>
+		                    </c:if>
 		                            
-		                        </td>
-                                <td class="ellipsis">
-                                    
-                                </td>
-                                <td class="text-left">
-                                    <div class="ellipsis">
-                                        <a href="javascript:void(0);" onclick="goURL('26950244')" title="업무보고">업무보고</a> 
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="ellipsis" title="오정">오정
-                                    </div>
-                                </td>
-                                <td>2019.01.16</td>
-                                <td>
-                                    <a href="javascript:void(0);" onclick="todoStatusPopup('26950244', '업무보고', 'B', '', '');">
-		                                        <span class="todo-cate-box2">승인완료</span>
-		                            </a>
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0);" onclick="todoReadStatusPopup('26950244', '업무보고', 'B', '0', '');">
-                                        <span class="todo-cate-buuton">읽음확인</span>
-                                    </a>
-                                </td>
-                            </tr>
+                            
+                            <c:if test="${cnt == 0}">
+								<tr>
+									<td colspan="6" align="center">업무 요청을 한 내역이 없습니다.</td>
+								</tr>
+							</c:if>
+                            
                			 </tbody>
 		            </table>
 		            
@@ -258,45 +236,37 @@ tbody {
 		            
 		            <!-- 게시물 아래 <<, >> 버튼 및 업무등록, 완료 버튼 -->
 		            <div class="pagination-wrap">
-		            	<ul class="pagination">
-		            		<li>
-		            			<a href="javascript:void(0)" class="disabled">
-		            				<i class="fa fa-chevron-left"></i>
-		            				<i class="fa fa-chevron-left"></i>
-		            				<span class="none">first</span>
-		            			</a>
-		            		</li>
-		            		<li>
-		            			<a href="javascript:void(0)" class="disabled">
-		            				<i class="fa fa-chevron-left"></i>
-		            				<span class="none">previous</span>
-		            			</a>
-		            		</li>
-		            		<li class="active">
-		            			<a href="javascript:void(0)">1</a>
-		            		</li>
-		            		<li>
-		            			<a href="javascript:void(0)" class="disabled">
-		            				<i class="fa fa-chevron-right"></i>
-		            				<span class="none">next</span>
-		            			</a>
-		            		</li>
-		            		<li>
-		            			<a href="javascript:void(0)" class="disabled">
-		            				<i class="fa fa-chevron-right"></i>
-		            				<i class="fa fa-chevron-right"></i>
-		            				<span class="none">last</span>
-		            			</a></li>
-		            	</ul>
+		            	<table>
+							<tr>
+								<th align="center">
+									<!-- 게시글이 있으면 -->
+									<c:if test="${cnt > 0}">
+										<!-- 처음[◀◀] / 이전블록[◀]  -->
+										<c:if test="${startPage > pageBlock}">
+											<a href="<c:url value='/pages/W_listTodoReportView'/>">[◀◀]</a>
+											<a href="<c:url value='/pages/W_listTodoReportView?pageNum=${endPage - pageBlock}'/>">[◀]</a>
+										</c:if>
+		
+										<!-- 중간에 들어갈 페이지 -->
+										<c:forEach var="i" begin="${startPage}" end="${endPage}">
+											<c:if test="${i==currentPage}">
+												<span><b>[${i}]</b></span>
+											</c:if>
+											<c:if test="${i!=currentPage}">
+												<a href="<c:url value='/pages/W_listTodoReportView?pageNum=${i}'/>">[${i}]</a>
+											</c:if>
+										</c:forEach>
+		
+										<!-- 다음[▶] / 마지막[▶▶]  -->
+										<c:if test="${pageCount > endPage}">
+											<a href="<c:url value='/pages/W_listTodoReportView?pageNum=${startPage + pageBlock}'/>">[▶]</a>
+											<a href="<c:url value='/pages/W_listTodoReportView?pageNum=${pageCount}'/>">[▶▶]</a>
+										</c:if>
+									</c:if>
+								</th>
+							</tr>
+						</table>
 		            </div>
-		            <script>pageMoveAction = function(inputName, formId, movePageIndex) { jQuery('input[name=' + inputName + ']', formId).val(movePageIndex); jQuery('input[name=action]', formId).val('pagePerRecord');};</script>
-		           
-		            <input name="pageIndex" type="hidden" value="1" title="현재 페이지">
-					<div class="btn-wrap">
-               			<button type="button" class="btn btn-color5 br" onclick="createTask()">업무 등록</button>
-                		<button type="button" class="btn btn-color7 br" onclick="autoComplete()">업무 승인</button>
-                		<button type="button" class="btn btn-color7 br" onclick="rejectTask()">업무 반려</button>
-           			</div>
 	        </div>
 		</div>
 			

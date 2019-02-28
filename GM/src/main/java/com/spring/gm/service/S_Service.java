@@ -25,6 +25,8 @@ public interface S_Service {
 	
 	public void delGarbage(HttpServletRequest req, Model model);		// 휴지통 내용물 삭제처리
 	
-	public void memberInfo(HttpServletRequest req, Model model);		// 맴버정보
+	public void contentDelete(HttpServletRequest req, Model model);		// 상세페이지 삭제
+	
+	public void sendContentDelete(HttpServletRequest req, Model model);	// 보넨메세지 상세 삭제
 	
 }

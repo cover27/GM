@@ -8,7 +8,7 @@
 			<h2>쪽지 상세 페이지</h2>
 		</div>
 		<div class="content">
-		<form action="<c:url value='/pages/S_messageDeletePro'/>" method="post" id="messageMoveGarbage" name="messageMoveGarbage">
+		<form action="<c:url value='/pages/S_sendDeletePro'/>" method="post" id="messageMoveGarbage" name="messageMoveGarbage">
 			<input type="hidden" name="pageNum" value="${pageNum}">
 			<input type="hidden" name="num" value="${ct_dto.num}">
 			<input type="hidden" name="message_num" value="${ct_dto.message_num}">
@@ -29,8 +29,8 @@
 			</div>
 
 			<div style="margin-bottom:60px;padding-top: 20px;" class="btnset fright">
-				<input type="submit" class="inputButton" value="삭제">
-				<input type="button" class="inputButton" value="목록 보기" onclick="window.history.back()">
+				<input type="submit" class="inputButton" value="전송취소">
+				<input type="button" class="inputButton" value="목록 보기" onclick="<c:url value='/pages/S_sendMessageList'/>">
 			</div>
 		</form>
 		</div>

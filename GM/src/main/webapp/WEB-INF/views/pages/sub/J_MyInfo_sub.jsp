@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<link rel="stylesheet" href="${path}css/layout.css">
-<link rel="stylesheet" href="${path}css/signup.css">
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<div class="signup_wrap">
+<section>
+	<article>
+	<div class="signup_wrap">
     <form action="registAccount" method="post" name="inputform" onsubmit="return inputCheck();">
         <input type="hidden" name="hiddenId" value="0">
         <input type="hidden" name="depart">
@@ -150,3 +151,6 @@
         </div>
     </form>
 </div>
+	
+	</article>
+</section>

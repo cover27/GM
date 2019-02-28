@@ -1,72 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script>
-$(document).ready(function(){
-	$(".approval_bg").hover(function(){
-		$(".approval_wrap").css('background', 'rgba(255, 255, 255, 0.9)');
-		$(".approval_wrap").css('box-shadow', '1px 1px 50px #bbb');
-	}, function(){
-		$(".approval_wrap").css('background', 'transparent');
-		$(".approval_wrap").css('box-shadow', 'none');
-	});
-	$(".board_bg").hover(function(){
-		$(".board_wrap").css('background', 'rgba(255, 255, 255, 0.9)');
-		$(".board_wrap").css('box-shadow', '1px 1px 50px #bbb');
-	}, function(){
-		$(".board_wrap").css('background', 'transparent');
-		$(".board_wrap").css('box-shadow', 'none');
-	});
-	$(".planner_bg").hover(function(){
-		$(".planner_wrap").css('background', 'rgba(255, 255, 255, 0.9)');
-		$(".planner_wrap").css('box-shadow', '1px 1px 50px #bbb');
-	}, function(){
-		$(".planner_wrap").css('background', 'transparent');
-		$(".planner_wrap").css('box-shadow', 'none');
-	});
-	$(".todo_bg").hover(function(){
-		$(".todo_wrap").css('background', 'rgba(255, 255, 255, 0.9)');
-		$(".todo_wrap").css('box-shadow', '1px 1px 50px #bbb');
-	}, function(){
-		$(".todo_wrap").css('background', 'transparent');
-		$(".todo_wrap").css('box-shadow', 'none');
-	});
-	$(".message_bg").hover(function(){
-		$(".message_wrap").css('background', 'rgba(255, 255, 255, 0.9)');
-		$(".message_wrap").css('box-shadow', '1px 1px 50px #bbb');
-	}, function(){
-		$(".message_wrap").css('background', 'transparent');
-		$(".message_wrap").css('box-shadow', 'none');
-	});
-	$(".organization_bg").hover(function(){
-		$(".organization_wrap").css('background', 'rgba(255, 255, 255, 0.9)');
-		$(".organization_wrap").css('box-shadow', '1px 1px 50px #bbb');
-	}, function(){
-		$(".organization_wrap").css('background', 'transparent');
-		$(".organization_wrap").css('box-shadow', 'none');
-	});
-	$(".member_management_bg").hover(function(){
-		$(".member_management_wrap").css('background', 'rgba(255, 255, 255, 0.9)');
-		$(".member_management_wrap").css('box-shadow', '1px 1px 50px #bbb');
-	}, function(){
-		$(".member_management_wrap").css('background', 'transparent');
-		$(".member_management_wrap").css('box-shadow', 'none');
-	});
-	$(".work_management_bg").hover(function(){
-		$(".work_management_wrap").css('background', 'rgba(255, 255, 255, 0.9)');
-		$(".work_management_wrap").css('box-shadow', '1px 1px 50px #bbb');
-	}, function(){
-		$(".work_management_wrap").css('background', 'transparent');
-		$(".work_management_wrap").css('box-shadow', 'none');
-	});
-	$(".salary_management_bg").hover(function(){
-		$(".salary_management_wrap").css('background', 'rgba(255, 255, 255, 0.9)');
-		$(".salary_management_wrap").css('box-shadow', '1px 1px 50px #bbb');
-	}, function(){
-		$(".salary_management_wrap").css('background', 'transparent');
-		$(".salary_management_wrap").css('box-shadow', 'none');
-	});
-});
-</script>
 <section>
     <article id="main_aside">
         <div class="notice">
@@ -81,8 +14,8 @@ $(document).ready(function(){
             </div>
             <div class="date_wrap">
                 <div class="date">
-                    <span>2019.01.17</span>
-                    <em>AM 10:52:13</em>
+                    <span id="today"></span>
+                    <em id="clock"></em>
                 </div>
             </div>
         </div>
@@ -90,13 +23,7 @@ $(document).ready(function(){
             <div id="portlet_main">
                 <div class="main_menu">
                     <ul>
-                        <%-- <li>
-                            <a href="<c:url value='/pages/S_mail_inbox' />">
-                                <h2>메일</h2>
-                                <span class="mail"></span>
-                            </a>
-                        </li> --%>
-                        <li onclick="window.location='<c:url value="/pages/P_listApprTodoView" />'" class="approval_bg">
+                    	<li onclick="window.location='<c:url value="/pages/P_listApprTodoView" />'" class="approval_bg">
                         	<div class="menu_wrap approval_wrap">
 	                        	<div>
 		                        	<div class="approval"></div>
