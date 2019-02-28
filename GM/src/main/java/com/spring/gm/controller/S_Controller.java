@@ -129,6 +129,7 @@ public class S_Controller {
 	public String contentDelete(HttpServletRequest req, Model model) {
 		logger.info("URL : S_messageDeletePro");
 		service.contentDelete(req, model);
+		
 		return "pages/S_messageDeletePro";	
 	}
 	
@@ -143,7 +144,8 @@ public class S_Controller {
 	@RequestMapping("/pages/S_sendMessageDeletePro")
 	public String sendContentDelete(HttpServletRequest req, Model model) {
 		logger.info("URL : S_sendMessageDeletePro");
-		service.contentDelete(req, model);
+		service.sendContentDelete(req, model);
+		service.sendContentDel(req, model);
 		return "pages/S_sendMessageDeletePro";	
 	}
 	
@@ -152,6 +154,13 @@ public class S_Controller {
 		logger.info("URL : S_contentDelPro");
 		service.contentDelete(req, model);
 		return "pages/S_contentDelPro";	
+	}
+	
+	@RequestMapping("/pages/S_garbageContentDeletePro")
+	public String garbageContentDelete(HttpServletRequest req, Model model) {
+		logger.info("URL : S_garbageContentDeletePro");
+		service.garbageContentDelete(req, model);
+		return "pages/S_garbageContentDeletePro";	
 	}
 	
 }

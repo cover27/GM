@@ -31,4 +31,8 @@ public interface S_Service {
 	
 	public void sendContentDelete(HttpServletRequest req, Model model);	// 보넨메세지 상세 삭제
 	
+	public void sendContentDel(HttpServletRequest req, Model model);	// 보넨 메세지 상세 삭제할 경우 상대방 받은 메세지도 삭제
+	
+	public void garbageContentDelete(HttpServletRequest req, Model model);	// 휴지통 삭제
+	
 }
