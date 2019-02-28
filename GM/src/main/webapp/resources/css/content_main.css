@@ -40,7 +40,7 @@ section .notice h2 i {
 
 section .notice_title {
     top: 22px;
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
     height: 0px;
 }
