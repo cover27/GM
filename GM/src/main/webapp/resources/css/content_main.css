@@ -39,10 +39,16 @@ section .notice h2 i {
 }
 
 section .notice_title {
-    top: 22px;
-    /* overflow: hidden; */
-    position: relative;
-    height: 0px;
+	position: relative;
+    top: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+section .notice_title a {
+	/* color: #d3292c; */
+	color: #555;
 }
 
 section .date_wrap {

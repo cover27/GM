@@ -68,7 +68,7 @@
 						</thead>
 					</table>
 				</div>
-				<div class="table_body">
+				<div class="table_body" style="overflow: auto;">
 					<table>
 						<colgroup>
 							<col width="100px" />

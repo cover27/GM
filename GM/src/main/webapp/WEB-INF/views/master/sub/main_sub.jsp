@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%@ include file="/WEB-INF/views/setting.jsp"%> --%>
+<script>
+/* 공지사항으로 보내기 */
+$(location).attr('href', '<c:url value='/pages/K_noticeBoard' />')
+</script>
 <section>
 	<article>
 		<div class="content_header">

@@ -15,7 +15,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<td colspan="5" style="border-bottom: 1px #c0c0c0 solid;"><span style="font-weight: bold;">${companyName }</span><span>의 관리자 목록</span></td>
+					<th colspan="5" style="border-bottom: 1px #c0c0c0 solid;"><span>${companyName }</span><span style="font-weight: 400;">의 관리자 목록</span></th>
 				</tr>
 				<tr>
 					<th>선택</th>

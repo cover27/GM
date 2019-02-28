@@ -652,3 +652,34 @@ if(url.indexOf('/')){
 	}
 }
 /* aside 족지 끝 */
+
+/* aside 시스템관리자 */
+//alert(window.location.href);
+var url = window.location.href.split('gm');
+if(url.indexOf('/')){
+	var url_split = url[1].split('/');
+	if(url_split.length > 2){
+		if(url_split.indexOf('?')){
+			var category = url_split[2].split('?');
+
+			if(category[0] == "companiesList"){
+				// alert("됨");
+				$(function(){
+					$("#companiesList").children().css("color", "#d3292c");
+					$("#companiesList").css("font-weight", "bold");
+				});
+			} else if(category[0] == "appCompanies") {
+				$(function(){
+					$("#appCompanies").children().css("color", "#d3292c");
+					$("#appCompanies").css("font-weight", "bold");
+				});
+			} else if(category[0] == "K_noticeBoard") {
+				$(function(){
+					$("#K_noticeBoard").children().css("color", "#d3292c");
+					$("#K_noticeBoard").css("font-weight", "bold");
+				});
+			}
+		}
+	}
+}
+/* aside 시스템관리자 끝 */
