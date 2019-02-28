@@ -1462,7 +1462,7 @@ public class J_ServiceImpl implements J_Service {
 		int selectCnt = dao.searchGoOffCnt(map);
 		System.out.println("cnt : " + selectCnt);
 
-		if (selectCnt > 0) {
+		if (selectCnt == 1) {
 			List<join_maVO> dtos = dao.searchGoOffList(map);
 			System.out.println(dtos.get(0).getGo());
 			int num = dtos.get(0).getNum();
@@ -1480,7 +1480,10 @@ public class J_ServiceImpl implements J_Service {
 			model.addAttribute("dtos", dtos);
 			model.addAttribute("num", num);
 			model.addAttribute("gos", gos);
+		}else if(selectCnt > 1) {
+			model.addAttribute("cnt", 2);
 		}
+		
 		model.addAttribute("cnt", selectCnt);
 		model.addAttribute("id", id);
 		model.addAttribute("name", name);
@@ -1641,6 +1644,7 @@ public class J_ServiceImpl implements J_Service {
 	@Override
 	public void allList(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		System.out.println("company :" + company);
 		String date = req.getParameter("date");
 		System.out.println("date : " + date);
 		model.addAttribute("date", date);
@@ -1663,7 +1667,6 @@ public class J_ServiceImpl implements J_Service {
 		int selectCnt = dao.allListCnt(map);
 		System.out.println("selectCnt : " + selectCnt);
 		if (selectCnt > 0) {
-			System.out.println("여기 탔어요1");
 			List<join_maVO> dtos = dao.allListList(map);
 			for (int i = 0; i < selectCnt; i++) {
 				System.out.println("i : " + i);
@@ -1687,7 +1690,7 @@ public class J_ServiceImpl implements J_Service {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		int num = Integer.parseInt(req.getParameter("num"));
 		String date = req.getParameter("date"); // 여기서 안씀 바로 넘김
-
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("num", num);
 		map.put("company", company);
@@ -1704,7 +1707,44 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("date", date);
 	}
-
+	// 사원 근태 삭제
+		@Override
+		public void deleteAttended(HttpServletRequest req, Model model) {
+			int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+			int num = Integer.parseInt(req.getParameter("num"));
+			String date = req.getParameter("date"); // 여기서 안씀 바로 넘김
+			String[] dates = date.split("-");
+			date = dates[0] + dates[1] + dates[2];
+			System.out.println("date: " + date);
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("num", num);
+			map.put("company", company);
+			map.put("date", date);
+			
+			int deleteCnt =dao.deleteAttended(map);
+			System.out.println("deleteCnt : " + deleteCnt);
+			if(deleteCnt > 0) {
+				int selectCnt = dao.allListCnt(map);
+				System.out.println("selectCnt : " + selectCnt);
+				if (selectCnt > 0) {
+					List<join_maVO> dtos = dao.allListList(map);
+					for (int i = 0; i < selectCnt; i++) {
+						System.out.println("i : " + i);
+						dtos.get(i).setGos(toTime(dtos.get(i).getGo()));
+						System.out.println(toTime(dtos.get(i).getGo()));
+						dtos.get(i).setOffs(toTime(dtos.get(i).getOff()));
+						dtos.get(i).setWorktimes(toTime(dtos.get(i).getWorktime()));
+						dtos.get(i).setOvertimes(toTime(dtos.get(i).getOvertime()));
+						dtos.get(i).setNighttimes(toTime(dtos.get(i).getNighttime()));
+						dtos.get(i).setPerceptiontimes(toTime(dtos.get(i).getPerceptiontime()));
+						dtos.get(i).setDeparturetimes(toTime(dtos.get(i).getDeparturetime()));
+					}
+					model.addAttribute("dtos", dtos);
+				}
+				model.addAttribute("cnt", selectCnt);
+			}
+		}
 	// 근태 수정 업데이트
 	@Override
 	public void modifyUpdate(HttpServletRequest req, Model model) {
@@ -1782,16 +1822,22 @@ public class J_ServiceImpl implements J_Service {
 		map.put("company", company);
 		
 		int selectCnt = dao.vacationCnt2(map);
+		int selectCnt2 = dao.vacationCnt3(map);
+		int cnt = selectCnt + selectCnt2;
 		System.out.println("selectCnt : " + selectCnt);
-		if(selectCnt > 0) {
+		if(cnt > 0) {
 			List<join_mrvdgcVO> dtos = new ArrayList<join_mrvdgcVO>();
 			List<join_mrvdgcVO> dtos2 = dao.vacationList2(map);
 			List<join_mrvdgcVO> dtos3 = dao.vacationList3(map);
+			List<join_mrvdgcVO> dtos4 = dao.vacationList4(map);
+			List<join_mrvdgcVO> dtos5 = dao.vacationList5(map);
 			dtos.addAll(dtos2);
 			dtos.addAll(dtos3);
+			dtos.addAll(dtos4);
+			dtos.addAll(dtos5);
 			model.addAttribute("dtos",dtos);
 		}
-		model.addAttribute("cnt", selectCnt);
+		model.addAttribute("cnt", cnt);
 	}
 	
 	//휴가승인 확인후근태 처리
@@ -1822,6 +1868,8 @@ public class J_ServiceImpl implements J_Service {
 		map.put("id", id);
 		map.put("date", date);
 		map.put("num", nums);
+		map.put("begin", begin);
+		
 		int start = Integer.parseInt(begin);
 		int updateCnt = dao.vacationstate(map);
 		System.out.println("updateCnt : " + updateCnt);

@@ -210,6 +210,8 @@ public interface J_DAO {
 	//사원 근태 수정
 	public int modifyCnt(Map<String, Object> map);
 	public ArrayList<join_maVO> modifyList(Map<String, Object> map);
+	//사원 근태 삭제
+	public int deleteAttended(Map<String, Object> map);
 	
 	// 근태 수정 업데이트
 	public int modifyUpdate(Map<String, Object> map);
@@ -293,7 +295,9 @@ public interface J_DAO {
 	public int vacationCnt2(Map<String, Object> map);
 	public ArrayList<join_mrvdgcVO> vacationList2(Map<String, Object> map);
 	public ArrayList<join_mrvdgcVO> vacationList3(Map<String, Object> map);
-	
+	public int vacationCnt3(Map<String, Object> map);
+	public ArrayList<join_mrvdgcVO> vacationList4(Map<String, Object> map);
+	public ArrayList<join_mrvdgcVO> vacationList5(Map<String, Object> map);
 	
 	//출근 num가지고오기
 	public join_maVO getNum(Map<String, Object> map);
