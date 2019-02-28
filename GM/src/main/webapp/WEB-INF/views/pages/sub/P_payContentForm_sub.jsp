@@ -24,6 +24,20 @@
 		window.location='downloadFile?fileNum='+num;
 	}
 </script>
+<style>
+	.cke_top, #cke_1_bottom {
+		display: none;
+	}
+	
+	#cke_1_contents {
+		height: 200px !important;
+	}
+	
+	.cke_chrome {
+		border: none;
+		border-bottom: 1px #c0c0c0 solid;
+	}
+</style>
 <section>
 	<article>
 		<div class="content_header">
@@ -194,45 +208,44 @@
 					<div id="editorDiv">
 						<div id="content1">
 							<!-- text-editor를 쓰기 위함으로 class name은 ckeditor로 쓰여야 한다. -->
-							<textarea class="ckeditor" id="formEditorData" title="formEditorData" name="formEditorData">${eachPayment.content }</textarea>
+							<textarea class="ckeditor" id="formEditorData" title="formEditorData" name="formEditorData" readonly>${eachPayment.content }</textarea>
 							<!-- text-editor를 쓰기 위함으로 위의 textarea의 class name이 아래 쓰인다. -->
 							<script>CKEDITOR.replace('formEditorData')</script>
 							<!-- <input type="text" id="content" name="content"> --> 
 						</div>
 					</div>
 				</div>
-				<table>
+				<%-- <div class="border_t1" style="border-top:none !important;">
+					<table style="min-height: 200px;">
+						<tbody>
+							<tr>
+								<td style="text-align: left; vertical-align: top; padding:20px;">
+									${eachPayment.content }
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div> --%>
+				<div class="btn_set mt10 mb10 fright">
 					<c:forEach var="dto" items="${paymentInfo }">
 						<c:if test="${dto.id == id }">
 							<c:if test="${dto.agree == 0 }">
 								<c:if test="${dto.rank == 0 }">
-									<tr>
-										<td>
-											<input type="button" value="합의" onclick="agree('${num}');">
-											<input type="button" value="반려" onclick="deny('${num}');">
-										</td>
-									</tr>
+									<span><input type="button" value="합의" onclick="agree('${num}');"></span>
+									<span><input type="button" value="반려" onclick="deny('${num}');"></span>
 								</c:if>
 								<c:if test="${dto.rank != 0 }">
-									<tr>
-										<td>
-											<input type="button" value="결재" onclick="approve('${num}');">
-											<input type="button" value="반려" onclick="deny('${num}');">
-										</td>
-									</tr>
+									<span><input type="button" value="결재" onclick="approve('${num}');"></span>
+									<span><input type="button" value="반려" onclick="deny('${num}');"></span>
 								</c:if>
 							</c:if>
 						</c:if>
 					</c:forEach>
-					<tr>
-						<td></td>
-						<td><input type="button" value="목록으로" onclick="window.history.back();" style="background:#555;"></td>
-					</tr>
-				</table>
-				<table border="1">
-					<tr>
-						<td colspan="4">상세사유</td>
-					</tr>
+					<span><input type="button" value="목록" onclick="window.history.back();"></span>
+				</div>
+				
+				<h3 class="clear mb10">상세사유</h3>
+				<table style="border-top: 1px #c0c0c0 solid; border-bottom: 1px #c0c0c0 solid; margin-bottom: 50px;">
 					<tr>
 						<th>구분</th>
 						<th>이름</th>

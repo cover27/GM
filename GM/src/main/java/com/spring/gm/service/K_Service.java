@@ -75,4 +75,16 @@ public interface K_Service {
 	public void K_appHoliday(HttpServletRequest req, Model model);
 	
 	public void K_appHoliday_pro(HttpServletRequest req, Model model);
+	
+	public void companiesList(HttpServletRequest req, Model model);
+	
+	public void adminList(HttpServletRequest req, Model model);
+	
+	public void appCompanies(HttpServletRequest req, Model model);
+	
+	public void appCompanies_pro(HttpServletRequest req, Model model);
+	
+	public void K_noticeBoard(HttpServletRequest req, Model model);
+	
+	public void K_noticeWritePro(HttpServletRequest req, Model model);
 }

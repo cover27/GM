@@ -10,7 +10,6 @@
 <!-- gcal.js는 google 캘린더의 데이터를 사용하여 공휴일을 받아오도록 설정하는 스크립트 -->
 <%-- <script type="text/javascript" src="<c:url value='/resources/js/fullcalendar/gcal.js' />"></script> --%>
 <script>
-	
   $(document).ready(function() {
 	  //아래의 events:에 dataset 변수 값을 넘겨준다
 	   var dataset =[

@@ -156,6 +156,7 @@ function chageLangSelect(){
 			                            <td>
 			                                <c:if test="${dto.state == 2}">승인대기</c:if>
 			                                <c:if test="${dto.state == 3}">승인취소</c:if>
+			                                <c:if test="${dto.state == 0}">휴가처리중</c:if>
 			                            </td>
 			                            <td>${dto.content}</td>
 			                            <td><input type="button" value="신청취소" onclick="cancelapplication('${dto.num}')"></td>
@@ -215,8 +216,8 @@ function chageLangSelect(){
 			                    <th>휴가기간</th>
 			                    <td>
 			                    	<span style="margin: 0 9px;"><input type="date" id="begin" name="begin" style="width:45%;"></span>
-			                    	<span id="end3" style="display:none;"> ~ </span>
-			                    	<span id="end2" style="display:none;"><input type="date" id="end" name="end" onchange="handler(event);" style="width:45%;"></span>
+			                    	<span id="end3" > ~ </span>
+			                    	<span id="end2" ><input type="date" id="end" name="end" onchange="handler(event);" style="width:45%;"></span>
 			                    </td>
 			                    <th>일수</th>
 			                    <td>

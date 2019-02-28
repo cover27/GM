@@ -191,6 +191,9 @@ public interface J_DAO {
 	
 	//출근시간 인서트
 	public int goInsert(Map<String, Object> map);
+	
+	//휴가승인할때 state 상태 업데이트하기
+	public int vacationstate(Map<String, Object> map);
 	//휴가승인 확인후근태 처리
 	public int managementInsert(Map<String, Object> map);
 	//반차일경우 퇴근시간 업데이트
@@ -207,6 +210,8 @@ public interface J_DAO {
 	//사원 근태 수정
 	public int modifyCnt(Map<String, Object> map);
 	public ArrayList<join_maVO> modifyList(Map<String, Object> map);
+	//사원 근태 삭제
+	public int deleteAttended(Map<String, Object> map);
 	
 	// 근태 수정 업데이트
 	public int modifyUpdate(Map<String, Object> map);
@@ -290,7 +295,9 @@ public interface J_DAO {
 	public int vacationCnt2(Map<String, Object> map);
 	public ArrayList<join_mrvdgcVO> vacationList2(Map<String, Object> map);
 	public ArrayList<join_mrvdgcVO> vacationList3(Map<String, Object> map);
-	
+	public int vacationCnt3(Map<String, Object> map);
+	public ArrayList<join_mrvdgcVO> vacationList4(Map<String, Object> map);
+	public ArrayList<join_mrvdgcVO> vacationList5(Map<String, Object> map);
 	
 	//출근 num가지고오기
 	public join_maVO getNum(Map<String, Object> map);

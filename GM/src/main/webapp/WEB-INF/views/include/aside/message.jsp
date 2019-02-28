@@ -17,15 +17,15 @@
                     <li>
                         <span>쪽지 작성</span>
                         <ul class="send_message">
-                            <li><a href="<c:url value='/pages/S_sendMessageForm'/>">쪽지 쓰기</a></li>
+                            <li id="S_sendMessageForm"><a href="<c:url value='/pages/S_sendMessageForm'/>">쪽지 쓰기</a></li>
                         </ul>
                     </li>
                     <li>
                         <span><a>쪽지함</a></span>
                         <ul>
-                            <li><a href="<c:url value='/pages/S_receiveMessage'/>">받은 쪽지함<span>2</span></a></li>
-                            <li><a href="<c:url value='/pages/S_sendMessageList'/>">보낸 쪽지함</a></li>
-                            <li><a href="<c:url value='/pages/S_garbageList'/>">휴지통</a></li>
+                            <li id="S_message_inbox"><a href="<c:url value='/pages/S_message_inbox'/>">받은 쪽지함<span>2</span></a></li>
+                            <li id="S_sendMessageList"><a href="<c:url value='/pages/S_sendMessageList'/>">보낸 쪽지함</a></li>
+                            <li id="S_garbageList"><a href="<c:url value='/pages/S_garbageList'/>">휴지통</a></li>
                         </ul>
                     </li> 
                 </ul>

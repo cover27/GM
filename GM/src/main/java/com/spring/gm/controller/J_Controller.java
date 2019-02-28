@@ -446,8 +446,8 @@ public class J_Controller {
 		//휴가승인 확인후근태 처리
 		@RequestMapping("/admin/managementInsert")
 		public String managementInsert(HttpServletRequest req, Model model) throws ParseException {
-			System.out.println("/admin/J_A_management");
-			logger.info("URL : J_A_management");
+			System.out.println("/admin/managementInsert");
+			logger.info("URL : managementInsert");
 			service.managementInsert(req,model);
 			return "admin/sub/J_sub/vacationList_sub";
 		}
@@ -594,7 +594,14 @@ public class J_Controller {
 			service.modify(req,model);
 			return "admin/sub/J_sub/J_modify_sub";
 		}
-		
+		//사원 근태 삭제
+		@RequestMapping("/admin/deleteAttended")
+		public String deleteAttended(HttpServletRequest req, Model model) {
+			System.out.println("/admin/deleteAttended");
+			logger.info("URL : deleteAttended");
+			service.deleteAttended(req,model);
+			return "admin/J_A_management";
+		}
 		// 근태 수정 업데이트
 		@RequestMapping("/admin/modifyUpdate")
 		public String modifyUpdate(HttpServletRequest req, Model model) {
@@ -675,8 +682,13 @@ public class J_Controller {
 		}
 		
 		
-		
-		
+		//=====================================MyInfo===================================================================
+		//내정보
+		@RequestMapping("/pages/J_MyInfo")
+		public String J_Myinfo(HttpServletRequest req, Model model) {
+			logger.info("URL : J_Myinfo");
+			return "pages/J_Myinfo";
+		}
 		
 		
 		

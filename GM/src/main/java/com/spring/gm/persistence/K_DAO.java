@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.spring.gm.vo.AttendedSetVO;
+import com.spring.gm.vo.BoardListVO;
+import com.spring.gm.vo.CompaniesMemberVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.GradeVO;
@@ -142,4 +144,21 @@ public interface K_DAO {
 	
 	public int handleHoliday(Map<String, Object> map);
 	
+	public List<CompaniesVO> getComList();
+	
+	public List<CompaniesVO> getSearchComList(String search);
+	
+	public List<MemberVO> getAdminList(int company);
+	
+	public List<CompaniesMemberVO> getAppComList();
+	
+	public int handlecompany(Map<String, Object> map);
+	
+	public String getComInfoId(int company);
+	
+	public int getNoticeCnt();
+	
+	public List<BoardListVO> getNoticeList(Map<String, Object> map);
+	
+	public int insertNotice(Map<String, Object> map);
 }
