@@ -62,7 +62,7 @@
 	</update>
 	
 	<update id="deleteMessage" parameterType="int">
-		UPDATE message SET del =1 WHERE num = #{num}
+		UPDATE message SET message_num = 4 WHERE num = #{num}
 	</update>
 	
 	<update id="sendDeleteMessage" parameterType="int">
@@ -75,6 +75,14 @@
 	
 	<update id="sendDel" parameterType="com.spring.gm.vo.MessageVO">
 		UPDATE message SET del = 1 WHERE num = #{num} - 1
+	</update>
+	
+	<update id="sendDelMessage" parameterType="com.spring.gm.vo.MessageVO">
+		UPDATE message SET del = 1 WHERE num = #{num} - 1
+	</update>
+	
+	<update id="garbageContentDelete" parameterType="com.spring.gm.vo.MessageVO">
+		UPDATE message SET del = 1 WHERE num = #{num}
 	</update>
 
 </mapper>

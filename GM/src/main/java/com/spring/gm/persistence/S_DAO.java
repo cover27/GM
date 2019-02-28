@@ -62,5 +62,9 @@ public interface S_DAO {
 	
 	// 보넨메세지 삭제
 	public int sendDeleteMessage(int num);
+	
+	public int sendDelMessage(int num);
+	
+	public int garbageContentDelete(int num);
 
 }
