@@ -103,15 +103,15 @@ public class S_DAOImpl implements S_DAO {
 	}
 
 	@Override
-	public int getMemberCnt(String strId) {
+	public int deleteMessage(int num) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMemberCnt(strId);
+		return dao.deleteMessage(num);
 	}
 
 	@Override
-	public List<MemberVO> getMemberList(Map<String, Object> map) {
+	public int sendDeleteMessage(int num) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
-		return dao.getMemberList(map);
+		return dao.sendDeleteMessage(num);
 	}
 
 }

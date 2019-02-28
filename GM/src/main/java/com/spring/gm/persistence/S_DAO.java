@@ -54,10 +54,10 @@ public interface S_DAO {
 	// 조회수 증가
 	public int addReadCnt(int num);
 	
-	// 회원 정보 갯수
-	public int getMemberCnt(String strId);
+	// 상세페이지 삭제
+	public int deleteMessage(int num);
 	
-	// 회원 정보 리스트
-	public List<MemberVO> getMemberList(Map<String, Object> map);
+	// 보넨메세지 삭제
+	public int sendDeleteMessage(int num);
 
 }
