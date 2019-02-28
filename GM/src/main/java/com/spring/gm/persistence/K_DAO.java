@@ -161,4 +161,12 @@ public interface K_DAO {
 	public List<BoardListVO> getNoticeList(Map<String, Object> map);
 	
 	public int insertNotice(Map<String, Object> map);
+	
+	public int addNoticeReadCnt(int num);
+	
+	public BoardListVO getNoticeContent(int num);
+	
+	public int updateNotice(Map<String, Object> map);
+	
+	public int deleteNotice(int num);
 }

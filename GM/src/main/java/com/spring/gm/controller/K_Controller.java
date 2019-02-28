@@ -472,4 +472,43 @@ public class K_Controller {
 		return "master/sub/K_noticeWritePro";
 	}
 	
+	//공지사항 상세 페이지
+	@RequestMapping("pages/K_noticeContent")
+	public String K_noticeContent(HttpServletRequest req, Model model) {
+		logger.info("URL : K_noticeContent");
+		
+		service.K_noticeContent(req, model);
+		
+		return "pages/K_noticeContent";
+	}
+	
+	//공지사항 수정
+	@RequestMapping("master/K_updateNotice")
+	public String K_updateNotice(HttpServletRequest req, Model model) {
+		logger.info("URL : K_updateNotice");
+		
+		service.K_updateNotice(req, model);
+		
+		return "master/K_updateNotice";
+	}
+	
+	//공지사항 수정 처리
+	@RequestMapping("master/K_updateNotice_pro")
+	public String K_updateNotice_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : K_updateNotice_pro");
+		
+		service.K_updateNotice_pro(req, model);
+		
+		return "master/sub/K_updateNotice_pro";
+	}
+	
+	//공지사항 수정
+	@RequestMapping("master/K_deleteNotice")
+	public String K_deleteNotice(HttpServletRequest req, Model model) {
+		logger.info("URL : K_deleteNotice");
+		
+		service.K_deleteNotice(req, model);
+		
+		return "master/sub/K_deleteNotice";
+	}
 }

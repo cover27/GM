@@ -448,5 +448,25 @@ public class K_DAOImpl implements K_DAO{
 	public int insertNotice(Map<String, Object> map) {
 		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertNotice", map);
 	}
+
+	@Override
+	public int addNoticeReadCnt(int num) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.addNoticeReadCnt", num);
+	}
+
+	@Override
+	public BoardListVO getNoticeContent(int num) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getNoticeContent", num);
+	}
+
+	@Override
+	public int updateNotice(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateNotice", map);
+	}
+
+	@Override
+	public int deleteNotice(int num) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.deleteNotice", num);
+	}
 	
 }
