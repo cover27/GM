@@ -405,6 +405,7 @@
 			SELECT * FROM(
 				SELECT m.*, rownum rNum FROM boardlist m
 				WHERE m.del = 0 AND m.num = 10
+				ORDER BY reg_date DESC
 				)
 			WHERE rNum >=  #{start} AND rNum <= #{end}
 		]]>
@@ -423,7 +424,7 @@
 	</select>
 	
 	<update id="updateNotice" parameterType="java.util.Map">
-		UPDATE boardlist SET subject=#{subject}, content=#{content}, reg_date=sysdate WHERE boardnum=#{boardnum}
+		UPDATE boardlist SET subject=#{subject}, content=#{content} WHERE boardnum=#{boardnum}
 	</update>
 	
 	<update id="deleteNotice" parameterType="int">
@@ -437,4 +438,9 @@
 	<insert id="sendMessage_pro" parameterType="java.util.Map">
 		INSERT INTO message VALUES(seq_message.nextval, 1, 'master', #{id}, #{subject}, #{content}, 0, sysdate, sysdate, 0, 0)
 	</insert>
+	
+	<select id="getMainNotice" resultType="com.spring.gm.vo.BoardListVO">
+		select * from boardList 
+			WHERE boardnum = (SELECT MAX(boardnum) FROM boardlist WHERE del = 0 AND num=10)
+	</select>
 </mapper>
