@@ -1663,7 +1663,7 @@ public class J_ServiceImpl implements J_Service {
 		if (selectCnt > 0) {
 			System.out.println("여기 탔어요1");
 			List<join_maVO> dtos = dao.allListList(map);
-			for (int i = 0; i <= selectCnt - 1; i++) {
+			for (int i = 0; i < selectCnt; i++) {
 				System.out.println("i : " + i);
 				dtos.get(i).setGos(toTime(dtos.get(i).getGo()));
 				System.out.println(toTime(dtos.get(i).getGo()));
@@ -1802,8 +1802,8 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("id: " + id);
 		String name = req.getParameter("name");
 		int fullhalfday = Integer.parseInt(req.getParameter("fullhalfday"));
-		String begin = req.getParameter("begin");
-		System.out.println("begin: " + begin);
+		String begin = req.getParameter("begin");//2019-02-28
+		System.out.println("begin: " + begin);//2019-02
 		String end = req.getParameter("end");
 		System.out.println("end: " + end);
 		int day = Integer.parseInt(req.getParameter("day"));
@@ -1833,39 +1833,44 @@ public class J_ServiceImpl implements J_Service {
 				int start = Integer.parseInt(begin) + i;
 				System.out.println("start : "  + start);
 				begin = Integer.toString(start);
-				System.out.println("begin : " + begin);
-				String startday = Integer.toString(start);
-				System.out.println("startday :" + startday);
-				String year = startday.substring(0,4);
+				
+				
+				String inputDate = begin;
+				DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+				Date datea = dateFormat.parse(inputDate);
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(datea);
+				
+				Date from = datea;
+				SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+				String dateaa = transFormat.format(from);
+				
+				
+				System.out.println("dateaa : " + dateaa);
+				String year = dateaa.substring(0,4);
 				System.out.println("year :" + year);
-				String month = startday.substring(4,6);
+				String month = dateaa.substring(5,7);
 				System.out.println("month :" + month);
-				String day2 = startday.substring(6,8);
+				String day2 = dateaa.substring(8,10);
 				System.out.println("day2 :" + day2);
 				String dates = year + "-" + month + "-" + day2;
 				System.out.println("dates :" + dates);
 						
-				String inputDate = begin;
-				DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-				Date datea = dateFormat.parse(inputDate);
-
-				Calendar calendar = Calendar.getInstance();
-				calendar.setTime(datea);
-
-				System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
+				
 				int number = calendar.get(Calendar.DAY_OF_WEEK);
 				if(number == 7 || number == 1) {
 					System.out.println("주말 제외 타나?");
 					i--;
 					System.out.println("begin : " + begin);
 				}else if(number != 7 && number != 1) {
+					System.out.println("dates : " + dates);
 					System.out.println("주말 아닐때");
 					map.put("start",dates);
-					System.out.println("start : " + start);
+					System.out.println("dates : " + dates);
 					insertCnt = dao.managementInsert(map);
 					begin = Integer.toString((Integer.parseInt(begin) - i));
+					map.remove("start");
 				}
-				start = 0;
 			}
 			System.out.println("insertCnt : " + insertCnt);
 			if(insertCnt > 0) {

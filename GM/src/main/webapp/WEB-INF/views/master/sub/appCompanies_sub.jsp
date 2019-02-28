@@ -38,10 +38,10 @@
 						<tbody>
 							<c:forEach var="dto" items="${list}">
 								<tr>
-									<td><input type="checkbox" name="check" value="${dto.id}"></td>
-									<td>${dto.id}</td>
+									<td><input type="checkbox" name="check" value="${dto.company}"></td>
+									<td>${dto.company}</td>
+									<td>${dto.c_name}</td>
 									<td>${dto.name}</td>
-									<td>${dto.enterday}</td>
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -8,10 +8,6 @@
     	self.close();
     }
 </script>
-    <!-- function searchId123(){
-    	var id = $('.searchId1233').val();
-    	window.location="O_searchId_sub123?id="+id;
-    } -->
 <style>
 	tr:last-child td {
 		border-bottom: 1px #c0c0c0 solid !important;
@@ -24,7 +20,7 @@
 			<form action="" method="post" name="searchform123">
 				<span class="bold5px">아이디 : </span>
 				<span><input type="text" class="searchp" value="${id}" name="id"></span>
-				<span><input type="button" class="searchp" name="id" onclick="window.location='W_searchId_sub?id=${id}'" value="검색"></span>
+				<span><input type="button" name="id" onclick="window.location='W_searchId_sub?id=${id}'" value="검색"></span>
 			</form>
 		</div>
 	</div>

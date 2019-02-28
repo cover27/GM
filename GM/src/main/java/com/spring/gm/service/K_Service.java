@@ -81,4 +81,10 @@ public interface K_Service {
 	public void adminList(HttpServletRequest req, Model model);
 	
 	public void appCompanies(HttpServletRequest req, Model model);
+	
+	public void appCompanies_pro(HttpServletRequest req, Model model);
+	
+	public void K_noticeBoard(HttpServletRequest req, Model model);
+	
+	public void K_noticeWritePro(HttpServletRequest req, Model model);
 }
