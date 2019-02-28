@@ -38,7 +38,7 @@ public class S_Controller {
 		return "/pages/S_message_inbox";
 	}
 
-	
+	/*
 	@RequestMapping("/pages/S_receiveMessage")
 	public String receiveMessage(HttpServletRequest req, Model model) {
 		logger.info("URL : S_receiveMessage");
@@ -47,7 +47,7 @@ public class S_Controller {
 		service.messageList(req, model);
 		return "/pages/S_receiveMessage";
 	}
-	
+	*/
 	
 	// 쪽지
 	@RequestMapping("/pages/S_message")
