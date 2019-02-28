@@ -24,8 +24,7 @@
                 	<li>
                 		<span>공지사항</span>
                 		<ul>
-                			<li id="#"><a href="<c:url value='#' />">공지사항 관리</a></li>
-                			
+                			<li id="K_noticeBoard"><a href="<c:url value='/pages/K_noticeBoard' />">공지사항</a></li>
                 		</ul>
                 	</li>
                 </ul>

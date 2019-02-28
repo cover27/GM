@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import com.spring.gm.persistence.J_DAO;
 import com.spring.gm.persistence.K_DAO;
 import com.spring.gm.vo.AttendedSetVO;
+import com.spring.gm.vo.BoardListVO;
+import com.spring.gm.vo.CompaniesMemberVO;
 import com.spring.gm.vo.CompaniesVO;
 import com.spring.gm.vo.DayoffVO;
 import com.spring.gm.vo.GradeVO;
@@ -1030,9 +1032,126 @@ public class K_ServiceImpl implements K_Service{
 
 	@Override
 	public void appCompanies(HttpServletRequest req, Model model) {
-		List<CompaniesVO> list = new ArrayList<CompaniesVO>();
+		List<CompaniesMemberVO> list = new ArrayList<CompaniesMemberVO>();
 		list = dao.getAppComList();
 		model.addAttribute("list", list);
+	}
+
+	@Override
+	public void appCompanies_pro(HttpServletRequest req, Model model) {
+		int appcan = Integer.parseInt(req.getParameter("appcan"));
+		int state = 0;
+		
+		if(req.getParameterValues("check") != null){ //클릭이 되어 있어야됨
+			String[] checks = req.getParameterValues("check");
+			if(appcan == 0) { //승인한다면
+				for(int i=0; i<checks.length; i++) {
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("num", checks[i]);
+					map.put("del", 0);
+					dao.handlecompany(map);
+				}
+			} else { //취소한다면 
+				for(int i=0; i<checks.length; i++) {
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("num", checks[i]);
+					map.put("state", 1);
+					dao.handlecompany(map);
+					
+					String strId = dao.getComInfoId(Integer.parseInt(checks[i]));
+					dao.retireUsers(strId);
+					dao.retireMember(strId);
+				}
+			}
+			state = 1;
+		} else { // 클릭이 안되어 있음. 클릭하라고 경고창쓰
+			state = -1;
+		}
+		req.setAttribute("state", state);
+	}
+
+	@Override
+	public void K_noticeBoard(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO)req.getSession().getAttribute("loginInfo")).getSys_rank();
+		
+		int pageSize = 10; // 한페이지당 출력할 글 갯수
+		int pageBlock = 5; // 한 블럭당 페이지 갯수
+ 
+		int cnt = 0; // 글갯수
+		int start = 0; // 현재 페이지 시작 글번호
+		int end = 0; // 현재 페이지 마지막 글번호
+		int number = 0; // 출력용 글번호
+		String pageNum = ""; // 페이지 번호
+		int currentPage = 0; // 현재페이지
+ 
+		int pageCount = 0; // 페이지 갯수
+		int startPage = 0; // 시작 페이지
+		int endPage = 0; // 마지막 페이지
+		
+		List<BoardListVO> list = new ArrayList<BoardListVO>();
+		
+		cnt = dao.getNoticeCnt();
+		
+		pageNum = req.getParameter("pageNum");
+		if (pageNum == null) {
+			pageNum = "1"; // 첫페이지를 1페이지로 지정
+		}
+		currentPage = Integer.parseInt(pageNum);
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);
+		start = (currentPage - 1) * pageSize + 1;
+		end = start + pageSize - 1;
+		
+		if (end > cnt)
+			end = cnt;
+		
+		number = cnt - (currentPage - 1) * pageSize;
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if (cnt > 0) {
+			map.put("start", start);
+			map.put("end", end);
+			list = dao.getNoticeList(map);
+			
+			model.addAttribute("noticeList", list);
+		}
+		
+		startPage = (currentPage / pageBlock) * pageBlock + 1;
+		if (currentPage % pageBlock == 0)
+			startPage -= pageBlock;
+		
+		endPage = startPage + pageBlock - 1;
+		if (endPage > pageCount)
+			endPage = pageCount;
+ 
+		model.addAttribute("cnt", cnt); // 글갯수
+		model.addAttribute("number", number); // 출력용 글번호
+		model.addAttribute("pageNum", pageNum); // 페이지번호
+		model.addAttribute("sys_rank", sys_rank);
+		
+		if (cnt > 0) {
+			model.addAttribute("startPage", startPage); // 시작 페이지
+			model.addAttribute("endPage", endPage); // 마지막 페이지
+			model.addAttribute("pageBlock", pageBlock); // 출력할 페이지 갯수
+			model.addAttribute("pageCount", pageCount); // 페이지 갯수
+			model.addAttribute("currentPage", currentPage); // 현재페이지
+		}
+	}
+
+	@Override
+	public void K_noticeWritePro(HttpServletRequest req, Model model) {
+		String subject = req.getParameter("subject");
+		String content = req.getParameter("formEditorData");
+		
+		System.out.println("subject : "+subject);
+		System.out.println("content : "+content);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("subject", subject);
+		map.put("content", content);
+		int cnt = dao.insertNotice(map);
+		
+		model.addAttribute("cnt", cnt);
+		
 	}
 	
 }

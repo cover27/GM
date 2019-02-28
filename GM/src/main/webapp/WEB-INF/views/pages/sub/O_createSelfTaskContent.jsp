@@ -238,6 +238,7 @@ img{
 		        <input type="hidden" name="del" value="${del}">
 		        <input type="hidden" name="reg_date" value="${reg_date}">
 		        <input type="hidden" name="reg_date2" value="${reg_date2}">
+		        <input type="hidden" name="donum" value="${donum}">
 		            
 		            <div class="form-block">
 		                <table class="table">
@@ -274,10 +275,10 @@ img{
 		                            	<div style="position: relative;">
 			                                <div class="input-group organization">
 			                                	<div class="tagsinput">
-			                                		<input type="hidden" class="searchp" id="id" name="id" style="box-shadow:none; width:90%;" readonly>
+			                                		<input type="hidden" class="searchp" id="id" name="id" style="box-shadow:none; width:90%;">
 			                                		<input type="text" class="searchp" id="b_name" name="b_name" title="사용자" style="box-shadow:none; width:90%;" required>
 			                                	</div>
-			                                	<button onclick="searchIdPlease()" class="btn btn-color7 br">검색</button>
+			                                	<a href="#" onclick="searchIdPlease();" class="btn btn-color7 br find_btn">검색</a>
 			                                </div>
 		                                </div>
 		                            </td>

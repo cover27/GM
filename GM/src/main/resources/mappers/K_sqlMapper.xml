@@ -383,7 +383,34 @@
 			AND company = #{company} AND sys_rank = 1
 	</select>
 	
-	<select id="getAppComList" resultType="com.spring.gm.vo.CompaniesVO">
-		SELECT * FROM companies WHERE del > 1
+	<select id="getAppComList" resultType="com.spring.gm.vo.CompaniesMemberVO">
+		SELECT c.*, m.id, m.name FROM companies c, member m 
+    		WHERE m.company=c.company AND c.del > 1 AND sys_rank = 1
 	</select>
+	
+	<update id="handlecompany" parameterType="java.util.Map">
+		UPDATE companies SET del = #{del} WHERE company =#{company}
+	</update>
+	
+	<select id="getComInfoId" resultType="String">
+		SELECT id FROM member WHERE company = #{company} AND sys_rank = 1;
+	</select>
+	
+	<select id="getNoticeCnt" resultType="int">
+		SELECT COUNT(*) FROM boardlist WHERE num = 10 AND del = 0
+	</select>
+	
+	<select id="getNoticeList" resultType="com.spring.gm.vo.BoardListVO">
+		<![CDATA[
+			SELECT * FROM(
+				SELECT m.*, rownum rNum FROM boardlist m
+				WHERE m.del = 0 AND m.num = 10
+				)
+			WHERE rNum >=  #{start} AND rNum <= #{end}
+		]]>
+	</select>
+	
+	<insert id="insertNotice" parameterType="java.util.Map">
+		INSERT INTO boardlist VALUES(boardlist_seq.nextval, 10, '시스템 관리자', #{subject}, #{content}, 0,0,0,0,sysdate,0,0,0)
+	</insert>
 </mapper>

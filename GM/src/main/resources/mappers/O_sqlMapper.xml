@@ -53,7 +53,11 @@
 <!-- 업무 시작 -->
 <!-- 업무 insert-pro -->
 <insert id="insertTodo" parameterType="com.spring.gm.vo.B_ManageVO">
-	insert into b_manage values(seq_b_manage.nextval, #{id}, #{groupId}, #{b_name}, #{subject}, #{content}, #{begin}, #{end}, #{reg_date}, #{state}, 0 , #{reg_date2})
+	insert into b_manage values(seq_b_manage.nextval, #{id}, #{groupId}, #{b_name}, #{subject}, #{content}, #{begin}, #{end}, #{reg_date}, #{state}, 0 , null)
+</insert>
+<!-- 업무 insert-pro -->
+<insert id="insertTodoInfo" parameterType="com.spring.gm.vo.B_ManageInfoVO">
+	insert into b_manageinfo values(seq_b_manageinfo.nextval, seq_b_manage.currval, #{id}, 0, #{content}, null, 0)
 </insert>
 
 <!-- 내가 한 업무요청 게시글 갯수 조회  -->
@@ -69,7 +73,7 @@
 				(select * from b_manage where id=#{id} and del=0) b, member m
 					where m.id=b.id)		
 		where rNum >= #{start} and rNum <= #{end}
-		order by rNum desc
+		order by todonum desc
 	]]> 
 </select>
 
@@ -78,6 +82,11 @@
 	select g.r_name, m.name, b.subject, b.state, b.begin, b.end, b.reg_date, b.reg_date2, b.b_name, b.content 
 	from b_manage b, member m, grade g 
 	where m.id=b.id and m.rank=g.rank and b.todonum=#{todonum} and b.del=0
+</select>
+<select id="readOrderListInfo" resultType="com.spring.gm.vo.B_ManageInfoVO" parameterType="int">
+	select i.id, i.content, i.reg_date, i.donum, b.b_name, b.state
+	from b_manage b, b_manageinfo i
+	where b.todonum=i.todonum and b.todonum=#{todonum} and b.del=0
 </select>
 
 <!-- 업무관리 업무요청 수정 화면 -->
@@ -95,11 +104,59 @@
 	update b_manage set del=1 where todonum=#{todonum}
 </update>
 
+<!-- 수신업무요청 페이지넘 -->
+<select id="reciveListCnt" resultType="int">
+	select count(*) from b_manage b, b_manageinfo i
+	where b.todonum = i.todonum
+	and b.id != #{id}
+	and i.id = #{id}
+</select>
+<select id="reciveList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
+	<![CDATA[
+		select * from
+	        (select i.donum, b.todonum, b.b_name, i.id, b.subject, b.begin, b.end, b.state, m.name,  rownum rNum
+	                from(select * from b_manageinfo where id=#{id} and del=0) i, member m, b_manage b
+	                        where m.id=b.id and b.todonum=i.todonum)
+		where rNum >= #{start} and rNum <= #{end}
+		order by todonum desc
+	]]> 
+</select>
 
+<!-- 업무요청 - 수신 업무 요청 상세 조회 처리 - pro -->
+<update id="updateRecive" parameterType="com.spring.gm.vo.B_ManageVO">
+	update b_manage set state=#{state} where todonum=#{todonum}
+</update>
+<update id="updateRecivePro" parameterType="com.spring.gm.vo.B_ManageInfoVO">
+	update b_manageinfo set content=#{content, jdbcType=VARCHAR}, reg_date=#{reg_date} where donum=#{donum}
+</update>
 
+<!-- 업무요청 - 업무 완료함 화면 페이지넘 -->
+<select id="completeListCnt" resultType="int" parameterType="java.util.Map">
+	select count(*) from b_manage where id=#{id} and state=#{state} and del=0
+</select>
+<select id="completeList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
+	<![CDATA[
+		select * from
+        	(select b_name, subject, begin, end, state, rownum rNum
+                from(select * from b_manage where id=#{id} and state=#{state} and del=0))
+		where rNum >= #{start} and rNum <= #{end}
+		order by rNum desc
+	]]> 
+</select>
 
-
-
+<!-- 관리자 메뉴 - 업무 문서 관리 -->
+<select id="adminListCnt" resultType="int">
+	select count(*) from b_manage
+</select>
+<select id="adminList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
+	<![CDATA[
+		select * from
+			(select m.name, m.id,b.subject, b.begin, b.end, b.state, rownum rNum 
+				from b_manage b, member m where b.id=m.id)
+		where rNum >= #{start} and rNum <= #{end}
+		order by begin desc
+	]]> 
+</select>
 <!-- 업무 끝 -->
 
 </mapper>
