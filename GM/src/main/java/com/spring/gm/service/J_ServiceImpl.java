@@ -1416,7 +1416,7 @@ public class J_ServiceImpl implements J_Service {
 		int selectCnt = dao.GoOffCnt(map);
 		System.out.println("cnt : " + selectCnt);
 
-		if (selectCnt > 0) {
+		if (selectCnt == 1) {
 			List<join_maVO> dtos = dao.GoOffList(map);
 			System.out.println(dtos.get(0).getGo());
 			int num = dtos.get(0).getNum();
@@ -1434,6 +1434,8 @@ public class J_ServiceImpl implements J_Service {
 			model.addAttribute("dtos", dtos);
 			model.addAttribute("num", num);
 			model.addAttribute("gos", gos);
+		}else if(selectCnt  > 1) {
+			model.addAttribute("cnt", 2);
 		}
 		model.addAttribute("cnt", selectCnt);
 		model.addAttribute("id", id);
@@ -1820,7 +1822,7 @@ public class J_ServiceImpl implements J_Service {
 		map.put("id", id);
 		map.put("date", date);
 		map.put("num", nums);
-		
+		int start = Integer.parseInt(begin);
 		int updateCnt = dao.vacationstate(map);
 		System.out.println("updateCnt : " + updateCnt);
 		int insertCnt = 0;
@@ -1830,7 +1832,12 @@ public class J_ServiceImpl implements J_Service {
 				System.out.println("=========================");
 				System.out.println("i : " + i);
 				System.out.println("begin : " + Integer.parseInt(begin));
-				int start = Integer.parseInt(begin) + i;
+				if(i > 0) {
+					 start = Integer.parseInt(begin) + 1;
+				}
+				if(i == 0) {
+					start = Integer.parseInt(begin) + i;
+				}
 				System.out.println("start : "  + start);
 				begin = Integer.toString(start);
 				
@@ -1868,7 +1875,7 @@ public class J_ServiceImpl implements J_Service {
 					map.put("start",dates);
 					System.out.println("dates : " + dates);
 					insertCnt = dao.managementInsert(map);
-					begin = Integer.toString((Integer.parseInt(begin) - i));
+					//begin = Integer.toString((Integer.parseInt(begin) - i));
 					map.remove("start");
 				}
 			}
