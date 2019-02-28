@@ -42,7 +42,7 @@
 						<tbody>
 							<c:if test="${cnt > 0}">
 								<c:forEach var="dto" items="${noticeList}">
-									<tr>
+									<tr onclick="window.location='<c:url value='/pages/K_noticeContent?num=${dto.boardnum }'/>'">
 										<td>${number} <c:set var="number" value="${number-1}" /></td>
 										<td>${dto.subject }</td>
 										<td>${dto.writer }</td>

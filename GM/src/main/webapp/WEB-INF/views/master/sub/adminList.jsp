@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
-<!DOCTYPE html>
 <html>
 <body>
 	<h3>사업장 정보</h3>
@@ -33,25 +32,26 @@
 		</table>
 	</div>
 	<div class="table_body">
-		<table>
-			
-			<tbody>
-				<c:forEach var="dto" items="${adminList }">
+		<form action="#" name="messageform" method="post">
+			<table>
+				<tbody>
+					<c:forEach var="dto" items="${adminList }">
+						<tr>
+							<th><input type="radio" name="select" value="${dto.id }"></th>
+							<td>${dto.id }</td>
+							<td>${dto.name }</td>
+							<td>${dto.tel }</td>
+							<td>${dto.email_in }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+				<tfoot>
 					<tr>
-						<th><input type="radio" name="select" value="${dto.id }"></th>
-						<td>${dto.id }</td>
-						<td>${dto.name }</td>
-						<td>${dto.tel }</td>
-						<td>${dto.email_in }</td>
+						<td><input type="button" value="쪽지보내기" onclick="sendMessage();"></td>
 					</tr>
-				</c:forEach>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td><input type="button" value="쪽지보내기" onclick=""></td>
-				</tr>
-			</tfoot>
-		</table>
+				</tfoot>
+			</table>
+		</form>
 	</div>
 </body>
 </html>
