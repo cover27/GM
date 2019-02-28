@@ -4,7 +4,7 @@
 <section>
 	<article>
 		<div class="content_header">
-			<h2>수신 업무 요청</h2>
+			<h2>수신 업무 요청11</h2>
 		</div>
 		<div class="content">
 			<form action="<c:url value='/pages/W_searchTodoTool'/>" method="post">
