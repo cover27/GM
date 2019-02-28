@@ -618,6 +618,10 @@ img {
 	background:url(../images/edit_icon.png) no-repeat 0 50%;;
 }
 
+.paging a {
+	padding: 0 8px;
+}
+
 /* 
 .file_label {
 	display: inline-block;
