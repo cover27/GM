@@ -44,8 +44,12 @@ public class K_ServiceImpl implements K_Service{
 		 vo = dao.memberInfo(id); // 아이디로 해당 정보를 불러옴 
 		 req.getSession().setAttribute("loginInfo", vo);
 		
+		 BoardListVO notice = new BoardListVO();
+		 notice = dao.getMainNotice();
 		 
+		 System.out.println("제목 : "+notice.getSubject());
 		 
+		 req.setAttribute("notice", notice);
 	}
 
 	@Override

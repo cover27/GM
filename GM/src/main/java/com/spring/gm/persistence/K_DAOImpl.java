@@ -477,7 +477,11 @@ public class K_DAOImpl implements K_DAO{
 	@Override
 	public int sendMessage_pro(Map<String, Object> map) {
 		return sqlSession.insert("com.spring.gm.persistence.K_DAO.sendMessage_pro", map);
+	}
 
+	@Override
+	public BoardListVO getMainNotice() {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getMainNotice");
 	}
 	
 }

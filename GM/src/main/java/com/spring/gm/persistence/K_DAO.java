@@ -173,4 +173,6 @@ public interface K_DAO {
 	public String getName(String id);
 	
 	public int sendMessage_pro(Map<String, Object> map);
+	
+	public BoardListVO getMainNotice();
 }
