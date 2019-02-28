@@ -21,7 +21,10 @@
 			}
 		});
 	};
-	
+	function deleteAttended(num) {
+		var date = $('#date').val();
+		window.location="deleteAttended?num="+num + "&date=" + date;
+	};
 	function allList() {
 		var date = $("#date").val();
 		window.location="J_A_management?date=" + date; 
@@ -99,6 +102,7 @@
 					            </c:if>
 					            <c:if test="${cnt > 0}">
 					                <c:forEach var="dtos" items="${dtos}">
+					                    <c:if test="${dtos.result == 1}">
 					                    <tr>
 					                        <td>${dtos.num}</td>
 					                        <td>${dtos.id}</td>
@@ -120,8 +124,52 @@
 					                        <c:if test="${dtos.departuretimes eq '00:00'}">
 					                            <td>${dtos.departuretimes}</td>
 					                        </c:if>
-					                        <td><input type="button" value="변경" onclick="modify('${dtos.num}')"></td>
+					                        <td>
+					                        <input type="button" value="변경" onclick="modify('${dtos.num}')">
+					                        <input type="button" value="삭제" onclick="deleteAttended('${dtos.num}')">
+					                        </td>
 					                    </tr>
+					                    </c:if>
+					                    <c:if test="${dtos.result == 3}">
+					                    <tr>
+					                        <td>${dtos.num}</td>
+					                        <td>${dtos.id}</td>
+					                        <td>${dtos.name}</td>
+					                        <td colspan="7">휴가처리</td>
+					                        <td>
+					                        <input type="button" value="변경" onclick="modify('${dtos.num}')">
+					                        <input type="button" value="삭제" onclick="deleteAttended('${dtos.num}')">
+					                        </td>
+					                    </tr>
+					                    </c:if>
+					                    <c:if test="${dtos.result == 4}">
+					                    <tr>
+					                        <td>${dtos.num}</td>
+					                        <td>${dtos.id}</td>
+					                        <td>${dtos.name}</td>
+					                        <td>${dtos.gos}</td>
+					                        <td>${dtos.offs}(반차)</td>
+					                        <td>${dtos.worktimes}</td>
+					                        <td>${dtos.overtimes}</td>
+					                        <td>${dtos.nighttimes}</td>
+					                        <c:if test="${dtos.perceptiontimes ne '00:00'}">
+					                            <td style="color: #d3292c; font-weight: bold;">${dtos.perceptiontimes}</td>
+					                        </c:if>
+					                        <c:if test="${dtos.perceptiontimes eq '00:00'}">
+					                            <td>${dtos.perceptiontimes}</td>
+					                        </c:if>
+					                        <c:if test="${dtos.departuretimes ne '00:00'}">
+					                            <td style="color: #d3292c; font-weight: bold;">${dtos.departuretimes}</td>
+					                        </c:if>
+					                        <c:if test="${dtos.departuretimes eq '00:00'}">
+					                            <td>${dtos.departuretimes}</td>
+					                        </c:if>
+					                        <td>
+					                        <input type="button" value="변경" onclick="modify('${dtos.num}')">
+					                        <input type="button" value="삭제" onclick="deleteAttended('${dtos.num}')">
+					                        </td>
+					                    </tr>
+					                    </c:if>
 					                </c:forEach>
 					            </c:if>
 				            </tbody>

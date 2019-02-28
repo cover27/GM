@@ -102,6 +102,8 @@ public interface J_Service {
 	
 	//사원 근태 수정
 	public void modify(HttpServletRequest req, Model model);
+	//사원 근태 삭제
+	public void deleteAttended(HttpServletRequest req, Model model);
 	// 근태 수정 업데이트
 	public void modifyUpdate(HttpServletRequest req, Model model);
 	

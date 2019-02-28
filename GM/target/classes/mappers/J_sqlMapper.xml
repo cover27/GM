@@ -830,18 +830,18 @@
 		where m.id = a.id
 		and m.company = #{company} and m.id = #{id} and
 		to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
-		and a.result = 1
+		and a.result != 0
 	</select>
 	<select id="GoOffList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_maVO">
 		select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime,
-		a.nighttime, a.perceptiontime, a.departuretime
+		a.nighttime, a.perceptiontime, a.departuretime, a.result
 		from member m, attended a
 		where m.id = a.id
 		and m.company = #{company}
 		and m.id = #{id}
 		and to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
-		and a.result = 1
+		and a.result != 0
 	</select>
 
 	<!-- 날짜로 출근 목록 뽑아오기 -->
@@ -893,10 +893,9 @@
 	<select id="getNum" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_maVO">
 		select a.num
-		from member m, attended a, vacation v
+		from member m, attended a
 		where m.id = a.id
-		and m.id = v.id
-		and a.day = v.begin
+		and to_char(a.day,'yyyymmdd') = #{begin}
 		and m.company = #{company}
 		and m.id = #{id}
 	</select>
@@ -910,26 +909,26 @@
 
 
 	<!-- 사원 근태 목록 뽑아오기 -->
-	<select id="allListCnt" parameterType="java.util.Map"
-		resultType="int">
+	<select id="allListCnt" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt
 		from member m, attended a
 		where m.id = a.id
 		and m.company = #{company} and to_char(a.day,'yyyymmdd')=#{date}
-		and a.result = 1
+		and a.result != 0
 	</select>
-	<select id="allListList" parameterType="java.util.Map"
-		resultType="com.spring.gm.vo.join_maVO">
+	<select id="allListList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_maVO">
 		select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime,
-		a.nighttime, a.perceptiontime, a.departuretime
+		a.nighttime, a.perceptiontime, a.departuretime, a.result
 		from member m, attended a
 		where m.id = a.id
 		and m.company = #{company}
 		and to_char(a.day,'yyyymmdd')=#{date}
-		and a.result = 1
+		and a.result != 0
 	</select>
-
-
+	<!-- 사원 근태 삭제 -->
+	<delete id="deleteAttended" parameterType="java.util.Map">
+	delete attended where num = #{num}
+	</delete>
 
 	<!-- 사원 근태 수정 -->
 	<select id="modifyCnt" parameterType="java.util.Map"
@@ -1461,6 +1460,18 @@
 		and m.company = #{company}
 		and to_char(v.begin,'yyyymmdd') = #{date}
 		and v.state = 0
+		and v.fullhalfday = 1
+	</select>
+	<select id="vacationCnt3" parameterType="java.util.Map"
+		resultType="int">
+		select count(*) as cnt
+		from member m, vacation v , attended a
+		where m.id = v.id
+		and m.company = #{company}
+		and to_char(v.begin,'yyyymmdd') = #{date}
+		and to_char(a.day,'yyyymmdd') = #{date}
+		and v.state = 0
+		and v.fullhalfday = 2
 	</select>
 	<select id="vacationList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1471,10 +1482,10 @@
 		and m.rank = r.rank
 		and m.depart = g.groupid
 		and m.depart != #{company}
-		and m.company =
-		#{company}
+		and m.company = #{company}
 		and to_char(v.begin,'yyyymmdd') = #{date}
 		and v.state = 0
+		and v.fullhalfday = 1
 	</select>
 	<select id="vacationList3" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1488,8 +1499,40 @@
 		and m.company = #{company}
 		and to_char(v.begin,'yyyymmdd') = #{date}
 		and v.state = 0
+		and v.fullhalfday = 1
 	</select>
-
+	<select id="vacationList4" parameterType="java.util.Map"
+		resultType="com.spring.gm.vo.join_mrvdgcVO">
+		select v.num, m.id, m.name, g.g_name as j_name, r.r_name as rank_name,v.day,
+		v.types, v.fullhalfday, v.applicationdate,v.begin, v.end
+		from member m, vacation v, groups g, grade r, attended a
+		where m.id = v.id
+		and m.rank = r.rank
+		and v.begin = a.day
+		and m.depart = g.groupid
+		and m.depart != #{company}
+		and m.company = #{company}
+		and to_char(v.begin,'yyyymmdd') = #{date}
+		and to_char(a.day,'yyyymmdd') = #{date}
+		and v.state = 0
+		and v.fullhalfday = 2
+	</select>
+	<select id="vacationList5" parameterType="java.util.Map"
+		resultType="com.spring.gm.vo.join_mrvdgcVO">
+		select v.num, m.id, m.name, c.c_name as j_name,r.r_name as rank_name,v.day,
+		v.types, v.fullhalfday, v.applicationdate,v.begin, v.end
+		from member m, vacation v,companies c, grade r, attended a
+		where m.id = v.id
+		and m.rank = r.rank
+		and v.begin = a.day
+		and m.company = c.company
+		and m.depart = #{company}
+		and m.company = #{company}
+		and to_char(v.begin,'yyyymmdd') = #{date}
+		and to_char(a.day,'yyyymmdd') = #{date}
+		and v.state = 0
+		and v.fullhalfday = 2
+	</select>
 
 
 

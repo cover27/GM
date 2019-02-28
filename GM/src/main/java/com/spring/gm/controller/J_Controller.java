@@ -594,7 +594,14 @@ public class J_Controller {
 			service.modify(req,model);
 			return "admin/sub/J_sub/J_modify_sub";
 		}
-		
+		//사원 근태 삭제
+		@RequestMapping("/admin/deleteAttended")
+		public String deleteAttended(HttpServletRequest req, Model model) {
+			System.out.println("/admin/deleteAttended");
+			logger.info("URL : deleteAttended");
+			service.deleteAttended(req,model);
+			return "admin/J_A_management";
+		}
 		// 근태 수정 업데이트
 		@RequestMapping("/admin/modifyUpdate")
 		public String modifyUpdate(HttpServletRequest req, Model model) {

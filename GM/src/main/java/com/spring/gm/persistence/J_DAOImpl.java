@@ -835,6 +835,12 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.modifyList(map);
 		return dtos;
 	}
+	//사원 근태 삭제
+	@Override
+	public int  deleteAttended(Map<String, Object> map) {
+		int cnt = sqlSession.delete("com.spring.gm.persistence.J_DAO.deleteAttended", map);
+		return cnt;
+	}
 	
 	// 근태 수정 업데이트
 	public int  modifyUpdate(Map<String, Object> map) {
@@ -1137,7 +1143,25 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.vacationList3(map);
 		return dtos;
 	}
-	
+	@Override
+	public int vacationCnt3(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.vacationCnt3", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_mrvdgcVO> vacationList4(Map<String, Object> map) {
+		ArrayList<join_mrvdgcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.vacationList4(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mrvdgcVO> vacationList5(Map<String, Object> map) {
+		ArrayList<join_mrvdgcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.vacationList5(map);
+		return dtos;
+	}
 	//출근 num가지고오기
 	@Override
 	public join_maVO getNum(Map<String, Object> map) {
