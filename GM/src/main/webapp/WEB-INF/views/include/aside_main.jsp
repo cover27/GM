@@ -15,11 +15,7 @@
 		</ul>
 	</div>
 	<div class="admin">
-<<<<<<< HEAD
-		<i class="icon user-admin"></i> <a href="<c:url value='/pages/S_memberInfo'/>">내 정보</a>
-=======
 		<i class="icon user-admin"></i> <a href="<c:url value='/pages/J_MyInfo'/>">내 정보</a>
->>>>>>> branch 'master' of https://github.com/cover27/GM.git
 	</div>
 	<div class="main_today">
 			<div class="today">

@@ -413,4 +413,28 @@
 	<insert id="insertNotice" parameterType="java.util.Map">
 		INSERT INTO boardlist VALUES(boardlist_seq.nextval, 10, '시스템 관리자', #{subject}, #{content}, 0,0,0,0,sysdate,0,0,0)
 	</insert>
+	
+	<update id="addNoticeReadCnt" parameterType="int">
+		UPDATE boardlist SET readcnt = readcnt+1 WHERE boardnum = #{num}
+	</update>
+	
+	<select id="getNoticeContent" resultType="com.spring.gm.vo.BoardListVO">
+		SELECT * FROM boardlist WHERE boardnum = #{num}
+	</select>
+	
+	<update id="updateNotice" parameterType="java.util.Map">
+		UPDATE boardlist SET subject=#{subject}, content=#{content}, reg_date=sysdate WHERE boardnum=#{boardnum}
+	</update>
+	
+	<update id="deleteNotice" parameterType="int">
+		UPDATE boardlist SET del=1 WHERE boardnum=#{num}
+	</update>
+	
+	<select id="getName" resultType="String">
+		SELECT name FROM member WHERE id=#{id}
+	</select>
+	
+	<insert id="sendMessage_pro" parameterType="java.util.Map">
+		INSERT INTO message VALUES(seq_message.nextval, 1, 'master', #{id}, #{subject}, #{content}, 0, sysdate, sysdate, 0, 0)
+	</insert>
 </mapper>
