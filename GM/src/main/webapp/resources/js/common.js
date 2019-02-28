@@ -486,3 +486,39 @@ if(url.indexOf('/')){
 	}
 }
 /* aside 근태관리 끝 */
+
+/* aside 쪽지 */
+//alert(window.location.href);
+var url = window.location.href.split('gm');
+if(url.indexOf('/')){
+	var url_split = url[1].split('/');
+	if(url_split.length > 2){
+		if(url_split.indexOf('?')){
+			var category = url_split[2].split('?');
+
+			if(category[0] == "S_sendMessageForm"){
+				// alert("됨");
+				$(function(){
+					$("#S_sendMessageForm").children().css("color", "#d3292c");
+					$("#S_sendMessageForm").css("font-weight", "bold");
+				});
+			} else if(category[0] == "S_message_inbox") {
+				$(function(){
+					$("#S_message_inbox").children().css("color", "#d3292c");
+					$("#S_message_inbox").css("font-weight", "bold");
+				});
+			} else if(category[0] == "S_sendMessageList") {
+				$(function(){
+					$("#S_sendMessageList").children().css("color", "#d3292c");
+					$("#S_sendMessageList").css("font-weight", "bold");
+				});
+			} else if(category[0] == "S_garbageList") {
+				$(function(){
+					$("#S_garbageList").children().css("color", "#d3292c");
+					$("#S_garbageList").css("font-weight", "bold");
+				});
+			}
+		}
+	}
+}
+/* aside 족지 끝 */
