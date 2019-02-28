@@ -14,10 +14,10 @@
 					<table>
 						<colgroup>
 							<col width="100px" />
-							<col width="*" />
+							<col width="860px" />
 							<col width="200px" />
 							<col width="100px" />
-							<col width="300px" />
+							<col width="*" />
 						</colgroup>
 						<thead>
 							<tr>
@@ -34,17 +34,17 @@
 					<table>
 						<colgroup>
 							<col width="100px" />
-							<col width="*" />
+							<col width="860px" />
 							<col width="200px" />
 							<col width="100px" />
-							<col width="300px" />
+							<col width="*" />
 						</colgroup>
 						<tbody>
 							<c:if test="${cnt > 0}">
 								<c:forEach var="dto" items="${noticeList}">
 									<tr onclick="window.location='<c:url value='/pages/K_noticeContent?num=${dto.boardnum }'/>'">
 										<td>${number} <c:set var="number" value="${number-1}" /></td>
-										<td>${dto.subject }</td>
+										<td style="text-align: left; padding-left: 30px;">${dto.subject }</td>
 										<td>${dto.writer }</td>
 										<td>${dto.readcnt }</td>
 										<td>${dto.reg_date }</td>

@@ -6,6 +6,11 @@
 <%@ page import="com.spring.gm.vo.BoardsVO" %>
 <!-- text-editor를 쓰기 위한 script 파일 설정으로 아래 textarea가 있어야 한다. -->
 <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+<style>
+	#cke_1_contents {
+		height: 450px !important;
+	}
+</style>
 <section>
 	<article>
 		<div class="content_header">
@@ -18,8 +23,9 @@
 						<li>
 							<span><b><input type="text" name="subject" maxlength="50" style="width:100%;height: 48px;" placeholder="제목을 입력하세요!!" required autofocus></b></span>
 						</li>
-						<li>
-							<span>${sessionScope.loginInfo.name}</span>
+						<li style="margin: 20px 0;font-size: 18px;">
+							<span>작성자 : </span>
+							<span><b>${sessionScope.loginInfo.name}</b></span>
 						</li>
 					</ul>
 				</div>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<<<<<<< HEAD
 <style>
 .content-list{
 	border-top:1px solid #d1d1d1;
@@ -165,19 +166,76 @@ tbody {
 	overlow:hidden;
 	-o-text-overflow:ellipsis;
 }
+i.icon.imp{
+	width:13px;
+	height:13px;
+	margin:0 0 2px 0;
+	background-position:-83px -55px;
+}
+i.icon{
+	disply:inline-block;
+	background-image:url('../images/common/ic_common.png');
+	margin:0 4px;
+	background-repeat:no-repeat;
+	vertical-align:middle;
+}
 </style>
+=======
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 
 <section>
 	<article>
 		<div class="content_header">
 			<h2>내가 한 업무요청</h2>
 		</div>
-		
+				<div class="content">
 		<!-- 내가 한 업무요청 상단  -->
+<<<<<<< HEAD
+	
+		<div class="">
+			<form action="<c:url value='/pages/W_searchTodoTool'/>" method="post">
+			<input type="hidden" name="sel_Payment" value="1">
+				<div class="content-wrap">	<!-- 내가 한 업무요청의 content 전체 view -->
+					<div class="table-header">		<!-- 내가 한 업무요청의 content 상위 view -->
+						
+						<h3>전체<span class="ml10 cnt">${cnt }</span></h3>
+						
+						<div class="table-search">
+						<span>
+							<label class="bold5px">담당자<input name="searchUserName" value="" type="text" title="담당자" class="ml10" placeholder="담당자 이름 입력"></label>
+						</span>
+						<span>
+							<select name="toggleSearchType" title="검색타입">
+		                        <option value="subject">업무제목</option>
+		                        <option value="content">업무내용</option>
+							</select>
+						</span>
+	                    <span>
+	                    	<input name="searchApprTitle" value="" type="text" class="w150 aTitle" title="문서제목" placeholder="검색어">
+	                    </span>	
+						<span>
+							<input id="begin" type="date" title="날짜시작" name="searchStartDate" value="">
+								<span>~</span>
+							<input id="end" type="date" title="날짜끝" name="searchEndDate" value="" >
+						</span>
+		                <span>
+			               <i class="fa fa-search"><input type="submit" value="검색" id="searchMessageListButton" class="btn btn-color5"></i>
+		                </span>
+					</div>
+						
+				</div>	
+			</div>
+				
+				
+				
+				<!-- 내가 한 업무요청 게시글 나열 list -->
+				<div class="content-list">
+=======
 		<%@ include file="/WEB-INF/views/pages/sub/O_header/O_listPureOrderContentView.jsp" %>
 		
 		<!-- 내가 한 업무요청 게시글 나열 list -->
-				<div class="content-list">
+				
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 		            <table class="table table-striped" id="tblList">
 		                <caption></caption>
 		                <colgroup>
@@ -235,15 +293,15 @@ tbody {
 		                            </tr>
 		                        </c:forEach>
 		                    </c:if>
-                            
-                            <!-- 게시글이 없으면 -->
+		                          
+		                          <!-- 게시글이 없으면 -->
 							<c:if test="${cnt == 0}">
 								<tr>
 									<td colspan="6" align="center">업무 요청을 한 내역이 없습니다.</td>
 								</tr>
 							</c:if>
-                            
-                		</tbody>
+		                          
+		              		</tbody>
 		            </table>
 		            
 		            
@@ -285,10 +343,11 @@ tbody {
 		            
 		            <div class="btn-wrap">
 		                <button type="button" class="btn btn-color5 br" onclick="window.location='<c:url value='/pages/W_createSelfTaskView'/>'">업무 등록</button>
-		                <button type="button" class="btn btn-color7 br" onclick="autoComplete();">업무완료</button>
 		                <button type="button" class="btn btn-color7 br" onclick="deleteTask();">삭제</button>
 		            </div>
-	        </div>
+		       	</div>
+	       	</form>
+       	</div>
 		
 	</article>
 </section>

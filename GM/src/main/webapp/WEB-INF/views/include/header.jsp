@@ -26,6 +26,7 @@
 	            <%-- <li id="s"><a href="<c:url value='/pages/S_mail_inbox' />">메일</a></li> --%>
 	            <li id="o"><a href="<c:url value='/pages/O_calendar' />">일정</a></li>
 	            <li id="p"><a href="<c:url value='/pages/P_listApprTodoView' />">전자결재</a></li>
+	            <li id="w"><a href="<c:url value='/pages/W_listTodoView' />">업무관리</a></li>
 	            <li id="d"><a href="<c:url value='/pages/D_allBoardList' />">게시판</a></li>
 	            <li id="s"><a href="<c:url value='/pages/S_message_inbox' />">쪽지</a></li>
 	            <%-- <li id="j"><a href="<c:url value='/pages/J_D_attendanceRegistration' />">근태관리</a></li> --%>

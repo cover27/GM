@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.K_Service;
+import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.MemberVO;
 
 @Controller

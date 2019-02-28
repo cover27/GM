@@ -61,8 +61,29 @@
 </insert>
 
 <!-- 내가 한 업무요청 게시글 갯수 조회  -->
-<select id="getOrderCnt" resultType="int" parameterType="String">
+<select id="getOrderCnt" resultType="int" parameterType="java.util.Map">
 	select count(*) from b_manage where id=#{id} and del=0
+		<if test="searchUserName != null">
+	    	AND b_name like '%'||#{searchUserName}||'%'
+	    </if>
+	    <if test="searchApprTitle != null">
+	    	<if test="toggleSearchType == 'subject'">
+	    		AND subject like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    	<if test="toggleSearchType == 'content'">
+	    		AND content like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    </if>
+	    <if test="searchStartDate != null">
+	    	<![CDATA[
+	    		AND begin >= #{searchStartDate}
+	    	]]>
+	    </if>
+	    <if test="searchEndDate != null">
+	    	<![CDATA[
+	    		AND end <= #{searchEndDate}
+	    	]]>
+	    </if>
 </select>
 
 <!-- 내가 한 업무요청 게시글 목록 조회  -->
@@ -71,9 +92,32 @@
 		select * from
 			(select b.b_name, b.todonum, b.subject, b.begin, b.end, b.state, rownum rNum from
 				(select * from b_manage where id=#{id} and del=0) b, member m
-					where m.id=b.id)		
+					where m.id=b.id		
+	]]> 
+		<if test="searchUserName != null">
+	    	AND b_name like '%'||#{searchUserName}||'%'
+	    </if>
+	    <if test="searchApprTitle != null">
+	    	<if test="toggleSearchType == 'subject'">
+	    		AND subject like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    	<if test="toggleSearchType == 'content'">
+	    		AND content like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    </if>
+	    <if test="searchStartDate != null">
+	    	<![CDATA[
+	    		AND begin >= #{searchStartDate}
+	    	]]>
+	    </if>
+	    <if test="searchEndDate != null">
+	    	<![CDATA[
+	    		AND end <= #{searchEndDate}
+	    	]]>
+	    </if>
+	<![CDATA[
+		order by todonum desc)
 		where rNum >= #{start} and rNum <= #{end}
-		order by todonum desc
 	]]> 
 </select>
 
@@ -106,19 +150,63 @@
 
 <!-- 수신업무요청 페이지넘 -->
 <select id="reciveListCnt" resultType="int">
-	select count(*) from b_manage b, b_manageinfo i
-	where b.todonum = i.todonum
+	select count(*) from b_manage b, b_manageinfo i, member m
+	where b.todonum = i.todonum and b.id=m.id
 	and b.id != #{id}
 	and i.id = #{id}
+	<if test="searchUserName != null">
+	    	AND m.name like '%'||#{searchUserName}||'%'
+	    </if>
+	    <if test="searchApprTitle != null">
+	    	<if test="toggleSearchType == 'subject'">
+	    		AND b.subject like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    	<if test="toggleSearchType == 'content'">
+	    		AND b.content like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    </if>
+	    <if test="searchStartDate != null">
+	    	<![CDATA[
+	    		AND b.begin >= #{searchStartDate}
+	    	]]>
+	    </if>
+	    <if test="searchEndDate != null">
+	    	<![CDATA[
+	    		AND b.end <= #{searchEndDate}
+	    	]]>
+	    </if>
 </select>
 <select id="reciveList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
 	<![CDATA[
 		select * from
 	        (select i.donum, b.todonum, b.b_name, i.id, b.subject, b.begin, b.end, b.state, m.name,  rownum rNum
 	                from(select * from b_manageinfo where id=#{id} and del=0) i, member m, b_manage b
-	                        where m.id=b.id and b.todonum=i.todonum)
+	                        where m.id=b.id and b.todonum=i.todonum
+	]]> 
+		<if test="searchUserName != null">
+	    	AND m.name like '%'||#{searchUserName}||'%'
+	    </if>
+	    <if test="searchApprTitle != null">
+	    	<if test="toggleSearchType == 'subject'">
+	    		AND b.subject like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    	<if test="toggleSearchType == 'content'">
+	    		AND b.content like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    </if>
+	    <if test="searchStartDate != null">
+	    	<![CDATA[
+	    		AND b.begin >= #{searchStartDate}
+	    	]]>
+	    </if>
+	    <if test="searchEndDate != null">
+	    	<![CDATA[
+	    		AND b.end <= #{searchEndDate}
+	    	]]>
+	    </if>
+	<![CDATA[
+		order by todonum desc)
 		where rNum >= #{start} and rNum <= #{end}
-		order by todonum desc
 	]]> 
 </select>
 
@@ -133,28 +221,116 @@
 <!-- 업무요청 - 업무 완료함 화면 페이지넘 -->
 <select id="completeListCnt" resultType="int" parameterType="java.util.Map">
 	select count(*) from b_manage where id=#{id} and state=#{state} and del=0
+	<if test="searchUserName != null">
+	    	AND b_name like '%'||#{searchUserName}||'%'
+	    </if>
+	    <if test="searchApprTitle != null">
+	    	<if test="toggleSearchType == 'subject'">
+	    		AND subject like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    	<if test="toggleSearchType == 'content'">
+	    		AND content like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    </if>
+	    <if test="searchStartDate != null">
+	    	<![CDATA[
+	    		AND begin >= #{searchStartDate}
+	    	]]>
+	    </if>
+	    <if test="searchEndDate != null">
+	    	<![CDATA[
+	    		AND end <= #{searchEndDate}
+	    	]]>
+	    </if>
 </select>
 <select id="completeList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
 	<![CDATA[
 		select * from
         	(select b_name, subject, begin, end, state, rownum rNum
-                from(select * from b_manage where id=#{id} and state=#{state} and del=0))
+                from(select * from b_manage where id=#{id} and state=#{state} and del=0
+		]]> 
+		<if test="searchUserName != null">
+	    	AND b_name like '%'||#{searchUserName}||'%'
+	    </if>
+	    <if test="searchApprTitle != null">
+	    	<if test="toggleSearchType == 'subject'">
+	    		AND subject like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    	<if test="toggleSearchType == 'content'">
+	    		AND content like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    </if>
+	    <if test="searchStartDate != null">
+	    	<![CDATA[
+	    		AND begin >= #{searchStartDate}
+	    	]]>
+	    </if>
+	    <if test="searchEndDate != null">
+	    	<![CDATA[
+	    		AND end <= #{searchEndDate}
+	    	]]>
+	    </if>
+	<![CDATA[
+		order by todonum desc))
 		where rNum >= #{start} and rNum <= #{end}
-		order by rNum desc
 	]]> 
 </select>
 
 <!-- 관리자 메뉴 - 업무 문서 관리 -->
-<select id="adminListCnt" resultType="int">
-	select count(*) from b_manage
+<select id="adminListCnt" resultType="int" parameterType="java.util.Map">
+	select count(*) from b_manage b, member m where b.id=m.id
+	<if test="searchUserName != null">
+	    	AND m.name like '%'||#{searchUserName}||'%'
+	    </if>
+	    <if test="searchApprTitle != null">
+	    	<if test="toggleSearchType == 'subject'">
+	    		AND b.subject like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    	<if test="toggleSearchType == 'content'">
+	    		AND b.content like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    </if>
+	    <if test="searchStartDate != null">
+	    	<![CDATA[
+	    		AND b.begin >= #{searchStartDate}
+	    	]]>
+	    </if>
+	    <if test="searchEndDate != null">
+	    	<![CDATA[
+	    		AND b.end <= #{searchEndDate}
+	    	]]>
+	    </if>
 </select>
 <select id="adminList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
 	<![CDATA[
 		select * from
 			(select m.name, m.id,b.subject, b.begin, b.end, b.state, rownum rNum 
-				from b_manage b, member m where b.id=m.id)
+				from b_manage b, member m where b.id=m.id
+		]]> 
+		<if test="searchUserName != null">
+	    	AND m.name like '%'||#{searchUserName}||'%'
+	    </if>
+	    <if test="searchApprTitle != null">
+	    	<if test="toggleSearchType == 'subject'">
+	    		AND b.subject like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    	<if test="toggleSearchType == 'content'">
+	    		AND b.content like '%'||#{searchApprTitle}||'%'
+	    	</if>
+	    </if>
+	    <if test="searchStartDate != null">
+	    	<![CDATA[
+	    		AND b.begin >= #{searchStartDate}
+	    	]]>
+	    </if>
+	    <if test="searchEndDate != null">
+	    	<![CDATA[
+	    		AND b.end <= #{searchEndDate}
+	    	]]>
+	    </if>
+	<![CDATA[
+		order by todonum desc)
 		where rNum >= #{start} and rNum <= #{end}
-		order by begin desc
 	]]> 
 </select>
 <!-- 업무 끝 -->

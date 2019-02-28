@@ -84,7 +84,7 @@ table, tr, th, td{
 		    		<div class="inform-wrap rejectClass">
 			    		<c:forEach var="dto2" items="${dtos2}">
 			    			<div class="statement">
-			    				<h4 style="float:left;">처리 내역111111</h4>
+			    				<h4 style="float:left;">처리 내역</h4>
 			    				<span style="float:right;">${dto2.state}</span>
 			    			</div>
 			    			<div class="form-block">
@@ -99,7 +99,12 @@ table, tr, th, td{
 			    						<tr>
 			    							<th scope="row">내용</th>
 			    							<td colspan="3">
-			    								<textarea name="content" id="content" style="width: 98%; height: 200px; margin:10px;">${dto2.content}</textarea>
+			    								<c:if test="${statecf != '미완료' }">
+			    									<textarea name="content" id="content" style="width: 98%; height: 200px; margin:10px;" readonly>${dto2.content}</textarea>
+			    								</c:if>
+			    								<c:if test="${statecf == '미완료' }">
+			    									<textarea name="content" id="content" style="width: 98%; height: 200px; margin:10px;">${dto2.content}</textarea>
+			    								</c:if>
 			    							</td>
 			    						</tr>
 			    						<tr>
@@ -114,11 +119,13 @@ table, tr, th, td{
 		    	</div>
 		    </div>
 		    
-		    <div >
-                <button type="button" class="btn btn-color7 br" onclick="document.appform.appcan.value=1; document.appform.submit();">업무 반려</button>
-                <button type="submit" class="btn btn-color7 br">업무 처리</button>
-                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/W_listTodoView'/>'">목록</button>
-		    </div>
+		    <c:if test="${statecf == '미완료' }">
+			    <div >
+	                <button type="button" class="btn btn-color7 br" onclick="document.appform.appcan.value=1; document.appform.submit();">업무 반려</button>
+	                <button type="submit" class="btn btn-color7 br">업무 처리</button>
+	                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/W_listTodoView'/>'">목록</button>
+			    </div>
+		    </c:if>
 		    
 		   </form>
 		    

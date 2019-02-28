@@ -46,5 +46,7 @@ public interface O_Service {
 	public void completeList(HttpServletRequest req, Model model);
 	//관리자 메뉴 - 업무 문서 관리
 	public void adminTodoList(HttpServletRequest req, Model model);
+	//업무관리의 view 페이지 검색기능
+	public void W_searchTodoTool(HttpServletRequest req, Model model);
 	/* 업무관리 끝 */
 }

@@ -39,7 +39,7 @@ public interface O_DAO {
 	public int insertTodo(B_ManageVO vo);
 	public int insertTodoInfo(B_ManageInfoVO vo2);
 	//내가 한 업무요청  페이지넘
-	public int getOrderCnt(String id); //게시글 갯수 구하기
+	public int getOrderCnt(Map<String, Object> map); //게시글 갯수 구하기
 	public List<B_ManageVO> getOrderList(Map<String, Object> map); //게시글 목록 조회
 	//내가 한 업무요청 상세조회
 	public List<B_ManageVO> readOrderList(int todonum);
@@ -51,16 +51,16 @@ public interface O_DAO {
 	//업무관리 업무요청 삭제 pro
 	public int deleteTaskPro(int todonum);
 	//수신업무요청 페이지넘
-	public int reciveListCnt(String id);//게시글 갯수 구하기
+	public int reciveListCnt(Map<String, Object> map);//게시글 갯수 구하기
 	public List<B_ManageVO> reciveList(Map<String, Object> map); //게시글 목록 조회
 	//업무요청 - 수신 업무 요청 상세 조회 처리 - pro
 	public int updateRecive(B_ManageVO vo);
 	public int updateRecivePro(B_ManageInfoVO vo2);
 	//업무요청 - 업무 완료함 화면
 	public int completeListCnt(Map<String, Object> map);
-	public List<B_ManageVO> completeList(Map<String, Object> map2);
+	public List<B_ManageVO> completeList(Map<String, Object> map);
 	//관리자 메뉴 - 업무 문서 관리
-	public int adminListCnt();
+	public int adminListCnt(Map<String, Object> map);
 	public List<B_ManageVO> adminList(Map<String, Object> map);
 	
 	/* 업무 끝 */
