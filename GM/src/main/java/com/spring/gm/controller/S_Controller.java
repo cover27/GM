@@ -113,6 +113,7 @@ public class S_Controller {
 		logger.info("URL : S_sendDeletePro");
 		
 		service.sendDeletePro(req, model);
+		service.sendDelPro(req, model);
 		return "pages/S_sendDeletePro";		
 	}
 	
@@ -144,6 +145,13 @@ public class S_Controller {
 		logger.info("URL : S_sendMessageDeletePro");
 		service.contentDelete(req, model);
 		return "pages/S_sendMessageDeletePro";	
+	}
+	
+	@RequestMapping("/pages/S_contentDelPro")
+	public String contentDelPro(HttpServletRequest req, Model model) {
+		logger.info("URL : S_contentDelPro");
+		service.contentDelete(req, model);
+		return "pages/S_contentDelPro";	
 	}
 	
 }
