@@ -7,6 +7,12 @@
     	opener.document.searchform123.b_name.value=b_name;
     	self.close();
     }
+    
+    function searchIdP(){
+    	var id=document.searchform123.id.value;
+    	var url='W_searchId_sub?id='+id;
+    	window.location=url;
+    }
 </script>
 <style>
 	tr:last-child td {
@@ -20,7 +26,7 @@
 			<form action="" method="post" name="searchform123">
 				<span class="bold5px">아이디 : </span>
 				<span><input type="text" class="searchp" value="${id}" name="id"></span>
-				<span><input type="button" name="id" onclick="window.location='W_searchId_sub?id=${id}'" value="검색"></span>
+				<span><input type="button" name="id" onclick="searchIdP();" value="검색"></span>
 			</form>
 		</div>
 	</div>

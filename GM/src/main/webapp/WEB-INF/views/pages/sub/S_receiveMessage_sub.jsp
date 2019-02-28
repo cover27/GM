@@ -72,7 +72,14 @@ function moveGarbage(){
 											</td>
 											<td>${dto.sender}</td>
 											<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.sentDate}" /></td>
-											<td></td><!-- 읽음 안읽음 여부만 -->
+											<td>
+												<c:if test="${dto.readCnt == 0}">
+													안읽음
+												</c:if>
+												<c:if test="${dto.readCnt != 0}">
+													읽음
+												</c:if>												
+											</td><!-- 읽음 안읽음 여부만 -->
 										</tr>
 									</c:if>
 								</c:forEach>

@@ -119,4 +119,16 @@ public class S_DAOImpl implements S_DAO {
 		return dao.sendDeleteMessage(num);
 	}
 
+	@Override
+	public int sendDelMessage(int num) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.sendDelMessage(num);
+	}
+
+	@Override
+	public int garbageContentDelete(int num) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.garbageContentDelete(num);
+	}
+
 }
