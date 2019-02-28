@@ -511,4 +511,24 @@ public class K_Controller {
 		
 		return "master/sub/K_deleteNotice";
 	}
+	
+	//메시지 보내는 창
+	@RequestMapping("master/K_sendingMessage")
+	public String K_sendingMessage(HttpServletRequest req, Model model) {
+		logger.info("URL : K_sendingMessage");
+		
+		service.K_sendingMessage(req, model);
+		
+		return "master/sub/K_sendingMessage";
+	}
+	
+	//메시지 보내는 창
+	@RequestMapping("master/K_sendMessage_pro")
+	public String K_sendMessage_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : K_sendMessage_pro");
+		
+		service.K_sendMessage_pro(req, model);
+		
+		return "master/sub/K_sendMessage_pro";
+	}
 }

@@ -169,4 +169,8 @@ public interface K_DAO {
 	public int updateNotice(Map<String, Object> map);
 	
 	public int deleteNotice(int num);
+	
+	public String getName(String id);
+	
+	public int sendMessage_pro(Map<String, Object> map);
 }

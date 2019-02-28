@@ -44,6 +44,8 @@ public class K_ServiceImpl implements K_Service{
 		 vo = dao.memberInfo(id); // 아이디로 해당 정보를 불러옴 
 		 req.getSession().setAttribute("loginInfo", vo);
 		
+		 
+		 
 	}
 
 	@Override
@@ -1202,6 +1204,29 @@ public class K_ServiceImpl implements K_Service{
 	public void K_deleteNotice(HttpServletRequest req, Model model) {
 		int num = Integer.parseInt(req.getParameter("num"));
 		int cnt = dao.deleteNotice(num);
+		model.addAttribute("cnt", cnt);
+	}
+
+	@Override
+	public void K_sendingMessage(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		model.addAttribute("id", id);
+		String name = dao.getName(id);
+		model.addAttribute("name", name);
+	}
+
+	@Override
+	public void K_sendMessage_pro(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		String subject = req.getParameter("subject");
+		String content = req.getParameter("content");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("subject", subject);
+		map.put("content", content);
+		
+		int cnt = dao.sendMessage_pro(map);
 		model.addAttribute("cnt", cnt);
 	}
 	

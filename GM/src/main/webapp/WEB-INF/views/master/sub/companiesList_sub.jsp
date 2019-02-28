@@ -22,6 +22,17 @@
 			result.innerHTML = "상태 :" + httpRequest.readyStatus;
 		}
 	}
+	
+	function sendMessage(){
+		
+		if(!document.messageform.select.value){
+			alert('한명이상 선택해야 합니다.');
+			return false;
+		}
+		var select = document.messageform.select.value;
+		var url="K_sendingMessage?id="+select;
+		window.open(url, "K_sendingMessage", "menubar=no, width=1000, height=800");
+	}
 </script>
 <section>
 	<article>

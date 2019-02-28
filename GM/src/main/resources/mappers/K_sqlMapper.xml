@@ -430,4 +430,11 @@
 		UPDATE boardlist SET del=1 WHERE boardnum=#{num}
 	</update>
 	
+	<select id="getName" resultType="String">
+		SELECT name FROM member WHERE id=#{id}
+	</select>
+	
+	<insert id="sendMessage_pro" parameterType="java.util.Map">
+		INSERT INTO message VALUES(seq_message.nextval, 1, 'master', #{id}, #{subject}, #{content}, 0, sysdate, sysdate, 0, 0)
+	</insert>
 </mapper>
