@@ -326,7 +326,6 @@ i.icon{
 	            
 	            <div class="btn-wrap">
 	                <button type="button" class="btn btn-color5 br" onclick="window.location='<c:url value='/pages/W_createSelfTaskView'/>'">업무 등록</button>
-	                <button type="button" class="btn btn-color7 br" onclick="autoComplete()">업무완료</button>
 	            </div>
 	            
 	        </div>
