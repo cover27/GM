@@ -15,7 +15,7 @@
 		</ul>
 	</div>
 	<div class="admin">
-		<i class="icon user-admin"></i> <a href="<c:url value='/pages/myInfo'/>">내 정보</a>
+		<i class="icon user-admin"></i> <a href="<c:url value='/pages/J_MyInfo'/>">내 정보</a>
 	</div>
 	<div class="schedule">
 		<div class="main_calendar">

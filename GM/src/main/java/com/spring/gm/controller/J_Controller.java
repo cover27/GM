@@ -682,8 +682,13 @@ public class J_Controller {
 		}
 		
 		
-		
-		
+		//=====================================MyInfo===================================================================
+		//내정보
+		@RequestMapping("/pages/J_MyInfo")
+		public String J_Myinfo(HttpServletRequest req, Model model) {
+			logger.info("URL : J_Myinfo");
+			return "pages/J_Myinfo";
+		}
 		
 		
 		
