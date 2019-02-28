@@ -10,7 +10,7 @@
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <%@ include file="/WEB-INF/views/include/aside/message.jsp"%>
-<%@ include file="/WEB-INF/views/pages/sub/S_memberInfo_sub.jsp"%>
+<%@ include file="/WEB-INF/views/pages/sub/S_sendcontentMessage_sub.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>

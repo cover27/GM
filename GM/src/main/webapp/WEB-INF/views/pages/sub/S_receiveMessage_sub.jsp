@@ -15,7 +15,7 @@ function allmove(){
 
 //삭제할거 정보이전
 function moveGarbage(){
-	var move = confirm("선택된것을 휴지통으로 보네시겠습니까?");
+	var move = confirm("선택된것을 휴지통으로 보내시겠습니까?");
 	if(move){
 		document.messageMoveGarbage.action="<c:url value='/pages/S_moveGarbagePro'/>"
 		document.messageMoveGarbage.submit();

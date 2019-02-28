@@ -66,7 +66,7 @@ function sendDeletePro(){
 										<tr>
 											<td><input type="checkbox" name="checkRow" value="${dto.num}" /></td>
 											<td style="text-align: left; padding-left: 20px;">
-												<a href="<c:url value=''/>">
+												<a href="<c:url value='/pages/S_contentMessage?num=${dto.num}&message_num=${dto.message_num}&pageNum=${pageNum}&number=${number}'/>">
 													${dto.subject}
 												</a>
 											</td>

@@ -124,14 +124,26 @@ public class S_Controller {
 		return "pages/S_contentMessage";		
 	}
 	
-	@RequestMapping("/pages/S_memberInfo")
-	public String myInfo(HttpServletRequest req, Model model) {
-		logger.info("URL : S_memberInfo");
+	@RequestMapping("/pages/S_messageDeletePro")
+	public String contentDelete(HttpServletRequest req, Model model) {
+		logger.info("URL : S_messageDeletePro");
+		service.contentDelete(req, model);
+		return "pages/S_messageDeletePro";	
+	}
+	
+	@RequestMapping("/pages/S_sendcontentMessage")
+	public String endcontentMessage(HttpServletRequest req, Model model) {
+		logger.info("URL : S_sendcontentMessage");
 		
-		/*service.memberInfo(req, model);*/
-		return "pages/S_memberInfo";		
-	}	
+		service.messageContent(req, model);
+		return "pages/S_sendcontentMessage";	
+	}
 	
-	
+	@RequestMapping("/pages/S_sendMessageDeletePro")
+	public String sendContentDelete(HttpServletRequest req, Model model) {
+		logger.info("URL : S_sendMessageDeletePro");
+		service.contentDelete(req, model);
+		return "pages/S_sendMessageDeletePro";	
+	}
 	
 }
