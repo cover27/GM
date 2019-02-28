@@ -329,7 +329,7 @@
 	    	]]>
 	    </if>
 	<![CDATA[
-		order by todonum asc)
+		order by todonum desc)
 		where rNum >= #{start} and rNum <= #{end}
 	]]> 
 </select>

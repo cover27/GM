@@ -954,6 +954,7 @@ public class O_ServiceImpl implements O_Service{
 			
 			map.put("start", start);
 			map.put("end", end);
+			map.put("number", number);
 			
 			List<B_ManageVO> dtos = dao.adminList(map);
 			

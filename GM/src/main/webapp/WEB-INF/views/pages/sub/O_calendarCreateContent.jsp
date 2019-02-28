@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
 <script>
+//날짜 예외처리 방법
 function lastDate(){
 	var lastD = $('#now_date').val();
 	$('#now_date2').attr("min", lastD);

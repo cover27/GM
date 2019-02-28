@@ -67,7 +67,23 @@ public class K_Controller {
 		return url;
 	}
 	
-	// 회원가입화면
+	// 회원가입 선택
+	@RequestMapping("selectCreateAccount")
+	public String selectCreateAccount(HttpServletRequest req, Model model) {
+		logger.info("URL : selectCreateAccount");
+		
+		return "common/selectCreateAccount";
+	}
+	
+	// 회원가입화면 - 새 사업장
+	@RequestMapping("createCompany")
+	public String createCompany(HttpServletRequest req, Model model) {
+		logger.info("URL : K_createCompany");
+		
+		return "common/K_createCompany";
+	}
+	
+	// 회원가입화면 - 기존사업장
 	@RequestMapping("createAccount")
 	public String createAccount(HttpServletRequest req, Model model) {
 		logger.info("URL : K_createAccount");
@@ -103,6 +119,14 @@ public class K_Controller {
 		service.searchCompany(req, model);
 		
 		return "common/K_findCompany";
+	}
+	
+	// 회사 정보입력
+	@RequestMapping("companyInfo")
+	public String companyInfo(HttpServletRequest req, Model model) {
+		logger.info("URL : companyInfo");
+				
+		return "common/companyInfo";
 	}
 	
 	// 회원등록
@@ -440,7 +464,7 @@ public class K_Controller {
 	public String appCompanies_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : appCompanies_pro");
 		
-		service.appCompanies(req, model);
+		service.appCompanies_pro(req, model);
 		
 		return "master/appCompanies_pro";
 	}
