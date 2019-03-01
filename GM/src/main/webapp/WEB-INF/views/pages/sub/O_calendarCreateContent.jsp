@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+<script>
+//날짜 예외처리 방법
+function lastDate(){
+	var lastD = $('#now_date').val();
+	$('#now_date2').attr("min", lastD);
+}
+function firstDate(){
+	var firstD = $('#now_date2').val();
+	$('#now_date').attr("max", firstD);
+}
+
+</script>
 <section>
 	<article>
 		<div class="content_header">
@@ -26,12 +38,12 @@
 							<th scope="row"><span>*</span>기간</th>
 							<td>
 								<div>
-									<input type="datetime-local" name="begin" id="now_date" required>
+									<input type="datetime-local" name="begin" id="now_date" onchange="lastDate()" max="firstD" required>
 									<script>
 										document.getElementById('now_date').value = new Date().toISOString().slice(0,  16);
 									</script>
-										<span>~</span>
-									<input type="datetime-local" name="end" id="now_date2"  required>
+										<span>~</span> 
+									<input type="datetime-local" name="end" id="now_date2" onchange="firstDate()" min="lastD" required>
 									<script>
 										document.getElementById('now_date2').value = new Date().toISOString().slice(0,  16);
 									</script>

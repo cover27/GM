@@ -80,7 +80,6 @@ public class O_Controller {
 		logger.info("URL : O_createSelfTaskView");
 		
 		oservice.createSelfTaskWrite(req, model);
-		//jservice.companyName(req, model);
 		
 		return "pages/O_createSelfTaskView";
 	}

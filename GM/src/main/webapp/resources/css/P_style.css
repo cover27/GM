@@ -96,8 +96,8 @@
 }
 
 .content .table_body table tbody tr:hover {
-	background: #fbeded;
-	transition: 0.3s;
+	/* background: #fbeded;
+	transition: 0.3s; */
 }
 
 .content .table_body table tbody td {
@@ -105,7 +105,7 @@
 	border-bottom: 1px #e5e5e5 solid;
 	padding: 5px 0;
 	text-align: center;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .content .table_body table tbody tr:last-child td {

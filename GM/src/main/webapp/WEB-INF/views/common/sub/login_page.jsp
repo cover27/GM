@@ -27,7 +27,7 @@
 					<h4 style="color : red">아이디와 비밀번호가 일치하지 않습니다.</h4>
 				</c:if>
 				<input type="submit" class="login_btn" value="로그인"/>
-				<input type="button" class="login_btn" value="회원가입" onclick="window.location='createAccount'"/>
+				<input type="button" class="login_btn" value="회원가입" onclick="window.location='selectCreateAccount'"/>
 				<input type="button" class="login_btn" value="아이디 / 비밀번호찾기" onclick="window.location='findAccount'"/>
 			</form>
 		</div>

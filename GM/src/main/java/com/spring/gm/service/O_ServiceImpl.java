@@ -356,11 +356,12 @@ public class O_ServiceImpl implements O_Service{
 	public void createSelfTaskPro(HttpServletRequest req, Model model) {
 		
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		int company=((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		
 		B_ManageVO vo = new B_ManageVO();
 		vo.setTodonum(Integer.parseInt(req.getParameter("todonum")));
 		vo.setId(id);
-		vo.setGroupId(Integer.parseInt(req.getParameter("groupId")));
+		vo.setGroupId(company);
 		vo.setB_name(req.getParameter("b_name"));
 		vo.setSubject(req.getParameter("subject"));
 		vo.setContent(req.getParameter("content"));
@@ -869,6 +870,7 @@ public class O_ServiceImpl implements O_Service{
 		}
 	}
 
+	//관리자 메뉴 - 업무 문서 관리
 	@Override
 	public void adminTodoList(HttpServletRequest req, Model model) {
 		
@@ -952,6 +954,7 @@ public class O_ServiceImpl implements O_Service{
 			
 			map.put("start", start);
 			map.put("end", end);
+			map.put("number", number);
 			
 			List<B_ManageVO> dtos = dao.adminList(map);
 			
