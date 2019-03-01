@@ -161,8 +161,8 @@ function cancelapplication(num) {
 									<td>${dtos.rank_name}</td>
 									<td>${dtos.j_name}</td>
 									<td>
-									<c:if test="${dtos.types == 1}">연차</c:if>
-									<c:if test="${dtos.types == 2}">휴가</c:if>
+									<c:if test="${dtos.types == 1}">휴가</c:if>
+									<c:if test="${dtos.types == 2}">연차</c:if>
 									</td>
 									<td>
 									<c:if test="${dtos.fullhalfday == 1}">전차</c:if>
@@ -243,8 +243,8 @@ function cancelapplication(num) {
 								<td id="num" name="num">${dto.num}</td>
 								<td>${dto.applicationdate}</td>
 								<td>
-								<c:if test="${dto.types == 1}">연차</c:if>
-								<c:if test="${dto.types == 2}">휴가</c:if>
+								<c:if test="${dto.types == 1}">휴가</c:if>
+								<c:if test="${dto.types == 2}">연차</c:if>
 								</td>
 								<td>
 								<c:if test="${dto.fullhalfday == 1}">전일</c:if>

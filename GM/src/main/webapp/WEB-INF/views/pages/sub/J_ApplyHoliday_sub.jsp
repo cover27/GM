@@ -138,8 +138,8 @@ function chageLangSelect(){
 			                            <td id="num" name="num">${dto.num}</td>
 			                            <td>${dto.applicationdate}</td>
 			                            <td>
-			                                <c:if test="${dto.types == 1}">연차</c:if>
-			                                <c:if test="${dto.types == 2}">휴가</c:if>
+			                                <c:if test="${dto.types == 1}">휴가</c:if>
+			                                <c:if test="${dto.types == 2}">연차</c:if>
 			                            </td>
 			                            <td>
 			                                <c:if test="${dto.fullhalfday == 1}">전일</c:if>
@@ -184,7 +184,7 @@ function chageLangSelect(){
 			                    <th>휴가구분</th>
 			                    <td>
 			                        <select name="types" onchange="chageLangSelect()" id="select">
-			                            <option value="1">휴가</option>
+			                            <option value="1" >휴가</option>
 			                            <option value="2">연차</option>
 			                        </select>
 			                    </td>

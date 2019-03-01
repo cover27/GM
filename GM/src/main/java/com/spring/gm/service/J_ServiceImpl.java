@@ -2549,23 +2549,11 @@ public class J_ServiceImpl implements J_Service {
 		int deleteCnt = dao.cancelapplication(map);
 		System.out.println("deleteCnt : " + deleteCnt);
 		if (deleteCnt > 0) {
-			int selectCnt = dao.vacationUHCnt(map);
+			int selectCnt = dao.vacationapplicationCnt(map);
 			System.out.println("selectCnt : " + selectCnt);
 			if(selectCnt > 0) {
-				List<join_mrvdgcVO> dtos = new ArrayList<join_mrvdgcVO>();
-				List<join_mrvdgcVO> dtos2 = dao.vacationUHList(map);
-				List<join_mrvdgcVO> dtos3 = dao.vacationUHList2(map);
-				dtos.addAll(dtos2);
-				dtos.addAll(dtos3);
+				List<join_mrvdgcVO> dtos = dao.vacationapplicationList(map);
 				model.addAttribute("dtos",dtos);
-			}
-			
-			int selectCnt2 = dao.vacationapplicationCnt(map);
-			System.out.println("selectCnt : " + selectCnt);
-				model.addAttribute("cnt2",selectCnt2);
-			if (selectCnt2 > 0) {
-				List<join_mrvdgcVO> dtos2 = dao.vacationapplicationList(map);
-				model.addAttribute("dtos2", dtos2);
 			}
 			model.addAttribute("cnt", selectCnt);
 		}
@@ -2643,5 +2631,161 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("id",id);
 		model.addAttribute("year",year);
 	}
+	
+	
+	
+	
+	
+	//=============================================내정보=-==================================
+	//내정보 가져오기
+	@Override
+	public void myinfo(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		
+		List<MemberVO> dtos = dao.myinfo(map);
+		
+		model.addAttribute("dtos",dtos);
+		
+		//회원수정 페이지로 넘기는 값.
+		
+		if(dtos.get(0).getTel() != null) {
+		//휴대폰번호
+		String tel = dtos.get(0).getTel();
+		String tel1 = tel.substring(0, 3);
+		System.out.println("tel1 : " + tel1);
+		String tel2 = tel.substring(3, 7);
+		System.out.println("tel2 : " + tel2);
+		String tel3 = tel.substring(7, 11);
+		System.out.println("tel3 : " + tel3);
+		model.addAttribute("tel1",tel1);
+		model.addAttribute("tel2",tel2);
+		model.addAttribute("tel3",tel3);
+		}
+		if(dtos.get(0).getTel_hm() != null) {
+		//자택번호
+		String tel_hm = dtos.get(0).getTel_hm();
+		String tel_hm1 = tel_hm.substring(0, 2);
+		System.out.println("tel_hm1 : " + tel_hm1);
+		String tel_hm2 = tel_hm.substring(3, 5);
+		System.out.println("tel_hm2 : " + tel_hm2);
+		String tel_hm3 = tel_hm.substring(6, 9);
+		System.out.println("tel_hm3 : " + tel_hm3);
+		model.addAttribute("tel_hm1",tel_hm1);
+		model.addAttribute("tel_hm2",tel_hm2);
+		model.addAttribute("tel_hm3",tel_hm3);
+		}
+		
+		model.addAttribute("map",map);
+	}
+	// 회원탈퇴
+	@Override
+	public void J_Withdrawal(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("company", company);
+		
+		int updateCnt = dao.J_Withdrawal(map);
+		System.out.println("updateCnt : " + updateCnt);
+		if(updateCnt > 0) {
+			int updateCnt2 = dao.updateUsers(map);
+			System.out.println("updateCnt2 : " + updateCnt2);
+		}
+	}
+	
+	//수정내용 업데이트 하기
+	@Override
+	public void myinfoModifyUpdate(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		String id = ((MemberVO) req.getSession().getAttribute("loginInfo")).getId();
+		System.out.println("id : " + id);
+		String pwd = req.getParameter("pwd");
+		System.out.println("pwd : " + pwd);
+		String name = req.getParameter("name");
+		System.out.println("name : " + name);
+		String email_in = req.getParameter("email1") + "@" + req.getParameter("email2");
+		System.out.println("email_in : " + email_in);
+		String jumin1 = req.getParameter("jumin1");
+		System.out.println("jumin1 : " + jumin1);
+		String jumin2 = req.getParameter("jumin2");
+		System.out.println("jumin2 : " + jumin2);
+		int gender = Integer.parseInt(req.getParameter("gender"));System.out.println("name : " + name);
+		System.out.println("gender : " + gender);
+		int frgn = Integer.parseInt(req.getParameter("frgn"));
+		System.out.println("frgn : " + frgn);
+		int marry = Integer.parseInt(req.getParameter("frgn"));
+		System.out.println("marry : " + marry);
+		String wdday = req.getParameter("wdday");
+		/*if(wdday.length() == 0) {
+			wdday = "0000-00-00";
+		}*/
+		System.out.println("wdday : " + wdday);
+		String tel = req.getParameter("hp1") + req.getParameter("hp2") + req.getParameter("hp3");
+		System.out.println("tel : " + tel);
+		String tel_hm = req.getParameter("hm1") + req.getParameter("hm2") + req.getParameter("hm3");
+		System.out.println("tel_hm : " + tel_hm);
+		String address = req.getParameter("address");
+		/*if(address == null) {
+			address = "";
+		}*/
+		System.out.println("address : " + address);
+		String eng_name = req.getParameter("eng_name");
+		/*if(eng_name == null) {
+			eng_name = "";
+		}*/
+		System.out.println("eng_name : " + eng_name);
+		String nation = req.getParameter("nation");
+		System.out.println("nation : " + nation);
+		String eng_address = req.getParameter("eng_address");
+		/*if(eng_address == null) {
+			eng_address = "";
+		}*/
+		System.out.println("eng_address : " + eng_address);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("id", id);
+		map.put("pwd", pwd);
+		map.put("name", name);
+		map.put("email_in", email_in);
+		map.put("jumin1", jumin1);
+		map.put("jumin2", jumin2);
+		map.put("gender", gender);
+		map.put("frgn", frgn);
+		map.put("marry", marry);
+		map.put("tel", tel);
+		map.put("tel_hm", tel_hm);
+		map.put("address", address);
+		map.put("eng_name", eng_name);
+		map.put("nation", nation);
+		map.put("eng_address", eng_address);
+		map.put("wdday", wdday);
+		
+		
+		int updateCnt = dao.myinfoModifyUpdate(map);
+		System.out.println("updateCnt : " + updateCnt);
+		if(updateCnt > 0) {
+			List<MemberVO> dtos = dao.myinfo(map);
+			model.addAttribute("dtos", dtos);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
