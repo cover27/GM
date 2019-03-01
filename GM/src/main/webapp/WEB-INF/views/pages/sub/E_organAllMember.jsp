@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <section>
 	<article>
 		<div class="content_header">
@@ -8,7 +9,7 @@
 		</div>
 		
 		<div style="overflow-y: scroll; height:400px;">	<!-- 스크롤바 -->
-			<table style="width:1500px" align="center">
+			<table style="width:1500px; align=center; border:2px;">
 				<tr>
 				<!--<th>
 						<select>
@@ -24,52 +25,53 @@
 					</th>
 				</tr>
 				<tr>
-					<th></th>
-					<th style="width:5%">이름</th>
-					<th style="width:2%">성별</th>
-					<th style="width:10%">국적</th>
-					<th style="width:10%">소속그룹명</th>
-					<th style="width:15%">휴대전화번호</th>
-					<th style="width:15%">회사이메일</th><!-- 메일주소 클릭시 해당 메일로 메일쓰기 창 오픈 -->
-					<th style="width:15%">외부이메일</th>
-					<th style="width:20%">등록일</th>
+					<td style="width:5%">이름</td>
+					<td style="width:2%">성별</td>
+					<td style="width:10%">국적</td>
+					<td style="width:10%">소속그룹명</td>
+					<td style="width:15%">휴대전화번호</td>
+					<td style="width:15%">외부이메일</td>
+					<td style="width:20%">등록일</td>
 				</tr>
 				
 				
 				<!-- 구성원이 있으면 -->
-				<c:forEach var='dto' items='${list }'>
-					<tr>
-				    	<td><input type="checkbox" name="check" value="v"></td>
-					
-						<td>	<!-- ( = list.name 꼴 ) -->
+				<c:forEach var='dto' items='${mem_dtos}'>
+					<tr>		
+						<td style="width:5%">
 							${dto.name}
 						</td>
 						
-						<td>
-							${dto.gender}
+						<td style="width:2%">
+							<c:if test="${dto.gender == 1}">
+								남자
+							</c:if>
+							
+							<c:if test="${dto.gender == 2}">
+								여자
+							</c:if>
 						</td>
 						
-						<td>
+						<td style="width:10%">
 							${dto.nation}
 						</td>
 						
-						<td>
-							${dto.depart}<!-- 부서이름으로 수정요망 -->
+						<td style="width:10%">
+							<c:forEach var='com_dtos' items='${com_dtos}'>
+									$com_dtos.g_name}
+
+							</c:forEach>
 						</td>
 						
-						<td>
+						<td style="width:15%">
 							${dto.tel}
 						</td>
 						
-						<td>
-							${dto.email_in}
-						</td>
-						
-						<td>
+						<td style="width:15%">
 							${dto.email_out}
 						</td>
 						
-						<td>
+						<td style="width:20%">
 							<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.enterday}"/>
 						</td>
 					</tr>
@@ -79,7 +81,7 @@
 				<!-- 페이지 컨트롤 -->
 			<table style="width:1000px" align="center">
 				<tr>
-					<th align="center">
+					<td align="center">
 						<!-- 멤버가 있으면 -->
 						<c:if test="${cnt > 0}">
 							<!-- 처음[◀◀] / 이전블록[◀]  -->
@@ -104,17 +106,14 @@
 								<a href="<c:url value='/pages/E_organizationList?pageNum=${pageCount}'/>">[▶▶]</a>
 							</c:if>
 						</c:if>
-					</th>
+					</td>
 				</tr>
 				
 				<tr>
-	                <th colspan="2">
+	                <td colspan="2">
 	                    <input class="inputButton" type="submit" value="개인 그룹에 추가" onclick="<c:url value='/pages/E_myGroupList?pageNum=${i}'/>">
-	                </th>
+	                </td>
 		        </tr>
-			
 			</table>
-
-		
 	</article>
 </section>
