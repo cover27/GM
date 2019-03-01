@@ -31,7 +31,7 @@ public class E_Controller {
 	
 						
 	// 조직도 - 첫페이지, 내회사 전체 구성원 목록	
-	@RequestMapping("/pages/E_organizationMemberList")
+	@RequestMapping("pages/E_orgnaizationMemberList")
 	public String E_organizationMemberList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_orgnaizationMemberList");
 		
@@ -39,7 +39,7 @@ public class E_Controller {
 		return "pages/E_orgnaizationMemberList";
 	}
 	
-	@RequestMapping("/pages/E_departList")
+	@RequestMapping("pages/E_departList")
 	public String E_orgnaizationList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_departList");
 		
