@@ -75,7 +75,7 @@ public class K_DAOImpl implements K_DAO{
 	}
 
 	@Override
-	public int updateAuthorities(Map<String, String> map) {
+	public int updateAuthorities(Map<String, Object> map) {
 		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateAuthorities", map);
 	}
 
@@ -448,5 +448,89 @@ public class K_DAOImpl implements K_DAO{
 	public int insertNotice(Map<String, Object> map) {
 		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertNotice", map);
 	}
+
+	@Override
+	public int addNoticeReadCnt(int num) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.addNoticeReadCnt", num);
+	}
+
+	@Override
+	public BoardListVO getNoticeContent(int num) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getNoticeContent", num);
+	}
+
+	@Override
+	public int updateNotice(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateNotice", map);
+	}
+
+	@Override
+	public int deleteNotice(int num) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.deleteNotice", num);
+	}
+
+	@Override
+	public String getName(String id) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getName", id);
+	}
+
+	@Override
+	public int sendMessage_pro(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.sendMessage_pro", map);
+	}
+
+	@Override
+	public BoardListVO getMainNotice() {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getMainNotice");
+	}
+
+	@Override
+	public int insertCompany(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertCompany", map);
+	}
+
+	@Override
+	public int getnewCompany() {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getnewCompany");
+	}
+
+	@Override
+	public int createfav(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.createfav", map);
+	}
+
+	@Override
+	public int favInfo(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.favInfo", map);
+	}
+
+	@Override
+	public int getCompanyNum(String id) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getCompanyNum", id);
+	}
+
+	@Override
+	public int insertAttendedSet(int company) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertAttendedSet", company);
+	}
+
+	@Override
+	public int insertBasicBoard(int company) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertBasicBoard", company);
+	}
+
+	@Override
+	public int insertBasicDayoff(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertBasicDayoff", map);
+	}
+
+	@Override
+	public int insertBasicGrade(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertBasicGrade", map);
+	}
 	
+	@Override
+	public int insertBasicGrade2(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertBasicGrade2", map);
+	}
 }

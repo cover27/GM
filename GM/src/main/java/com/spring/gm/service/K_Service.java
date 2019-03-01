@@ -87,4 +87,16 @@ public interface K_Service {
 	public void K_noticeBoard(HttpServletRequest req, Model model);
 	
 	public void K_noticeWritePro(HttpServletRequest req, Model model);
+	
+	public void K_noticeContent(HttpServletRequest req, Model model);
+	
+	public void K_updateNotice(HttpServletRequest req, Model model);
+	
+	public void K_updateNotice_pro(HttpServletRequest req, Model model);
+	
+	public void K_deleteNotice(HttpServletRequest req, Model model);
+	
+	public void K_sendingMessage(HttpServletRequest req, Model model);
+	
+	public void K_sendMessage_pro(HttpServletRequest req, Model model);
 }

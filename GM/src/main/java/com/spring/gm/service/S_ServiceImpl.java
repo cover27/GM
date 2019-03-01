@@ -13,10 +13,8 @@ import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.S_DAO;
 import com.spring.gm.vo.MessageVO;
-import com.spring.gm.vo.BoardListVO;
-import com.spring.gm.vo.BoardsVO;
 import com.spring.gm.vo.MemberVO;
-import com.spring.gm.vo.MessageBoxVO;
+
 
 @Service
 public class S_ServiceImpl implements S_Service {
@@ -410,6 +408,24 @@ public class S_ServiceImpl implements S_Service {
 		model.addAttribute("cancelCnt", cancelCnt);
 		model.addAttribute("pageNum", pageNum);
 	}
+	
+	public void sendDelPro(HttpServletRequest req, Model model) {
+		int cancelCnt = 0;
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		String receiver = req.getParameter("id");
+		String [] sendMessage = req.getParameterValues("checkRow");
+		
+		if(sendMessage != null && sendMessage.length > 0) {
+			for(int i=0; i<sendMessage.length; i++) {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+					map.put("num", Integer.parseInt(sendMessage[i]));
+					cancelCnt = dao.sendDel(map);
+			}
+		}
+		
+		model.addAttribute("cancelCnt", cancelCnt);
+		model.addAttribute("pageNum", pageNum);
+	}
 
 	@Override
 	public void contentDelete(HttpServletRequest req, Model model) {
@@ -423,7 +439,6 @@ public class S_ServiceImpl implements S_Service {
 		
 		deleteCnt = dao.deleteMessage(num);
 
-		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
 		model.addAttribute("num", num);
 		model.addAttribute("deleteCnt", deleteCnt);
 		model.addAttribute("pageNum", pageNum);
@@ -442,6 +457,46 @@ public class S_ServiceImpl implements S_Service {
 		vo.setNum(num);
 		
 		deleteCnt = dao.sendDeleteMessage(num);
+
+		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("num", num);
+		model.addAttribute("deleteCnt", deleteCnt);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("message_num", message_num);		
+		
+	}
+	
+	@Override
+	public void sendContentDel(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int message_num = Integer.parseInt(req.getParameter("message_num"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int deleteCnt = 0;
+		
+		MessageVO vo = new MessageVO();
+		vo.setNum(num);
+		
+		deleteCnt = dao.sendDelMessage(num);
+
+		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("num", num);
+		model.addAttribute("deleteCnt", deleteCnt);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("message_num", message_num);		
+		
+	}
+
+	@Override
+	public void garbageContentDelete(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int message_num = Integer.parseInt(req.getParameter("message_num"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int deleteCnt = 0;
+		
+		MessageVO vo = new MessageVO();
+		vo.setNum(num);
+		
+		deleteCnt = dao.garbageContentDelete(num);
 
 		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
 		model.addAttribute("num", num);

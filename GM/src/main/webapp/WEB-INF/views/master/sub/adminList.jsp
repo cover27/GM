@@ -1,28 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
-<!DOCTYPE html>
 <html>
 <body>
 	<h3>사업장 정보</h3>
 	<div class="table_head">
 		<table class="result_table">
 			<colgroup>
-				<col width="200px" />
-				<col width="200px" />
+				<col width="80px" />
+				<col width="100px" />
+				<col width="100px" />
 				<col width="200px" />
 				<col width="*" />
 			</colgroup>
 			<thead>
 				<tr>
-					<th>${companyName }&nbsp;의 관리자 목록</th>
+					<th colspan="5" style="border-bottom: 1px #c0c0c0 solid;"><span>${companyName }</span><span style="font-weight: 400;">의 관리자 목록</span></th>
 				</tr>
 				<tr>
-					<td>선택</td>
-					<td>아이디</td>
-					<td>이름</td>
-					<td>전화번호</td>
-					<td>이메일</td>
+					<th>선택</th>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>전화번호</th>
+					<th>이메일</th>
 				</tr>
 				<c:if test="${adminList.size() == 0 }">
 					<tr>
@@ -32,26 +32,32 @@
 			</thead>
 		</table>
 	</div>
-	<div class="table_body">
-		<table>
-			
-			<tbody>
-				<c:forEach var="dto" items="${adminList }">
-					<tr>
-						<th><input type="radio" name="select" value="${dto.id }"></th>
-						<td>${dto.id }</td>
-						<td>${dto.name }</td>
-						<td>${dto.tel }</td>
-						<td>${dto.email_in }</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td><input type="button" value="쪽지보내기" onclick=""></td>
-				</tr>
-			</tfoot>
-		</table>
+	<div class="table_body" style="height: 641px;">
+		<form action="#" name="messageform" method="post">
+			<table>
+				<colgroup>
+					<col width="80px" />
+					<col width="100px" />
+					<col width="100px" />
+					<col width="200px" />
+					<col width="*" />
+				</colgroup>
+				<tbody>
+					<c:forEach var="dto" items="${adminList }">
+						<tr>
+							<td><input type="radio" name="select" value="${dto.id }"></td>
+							<td>${dto.id }</td>
+							<td>${dto.name }</td>
+							<td>${dto.tel }</td>
+							<td>${dto.email_in }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</form>
+		<div class="btnset">
+			<input type="button" value="쪽지보내기" onclick="sendMessage();">
+		</div>
 	</div>
 </body>
 </html>

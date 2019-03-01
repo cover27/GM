@@ -119,8 +119,8 @@ public class O_DAOImpl implements O_DAO {
 	
 	//내가 한 업무요청 게시글 갯수 조회
 	@Override
-	public int getOrderCnt(String id) {
-		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.getOrderCnt", id);
+	public int getOrderCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.getOrderCnt", map);
 	}
 	
 	//내가 한 업무요청 게시글 목록 조회
@@ -171,8 +171,8 @@ public class O_DAOImpl implements O_DAO {
 	
 	//수신업무요청 페이지넘
 	@Override
-	public int reciveListCnt(String id) {
-		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.reciveListCnt", id);
+	public int reciveListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.reciveListCnt", map);
 	}
 	@Override
 	public List<B_ManageVO> reciveList(Map<String, Object> map) {
@@ -200,17 +200,17 @@ public class O_DAOImpl implements O_DAO {
 		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.completeListCnt", map);
 	}
 	@Override
-	public List<B_ManageVO> completeList(Map<String, Object> map2) {
+	public List<B_ManageVO> completeList(Map<String, Object> map) {
 		List<B_ManageVO> dtos=null;
 		dao = sqlSession.getMapper(O_DAO.class);
-		dtos= dao.completeList(map2);
+		dtos= dao.completeList(map);
 		return dtos;
 	}
 	
 	//관리자 메뉴 - 업무 문서 관리
 	@Override
-	public int adminListCnt() {
-		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.adminListCnt");
+	public int adminListCnt(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.adminListCnt", map);
 	}
 	@Override
 	public List<B_ManageVO> adminList(Map<String, Object> map) {

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.K_Service;
+import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.MemberVO;
 
 @Controller
@@ -66,7 +67,23 @@ public class K_Controller {
 		return url;
 	}
 	
-	// 회원가입화면
+	// 회원가입 선택
+	@RequestMapping("selectCreateAccount")
+	public String selectCreateAccount(HttpServletRequest req, Model model) {
+		logger.info("URL : selectCreateAccount");
+		
+		return "common/selectCreateAccount";
+	}
+	
+	// 회원가입화면 - 새 사업장
+	@RequestMapping("createCompany")
+	public String createCompany(HttpServletRequest req, Model model) {
+		logger.info("URL : K_createCompany");
+		
+		return "common/K_createCompany";
+	}
+	
+	// 회원가입화면 - 기존사업장
 	@RequestMapping("createAccount")
 	public String createAccount(HttpServletRequest req, Model model) {
 		logger.info("URL : K_createAccount");
@@ -102,6 +119,14 @@ public class K_Controller {
 		service.searchCompany(req, model);
 		
 		return "common/K_findCompany";
+	}
+	
+	// 회사 정보입력
+	@RequestMapping("companyInfo")
+	public String companyInfo(HttpServletRequest req, Model model) {
+		logger.info("URL : companyInfo");
+				
+		return "common/companyInfo";
 	}
 	
 	// 회원등록
@@ -439,7 +464,7 @@ public class K_Controller {
 	public String appCompanies_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : appCompanies_pro");
 		
-		service.appCompanies(req, model);
+		service.appCompanies_pro(req, model);
 		
 		return "master/appCompanies_pro";
 	}
@@ -472,4 +497,63 @@ public class K_Controller {
 		return "master/sub/K_noticeWritePro";
 	}
 	
+	//공지사항 상세 페이지
+	@RequestMapping("pages/K_noticeContent")
+	public String K_noticeContent(HttpServletRequest req, Model model) {
+		logger.info("URL : K_noticeContent");
+		
+		service.K_noticeContent(req, model);
+		
+		return "pages/K_noticeContent";
+	}
+	
+	//공지사항 수정
+	@RequestMapping("master/K_updateNotice")
+	public String K_updateNotice(HttpServletRequest req, Model model) {
+		logger.info("URL : K_updateNotice");
+		
+		service.K_updateNotice(req, model);
+		
+		return "master/K_updateNotice";
+	}
+	
+	//공지사항 수정 처리
+	@RequestMapping("master/K_updateNotice_pro")
+	public String K_updateNotice_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : K_updateNotice_pro");
+		
+		service.K_updateNotice_pro(req, model);
+		
+		return "master/sub/K_updateNotice_pro";
+	}
+	
+	//공지사항 수정
+	@RequestMapping("master/K_deleteNotice")
+	public String K_deleteNotice(HttpServletRequest req, Model model) {
+		logger.info("URL : K_deleteNotice");
+		
+		service.K_deleteNotice(req, model);
+		
+		return "master/sub/K_deleteNotice";
+	}
+	
+	//메시지 보내는 창
+	@RequestMapping("master/K_sendingMessage")
+	public String K_sendingMessage(HttpServletRequest req, Model model) {
+		logger.info("URL : K_sendingMessage");
+		
+		service.K_sendingMessage(req, model);
+		
+		return "master/sub/K_sendingMessage";
+	}
+	
+	//메시지 보내는 창
+	@RequestMapping("master/K_sendMessage_pro")
+	public String K_sendMessage_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : K_sendMessage_pro");
+		
+		service.K_sendMessage_pro(req, model);
+		
+		return "master/sub/K_sendMessage_pro";
+	}
 }

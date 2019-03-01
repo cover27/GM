@@ -44,6 +44,7 @@ function confirmId(){
     <form action="registAccount" method="post" name="inputform" onsubmit="return inputCheck();">
         <input type="hidden" name="hiddenId" value="0">
         <input type="hidden" name="depart">
+        <input type="hidden" name="newOld" value="0">
         <div class="signup_center">
             <div class="signup_box">
                 <h2>회원가입<span>-계정정보-</span></h2>
@@ -71,7 +72,7 @@ function confirmId(){
                             <input type="button" value="회사조회" onclick="findCompany();">
                         </li>
                         <li>
-                            <span class="two_line_header">*외부이메일</span>
+                            <span class="two_line_header">*이메일</span>
                         </li>
                         <li class="two_line">
                         	<span class="two_line_body">

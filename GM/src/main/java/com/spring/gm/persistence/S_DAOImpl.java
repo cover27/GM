@@ -95,6 +95,11 @@ public class S_DAOImpl implements S_DAO {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
 		return dao.sendDelete(map);
 	}
+	@Override
+	public int sendDel(Map<String, Integer> map) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.sendDel(map);
+	}
 
 	@Override
 	public int addReadCnt(int num) {
@@ -112,6 +117,18 @@ public class S_DAOImpl implements S_DAO {
 	public int sendDeleteMessage(int num) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
 		return dao.sendDeleteMessage(num);
+	}
+
+	@Override
+	public int sendDelMessage(int num) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.sendDelMessage(num);
+	}
+
+	@Override
+	public int garbageContentDelete(int num) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.garbageContentDelete(num);
 	}
 
 }

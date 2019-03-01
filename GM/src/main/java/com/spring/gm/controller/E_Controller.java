@@ -31,104 +31,21 @@ public class E_Controller {
 	
 						
 	// 조직도 - 첫페이지, 내회사 전체 구성원 목록	
-	@RequestMapping("/pages/E_organizationList")
-	public String E_organizationList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_organizationList");
+	@RequestMapping("pages/E_orgnaizationMemberList")
+	public String E_organizationMemberList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_orgnaizationMemberList");
 		
-		service.E_organizationList(req, model);
-		
-		return "pages/E_organizationList";
+		service.myCompanyMember(req, model);
+		return "pages/E_orgnaizationMemberList";
 	}
 	
-	// 조직도 - 로그인된 계정이 소속된 회사 특정 그룹에 속하는 구성원 목록
-	@RequestMapping("/pages/E_organVipGroupList")
-	public String E_organVipGroupList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_organVipGroupList");
+	@RequestMapping("pages/E_departList")
+	public String E_orgnaizationList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_departList");
 		
-		service.E_organVipGroupList(req, model);
-		
-		return "pages/E_organVipGroupList";
+		service.departList(req, model);
+		return "pages/E_departList";
 	}
-	
-	
-	// 조직도 - 개인 그룹 목록 ( 개인그룹 관리에서 초기 게시판 생성 후 작성 )
-	@RequestMapping("/pages/E_myGroupList")
-	public String E_myGroupList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_myGroupList");
-		
-		service.E_organVipGroupList(req, model);
-		
-		return "pages/E_myGroupList";
-	}
-	
-	
-	// 조직도 - 개인그룹 관리
-	@RequestMapping("/pages/E_myGroupManage")
-	public String E_MyGroupManage(HttpServletRequest req, Model model) {
-		logger.info("URL : E_myGroupManage");
-		
-		service.E_MyGroupManage(req, model);
-		return "pages/E_myGroupManage";
-	}
-	
-
-	// 주소록 - 주소록 첫페이지
-	@RequestMapping("/pages/E_addressList")
-	public String E_addressList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_addressList");
-		
-		return "pages/E_addressList";
-	}
-	
-	
-	
-
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 이 아래로 사용하지 않음
-	// 메모 게시판
-	@RequestMapping("/pages/E_memoList")
-	public String E_memoList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_memoList");
-		
-		service.E_memoList(req, model);
-		
-		return "pages/E_memoList";
-	}
-	
-	// 메모 내용
-	@RequestMapping("/pages/E_memoInfo")
-	public String E_memoInfo(HttpServletRequest req, Model model) {
-		logger.info("URL : E_memoInfo");
-		
-		return "pages/E_memoInfo";
-	}
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-	
-	
-	
-
 }

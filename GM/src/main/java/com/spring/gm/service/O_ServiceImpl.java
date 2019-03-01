@@ -356,11 +356,12 @@ public class O_ServiceImpl implements O_Service{
 	public void createSelfTaskPro(HttpServletRequest req, Model model) {
 		
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		int company=((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		
 		B_ManageVO vo = new B_ManageVO();
 		vo.setTodonum(Integer.parseInt(req.getParameter("todonum")));
 		vo.setId(id);
-		vo.setGroupId(Integer.parseInt(req.getParameter("groupId")));
+		vo.setGroupId(company);
 		vo.setB_name(req.getParameter("b_name"));
 		vo.setSubject(req.getParameter("subject"));
 		vo.setContent(req.getParameter("content"));
@@ -411,7 +412,28 @@ public class O_ServiceImpl implements O_Service{
 		//4단계. 다형성 적용, 싱글톤 방식으로 DAO 객체 생성
 				
 		//5-1단계. 글 갯수 구하기
-		cnt = dao.getOrderCnt(id);
+		int search = 0;
+		if(req.getParameter("search") != null) {
+			search = Integer.parseInt(req.getParameter("search"));
+		}
+		if(search == 0) {
+			req.getSession().removeAttribute("searchMap");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", null);
+		map.put("toggleSearchType", null);
+		map.put("searchApprTitle", null);
+		map.put("searchStartDate", null);
+		map.put("searchEndDate", null);
+		
+		if(req.getSession().getAttribute("searchMap") != null) {
+			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
+			req.getSession().removeAttribute("searchMap");
+		}
+		map.put("id", id);
+		
+		cnt = dao.getOrderCnt(map);
 
 		System.out.println("cnt : " + cnt); //먼저 테이블에 30건을 insert함
 		
@@ -451,10 +473,8 @@ public class O_ServiceImpl implements O_Service{
 		if(cnt > 0) {
 			//5-2단계. 게시글 목록 조회
 			
-			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
-			map.put("id", id);
 			
 			List<B_ManageVO> dtos = dao.getOrderList(map);
 			
@@ -501,12 +521,15 @@ public class O_ServiceImpl implements O_Service{
 		System.out.println("dtos2 :" + dtos2);
 	
 		int donum = dtos2.get(0).getDonum();
+		String statecf = dtos.get(0).getState();
 		
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("dtos2", dtos2);
 		model.addAttribute("todonum", todonum);
 		model.addAttribute("donum", donum);
 		model.addAttribute("id", id);
+		model.addAttribute("statecf", statecf);
+		
 		
 	}
 
@@ -588,7 +611,27 @@ public class O_ServiceImpl implements O_Service{
 		//4단계. 다형성 적용, 싱글톤 방식으로 DAO 객체 생성
 				
 		//5-1단계. 글 갯수 구하기
-		cnt = dao.reciveListCnt(id);
+		int search = 0;
+		if(req.getParameter("search") != null) {
+			search = Integer.parseInt(req.getParameter("search"));
+		}
+		if(search == 0) {
+			req.getSession().removeAttribute("searchMap");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", null);
+		map.put("toggleSearchType", null);
+		map.put("searchApprTitle", null);
+		map.put("searchStartDate", null);
+		map.put("searchEndDate", null);
+		
+		if(req.getSession().getAttribute("searchMap") != null) {
+			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
+			req.getSession().removeAttribute("searchMap");
+		}
+		map.put("id", id);
+		cnt = dao.reciveListCnt(map);
 
 		System.out.println("cnt : " + cnt); //먼저 테이블에 30건을 insert함
 		
@@ -628,10 +671,8 @@ public class O_ServiceImpl implements O_Service{
 		if(cnt > 0) {
 			//5-2단계. 게시글 목록 조회
 			
-			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
-			map.put("id", id);
 			
 			List<B_ManageVO> dtos = dao.reciveList(map);
 			
@@ -734,8 +775,27 @@ public class O_ServiceImpl implements O_Service{
 		//4단계. 다형성 적용, 싱글톤 방식으로 DAO 객체 생성
 				
 		//5-1단계. 글 갯수 구하기
+		int search = 0;
+		if(req.getParameter("search") != null) {
+			search = Integer.parseInt(req.getParameter("search"));
+		}
+		if(search == 0) {
+			req.getSession().removeAttribute("searchMap");
+		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", null);
+		map.put("toggleSearchType", null);
+		map.put("searchApprTitle", null);
+		map.put("searchStartDate", null);
+		map.put("searchEndDate", null);
+		
+		if(req.getSession().getAttribute("searchMap") != null) {
+			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
+			req.getSession().removeAttribute("searchMap");
+		}
 		map.put("id", id);
+		
 		map.put("state", "완료");
 		cnt = dao.completeListCnt(map);
 
@@ -777,13 +837,10 @@ public class O_ServiceImpl implements O_Service{
 		if(cnt > 0) {
 			//5-2단계. 게시글 목록 조회
 			
-			Map<String, Object> map2 = new HashMap<String, Object>();
-			map2.put("start", start);
-			map2.put("end", end);
-			map2.put("id", id);
-			map2.put("state", "완료");
+			map.put("start", start);
+			map.put("end", end);
 			
-			List<B_ManageVO> dtos = dao.completeList(map2);
+			List<B_ManageVO> dtos = dao.completeList(map);
 			
 			model.addAttribute("dtos", dtos);	//큰바구니 : 게시글 목록 	cf)작은바구니 : 게시글 1건
 		}
@@ -813,6 +870,7 @@ public class O_ServiceImpl implements O_Service{
 		}
 	}
 
+	//관리자 메뉴 - 업무 문서 관리
 	@Override
 	public void adminTodoList(HttpServletRequest req, Model model) {
 		
@@ -835,7 +893,26 @@ public class O_ServiceImpl implements O_Service{
 		//4단계. 다형성 적용, 싱글톤 방식으로 DAO 객체 생성
 				
 		//5-1단계. 글 갯수 구하기
-		cnt = dao.adminListCnt();
+		int search = 0;
+		if(req.getParameter("search") != null) {
+			search = Integer.parseInt(req.getParameter("search"));
+		}
+		if(search == 0) {
+			req.getSession().removeAttribute("searchMap");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", null);
+		map.put("toggleSearchType", null);
+		map.put("searchApprTitle", null);
+		map.put("searchStartDate", null);
+		map.put("searchEndDate", null);
+		
+		if(req.getSession().getAttribute("searchMap") != null) {
+			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
+			req.getSession().removeAttribute("searchMap");
+		}
+		cnt = dao.adminListCnt(map);
 
 		System.out.println("cnt : " + cnt); //먼저 테이블에 30건을 insert함
 		
@@ -875,9 +952,9 @@ public class O_ServiceImpl implements O_Service{
 		if(cnt > 0) {
 			//5-2단계. 게시글 목록 조회
 			
-			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
+			map.put("number", number);
 			
 			List<B_ManageVO> dtos = dao.adminList(map);
 			
@@ -908,6 +985,38 @@ public class O_ServiceImpl implements O_Service{
 			model.addAttribute("currentPage", currentPage);	//현재 페이지
 		}
 		
+	}
+
+	//업무관리의 view 페이지 검색기능
+	@Override
+	public void W_searchTodoTool(HttpServletRequest req, Model model) {
+		
+		String sel_Payment = req.getParameter("sel_Payment");
+		String searchUserName = req.getParameter("searchUserName");
+		String toggleSearchType = req.getParameter("toggleSearchType");
+		String searchApprTitle = req.getParameter("searchApprTitle");
+		String searchStartDate = req.getParameter("searchStartDate");
+		String searchEndDate = req.getParameter("searchEndDate");
+		
+		Date start = null;
+		Date end = null;
+		
+		if(searchStartDate.length() != 0) {
+			start = Date.valueOf(searchStartDate);
+		}
+		if(searchEndDate.length() != 0) {
+			end = Date.valueOf(searchEndDate);
+		}
+		model.addAttribute("sel", sel_Payment);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchUserName", searchUserName);
+		map.put("toggleSearchType", toggleSearchType);
+		map.put("searchApprTitle", searchApprTitle);
+		map.put("searchStartDate", start);
+		map.put("searchEndDate", end);
+		
+		req.getSession().setAttribute("searchMap", map);
 	}
 
 	

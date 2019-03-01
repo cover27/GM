@@ -4,12 +4,12 @@
     <article id="main_aside">
         <div class="notice">
             <div class="notice_wrap">
-                <h2>
+                <h2 onclick="window.location='<c:url value='/pages/K_noticeBoard' />'" style="cursor: pointer;">
                     NOTICE
                     <i class="fa fa-volume-up"></i>
                 </h2>
                 <div class="notice_title">
-                    
+                    <a href="<c:url value='/pages/K_noticeContent?num=${notice.getBoardnum() }' />">${notice.getSubject() }</a>
                 </div>
             </div>
             <div class="date_wrap">
@@ -75,7 +75,7 @@
                         		</div>
                         	</div>
                         </li>
-                        <li onclick="window.location='<c:url value="/pages/E_organizationList" />'" class="organization_bg">
+                        <li onclick="window.location='<c:url value="/pages/E_orgnaizationMemberList" />'" class="organization_bg">
                         	<div class="menu_wrap organization_wrap">
 	                        	<div>
 		                        	<div class="organization"></div>

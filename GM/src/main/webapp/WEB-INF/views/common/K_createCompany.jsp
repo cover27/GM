@@ -9,8 +9,7 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
-<%@ include file="/WEB-INF/views/include/aside/organization.jsp"%> 
-<%@ include file="/WEB-INF/views/pages/sub/E_organVipGroupList_sub.jsp"%>
+<%@ include file="/WEB-INF/views/common/sub/K_createCompany_sub.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>

@@ -6,7 +6,7 @@
  }
 
 .content .fc-scroller {
-	height: 740px !important;
+	height: 720px !important;
 }
  
 .content .fc-body .fc-row {
@@ -14,7 +14,7 @@
 }
 
 .content>.create table th, .content>.create table td {
-	height: 36px;
+	height: 32px;
 	padding: 20px;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .content>.create input[type="text"], .content>.create input[type="datetime-local"], .content>.create select {
-	height: 36px;
+	height: 32px;
 	padding: 5px;
 }
 
@@ -52,4 +52,13 @@
 
 #cke_1_contents {
 	height: 480px !important;
+}
+
+.fc-button {
+	background: #eee !important;
+}
+
+.fc-day-header {
+	background: #eee !important;
+	padding: 5px !important;
 }

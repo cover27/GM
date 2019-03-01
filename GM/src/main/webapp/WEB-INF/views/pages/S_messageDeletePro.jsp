@@ -14,7 +14,7 @@
 	<c:if test="${deleteCnt != 0}">
 		<script type="text/javascript">
 			alert("메세지가 휴지통으로 이동되었습니다.");
-			window.location="S_receiveMessage?pageNum=${pageNum}&num=${num}";
+			window.location="S_message_inbox?num=${num}&pageNum=${pageNum}";
 		</script>
 	</c:if>
 </body>

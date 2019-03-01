@@ -44,6 +44,12 @@ public class K_ServiceImpl implements K_Service{
 		 vo = dao.memberInfo(id); // 아이디로 해당 정보를 불러옴 
 		 req.getSession().setAttribute("loginInfo", vo);
 		
+		 BoardListVO notice = new BoardListVO();
+		 notice = dao.getMainNotice();
+		 
+		 System.out.println("제목 : "+notice.getSubject());
+		 
+		 req.setAttribute("notice", notice);
 	}
 
 	@Override
@@ -81,7 +87,16 @@ public class K_ServiceImpl implements K_Service{
 	@Override
 	public void registAccount(HttpServletRequest req, Model model) {
 		int insertCnt = 0;
-		
+		int newOld = Integer.parseInt(req.getParameter("newOld"));
+		int depart = Integer.parseInt(req.getParameter("depart"));
+		if(newOld == 1) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("c_name", req.getParameter("c_name"));
+			map.put("c_address", req.getParameter("c_address"));
+			map.put("c_number", Integer.parseInt(req.getParameter("c_number")));
+			dao.insertCompany(map);
+			depart = dao.getnewCompany();
+		}
 		MemberVO vo = new MemberVO();
 		vo.setId(req.getParameter("id"));
 		vo.setPwd(req.getParameter("pwd"));
@@ -112,13 +127,13 @@ public class K_ServiceImpl implements K_Service{
 		vo.setEmail_in(email);
 		vo.setAddress(req.getParameter("address"));
 		vo.setEng_address(req.getParameter("eng_address"));
-		vo.setDepart(Integer.parseInt(req.getParameter("depart")));
-		vo.setCompany(Integer.parseInt(req.getParameter("depart")));
-		vo.setRank(Integer.parseInt(req.getParameter("depart")));
+		vo.setDepart(depart);
+		vo.setCompany(depart);
+		vo.setRank(depart);
 		java.sql.Date today = new java.sql.Date(new java.util.Date().getTime());
 		vo.setEnterday(today);
 		vo.setYear(0);
-		vo.setSys_rank(0);
+		vo.setSys_rank(newOld);
 		vo.setDel(0);
 		
 		insertCnt = dao.registAccount(vo);
@@ -134,6 +149,13 @@ public class K_ServiceImpl implements K_Service{
 			dao.registAuthorities(map2);
 		}
 		
+		Map<String, Object> map3 = new HashMap<String, Object>();
+		map3.put("company", depart);
+		map3.put("departName", req.getParameter("id"));
+		dao.createfav(map3);
+		dao.favInfo(map3);
+		
+		req.setAttribute("newOld", newOld);
 		req.setAttribute("insertCnt", insertCnt);
 	}
 
@@ -156,7 +178,7 @@ public class K_ServiceImpl implements K_Service{
 			String[] checks = req.getParameterValues("check");
 			if(appcan == 0) { //승인한다면
 				for(int i=0; i<checks.length; i++) {
-					Map<String, String> map = new HashMap<String, String>();
+					Map<String, Object> map = new HashMap<String, Object>();
 					map.put("id", checks[i]);
 					map.put("auth", "USER_CUSTOMER");
 					dao.updateAuthorities(map);
@@ -1046,21 +1068,59 @@ public class K_ServiceImpl implements K_Service{
 			String[] checks = req.getParameterValues("check");
 			if(appcan == 0) { //승인한다면
 				for(int i=0; i<checks.length; i++) {
+					int company = dao.getCompanyNum(checks[i]);
+					System.out.println("company : "+company);
 					Map<String, Object> map = new HashMap<String, Object>();
-					map.put("num", checks[i]);
+					map.put("company", company);
 					map.put("del", 0);
-					dao.handlecompany(map);
+					dao.handlecompany(map); // 회사 del = 0으로 변경
+					map.put("id", checks[i]);
+					map.put("auth", "USER_CUSTOMER");
+					dao.updateAuthorities(map); // auth권한 추가
+					dao.insertManager2(checks[i]); // auth 권한 추가
+					
+					//----------------------------------------------
+					dao.insertAttendedSet(company); // 출퇴근기본정보 만들기
+					dao.insertBasicBoard(company); //기본 사내게시판 만들기
+					map.put("year", 0);
+					map.put("day", 3);
+					map.put("types", 2);
+					dao.insertBasicDayoff(map);
+					map.put("day", 10);
+					map.put("types", 1);
+					dao.insertBasicDayoff(map);
+					map.put("year", 1);
+					map.put("day", 11);
+					map.put("types", 1);
+					dao.insertBasicDayoff(map);
+					//-----------------------------이거 기본휴가 설정 3줄만든거임
+					Map<String, Object> map2 = new HashMap<String, Object>();
+					map2.put("r_name", "대기자");
+					map2.put("company", company);
+					map2.put("ranking", 0);
+					dao.insertBasicGrade2(map2);
+					map2.put("r_name", "사장");
+					map2.put("ranking", 1);
+					dao.insertBasicGrade(map2);
+					map2.put("r_name", "사원");
+					map2.put("ranking", 2);
+					dao.insertBasicGrade(map2);
+					//--------------------------- 직급 기본설정
 				}
 			} else { //취소한다면 
 				for(int i=0; i<checks.length; i++) {
+					int company = dao.getCompanyNum(checks[i]);
 					Map<String, Object> map = new HashMap<String, Object>();
-					map.put("num", checks[i]);
+					map.put("num", company);
 					map.put("state", 1);
 					dao.handlecompany(map);
 					
-					String strId = dao.getComInfoId(Integer.parseInt(checks[i]));
-					dao.retireUsers(strId);
-					dao.retireMember(strId);
+					dao.retireUsers(checks[i]);
+					dao.retireMember(checks[i]);
+					dao.deleteDepart(company);
+					map.put("setDepart", company);
+					map.put("id", checks[i]);
+					dao.deleteGroupInfo(map);
 				}
 			}
 			state = 1;
@@ -1152,6 +1212,80 @@ public class K_ServiceImpl implements K_Service{
 		
 		model.addAttribute("cnt", cnt);
 		
+	}
+
+	@Override
+	public void K_noticeContent(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO)req.getSession().getAttribute("loginInfo")).getSys_rank();
+		
+		String num_s = req.getParameter("num");
+		int num = Integer.parseInt(num_s);
+		
+		dao.addNoticeReadCnt(num);
+		BoardListVO vo = new BoardListVO();
+		vo = dao.getNoticeContent(num);
+		model.addAttribute("vo", vo);
+		model.addAttribute("sys_rank", sys_rank);
+		
+	}
+
+	@Override
+	public void K_updateNotice(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		
+		BoardListVO vo = new BoardListVO();
+		vo = dao.getNoticeContent(num);
+		
+		model.addAttribute("boardnum", num);
+		model.addAttribute("vo", vo);
+	}
+
+	@Override
+	public void K_updateNotice_pro(HttpServletRequest req, Model model) {
+		String subject = req.getParameter("subject");
+		String content = req.getParameter("formEditorData");
+		int boardnum = Integer.parseInt(req.getParameter("boardnum"));
+		
+		System.out.println("subject : "+subject);
+		System.out.println("content : "+content);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardnum", boardnum);
+		map.put("subject", subject);
+		map.put("content", content);
+		int cnt = dao.updateNotice(map);
+		
+		model.addAttribute("cnt", cnt);
+	}
+
+	@Override
+	public void K_deleteNotice(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int cnt = dao.deleteNotice(num);
+		model.addAttribute("cnt", cnt);
+	}
+
+	@Override
+	public void K_sendingMessage(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		model.addAttribute("id", id);
+		String name = dao.getName(id);
+		model.addAttribute("name", name);
+	}
+
+	@Override
+	public void K_sendMessage_pro(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		String subject = req.getParameter("subject");
+		String content = req.getParameter("content");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("subject", subject);
+		map.put("content", content);
+		
+		int cnt = dao.sendMessage_pro(map);
+		model.addAttribute("cnt", cnt);
 	}
 	
 }

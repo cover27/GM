@@ -80,7 +80,6 @@ public class O_Controller {
 		logger.info("URL : O_createSelfTaskView");
 		
 		oservice.createSelfTaskWrite(req, model);
-		//jservice.companyName(req, model);
 		
 		return "pages/O_createSelfTaskView";
 	}
@@ -170,10 +169,20 @@ public class O_Controller {
 		
 		return "admin/O_listAdminDocManagement";
 	}
+	
+	//업무관리의 view 페이지 검색기능
+	@RequestMapping("/pages/W_searchTodoTool")
+	public String W_searchTodoTool(HttpServletRequest req, Model model) {
+		logger.info("URL : W_searchTodoTool");
+		
+		oservice.W_searchTodoTool(req, model);
+		
+		return "pages/sub/O_header/O_searchTodoTool";
+	}
 	/* 업무 관리 끝 */
 	
 	
-	//검색조회
+	//사원 검색조회
 	@RequestMapping("/pages/W_searchId_sub")
 	public String searchIdPlease(HttpServletRequest req, Model model) {
 		logger.info("URL : searchId_sub");

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/setting.jsp"%>
+<%@ include file="/WEB-INF/views/setting.jsp"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +9,8 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
-<%@ include file="/WEB-INF/views/include/aside/memo.jsp"%> 
-<%@ include file="/WEB-INF/views/pages/sub/E_memoList_sub.jsp"%>
+<%@ include file="/WEB-INF/views/include/aside/master.jsp"%>
+<%@ include file="/WEB-INF/views/master/sub/K_updateNotice_sub.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>

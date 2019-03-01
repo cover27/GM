@@ -1,119 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<style>
-table, tr, th, td{
-	border:1px solid;
-}
-.btn-color7.br{
-	border:1px solid #aaa;
-}
-</style>
-
 <section>
 	<article>
 		<div class="content_header">
 			<h2>내가 한 업무요청 조회</h2>
 		</div>
-		
-		
-		<div class="content-wrap">
-		    <div class="content-view">
-		    	<div class="form-block" style="margin-top:10px;">
-		    		<table class="table">
-		    			<colgroup>
-                   			<col width="120px">
-                   			<col width="*">
-                   			<col width="120px">
-                   			<col width="*">
-                		</colgroup>
-                		<c:forEach var="dto" items="${dtos}">
-	                		<tbody>
-	                			<tr>
-	                				<th scope="row">제목</th>
-	                				<td title="제목">${dto.subject}</td>
-	                				<th scope="row">상태</th>
-	                				<td >${dto.state}</td>
-	                			</tr>
-	                			<tr>
-	                				<th scope="row">지시자</th>
-	                				<td colspan="3">${dto.name}(${dto.r_name})</td>
-	                			</tr>
-	                			<tr>
-	                				<th scope="row">업무기한</th>
-	                				<td colspan="3">${dto.begin}~${dto.end}</td>
-	                			</tr>
-	                			<tr>
-	                				<th scope="row">등록일</th>
-	                				<td>${dto.reg_date}</td>
-	                				<th scope="row">수정일</th>
-	                				<td>${dto.reg_date2}</td>
-	                			</tr>
-	                			<tr>
-	                				<th scope="row">담당자</th>
-	                				<td colspan="3">${dto.b_name}</td>
-	                			</tr>
-	                			<tr>
-	                				<th scope="row">내용</th>
-	                				<td colspan="3">${dto.content}</td>
-	                			</tr>
-	                			<tr>
-	                				<th scope="row">첨부파일</th>
-	                				<td colspan="3"></td>
-	                			</tr>
-	                			<tr>
-	                				<th scope="row">관련업무</th>
-	                				<td colspan="3"></td>
-	                			</tr>
-	                			<tr>
-	                				<th scope="row">관련결재</th>
-	                				<td colspan="3"></td>
-	                			</tr>
-	                		</tbody>
-                		</c:forEach>
-		    		</table>
-		    		
-		    		<br>
-		    		<br>
-		    		
-		    		<div class="inform-wrap rejectClass">
-		    			<c:forEach var="dto2" items="${dtos2}">
-			    			<div class="statement">
-			    				<h4 style="float:left;">처리 내역</h4>
-			    				<span style="float:right;">${dto2.state}</span>
-			    			</div>
-			    			<div class="form-block">
-			    				<table class="table">
-				    				
-				    					<tbody>
-				    						<tr>
-				    							<th scope="row">담당자</th>
-				    							<td>${dto2.b_name}</td>
-				    							<th scope="row">최종수정일</th>
-				    							<td>${dto2.reg_date}</td>
-				    						</tr>
-				    						<tr>
-				    							<th scope="row">내용</th>
-				    							<td colspan="3">${dto2.content}</td>
-				    						</tr>
-				    						<tr>
-				    							<th scope="row">첨부파일</th>
-				    							<td colspan="3"></td>
-				    						</tr>
-				    					</tbody>
-			    				</table>
-			    			</div>
-			    		</c:forEach>
-		    		</div>
-		    	</div>
+		<div class="content">
+			<div id="result" style="border: none;">
+				<table style="border-top: 1px #c0c0c0 solid">
+               		<c:forEach var="dto" items="${dtos}">
+                		<tbody>
+                			<tr>
+                				<th>제목</th>
+                				<td colspan="3" style="text-align: left; padding-left: 20px;">${dto.subject}</td>
+                				<th>상태</th>
+                				<td>${dto.state}</td>
+                				<th>지시자</th>
+                				<td>${dto.name}(${dto.r_name})</td>
+                			</tr>
+                			<tr>
+                				<th>업무기한</th>
+                				<td>${dto.begin}~${dto.end}</td>
+                				<th>등록일</th>
+                				<td>${dto.reg_date}</td>
+                				<th>수정일</th>
+                				<td>${dto.reg_date2}</td>
+                				<th>담당자</th>
+                				<td>${dto.b_name}</td>
+                			</tr>
+                			<tr>
+                				<th>내용</th>
+                				<td colspan="7" style="height: 230px;text-align: left; padding-left: 20px;vertical-align: top;">${dto.content}</td>
+                			</tr>
+                			<tr>
+                				<th>첨부파일</th>
+                				<td colspan="7"></td>
+                			</tr>
+                			<tr>
+                				<th>관련업무</th>
+                				<td colspan="3"></td>
+                				<th>관련결재</th>
+                				<td colspan="3"></td>
+                			</tr>
+                		</tbody>
+               		</c:forEach>
+	    		</table>
+	    		<c:forEach var="dto2" items="${dtos2}">
+    				<h3 class="mt50 mb10">처리 내역 : <span>${dto2.state}</span></h3>
+    				<table style="border-top: 1px #c0c0c0 solid">
+    					<tbody>
+    						<tr>
+    							<th>담당자</th>
+    							<td>${dto2.b_name}</td>
+    							<th>최종수정일</th>
+    							<td>${dto2.reg_date}</td>
+    							<th>첨부파일</th>
+    							<td></td>
+    						</tr>
+    						<tr>
+    							<th>내용</th>
+    							<td colspan="5" style="height: 230px;text-align: left; padding-left: 20px;vertical-align: top;">${dto2.content}</td>
+    						</tr>
+    					</tbody>
+    				</table>
+	    		</c:forEach>
+			</div>
+		    <div class="btnset">
+                <button type="button" onclick="window.location='<c:url value='/pages/W_updateTaskView?todonum=${todonum}&id=${id}'/>'">수정</button>
+                <button type="button" onclick="window.location='<c:url value='/pages/W_updateTaskDeletePro?todonum=${todonum}&id=${id}'/>'">삭제</button>
+                <button type="button" onclick="window.location='<c:url value='/pages/W_listPureOrderView'/>'">목록</button>
 		    </div>
-		    
-		    <div >
-                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/W_updateTaskView?todonum=${todonum}&id=${id}'/>'">수정</button>
-                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/W_updateTaskDeletePro?todonum=${todonum}&id=${id}'/>'">삭제</button>
-                <button type="button" class="btn btn-color7 br" onclick="window.location='<c:url value='/pages/W_listPureOrderView'/>'">목록</button>
-		    </div>
-		    
 		</div>
 		    
 	</article>

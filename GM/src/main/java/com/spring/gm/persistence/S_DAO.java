@@ -39,6 +39,9 @@ public interface S_DAO {
 	// 보넨 쪽지 삭제
 	public int sendDelete(Map<String, Integer> map);
 	
+	// 보넨 쪽지의 받은 상대방 쪽지 삭제
+	public int sendDel(Map<String, Integer> map);
+	
 	// 휴지통 보네기
 	public int garbage(Map<String, Integer> map);
 	
@@ -59,5 +62,9 @@ public interface S_DAO {
 	
 	// 보넨메세지 삭제
 	public int sendDeleteMessage(int num);
+	
+	public int sendDelMessage(int num);
+	
+	public int garbageContentDelete(int num);
 
 }
