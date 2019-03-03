@@ -1822,7 +1822,9 @@ public class J_ServiceImpl implements J_Service {
 		map.put("company", company);
 		
 		int selectCnt = dao.vacationCnt2(map);
+		System.out.println("selectCnt : " + selectCnt);
 		int selectCnt2 = dao.vacationCnt3(map);
+		System.out.println("selectCnt2 : " + selectCnt2);
 		int cnt = selectCnt + selectCnt2;
 		System.out.println("selectCnt : " + selectCnt);
 		if(cnt > 0) {
@@ -2266,7 +2268,6 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("연차 사용이 있을시");
 			dtos2 = dao.annualList(map);
 			annual = dao.annual(map);
-			//annual2 = dao.annual2(map);
 			DecimalFormat df=new DecimalFormat("0.#");
 			
 			float fu_annual = 0;
