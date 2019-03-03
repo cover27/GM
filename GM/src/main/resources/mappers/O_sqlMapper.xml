@@ -46,6 +46,13 @@
 <update id="deleteCalendar">
 	update schedule set del=1 where num=#{num}
 </update>
+
+<!-- 일정 메인 화면 view -->
+<select id="calendarMainView" resultType="com.spring.gm.vo.ScheduleVO" parameterType="String">
+	<![CDATA[
+		select * from schedule where id=#{id} and begin > sysdate -1 and begin < sysdate + 1
+	]]> 
+</select>
 <!-- 일정 끝 -->
 
 
@@ -116,7 +123,7 @@
 	    	]]>
 	    </if>
 	<![CDATA[
-		order by todonum asc)
+		order by todonum desc)
 		where rNum >= #{start} and rNum <= #{end}
 	]]> 
 </select>
@@ -181,7 +188,7 @@
 		select * from
 	        (select i.donum, b.todonum, b.b_name, i.id, b.subject, b.begin, b.end, b.state, m.name,  rownum rNum
 	                from(select * from b_manageinfo where id=#{id} and del=0) i, member m, b_manage b
-	                        where m.id=b.id and b.todonum=i.todonum
+	                        where m.id=b.id and b.todonum=i.todonum and b.del=0
 	]]> 
 		<if test="searchUserName != null">
 	    	AND m.name like '%'||#{searchUserName}||'%'

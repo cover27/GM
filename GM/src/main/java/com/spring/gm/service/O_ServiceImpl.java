@@ -326,9 +326,20 @@ public class O_ServiceImpl implements O_Service{
 		System.out.println("deleteCnt" + deleteCnt);
 		
 		model.addAttribute("deleteCnt", deleteCnt);
+	}
+	
+	//일정 메인 화면 view
+	@Override
+	public void O_calendarMainView(HttpServletRequest req, Model model) {
 		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
+		ScheduleVO svo = new ScheduleVO();
+		svo = dao.calendarMainView(id);
 		
+		System.out.println("svo" + svo);
+		
+		model.addAttribute("svo", svo);
 	}
 
 	//업무관리 등록 화면
@@ -1018,6 +1029,10 @@ public class O_ServiceImpl implements O_Service{
 		
 		req.getSession().setAttribute("searchMap", map);
 	}
+
+
+
+	
 
 	
 	

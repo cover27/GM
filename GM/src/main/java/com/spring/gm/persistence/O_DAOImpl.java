@@ -104,6 +104,12 @@ public class O_DAOImpl implements O_DAO {
 		return dao.deleteCalendar(num);
 	}
 	
+	//일정 메인 화면 view
+	@Override
+	public ScheduleVO calendarMainView(String id) {
+		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.calendarMainView", id);
+	}
+	
 	//업무 등록 insert-pro
 	@Override
 	public int insertTodo(B_ManageVO vo) {
@@ -219,6 +225,9 @@ public class O_DAOImpl implements O_DAO {
 		dtos= dao.adminList(map);
 		return dtos;
 	}
+	
+
+	
 
 	
 	

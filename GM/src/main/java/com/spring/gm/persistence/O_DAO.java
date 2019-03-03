@@ -32,6 +32,8 @@ public interface O_DAO {
 	public int updateCalendar(ScheduleVO vo);
 	//일정 삭제
 	public int deleteCalendar(int num);
+	//일정 메인 화면 view
+	public ScheduleVO calendarMainView(String id);
 	/* 일정 끝 */
 	
 	/* 업무 시작 */

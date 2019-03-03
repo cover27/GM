@@ -32,6 +32,7 @@
 		</div>
 		<div class="today_todo">
 			오늘의 일정을 등록해 보세요.
+			${svo.begin} ${svo.scheduleKind} ${svo.subject}
 		</div>
 	<div class="favorite_member mt50">
 		<h2>
