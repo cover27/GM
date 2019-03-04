@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>GM</title>
+<style>
+	body {
+		background: #eee !important;
+	}
+</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
