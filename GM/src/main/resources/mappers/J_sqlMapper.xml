@@ -550,14 +550,15 @@
 	<select id="searchIdCnt" parameterType="java.util.Map"
 		resultType="int">
 		SELECT COUNT(*) as cnt FROM member where company =
-		#{company} and id like '%'||#{id}||'%'
+		#{company} and id like '%'||#{id}||'%' and rank = #{company}
 	</select>
 	<select id="searchIdList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgcVO2">
 		select * from(SELECT m.id, m.name, r.r_name, m.depart,
 		m.enterday, m.tel, m.email_in, g.g_name as j_name
 		FROM member m ,groups g, grade r
-		WHERE m.depart = g.groupid and m.rank = r.rank and m.company = #{company})
+		WHERE m.depart = g.groupid and m.rank = r.rank and m.company = #{company}
+		and r.rank != #{company})
 		where depart != #{company} and id like '%'||#{id}||'%'
 	</select>
 	<select id="searchIdList2" parameterType="java.util.Map"
@@ -565,7 +566,8 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel,
 		m.email_in, c.c_name as j_name
 		FROM member m ,companies c, grade r
-		WHERE m.depart = c.company and m.rank = r.rank and m.company = #{company})
+		WHERE m.depart = c.company and m.rank = r.rank and m.company = #{company}
+		and r.rank != #{company})
 		where depart = #{company} and id like '%'||#{id}||'%'
 	</select>
 
@@ -705,14 +707,14 @@
 		select count(*) as cnt
 		from attended a, member m
 		where m.id = a.id
-		and a.overtime > 0
+		and a.overtime > 0 and a.nighttime = 0
 		and to_char(a.day,'yyyymm') = #{date}
 	</select>
 	<select id="showONtimeList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
-		select a.num,m.id, m.name, a.overtime, a.state
+		select a.num,m.id, m.name, a.overtime, a.state,a.day
 		from attended a, member m
 		where m.id = a.id
-		and a.overtime >0
+		and a.overtime >0 and a.nighttime = 0
 		and to_char(a.day,'yyyymm') = #{date}
 	</select>
 	<select id="showONtimeCnt2" parameterType="java.util.Map" resultType="int">
@@ -723,12 +725,29 @@
 		and to_char(a.day,'yyyymm') = #{date}
 	</select>
 	<select id="showONtimeList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
-		select a.num,m.id, m.name, a.nighttime, a.state
+		select a.num,m.id, m.name, a.overtime, a.nighttime, a.state,a.day
 		from attended a, member m
 		where m.id = a.id
 		and a.nighttime >0
-		and to_char(a.day,'yyyymm') = #{date}
+		and to_char(a.day,'yyyymm') = #{date} 
 	</select>
+	<!-- 야간,연장 근무 시간 가져옿기 -->
+	<select id="ONtime" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+		select * from attended 
+		where num = #{num}
+	</select>
+	
+	
+	<insert id="insertONtime" parameterType="java.util.Map">
+		INSERT INTO
+		bonus_cut (num, id, type, day, cost, content, state, del)
+		VALUES(seq_bonus_cut.nextval,#{id}, '추가', sysdate, #{salary}, #{title},
+		'미지급', 0)
+	</insert>	
+	<update id = "updateONtime" parameterType="java.util.Map">
+		update attended set state = 1 where num = #{num}
+	</update>
+	
 
 	<!-- 상여 미지급 목록 -->
 	<select id="bonusNoneCnt2" parameterType="java.util.Map"

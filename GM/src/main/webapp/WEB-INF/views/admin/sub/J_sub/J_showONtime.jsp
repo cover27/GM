@@ -2,6 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<script>
+function insertONtime(num) {
+	var date = ${date};
+	alert("date :" + date + "num :" + num);
+	window.location="insertONtime?date="+date + "&num=" + num;
+};
+</script>
 <div class="table_top">
 	<table border="1">
 		<colgroup>
@@ -48,11 +55,11 @@
 						<td>${dtos.id}</td>
 						<td>${dtos.name}</td>
 						<td>
-						<c:if test="${dtos.overtimes != null}">
-							야간근무
-						</c:if>
-						<c:if test="${dtos.nighttime != null}">
+						<c:if test="${dtos.overtime > 0 && dtos.nighttime == 0}">
 							연장근무
+						</c:if>
+						<c:if test="${dtos.overtime > 0 && dtos.nighttime > 0}">
+							 연장,야간근무
 						</c:if>
 						</td>
 						<td>
@@ -60,13 +67,13 @@
 							${dtos.overtimes}
 						</c:if>
 						<c:if test="${dtos.nighttime != null}">
-							${dtos.nighttime}
+							${dtos.nighttimes}
 						</c:if>
 						</td>
 						<td>${dtos.day}</td>
 						<td>
 						<c:if test="${dtos.state == 0}">
-							지급처리중
+							<input type="button" value="지급처리" onclick="insertONtime('${dtos.num}')">
 						</c:if>
 						<c:if test="${dtos.state == 1}">
 							지급완료

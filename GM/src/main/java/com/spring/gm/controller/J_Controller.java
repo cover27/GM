@@ -395,8 +395,13 @@ public class J_Controller {
 			service.showONtime(req, model);
 			return "admin/sub/J_sub/J_showONtime";
 		}
-		
-		
+		//야간/연장 근무 수당 상여금에 미지급으로 인서트
+		@RequestMapping("/admin/insertONtime")
+		public String insertONtime(HttpServletRequest req, Model model) {
+			logger.info("URL : insertONtime");
+			service.insertONtime(req, model);
+			return "admin/sub/J_sub/J_showONtime";
+		}
 		
 		
 		

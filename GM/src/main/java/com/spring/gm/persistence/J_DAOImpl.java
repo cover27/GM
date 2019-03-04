@@ -565,6 +565,29 @@ public class J_DAOImpl implements J_DAO {
 		dtos = dao.showONtimeList2(map);
 		return dtos;
 	}
+	//야간,연장 근무 시간 가져옿기
+	@Override
+	public ArrayList<join_margcVO> ONtime(Map<String, Object> map) {
+		ArrayList<join_margcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.ONtime(map);
+		return dtos;
+	}
+	//상여금에 인설트
+	@Override
+	public int insertONtime(Map<String, Object> map) {
+		int cnt = sqlSession.insert("com.spring.gm.persistence.J_DAO.insertONtime", map);
+		return cnt;
+	}
+	//인설트 되면 처리함.
+	@Override
+	public int updateONtime(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.updateONtime", map);
+		return cnt;
+	}
+	
+	
+	
 	
 	
 	//-----------------------급여 조회------------------------------------
