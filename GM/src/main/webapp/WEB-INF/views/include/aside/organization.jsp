@@ -7,9 +7,6 @@
 <%@page import="com.spring.gm.vo.MemberVO" %>
 
 <aside>
-	<!-- 사용 안하는 사이드바
-    <div class="sidebar"></div>
-     -->
     <div class="nav">
         <div class="nav_title">
             <h2><a href="<c:url value='/pages/E_organizationList' />" style="color: white">조직도</a></h2>

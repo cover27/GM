@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript">
-
 // 체크박스 전체선택
 function allcheck(){
       if( $("#th_checkAll").is(':checked') ){
@@ -12,7 +11,6 @@ function allcheck(){
         $("input[name=checkRow]").prop("checked", false);
       }
 }
-
 </script>
 <section>
 	<article>
