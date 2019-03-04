@@ -26,7 +26,12 @@
                     <ul>
                     	<li onclick="window.location='<c:url value="/pages/P_listApprTodoView" />'" class="approval_bg">
                         	<div class="menu_wrap">
-                        		<div class="alert">1</div>
+                        		<c:if test="${paymentCnt != 0 }">
+                        			<div class="alert">${paymentCnt}</div>
+                        		</c:if>
+                        		<c:if test="${paymentCnt == 0}">
+                        			<div class="mt55"></div>
+                        		</c:if>
 	                        	<div class="approval_wrap">
 		                        	<div class="approval"></div>
 		                        	<h2>전자결재</h2>
@@ -44,7 +49,12 @@
                         </li>
                         <li onclick="window.location='<c:url value="/pages/O_calendar" />'" class="planner_bg">
                         	<div class="menu_wrap">
-                        		<div class="alert">1</div>
+                        		<c:if test="${scheduleCnt != 0 }">
+                        			<div class="alert">${scheduleCnt}</div>
+                        		</c:if>
+                        		<c:if test="${scheduleCnt == 0}">
+                        			<div class="mt55"></div>
+                        		</c:if>
 	                        	<div class="planner_wrap">
 		                        	<div class="planner"></div>
 		                        	<h2>일정</h2>
@@ -54,7 +64,12 @@
                         <c:if test="${sys_rank == 1 }">
 	                        <li onclick="window.location='<c:url value="/pages/W_listTodoView" />'" class="todo_bg">
 	                        	<div class="menu_wrap">
-	                        		<div class="alert">1</div>
+	                        		<c:if test="${bmanageCnt != 0 }">
+	                        			<div class="alert">${bmanageCnt}</div>
+	                        		</c:if>
+	                        		<c:if test="${bmanageCnt == 0}">
+	                        			<div class="mt55"></div>
+	                        		</c:if>
 	                        		<div class="todo_wrap">
 		                        		<div class="todo"></div>
 		                        		<h2>업무관리</h2>
@@ -65,7 +80,12 @@
                         <c:if test="${sys_rank != 1 }">
                         	<li onclick="window.location='<c:url value="/pages/W_listTodoView" />'" class="todo_bg">
                         		<div class="menu_wrap">
-                        		<div class="alert">1</div>
+                        			<c:if test="${bmanageCnt != 0 }">
+	                        			<div class="alert">${bmanageCnt}</div>
+	                        		</c:if>
+	                        		<c:if test="${bmanageCnt == 0}">
+	                        			<div class="mt55"></div>
+	                        		</c:if>
                         			<div class="todo_wrap">
 	                        			<div class="todo"></div>
 	                        			<h2>업무관리</h2>
