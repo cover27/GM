@@ -150,8 +150,19 @@ public class K_Controller {
 		logger.info("URL : K_registAccount");
 		
 		service.registAccount(req, model);
+		service.sendEmailAccount(req, model);
 		
 		return "common/K_registAccount";
+	}
+	
+	//메일 인증 눌러야되는 것
+	@RequestMapping("checkEmail")
+	public String checkEmail(HttpServletRequest req, Model model) {
+		logger.info("URL : checkEmail");
+		
+		service.checkEmail(req, model);
+		
+		return "common/checkEmail";
 	}
 	
 	//우측상단에 로그아웃 누르면 로그아웃되면서 로그인화면으로 가짐
@@ -570,5 +581,63 @@ public class K_Controller {
 		service.K_sendMessage_pro(req, model);
 		
 		return "master/sub/K_sendMessage_pro";
+	}
+	
+	//아이디/비밀번호 찾기
+	@RequestMapping("findAccount")
+	public String findAccount(HttpServletRequest req, Model model) {
+		logger.info("URL : findAccount");
+				
+		return "common/findAccount";
+	}
+	
+	//아아디 찾기
+	@RequestMapping("findId")
+	public String findId(HttpServletRequest req, Model model) {
+		logger.info("URL : findId");
+		
+		service.findId(req, model);
+		
+		return "common/findId";
+	}
+	
+	//비밀번호 찾기
+	@RequestMapping("findPw")
+	public String findPw(HttpServletRequest req, Model model) {
+		logger.info("URL : findPw");
+		
+		service.findPw(req, model);
+		
+		return "common/findPw";
+	}
+	
+	//인증 이메일 보내기
+	@RequestMapping("sendPwCond")
+	public String sendPwCond(HttpServletRequest req, Model model) {
+		logger.info("URL : sendPwCond");
+		
+		service.sendEmailCord(req, model);
+		
+		return "common/sendPwCond";
+	}
+	
+	//입력코드 확인
+	@RequestMapping("createNewPw")
+	public String createNewPw(HttpServletRequest req, Model model) {
+		logger.info("URL : createNewPw");
+		
+		service.createNewPw(req, model);
+		
+		return "common/createNewPw";
+	}
+	
+	//새로운 비밀번호 등록
+	@RequestMapping("newPwd_pro")
+	public String newPwd_pro(HttpServletRequest req, Model model) {
+		logger.info("URL : newPwd_pro");
+		
+		service.newPwd_pro(req, model);
+		
+		return "common/newPwd_pro";
 	}
 }

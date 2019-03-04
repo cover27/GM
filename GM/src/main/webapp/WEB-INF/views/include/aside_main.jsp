@@ -35,11 +35,15 @@
 			<span>오늘의 일정을 등록해 보세요.</span>
 		</c:if>
 		<c:if test="${scheduleCnt > 0}">
-			<c:forEach var="svo2" items="${svo}">
-				<span>${svo2.begin}</span> | 
-				<span>${svo2.scheduleKind}</span> | 
-				<span>${svo2.subject}</span>
-			</c:forEach>
+			<ul>
+				<c:forEach var="svo2" items="${svo}">
+					<li class="">
+						<span>${svo2.begin}</span> | 
+						<span>${svo2.scheduleKind}</span> | 
+						<span>${svo2.subject}</span>
+					</li>
+				</c:forEach>
+			</ul>
 		</c:if>
 	</div>
 	<div class="favorite_member mt50">

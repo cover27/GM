@@ -97,7 +97,7 @@ section .main_menu>ul>li {
     margin: 0 8px 8px 0;
     text-align: center;
     background: linear-gradient(to bottom right, #fff, #ddd);
-    background: url('../images/main_icon_bg.png');
+    background: url('../images/main_icon_bg.png') 50% 50%;
 	border: 1px #c4c4c4 solid;
     box-shadow: 0 1px 0 #bbb;
     border-radius: 10px;
@@ -105,8 +105,7 @@ section .main_menu>ul>li {
 
 section .main_menu>ul>li:hover {
 	cursor: pointer;
-	/* background: #eee;
-	transition: 0.2s; */
+	transition: 0.2s;
 }
 
 section .main_menu>ul>li .menu_wrap {

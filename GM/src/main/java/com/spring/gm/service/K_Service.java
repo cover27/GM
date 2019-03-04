@@ -16,6 +16,10 @@ public interface K_Service {
 	
 	public void registAccount(HttpServletRequest req, Model model);
 	
+	public void sendEmailAccount(HttpServletRequest req, Model model);
+	
+	public void checkEmail(HttpServletRequest req, Model model);
+	
 	public void member_manage(HttpServletRequest req, Model model);
 	
 	public void K_appMember(HttpServletRequest req, Model model);
@@ -99,4 +103,16 @@ public interface K_Service {
 	public void K_sendingMessage(HttpServletRequest req, Model model);
 	
 	public void K_sendMessage_pro(HttpServletRequest req, Model model);
+	
+	public void findId(HttpServletRequest req, Model model);
+	
+	public void findPw(HttpServletRequest req, Model model);
+	
+	public String getRandomKey();
+	
+	public void sendEmailCord(HttpServletRequest req, Model model);
+	
+	public void createNewPw(HttpServletRequest req, Model model);
+	
+	public void newPwd_pro(HttpServletRequest req, Model model);
 }

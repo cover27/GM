@@ -11,7 +11,7 @@
 	</select>
 
 	<select id="findCompany" resultType="com.spring.gm.vo.CompaniesVO">
-		SELECT * FROM companies WHERE del = 0
+		SELECT * FROM companies WHERE del = 0 AND company != 0
 	</select>
 	
 	<select id="searchCompany" parameterType="String" resultType="com.spring.gm.vo.CompaniesVO">
@@ -28,7 +28,7 @@
 	
 	<insert id="registUsers" parameterType="java.util.Map">
 		INSERT INTO users (username, password, enabled)
-		VALUES (#{id}, #{pwd}, 1)
+		VALUES (#{id}, #{pwd}, 0)
 	</insert>
 	
 	<insert id="registAuthorities" parameterType="java.util.Map">
@@ -489,4 +489,27 @@
 		INSERT INTO grade VALUES (#{company}, #{r_name}, #{company}, #{ranking})
 	</insert>
 	
+	<update id="updateEmailAccount" parameterType="String">
+		UPDATE users SET enabled=1 WHERE username=#{id}
+	</update>
+	
+	<select id="findIds" resultType="com.spring.gm.vo.MemberVO" parameterType="java.util.Map">
+		SELECT * FROM member WHERE email_in = #{email} AND name = #{name} AND del = 0
+	</select>
+	
+	<select id="findPw" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*) FROM member WHERE email_in = #{email} AND name = #{name} AND id = #{id} AND del = 0
+	</select>
+	
+	<select id="getEmail" resultType="String">
+		SELECT email_in FROM member WHERE id = #{id}
+	</select>
+	
+	<update id="updatePw" parameterType="java.util.Map">
+		UPDATE member SET pwd = #{pwd} WHERE id = #{id}
+	</update>
+	
+	<update id="updateUsers" parameterType="java.util.Map">
+		UPDATE users SET password = #{pwd} WHERE username = #{id}
+	</update>
 </mapper>
