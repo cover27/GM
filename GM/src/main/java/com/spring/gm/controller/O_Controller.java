@@ -67,7 +67,30 @@ public class O_Controller {
 		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listMyTodoView");
 		
+		
 		return "pages/O_listMyTodoView";
+	}
+	//TO-DO - 나의 할일 화면 등록
+	@RequestMapping("/pages/W_insertTodoPro")
+	public String O_insertTodoPro(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
+		
+		oservice.insertTodoPro(req, model);
+		
+		return "pages/O_insertTodoPro";
+	}
+	
+	//TO-DO - 나의할일 등록한 뒤나오는 화면
+	@RequestMapping("/pages/W_listMyTodoCreate")
+	public String O_listMyTodoCreate(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
+		logger.info("URL : O_listMyTodoCreate");
+		
+		//oservice.selectTodo(req, model);
+		
+		return "pages/O_listMyTodoCreate";
 	}
 	
 	//업무 등록 화면

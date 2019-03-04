@@ -20,6 +20,7 @@ import com.spring.gm.vo.B_ManageInfoVO;
 import com.spring.gm.vo.B_ManageVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.ScheduleVO;
+import com.spring.gm.vo.TodoListVO;
 
 @Service
 public class O_ServiceImpl implements O_Service{
@@ -1038,6 +1039,35 @@ public class O_ServiceImpl implements O_Service{
 		map.put("searchEndDate", end);
 		
 		req.getSession().setAttribute("searchMap", map);
+	}
+
+	//TO-DO - 나의 할일 등록
+	@Override
+	public void insertTodoPro(HttpServletRequest req, Model model) {
+		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		TodoListVO vo = new TodoListVO();
+		vo.setId(id);
+		vo.setContent(req.getParameter("content"));
+		
+		int insertCnt = dao.insertTodoPro(vo);
+		System.out.println("insertCnt : " + insertCnt);
+		
+		model.addAttribute("insertCnt", insertCnt);
+		
+	}
+
+	//TO-DO - 나의할일 등록한 뒤나오는 화면
+	@Override
+	public void selectTodo(HttpServletRequest req, Model model) {
+		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		List<TodoListVO> dtos = dao.selectTodo(id);
+		System.out.println("확인확인"+dtos.toString());
+		
+		model.addAttribute("dtos", dtos);
 	}
 
 

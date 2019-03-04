@@ -86,4 +86,11 @@ public class E_Controller {
 		return "pages/E_addmembersPro";		
 	}
 	
+	@RequestMapping("pages/E_addmembersDepartPro")
+	public String addMembersDepartPro(HttpServletRequest req, Model model) {
+		logger.info("URL : E_addmembersDepartPro");
+		
+		service.addMembers(req, model);
+		return "pages/E_addmembersDepartPro";		
+	}
 }
