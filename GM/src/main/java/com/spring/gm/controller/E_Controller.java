@@ -19,116 +19,49 @@ public class E_Controller {
 	
 	@Autowired
 	E_Service service;
-
-	
-	// 조직도 - 인물 상세정보 (전체 / 개인)
-//	@RequestMapping("/pages/sub/E_organMemberInfo")
-//	public String E_organMemberInfo(HttpServletRequest req, Model model) {
-//		logger.info("URL : E_organMemberInfo");
-		
-//		return "pages/sub/E_organMemberInfo";
-//	}
 	
 						
 	// 조직도 - 첫페이지, 내회사 전체 구성원 목록	
-	@RequestMapping("/pages/E_organizationList")
-	public String E_organizationList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_organizationList");
+	@RequestMapping("pages/E_orgnaizationMemberList")
+	public String organizationMemberList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_orgnaizationMemberList");
 		
-		service.E_organizationList(req, model);
-		
-		return "pages/E_organizationList";
+		service.myCompanyMember(req, model);
+		service.departList(req, model);
+		service.myFavoriteMemberList(req, model);
+		return "pages/E_orgnaizationMemberList";
 	}
 	
-	// 조직도 - 로그인된 계정이 소속된 회사 특정 그룹에 속하는 구성원 목록
-	@RequestMapping("/pages/E_organVipGroupList")
-	public String E_organVipGroupList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_organVipGroupList");
+	// 조직도 - 회사내 부서 구성원 목록
+	@RequestMapping("pages/E_departMemberList")
+	public String departMemberList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_departMemberList");
 		
-		service.E_organVipGroupList(req, model);
-		
-		return "pages/E_organVipGroupList";
+		service.departList(req, model);
+		service.departMember(req, model);
+		service.myFavoriteMemberList(req, model);
+		return "pages/E_departMemberList";
 	}
 	
-	
-	// 조직도 - 개인 그룹 목록 ( 개인그룹 관리에서 초기 게시판 생성 후 작성 )
-	@RequestMapping("/pages/E_myGroupList")
-	public String E_myGroupList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_myGroupList");
+	@RequestMapping("pages/E_orgMyFavoritMemList")
+	public String favoriteMember(HttpServletRequest req, Model model) {
+		logger.info("URL : E_orgMyFavoritMemList");
 		
-		service.E_organVipGroupList(req, model);
-		
-		return "pages/E_myGroupList";
+		service.departList(req, model);
+		service.departMember(req, model);
+		service.myFavoriteMemberList(req, model);
+		return "pages/E_orgMyFavoritMemList";
 	}
 	
-	
-	// 조직도 - 개인그룹 관리
-	@RequestMapping("/pages/E_myGroupManage")
-	public String E_MyGroupManage(HttpServletRequest req, Model model) {
-		logger.info("URL : E_myGroupManage");
+	@RequestMapping("pages/E_memberContents")
+	public String memberContents(HttpServletRequest req, Model model) {
+		logger.info("URL : E_memberContents");
 		
-		service.E_MyGroupManage(req, model);
-		return "pages/E_myGroupManage";
+		service.memberContents(req, model);
+		service.departList(req, model);
+		service.myFavoriteMemberList(req, model);
+		return "pages/E_memberContents";
 	}
-	
-
-	// 주소록 - 주소록 첫페이지
-	@RequestMapping("/pages/E_addressList")
-	public String E_addressList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_addressList");
-		
-		return "pages/E_addressList";
-	}
-	
-	
-	
-
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 이 아래로 사용하지 않음
-	// 메모 게시판
-	@RequestMapping("/pages/E_memoList")
-	public String E_memoList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_memoList");
-		
-		service.E_memoList(req, model);
-		
-		return "pages/E_memoList";
-	}
-	
-	// 메모 내용
-	@RequestMapping("/pages/E_memoInfo")
-	public String E_memoInfo(HttpServletRequest req, Model model) {
-		logger.info("URL : E_memoInfo");
-		
-		return "pages/E_memoInfo";
-	}
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-	
-	
-	
-
 }

@@ -78,8 +78,8 @@ function managementInsert(num,id,name,fullhalfday,begin,end,day,date) {
 								<td>${dtos.name}</td>
 								<td>${dtos.rank_name}</td>
 								<td>${dtos.j_name}</td>
-								<td><c:if test="${dtos.types == 1}">연차</c:if> <c:if
-										test="${dtos.types == 2}">휴가</c:if></td>
+								<td><c:if test="${dtos.types == 1}">휴가</c:if> <c:if
+										test="${dtos.types == 2}">연차</c:if></td>
 								<td><c:if test="${dtos.fullhalfday == 1}">전차</c:if> <c:if
 										test="${dtos.fullhalfday == 2}">반차</c:if></td>
 								<td>${dtos.applicationdate}</td>

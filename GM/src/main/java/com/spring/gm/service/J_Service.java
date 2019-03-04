@@ -143,4 +143,28 @@ public interface J_Service {
 	public void vacationUH2(HttpServletRequest req, Model model);
 	
 	
+	
+	
+	//=============================================내정보=-==================================
+	//내정보 가져오기
+	public void myinfo(HttpServletRequest req, Model model);
+	//회원 탈퇴
+	public void J_Withdrawal(HttpServletRequest req, Model model);
+	//수정내용 업데이트 하기
+	public void myinfoModifyUpdate(HttpServletRequest req, Model model);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

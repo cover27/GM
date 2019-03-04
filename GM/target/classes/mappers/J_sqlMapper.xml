@@ -1205,7 +1205,8 @@
 		and m.id=#{id}
 		and m.company = #{company}
 		and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
-		and types = 1
+		and types = 2
+		and fullhalfday = 2
 	</select>
 
 
@@ -1223,19 +1224,8 @@
 		and m.id=#{id}
 		and m.company = #{company}
 		and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
-		and types = 1
-	</select>
-	<!-- 연차 횟수 -->
-	<select id="annual2" parameterType="java.util.Map"
-		resultType="com.spring.gm.vo.join_mrvdgcVO">
-		select sum(v.day)/2 as u_annual
-		from vacation v, member m
-		where m.id = v.id
-		and m.id=#{id}
-		and m.company = #{company}
-		and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
-		and types = 1
-		and v.fullhalfday = 2
+		and types = 2
+		and state = 1
 	</select>
 	<!-- 휴가 횟수 -->
 	<select id="vacation" parameterType="java.util.Map"
@@ -1246,7 +1236,8 @@
 		and m.id=#{id}
 		and m.company = #{company}
 		and to_char(v.begin,'yyyy')= 2019 and to_char(v.end,'yyyy')= #{year}
-		and types = 2
+		and types = 1
+		and v.state = 1
 	</select>
 
 	<!-- 연차 -->
@@ -1258,31 +1249,28 @@
 		and m.id = #{id}
 		and m.company = #{company}
 		and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
-		and v.types = 1
+		and v.types = 2
+		and v.state = 1
 	</select>
-	<select id="annualList" parameterType="java.util.Map"
-		resultType="com.spring.gm.vo.join_mrvdgcVO">
-		select m.id, m.name, r.r_name as rank_name, m.enterday, m.year, d.day as
-		annual
+	<select id="annualList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
+		select m.id, m.name, r.r_name as rank_name, m.enterday, m.year, d.day as annual
 		from member m, grade r, dayoff d
 		where m.rank = r.rank
 		and m.company = d.company
 		and #{companyyear} = d.year
 		and m.id = #{id}
 		and m.company = #{company}
-		and d.types = 1
 	</select>
 
 	<!-- 휴가 -->
-	<select id="vacationCnt" parameterType="java.util.Map"
-		resultType="int">
+	<select id="vacationCnt" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt
 		from member m, vacation v
 		where m.id = v.id
 		and m.id = #{id}
 		and m.company = #{company}
 		and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
-		and v.types = 2
+		and v.types = 1
 	</select>
 	<select id="vacationList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1293,12 +1281,10 @@
 		and m.company = d.company
 		and m.id = #{id}
 		and m.company = #{company}
-		and d.types = 2
 	</select>
 
 	<!-- 휴가신청내역 가져오기 -->
-	<select id="vacationapplicationCnt"
-		parameterType="java.util.Map" resultType="int">
+	<select id="vacationapplicationCnt" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt
 		from member m, vacation v
 		where m.id = v.id
@@ -1306,9 +1292,7 @@
 		and m.company = #{company}
 		and v.state != 1
 	</select>
-	<select id="vacationapplicationList"
-		parameterType="java.util.Map"
-		resultType="com.spring.gm.vo.join_mrvdgcVO">
+	<select id="vacationapplicationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
 		select v.num, v.id, v.types, v.begin, v.end, v.day, v.content, v.state,
 		v.applicationdate, v.fullhalfday
 		from member m, vacation v
@@ -1319,18 +1303,15 @@
 		and v.state != 1
 	</select>
 	<!-- 휴가신청내역 가져오기 -->
-	<select id="vacationapplicationCnt2"
-		parameterType="java.util.Map" resultType="int">
+	<select id="vacationapplicationCnt2" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt
 		from member m, vacation v
 		where m.id = v.id
 		and m.company = #{company}
 		and v.state != 1
 	</select>
-	<select id="vacationapplicationList2"
-		parameterType="java.util.Map"
-		resultType="com.spring.gm.vo.join_mrvdgcVO">
-		select v.num, v.id, v.types, v.begin, v.end, v.day, v.content, v.state,
+	<select id="vacationapplicationList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
+		select v.num,m.name, v.id, v.types, v.begin, v.end, v.day, v.content, v.state,
 		v.applicationdate, v.fullhalfday
 		from member m, vacation v
 		where m.id = v.id
@@ -1340,20 +1321,16 @@
 
 	<!-- 휴가 신청하기(요청) -->
 	<!-- 전차 -->
-	<insert id="leaveapplicationInsert"
-		parameterType="java.util.Map">
-		INSERT INTO vacation(num, id, types, begin, end, day ,content , state ,
-		applicationdate , fullhalfday)
+	<insert id="leaveapplicationInsert" parameterType="java.util.Map">
+		INSERT INTO vacation(num, id, types, begin, end, day ,content , state ,applicationdate , fullhalfday)
 		VALUES (seq_vacation.nextval,#{id},
 		#{types},to_date(#{begin},'yyyy/mm/dd'),
 		to_date(#{end},'yyyy/mm/dd'),#{day},
 		#{content}, 2,to_date(#{applicationdate},'yyyy/mm/dd'), #{fullhalfday})
 	</insert>
 	<!-- 반차 -->
-	<insert id="leaveapplicationInsert2"
-		parameterType="java.util.Map">
-		INSERT INTO vacation(num, id, types, begin, end, day ,content , state ,
-		applicationdate , fullhalfday)
+	<insert id="leaveapplicationInsert2" parameterType="java.util.Map">
+		INSERT INTO vacation(num, id, types, begin, end, day ,content , state ,applicationdate , fullhalfday)
 		VALUES (seq_vacation.nextval,#{id},
 		#{types},to_date(#{begin},'yyyy/mm/dd'),
 		to_date(#{begin},'yyyy/mm/dd'),#{day},
@@ -1366,8 +1343,7 @@
 	</delete>
 
 	<!-- 이디 검색 휴가사용 현황 -->
-	<select id="vacationUHCnt" parameterType="java.util.Map"
-		resultType="int">
+	<select id="vacationUHCnt" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt
 		from member m, vacation v
 		where m.id = v.id
@@ -1452,8 +1428,7 @@
 	</select>
 
 	<!-- 휴가승인목록 확인 -->
-	<select id="vacationCnt2" parameterType="java.util.Map"
-		resultType="int">
+	<select id="vacationCnt2" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt
 		from member m, vacation v
 		where m.id = v.id
@@ -1462,11 +1437,11 @@
 		and v.state = 0
 		and v.fullhalfday = 1
 	</select>
-	<select id="vacationCnt3" parameterType="java.util.Map"
-		resultType="int">
+	<select id="vacationCnt3" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt
 		from member m, vacation v , attended a
 		where m.id = v.id
+		and v.id = a.id
 		and m.company = #{company}
 		and to_char(v.begin,'yyyymmdd') = #{date}
 		and to_char(a.day,'yyyymmdd') = #{date}
@@ -1507,6 +1482,7 @@
 		v.types, v.fullhalfday, v.applicationdate,v.begin, v.end
 		from member m, vacation v, groups g, grade r, attended a
 		where m.id = v.id
+		and v.id = a.id
 		and m.rank = r.rank
 		and v.begin = a.day
 		and m.depart = g.groupid
@@ -1523,6 +1499,7 @@
 		v.types, v.fullhalfday, v.applicationdate,v.begin, v.end
 		from member m, vacation v,companies c, grade r, attended a
 		where m.id = v.id
+		and v.id = a.id
 		and m.rank = r.rank
 		and v.begin = a.day
 		and m.company = c.company
@@ -1537,14 +1514,28 @@
 
 
 
+<!-- ===================내정보 가져오시========================= -->
+<!-- 내정보 거져오기 -->
+<select id="myinfo" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
+	select * from member where id = #{id} and company = #{company} and del = 1
+</select>
+<!-- 회훤 탈퇴 처리 del = 0으로 -->
+<update id="J_Withdrawal" parameterType="java.util.Map">
+	update member set del = 1 where id=#{id} and company=#{company}
+</update>
+<!-- 회원 탈퇴하면 로그인 안되게 -->
+<update id="updateUsers" parameterType="java.util.Map">
+	update users set enabled = 0 where username=#{id}
+</update>
 
 
-
-
-
-
-
-
+<!-- 회원 정보 수정 업데이트 -->
+<update id="myinfoModifyUpdate" parameterType="java.util.Map">
+	update member set pwd = #{pwd}, name = #{name}, email_in = #{email_in}, jumin1 = #{jumin1},
+	jumin2 = #{jumin2}, gender = #{gender}, frgn = #{frgn}, marry = #{marry}, tel = #{tel}, wdday = to_date(#{wdday}, 'yyyy/mm/dd'),
+	tel_hm = #{tel_hm}, address = #{address}, eng_name = #{eng_name}, nation = #{nation}, eng_address = #{eng_address}
+	where id = #{id} and company = #{company}
+</update>
 
 
 
