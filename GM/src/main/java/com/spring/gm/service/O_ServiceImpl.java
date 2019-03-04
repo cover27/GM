@@ -591,9 +591,18 @@ public class O_ServiceImpl implements O_Service{
 	@Override
 	public void updateTaskDeletePro(HttpServletRequest req, Model model) {
 		
-		int todonum = Integer.parseInt(req.getParameter("todonum"));
+		String[] todonums = req.getParameterValues("chkid");
 		
-		int deleteCnt = dao.deleteTaskPro(todonum);
+		int[] todonum = new int[todonums.length];
+		
+		int deleteCnt=1;
+		int deleteCnt2=0;
+		
+		for(int i=0; i<todonums.length; i++) {
+			todonum[i] = Integer.parseInt(todonums[i]);
+			deleteCnt2 = dao.deleteTaskPro(todonum[i]);
+			deleteCnt = (deleteCnt != 0 && deleteCnt2 != 0) ? 1 : 0;
+		}
 		
 		model.addAttribute("deleteCnt", deleteCnt);
 	}

@@ -49,14 +49,14 @@
 
 <!-- 일정 메인 화면 view -->
 <select id="calendarMainCnt" resultType="int" parameterType="String">
-	<![CDATA[
-		select count(*) from schedule where id=#{id} and begin > sysdate -1 and begin < sysdate + 1
-	]]> 
+	select count(*) from schedule where id=#{id} AND extract(year from begin) = extract(year from sysdate)
+	AND extract(month from begin) = extract(month from sysdate)
+	AND extract(day from begin) = extract(day from sysdate)
 </select>
 <select id="calendarMainView" resultType="com.spring.gm.vo.ScheduleVO" parameterType="String">
-	<![CDATA[
-		select * from schedule where id=#{id} and begin > sysdate -1 and begin < sysdate + 1
-	]]> 
+	select * from schedule where id=#{id} AND extract(year from begin) = extract(year from sysdate)
+	AND extract(month from begin) = extract(month from sysdate)
+	AND extract(day from begin) = extract(day from sysdate)
 </select>
 <!-- 일정 끝 -->
 
@@ -101,7 +101,7 @@
 <!-- 내가 한 업무요청 게시글 목록 조회  -->
 <select id="getOrderList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
 	<![CDATA[
-		select a.*, rownum r from
+		select a.*, rownum from
 			(select b.b_name, b.todonum, b.subject, b.begin, b.end, b.state from
 				(select * from b_manage where id=#{id} and del=0) b, member m
 					where m.id=b.id		
