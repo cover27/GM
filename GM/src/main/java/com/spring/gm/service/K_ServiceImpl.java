@@ -56,11 +56,11 @@ public class K_ServiceImpl implements K_Service{
 		 req.setAttribute("notice", notice);
 		 
 		 //메인 일정 호출
-		 int cnt = dao3.calendarMainCnt(id);
+		 int scheduleCnt = dao3.calendarMainCnt(id);
 		 List<ScheduleVO> svo = dao3.calendarMainView(id);
 		
 		 System.out.println("svo" + svo);
-		 model.addAttribute("cnt", cnt);
+		 model.addAttribute("scheduleCnt", scheduleCnt);
 		 model.addAttribute("svo", svo);
 	}
 

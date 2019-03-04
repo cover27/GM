@@ -31,10 +31,10 @@
 		</div>
 	</div>
 	<div class="today_todo">
-		<c:if test="${cnt == 0}">
+		<c:if test="${scheduleCnt == 0}">
 			<span>오늘의 일정을 등록해 보세요.</span>
 		</c:if>
-		<c:if test="${cnt > 0}">
+		<c:if test="${scheduleCnt > 0}">
 			<c:forEach var="svo2" items="${svo}">
 				<span>${svo2.begin}</span> | 
 				<span>${svo2.scheduleKind}</span> | 

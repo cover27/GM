@@ -711,9 +711,11 @@ public class O_ServiceImpl implements O_Service{
 		endPage = startPage + pageBlock - 1;	//3 = 1 + 3 - 1;
 		if(endPage > pageCount) endPage = pageCount;
 		System.out.println("endPage : " + endPage);
+		System.out.println("bmanageCnt : " + cnt);
 		System.out.println("======================");
 		
 		model.addAttribute("cnt", cnt);	//글 갯수
+		model.addAttribute("bmanageCnt", cnt);	//글 갯수
 		model.addAttribute("number", number);	//출력용 글번호
 		model.addAttribute("pageNum", pageNum);	//페이지 번호
 		
