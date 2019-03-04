@@ -1113,12 +1113,13 @@ public class J_ServiceImpl implements J_Service {
 		if (cnt > 0) {
 			for (int i = 1; i <= 12; i++) {
 				if (i == 1) {
-					year = 201812;
+					year = 201901;
 					System.out.println("year :" + year);
 					map.put("year", year);
 					List<join_mgsbcVO> dtos1 = dao.IdSearchList(map); // 부서로 검색
 					System.out.println("dtos1 :" + dtos1.toString());
 					List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
+					System.out.println("dtos2 :" + dtos2.toString());
 					if (dtos1.size() != 0) {
 						dtos1.get(0).setSalaryday(i);
 						allsalary = allsalary + dtos1.get(0).getSalary();
