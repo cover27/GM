@@ -69,7 +69,7 @@
 						</td>
 						
 						<td style="width:15%">
-							${dto.email_out}
+							${dto.email_in}
 						</td>
 						
 						<td style="width:20%">

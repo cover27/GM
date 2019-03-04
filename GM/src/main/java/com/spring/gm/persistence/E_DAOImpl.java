@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.gm.vo.AddressGroupVO;
+import com.spring.gm.vo.AddressMemVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
 
@@ -49,7 +49,7 @@ public class E_DAOImpl implements E_DAO {
 	}
 
 	@Override
-	public List<AddressGroupVO> getMyFavoriteMemberList(Map<String, Object> map) {
+	public List<AddressMemVO> getMyFavoriteMemberList(Map<String, Object> map) {
 		E_DAO dao = sqlSession.getMapper(E_DAO.class);
 		return dao.getMyFavoriteMemberList(map);
 	}
@@ -58,6 +58,12 @@ public class E_DAOImpl implements E_DAO {
 	public MemberVO content(String strId) {
 		E_DAO dao = sqlSession.getMapper(E_DAO.class);
 		return dao.content(strId);
+	}
+
+	@Override
+	public int addMember(AddressMemVO vo) {
+		E_DAO dao = sqlSession.getMapper(E_DAO.class);
+		return dao.addMember(vo);
 	}
 
 }

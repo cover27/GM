@@ -3,10 +3,10 @@ package com.spring.gm.persistence;
 import java.util.List;
 import java.util.Map;
 
-import com.spring.gm.vo.AddressGroupVO;
+
+import com.spring.gm.vo.AddressMemVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
-import com.spring.gm.vo.MessageVO;
 
 
 
@@ -28,8 +28,11 @@ public interface E_DAO {
 	public List<GroupsVO> getDepartMemberList(Map<String, Object> map);
 	
 	// 자주 연락하는 사람 목록
-	public List<AddressGroupVO> getMyFavoriteMemberList(Map<String, Object> map);
+	public List<AddressMemVO> getMyFavoriteMemberList(Map<String, Object> map);
 	
 	// 맴버 상세페이지
 	public MemberVO content(String strId);
+	
+	// 자주 연락하는 사람 추가
+	public int addMember(AddressMemVO vo);
 }
