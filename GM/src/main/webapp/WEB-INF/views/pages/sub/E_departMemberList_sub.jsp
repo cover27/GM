@@ -33,7 +33,7 @@ function allcheck(){
 					<td style="width:10%">국적</td>
 					<td style="width:10%">소속부서명</td>
 					<td style="width:15%">휴대전화번호</td>
-					<td style="width:15%">외부이메일</td>
+					<td style="width:15%">쪽지쓰기</td>
 					<td style="width:20%">등록일</td>
 				</tr>
 				
@@ -76,9 +76,9 @@ function allcheck(){
 						</td>
 						
 						<td style="width:15%">
-							${demem_dtos.email_out}
+							<input type="button" value="쪽지쓰기" onclick="write();">
 						</td>
-						
+						<%-- "window.location='<c:url value="/pages/D_writeForm?num=${num}&pageNum=${pageNum}" />'" --%>
 						<td style="width:20%">
 							<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${demem_dtos.enterday}"/>
 						</td>
