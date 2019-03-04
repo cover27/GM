@@ -9,8 +9,7 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
-<%@ include file="/WEB-INF/views/include/aside/memo.jsp"%> 
-<%@ include file="/WEB-INF/views/pages/sub/E_memoList_sub.jsp"%>
+<%@ include file="/WEB-INF/views/common/sub/selectCreateAccount_sub.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>

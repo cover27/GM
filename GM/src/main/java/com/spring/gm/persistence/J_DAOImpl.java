@@ -1171,6 +1171,41 @@ public class J_DAOImpl implements J_DAO {
 	
 	
 	
+	//=============================================내정보=-==================================
+	//내정보 가져오기
+	@Override
+	public ArrayList<MemberVO> myinfo(Map<String, Object> map) {
+		ArrayList<MemberVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.myinfo(map);
+		return dtos;
+	}
+	//회원 탈퇴
+	@Override
+	public int J_Withdrawal(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.J_Withdrawal", map);
+		return cnt;
+	}
+	//회원 탈퇴하면 로그인 안되게
+	@Override
+	public int updateUsers(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.updateUsers", map);
+		return cnt;
+	}
+	
+	//수정내용 업데이트 하기
+	@Override
+	public int myinfoModifyUpdate(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.myinfoModifyUpdate", map);
+		return cnt;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

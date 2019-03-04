@@ -8,9 +8,15 @@
 		</script>
 	</c:if>
 	
+	<c:if test="${newOld == 1}">
+		<script type="text/javascript">
+			alert('사업자님 환영합니다.');
+		</script>
+	</c:if>
+	
 	<c:if test="${insertCnt != 0}">
 		<script type="text/javascript">
-			alert("회원가입에 성공했습니다. 로그인을 진행하세요.!!");
+			alert("회원가입에 성공했습니다. 관리자의 승인이후 로그인이 가능합니다.");
 			window.location = "login";
 		</script>
 	</c:if>

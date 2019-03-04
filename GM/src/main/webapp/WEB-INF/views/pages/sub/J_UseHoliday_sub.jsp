@@ -161,8 +161,8 @@ function cancelapplication(num) {
 									<td>${dtos.rank_name}</td>
 									<td>${dtos.j_name}</td>
 									<td>
-									<c:if test="${dtos.types == 1}">연차</c:if>
-									<c:if test="${dtos.types == 2}">휴가</c:if>
+									<c:if test="${dtos.types == 1}">휴가</c:if>
+									<c:if test="${dtos.types == 2}">연차</c:if>
 									</td>
 									<td>
 									<c:if test="${dtos.fullhalfday == 1}">전차</c:if>
@@ -204,6 +204,8 @@ function cancelapplication(num) {
 					<thead>
 						<tr>
 							<th>휴가번호</th>
+							<th>사원번호</th>
+							<th>성명</th>
 							<th>신청일</th>
 							<th>휴가구분</th>
 							<th>전일/반일</th>
@@ -241,10 +243,12 @@ function cancelapplication(num) {
 							<c:forEach var="dto" items="${dtos2}">
 								<tr>
 								<td id="num" name="num">${dto.num}</td>
+								<td>${dto.id}</td>
+								<td>${dto.name}</td>
 								<td>${dto.applicationdate}</td>
 								<td>
-								<c:if test="${dto.types == 1}">연차</c:if>
-								<c:if test="${dto.types == 2}">휴가</c:if>
+								<c:if test="${dto.types == 1}">휴가</c:if>
+								<c:if test="${dto.types == 2}">연차</c:if>
 								</td>
 								<td>
 								<c:if test="${dto.fullhalfday == 1}">전일</c:if>
@@ -255,8 +259,10 @@ function cancelapplication(num) {
 								<c:if test="${dto.fullhalfday == 2}"><td>${dto.day/2}</td></c:if>
 								<c:if test="${dto.fullhalfday == 1}"><td>${dto.day}</td></c:if>
 								<td>
+								<c:if test="${dto.state == 0}">휴가처리중</c:if>
+								<c:if test="${dto.state == 1}">휴가처리</c:if>
 								<c:if test="${dto.state == 2}">승인대기</c:if>
-								<c:if test="${dto.state == 3}">승인취소</c:if>
+								<c:if test="${dto.state == 3}">승인거절</c:if>
 								</td>
 								<td>${dto.content}</td>
 								<td><input type="button" value="신청취소" onclick="cancelapplication('${dto.num}')"></td>

@@ -124,7 +124,7 @@
 					<!-- 게시글이 없으면 -->
 					<c:if test="${cnt == 0}">
 						<tr>
-							<td colspan="7" align="center">게시글이 없습니다. 글을 작성해주세여.</td>
+							<td colspan="7" align="center">소속인원이 없습니다.</td>
 						</tr>
 					</c:if>
 				</table>

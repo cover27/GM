@@ -12,6 +12,6 @@
 <%@ include file="/WEB-INF/views/include/aside/work_manage.jsp"%>
 <%@ include file="/WEB-INF/views/pages/sub/J_MyInfo_sub.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%> --%>
-<%@ include file="/WEB-INF/views/pages/sub/J_MyInfo_sub.jsp"%>
+<%@ include file="/WEB-INF/views/pages/sub/J_ModifyInfo_sub.jsp"%>
 </body>
 </html>

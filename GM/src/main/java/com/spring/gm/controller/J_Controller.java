@@ -678,7 +678,7 @@ public class J_Controller {
 			logger.info("URL : cancelapplication");
 			service.companyName(req, model);
 			service.cancelapplication(req, model);
-			return "pages/J_UseHoliday";
+			return "pages/J_ApplyHoliday";
 		}
 		
 		
@@ -687,9 +687,29 @@ public class J_Controller {
 		@RequestMapping("/pages/J_MyInfo")
 		public String J_Myinfo(HttpServletRequest req, Model model) {
 			logger.info("URL : J_Myinfo");
-			return "pages/J_Myinfo";
+			service.myinfo(req, model);
+			return "pages/J_MyInfo";
 		}
-		
-		
-		
+		// 회원탈퇴
+		@RequestMapping("/pages/J_Withdrawal")
+		public String J_Withdrawal(HttpServletRequest req, Model model) {
+			logger.info("URL : J_Withdrawal");
+			service.J_Withdrawal(req, model);
+			
+			return "common/login";
+		}
+		//수정할 창 보여주기
+		@RequestMapping("/pages/J_ModifyInfo")
+		public String J_ModifyInfo(HttpServletRequest req, Model model) {
+			logger.info("URL : J_ModifyInfo");
+			service.myinfo(req, model);
+			return "pages/J_ModifyInfo";
+		}
+		//수정내용 업데이트 하기
+		@RequestMapping("/pages/myinfoModifyUpdate")
+		public String myinfoModifyUpdate(HttpServletRequest req, Model model) {
+			logger.info("URL : myinfoModifyUpdate");
+			service.myinfoModifyUpdate(req, model);
+			return "pages/J_MyInfo";
+		}
 }

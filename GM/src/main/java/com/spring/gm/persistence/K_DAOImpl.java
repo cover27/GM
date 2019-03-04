@@ -75,7 +75,7 @@ public class K_DAOImpl implements K_DAO{
 	}
 
 	@Override
-	public int updateAuthorities(Map<String, String> map) {
+	public int updateAuthorities(Map<String, Object> map) {
 		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateAuthorities", map);
 	}
 
@@ -483,5 +483,54 @@ public class K_DAOImpl implements K_DAO{
 	public BoardListVO getMainNotice() {
 		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getMainNotice");
 	}
+
+	@Override
+	public int insertCompany(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertCompany", map);
+	}
+
+	@Override
+	public int getnewCompany() {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getnewCompany");
+	}
+
+	@Override
+	public int createfav(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.createfav", map);
+	}
+
+	@Override
+	public int favInfo(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.favInfo", map);
+	}
+
+	@Override
+	public int getCompanyNum(String id) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getCompanyNum", id);
+	}
+
+	@Override
+	public int insertAttendedSet(int company) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertAttendedSet", company);
+	}
+
+	@Override
+	public int insertBasicBoard(int company) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertBasicBoard", company);
+	}
+
+	@Override
+	public int insertBasicDayoff(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertBasicDayoff", map);
+	}
+
+	@Override
+	public int insertBasicGrade(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertBasicGrade", map);
+	}
 	
+	@Override
+	public int insertBasicGrade2(Map<String, Object> map) {
+		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertBasicGrade2", map);
+	}
 }

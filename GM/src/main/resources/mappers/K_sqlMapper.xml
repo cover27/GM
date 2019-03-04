@@ -11,7 +11,7 @@
 	</select>
 
 	<select id="findCompany" resultType="com.spring.gm.vo.CompaniesVO">
-		SELECT * FROM companies
+		SELECT * FROM companies WHERE del = 0
 	</select>
 	
 	<select id="searchCompany" parameterType="String" resultType="com.spring.gm.vo.CompaniesVO">
@@ -119,7 +119,7 @@
 	
 	<update id="updateAdminMemberInfo" parameterType="java.util.Map">
 		UPDATE member SET depart = #{depart}, rank = #{rank}, wrkdvd=#{wrkdvd},
-		enterday = #{enterday} WHERE id = #{id}
+		year=extract(year from sysdate)-extract(year from #{enterday}), enterday = #{enterday} WHERE id = #{id}
 	</update>
 	
 	<update id="retireMember" parameterType="String">
@@ -144,7 +144,8 @@
               FROM member m ,companies c, grade r
               WHERE m.depart = c.company and m.rank = r.rank 
               and m.del = #{retire}
-              and m.sys_rank != 0)
+              and m.sys_rank != 0
+              and m.company = #{company})
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
 	]]>
 	</select>
@@ -155,7 +156,8 @@
               FROM member m ,groups g, grade r
               WHERE m.depart = g.groupid and m.rank = r.rank 
               and m.del = #{retire}
-              and m.sys_rank != 0)
+              and m.sys_rank != 0
+              and m.company = #{company})
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
 	]]>
 	</select>
@@ -443,4 +445,48 @@
 		select * from boardList 
 			WHERE boardnum = (SELECT MAX(boardnum) FROM boardlist WHERE del = 0 AND num=10)
 	</select>
+	
+	<insert id="insertCompany" parameterType="java.util.Map">
+		INSERT INTO companies VALUES(seq_companies.nextval, #{c_name}, #{c_address}, #{c_number}, 2)
+	</insert>
+	
+	<select id="getnewCompany" resultType="int">
+		SELECT seq_companies.currval FROM dual
+	</select>
+	
+	<insert id="createfav" parameterType="java.util.Map">
+		INSERT INTO groups VALUES(seq_groups.nextval, #{company}, #{departName}, 3, 0)
+	</insert>
+	
+	<insert id="favInfo" parameterType="java.util.Map">
+		INSERT INTO groupinfo values(seq_groups.currval, #{departName}, 1, 0)
+	</insert>
+	
+	<select id="getCompanyNum" resultType="int">
+		SELECT company FROM member WHERE id=#{id}
+	</select>
+	
+	<insert id="insertAttendedSet" parameterType="int">
+		INSERT INTO attendedset VALUES(seq_attendedset.nextval, #{company},
+			32400, 64800, 43200, 46800, 64800, 79200, 79200, 21600, 10000, 15000 )
+	</insert>
+	
+	<insert id="insertBasicBoard" parameterType="int">
+		INSERT INTO boards VALUES(boards_seq.nextval, #{company},
+			'사내게시판', 0, 0 )
+	</insert>
+	
+	<insert id="insertBasicDayoff" parameterType="java.util.Map">
+		INSERT INTO dayoff
+			VALUES(seq_dayoff.nextval, #{company}, #{year}, #{day}, #{types})
+	</insert>
+	
+	<insert id="insertBasicGrade" parameterType="java.util.Map">
+		INSERT INTO grade VALUES (seq_rank.nextval, #{r_name}, #{company}, #{ranking})
+	</insert>
+	
+	<insert id="insertBasicGrade2" parameterType="java.util.Map">
+		INSERT INTO grade VALUES (#{company}, #{r_name}, #{company}, #{ranking})
+	</insert>
+	
 </mapper>

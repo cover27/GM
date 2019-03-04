@@ -38,7 +38,7 @@ public interface K_DAO {
 	
 	public int updateSysrank(Map<String, Object> map);
 	
-	public int updateAuthorities(Map<String, String> map);
+	public int updateAuthorities(Map<String, Object> map);
 	
 	public List<MemberVO> getMembers(int company);
 	
@@ -175,4 +175,24 @@ public interface K_DAO {
 	public int sendMessage_pro(Map<String, Object> map);
 	
 	public BoardListVO getMainNotice();
+	
+	public int insertCompany(Map<String, Object> map);
+	
+	public int getnewCompany();
+	
+	public int createfav(Map<String, Object> map);
+	
+	public int favInfo(Map<String, Object> map);
+	
+	public int getCompanyNum(String id);
+	
+	public int insertAttendedSet(int company);
+	
+	public int insertBasicBoard(int company);
+	
+	public int insertBasicDayoff(Map<String, Object> map);
+	
+	public int insertBasicGrade(Map<String, Object> map);
+	
+	public int insertBasicGrade2(Map<String, Object> map);
 }

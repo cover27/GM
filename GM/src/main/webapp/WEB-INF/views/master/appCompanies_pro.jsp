@@ -4,7 +4,7 @@
 <c:if test="${state == 1}"> <!-- insert 실패 -->
 	<script type="text/javascript">
 		alert("처리되었습니다.");
-		window.location="<c:url value='/admin/appCompanies'/>";
+		window.location="<c:url value='/master/appCompanies'/>";
 	</script>
 </c:if>
 
