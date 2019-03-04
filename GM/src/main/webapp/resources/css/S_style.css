@@ -58,6 +58,11 @@
 	border-right: none;
 }
 
+.content .boldChild td {
+	font-weight: bold;
+	background: #fcfcfc;
+}
+
 .content td {
 	padding: 5px 0;
 	text-align: center;
