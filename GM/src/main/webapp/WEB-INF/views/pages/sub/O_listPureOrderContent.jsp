@@ -11,15 +11,33 @@ function selectAllTodo(){
 }
 function deleteT(){
 	var delT = confirm("삭제하시겠습니까?");
-	if(delT){
-		var deleT = document.getElementsByName('chkid');
-		for(var i=0; i<deleT.length; i++){
-			if(deleT[i].checked){
-				alert(deleT[i].value);
-				window.location="W_listDeletePro?todonum="+deleT[i].value;
+	if(!document.getElementsByName('chkid')){
+		alert("하나이상 선택해야 합니다.");
+		return false;
+	}else{
+		if(delT){
+			var deleT = document.getElementsByName('chkid');
+			var deleArray=new Array();
+			var count = 0;
+			for(var i=0; i<deleT.length; i++){
+				if(deleT[i].checked){
+					alert(deleT[i].value);
+					deleArray[count] = deleT[i].value;
+					count += 1;
+				}
 			}
+			window.location="W_listDeletePro?todonum="+deleArray;
 		}
 	}
+}
+
+function setAction(num){
+	if(num == 0){
+		document.deleteTask.action="<c:url value='/pages/W_searchTodoTool' />";
+	} else{
+		document.deleteTask.action="<c:url value='/pages/W_listDeletePro' />";
+	}
+	document.deleteTask.submit();
 }
 </script>
 
@@ -31,7 +49,7 @@ function deleteT(){
 		
 		<!-- 내가 한 업무요청 상단  -->
 		<div class="content">
-			<form action="<c:url value='/pages/W_searchTodoTool'/>" name="deleteTask" method="post">
+			<form name="deleteTask" method="post">
 				<input type="hidden" name="sel_Payment" value="1">
 				<div class="search-wrap">
 					<div class="form-group">
@@ -53,7 +71,7 @@ function deleteT(){
 							<input id="end" type="date" title="날짜끝" name="searchEndDate" value="" >
 						</span>
 		                <span>
-			               <input type="submit" value="검색">
+			               <input type="button" value="검색" onclick="setAction(0);">
 		                </span>
 					</div>
 				</div>
@@ -155,7 +173,7 @@ function deleteT(){
 	            </div>	
 		       	<div class="btnset">
 	                <button type="button" class="btn btn-color5 br" onclick="window.location='<c:url value='/pages/W_createSelfTaskView'/>'">업무 등록</button>
-	                <button type="button" class="btn btn-color7 br" onclick="deleteT();">삭제</button>
+	                <button type="button" class="btn btn-color7 br" onclick="setAction(1);">삭제</button>
 	            </div>
 	       	</form>
        	</div>

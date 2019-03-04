@@ -5,17 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>GM</title>
-<style>
-	body {
-		background: #eee !important;
-	}
-</style>
+<title>${title}</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
-<%@ include file="/WEB-INF/views/include/aside_main.jsp"%>
-<%@ include file="/WEB-INF/views/include/content_main.jsp"%>
+<%@ include file="/WEB-INF/views/include/aside/organization.jsp"%> 
+<%@ include file="/WEB-INF/views/pages/sub/E_orgMyFavoritMemList_sub.jsp"%>
 <%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>
 </html>

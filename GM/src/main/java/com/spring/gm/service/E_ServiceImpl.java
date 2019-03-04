@@ -26,7 +26,7 @@ public class E_ServiceImpl implements E_Service {
 	@Override
 	public void myCompanyMember(HttpServletRequest req, Model model) {
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
-		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 18; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -198,6 +198,9 @@ public class E_ServiceImpl implements E_Service {
 		int pageCount = 0;		// 페이지 갯수
 		int startPage = 0;		// 시작 페이지
 		int endPage = 0;		// 마지막 페이지
+		int cnt = 0;
+		
+		cnt = dao.getMyFavoriteMemberCnt(strId);
 		
 		pageNum = req.getParameter("pageNum");
 		
@@ -208,17 +211,17 @@ public class E_ServiceImpl implements E_Service {
 		currentPage = Integer.parseInt(pageNum);
 		System.out.println("currentPage : " + currentPage);
 		
-		pageCount = (memcnt / pageSize) + (memcnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
 		
 		start = (currentPage - 1) * pageSize + 1; 
 		
 		end = start + pageSize - 1;
 		
-		if(end > memcnt) end = memcnt;
+		if(end > cnt) end = cnt;
 		
-		number = memcnt - (currentPage - 1) * pageSize;  // 출력용 글번호
+		number = cnt - (currentPage - 1) * pageSize;  // 출력용 글번호
 
-		if(memcnt > 0) {
+		if(cnt > 0) {
 			//게시판 목록 조회
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
@@ -226,9 +229,9 @@ public class E_ServiceImpl implements E_Service {
 			map.put("strId", strId);
 
 			
-			List<AddressMemVO> dtos = dao.getMyFavoriteMemberList(map);
-			
-			model.addAttribute("demem_dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+			List<AddressMemVO> mf_dtos = dao.getMyFavoriteMemberList(map);
+			System.out.println("dddd"+mf_dtos);
+			model.addAttribute("mf_dtos", mf_dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
 
 		}
 		
@@ -240,11 +243,11 @@ public class E_ServiceImpl implements E_Service {
 		endPage = startPage + pageBlock - 1; 
 		if(endPage > pageCount) endPage = pageCount;
 		
-		model.addAttribute("memcnt", memcnt);  // 글갯수
+		model.addAttribute("cnt", cnt); // 출력용 글번호
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum);  // 페이지번호
 		
-		if(memcnt > 0) {
+		if(cnt > 0) {
 			model.addAttribute("startPage", startPage);     // 시작 페이지
 			model.addAttribute("endPage", endPage);         // 마지막 페이지
 			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
@@ -273,14 +276,62 @@ public class E_ServiceImpl implements E_Service {
 
 	@Override
 	public void addMember(HttpServletRequest req, Model model) {
-		String strId = req.getParameter("id");
+		String id = req.getParameter("id");
+		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		AddressMemVO vo = new AddressMemVO();
 		
-		vo.setId(strId);
+		vo.setId(id);
 		vo.setDel(0);
+		vo.setStrId(strId);
 
 		int addCnt = dao.addMember(vo);
 		model.addAttribute("addCnt", addCnt);
 		
 	}
+
+	@Override
+	public void deleteMember(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		int deleteCnt = 0;
+		
+		AddressMemVO vo = new AddressMemVO();
+		vo.setId(id);
+		vo.setStrId(strId);
+		
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int number = Integer.parseInt(req.getParameter("number"));
+		
+		deleteCnt = dao.deleteMember(vo);
+		
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("number", number);
+		model.addAttribute("deleteCnt", deleteCnt);
+		model.addAttribute("id", id);
+		model.addAttribute("strId", strId);
+		
+	}
+
+	@Override
+	public void addMembers(HttpServletRequest req, Model model) {
+		int addCnt = 0;
+		int del = 0;
+		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		String [] idArr = req.getParameterValues("checkRow");
+		
+		if(idArr != null && idArr.length > 0) {
+			for(int i=0; i<idArr.length; i++) {
+				AddressMemVO vo = new AddressMemVO();
+				vo.setId(idArr[i]);
+				vo.setStrId(strId);
+				addCnt = dao.addMembers(vo);
+			}
+		}
+		
+		model.addAttribute("addCnt", addCnt);
+		model.addAttribute("strId",strId);
+		model.addAttribute("del", del);
+		//model.addAttribute("num", num);		
+	}
+		
 }

@@ -12,7 +12,7 @@
 	
 	<select id="getMessageArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MessageVO">
 		<![CDATA[
-			SELECT * FROM(SELECT num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate, del, readCnt, rownum rNum FROM (SELECT * FROM message WHERE receiver = #{receiver} AND del = 0 AND message_num = 1 ORDER BY message_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate, del, readCnt, rownum rNum FROM (SELECT * FROM message WHERE receiver = #{receiver} AND del = 0 AND message_num = 1 ORDER BY receiveDate DESC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>	
 	
@@ -37,7 +37,7 @@
 
 	<select id="sendMessageArticleList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MessageVO">
 		<![CDATA[
-			SELECT * FROM(SELECT num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate, del ,rownum rNum FROM (SELECT * FROM message WHERE sender = #{sendId} AND del = 0 AND message_num = 2 ORDER BY message_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate, del ,rownum rNum FROM (SELECT * FROM message WHERE sender = #{sendId} AND del = 0 AND message_num = 2 ORDER BY sentDate DESC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>
 	
@@ -84,5 +84,9 @@
 	<update id="garbageContentDelete" parameterType="com.spring.gm.vo.MessageVO">
 		UPDATE message SET del = 1 WHERE num = #{num}
 	</update>
+	
+	<select id="notReadCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM message WHERE receiver=#{strId} AND del=0 AND message_num=1 AND readCnt = 0
+	</select>
 
 </mapper>

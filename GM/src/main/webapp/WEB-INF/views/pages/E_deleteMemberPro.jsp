@@ -4,18 +4,18 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <body>
-	<h3 align="center"> 자주 연락하는 사람 추가 처리</h3>
-	<c:if test="${addCnt == 0}">
+	<h3 align="center"> 자주 연락하는 맴버 삭제 처리</h3>
+	<c:if test="${deleteCnt == 0}">
 		<script type="text/javascript">
-		alert("자주 연락하는 목록에 실패했습니다.");
+		alert("맴버삭제에 실패했습니다.");
 		window.history.back();
 		</script>
 	</c:if>
 	
-	<c:if test="${addCnt != 0}">
+	<c:if test="${deleteCnt != 0}">
 		<script type="text/javascript">
-			alert("자주 연락하는 목록에 추가되었습니다.");
-			window.location="E_orgnaizationMemberList";
+			alert("맴버가 삭제되었습니다.");
+			window.location="E_orgMyFavoritMemList?pageNum=${pageNum}&num=${num}";
 		</script>
 	</c:if>
 </body>

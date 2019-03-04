@@ -66,5 +66,7 @@ public interface S_DAO {
 	public int sendDelMessage(int num);
 	
 	public int garbageContentDelete(int num);
+	
+	public int notReadCnt(String strId);
 
 }

@@ -341,6 +341,7 @@ public class P_ServiceImpl implements P_Service{
 		System.out.println("================");
 		
 		model.addAttribute("cnt", cnt);  // 글갯수
+		model.addAttribute("paymentCnt", cnt);  // 글갯수
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum);  // 페이지번호
 		

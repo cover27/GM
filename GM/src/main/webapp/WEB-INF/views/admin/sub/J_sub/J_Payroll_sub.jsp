@@ -47,9 +47,9 @@
 			</tr>
 			<tr>
 					<td colspan="7"></td>
-					<td>${dto.salary}</td>
 					<td>0</td>
-					<td></td>
+					<td>0</td>
+					<td>0</td>
 				</tr>
 		</c:if>
 	</table>

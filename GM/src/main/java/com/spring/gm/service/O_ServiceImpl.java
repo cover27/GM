@@ -20,6 +20,7 @@ import com.spring.gm.vo.B_ManageInfoVO;
 import com.spring.gm.vo.B_ManageVO;
 import com.spring.gm.vo.MemberVO;
 import com.spring.gm.vo.ScheduleVO;
+import com.spring.gm.vo.TodoListVO;
 
 @Service
 public class O_ServiceImpl implements O_Service{
@@ -591,9 +592,18 @@ public class O_ServiceImpl implements O_Service{
 	@Override
 	public void updateTaskDeletePro(HttpServletRequest req, Model model) {
 		
-		int todonum = Integer.parseInt(req.getParameter("todonum"));
+		String[] todonums = req.getParameterValues("chkid");
 		
-		int deleteCnt = dao.deleteTaskPro(todonum);
+		int[] todonum = new int[todonums.length];
+		
+		int deleteCnt=1;
+		int deleteCnt2=0;
+		
+		for(int i=0; i<todonums.length; i++) {
+			todonum[i] = Integer.parseInt(todonums[i]);
+			deleteCnt2 = dao.deleteTaskPro(todonum[i]);
+			deleteCnt = (deleteCnt != 0 && deleteCnt2 != 0) ? 1 : 0;
+		}
 		
 		model.addAttribute("deleteCnt", deleteCnt);
 	}
@@ -701,9 +711,11 @@ public class O_ServiceImpl implements O_Service{
 		endPage = startPage + pageBlock - 1;	//3 = 1 + 3 - 1;
 		if(endPage > pageCount) endPage = pageCount;
 		System.out.println("endPage : " + endPage);
+		System.out.println("bmanageCnt : " + cnt);
 		System.out.println("======================");
 		
 		model.addAttribute("cnt", cnt);	//글 갯수
+		model.addAttribute("bmanageCnt", cnt);	//글 갯수
 		model.addAttribute("number", number);	//출력용 글번호
 		model.addAttribute("pageNum", pageNum);	//페이지 번호
 		
@@ -1029,6 +1041,35 @@ public class O_ServiceImpl implements O_Service{
 		map.put("searchEndDate", end);
 		
 		req.getSession().setAttribute("searchMap", map);
+	}
+
+	//TO-DO - 나의 할일 등록
+	@Override
+	public void insertTodoPro(HttpServletRequest req, Model model) {
+		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		TodoListVO vo = new TodoListVO();
+		vo.setId(id);
+		vo.setContent(req.getParameter("content"));
+		
+		int insertCnt = dao.insertTodoPro(vo);
+		System.out.println("insertCnt : " + insertCnt);
+		
+		model.addAttribute("insertCnt", insertCnt);
+		
+	}
+
+	//TO-DO - 나의할일 등록한 뒤나오는 화면
+	@Override
+	public void selectTodo(HttpServletRequest req, Model model) {
+		
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		
+		List<TodoListVO> dtos = dao.selectTodo(id);
+		System.out.println("확인확인"+dtos.toString());
+		
+		model.addAttribute("dtos", dtos);
 	}
 
 

@@ -92,6 +92,14 @@
 	padding: 30px 30px 10px 30px;
 }
 
+.content>h3	 {
+	padding-left: 15px;
+    color: #222;
+    font-weight: 600;
+    font-size: 14px;
+    background: url(../images/sub_tit.gif) no-repeat 0 50%;
+}
+
 .content .content_result h3 {
 	border-bottom: 1px solid #ddd;
 	padding-bottom: 10px;
@@ -147,7 +155,7 @@
 }
 
 .content .table_body {
-	height: 700px;
+	height: 680px;
 	overflow-y: auto;
 }
 
@@ -253,4 +261,13 @@
 
 .boardSettingSelect {
 	width: 80px !important;
+}
+
+.content .cnt {
+	padding: 3px 6px;
+    font-size: 0.8em;
+    background: #ff757f;
+    color: #fff;
+    border-radius: 5px;
+    margin: 0 5px;
 }

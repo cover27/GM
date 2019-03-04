@@ -21,7 +21,13 @@ public interface E_Service {
 	// 멤버 상세페이지
 	public void memberContents(HttpServletRequest req, Model model);
 	
-	// 자주 연락하는 사람 추가
+	// 자주 연락하는 사람 상세 페이지 추가
 	public void addMember(HttpServletRequest req, Model model);
+	
+	// 자주 연락하는 사람 삭제
+	public void deleteMember(HttpServletRequest req, Model model);
+	
+	// 자주 연락하는 사람 여러명 추가
+	public void addMembers(HttpServletRequest req, Model model);
 
 }

@@ -623,14 +623,14 @@
 		from member m,bonus_cut b
 		where m.id = b.id
 		and m.id= #{id} and
-		to_char(b.day,'yyyymm') = #{months}-1 and m.company = #{company} and
+		to_char(b.day,'yyyymm') = #{months} and m.company = #{company} and
 		state = '지급'
 	</select>
 	<select id="bonustbl2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgsbVO">
 		select * from bonus_cut b,member m
 		where m.id = b.id
-		and m.id= #{id} and to_char(b.day,'yyyymm') = #{months}-1
+		and m.id= #{id} and to_char(b.day,'yyyymm') = #{months}
 		and m.company = #{company} and state = '지급'
 	</select>
 
@@ -739,31 +739,25 @@
 
 	<!-- =============================급여 대장================================== -->
 	<!-- 아이디 검색 이번년도 급여대장정보 가져오기 아이디 검색. -->
-	<select id="IdSearchCnt" parameterType="java.util.Map"
-		resultType="int">
+	<select id="IdSearchCnt" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt
-		from member m, groups g, salary s, companies c,
-		bonus_cut b
-		where m.depart = g.groupid and m.id = s.id and m.company =
-		c.company and m.id = b.id
-		and m.company = #{company} and
-		to_char(s.day,'yyyy')= TO_CHAR(sysdate, 'YYYY') and m.id = #{id}
-		and
-		to_char(b.day,'yyyy')= TO_CHAR(sysdate, 'YYYY') and s.state = '지급' and
-		b.state = '지급'
+		from member m, salary s
+		where m.id = s.id
+		and m.company = #{company}
+		and to_char(s.day,'yyyy')= TO_CHAR(sysdate, 'YYYY') 
+		and m.id = #{id}
+        and s.state = '지급'
 	</select>
 	<select id="IdSearchList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgsbcVO">
 		select s.day, m.id, m.name, g.g_name, round(m.salary/12,-2) as salary,
-		c.c_name, sum(b.cost) as bonussalary, s.salary as sumsalarybonus,
-		m.year
+		c.c_name, sum(b.cost) as bonussalary, s.salary as sumsalarybonus, m.year
 		from member m, groups g, salary s, companies c, bonus_cut b
 		where m.depart = g.groupid and m.id = s.id and m.company = c.company
 		and m.id = b.id
 		and m.depart != #{company} and m.company = #{company}
 		and to_char(s.day,'yyyymm')= #{year} and m.id = #{id}
-		and
-		to_char(b.day,'yyyymm')= #{year} and s.state = '지급' and b.state = '지급'
+		and to_char(b.day,'yyyymm')= #{year} and s.state = '지급' and b.state = '지급'
 		group by s.day, m.id, m.name, g.g_name, round(m.salary/12,-2),
 		c.c_name , s.salary, m.year
 	</select>
@@ -771,14 +765,12 @@
 		resultType="com.spring.gm.vo.join_mgsbcVO">
 		select s.day, m.id, m.name, c.c_name, round(m.salary/12,-2) as salary,
 		sum(b.cost) as bonussalary, s.salary as sumsalarybonus, m.year
-		from
-		member m, companies c, salary s, bonus_cut b
+		from member m, companies c, salary s, bonus_cut b
 		where m.depart = c.company
 		and m.id = s.id and m.id = b.id
 		and m.depart = #{company} and m.company
 		= #{company} and to_char(s.day,'yyyymm')= #{year} and m.id = #{id}
-		and
-		to_char(b.day,'yyyymm')= #{year} and s.state = '지급' and b.state = '지급'
+		and to_char(b.day,'yyyymm')= #{year} and s.state = '지급' and b.state = '지급'
 		group by s.day, m.id, m.name, c.c_name, round(m.salary/12,-2),
 		s.salary, m.year
 	</select>
@@ -1260,6 +1252,7 @@
 		and #{companyyear} = d.year
 		and m.id = #{id}
 		and m.company = #{company}
+		and d.types = 1
 	</select>
 
 	<!-- 휴가 -->
@@ -1281,6 +1274,7 @@
 		and m.company = d.company
 		and m.id = #{id}
 		and m.company = #{company}
+		and d.types = 2
 	</select>
 
 	<!-- 휴가신청내역 가져오기 -->
@@ -1517,7 +1511,7 @@
 <!-- ===================내정보 가져오시========================= -->
 <!-- 내정보 거져오기 -->
 <select id="myinfo" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
-	select * from member where id = #{id} and company = #{company} and del = 1
+	select * from member where id = #{id} and company = #{company} and del = 0
 </select>
 <!-- 회훤 탈퇴 처리 del = 0으로 -->
 <update id="J_Withdrawal" parameterType="java.util.Map">
