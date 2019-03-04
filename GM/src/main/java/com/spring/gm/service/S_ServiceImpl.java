@@ -512,7 +512,7 @@ public class S_ServiceImpl implements S_Service {
 		int cnt = dao.notReadCnt(strId);
 		
 		
-		model.addAttribute("messsageCnt", cnt);
+		model.addAttribute("messageCnt", cnt);
 	}
 	
 	
