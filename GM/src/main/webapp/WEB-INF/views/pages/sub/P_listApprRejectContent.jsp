@@ -97,8 +97,8 @@
 			<div class="paging">
 				<c:if test="${cnt > 0}">
 				    <c:if test="${startPage > pageBlock}">
-				        <a href="<c:url value='/pages/P_listApprTodoView'/>">[◀◀]</a>
-				        <a href="<c:url value='/pages/P_listApprTodoView?num=${num}&pageNum=${startPage - pageBlock}'/>">[◀]</a>
+				        <a href="<c:url value='/pages/P_listApprTodoView'/>"><i class="fas fa-angle-double-left"></i></a>
+				        <a href="<c:url value='/pages/P_listApprTodoView?num=${num}&pageNum=${startPage - pageBlock}'/>"><i class="fas fa-angle-left"></i></a>
 				    </c:if>
 				
 				    <c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -111,8 +111,8 @@
 				    </c:forEach>
 				
 				    <c:if test="${pageCount > endPage}">
-				        <a href="<c:url value='/pages/P_listApprTodoView?num=${num}&pageNum=${startPage + pageBlock}'/>">[▶]</a>
-				        <a href="<c:url value='/pages/P_listApprTodoView?num=${num}&pageNum=${pageCount}'/>">[▶▶]</a>
+				        <a href="<c:url value='/pages/P_listApprTodoView?num=${num}&pageNum=${startPage + pageBlock}'/>"><i class="fas fa-angle-right"></i></a>
+				        <a href="<c:url value='/pages/P_listApprTodoView?num=${num}&pageNum=${pageCount}'/>"><i class="fas fa-angle-double-right"></i></a>
 				    </c:if>
 				</c:if>
             </div>	

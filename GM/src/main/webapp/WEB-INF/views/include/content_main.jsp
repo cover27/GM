@@ -75,7 +75,7 @@
                         		</div>
                         	</div>
                         </li>
-                        <li onclick="window.location='<c:url value="/pages/E_organizationList" />'" class="organization_bg">
+                        <li onclick="window.location='<c:url value="/pages/E_orgnaizationMemberList" />'" class="organization_bg">
                         	<div class="menu_wrap organization_wrap">
 	                        	<div>
 		                        	<div class="organization"></div>

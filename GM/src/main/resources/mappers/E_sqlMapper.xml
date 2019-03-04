@@ -6,46 +6,57 @@
     
     
 <mapper namespace="com.spring.gm.persistence.E_DAO" >
-
-	<!-- 조직도 - 자신과 동일한 회사에 소속된 사원 수 구하기 -->
-	<select id="getMyCompanyMemCnt" resultType="int">
-		SELECT count(*) FROM member where company = #{company} and del = 0
-	</select>
-
-	<!-- 조직도 - company 컬럼과 입력받은 company값 비교( company = #{company} )해서 가져오기용 -->
-	<select id="getMyCompanyInfo" parameterType="int" resultType="com.spring.gm.vo.MemberVO">
-		SELECT * FROM member WHERE company = #{company} and del = 0
-	</select>
-
-	<!-- 조직도 - group_rank = 1  : 1. 그룹정보,    del : 삭제판정값(1 : 안보이게) -->
-	<select id="getMyCompanyGroupCnt" parameterType="int" resultType="com.spring.gm.vo.GroupsVO">
-		SELECT * FROM groups WHERE company = #{company} AND group_rank = 1 AND del = 0
+	
+	<!-- 전체 사원 명수 구하기 -->
+	<select id="getCompanyMemberCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM member WHERE company=#{company} and del = 0
 	</select>
 	
-	<select id="getMyCompanyInfo2" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
-		SELECT * FROM member WHERE company = #{company} AND depart = #{depart} and del = 0
-	</select>
-
-	<select id="findCompanyName" parameterType="int" resultType="String">
-		SELECT c_name FROM companies WHERE company = #{company} and del = 0
-	</select>
-	
-	
-	
-	
-	<!-- 메모 - 로그인 계정의 메모 폴더 갯수 구하기 -->
-	<select id="getMemoBoardsCnt" resultType="int">
-		SELECT count(*) FROM memo WHERE id = #{id} and del = 0
-	</select>
-	 
-	<!-- 메모 - 내 모든 메모 게시판 리스트 -->
-	<select id="getMemoBoardsList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemoVO">
+	<!-- 사원 목록 -->
+	<select id="getCompanyMemberList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
 		<![CDATA[
-			SELECT * FROM(SELECT num, id, name, m_rank, del, rownum rNum FROM (SELECT * FROM memo WHERE id = #{id} AND del = #{del} ORDER BY num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT id, pwd, name, eng_name, jumin1, jumin2, gender, marry, wdday, frgn, nation, tel, tel_hm, email_in, email_out, address, eng_address, depart, rank, salary, contract, wrkdvd, position, enterday, retireday, year, etc, sys_rank, del, account_number, company, rownum rNum FROM (SELECT * FROM member WHERE company = #{company} AND del = 0 ORDER BY name ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>
-
-
-
-
+	
+	<!-- 부서 갯수 -->
+	<select id="getCompanyCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM groups WHERE company=#{company} and del = 0 and group_rank = 1
+	</select>
+	
+	<!-- 부서목록 -->
+	<select id="getCompanyList" parameterType="java.util.Map" resultType="com.spring.gm.vo.GroupsVO">
+		<![CDATA[
+			SELECT * FROM(SELECT groupid, company, g_name, group_rank, del, rownum rNum FROM (SELECT * FROM groups WHERE company = #{company} AND del = 0 and group_rank =1 ORDER BY groupid ASC))
+		]]>
+	</select>
+	
+	<!-- 소속 부서 사원 명수 구하기 -->
+	<select id="getDepartMemberCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM member WHERE depart=#{depart} and del = 0
+	</select>
+	
+	<!-- 소속 부서 사원 목록 -->
+	<select id="getDepartMemberList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
+		<![CDATA[
+			SELECT * FROM(SELECT id, pwd, name, eng_name, jumin1, jumin2, gender, marry, wdday, frgn, nation, tel, tel_hm, email_in, email_out, address, eng_address, depart, rank, salary, contract, wrkdvd, position, enterday, retireday, year, etc, sys_rank, del, account_number, company, rownum rNum FROM (SELECT * FROM member WHERE depart = #{depart} AND del = 0 ORDER BY name ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+		]]>
+	</select>
+	
+	<!-- 자주 연락하는 사람 목록 -->
+	<select id="getMyFavoriteMemberList" parameterType="java.util.Map" resultType="com.spring.gm.vo.AddressMemVO">
+		<![CDATA[
+			SELECT * FROM(SELECT id, name, company, phone, email, del, rownum rNum FROM (SELECT * FROM addressgroup WHERE id = #{id} AND del = 0 ORDER BY id ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+		]]>
+	</select>
+	
+	<select id="content" parameterType="String" resultType="com.spring.gm.vo.MemberVO">
+		SELECT * FROM member WHERE id = #{strId}
+	</select>
+	
+	<insert id="addMember" parameterType="com.spring.gm.vo.AddressMemVO">
+		INSERT INTO addressmem (id, del)
+		VALUES(id=#{id}, del=#{del})
+	</insert>	
+	
 </mapper>

@@ -3,34 +3,36 @@ package com.spring.gm.persistence;
 import java.util.List;
 import java.util.Map;
 
+
+import com.spring.gm.vo.AddressMemVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
-import com.spring.gm.vo.MemoVO;
+
+
 
 public interface E_DAO {
 
-	// 조직도 - 내가 속한 그룹멤버 수 구하기
-	public int getMyCompanyMemCnt(int company);
+	// 같은회사의 사원 명수
+	public int getCompanyMemberCnt(int company);
 	
-	// 조직도 - 사용자가 소속된 회사 멤버 목록
-	public List<MemberVO> getMyCompanyInfo(int company);
-	
-	// 조직도 - 내가 속한 회사의 전체 그룹 수 구하기
-	public List<GroupsVO> getMyCompanyGroupCnt(int company);
-	
-	// 조직도 - 부서 aside 용
-	public List<MemberVO> getMyCompanyInfo2(Map<String, Object> map);
-	
-	// 조직도 - 로그인 정보 회사 이름 찾기
-	public String findCompanyName(int company);
-	
-	
-	
-	// 메모 - 메모 폴더 갯수
-	public int getMemoBoardsCnt(String id);
-	
-	// 메모 - 내 모든 메모 게시판 리스트
-	public List<MemoVO> getMemoBoardsList(Map<String, Object> map);
+	// 같은회사의 사원 목록
+	public List<MemberVO> getCompanyMemberList(Map<String, Object> map);
 
+	// 부서 리스트
+	public List<GroupsVO> getCompanyList(Map<String, Object> map);
 	
+	// 부서의 사원 명수
+	public int getDepartMemberCnt(int depart);
+
+	// 부서의 사원 목록
+	public List<GroupsVO> getDepartMemberList(Map<String, Object> map);
+	
+	// 자주 연락하는 사람 목록
+	public List<AddressMemVO> getMyFavoriteMemberList(Map<String, Object> map);
+	
+	// 맴버 상세페이지
+	public MemberVO content(String strId);
+	
+	// 자주 연락하는 사람 추가
+	public int addMember(AddressMemVO vo);
 }

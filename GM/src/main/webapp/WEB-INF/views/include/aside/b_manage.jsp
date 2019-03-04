@@ -14,8 +14,13 @@
             <h2>업무관리</h2>
             <div class="category">
                 <ul>
-                	<li>
-                        <span id="W_createSelfTaskView"><a href="<c:url value='/pages/W_createSelfTaskView' />">업무 등록</a></span>
+                	<li class="aside_submit">
+                        <span id="W_createSelfTaskView">
+                        	<a href="<c:url value='/pages/W_createSelfTaskView' />">
+                        		<span>업무 등록</span>
+                        		<i class="fas fa-check ml10"></i>
+                        	</a>
+                        </span>
                     </li>
                     <li>
                         <span>To - Do</span>

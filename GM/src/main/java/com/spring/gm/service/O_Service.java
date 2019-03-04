@@ -21,6 +21,8 @@ public interface O_Service {
 	public void calendarModify(HttpServletRequest req, Model model);
 	//일정 삭제
 	public void calendarDelete(HttpServletRequest req, Model model);
+	//일정 메인 화면 view
+	public void O_calendarMainView(HttpServletRequest req, Model model);
 	/* 일정 끝 */
 	
 	/* 업무관리 시작 */
