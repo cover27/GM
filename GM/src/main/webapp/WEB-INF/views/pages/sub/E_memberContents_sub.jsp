@@ -21,20 +21,20 @@
 					</li>
 					
 					<li>
-						<span>${cont_dto.email_out}</span>
+						<span>${cont_dto.email_in}</span>
 					</li>
 					
 					<li>
-						<c:forEach var='com_dtos' items='${c_dtos}'>
-							<c:if test="${cont_dto.depart == com_dtos.groupId}">
+					<c:forEach var='com_dtos' items='${c_dtos}'>
+						<c:if test="${cont_dto.depart == com_dtos.groupId}">
 								<span>${com_dtos.g_name}</span>
-							</c:if>
-						</c:forEach>
+						</c:if>
+					</c:forEach>
 					</li>
 				</ul>
 			</div>
 			<div style="margin-bottom:60px;padding-top: 20px;" class="btnset fright">
-				<input type="button" class="inputButton" value="자주 연락하는 사람 추가" onclick="window.location='<c:url value="/pages/D_writeForm?boardnum=${dto.boardnum}&num=${num}&ref=${dto.ref}&ref_step=${dto.ref_step}&ref_level=${dto.ref_level}&pageNum=${pageNum}"/>'">
+				<input type="button" class="inputButton" value="자주 연락하는 사람 추가" onclick="window.location='<c:url value="/pages/E_addMemberPro?id=${cont_dto.id}"/>'">
 				<input type="button" class="inputButton" value="목록 보기" onclick="window.location='<c:url value="/pages/D_boardList"/>'">
 			</div>
 		</div>
