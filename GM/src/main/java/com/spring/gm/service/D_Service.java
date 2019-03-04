@@ -48,4 +48,5 @@ public interface D_Service {
 	
 	public void allBoardAdmin(HttpServletRequest req, Model model);	// 게시관리 페이징
 	
+	
 }

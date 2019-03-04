@@ -35,6 +35,7 @@ public class S_Controller {
 		logger.info("URL : S_message_inbox");
 
 		service.messageList(req, model);
+		service.messageListCnt(req, model);
 		return "/pages/S_message_inbox";
 	}
 
@@ -63,6 +64,7 @@ public class S_Controller {
 	public String sendMessage(HttpServletRequest req, Model model) {
 		logger.info("URL : S_sendMessageForm");
 		
+		service.messageListCnt(req, model);
 		return "pages/S_sendMessageForm";
 	}
 	
@@ -73,6 +75,7 @@ public class S_Controller {
 		
 		service.sendMessagePro(req, model);
 		service.sendMessageData(req, model);
+		service.messageListCnt(req, model);
 		return "pages/S_sendMessagePro";		
 	}
 	
@@ -81,6 +84,7 @@ public class S_Controller {
 		logger.info("URL : S_sendMessageList");
 		
 		service.sendList(req, model);
+		service.messageListCnt(req, model);
 		return "pages/S_sendMessageList";
 	}
 	
@@ -89,6 +93,7 @@ public class S_Controller {
 		logger.info("URL : S_moveGarbagePro");
 		
 		service.moveGarbage(req, model);
+		service.messageListCnt(req, model);
 		return "pages/S_moveGarbagePro";
 	}
 	
@@ -97,6 +102,7 @@ public class S_Controller {
 		logger.info("URL : S_garbageList");
 		
 		service.garbageList(req, model);
+		service.messageListCnt(req, model);
 		return "pages/S_garbageList";
 	}
 	
@@ -105,6 +111,7 @@ public class S_Controller {
 		logger.info("URL : S_delGarbage");
 		
 		service.delGarbage(req, model);
+		service.messageListCnt(req, model);
 		return "pages/S_delGarbagePro";
 	}
 	
@@ -114,6 +121,7 @@ public class S_Controller {
 		
 		service.sendDeletePro(req, model);
 		service.sendDelPro(req, model);
+		service.messageListCnt(req, model);
 		return "pages/S_sendDeletePro";		
 	}
 	
@@ -122,6 +130,7 @@ public class S_Controller {
 		logger.info("URL : S_contentMessage");
 		
 		service.messageContent(req, model);
+		service.messageListCnt(req, model);
 		return "pages/S_contentMessage";		
 	}
 	
@@ -129,7 +138,7 @@ public class S_Controller {
 	public String contentDelete(HttpServletRequest req, Model model) {
 		logger.info("URL : S_messageDeletePro");
 		service.contentDelete(req, model);
-		
+		service.messageListCnt(req, model);
 		return "pages/S_messageDeletePro";	
 	}
 	
@@ -138,6 +147,7 @@ public class S_Controller {
 		logger.info("URL : S_sendcontentMessage");
 		
 		service.messageContent(req, model);
+		service.messageListCnt(req, model);
 		return "pages/S_sendcontentMessage";	
 	}
 	
@@ -146,6 +156,7 @@ public class S_Controller {
 		logger.info("URL : S_sendMessageDeletePro");
 		service.sendContentDelete(req, model);
 		service.sendContentDel(req, model);
+		service.messageListCnt(req, model);
 		return "pages/S_sendMessageDeletePro";	
 	}
 	
@@ -153,6 +164,7 @@ public class S_Controller {
 	public String contentDelPro(HttpServletRequest req, Model model) {
 		logger.info("URL : S_contentDelPro");
 		service.contentDelete(req, model);
+		service.messageListCnt(req, model);
 		return "pages/S_contentDelPro";	
 	}
 	
@@ -160,6 +172,7 @@ public class S_Controller {
 	public String garbageContentDelete(HttpServletRequest req, Model model) {
 		logger.info("URL : S_garbageContentDeletePro");
 		service.garbageContentDelete(req, model);
+		service.messageListCnt(req, model);
 		return "pages/S_garbageContentDeletePro";	
 	}
 	
