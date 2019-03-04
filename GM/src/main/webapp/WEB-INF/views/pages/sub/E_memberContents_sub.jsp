@@ -8,6 +8,14 @@
 		<div class="content">
 			<div class="write_head">
 				<ul>
+					<li>아이디</li>
+					<li>이름</li>
+					<li>휴대폰번호</li>
+					<li>이메일</li>
+					<li>부서명</li>
+					
+				</ul>
+				<ul>
 					<li>
 						<span><b>${cont_dto.id}</b></span>
 					</li>

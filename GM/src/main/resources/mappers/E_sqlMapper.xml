@@ -55,8 +55,8 @@
 	</select>
 	
 	<insert id="addMember" parameterType="com.spring.gm.vo.AddressMemVO">
-		INSERT INTO addressmem (id, name, company, phone, email, del)
-		VALUES(id=#{id}, name=#{name}, company=#{company}, phone=#{phone}, email=#{email}, del=#{del})
+		INSERT INTO addressmem (id, del)
+		VALUES(id=#{id}, del=#{del})
 	</insert>	
 	
 </mapper>
