@@ -1,20 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script>
-/* function todoList(){
+function todoList(){
 	var item = document.getElementById("todoInput").value;
 	var text = document.createTextNode(item);
 	var newItem = document.createElement("li");
 	newItem.appendChild(text);
 	document.getElementById("todoList").appendChild(newItem);
-} */
+}
 
-/* $(function(){
+$(function(){
 	$('#todosub').click(function(){	
-		$('#result').css('display', 'block');
+		// $('#result').css('display', 'block');
+		var content = $("#todoInput").attr("content");
+		alert(content);
 		$.ajax({
 			type : 'POST',
 			url : '${pageContext.request.contextPath}/pages/W_insertTodoPro',	//{컨트롤러}/이동페이지
+			data : content,
 			success : function(result){ //콜백함수
 				$('#result').html(result);
 			alert('ddd');
@@ -24,7 +27,7 @@
 			}
 		});
 	});
-}); */
+});
 </script>
 
 <section>
@@ -36,7 +39,7 @@
 		<div>
 			<form action="<c:url value='/pages/W_insertTodoPro'/>" id="todoForm" method="post">
 				<input type="text" id="todoInput" name="content" autofocus>
-				<input type="submit" id="todosub" value="등록">
+				<input type="button" id="todosub" value="등록">
 			</form>
 			
 			<div id="result">
