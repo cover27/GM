@@ -43,7 +43,6 @@
 			</div>
 			<div style="margin-bottom:60px;padding-top: 20px;" class="btnset fright">
 				<input type="button" class="inputButton" value="자주 연락하는 사람 추가" onclick="window.location='<c:url value="/pages/E_addMemberPro?id=${cont_dto.id}"/>'">
-				<input type="button" class="inputButton" value="목록 보기" onclick="window.location='<c:url value="/pages/D_boardList"/>'">
 			</div>
 		</div>
 	</article>

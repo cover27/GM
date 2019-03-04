@@ -27,6 +27,9 @@ public interface E_DAO {
 	// 부서의 사원 목록
 	public List<GroupsVO> getDepartMemberList(Map<String, Object> map);
 	
+	// 자주 연락하는 사람 명수
+	public int getMyFavoriteMemberCnt(String strId);
+	
 	// 자주 연락하는 사람 목록
 	public List<AddressMemVO> getMyFavoriteMemberList(Map<String, Object> map);
 	
@@ -35,4 +38,10 @@ public interface E_DAO {
 	
 	// 자주 연락하는 사람 추가
 	public int addMember(AddressMemVO vo);
+	
+	// 자주 연락하는 사람들 추가
+	public int addMembers(AddressMemVO vo);
+	
+	// 자주 연락하는 사람 삭제
+	public int deleteMember(AddressMemVO vo);
 }
