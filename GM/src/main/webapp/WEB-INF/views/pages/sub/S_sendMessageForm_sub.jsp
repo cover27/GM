@@ -13,7 +13,7 @@ function back(id, name) {
 	opener.document.searchform.id.value = id;
 	opener.document.searchform.name.value = name;
 	self.close();
-}ss
+}
 </script>
 <section>
 	<article>

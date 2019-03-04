@@ -47,7 +47,13 @@ function write(){
 				<c:forEach var='demem_dtos' items='${demem_dtos}'>
 					<tr>
 						<td>
-							<input type="checkbox" name="checkRow" value="${demem_dtos.id}" />
+							<c:if test="${sessionScope.loginInfo.id != demem_dtos.id}">
+								<input type="checkbox" name="checkRow" value="${demem_dtos.id}"/>
+							</c:if>
+								
+							<c:if test="${sessionScope.loginInfo.id == demem_dtos.id}">
+								*
+							</c:if>
 						</td>
 						
 						<td style="width:5%">
@@ -81,12 +87,11 @@ function write(){
 						</td>
 						
 						<td style="width:15%">
-							<input type="button" value="쪽지쓰기" onclick="window.location='<c:url value="/pages/S_orgSendMessage?number=${number}&pageNum=${pageNum}&id=${demem_dtos.id}"/>'">
+							<input type="button" value="쪽지쓰기" onclick="window.location='<c:url value="/pages/S_orgSendMessageForm?id=${demem_dtos.id}"/>'">
 						</td>
 						<%-- "window.location='<c:url value="/pages/D_writeForm?num=${num}&pageNum=${pageNum}" />'" --%>
 						<td style="width:20%">
-							<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${demem_dtos.enterday}"/>
-						</td>
+							<fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${demem_dtos.enterday}"/></td>
 					</tr>
 				</c:forEach>
 				<tr>

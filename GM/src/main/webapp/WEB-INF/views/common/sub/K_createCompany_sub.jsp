@@ -111,7 +111,7 @@ function searchAddress(){
                         <li>
                             <span>*회사</span>
                             <input type="text" class="haveBtn" name="company_name" value="" placeholder="회사정보를 입력하세요" style="background: #eee;" readonly>
-                            <input type="button" value="회사생성" onclick="companyInfo();">
+                            <input type="button" value="회사생성" onclick="newCompanyInfo();">
                         </li>
                         <li>
                             <span class="two_line_header">*이메일</span>

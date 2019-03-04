@@ -37,9 +37,12 @@
 		<c:if test="${scheduleCnt > 0}">
 			<ul>
 				<c:forEach var="svo2" items="${svo}">
-					<li class="">
-						<span>${svo2.begin}</span> | 
-						<span>${svo2.scheduleKind}</span> | 
+					<li>
+						<i class="far fa-calendar-check mr5"></i>
+						<span>${svo2.begin}</span>
+						<span class="ml10 mr10">|</span>
+						<span>${svo2.scheduleKind}</span>
+						<span class="ml10 mr10">|</span>
 						<span>${svo2.subject}</span>
 					</li>
 				</c:forEach>

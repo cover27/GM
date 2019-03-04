@@ -67,6 +67,10 @@ public interface S_DAO {
 	
 	public int garbageContentDelete(int num);
 	
+	// 안읽은 메세지
 	public int notReadCnt(String strId);
+	
+	// 아이디 정보조회
+	public MemberVO getMemberInfo(String strId);
 
 }
