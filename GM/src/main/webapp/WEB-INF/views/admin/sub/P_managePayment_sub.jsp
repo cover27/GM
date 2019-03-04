@@ -82,15 +82,9 @@
 							<label>
 								<span class="bold5px ml50">배정일</span>
 								<input type="date" title="시작일" id="searchStartDate" onchange="lastDate()" max="firstD" name="searchStartDate" value="${sessionScope.searchMap.searchStartDate }" placeholder="시작일" class="ml10">
-								<script>
-									document.getElementById('searchStartDate').value =new Date().toISOString().substring(0, 10);
-								</script>
 							</label>
 								<span>~</span>
 							<input type="date" title="종료일" id="searchEndDate" onchange="firstDate()" min="lastD" name="searchEndDate" value="${sessionScope.searchMap.searchEndDate }" placeholder="종료일">
-							<script>
-								document.getElementById('searchEndDate').value = new Date().toISOString().substring(0, 10);
-							</script>
 						</span>
 						<span>
 							<label>

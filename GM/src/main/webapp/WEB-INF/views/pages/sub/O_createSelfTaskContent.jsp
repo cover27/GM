@@ -12,6 +12,16 @@
     	opener.document.searchform123.b_name.value=b_name;
     	self.close();
     }
+    
+ 	 //날짜 예외처리 방법
+    function lastDate(){
+    	var lastD = $('#now_date').val();
+    	$('#now_date2').attr("min", lastD);
+    }
+    function firstDate(){
+    	var firstD = $('#now_date2').val();
+    	$('#now_date').attr("max", firstD);
+    }
 </script>
 
 <section>
@@ -45,17 +55,17 @@
 		                        <tr>
 		                            <th><span>*</span>업무기한</th>
 		                            <td style="text-align: left;">
-		                            	<input type="date" title="업무기한" name="begin" id="now_date" style="width: 130px;">
+		                            	<input type="date" title="업무기한" name="begin" id="now_date" onchange="lastDate()" max="firstD" style="width: 130px;">
 		                                <script>
 											document.getElementById('now_date').valueAsDate = new Date();
 										</script>
 										<span>~</span>
-		                                <input type="date" title="업무기한" name="end" id="now_date2" min="begin" style="width: 130px;">
+		                                <input type="date" title="업무기한" name="end" id="now_date2" onchange="firstDate()" min="lastD" style="width: 130px;">
 		                                <script>
 											document.getElementById('now_date2').valueAsDate = new Date();
 										</script>
-										<button type="button" onclick="javascript:selectTodoViewPopup();" class="ml50">관련업무 추가</button>
-		                                <button type="button" onclick="javascript:selectApprPopup();" class="ml20">관련결재 추가</button>
+										<!-- <button type="button" onclick="javascript:selectTodoViewPopup();" class="ml50">관련업무 추가</button>
+		                                <button type="button" onclick="javascript:selectApprPopup();" class="ml20">관련결재 추가</button> -->
 		                            </td>
 		                            <th><span>*</span>담당자</th>
 		                            <th style="display:none;">
