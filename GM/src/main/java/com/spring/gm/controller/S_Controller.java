@@ -35,6 +35,7 @@ public class S_Controller {
 		logger.info("URL : S_message_inbox");
 
 		service.messageList(req, model);
+		service.messageListCnt(req, model);
 		return "/pages/S_message_inbox";
 	}
 

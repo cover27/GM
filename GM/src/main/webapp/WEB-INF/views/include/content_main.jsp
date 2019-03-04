@@ -75,7 +75,12 @@
 						</c:if>
                         <li onclick="window.location='<c:url value="/pages/S_message_inbox" />'" class="message_bg">
                         	<div class="menu_wrap">
-                        		<div class="alert">1</div>
+                        		<c:if test="${messageCnt != 0 }">
+                        			<div class="alert">${messageCnt}</div>
+                        		</c:if>
+                        		<c:if test="${messageCnt == 0}">
+                        			<div class="mt55"></div>
+                        		</c:if>
                         		<div class="message_wrap">
 	                        		<div class="message"></div>
 	                        		<h2>쪽지</h2>
