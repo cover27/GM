@@ -104,6 +104,18 @@ public class O_DAOImpl implements O_DAO {
 		return dao.deleteCalendar(num);
 	}
 	
+	//일정 메인 화면 view
+	@Override
+	public int calendarMainCnt(String id) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.calendarMainCnt(id);
+	}
+	@Override
+	public List<ScheduleVO> calendarMainView(String id) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.calendarMainView(id);
+	}
+	
 	//업무 등록 insert-pro
 	@Override
 	public int insertTodo(B_ManageVO vo) {
@@ -219,6 +231,9 @@ public class O_DAOImpl implements O_DAO {
 		dtos= dao.adminList(map);
 		return dtos;
 	}
+	
+
+	
 
 	
 	

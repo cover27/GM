@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script>
+//날짜 예외처리 방법
+function lastDate(){
+	var lastD = $('#begin').val();
+	$('#end').attr("min", lastD);
+}
+function firstDate(){
+	var firstD = $('#end').val();
+	$('#begin').attr("max", firstD);
+}
 
+</script>
 <section>
 	<article>
 		<div class="content_header">
@@ -25,9 +36,15 @@
 	                    	<input name="searchApprTitle" value="" type="text" title="문서제목" placeholder="검색어">
 	                    </span>	
 						<span>
-							<input id="begin" type="date" title="날짜시작" name="searchStartDate" value="">
+							<input id="begin" type="date" title="날짜시작" onchange="lastDate()" max="firstD" name="searchStartDate" value="">
+							<script>
+								document.getElementById('begin').value =new Date().toISOString().substring(0, 10);
+							</script>
 								<span>~</span>
-							<input id="end" type="date" title="날짜끝" name="searchEndDate" value="" >
+							<input id="end" type="date" title="날짜끝" onchange="firstDate()" min="lastD" name="searchEndDate" value="" >
+							<script>
+								document.getElementById('end').value = new Date().toISOString().substring(0, 10);
+							</script>
 						</span>
 		                <span>
 			               <input type="submit" value="검색">
@@ -138,7 +155,6 @@
 	            </div>	
 				<div class="btnset">
 	                <button type="button" onclick="window.location='<c:url value='/pages/W_createSelfTaskView'/>'">업무 등록</button>
-	                <button type="button" onclick="autoComplete()">업무완료</button>
 	            </div>
            </form>
 		</div>
