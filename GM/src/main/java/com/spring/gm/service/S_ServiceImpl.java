@@ -514,7 +514,20 @@ public class S_ServiceImpl implements S_Service {
 		
 		model.addAttribute("messageCnt", cnt);
 	}
-	
+
+	@Override
+	public void orgSendMessageForm(HttpServletRequest req, Model model) {
+		String strId = req.getParameter("id");
+		int number = Integer.parseInt(req.getParameter("number"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		
+		MessageVO vo = new MessageVO();
+		vo.setReceiver(strId);
+		
+		model.addAttribute("dvo", vo);
+		model.addAttribute("number", number);
+		model.addAttribute("pageNum", pageNum);
+	}
 	
 
 }

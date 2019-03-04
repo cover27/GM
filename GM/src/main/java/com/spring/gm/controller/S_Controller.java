@@ -176,4 +176,11 @@ public class S_Controller {
 		return "pages/S_garbageContentDeletePro";	
 	}
 	
+	@RequestMapping("pages/S_orgSendMessageForm")
+	public String orgSendMessage(HttpServletRequest req, Model model) {
+		logger.info("URL : S_orgSendMessageForm");
+		service.orgSendMessageForm(req, model);
+		return "pages/S_orgSendMessageForm";		
+	}	
+	
 }

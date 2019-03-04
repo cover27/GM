@@ -11,6 +11,11 @@ function allcheck(){
         $("input[name=checkRow]").prop("checked", false);
       }
 }
+
+function write(){
+	opener.document.inputform.depart.value=company;
+	self.close();
+}
 </script>
 <section>
 	<article>
@@ -76,7 +81,7 @@ function allcheck(){
 						</td>
 						
 						<td style="width:15%">
-							<input type="button" value="쪽지쓰기" onclick="write();">
+							<input type="button" value="쪽지쓰기" onclick="window.location='<c:url value="/pages/S_orgSendMessage?number=${number}&pageNum=${pageNum}&id=${demem_dtos.id}"/>'">
 						</td>
 						<%-- "window.location='<c:url value="/pages/D_writeForm?num=${num}&pageNum=${pageNum}" />'" --%>
 						<td style="width:20%">
