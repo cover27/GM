@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="${path}css/layout.css">
+<link rel="stylesheet" href="${path}css/common.css">
 <link rel="stylesheet" href="${path}css/signup.css">
 <script type="text/javascript">
 
@@ -19,9 +20,13 @@ function back(){
 	window.history.back();
 	}
 </script>
-<section>
-	<article>
-	<div class="signup_wrap">
+<style>
+	.input_wrap {
+		top: -3px !important;
+	}
+</style>
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
+<div class="signup_wrap">
     <form action="J_ModifyInfo" method="post" name="inputform">
         <input type="hidden" name="hiddenId" value="0">
         <input type="hidden" name="depart">
@@ -49,10 +54,10 @@ function back(){
                         <li>
                             <span class="two_line_header">*이메일</span>
                              <c:if test="${fn:length(dtos.email_in) == 0}">
-                            	<span class="input_wrap">없음</span>
+                            	<span class="two_line_body" style="text-align: center;">없음</span>
                             </c:if>
                             <c:if test="${fn:length(dtos.email_in) > 1}">
-                            	<span class="input_wrap">${dtos.email_in}</span>
+                            	<span class="two_line_body" style="text-align: center;">${dtos.email_in}</span>
                             </c:if>
                         </li>
                     </ul>
@@ -68,11 +73,11 @@ function back(){
             		<ul>
                         <li class="jumin">
                            <span>*주민등록번호</span>
-	                          <span class="input_wrap">${dtos.jumin1} - ${dtos.jumin2}</span>
+	                          <span class="input_wrap" style="padding-left:18px !important;">${dtos.jumin1} - ${dtos.jumin2}</span>
                         </li>
                         <li>
                         	<span>*성별</span>
-                        	<span class="input_wrap">${dtos.gender}</span>
+                        	<span class="input_wrap" style="padding-left:18px!important;">${dtos.gender}</span>
                         </li>
                         <li>
                         	<span>*내외국인 여부</span>
@@ -98,11 +103,11 @@ function back(){
                         </li>
                         <li class="hp">
                             <span>*휴대폰번호</span>
-							<span class="input_wrap">${dtos.tel}</span>
+							<span class="input_wrap" style="padding-left:18px!important;">${dtos.tel}</span>
                         </li>
                         <li>
                             <span>*주소</span>
-                            <span class="input_wrap">${dtos.address}</span>
+                            <span class="input_wrap" style="padding-left:18px!important;">${dtos.address}</span>
                         </li>
             		</ul>
             	</c:forEach>
@@ -142,15 +147,15 @@ function back(){
                         </li>
                         <li class="hp">
                             <span>자택번호</span>
-                            <span class="input_wrap">${dtos.tel}</span>
+                            <span class="input_wrap" style="padding-left:18px!important;">${dtos.tel}</span>
                         </li>
                         <li>
                             <span>영문주소</span>
                             <c:if test="${dtos.eng_address == null}">
-                            	<span class="input_wrap">없음</span>
+                            	<span class="input_wrap" style="padding-left:18px!important;">없음</span>
                             </c:if>
                             <c:if test="${dtos.eng_address != null}">
-                            	<span>${dtos.eng_address}</span>
+                            	<span class="input_wrap" style="padding-left:18px!important;">${dtos.eng_address}</span>
                             </c:if>
                         </li>
                     </ul>
@@ -167,6 +172,4 @@ function back(){
         </div>
     </form>
 </div>
-	
-	</article>
-</section>
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>

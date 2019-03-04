@@ -9,11 +9,10 @@
 function back(){
 	window.history.back();
 	}
-	
 </script>
-<section>
-	<article>
-	<div class="signup_wrap">
+
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
+<div class="signup_wrap">
     <form action="myinfoModifyUpdate" method="post" name="inputform">
         <input type="hidden" name="hiddenId" value="0">
         <input type="hidden" name="depart">
@@ -29,7 +28,7 @@ function back(){
                         </li>
                         <li>
                             <span>*비밀번호</span>
-                            <input type="password" name="pwd" placeholder="비밀번호를 입력하세요." value="${dtos.pwd}">
+                            <input type="password" name="pwd" placeholder="비밀번호를 입력하세요." value="${dtos.pwd}" autofocus>
                         </li>
                         <li>
                         	<span>*비밀번호 확인</span>
@@ -37,7 +36,7 @@ function back(){
                         </li>
                         <li>
                             <span>*이름</span>
-                            <input type="text" name="name" placeholder="이름을 입력하세요." value="${dtos.name}">
+                            <input type="text" name="name" placeholder="이름을 입력하세요." value="${dtos.name}" style="position: relative; top: 1px; left: 1px;">
                         </li>
                         <li>
                             <span>*회사</span>
@@ -45,8 +44,6 @@ function back(){
                         </li>
                         <li>
                             <span class="two_line_header">*이메일</span>
-                        </li>
-                        <li>
                             <span class="two_line_body">
                             <c:if test="${dtos.email_in == null}">
                             	<input type="text" name="email1" class="email_03" placeholder="없음">
@@ -113,13 +110,13 @@ function back(){
                         	<span>*내외국인 여부</span>
                             <span class="input_wrap">
 	                            <c:if test="${dtos.frgn == 1}">
-	                            	<span class="input_wrap">
+	                            	<span class="input_wrap" style="position: relative; top: 0px; left: -19px;">
 	                            <label><input type="radio" name="frgn" value=1 checked="checked"><b>내국인</b></label>
 	                            <label><input type="radio" name="frgn" value=2><b>외국인</b></label>
                             </span>
 	                            </c:if>
 	                            <c:if test="${dtos.frgn == 2}">
-	                            	<span class="input_wrap">
+	                            	<span class="input_wrap" style="position: relative; top: 0px; left: -19px;">
 	                            <label><input type="radio" name="frgn" value=1><b>내국인</b></label>
 	                            <label><input type="radio" name="frgn" value=2 checked="checked"><b>외국인</b></label>
                             </span>
@@ -130,13 +127,13 @@ function back(){
                         	<span>*기혼여부</span>
                             <span class="input_wrap">
                             	<c:if test="${dtos.marry == 1}">
-                            	<span class="input_wrap">
+                            	<span class="input_wrap" style="position: relative; top: 0px; left: -19px;">
 		                            <label><input type="radio" name="marry" value=1 checked="checked"><b>기혼</b></label>
 		                            <label><input type="radio" name="marry" value=2><b>미혼</b></label>
                             	</span>
 	                            </c:if>
 	                            <c:if test="${dtos.marry == 2}">
-                            	<span class="input_wrap">
+                            	<span class="input_wrap" style="position: relative; top: 0px; left: -19px;">
 		                            <label><input type="radio" name="marry" value=1><b>기혼</b></label>
 		                            <label><input type="radio" name="marry" value=2 checked="checked"><b>미혼</b></label>
                             	</span>
@@ -178,19 +175,19 @@ function back(){
                         <li>
 	                        <span>국적</span>
 	                        <c:if test="${dtos.nation == null}">
-                            	<input type="text" name="nation" placeholder="없음" required>
+                            	<input type="text" name="nation" placeholder="없음" required style="position: relative; top: 1px; left: 1px;">
                             </c:if>
                             <c:if test="${dtos.nation != null}">
-                            	<input type="text" name="nation" value="${dtos.nation}">
+                            	<input type="text" name="nation" value="${dtos.nation}" style="position: relative; top: 1px; left: 1px;">
                             </c:if>
                         </li>
                         <li id="wedding">
                             <span>결혼기념일</span>
                             <c:if test="${dtos.wdday == null}">
-                            	<input type="date" name="wdday">
+                            	<input type="date" name="wdday" style="position: relative; left: 1px;">
                             </c:if>
                             <c:if test="${dtos.wdday != null}">
-                            	<input type="date" name="wdday" value="${dtos.wdday}">
+                            	<input type="date" name="wdday" value="${dtos.wdday}" style="position: relative; left: 1px;">
                             </c:if>
                         </li>
                         <li class="hp">
@@ -229,13 +226,11 @@ function back(){
                 <div class="input_area">
                 	<div class="signup_btn">
 	                    <input type="submit" value="수정" >
-	                    <input type="button" value="뒤로가기" onclick="back()">
+	                    <input type="button" value="뒤로가기" onclick="back()" style = "width: 100%;">
 	                </div>
                 </div>
             </div>
         </div>
     </form>
 </div>
-	
-	</article>
-</section>
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>
