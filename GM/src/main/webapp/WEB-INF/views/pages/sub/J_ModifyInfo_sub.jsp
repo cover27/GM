@@ -48,7 +48,7 @@ function back(){
                         </li>
                         <li>
                             <span class="two_line_body">
-	                        <c:if test="${fn:length(dtos.email_in) == 0}">
+                            <c:if test="${dtos.email_in == null}">
                             	<input type="text" name="email1" class="email_03" placeholder="없음">
                             	<span class="email_04">@</span>
 	                            <input type="text" name="email2" class="email_05">
@@ -60,7 +60,7 @@ function back(){
 	                            	<option value="daum.net">다음</option>
 	                            </select>
                             </c:if>
-                            <c:if test="${fn:length(dtos.email_in) > 1}">
+                            <c:if test="${dtos.email_in != null}">
                             <c:set var="eo" value="${fn:split(dtos.email_in, '@')}"/>
                             	<input type="text" name="email1" class="email_03" value="${eo[0]}">
                            		<span class="email_04">@</span>
@@ -168,34 +168,34 @@ function back(){
                     <ul>
                         <li>
                             <span>영문이름</span>
-                            <c:if test="${fn:length(dtos.eng_name) == 0}">
+                            <c:if test="${dtos.eng_name == null}">
                             	<input type="text" name="eng_name" placeholder="없음">
                             </c:if>
-                            <c:if test="${fn:length(dtos.eng_name) > 1}">
+                            <c:if test="${dtos.eng_name != null}">
                             	<input type="text" name="eng_name" value="${dtos.eng_name}">
                             </c:if>
                         </li>
                         <li>
 	                        <span>국적</span>
-	                        <c:if test="${fn:length(dtos.nation) == 0}">
+	                        <c:if test="${dtos.nation == null}">
                             	<input type="text" name="nation" placeholder="없음" required>
                             </c:if>
-                            <c:if test="${fn:length(dtos.nation) > 1}">
+                            <c:if test="${dtos.nation != null}">
                             	<input type="text" name="nation" value="${dtos.nation}">
                             </c:if>
                         </li>
                         <li id="wedding">
                             <span>결혼기념일</span>
-                            <c:if test="${fn:length(dtos.wdday) == 0}">
+                            <c:if test="${dtos.wdday == null}">
                             	<input type="date" name="wdday">
                             </c:if>
-                            <c:if test="${fn:length(dtos.wdday) > 1}">
+                            <c:if test="${dtos.wdday != null}">
                             	<input type="date" name="wdday" value="${dtos.wdday}">
                             </c:if>
                         </li>
                         <li class="hp">
                             <span>자택번호</span>
-                             <c:if test="${fn:length(dtos.eng_address) == 0}">
+                             <c:if test="${dtos.tel_hm == null}">
                             	<span class="input_wrap">
 	                            <input type="text" name="hm1" maxlength="4" onkeyup="nextHm1();" placeholder="없음">
 	                            <b>-</b>
@@ -204,7 +204,7 @@ function back(){
 	                            <input type="text" name="hm3" maxlength="4" onkeyup="nextHm3();" placeholder="없음">
                             </span>
                             </c:if>
-                            <c:if test="${fn:length(dtos.eng_address) > 1}">
+                            <c:if test="${dtos.tel_hm != null}">
                             <span class="input_wrap">
 	                            <input type="text" name="hm1" maxlength="4" onkeyup="nextHm1();" value="${tel_hm1}">
 	                            <b>-</b>
@@ -216,10 +216,10 @@ function back(){
                         </li>
                         <li>
                             <span>영문주소</span>
-                            <c:if test="${fn:length(dtos.eng_address) == 0}">
+                            <c:if test="${dtos.eng_address == null}">
                             	<input type="text" name="eng_address" placeholder="없음">
                             </c:if>
-                            <c:if test="${fn:length(dtos.eng_address) > 1}">
+                            <c:if test="${dtos.eng_address != null}">
                             	<input type="text" name="eng_address" value="${dtos.eng_address}">
                             </c:if>
                         </li>

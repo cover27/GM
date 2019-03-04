@@ -2320,6 +2320,7 @@ public class J_ServiceImpl implements J_Service {
 			dtos.get(0).setU_vacation(dtos3.get(0).getU_vacation());
 			dtos.get(0).setN_vacation(dtos3.get(0).getN_vacation());
 		}
+		System.out.println("dtos : " + dtos.size());
 		model.addAttribute("dtos", dtos);
 		model.addAttribute("id", id);
 		model.addAttribute("year", year);
@@ -2651,7 +2652,7 @@ public class J_ServiceImpl implements J_Service {
 		List<MemberVO> dtos = dao.myinfo(map);
 		
 		model.addAttribute("dtos",dtos);
-		
+		System.out.println("dtos : " + dtos.toString());
 		//회원수정 페이지로 넘기는 값.
 		
 		if(dtos.get(0).getTel() != null) {

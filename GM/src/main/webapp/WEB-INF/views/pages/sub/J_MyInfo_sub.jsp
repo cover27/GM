@@ -115,28 +115,28 @@ function back(){
                     <ul>
                         <li>
                             <span>영문이름</span>
-                            <c:if test="${fn:length(dtos.eng_name) == 0}">
+                            <c:if test="${dtos.eng_name == null}">
                             	<span class="input_wrap">없음</span>
                             </c:if>
-                            <c:if test="${fn:length(dtos.eng_name) > 1}">
+                            <c:if test="${dtos.eng_name != null}">
                             	<span class="input_wrap">${dtos.eng_name}</span>
                             </c:if>
                         </li>
                         <li>
 	                        <span>국적</span>
-	                        <c:if test="${fn:length(dtos.nation) == 0}">
+	                        <c:if test="${dtos.nation == null}">
                             	<span class="input_wrap">없음</span>
                             </c:if>
-                            <c:if test="${fn:length(dtos.nation) > 1}">
+                             <c:if test="${dtos.nation != null}">
                             	<span class="input_wrap">${dtos.nation}</span>
                             </c:if>
                         </li>
                         <li id="wedding">
                             <span>결혼기념일</span>
-                            <c:if test="${fn:length(dtos.wdday) == 0}">
+                            <c:if test="${dtos.wdday == null}">
                             	<span class="input_wrap">없음</span>
                             </c:if>
-                            <c:if test="${fn:length(dtos.wdday) > 1}">
+                            <c:if test="${dtos.wdday != null}">
                             	<span class="input_wrap">${dtos.wdday}</span>
                             </c:if>
                         </li>
@@ -146,10 +146,10 @@ function back(){
                         </li>
                         <li>
                             <span>영문주소</span>
-                            <c:if test="${fn:length(dtos.eng_address) == 0}">
+                            <c:if test="${dtos.eng_address == null}">
                             	<span class="input_wrap">없음</span>
                             </c:if>
-                            <c:if test="${fn:length(dtos.eng_address) > 1}">
+                            <c:if test="${dtos.eng_address != null}">
                             	<span>${dtos.eng_address}</span>
                             </c:if>
                         </li>

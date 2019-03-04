@@ -1260,6 +1260,7 @@
 		and #{companyyear} = d.year
 		and m.id = #{id}
 		and m.company = #{company}
+		and d.types = 1
 	</select>
 
 	<!-- 휴가 -->
@@ -1281,6 +1282,7 @@
 		and m.company = d.company
 		and m.id = #{id}
 		and m.company = #{company}
+		and d.types = 2
 	</select>
 
 	<!-- 휴가신청내역 가져오기 -->
@@ -1517,7 +1519,7 @@
 <!-- ===================내정보 가져오시========================= -->
 <!-- 내정보 거져오기 -->
 <select id="myinfo" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
-	select * from member where id = #{id} and company = #{company} and del = 1
+	select * from member where id = #{id} and company = #{company} and del = 0
 </select>
 <!-- 회훤 탈퇴 처리 del = 0으로 -->
 <update id="J_Withdrawal" parameterType="java.util.Map">
