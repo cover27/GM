@@ -231,8 +231,8 @@
 			<div class="paging">
 				<c:if test="${cnt > 0}">
 					<c:if test="${startPage > pageBlock}">
-						<a href="J_PayrollRegistration">[◀◀]</a>
-						<a href="J_PayrollRegistration?pageNum=${startPage - pageBlock}">[◀]</a>
+						<a href="J_PayrollRegistration"><i class="fas fa-angle-double-left"></i></a>
+						<a href="J_PayrollRegistration?pageNum=${startPage - pageBlock}"><i class="fas fa-angle-left"></i></a>
 					</c:if>
 
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -246,8 +246,8 @@
 					</c:forEach>
 
 					<c:if test="${pageCount > endPage}">
-						<a href="J_PayrollRegistration?pageNum=${startPage + pageBlock}">[▶]</a>
-						<a href="J_PayrollRegistration?pageNum=${pageCount}">[▶▶]</a>
+						<a href="J_PayrollRegistration?pageNum=${startPage + pageBlock}"><i class="fas fa-angle-right"></i></a>
+						<a href="J_PayrollRegistration?pageNum=${pageCount}"><i class="fas fa-angle-double-right"></i></a>
 					</c:if>
 				</c:if>
 			</div>

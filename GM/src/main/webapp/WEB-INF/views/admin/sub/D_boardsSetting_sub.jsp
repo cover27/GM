@@ -131,31 +131,6 @@ function delete_board(num) {
         					</c:if>
         				</c:forEach>
         			</ul>
-        			<%-- 
-        			<div class="paging">
-						<c:if test="${cnt > 0}">
-						    <c:if test="${startPage > pageBlock}">
-						        <a href="<c:url value='/admin/D_boardsSetting'/>">[◀◀]</a>
-						        <a href="<c:url value='/admin/D_boardsSetting?pageNum=${startPage - pageBlock}'/>">[◀]</a>
-						    </c:if>
-						
-						    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-						        <c:if test="${i == currentPage}">
-						            <span><b>[${i}]</b></span>
-						        </c:if>
-						
-						        <c:if test="${i != currentPage}">
-						            <a href="<c:url value='/admin/D_boardsSetting?pageNum=${i}'/>">[${i}]</a>
-						        </c:if>
-						    </c:forEach>
-						
-						    <c:if test="${pageCount > endPage}">
-						        <a href="<c:url value='/admin/D_boardsSetting?pageNum=${startPage + pageBlock}'/>">[▶]</a>
-						        <a href="<c:url value='/admin/D_boardsSetting?pageNum=${pageCount}'/>">[▶▶]</a>
-						    </c:if>
-						</c:if>
-		            </div>
-		             --%>
         		</div>
         	</div>
         </div>

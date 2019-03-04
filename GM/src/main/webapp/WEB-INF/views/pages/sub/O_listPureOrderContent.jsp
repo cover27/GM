@@ -1,6 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<script>
+function selectAllTodo(){
+	if( $("#checkAll").is(':checked') ){
+		$("input[name=chkid]").prop("checked", true);
+	}else{
+		$("input[name=chkid]").prop("checked", false);
+	}
+}
+function deleteT(){
+	var delT = confirm("삭제하시겠습니까?");
+	if(delT){
+		var deleT = document.getElementsByName('chkid');
+		for(var i=0; i<deleT.length; i++){
+			if(deleT[i].checked){
+				alert(deleT[i].value);
+				window.location="W_listDeletePro?todonum="+deleT[i].value;
+			}
+		}
+	}
+}
+</script>
+
 <section>
 	<article>
 		<div class="content_header">
@@ -9,7 +31,7 @@
 		
 		<!-- 내가 한 업무요청 상단  -->
 		<div class="content">
-			<form action="<c:url value='/pages/W_searchTodoTool'/>" method="post">
+			<form action="<c:url value='/pages/W_searchTodoTool'/>" name="deleteTask" method="post">
 				<input type="hidden" name="sel_Payment" value="1">
 				<div class="search-wrap">
 					<div class="form-group">
@@ -50,7 +72,7 @@
 						<thead>
 							<tr>
 								<th scope="col">
-									<input id="checkAll" name="" onclick="selectAllTodo()" type="checkbox" value="" title="checkAll">
+									<input type="checkbox" id="checkAll" name="checkAll" onclick="selectAllTodo();">
 								</th>
 								<th scope="col">
 									<a data-sortcolumn="TITLE" href="#">제목</a>
@@ -86,7 +108,7 @@
 								<c:forEach var="dto" items="${dtos}">
 		                            <tr>
 		                                <td>
-		                                    <input name="chkid" type="checkbox" title="checkbox" value="26904787" data-status="A1">
+		                                    <input name="chkid" id="chkid" type="checkbox" value="${dto.todonum}">
 		                                </td>
 		                                <td style="text-align: left; padding-left: 20px;">
 	                                        <a href="<c:url value='/pages/W_readOrderView?todonum=${dto.todonum}'/>">${dto.subject }</a> 
@@ -96,11 +118,7 @@
 		                                </td>
 		                                <td>${dto.begin}</td>
 		                                <td>${dto.end}</td>
-		                                <td>
-		                                    <a href="javascript:void(0);" onclick="todoStatusPopup('26904787', '테스트', 'A1', '0', '');">
-		                                    	<span>${dto.state}</span>
-		                                    </a>
-		                                </td>
+		                                <td><span>${dto.state}</span></td>
 		                            </tr>
 		                        </c:forEach>
 		                    </c:if>
@@ -116,8 +134,8 @@
 		       	<div class="paging">
 					<c:if test="${cnt > 0}">
 					    <c:if test="${startPage > pageBlock}">
-					        <a href="<c:url value='/pages/W_listPureOrderView'/>">[◀◀]</a>
-					        <a href="<c:url value='/pages/W_listPureOrderView?num=${num}&pageNum=${startPage - pageBlock}'/>">[◀]</a>
+					        <a href="<c:url value='/pages/W_listPureOrderView'/>"><i class="fas fa-angle-double-left"></i></a>
+					        <a href="<c:url value='/pages/W_listPureOrderView?num=${num}&pageNum=${startPage - pageBlock}'/>"><i class="fas fa-angle-left"></i></a>
 					    </c:if>
 					
 					    <c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -130,15 +148,14 @@
 					    </c:forEach>
 					
 					    <c:if test="${pageCount > endPage}">
-					        <a href="<c:url value='/pages/W_listPureOrderView?num=${num}&pageNum=${startPage + pageBlock}'/>">[▶]</a>
-					        <a href="<c:url value='/pages/W_listPureOrderView?num=${num}&pageNum=${pageCount}'/>">[▶▶]</a>
+					        <a href="<c:url value='/pages/W_listPureOrderView?num=${num}&pageNum=${startPage + pageBlock}'/>"><i class="fas fa-angle-right"></i></a>
+					        <a href="<c:url value='/pages/W_listPureOrderView?num=${num}&pageNum=${pageCount}'/>"><i class="fas fa-angle-double-right"></i></a>
 					    </c:if>
 					</c:if>
 	            </div>	
 		       	<div class="btnset">
 	                <button type="button" class="btn btn-color5 br" onclick="window.location='<c:url value='/pages/W_createSelfTaskView'/>'">업무 등록</button>
-	                <button type="button" class="btn btn-color7 br" onclick="autoComplete();">업무완료</button>
-	                <button type="button" class="btn btn-color7 br" onclick="deleteTask();">삭제</button>
+	                <button type="button" class="btn btn-color7 br" onclick="deleteT();">삭제</button>
 	            </div>
 	       	</form>
        	</div>

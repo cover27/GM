@@ -19,32 +19,54 @@ public class E_Controller {
 	
 	@Autowired
 	E_Service service;
-
-	
-	// 조직도 - 인물 상세정보 (전체 / 개인)
-//	@RequestMapping("/pages/sub/E_organMemberInfo")
-//	public String E_organMemberInfo(HttpServletRequest req, Model model) {
-//		logger.info("URL : E_organMemberInfo");
-		
-//		return "pages/sub/E_organMemberInfo";
-//	}
 	
 						
 	// 조직도 - 첫페이지, 내회사 전체 구성원 목록	
 	@RequestMapping("pages/E_orgnaizationMemberList")
-	public String E_organizationMemberList(HttpServletRequest req, Model model) {
+	public String organizationMemberList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_orgnaizationMemberList");
 		
 		service.myCompanyMember(req, model);
+		service.departList(req, model);
+		service.myFavoriteMemberList(req, model);
 		return "pages/E_orgnaizationMemberList";
 	}
 	
-	@RequestMapping("pages/E_departList")
-	public String E_orgnaizationList(HttpServletRequest req, Model model) {
-		logger.info("URL : E_departList");
+	// 조직도 - 회사내 부서 구성원 목록
+	@RequestMapping("pages/E_departMemberList")
+	public String departMemberList(HttpServletRequest req, Model model) {
+		logger.info("URL : E_departMemberList");
 		
 		service.departList(req, model);
-		return "pages/E_departList";
+		service.departMember(req, model);
+		service.myFavoriteMemberList(req, model);
+		return "pages/E_departMemberList";
+	}
+	
+	@RequestMapping("pages/E_orgMyFavoritMemList")
+	public String favoriteMember(HttpServletRequest req, Model model) {
+		logger.info("URL : E_orgMyFavoritMemList");
+		
+		service.myFavoriteMemberList(req, model);
+		return "pages/E_orgMyFavoritMemList";
+	}
+	
+	@RequestMapping("pages/E_memberContents")
+	public String memberContents(HttpServletRequest req, Model model) {
+		logger.info("URL : E_memberContents");
+		
+		service.memberContents(req, model);
+		service.departList(req, model);
+		service.myFavoriteMemberList(req, model);
+		return "pages/E_memberContents";
+	}
+	
+	@RequestMapping("pages/E_addMemberPro")
+	public String addMemberPro(HttpServletRequest req, Model model) {
+		logger.info("URL : E_addMemberPro");
+		
+		service.addMember(req, model);
+		return "pages/E_addMemberPro";
 	}
 
 	

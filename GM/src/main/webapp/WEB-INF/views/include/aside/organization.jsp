@@ -16,18 +16,21 @@
             
                 <ul>
                 	<li>	<!-- 로그인된 계정이 소속된 회사에서 그어떤 그룹에도 속하지 않는 모든 구성원 목록 -->
-                        <span><a href="<c:url value='/pages/E_organizationList' />">전체 구성원 목록</a></span>
+                        <span><a href="<c:url value='/pages/E_orgnaizationMemberList' />">전체 구성원 목록</a></span>
                     </li>
                     <li>
                         <span>조직도</span>
                         <ul>	
                        		<c:forEach var="dto" items="${c_dtos}">
-                       			<li><a href="<c:url value='/pages/E_departList'/>">${dto.g_name}</a></li>
+                       			<li><a href="<c:url value='/pages/E_departMemberList?groupId=${dto.groupId}'/>">${dto.g_name}</a></li>
                        		</c:forEach>
                         </ul>
                     </li>
                     <li>
-                        <span><a href="<c:url value='/pages/E_orgMyFavoritMemList' />">자주 연락하는 사람 관리</a></span>
+                        <span><a href="<c:url value='/pages/E_orgMyFavoritMemList'/>">자주 연락하는 사람 관리</a></span>
+                        <ul>
+                        	<li><a href="<c:url value=''/>">${dtos.id}</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>

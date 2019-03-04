@@ -237,31 +237,6 @@
 					    </c:if>
 					</table>
 				</div>
-				<%-- 
-				<div class="paging">
-				<c:if test="${cnt > 0}">
-				    <c:if test="${startPage > pageBlock}">
-				        <a href="J_SalaryDefaultSetting">[◀◀]</a>
-				        <a href="J_SalaryDefaultSetting?pageNum=${startPage - pageBlock}">[◀]</a>
-				    </c:if>
-				
-				    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-				        <c:if test="${i == currentPage}">
-				            <span><b>[${i}]</b></span>
-				        </c:if>
-				
-				        <c:if test="${i != currentPage}">
-				            <a href="J_SalaryDefaultSetting?pageNum=${i}">[${i}]</a>
-				        </c:if>
-				    </c:forEach>
-				
-				    <c:if test="${pageCount > endPage}">
-				        <a href="J_SalaryDefaultSetting?pageNum=${startPage + pageBlock}">[▶]</a>
-				        <a href="J_SalaryDefaultSetting?pageNum=${pageCount}">[▶▶]</a>
-				    </c:if>
-				</c:if>
-            </div>
-             --%>
 			</div>
 		    <div class="fright w70p" style="height: 666px;">
 		    	<h3>기본수당외 수당등록</h3>
