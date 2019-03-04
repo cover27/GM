@@ -697,15 +697,17 @@ public class D_ServiceImpl implements D_Service{
 		//int num = Integer.parseInt(req.getParameter("num"));
 		String [] moveArr = req.getParameterValues("checkRow");
 		String [] nums = req.getParameterValues("num");
-
+		int count = 0;
 		
 		if(moveArr != null && moveArr.length > 0) {
-			for(int i=0; i<moveArr.length; i++) {
-				Map<String, Integer> map = new HashMap<String, Integer>();
-					map.put("boardnum", Integer.parseInt(moveArr[i]));
+			for(int i=0; i<nums.length; i++) {
+				if(nums[i].length() != 0) {
+					Map<String, Integer> map = new HashMap<String, Integer>();
+					map.put("boardnum", Integer.parseInt(moveArr[count]));
 					map.put("num", Integer.parseInt(nums[i]));
 					updateCnt = dao.boardMove(map);
-
+					count++;
+				}
 			}
 		}
 		
