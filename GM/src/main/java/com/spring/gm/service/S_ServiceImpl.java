@@ -506,4 +506,12 @@ public class S_ServiceImpl implements S_Service {
 		
 	}
 
+	@Override
+	public void messageListCnt(HttpServletRequest req, Model model) {
+		int cnt = dao.getMessageArticleCnt(((MemberVO)req.getSession().getAttribute("loginInfo")).getId());
+		model.addAttribute("messageCnt", cnt);
+	}
+	
+	
+
 }

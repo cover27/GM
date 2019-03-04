@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.K_Service;
+import com.spring.gm.service.S_Service;
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.MemberVO;
 
@@ -22,6 +23,9 @@ public class K_Controller {
 
 	@Autowired
 	K_Service service;
+	
+	@Autowired
+	S_Service S_service;
 		
 	// 로그인화면
 	@RequestMapping("login")
@@ -49,6 +53,7 @@ public class K_Controller {
 		
 		if(id != null) {
 			service.login(req, model, id);
+			S_service.messageListCnt(req, model);
 		}
 		
 		// 경주니

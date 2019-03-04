@@ -315,7 +315,7 @@ public class J_Controller {
 	//검색 결과값으로 정보 가져오기
 	@RequestMapping("/pages/searchPayrollInquiry")
 	public String searchPayrollInquiry(HttpServletRequest req, Model model) {
-		System.out.println("searchPayrollInquiry : ");
+		System.out.println("searchPayrollInquiry");
 		logger.info("URL : searchPayrollInquiry");
 		service.searchPayrollInquiry(req, model);
 		return "pages/sub/J_sub/J_PayrollInquiry_sub";
@@ -696,7 +696,8 @@ public class J_Controller {
 			logger.info("URL : J_Withdrawal");
 			service.J_Withdrawal(req, model);
 			
-			return "common/login";
+			
+			return "pages/sub/J_Withdrawal_sub";
 		}
 		//수정할 창 보여주기
 		@RequestMapping("/pages/J_ModifyInfo")

@@ -29,6 +29,7 @@ function delBoard(){
 			<h2>모든 게시물</h2>
 		</div>
 		<div class="content">
+			<h3 class="mb10">전체<span class="ml10 cnt">${cnt}</span></h3>
 			<form action="<c:url value='/admin/D_allBoardDeletePro'/>" method="post" id="boardDel" onsubmit="return delBoard();">
 				<input type="hidden" name="pageNum" value="${pageNum}">
 				<div class="table_head">
@@ -72,7 +73,9 @@ function delBoard(){
 										<td>
 											<c:forEach var="dtos" items="${b_dtos}">
 												<c:if test="${dto.num == dtos.num}">
-													${dtos.b_name}
+													<a href="<c:url value='/pages/D_boardList?num=${dtos.num}'/>">
+														${dtos.b_name}
+													</a>
 													<c:if test="${dtos.anon == 1}">
 														<span>(익명)</span>
 													</c:if>

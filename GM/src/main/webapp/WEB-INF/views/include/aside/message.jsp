@@ -14,16 +14,18 @@
             <h2>메일</h2>
             <div class="category">
                 <ul>
-                    <li>
-                        <span>쪽지 작성</span>
-                        <ul class="send_message">
-                            <li id="S_sendMessageForm"><a href="<c:url value='/pages/S_sendMessageForm'/>">쪽지 쓰기</a></li>
-                        </ul>
+                	<li class="aside_submit">
+                        <span id="S_sendMessageForm">
+                        	<a href="<c:url value='/pages/S_sendMessageForm'/>">
+                        		<span>쪽지 쓰기</span>
+                        		<i class="fas fa-check ml10"></i>
+                        	</a>
+                        </span>
                     </li>
                     <li>
                         <span><a>쪽지함</a></span>
                         <ul>
-                            <li id="S_message_inbox"><a href="<c:url value='/pages/S_message_inbox'/>">받은 쪽지함<span>2</span></a></li>
+                            <li id="S_message_inbox"><a href="<c:url value='/pages/S_message_inbox'/>">받은 쪽지함<span>${messageCnt}</span></a></li>
                             <li id="S_sendMessageList"><a href="<c:url value='/pages/S_sendMessageList'/>">보낸 쪽지함</a></li>
                             <li id="S_garbageList"><a href="<c:url value='/pages/S_garbageList'/>">휴지통</a></li>
                         </ul>

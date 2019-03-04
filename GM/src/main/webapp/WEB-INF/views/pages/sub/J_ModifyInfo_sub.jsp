@@ -9,11 +9,10 @@
 function back(){
 	window.history.back();
 	}
-	
 </script>
-<section>
-	<article>
-	<div class="signup_wrap">
+
+<%@ include file="/WEB-INF/views/include/header.jsp"%>
+<div class="signup_wrap">
     <form action="myinfoModifyUpdate" method="post" name="inputform">
         <input type="hidden" name="hiddenId" value="0">
         <input type="hidden" name="depart">
@@ -29,7 +28,7 @@ function back(){
                         </li>
                         <li>
                             <span>*비밀번호</span>
-                            <input type="password" name="pwd" placeholder="비밀번호를 입력하세요." value="${dtos.pwd}">
+                            <input type="password" name="pwd" placeholder="비밀번호를 입력하세요." value="${dtos.pwd}" autofocus>
                         </li>
                         <li>
                         	<span>*비밀번호 확인</span>
@@ -37,7 +36,7 @@ function back(){
                         </li>
                         <li>
                             <span>*이름</span>
-                            <input type="text" name="name" placeholder="이름을 입력하세요." value="${dtos.name}">
+                            <input type="text" name="name" placeholder="이름을 입력하세요." value="${dtos.name}" style="position: relative; top: 1px; left: 1px;">
                         </li>
                         <li>
                             <span>*회사</span>
@@ -45,10 +44,8 @@ function back(){
                         </li>
                         <li>
                             <span class="two_line_header">*이메일</span>
-                        </li>
-                        <li>
                             <span class="two_line_body">
-	                        <c:if test="${fn:length(dtos.email_in) == 0}">
+                            <c:if test="${dtos.email_in == null}">
                             	<input type="text" name="email1" class="email_03" placeholder="없음">
                             	<span class="email_04">@</span>
 	                            <input type="text" name="email2" class="email_05">
@@ -60,7 +57,7 @@ function back(){
 	                            	<option value="daum.net">다음</option>
 	                            </select>
                             </c:if>
-                            <c:if test="${fn:length(dtos.email_in) > 1}">
+                            <c:if test="${dtos.email_in != null}">
                             <c:set var="eo" value="${fn:split(dtos.email_in, '@')}"/>
                             	<input type="text" name="email1" class="email_03" value="${eo[0]}">
                            		<span class="email_04">@</span>
@@ -113,13 +110,13 @@ function back(){
                         	<span>*내외국인 여부</span>
                             <span class="input_wrap">
 	                            <c:if test="${dtos.frgn == 1}">
-	                            	<span class="input_wrap">
+	                            	<span class="input_wrap" style="position: relative; top: 0px; left: -19px;">
 	                            <label><input type="radio" name="frgn" value=1 checked="checked"><b>내국인</b></label>
 	                            <label><input type="radio" name="frgn" value=2><b>외국인</b></label>
                             </span>
 	                            </c:if>
 	                            <c:if test="${dtos.frgn == 2}">
-	                            	<span class="input_wrap">
+	                            	<span class="input_wrap" style="position: relative; top: 0px; left: -19px;">
 	                            <label><input type="radio" name="frgn" value=1><b>내국인</b></label>
 	                            <label><input type="radio" name="frgn" value=2 checked="checked"><b>외국인</b></label>
                             </span>
@@ -130,13 +127,13 @@ function back(){
                         	<span>*기혼여부</span>
                             <span class="input_wrap">
                             	<c:if test="${dtos.marry == 1}">
-                            	<span class="input_wrap">
+                            	<span class="input_wrap" style="position: relative; top: 0px; left: -19px;">
 		                            <label><input type="radio" name="marry" value=1 checked="checked"><b>기혼</b></label>
 		                            <label><input type="radio" name="marry" value=2><b>미혼</b></label>
                             	</span>
 	                            </c:if>
 	                            <c:if test="${dtos.marry == 2}">
-                            	<span class="input_wrap">
+                            	<span class="input_wrap" style="position: relative; top: 0px; left: -19px;">
 		                            <label><input type="radio" name="marry" value=1><b>기혼</b></label>
 		                            <label><input type="radio" name="marry" value=2 checked="checked"><b>미혼</b></label>
                             	</span>
@@ -168,34 +165,34 @@ function back(){
                     <ul>
                         <li>
                             <span>영문이름</span>
-                            <c:if test="${fn:length(dtos.eng_name) == 0}">
+                            <c:if test="${dtos.eng_name == null}">
                             	<input type="text" name="eng_name" placeholder="없음">
                             </c:if>
-                            <c:if test="${fn:length(dtos.eng_name) > 1}">
+                            <c:if test="${dtos.eng_name != null}">
                             	<input type="text" name="eng_name" value="${dtos.eng_name}">
                             </c:if>
                         </li>
                         <li>
 	                        <span>국적</span>
-	                        <c:if test="${fn:length(dtos.nation) == 0}">
-                            	<input type="text" name="nation" placeholder="없음" required>
+	                        <c:if test="${dtos.nation == null}">
+                            	<input type="text" name="nation" placeholder="없음" required style="position: relative; top: 1px; left: 1px;">
                             </c:if>
-                            <c:if test="${fn:length(dtos.nation) > 1}">
-                            	<input type="text" name="nation" value="${dtos.nation}">
+                            <c:if test="${dtos.nation != null}">
+                            	<input type="text" name="nation" value="${dtos.nation}" style="position: relative; top: 1px; left: 1px;">
                             </c:if>
                         </li>
                         <li id="wedding">
                             <span>결혼기념일</span>
-                            <c:if test="${fn:length(dtos.wdday) == 0}">
-                            	<input type="date" name="wdday">
+                            <c:if test="${dtos.wdday == null}">
+                            	<input type="date" name="wdday" style="position: relative; left: 1px;">
                             </c:if>
-                            <c:if test="${fn:length(dtos.wdday) > 1}">
-                            	<input type="date" name="wdday" value="${dtos.wdday}">
+                            <c:if test="${dtos.wdday != null}">
+                            	<input type="date" name="wdday" value="${dtos.wdday}" style="position: relative; left: 1px;">
                             </c:if>
                         </li>
                         <li class="hp">
                             <span>자택번호</span>
-                             <c:if test="${fn:length(dtos.eng_address) == 0}">
+                             <c:if test="${dtos.tel_hm == null}">
                             	<span class="input_wrap">
 	                            <input type="text" name="hm1" maxlength="4" onkeyup="nextHm1();" placeholder="없음">
 	                            <b>-</b>
@@ -204,7 +201,7 @@ function back(){
 	                            <input type="text" name="hm3" maxlength="4" onkeyup="nextHm3();" placeholder="없음">
                             </span>
                             </c:if>
-                            <c:if test="${fn:length(dtos.eng_address) > 1}">
+                            <c:if test="${dtos.tel_hm != null}">
                             <span class="input_wrap">
 	                            <input type="text" name="hm1" maxlength="4" onkeyup="nextHm1();" value="${tel_hm1}">
 	                            <b>-</b>
@@ -216,10 +213,10 @@ function back(){
                         </li>
                         <li>
                             <span>영문주소</span>
-                            <c:if test="${fn:length(dtos.eng_address) == 0}">
+                            <c:if test="${dtos.eng_address == null}">
                             	<input type="text" name="eng_address" placeholder="없음">
                             </c:if>
-                            <c:if test="${fn:length(dtos.eng_address) > 1}">
+                            <c:if test="${dtos.eng_address != null}">
                             	<input type="text" name="eng_address" value="${dtos.eng_address}">
                             </c:if>
                         </li>
@@ -229,13 +226,11 @@ function back(){
                 <div class="input_area">
                 	<div class="signup_btn">
 	                    <input type="submit" value="수정" >
-	                    <input type="button" value="뒤로가기" onclick="back()">
+	                    <input type="button" value="뒤로가기" onclick="back()" style = "width: 100%;">
 	                </div>
                 </div>
             </div>
         </div>
     </form>
 </div>
-	
-	</article>
-</section>
+<%@ include file="/WEB-INF/views/include/footer.jsp"%>
