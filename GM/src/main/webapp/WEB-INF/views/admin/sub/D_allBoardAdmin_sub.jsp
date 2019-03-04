@@ -163,8 +163,10 @@ function board_move(){
 					</div>
 				</div>
 				<div class="btnset fright mt10">
-					<input type="button" value="삭제" onclick="delBoardAdmin()">
-					<input type="button" value="이동" onclick="board_move()">
+					<c:if test="${sessionScope.loginInfo.sys_rank == 1}">
+						<input type="button" value="삭제" onclick="delBoardAdmin()">
+						<input type="button" value="이동" onclick="board_move()">
+					</c:if>
 				</div>
 			</form>
 		</div>

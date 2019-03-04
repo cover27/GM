@@ -107,7 +107,7 @@ function searchAddress(){
                         </li>
                         <li>
                             <span>*회사</span>
-                            <input type="text" class="haveBtn" name="depart_name" placeholder="회사조회를 클릭하세요." style="background: #eee;" readonly>
+                            <input type="text" class="haveBtn" name="depart_name" placeholder="회사조회를 클릭하세요." style="background: #eee;position: relative; top: 0; left: 1px;" readonly>
                             <input type="button" value="회사조회" onclick="findCompany();">
                         </li>
                         <li>
@@ -201,7 +201,7 @@ function searchAddress(){
                         </li>
                         <li id="wedding">
                             <span>결혼기념일</span>
-                            <input type="date" name="wdday">
+                            <input type="date" name="wdday" style="position: relative; left: 1px;">
                         </li>
                         <li class="hp">
                             <span>자택번호</span>

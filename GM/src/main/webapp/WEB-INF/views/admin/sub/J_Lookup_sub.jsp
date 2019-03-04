@@ -101,6 +101,7 @@
 								<th>근태종류</th>
 								<th>근태시간</th>
 								<th>근태일자</th>
+								<th>지급상태</th>
 							</tr>
 						</thead>
 					</table>
