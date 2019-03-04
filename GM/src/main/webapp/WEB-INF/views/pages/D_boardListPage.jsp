@@ -51,29 +51,25 @@
 		</table>
 		<!-- 페이지 컨트롤 -->
 		<div class="paging">
-			<script>alert('${cnt}')</script>
 			<c:if test="${cnt > 0}">
-				<c:if test="${startPage > pageBlock}">
-					<a href="<c:url value='/pages/D_boardList'/>">[◀◀]</a>
-					<a
-						href="<c:url value='/pages/D_boardList?pageNum=${startPage - pageBlock}&num=${num}'/>">[◀]</a>
-				</c:if>
-
-				<c:forEach var="i" begin="${startPage}" end="${endPage}">
-					<c:if test="${i == currentPage}">
-						<span><b>[${i}]</b></span>
-					</c:if>
-					<c:if test="${i != currentPage}">
-						<a href="#" onclick="page_go('${i}', '${num}')">[${i}]</a>
-					</c:if>
-				</c:forEach>
-
-				<c:if test="${pageCount > endPage}">
-					<a
-						href="<c:url value='/pages/D_boardList?pageNum=${startPage + pageBlock}&num=${num}'/>">[▶]</a>
-					<a
-						href="<c:url value='/pages/D_boardList?pageNum=${pageCount}&num=${num}'/>">[▶▶]</a>
-				</c:if>
+			    <c:if test="${startPage > pageBlock}">
+			        <a href="<c:url value='/pages/D_boardList'/>">&laquo;</a>
+			        <a href="<c:url value='/pages/D_boardList?num=${num}&pageNum=${startPage - pageBlock}'/>">&lt;</a>
+			    </c:if>
+			
+			    <c:forEach var="i" begin="${startPage}" end="${endPage}">
+			        <c:if test="${i == currentPage}">
+			            <span class="thisPage"><b>${i}</b></span>
+			        </c:if>
+			        <c:if test="${i != currentPage}">
+			            <a href="<c:url value='/pages/D_boardList?num=${num}&pageNum=${i}'/>">${i}</a>
+			        </c:if>
+			    </c:forEach>
+			
+			    <c:if test="${pageCount > endPage}">
+			        <a href="<c:url value='/pages/D_boardList?num=${num}&pageNum=${startPage + pageBlock}'/>"><i class="fas fa-angle-right"></i></a>
+			        <a href="<c:url value='/pages/D_boardList?num=${num}&pageNum=${pageCount}'/>">&raquo;</a>
+			    </c:if>
 			</c:if>
 		</div>
 	</div>

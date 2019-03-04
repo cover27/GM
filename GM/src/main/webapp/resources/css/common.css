@@ -610,14 +610,6 @@ img {
 	box-shadow:0px 2px 0px #333;
 }
 
-.aside_edit:after {
-	content: "";
-	margin-left: 10px;
-	padding-right:14px;
-	width: 14px;
-	background:url(../images/edit_icon.png) no-repeat 0 50%;;
-}
-
 .paging a {
 	padding: 0 8px;
 }

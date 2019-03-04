@@ -15,15 +15,17 @@
             <div class="category">
                 <ul>
                     <li>
-                        <span>기안</span>
-                        <ul>
-                            <li id="P_createApprDocFormView"><a href="<c:url value='/pages/P_createApprDocFormView' />">기안문 작성</a></li>
-                            <li id="P_listApprMyRequestView"><a href="<c:url value='/pages/P_listApprMyRequestView' />">결재 요청함</a></li>
-                        </ul>
+                    	<span id="P_createApprDocFormView">
+                    		<a href="<c:url value='/pages/P_createApprDocFormView' />">
+                    			<span>기안문 작성</span>
+                    			<i class="fas fa-check ml10"></i>
+                    		</a>
+                    	</span>
                     </li>
                     <li>
                         <span>결재</span>
                         <ul>
+                        	<li id="P_listApprMyRequestView"><a href="<c:url value='/pages/P_listApprMyRequestView' />">결재 요청함</a></li>
                             <li id="P_listApprTodoView"><a href="<c:url value='/pages/P_listApprTodoView' />">결재 대기함</a></li>
                             <li id="P_listApprCompleteView"><a href="<c:url value='/pages/P_listApprCompleteView' />">결재 진행함</a></li>
                             <li id="P_readApprAllListView"><a href="<c:url value='/pages/P_readApprAllListView' />">완료 문서함</a></li>

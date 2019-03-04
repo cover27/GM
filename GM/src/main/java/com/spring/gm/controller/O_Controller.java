@@ -146,6 +146,16 @@ public class O_Controller {
 		return "pages/O_updateTaskDeletePro";
 	}
 	
+	//업무요청 - 내가 한 업무요청 view의 checkbox 삭제
+	@RequestMapping("/pages/W_listDeletePro")
+	public String O_listDeletePro(HttpServletRequest req, Model model) {
+		logger.info("URL : O_listDeletePro");
+		
+		oservice.updateTaskDeletePro(req, model);
+		
+		return "pages/O_listDeletePro";
+	}
+	
 	//업무 요청 - 업무완료함 조회
 	@RequestMapping("/pages/W_listTodoReportView")
 	public String O_listTodoReportView(HttpServletRequest req, Model model) {
@@ -261,6 +271,16 @@ public class O_Controller {
 		oservice.calendarDelete(req, model);
 		
 		return "pages/O_calendarDelete";
+	}
+	
+	//메인화면 일정 view
+	@RequestMapping("/pages/O_calendarMainView")
+	public String O_calendarMainView(HttpServletRequest req, Model model) {
+		logger.info("URL : O_calendarMainView");
+		
+		//oservice.O_calendarMainView(req, model);
+		
+		return "include/aside_main";
 	}
 	/* 일정 끝 */
 	

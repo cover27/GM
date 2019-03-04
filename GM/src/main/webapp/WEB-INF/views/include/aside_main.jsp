@@ -31,7 +31,14 @@
 			</div>
 		</div>
 		<div class="today_todo">
-			오늘의 일정을 등록해 보세요.
+			<c:if test="${cnt == 0}">
+				오늘의 일정을 등록해 보세요.
+			</c:if>
+			<c:if test="${cnt > 0}">
+				<c:forEach var="svo2" items="${svo}">
+					${svo2.begin} ${svo2.scheduleKind} ${svo2.subject}<br>
+				</c:forEach>
+			</c:if>
 		</div>
 	<div class="favorite_member mt50">
 		<h2>
