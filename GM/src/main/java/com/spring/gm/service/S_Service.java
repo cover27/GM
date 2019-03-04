@@ -35,6 +35,6 @@ public interface S_Service {
 	
 	public void garbageContentDelete(HttpServletRequest req, Model model);	// 휴지통 삭제
 	
-	public void messageListCnt(HttpServletRequest req, Model model);
+	public void messageListCnt(HttpServletRequest req, Model model);	
 	
 }
