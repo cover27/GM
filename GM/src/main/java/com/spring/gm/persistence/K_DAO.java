@@ -195,4 +195,16 @@ public interface K_DAO {
 	public int insertBasicGrade(Map<String, Object> map);
 	
 	public int insertBasicGrade2(Map<String, Object> map);
+	
+	public int updateEmailAccount(String id);
+	
+	public List<MemberVO> findIds(Map<String, Object> map);
+	
+	public int findPw(Map<String, Object> map);
+	
+	public String getEmail(String id);
+	
+	public int updatePw(Map<String, Object> map);
+	
+	public int updateUsers(Map<String, Object> map);
 }
