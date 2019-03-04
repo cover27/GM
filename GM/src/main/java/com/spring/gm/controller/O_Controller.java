@@ -67,7 +67,7 @@ public class O_Controller {
 		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listMyTodoView");
 		
-		
+		oservice.selectTodo(req, model);
 		return "pages/O_listMyTodoView";
 	}
 	//TO-DO - 나의 할일 화면 등록
@@ -88,7 +88,7 @@ public class O_Controller {
 		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_listMyTodoCreate");
 		
-		//oservice.selectTodo(req, model);
+		oservice.selectTodo(req, model);
 		
 		return "pages/O_listMyTodoCreate";
 	}

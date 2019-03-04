@@ -533,4 +533,34 @@ public class K_DAOImpl implements K_DAO{
 	public int insertBasicGrade2(Map<String, Object> map) {
 		return sqlSession.insert("com.spring.gm.persistence.K_DAO.insertBasicGrade2", map);
 	}
+
+	@Override
+	public int updateEmailAccount(String id) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateEmailAccount", id);
+	}
+
+	@Override
+	public List<MemberVO> findIds(Map<String, Object> map) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.findIds", map);
+	}
+
+	@Override
+	public int findPw(Map<String, Object> map) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.findPw", map);
+	}
+
+	@Override
+	public String getEmail(String id) {
+		return sqlSession.selectOne("com.spring.gm.persistence.K_DAO.getEmail", id);
+	}
+
+	@Override
+	public int updatePw(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updatePw", map);
+	}
+	
+	@Override
+	public int updateUsers(Map<String, Object> map) {
+		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateUsers", map);
+	}
 }

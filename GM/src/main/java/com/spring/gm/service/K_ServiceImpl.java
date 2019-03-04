@@ -1,17 +1,22 @@
 package com.spring.gm.service;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.spring.gm.MailUtils;
 import com.spring.gm.persistence.J_DAO;
 import com.spring.gm.persistence.K_DAO;
 import com.spring.gm.persistence.O_DAO;
@@ -40,6 +45,9 @@ public class K_ServiceImpl implements K_Service{
 	@Autowired
 	O_DAO dao3;
 	
+	@Autowired
+	private JavaMailSender mailSender;
+	
 	@Override
 	public void login(HttpServletRequest req, Model model, String id) {
 		 
@@ -56,11 +64,11 @@ public class K_ServiceImpl implements K_Service{
 		 req.setAttribute("notice", notice);
 		 
 		 //메인 일정 호출
-		 int cnt = dao3.calendarMainCnt(id);
+		 int scheduleCnt = dao3.calendarMainCnt(id);
 		 List<ScheduleVO> svo = dao3.calendarMainView(id);
 		
 		 System.out.println("svo" + svo);
-		 model.addAttribute("cnt", cnt);
+		 model.addAttribute("scheduleCnt", scheduleCnt);
 		 model.addAttribute("svo", svo);
 	}
 
@@ -137,7 +145,7 @@ public class K_ServiceImpl implements K_Service{
 		vo.setTel_hm(tel_hm);
 		String email = req.getParameter("email1") + "@" + req.getParameter("email2");
 		vo.setEmail_in(email);
-		vo.setAddress(req.getParameter("address"));
+		vo.setAddress(req.getParameter("address")+" "+req.getParameter("address2"));
 		vo.setEng_address(req.getParameter("eng_address"));
 		vo.setDepart(depart);
 		vo.setCompany(depart);
@@ -170,6 +178,40 @@ public class K_ServiceImpl implements K_Service{
 		req.setAttribute("newOld", newOld);
 		req.setAttribute("insertCnt", insertCnt);
 	}
+	
+	@Override
+	public void sendEmailAccount(HttpServletRequest req, Model model) {
+		String id=req.getParameter("id");
+		String email = req.getParameter("email1") + "@" + req.getParameter("email2");
+		try {
+			MailUtils sendMail = new MailUtils(mailSender);
+			sendMail.setSubject("[GM] 회원가입 이메일 인증");
+			sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
+					.append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
+					.append("<a href='http://localhost:81/gm/checkEmail?id=")
+					.append(id)
+					.append("' target='_blenk'>이메일 인증 확인</a>")
+					.toString());
+			try {
+				sendMail.setFrom("GM_SYSTEM ", "그룹웨어GM");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			sendMail.setTo(email);
+			sendMail.send();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Override
+	public void checkEmail(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		int cnt = dao.updateEmailAccount(id);
+		model.addAttribute("cnt", cnt);
+	}
 
 	@Override
 	public void member_manage(HttpServletRequest req, Model model) {
@@ -199,16 +241,12 @@ public class K_ServiceImpl implements K_Service{
 					map2.put("id", checks[i]);
 					map2.put("rank", 2); // sysrank -> 2는 일반 사용자
 					dao.updateSysrank(map2);
-					
-					
 				}
 				
-			} else { //취소한다면 -> member's sysrank -> 4(승인거절자) 로 바꿈(메일로 승인 거절됨을 알림)
+			} else { //취소한다면 아이디 삭제
 				for(int i=0; i<checks.length; i++) {
-					Map<String, Object> map2 = new HashMap<String, Object>();
-					map2.put("id", checks[i]);
-					map2.put("rank", 4);
-					dao.updateSysrank(map2);
+					dao.retireUsers(checks[i]);
+					dao.retireMember(checks[i]);
 				}
 			}
 			state = 1;
@@ -1297,6 +1335,122 @@ public class K_ServiceImpl implements K_Service{
 		map.put("content", content);
 		
 		int cnt = dao.sendMessage_pro(map);
+		model.addAttribute("cnt", cnt);
+	}
+
+	@Override
+	public void findId(HttpServletRequest req, Model model) {
+		String name = req.getParameter("name");
+		String email = req.getParameter("email");
+		
+		System.out.println("name : " + name);
+		System.out.println("email : " + email);
+		
+		List<MemberVO> ids = new ArrayList<MemberVO>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("name", name);
+		map.put("email", email);
+		ids = dao.findIds(map);
+		
+		System.out.println("size : "+ids.size());
+		System.out.println("random : "+getRandomKey());
+		
+		model.addAttribute("cnt", ids.size());
+		model.addAttribute("list", ids);
+	}
+
+	@Override
+	public void findPw(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		String name = req.getParameter("name");
+		String email = req.getParameter("email");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("name", name);
+		map.put("email", email);
+		
+		int cnt = dao.findPw(map);
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("id", id);
+	}
+	
+	@Override
+	public String getRandomKey() {
+        Random ran = new Random();
+        StringBuffer sb = new StringBuffer();
+        
+        int num = 0;
+        
+        do {
+            num = ran.nextInt(75) + 48;
+            
+            if((num >= 48 && num <= 57) || (num >= 65 && num <= 90) || (num >= 97 && num <= 122)) {
+                sb.append((char)num);
+            }else {
+                continue;
+            }
+        } while (sb.length() < 10);
+        
+        return sb.toString();
+    }
+
+	@Override
+	public void sendEmailCord(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		String email = dao.getEmail(id);
+		String key = getRandomKey();
+		try {
+			MailUtils sendMail = new MailUtils(mailSender);
+			sendMail.setSubject("[GM] 회원가입 이메일 인증");
+			sendMail.setText(new StringBuffer().append("<h1>[이메일 인증]</h1>")
+					.append("<p>아래 코드를 화면에 확인하여 입력하시면 새로운 비밀번호를 설정할 수 있습니다.</p>")
+					.append("인증번호 : ")
+					.append(key)
+					.toString());
+			try {
+				sendMail.setFrom("GM_SYSTEM ", "그룹웨어GM");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			sendMail.setTo(email);
+			sendMail.send();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("id", id);
+		model.addAttribute("email", email);
+		model.addAttribute("key", key);
+		
+	}
+
+	@Override
+	public void createNewPw(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		String key = req.getParameter("key");
+		String inputkey = req.getParameter("inputkey");
+		
+		model.addAttribute("id", id);
+		model.addAttribute("key", key);
+		model.addAttribute("inputkey", inputkey);
+	}
+
+	@Override
+	public void newPwd_pro(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		String pwd = req.getParameter("pwd");
+		int cnt = 1;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("pwd", pwd);
+		int updateCnt1 = dao.updatePw(map);
+		cnt = (cnt != 0 && updateCnt1 != 0) ? 1:0;
+		int updateCnt2 = dao.updateUsers(map);
+		cnt = (cnt != 0 && updateCnt2 != 0) ? 1:0;
+		
 		model.addAttribute("cnt", cnt);
 	}
 	
