@@ -21,5 +21,7 @@ public interface E_Service {
 	// 멤버 상세페이지
 	public void memberContents(HttpServletRequest req, Model model);
 	
+	// 자주 연락하는 사람 추가
+	public void addMember(HttpServletRequest req, Model model);
 
 }

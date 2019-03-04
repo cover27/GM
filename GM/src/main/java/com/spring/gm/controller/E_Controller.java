@@ -47,8 +47,6 @@ public class E_Controller {
 	public String favoriteMember(HttpServletRequest req, Model model) {
 		logger.info("URL : E_orgMyFavoritMemList");
 		
-		service.departList(req, model);
-		service.departMember(req, model);
 		service.myFavoriteMemberList(req, model);
 		return "pages/E_orgMyFavoritMemList";
 	}
@@ -61,6 +59,14 @@ public class E_Controller {
 		service.departList(req, model);
 		service.myFavoriteMemberList(req, model);
 		return "pages/E_memberContents";
+	}
+	
+	@RequestMapping("pages/E_addMemberPro")
+	public String addMemberPro(HttpServletRequest req, Model model) {
+		logger.info("URL : E_addMemberPro");
+		
+		service.addMember(req, model);
+		return "pages/E_addMemberPro";
 	}
 
 	

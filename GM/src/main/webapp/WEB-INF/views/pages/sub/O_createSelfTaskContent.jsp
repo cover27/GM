@@ -54,6 +54,8 @@
 		                                <script>
 											document.getElementById('now_date2').valueAsDate = new Date();
 										</script>
+										<button type="button" onclick="javascript:selectTodoViewPopup();" class="ml50">관련업무 추가</button>
+		                                <button type="button" onclick="javascript:selectApprPopup();" class="ml20">관련결재 추가</button>
 		                            </td>
 		                            <th><span>*</span>담당자</th>
 		                            <th style="display:none;">
@@ -63,8 +65,6 @@
 	                               		<input type="hidden" class="searchp" name="id">
 	                               		<input type="text" class="searchp" name="b_name" title="사용자" required style="width:308px;">
 	                                	<a href="#" onclick="searchIdPlease();" style="margin-left: 5px;background: #555;color:#fff;border-radius:5px;padding:5px;font-size:0.8em;font-weight:bold;">검색</a>
-	                                	<button type="button" onclick="javascript:selectTodoViewPopup();" class="ml50">관련업무 추가</button>
-		                                <button type="button" onclick="javascript:selectApprPopup();">관련결재 추가</button>
 		                            </td>
 		                        </tr>
 		                        <tr style="height:400px;">

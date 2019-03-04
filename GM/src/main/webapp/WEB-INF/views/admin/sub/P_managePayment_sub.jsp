@@ -154,14 +154,9 @@
 			</form>
 			<div class="paging">
 				<c:if test="${cnt > 0}">
-					<!-- 처음[◀◀] / 이전블록[◀]  -->
-					<%-- <c:if test="${startPage > pageBlock}">					
-						<a href="<c:url value='/admin/P_managePayment'/>">[◀◀ ]</a>						
-						<a href="<c:url value='/admin/P_managePayment?pageNum=${startPage - pageBlock}'/>">[◀ ]</a>
-					</c:if> --%>
 					<c:if test="${startPage > pageBlock}">					
-						<a href="javascript:movepage(1)">[◀◀ ]</a>						
-						<a href="javascript:movepage('${startPage - pageBlock}')">[◀ ]</a>
+						<a href="javascript:movepage(1)"><i class="fas fa-angle-double-left"></i></a>						
+						<a href="javascript:movepage('${startPage - pageBlock}')"><i class="fas fa-angle-left"></i></a>
 					</c:if>
 					
 					<!-- 블록내의 페이지 번호 -->
@@ -169,22 +164,13 @@
 						<c:if test="${i == currentPage}">
 							<span class="thisPage"><b>${i}</b></span>
 						</c:if>
-						<%-- <c:if test="${i != currentPage}">
-							<a href="<c:url value='/admin/P_managePayment?pageNum=${i}'/>">[${i}]</a>
-						</c:if> --%>
 						<c:if test="${i != currentPage}">
 							<a href="javascript:movepage('${i}')">${i}</a>
 						</c:if>
 					</c:forEach>					
-					
-					<!-- 다음 블록[▶] / 끝[▶▶]> -->
-					<%-- <c:if test="${pageCount > endPage}">					
-						<a href="<c:url value='/admin/P_managePayment?pageNum=${startPage + pageBlock}'/>">[▶ ]</a>						
-						<a href="<c:url value='/admin/P_managePayment?pageNum=${pageCount}'/>">[▶▶ ] </a>
-					</c:if> --%>
 					<c:if test="${pageCount > endPage}">					
-						<a href="javascript:movepage('${startPage + pageBlock}')">[▶ ]</a>						
-						<a href="javascript:movepage('${pageCount}')">[▶▶ ] </a>
+						<a href="javascript:movepage('${startPage + pageBlock}')"><i class="fas fa-angle-right"></i></a>						
+						<a href="javascript:movepage('${pageCount}')"><i class="fas fa-angle-double-right"></i></a>
 					</c:if>
 				</c:if>
 			</div>
