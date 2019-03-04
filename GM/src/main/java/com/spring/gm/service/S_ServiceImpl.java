@@ -518,15 +518,56 @@ public class S_ServiceImpl implements S_Service {
 	@Override
 	public void orgSendMessageForm(HttpServletRequest req, Model model) {
 		String strId = req.getParameter("id");
-		int number = Integer.parseInt(req.getParameter("number"));
-		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		
+		MemberVO vo = dao.getMemberInfo(strId);
+		
+		model.addAttribute("vo",vo);
+	}
+
+	@Override
+	public void orgsendMessagePro(HttpServletRequest req, Model model) {
+		String sender = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		String receiver = req.getParameter("id");
+		String subject = req.getParameter("subject");
 		
 		MessageVO vo = new MessageVO();
-		vo.setReceiver(strId);
+		vo.setMessage_num(1);
+		vo.setSender(sender);
+		vo.setReceiver(receiver);
+		vo.setSubject(subject);
+		vo.setContent(req.getParameter("content"));
+		vo.setState(0);
+		vo.setDel(0);
+		vo.setSentDate(new Timestamp(System.currentTimeMillis()));
+		vo.setReceiveDate(new Timestamp(System.currentTimeMillis()));
+		vo.setReadCnt(0);
 		
-		model.addAttribute("dvo", vo);
-		model.addAttribute("number", number);
-		model.addAttribute("pageNum", pageNum);
+		int sendCnt = dao.sendMessage(vo);
+		
+		model.addAttribute("sendCnt", sendCnt);
+	}
+
+	@Override
+	public void orgsendMessageDataPro(HttpServletRequest req, Model model) {
+		String sender = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		String receiver = req.getParameter("id");
+		String subject = req.getParameter("subject");
+		
+		MessageVO vo = new MessageVO();
+		vo.setMessage_num(2);
+		vo.setSender(sender);
+		vo.setReceiver(receiver);
+		vo.setSubject(subject);
+		vo.setContent(req.getParameter("content"));
+		vo.setState(0);
+		vo.setDel(0);
+		vo.setSentDate(new Timestamp(System.currentTimeMillis()));
+		vo.setReceiveDate(new Timestamp(System.currentTimeMillis()));
+		vo.setReadCnt(0);
+		
+		int sendCnt = dao.sendMessage(vo);
+		
+		model.addAttribute("sendCnt", sendCnt);
 	}
 	
 

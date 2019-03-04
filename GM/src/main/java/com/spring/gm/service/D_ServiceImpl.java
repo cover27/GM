@@ -713,8 +713,7 @@ public class D_ServiceImpl implements D_Service{
 		
 		model.addAttribute("updateCnt", updateCnt);
 		model.addAttribute("pageNum", pageNum);
-		//model.addAttribute("num", num);		
-		
+		//model.addAttribute("num", num);			
 	}
 	
 	public void allBoardAdmin(HttpServletRequest req, Model model) {

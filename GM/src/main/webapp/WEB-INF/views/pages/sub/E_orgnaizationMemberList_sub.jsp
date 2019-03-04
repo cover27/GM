@@ -62,7 +62,13 @@ function allcheck(){
 							<c:forEach var='dto' items='${mem_dtos}'>
 						<tr>
 							<td>
-								<input type="checkbox" name="checkRow" value="${dto.id}"/>
+								<c:if test="${sessionScope.loginInfo.id != dto.id}">
+									<input type="checkbox" name="checkRow" value="${dto.id}"/>
+								</c:if>
+								
+								<c:if test="${sessionScope.loginInfo.id == dto.id}">
+									*
+								</c:if>
 							</td>
 							<td>
 								<a href='<c:url value="/pages/E_memberContents?id=${dto.id}&name=${dto.name}&pageNum=${pageNum}&number=${number}"/>'>${dto.name}</a>

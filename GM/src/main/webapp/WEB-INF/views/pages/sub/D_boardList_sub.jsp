@@ -161,7 +161,9 @@ function page_go(i, num) {
 	            <div class="btnset fright mt10">
 	            	<ul>
 	            		<li><input type="button" value="글쓰기" onclick="window.location='<c:url value="/pages/D_writeForm?num=${num}&pageNum=${pageNum}" />'" style="background:#d3292c !important;"></li>
-	            		<li><input type="submit" value="삭제"></li>
+	            		<c:if test="${sessionScope.loginInfo.sys_rank == 1}">
+	            			<li><input type="submit" value="삭제"></li>
+	            		</c:if>
 	            	</ul>
 	            </div>
 	        </form>
