@@ -28,7 +28,6 @@ public class E_Controller {
 		
 		service.myCompanyMember(req, model);
 		service.departList(req, model);
-		service.myFavoriteMemberList(req, model);
 		return "pages/E_orgnaizationMemberList";
 	}
 	
@@ -39,7 +38,6 @@ public class E_Controller {
 		
 		service.departList(req, model);
 		service.departMember(req, model);
-		service.myFavoriteMemberList(req, model);
 		return "pages/E_departMemberList";
 	}
 	
@@ -48,6 +46,8 @@ public class E_Controller {
 		logger.info("URL : E_orgMyFavoritMemList");
 		
 		service.myFavoriteMemberList(req, model);
+		service.departList(req, model);
+		service.myCompanyMember(req, model);
 		return "pages/E_orgMyFavoritMemList";
 	}
 	
@@ -57,10 +57,10 @@ public class E_Controller {
 		
 		service.memberContents(req, model);
 		service.departList(req, model);
-		service.myFavoriteMemberList(req, model);
 		return "pages/E_memberContents";
 	}
 	
+	// 자주 연락하는 사람 추가
 	@RequestMapping("pages/E_addMemberPro")
 	public String addMemberPro(HttpServletRequest req, Model model) {
 		logger.info("URL : E_addMemberPro");
@@ -68,6 +68,31 @@ public class E_Controller {
 		service.addMember(req, model);
 		return "pages/E_addMemberPro";
 	}
-
+	
+	// 자주연락하는 사람 삭제
+	@RequestMapping("pages/E_deleteMemberPro")
+	public String deleteMember(HttpServletRequest req, Model model) {
+		logger.info("URL : E_deleteMemberPro");
+		
+		service.deleteMember(req, model);
+		return "pages/E_deleteMemberPro";
+	}
+	
+	@RequestMapping("pages/E_addmembersPro")
+	public String addMembers(HttpServletRequest req, Model model) {
+		logger.info("URL : E_addmembersPro");
+		
+		service.addMembers(req, model);
+		return "pages/E_addmembersPro";		
+	}
+	
+	@RequestMapping("pages/E_addmembersDepartPro")
+	public String addMembersDepartPro(HttpServletRequest req, Model model) {
+		logger.info("URL : E_addmembersDepartPro");
+		
+		service.addMembers(req, model);
+		return "pages/E_addmembersDepartPro";		
+	}
+	
 	
 }

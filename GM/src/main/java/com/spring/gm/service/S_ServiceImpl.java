@@ -506,4 +506,28 @@ public class S_ServiceImpl implements S_Service {
 		
 	}
 
+	@Override
+	public void messageListCnt(HttpServletRequest req, Model model) {
+		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		int cnt = dao.notReadCnt(strId);
+		
+		
+		model.addAttribute("messageCnt", cnt);
+	}
+
+	@Override
+	public void orgSendMessageForm(HttpServletRequest req, Model model) {
+		String strId = req.getParameter("id");
+		int number = Integer.parseInt(req.getParameter("number"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		
+		MessageVO vo = new MessageVO();
+		vo.setReceiver(strId);
+		
+		model.addAttribute("dvo", vo);
+		model.addAttribute("number", number);
+		model.addAttribute("pageNum", pageNum);
+	}
+	
+
 }

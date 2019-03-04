@@ -97,7 +97,7 @@ section .main_menu>ul>li {
     margin: 0 8px 8px 0;
     text-align: center;
     background: linear-gradient(to bottom right, #fff, #ddd);
-    background: url('../images/main_icon_bg.png');
+    background: url('../images/main_icon_bg.png') 50% 50%;
 	border: 1px #c4c4c4 solid;
     box-shadow: 0 1px 0 #bbb;
     border-radius: 10px;
@@ -105,21 +105,17 @@ section .main_menu>ul>li {
 
 section .main_menu>ul>li:hover {
 	cursor: pointer;
-	/* background: #eee;
-	transition: 0.2s; */
+	transition: 0.2s;
 }
 
 section .main_menu>ul>li .menu_wrap {
-	margin: 55px 0;
-	width: 488px;
-	/* background: rgba(255, 255, 255, 0.5); */
-    /* width: 110px; */
-    /* border-radius: 5px; */
+	margin: 25px 0;
 }
 
 section .main_menu>ul>li .menu_wrap>div {
 	margin: 0 auto;
 	width: 110px;
+	border-radius: 10px;
 }
 
 section .main_menu>ul>li .menu_wrap:hover {
@@ -337,4 +333,18 @@ section .main_menu>ul>li .ceo_report {
     height: 110px;
     background-image: url(../images/iconset_main.png);
     background-position: -110px -990px;
+}
+
+.alert {
+	position: relative;
+    top: 15px;
+    left: 280px;
+    background: #d3292c;
+    border-radius: 10px !important;
+    color: #FFF;
+    font-weight: bold;
+    display: table-cell;
+    width: 30px !important;
+    height: 30px;
+    vertical-align: middle;
 }

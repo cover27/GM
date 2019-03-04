@@ -12,6 +12,7 @@ import com.spring.gm.vo.B_ManageVO;
 import com.spring.gm.vo.Join_payVO;
 import com.spring.gm.vo.PaymentVO;
 import com.spring.gm.vo.ScheduleVO;
+import com.spring.gm.vo.TodoListVO;
 
 
 @Repository
@@ -232,7 +233,22 @@ public class O_DAOImpl implements O_DAO {
 		return dtos;
 	}
 	
-
+	//TO-DO - 나의 할일 화면 및 등록
+	@Override
+	public int insertTodoPro(TodoListVO vo) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.insertTodoPro(vo);
+	}
+	
+	//TO-DO - 나의할일 등록한 뒤나오는 화면
+	@Override
+	public List<TodoListVO> selectTodo(String id) {
+		List<TodoListVO> dtos=null;
+		dao = sqlSession.getMapper(O_DAO.class);
+		dtos= dao.selectTodo(id);
+		return dtos;
+	}
+	
 	
 
 	

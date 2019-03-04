@@ -18,28 +18,34 @@
 		<i class="icon user-admin"></i> <a href="<c:url value='/pages/J_MyInfo'/>">내 정보</a>
 	</div>
 	<div class="main_today">
-			<div class="today">
-				<ul>
-					<li style="color:#d3292c;">
-						<span id="year"></span><span>년</span>
-					</li>
-					<li>
-						<span id="month"></span><span>월</span>
-						<span id="day" class="ml30"></span><span>일</span>
-					</li>
-				</ul>
-			</div>
+		<div class="today">
+			<ul>
+				<li style="color:#d3292c;">
+					<span id="year"></span><span>년</span>
+				</li>
+				<li>
+					<span id="month"></span><span>월</span>
+					<span id="day" class="ml30"></span><span>일</span>
+				</li>
+			</ul>
 		</div>
-		<div class="today_todo">
-			<c:if test="${cnt == 0}">
-				오늘의 일정을 등록해 보세요.
-			</c:if>
-			<c:if test="${cnt > 0}">
+	</div>
+	<div class="today_todo">
+		<c:if test="${scheduleCnt == 0}">
+			<span>오늘의 일정을 등록해 보세요.</span>
+		</c:if>
+		<c:if test="${scheduleCnt > 0}">
+			<ul>
 				<c:forEach var="svo2" items="${svo}">
-					${svo2.begin} ${svo2.scheduleKind} ${svo2.subject}<br>
+					<li class="">
+						<span>${svo2.begin}</span> | 
+						<span>${svo2.scheduleKind}</span> | 
+						<span>${svo2.subject}</span>
+					</li>
 				</c:forEach>
-			</c:if>
-		</div>
+			</ul>
+		</c:if>
+	</div>
 	<div class="favorite_member mt50">
 		<h2>
 			<a href="#">자주 연락하는 사람들</a>

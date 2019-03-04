@@ -131,4 +131,10 @@ public class S_DAOImpl implements S_DAO {
 		return dao.garbageContentDelete(num);
 	}
 
+	@Override
+	public int notReadCnt(String strId) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.notReadCnt(strId);
+	}
+
 }

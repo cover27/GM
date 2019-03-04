@@ -74,7 +74,10 @@
 
 <!-- 내가 한 업무요청 게시글 갯수 조회  -->
 <select id="getOrderCnt" resultType="int" parameterType="java.util.Map">
-	select count(*) from b_manage where id=#{id} and del=0
+	select count(*) from
+			(select b.b_name, b.todonum, b.subject, b.begin, b.end, b.state from
+				(select * from b_manage where id=#{id} and del=0) b, member m
+					where m.id=b.id	)
 		<if test="searchUserName != null">
 	    	AND b_name like '%'||#{searchUserName}||'%'
 	    </if>
@@ -166,6 +169,7 @@
 	where b.todonum = i.todonum and b.id=m.id
 	and b.id != #{id}
 	and i.id = #{id}
+	and b.del=0
 	<if test="searchUserName != null">
 	    	AND m.name like '%'||#{searchUserName}||'%'
 	    </if>
@@ -232,7 +236,9 @@
 
 <!-- 업무요청 - 업무 완료함 화면 페이지넘 -->
 <select id="completeListCnt" resultType="int" parameterType="java.util.Map">
-	select count(*) from b_manage where id=#{id} and state=#{state} and del=0
+	select count(*) from
+        (select b_name, subject, begin, end, state
+                from(select * from b_manage where id=#{id} and state=#{state} and del=0))
 	<if test="searchUserName != null">
 	    	AND b_name like '%'||#{searchUserName}||'%'
 	    </if>
@@ -344,6 +350,16 @@
 		order by todonum desc ) a
 		where rownum >= #{start} and rownum <= #{end}
 	]]> 
+</select>
+
+<!-- TO-DO - 나의 할일 화면 및 등록  -->
+<insert id="insertTodoPro" parameterType="com.spring.gm.vo.TodoListVO">
+	insert into todolist values(seq_todolist.nextval, #{id}, #{content}, 0)
+</insert>
+
+<!-- TO-DO - 나의할일 등록한 뒤나오는 화면 -->
+<select id="selectTodo" resultType="com.spring.gm.vo.TodoListVO" parameterType="String">
+	select * from todolist where id=#{id} and del=0
 </select>
 <!-- 업무 끝 -->
 
