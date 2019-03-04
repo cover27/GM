@@ -46,7 +46,7 @@ function allcheck(){
 						</thead>
 					</table>
 				</div>
-				<div class="table_body">
+				<div class="table_body" style="height: 650px;">
 					<table>
 						<colgroup>
 							<col width="100px" />
@@ -106,7 +106,6 @@ function allcheck(){
 						</tbody>
 					</table>
 				</div>
-				<div id="divView"></div>
 				<!-- 페이지 컨트롤 -->
 	            <div class="paging">
 					<c:if test="${cnt > 0}">
@@ -128,8 +127,8 @@ function allcheck(){
 					    </c:if>
 					</c:if>
 	            </div>
-	            <div class="btnset">
-					<input type="submit" value="개인 그룹에 추가">
+	            <div class="btnset fright">
+					<input type="submit" value="자주 연락하는 사람에 추가">
 				</div>
             </form>
 		</div>
