@@ -14,7 +14,7 @@
             <h2>일정</h2>
             <div class="category">
                 <ul>
-                    <li>
+                    <li class="aside_submit">
                         <span id="O_calendarCreateView">
                         	<a href="<c:url value='/pages/O_calendarCreateView' />">
                         		<span>일정 등록</span>
