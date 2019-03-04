@@ -354,7 +354,7 @@
 	]]> 
 </select>
 
-<!-- TO-DO - 나의 할일 화면 및 등록  -->
+<!-- TO-DO - 나의 할일 등록  -->
 <insert id="insertTodoPro" parameterType="com.spring.gm.vo.TodoListVO">
 	insert into todolist values(seq_todolist.nextval, #{id}, #{content}, 0)
 </insert>
@@ -363,6 +363,11 @@
 <select id="selectTodo" resultType="com.spring.gm.vo.TodoListVO" parameterType="String">
 	select * from todolist where id=#{id} and del=0
 </select>
+
+<!-- TO-DO - 나의 할일 삭제  -->
+<update id="deleteTodoPro">
+	update todolist set del=1 where num=#{num}
+</update>
 <!-- 업무 끝 -->
 
 </mapper>

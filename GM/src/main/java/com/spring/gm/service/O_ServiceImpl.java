@@ -1075,6 +1075,19 @@ public class O_ServiceImpl implements O_Service{
 		model.addAttribute("dtos", dtos);
 	}
 
+	//TO-DO - 나의 할일 삭제
+	@Override
+	public void deleteTodoPro(HttpServletRequest req, Model model) {
+		
+		int num = Integer.parseInt(req.getParameter("num"));
+		
+		int deleteCnt = dao.deleteTodoPro(num);
+		System.out.println("deleteCnt" + deleteCnt);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
+		
+	}
+
 
 
 	
