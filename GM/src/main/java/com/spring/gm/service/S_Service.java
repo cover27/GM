@@ -37,6 +37,10 @@ public interface S_Service {
 	
 	public void messageListCnt(HttpServletRequest req, Model model);		// 읽지 않은 메세지 확인
 	
-	public void orgSendMessageForm(HttpServletRequest req, Model model);
+	public void orgSendMessageForm(HttpServletRequest req, Model model);	// 조직도 쪽지 폼
+	
+	public void orgsendMessagePro(HttpServletRequest req, Model model);		// 조직도 쪽지 쓰기 처리
+	
+	public void orgsendMessageDataPro(HttpServletRequest req, Model model);	// 조직도 보넨쪽지 저장 처리
 	
 }

@@ -2,6 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ page import="com.spring.gm.vo.MemberVO" %>  
+<script type="text/javascript">
+function searchId() {
+	var id = $('.searchId').val();
+	var url = "J_searchId_sub?id=" + id;
+	window.open(url, "J_searchId", "menubar=no, width=700, height=560");
+}
+
+function back(id, name) {
+	opener.document.searchform.id.value = id;
+	opener.document.searchform.name.value = name;
+	self.close();
+}
 </script>
 <section>
 	<article>
@@ -9,7 +21,7 @@
 			<h2>쪽지 작성</h2>
 		</div>
 		<div class="content">
-			<form action="<c:url value='/pages/S_sendMessagePro'/>" method="post" name="searchform">
+			<form action="<c:url value='/pages/S_orgSendMessagePro'/>" method="post" name="searchform">
 				<table class="message_table">
 					<colgroup>
 						<col width="200px" />
@@ -18,16 +30,20 @@
 					<tr>
 						<th>보내는 사람</th>
 						<td style="text-align: left !important; padding-left: 5px !important;">
-							<%= ((MemberVO)request.getSession().getAttribute("loginInfo")).getId() %>
-						</td>				
+							<%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %>
+						</td>
 					</tr>
 					<tr>
 						<th>받는 사람</th>
 						<td>
 							<table class="inner_tbl">
 								<tr>
+									<td style="text-align: left !important;padding: 0 !important;">
+										<input type="text" class="searchId" id="Id" name="id" value="${vo.getId()}" style="width: 240px !important">
+										<a href="#" onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></a>
+									</td>
 									<td>
-										
+										<span class="bold5px">이름 :</span><input type="text" class="searchName ml10" name="name" readonly placeholder="아이디를 조회하세요." style="width:240px !important;">
 									</td>
 								</tr>
 							</table>

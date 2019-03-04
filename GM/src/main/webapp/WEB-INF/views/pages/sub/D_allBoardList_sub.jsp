@@ -152,8 +152,11 @@ function delBoard(){
 						</c:if>
 		            </div>
 				</div>
+				
 				<div class="btnset fright mt10">
-					<input type="submit" value="삭제">
+					<c:if test="${sessionScope.loginInfo.sys_rank == 1}">
+						<input type="submit" value="삭제">
+					</c:if>
 				</div>
 			</form>
 		</div>
