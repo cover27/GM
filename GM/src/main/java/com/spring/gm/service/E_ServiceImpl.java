@@ -277,11 +277,6 @@ public class E_ServiceImpl implements E_Service {
 		AddressMemVO vo = new AddressMemVO();
 		
 		vo.setId(strId);
-		vo.setCompany(req.getParameter("company"));
-		vo.setName(req.getParameter("name"));
-		vo.setPhone(req.getParameter("tel"));
-		vo.setEmail(req.getParameter("email"));
-
 		vo.setDel(0);
 
 		int addCnt = dao.addMember(vo);
