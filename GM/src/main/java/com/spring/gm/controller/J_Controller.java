@@ -388,8 +388,13 @@ public class J_Controller {
 			model.addAttribute("id",id);
 			return "admin/sub/J_sub/J_searchId_sub";
 		}
-	
-	
+	//야간/연장 근무 수당 보기
+		@RequestMapping("/admin/showONtime")
+		public String showONtime(HttpServletRequest req, Model model) {
+			logger.info("URL : searchId_sub");
+			service.showONtime(req, model);
+			return "admin/sub/J_sub/J_showONtime";
+		}
 		
 		
 		

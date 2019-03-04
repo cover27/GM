@@ -145,8 +145,11 @@ public interface J_DAO {
 	public int searchIdCnt(Map<String, Object> map);
 	public ArrayList<join_mgcVO2> searchIdList(Map<String, Object> map);
 	public ArrayList<join_mgcVO2> searchIdList2(Map<String, Object> map);
-	
-	
+	//야간/연장 근무 수당 가져오기
+	public int showONtimeCnt(Map<String, Object> map);
+	public ArrayList<join_margcVO> showONtimeList(Map<String, Object> map);
+	public int showONtimeCnt2(Map<String, Object> map);
+	public ArrayList<join_margcVO> showONtimeList2(Map<String, Object> map);
 	//-----------------------------급여 계산-------------------------------------------
 	//급여 계산 목록 가져오기
 	//검색 날짜가 없을경우 오늘 날짜년도로 뽑음
@@ -202,6 +205,7 @@ public interface J_DAO {
 	
 	//퇴근시간 업데이트
 	public int offUpdate(Map<String, Object> map); 
+	public int offUpdate2(Map<String, Object> map); 
 	
 	// 사원 근태 목록 뽑아오기
 	public int allListCnt(Map<String, Object> map);

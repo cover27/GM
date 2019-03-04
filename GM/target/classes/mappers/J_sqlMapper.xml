@@ -586,7 +586,7 @@
 		to_char(day,'yyyymm') = #{months} and state = '지급'
 	</select>
 
-
+	
 
 
 
@@ -700,7 +700,35 @@
 		m.depart = #{company} and m.company = #{company} and
 		to_char(b.day,'yyyymm')= #{months} and b.state = '지급'
 	</select>
-
+	<!-- 야간/연장 근무 수당 가져오기 -->
+	<select id="showONtimeCnt" parameterType="java.util.Map" resultType="int">
+		select count(*) as cnt
+		from attended a, member m
+		where m.id = a.id
+		and a.overtime > 0
+		and to_char(a.day,'yyyymm') = #{date}
+	</select>
+	<select id="showONtimeList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+		select a.num,m.id, m.name, a.overtime, a.state
+		from attended a, member m
+		where m.id = a.id
+		and a.overtime >0
+		and to_char(a.day,'yyyymm') = #{date}
+	</select>
+	<select id="showONtimeCnt2" parameterType="java.util.Map" resultType="int">
+		select count(*) as cnt
+		from attended a, member m
+		where m.id = a.id
+		and a.nighttime > 0
+		and to_char(a.day,'yyyymm') = #{date}
+	</select>
+	<select id="showONtimeList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
+		select a.num,m.id, m.name, a.nighttime, a.state
+		from attended a, member m
+		where m.id = a.id
+		and a.nighttime >0
+		and to_char(a.day,'yyyymm') = #{date}
+	</select>
 
 	<!-- 상여 미지급 목록 -->
 	<select id="bonusNoneCnt2" parameterType="java.util.Map"
@@ -895,10 +923,12 @@
 	<!-- 퇴근시간 업데이트(근무시간, 연장시간, 야간시간, 조퇴시간) -->
 	<update id="offUpdate" parameterType="java.util.Map">
 		UPDATE attended SET off = #{time}, worktime = #{wtime}, overtime = #{otime},
-		nighttime = #{ntime}, departuretime = #{dtime} WHERE id=#{id} and num
-		= #{num}
+		nighttime = #{ntime}, departuretime = #{dtime}, state = 1 WHERE id=#{id} and num = #{num}
 	</update>
-
+	<update id="offUpdate2" parameterType="java.util.Map">
+		UPDATE attended SET off = #{time}, worktime = #{wtime}, overtime = #{otime},
+		nighttime = #{ntime}, departuretime = #{dtime}, state = 0 WHERE id=#{id} and num = #{num}
+	</update>
 
 	<!-- 사원 근태 목록 뽑아오기 -->
 	<select id="allListCnt" parameterType="java.util.Map" resultType="int">
@@ -1082,7 +1112,7 @@
 	<select id="overtimeList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
 		select m.id, m.name, g.g_name as j_name, r.r_name as rank_name,a.day, a.num,
-		a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime,
+		a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime, a.state,
 		a.perceptiontime, a.departuretime
 		from member m, attended a, grade r, groups g
 		where m.id = a.id and r.rank =
@@ -1096,7 +1126,7 @@
 	<select id="overtimeList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
 		select m.id, m.name, c.c_name as j_name, r.r_name as rank_name,a.day, a.num,
-		a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime,
+		a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime,a.state,
 		a.perceptiontime, a.departuretime
 		from member m, attended a, grade r, companies c
 		where m.id = a.id and
@@ -1123,7 +1153,7 @@
 	<select id="nighttimeList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
 		select m.id, m.name, g.g_name as j_name, r.r_name as rank_name,a.day, a.num,
-		a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime,
+		a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime,a.state,
 		a.perceptiontime, a.departuretime
 		from member m, attended a, grade r, groups g
 		where m.id = a.id and r.rank =
@@ -1137,7 +1167,7 @@
 	<select id="nighttimeList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
 		select m.id, m.name, c.c_name as j_name, r.r_name as rank_name,a.day, a.num,
-		a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime,
+		a.id, a.go, a.off, m.name, a.worktime, a.overtime, a.nighttime,a.state,
 		a.perceptiontime, a.departuretime
 		from member m, attended a, grade r, companies c
 		where m.id = a.id and

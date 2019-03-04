@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <div class="table_top">
-	<table>
+	<table border="1">
 		<colgroup>
 			<col width="198px" />
 			<col width="198px" />
@@ -17,8 +17,6 @@
 				<th>등록번호</th>
 				<th>사원번호</th>
 				<th>성명</th>
-				<th>직급</th>
-				<th>부서</th>
 				<th>근태종류</th>
 				<th>근태시간</th>
 				<th>근태일자</th>
@@ -28,7 +26,7 @@
 	</table>
 </div>
 <div class="salary_info" style="height:700px;">
-	<table>
+	<table border="1">
 		<colgroup>
 			<col width="198px" />
 			<col width="198px" />
@@ -49,17 +47,31 @@
 						<td>${dtos.num}</td>
 						<td>${dtos.id}</td>
 						<td>${dtos.name}</td>
-						<td>${dtos.rank_name}</td>
-						<td>${dtos.j_name}</td>
-						<td>연장근무</td>
-						<td>${dtos.overtimes}</td>
+						<td>
+						<c:if test="${dtos.overtimes != null}">
+							야간근무
+						</c:if>
+						<c:if test="${dtos.nighttime != null}">
+							연장근무
+						</c:if>
+						</td>
+						<td>
+						<c:if test="${dtos.overtimes != null}">
+							${dtos.overtimes}
+						</c:if>
+						<c:if test="${dtos.nighttime != null}">
+							${dtos.nighttime}
+						</c:if>
+						</td>
 						<td>${dtos.day}</td>
+						<td>
 						<c:if test="${dtos.state == 0}">
-							<td>지급처리중</td>
+							지급처리중
 						</c:if>
 						<c:if test="${dtos.state == 1}">
-							<td>지급완료</td>
+							지급완료
 						</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</c:if>
