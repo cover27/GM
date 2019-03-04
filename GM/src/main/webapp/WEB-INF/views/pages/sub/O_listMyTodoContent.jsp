@@ -11,9 +11,7 @@ function todoList(){
 
 $(function(){
 	$('#todosub').click(function(){	
-		// $('#result').css('display', 'block');
-		var content = $("#todoInput").attr("content");
-		alert(content);
+		var content = $("#todoForm").serialize(); // form submit을 ajax로 사용하기
 		$.ajax({
 			type : 'POST',
 			url : '${pageContext.request.contextPath}/pages/W_insertTodoPro',	//{컨트롤러}/이동페이지

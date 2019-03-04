@@ -15,7 +15,7 @@
 	<c:if test="${insertCnt != 0}">
 		<script type="text/javascript">
 			alert("일정 등록 완료했습니다.");
-			window.location="W_listMyTodoCreate";
+			window.location="W_listMyTodoView";
 		</script>
 	</c:if>
 	
