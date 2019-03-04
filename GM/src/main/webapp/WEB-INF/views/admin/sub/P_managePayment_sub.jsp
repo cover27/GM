@@ -17,6 +17,16 @@
 		
 		window.location="<c:url value='/admin/P_managePayment?pageNum='/>"+pageNum+"&search="+search;
 	}
+	
+	//날짜 예외처리 방법
+	function lastDate(){
+		var lastD = $('#searchStartDate').val();
+		$('#searchEndDate').attr("min", lastD);
+	}
+	function firstDate(){
+		var firstD = $('#searchEndDate').val();
+		$('#searchStartDate').attr("max", firstD);
+	}
 </script>
 <style>
 	.deletedContent {
@@ -71,10 +81,16 @@
 						<span>
 							<label>
 								<span class="bold5px ml50">배정일</span>
-								<input type="date" title="시작일" name="searchStartDate" value="${sessionScope.searchMap.searchStartDate }" placeholder="시작일" class="ml10">
+								<input type="date" title="시작일" id="searchStartDate" onchange="lastDate()" max="firstD" name="searchStartDate" value="${sessionScope.searchMap.searchStartDate }" placeholder="시작일" class="ml10">
+								<script>
+									document.getElementById('searchStartDate').value =new Date().toISOString().substring(0, 10);
+								</script>
 							</label>
 								<span>~</span>
-							<input type="date" title="종료일" name="searchEndDate" value="${sessionScope.searchMap.searchEndDate }" placeholder="종료일">
+							<input type="date" title="종료일" id="searchEndDate" onchange="firstDate()" min="lastD" name="searchEndDate" value="${sessionScope.searchMap.searchEndDate }" placeholder="종료일">
+							<script>
+								document.getElementById('searchEndDate').value = new Date().toISOString().substring(0, 10);
+							</script>
 						</span>
 						<span>
 							<label>
