@@ -332,14 +332,15 @@ public class O_ServiceImpl implements O_Service{
 	@Override
 	public void O_calendarMainView(HttpServletRequest req, Model model) {
 		
-		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		
-		ScheduleVO svo = new ScheduleVO();
-		svo = dao.calendarMainView(id);
-		
-		System.out.println("svo" + svo);
-		
-		model.addAttribute("svo", svo);
+		/*
+		 * String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		 * 
+		 * ScheduleVO svo = new ScheduleVO(); svo = dao.calendarMainView(id);
+		 * 
+		 * System.out.println("svo" + svo);
+		 * 
+		 * model.addAttribute("svo", svo);
+		 */
 	}
 
 	//업무관리 등록 화면

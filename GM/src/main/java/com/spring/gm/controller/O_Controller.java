@@ -278,7 +278,7 @@ public class O_Controller {
 	public String O_calendarMainView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendarMainView");
 		
-		oservice.O_calendarMainView(req, model);
+		//oservice.O_calendarMainView(req, model);
 		
 		return "include/aside_main";
 	}

@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 
 import com.spring.gm.persistence.J_DAO;
 import com.spring.gm.persistence.K_DAO;
+import com.spring.gm.persistence.O_DAO;
 import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.CompaniesMemberVO;
@@ -24,6 +25,7 @@ import com.spring.gm.vo.Grade_visibleVO;
 import com.spring.gm.vo.GroupInfoVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
+import com.spring.gm.vo.ScheduleVO;
 import com.spring.gm.vo.join_mgcVO2;
 import com.spring.gm.vo.join_mgiVO;
 import com.spring.gm.vo.join_mvrVO;
@@ -35,6 +37,8 @@ public class K_ServiceImpl implements K_Service{
 	K_DAO dao;
 	@Autowired
 	J_DAO dao2;
+	@Autowired
+	O_DAO dao3;
 	
 	@Override
 	public void login(HttpServletRequest req, Model model, String id) {
@@ -50,6 +54,14 @@ public class K_ServiceImpl implements K_Service{
 		 System.out.println("제목 : "+notice.getSubject());
 		 
 		 req.setAttribute("notice", notice);
+		 
+		 //메인 일정 호출
+		 int cnt = dao3.calendarMainCnt(id);
+		 List<ScheduleVO> svo = dao3.calendarMainView(id);
+		
+		 System.out.println("svo" + svo);
+		 model.addAttribute("cnt", cnt);
+		 model.addAttribute("svo", svo);
 	}
 
 	@Override

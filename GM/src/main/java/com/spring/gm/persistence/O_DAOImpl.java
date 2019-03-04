@@ -106,8 +106,14 @@ public class O_DAOImpl implements O_DAO {
 	
 	//일정 메인 화면 view
 	@Override
-	public ScheduleVO calendarMainView(String id) {
-		return sqlSession.selectOne("com.spring.gm.persistence.O_DAO.calendarMainView", id);
+	public int calendarMainCnt(String id) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.calendarMainCnt(id);
+	}
+	@Override
+	public List<ScheduleVO> calendarMainView(String id) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.calendarMainView(id);
 	}
 	
 	//업무 등록 insert-pro

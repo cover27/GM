@@ -48,6 +48,11 @@
 </update>
 
 <!-- 일정 메인 화면 view -->
+<select id="calendarMainCnt" resultType="int" parameterType="String">
+	<![CDATA[
+		select count(*) from schedule where id=#{id} and begin > sysdate -1 and begin < sysdate + 1
+	]]> 
+</select>
 <select id="calendarMainView" resultType="com.spring.gm.vo.ScheduleVO" parameterType="String">
 	<![CDATA[
 		select * from schedule where id=#{id} and begin > sysdate -1 and begin < sysdate + 1
@@ -96,8 +101,8 @@
 <!-- 내가 한 업무요청 게시글 목록 조회  -->
 <select id="getOrderList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
 	<![CDATA[
-		select * from
-			(select b.b_name, b.todonum, b.subject, b.begin, b.end, b.state, rownum rNum from
+		select a.*, rownum r from
+			(select b.b_name, b.todonum, b.subject, b.begin, b.end, b.state from
 				(select * from b_manage where id=#{id} and del=0) b, member m
 					where m.id=b.id		
 	]]> 
@@ -123,8 +128,8 @@
 	    	]]>
 	    </if>
 	<![CDATA[
-		order by todonum desc)
-		where rNum >= #{start} and rNum <= #{end}
+		order by todonum desc)a
+		where rownum >= #{start} and rownum <= #{end}
 	]]> 
 </select>
 
@@ -185,8 +190,8 @@
 </select>
 <select id="reciveList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
 	<![CDATA[
-		select * from
-	        (select i.donum, b.todonum, b.b_name, i.id, b.subject, b.begin, b.end, b.state, m.name,  rownum rNum
+		select a.*,  rownum  from
+        (select i.donum, b.todonum, b.b_name, i.id, b.subject, b.begin, b.end, b.state, m.name
 	                from(select * from b_manageinfo where id=#{id} and del=0) i, member m, b_manage b
 	                        where m.id=b.id and b.todonum=i.todonum and b.del=0
 	]]> 
@@ -212,8 +217,8 @@
 	    	]]>
 	    </if>
 	<![CDATA[
-		order by todonum asc)
-		where rNum >= #{start} and rNum <= #{end}
+		order by todonum desc)a
+		where rownum >= #{start} and rownum <= #{end}
 	]]> 
 </select>
 
@@ -252,8 +257,8 @@
 </select>
 <select id="completeList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
 	<![CDATA[
-		select * from
-        	(select b_name, subject, begin, end, state, rownum rNum
+		select a.* , rownum from
+        (select b_name, subject, begin, end, state
                 from(select * from b_manage where id=#{id} and state=#{state} and del=0
 		]]> 
 		<if test="searchUserName != null">
@@ -278,8 +283,8 @@
 	    	]]>
 	    </if>
 	<![CDATA[
-		order by todonum asc))
-		where rNum >= #{start} and rNum <= #{end}
+		order by todonum desc)) a
+		where rownum >= #{start} and rownum <= #{end}
 	]]> 
 </select>
 
@@ -310,9 +315,9 @@
 </select>
 <select id="adminList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
 	<![CDATA[
-		select * from
-			(select m.name, m.id,b.subject, b.begin, b.end, b.state, b.groupId, b.todonum, rownum rNum
-				from b_manage b, member m where b.id=m.id
+		select a.* , rownum from
+		    (select m.name, m.id,b.subject, b.begin, b.end, b.state, b.groupId, b.todonum from
+		        b_manage b, member m where b.id=m.id
 		]]> 
 		<if test="searchUserName != null">
 	    	AND m.name like '%'||#{searchUserName}||'%'
@@ -336,8 +341,8 @@
 	    	]]>
 	    </if>
 	<![CDATA[
-		order by todonum desc)
-		where rNum >= #{start} and rNum <= #{end}
+		order by todonum desc ) a
+		where rownum >= #{start} and rownum <= #{end}
 	]]> 
 </select>
 <!-- 업무 끝 -->
