@@ -9,17 +9,17 @@
 		</div>
 			<table style="width:1500px; align=center; border:2px;">
 				<tr>
-					<td style="width:25%">그룹 번호</td>
-					<td style="width:25%">사업장 번호</td>
-					<td style="width:25%">그룹 이름</td>
-					<td style="width:25%">그룹등급</td>
+					<td style="width:10%">그룹 번호</td>
+					<td style="width:10%">사업장 번호</td>
+					<td style="width:10%">그룹 이름</td>
+					<td style="width:10%">그룹등급</td>
 				</tr>		
 			<c:forEach var="dtos" items="com_dtos">
 				<tr>
-					<td style="width:25%">${com_dtos.groupId}</td>
-					<td style="width:25%">${com_dtos.company}</td>
-					<td style="width:25%">${com_dtos.g_name}</td>
-					<td style="width:25%">${com_dtos.group_rank}</td>
+					<td style="width:25%">${c_dtos.groupId}</td>
+					<td style="width:25%">${c_dtos.company}</td>
+					<td style="width:25%">${c_dtos.g_name}</td>
+					<td style="width:25%">${c_dtos.group_rank}</td>
 				</tr>
 			</c:forEach>
 		</table>
