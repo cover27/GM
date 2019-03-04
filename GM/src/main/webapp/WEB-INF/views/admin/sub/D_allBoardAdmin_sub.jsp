@@ -37,6 +37,7 @@ function board_move(){
 			<h2>게시글 전체 목록</h2>
 		</div>		
 		<div class="content">
+			<h3 class="mb10">전체<span class="ml10 cnt">${cnt}</span></h3>
 			<form method="post" name= "boardSelect" id="boardSelect">
 				<input type="hidden" name="pageNum" value="${pageNum}">
 				<div class="table_head">

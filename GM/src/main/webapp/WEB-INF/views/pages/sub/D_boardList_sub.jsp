@@ -49,6 +49,7 @@ function page_go(i, num) {
             <h2>게시글 목록</h2>
         </div>
         <div class="content">
+        	<h3 class="mb10">전체<span class="ml10 cnt">${cnt}</span></h3>
         	<form action="<c:url value='/admin/D_boardDelPro'/>" method="post" id="boardDel" onsubmit="return delBoard();">
 	            <input type="hidden" name="pageNum" value="${pageNum}">
 	            <input type="hidden" name="num" value="${num}">
