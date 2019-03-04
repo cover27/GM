@@ -14,7 +14,7 @@
             <h2>전자결재</h2>
             <div class="category">
                 <ul>
-                    <li>
+                    <li class="aside_submit">
                     	<span id="P_createApprDocFormView">
                     		<a href="<c:url value='/pages/P_createApprDocFormView' />">
                     			<span>기안문 작성</span>

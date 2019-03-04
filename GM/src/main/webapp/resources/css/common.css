@@ -592,6 +592,10 @@ img {
 	background: #c0c0c0; 
 }
 
+.aside_submit:hover {
+	background: #e6e6e6 !important;
+}
+
 .aside_btn {
 	color: #ffffff;
     text-shadow: 0 1px black;
