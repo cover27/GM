@@ -47,6 +47,12 @@ public class E_DAOImpl implements E_DAO {
 		E_DAO dao = sqlSession.getMapper(E_DAO.class);
 		return dao.getDepartMemberList(map);
 	}
+	
+	@Override
+	public int getMyFavoriteMemberCnt(String strId) {
+		E_DAO dao = sqlSession.getMapper(E_DAO.class);
+		return dao.getMyFavoriteMemberCnt(strId);
+	}
 
 	@Override
 	public List<AddressMemVO> getMyFavoriteMemberList(Map<String, Object> map) {
@@ -65,5 +71,20 @@ public class E_DAOImpl implements E_DAO {
 		E_DAO dao = sqlSession.getMapper(E_DAO.class);
 		return dao.addMember(vo);
 	}
+	
+	@Override
+	public int addMembers(AddressMemVO vo) {
+		E_DAO dao = sqlSession.getMapper(E_DAO.class);
+		return dao.addMembers(vo);
+	}
+
+	@Override
+	public int deleteMember(AddressMemVO vo) {
+		E_DAO dao = sqlSession.getMapper(E_DAO.class);
+		return dao.deleteMember(vo);
+	}
+
+
+
 
 }

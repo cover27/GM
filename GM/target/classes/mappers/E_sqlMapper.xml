@@ -43,10 +43,15 @@
 		]]>
 	</select>
 	
+	<!-- 자주 연락하는 사원 명수 구하기 -->
+	<select id="getMyFavoriteMemberCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM AddressMem WHERE strId=#{strId} and del = 0
+	</select>
+	
 	<!-- 자주 연락하는 사람 목록 -->
 	<select id="getMyFavoriteMemberList" parameterType="java.util.Map" resultType="com.spring.gm.vo.AddressMemVO">
 		<![CDATA[
-			SELECT * FROM(SELECT id, name, company, phone, email, del, rownum rNum FROM (SELECT * FROM addressgroup WHERE id = #{id} AND del = 0 ORDER BY id ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT id, del, strId, rownum rNum FROM (SELECT * FROM addressmem WHERE strId=#{strId} AND del = 0 ORDER BY id ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>
 	
@@ -55,8 +60,14 @@
 	</select>
 	
 	<insert id="addMember" parameterType="com.spring.gm.vo.AddressMemVO">
-		INSERT INTO addressmem (id, del)
-		VALUES(id=#{id}, del=#{del})
-	</insert>	
+		INSERT INTO addressmem (id, del, strId) VALUES(#{id}, #{del}, #{strId})
+	</insert>
 	
+	<update id="deleteMember" parameterType="String">
+		UPDATE addressmem SET del = 1 WHERE strId = #{strId} AND id = #{id}
+	</update>
+
+	<insert id="addMembers" parameterType="com.spring.gm.vo.AddressMemVO">
+		INSERT INTO addressmem (id, del, strId) VALUES(#{id}, #{del}, #{strId})
+	</insert>	
 </mapper>
