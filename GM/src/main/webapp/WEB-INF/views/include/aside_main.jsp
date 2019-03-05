@@ -38,13 +38,10 @@
 			<ul>
 				<c:forEach var="svo2" items="${svo}">
 					<li>
-						<i class="far fa-calendar-check mr5"></i>
-						<ul>
-							<li>${svo2.begin}</li>
-							<li class="ml10 mr10">|</li>
-							<li>${svo2.scheduleKind}</li>
-							<li class="ml10 mr10">|</li>
-							<li>${svo2.subject}</li>
+						<ul class="pl50">
+							<li class="text-left"><i class="far fa-calendar-check mr5"></i>${svo2.begin}</li>
+							<li class="text-left pl10">${svo2.scheduleKind}</li>
+							<li class="text-left pl10" style="border-bottom: 1px solid #eee;">${svo2.subject}</li>
 						</ul>
 					</li>
 				</c:forEach>
