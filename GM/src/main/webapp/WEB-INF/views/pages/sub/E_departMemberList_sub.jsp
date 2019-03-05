@@ -16,11 +16,32 @@ function write(){
 	opener.document.inputform.depart.value=company;
 	self.close();
 }
+
+function getInfo(id, name, pageNum, number){
+	$("#info_result").css("display", "block");
+	$.ajax({
+		type : "POST",
+		url : "${pageContext.request.contextPath}/pages/E_memberContents",
+		data : {
+			"id" : id,
+			"name" : name,
+			"pageNum" : pageNum,
+			"number" : number
+		},
+		success : function(result) {
+			// alert("성공");
+			$("#info_result").html(result);
+		},
+		error : function() {
+			alert("게시판 등록이 실패하였습니다.");
+		}
+	});
+}
 </script>
 <section>
 	<article>
 		<div class="content_header">
-			<h2>전체 구성원 목록</h2>
+			<h2>부서 구성원 목록</h2>
 		</div>
 		<div class="content">
 			<form action="<c:url value='/pages/E_addmembersDepartPro'/>" method="post">
@@ -51,7 +72,7 @@ function write(){
 						</thead>
 					</table>
 				</div>
-				<div class="table_body">
+				<div class="table_body" style="height: 620px;">
 					<table>
 						<colgroup>
 							<col width="100px" />
@@ -75,18 +96,18 @@ function write(){
 										</c:if>
 									</td>
 									<td>
-										<a href='<c:url value="/pages/E_memberContents?id=${demem_dtos.id}&name=${demem_dtos.name}&pageNum=${pageNum}&number=${number}"/>'>${demem_dtos.name} (${demem_dtos.id})</a>
+										<a href="#" onclick="getInfo('${demem_dtos.id}', '${demem_dtos.name}', '${pageNum}', '${number}')">${demem_dtos.name} (${demem_dtos.id})</a>
 									</td>
 									<td>
 										<c:if test="${demem_dtos.gender == 1}">
-											<a href='<c:url value="/pages/E_memberContents?id=${demem_dtos.id}&name=${demem_dtos.name}&pageNum=${pageNum}&number=${number}"/>'>남자</a>
+											남자
 										</c:if>
 										<c:if test="${demem_dtos.gender == 2}">
-											<a href='<c:url value="/pages/E_memberContents?id=${demem_dtos.id}&name=${demem_dtos.name}&pageNum=${pageNum}&number=${number}"/>'>여자</a>
+											여자
 										</c:if>
 									</td>
 									<td>
-										<a href='<c:url value="/pages/E_memberContents?id=${demem_dtos.id}&name=${demem_dtos.name}&pageNum=${pageNum}&number=${number}"/>'>${demem_dtos.nation}</a>
+										${demem_dtos.nation}
 									</td>
 									<td>
 										<c:forEach var='com_dtos' items='${c_dtos}'>
@@ -136,6 +157,7 @@ function write(){
 				<div class="btnset fright">
 					<input class="inputButton" type="submit" value="자주 연락하는 사람 추가">
 				</div>
+				<div id="info_result"></div>
 			</form>
 		</div>
 	</article>

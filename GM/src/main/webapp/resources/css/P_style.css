@@ -108,6 +108,11 @@
 	/* cursor: pointer; */
 }
 
+.content .table_body table tbody td:hover {
+	cursor: pointer;
+	background: #fafafa;
+}
+
 .content .table_body table tbody tr:last-child td {
 	border-bottom: 1px #c0c0c0 solid;
 }

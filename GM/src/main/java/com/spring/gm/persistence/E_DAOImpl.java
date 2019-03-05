@@ -84,6 +84,11 @@ public class E_DAOImpl implements E_DAO {
 		return dao.deleteMember(vo);
 	}
 
+	@Override
+	public int idCheck(Map<String, Object> map) {
+		E_DAO dao = sqlSession.getMapper(E_DAO.class);
+		return dao.idCheck(map);
+	}
 
 
 

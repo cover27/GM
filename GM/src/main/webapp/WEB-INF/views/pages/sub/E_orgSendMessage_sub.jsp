@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
-<%@ page import="com.spring.gm.vo.MemberVO" %>  
+<%@ page import="com.spring.gm.vo.MemberVO" %>
+<link rel="stylesheet" href="${path}css/S_style.css" />
 <script type="text/javascript">
 function searchId() {
 	var id = $('.searchId').val();
@@ -39,11 +40,11 @@ function back(id, name) {
 							<table class="inner_tbl">
 								<tr>
 									<td style="text-align: left !important;padding: 0 !important;">
-										<input type="text" class="searchId" id="Id" name="id" value="${vo.getId()}" style="width: 240px !important">
+										<input type="text" class="searchId" id="Id" name="id" value="${vo.getId()}" readonly style="width: 240px !important">
 										<a href="#" onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></a>
 									</td>
 									<td>
-										<span class="bold5px">이름 :</span><input type="text" class="searchName ml10" name="name" readonly placeholder="아이디를 조회하세요." style="width:240px !important;">
+										<span class="bold5px">이름 :</span><input type="text" class="searchName ml10" value="${vo.getName()}" name="name" readonly style="width:240px !important;">
 									</td>
 								</tr>
 							</table>
@@ -66,7 +67,7 @@ function back(id, name) {
 				</table>	
 				<div class="btnset" style="width: 120px; margin: 0 auto;">
 					<input type="submit" value="작성">
-					<input type="reset" value="취소">
+					<input type="reset" value="취소" onclick="window.history.back();">
 				</div>
 			</form>	
 		</div>

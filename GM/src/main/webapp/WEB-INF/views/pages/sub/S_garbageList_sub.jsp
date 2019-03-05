@@ -89,7 +89,7 @@ function deletegarbage(){
 							<!-- 게시글이 없으면 -->
 							<c:if test="${cnt == 0}">
 								<tr>
-									<td colspan="6" align="center">게시글이 없습니다. 글을 작성해주세요.!!</td>
+									<td colspan="6" align="center">휴지통에 쪽지가 존재하지 않습니다.</td>
 								</tr>
 							</c:if>
 						</tbody>
