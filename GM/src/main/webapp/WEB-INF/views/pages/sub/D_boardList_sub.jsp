@@ -64,7 +64,9 @@ function page_go(i, num) {
 						</colgroup>
 						<thead>
 							<tr>
+								<c:if test="${sessionScope.loginInfo.sys_rank == 1}">
 								<th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allCheck()" /></th>
+								</c:if>
 								<th>글제목</th>
 								<th>작성자</th>
 								<th>작성일</th>
@@ -87,7 +89,11 @@ function page_go(i, num) {
 								<c:forEach var="dto" items="${dtos}">
 									<c:if test="${dto.del == 0}">
 										<tr>
-											<td><input type="checkbox" name="checkRow" value="${dto.boardnum}" /></td>
+											<td>
+												<c:if test="${sessionScope.loginInfo.sys_rank == 1}">
+												<input type="checkbox" name="checkRow" value="${dto.boardnum}" />
+												</c:if>
+											</td>
 											<td style="text-align: left; padding-left: 20px;">
 												<c:if test="${dto.ref_level >= 1}">
 													<c:set var="wid" value="${(dto.ref_level-1) * 10}" />
@@ -161,7 +167,9 @@ function page_go(i, num) {
 	            <div class="btnset fright mt10">
 	            	<ul>
 	            		<li><input type="button" value="글쓰기" onclick="window.location='<c:url value="/pages/D_writeForm?num=${num}&pageNum=${pageNum}" />'" style="background:#d3292c !important;"></li>
-	            		<li><input type="submit" value="삭제"></li>
+	            		<c:if test="${sessionScope.loginInfo.sys_rank == 1}">
+	            			<li><input type="submit" value="삭제"></li>
+	            		</c:if>
 	            	</ul>
 	            </div>
 	        </form>

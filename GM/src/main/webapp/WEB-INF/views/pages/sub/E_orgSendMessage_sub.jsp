@@ -21,7 +21,7 @@ function back(id, name) {
 			<h2>쪽지 작성</h2>
 		</div>
 		<div class="content">
-			<form action="<c:url value='/pages/S_sendMessagePro'/>" method="post" name="searchform">
+			<form action="<c:url value='/pages/S_orgSendMessagePro'/>" method="post" name="searchform">
 				<table class="message_table">
 					<colgroup>
 						<col width="200px" />
@@ -31,7 +31,7 @@ function back(id, name) {
 						<th>보내는 사람</th>
 						<td style="text-align: left !important; padding-left: 5px !important;">
 							<%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %>
-						</td>				
+						</td>
 					</tr>
 					<tr>
 						<th>받는 사람</th>
@@ -39,7 +39,7 @@ function back(id, name) {
 							<table class="inner_tbl">
 								<tr>
 									<td style="text-align: left !important;padding: 0 !important;">
-										<input type="text" class="searchId" id="Id" name="id" value="${id}" style="width: 240px !important">
+										<input type="text" class="searchId" id="Id" name="id" value="${vo.getId()}" style="width: 240px !important">
 										<a href="#" onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></a>
 									</td>
 									<td>

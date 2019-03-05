@@ -145,6 +145,12 @@
 			}
 		});
 	}
+	function showONtime(){
+		var date = $("#date").val();
+	  	 var url="showONtime?date=" + date;
+	   	window.open(url, "showONtime", "menubar=no, width=1500, height=560");
+		}
+	
 </script>
 <section>
 	<article>
@@ -173,10 +179,10 @@
 		                <span class="ml50 bold5px">검색년월 : </span>
 		                <span>
 			                <c:if test="${content == null || fn:length(content) == 0 || content eq 'none'}">
-		                        <input type="text" name="search_content" placeholder="예)20180724">
+		                        <input type="text" name="search_content" placeholder="예)20180724" id="date">
 		                    </c:if>
 		                    <c:if test="${fn:length(content) > 0}">
-		                        <input type="text" name="search_content" placeholder="${content}">
+		                        <input type="text" name="search_content" placeholder="${content}" id="date">
 		                    </c:if>
 		                </span>
 		                <span>
@@ -240,6 +246,7 @@
 			</div>
 		    <div class="fright w70p" style="height: 666px;">
 		    	<h3>기본수당외 수당등록</h3>
+		    	<input type="button" value="연간/연장 수당보기" onclick="showONtime()">
 		    	<div class="table_top">
 		    		<table>
 		    			<colgroup>

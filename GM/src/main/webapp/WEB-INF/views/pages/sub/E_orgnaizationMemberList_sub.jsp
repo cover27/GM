@@ -24,18 +24,18 @@ function allcheck(){
 					<table>
 						<colgroup>
 							<col width="100px" />
-							<col width="200px" />
+							<col width="250px" />
 							<col width="100px" />
 							<col width="200px" />
 							<col width="200px" />
 							<col width="200px" />
-							<col width="300px" />
+							<col width="250px" />
 							<col width="*" />
 						</colgroup>
 						<thead>
 							<tr>
 								<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allcheck();" /></th>
-								<th>이름</th>
+								<th>이름 (ID)</th>
 								<th>성별</th>
 								<th>국적</th>
 								<th>소속부서명</th>
@@ -46,26 +46,32 @@ function allcheck(){
 						</thead>
 					</table>
 				</div>
-				<div class="table_body" style="height: 650px;">
+				<div class="table_body" style="height: 610px;">
 					<table>
 						<colgroup>
 							<col width="100px" />
-							<col width="200px" />
+							<col width="250px" />
 							<col width="100px" />
 							<col width="200px" />
 							<col width="200px" />
 							<col width="200px" />
-							<col width="300px" />
+							<col width="250px" />
 							<col width="*" />
 						</colgroup>
 						<tbody>
 							<c:forEach var='dto' items='${mem_dtos}'>
 						<tr>
 							<td>
-								<input type="checkbox" name="checkRow" value="${dto.id}"/>
+								<c:if test="${sessionScope.loginInfo.id != dto.id}">
+									<input type="checkbox" name="checkRow" value="${dto.id}"/>
+								</c:if>
+								
+								<c:if test="${sessionScope.loginInfo.id == dto.id}">
+									*
+								</c:if>
 							</td>
 							<td>
-								<a href='<c:url value="/pages/E_memberContents?id=${dto.id}&name=${dto.name}&pageNum=${pageNum}&number=${number}"/>'>${dto.name}</a>
+								<a href='<c:url value="/pages/E_memberContents?id=${dto.id}&name=${dto.name}&pageNum=${pageNum}&number=${number}"/>'>${dto.name} (${dto.id})</a>
 							</td>
 							
 							<td>

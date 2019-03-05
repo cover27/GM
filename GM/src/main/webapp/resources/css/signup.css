@@ -482,13 +482,97 @@ body {
 }
 
 #findCompany .cancelbtn {
+	position: relative;
+    top: 40px;
     border-radius: 5px;
     width: 100%;
     height: 48px;
-    color: #fff;
+    color: #333;
     font-size: 1em;
     font-weight: bold;
-    border: 1px solid #777;
-    background: #777;
+    border: 1px solid #eee;
+    background: #eee;
     cursor: pointer;
+}
+
+.selectCreateAccount {
+	width: 400px;
+	margin: 0 auto;
+	position: relative;
+	top: 200px;
+}
+
+.selectCreateAccount button {
+	background: #f9f9f9;
+	border : 0;
+	border-radius: 5px;
+	width: 192px;
+    height: 300px;
+    border: 1px solid #aaa;
+}
+
+.selectCreateAccount button:hover {
+	opacity: 1;
+	background: #fff;
+	border: 1px solid #555;
+}
+
+.selectCreateAccount .newCompany, .selectCreateAccount .oldCompany {
+	width: 120px;
+	height: 120px;
+	margin: 0 auto;
+	position: relative;
+    top: -20px;
+}
+
+.selectCreateAccount span {
+	font-size: 18px;
+	position: relative;
+    top: 18px;
+    font-weight: bold;
+}
+
+.selectCreateAccount .newCompany {
+	background: url(../images/new_company.png) no-repeat;
+	background-size: cover; 
+}
+
+.selectCreateAccount .oldCompany {
+	background: url(../images/old_company.png) no-repeat;
+	background-size: cover; 
+}
+
+.selectCreateAccount .back {
+	width: 400px;
+    border: 0;
+    background: #555;
+    color: #fff;
+    padding: 10px 0 12px 0;
+    font-weight: bold;
+    border-radius: 5px;
+    position: relative;
+    top: 18px;
+}
+
+.companyInfo th {
+	background: #eee;
+	width: 200px;
+}
+
+.companyInfo td {
+	text-align: left;
+	padding-left: 20px;
+}
+
+.companyInfo td input {
+	width: 100%;
+}
+
+.companyInfo td input[type="button"] {
+	color: #fff;
+	padding: 3px;
+	border-radius: 5px;
+	font-weight: bold;
+	background: #555;
+	border: 1px solid #555;
 }

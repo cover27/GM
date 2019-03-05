@@ -88,5 +88,9 @@
 	<select id="notReadCnt" resultType="int">
 		SELECT COUNT(*) as cnt FROM message WHERE receiver=#{strId} AND del=0 AND message_num=1 AND readCnt = 0
 	</select>
+	
+	<select id="getMemberInfo" parameterType="String" resultType="com.spring.gm.vo.MemberVO">
+		SELECT * FROM member WHERE id=#{strId}
+	</select>
 
 </mapper>

@@ -1,5 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        
+<script>
+//날짜 예외처리 방법
+function lastDate(){
+	var lastD = $('#searchStartDate').val();
+	$('#searchEndDate').attr("min", lastD);
+}
+function firstDate(){
+	var firstD = $('#searchEndDate').val();
+	$('#searchStartDate').attr("max", firstD);
+}
+</script>
+    
 <section>
 	<article>
 		<div class="content_header">
@@ -22,9 +35,9 @@
 						</span>
 						<span><input type="text" title="문서제목" name="searchApprTitle" value="" placeholder="문서제목 입력"></span>
 						<span>
-							<label class="bold5px ml50">배정일<input type="date" title="시작일" id="searchStartDate" name="searchStartDate" value="" placeholder="시작일" class="ml10"></label>
+							<label class="bold5px ml50">배정일<input type="date" title="시작일" id="searchStartDate" onchange="lastDate()" max="firstD" name="searchStartDate" value="" placeholder="시작일" class="ml10"></label>
 							<span>~</span>
-							<input type="date" title="종료일" id="searchEndDate" name="searchEndDate" value="" placeholder="종료일">
+							<input type="date" title="종료일" id="searchEndDate" onchange="firstDate()" min="lastD" name="searchEndDate" value="" placeholder="종료일">
 						</span>
 						<span><input type="submit" value="검색"></span>
 					</div>

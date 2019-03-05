@@ -540,6 +540,55 @@ public class J_DAOImpl implements J_DAO {
 		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.mgstblCnt2", map);
 		return cnt;
 	}
+	//야간/연장 근무 수당 가져오기
+	@Override
+	public int showONtimeCnt(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.showONtimeCnt", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_margcVO> showONtimeList(Map<String, Object> map) {
+		ArrayList<join_margcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.showONtimeList(map);
+		return dtos;
+	}
+	@Override
+	public int showONtimeCnt2(Map<String, Object> map) {
+		int cnt = sqlSession.selectOne("com.spring.gm.persistence.J_DAO.showONtimeCnt2", map);
+		return cnt;
+	}
+	@Override
+	public ArrayList<join_margcVO> showONtimeList2(Map<String, Object> map) {
+		ArrayList<join_margcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.showONtimeList2(map);
+		return dtos;
+	}
+	//야간,연장 근무 시간 가져옿기
+	@Override
+	public ArrayList<join_margcVO> ONtime(Map<String, Object> map) {
+		ArrayList<join_margcVO> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.ONtime(map);
+		return dtos;
+	}
+	//상여금에 인설트
+	@Override
+	public int insertONtime(Map<String, Object> map) {
+		int cnt = sqlSession.insert("com.spring.gm.persistence.J_DAO.insertONtime", map);
+		return cnt;
+	}
+	//인설트 되면 처리함.
+	@Override
+	public int updateONtime(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.updateONtime", map);
+		return cnt;
+	}
+	
+	
+	
+	
 	
 	//-----------------------급여 조회------------------------------------
 	//급여 부서명 가져오는  셀리리조인 
@@ -807,7 +856,11 @@ public class J_DAOImpl implements J_DAO {
 		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.offUpdate", map);
 		return cnt;
 	}
-	
+	@Override
+	public int offUpdate2(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.offUpdate2", map);
+		return cnt;
+	}
 	// 사원 근태 목록 뽑아오기
 	@Override
 	public int allListCnt(Map<String, Object> map) {

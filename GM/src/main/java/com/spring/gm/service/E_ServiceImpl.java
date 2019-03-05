@@ -26,7 +26,7 @@ public class E_ServiceImpl implements E_Service {
 	@Override
 	public void myCompanyMember(HttpServletRequest req, Model model) {
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
-		int pageSize = 18; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -277,16 +277,20 @@ public class E_ServiceImpl implements E_Service {
 	@Override
 	public void addMember(HttpServletRequest req, Model model) {
 		String id = req.getParameter("id");
+		int addCnt=0;
 		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		AddressMemVO vo = new AddressMemVO();
 		
-		vo.setId(id);
-		vo.setDel(0);
-		vo.setStrId(strId);
+		if(id != vo.getId() && id != null) {
+			vo.setId(id);
+			vo.setDel(0);
+			vo.setStrId(strId);
 
-		int addCnt = dao.addMember(vo);
+			addCnt = dao.addMember(vo);
+			model.addAttribute("addCnt", addCnt);
+		}
+		addCnt = dao.addMember(vo);
 		model.addAttribute("addCnt", addCnt);
-		
 	}
 
 	@Override

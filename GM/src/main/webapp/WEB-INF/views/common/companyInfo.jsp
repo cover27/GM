@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
+<link rel="stylesheet" href="${path}css/signup.css">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript">
 	function enterCompanyInfo(){
@@ -63,12 +64,13 @@
 	    }).open();
 	}
 </script>
-<div>
+<div id="findCompany" style="height: 350px;">
+	<h2>회사 등록</h2>
 	<form action="#" name="companyform">
-		<table>
+		<table class="companyInfo">
 			<tr>
 				<th>회사명</th>
-				<td><input type="text" name="c_name"></td>
+				<td><input type="text" name="c_name" autofocus></td>
 			</tr>
 			<tr>
 				<th>주소</th>
@@ -83,12 +85,10 @@
 				<th>사업자 등록번호</th>
 				<td><input type="text" name="c_number"></td>
 			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="button" value="입력" onclick="enterCompanyInfo();">
-					<input type="button" value="닫기" onclick="self.close();">
-				</td>
-			</tr>
 		</table>
+		<div class="btnset mt20 fright">
+			<input type="button" value="입력" onclick="enterCompanyInfo();">
+			<input type="button" value="닫기" onclick="self.close();">
+		</div>
 	</form>
 </div>

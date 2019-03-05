@@ -4,17 +4,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <body>
-	<h3 align="center"> 자주 연락하는 사람 추가 처리</h3>
-	<c:if test="${addCnt == 0}">
+	<h3 align="center"> 쪽지 전송 처리</h3>
+	<c:if test="${sendCnt == 0}">
 		<script type="text/javascript">
-		alert("이미 목록에 있는 사람입니다.");
+		alert("전송이 실패했습니다.");
 		window.history.back();
 		</script>
 	</c:if>
 	
-	<c:if test="${addCnt != 0}">
+	<c:if test="${sendCnt != 0}">
 		<script type="text/javascript">
-			alert("자주 연락하는 목록에 추가되었습니다.");
+			alert("전송되었습니다.");
 			window.location="E_orgnaizationMemberList";
 		</script>
 	</c:if>
