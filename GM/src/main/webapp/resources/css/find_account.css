@@ -1,0 +1,17 @@
+@charset "UTF-8";
+.findAccount_wrap {
+	padding-top: 60px;
+}
+
+.findAccount_wrap .findAccount_box {
+	position: absolute;
+    width: 482px;
+    height: 360px;
+    top: 55%;
+    left: 50%;
+    margin: -250px 0 0 -252px;
+    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    z-index: 10;
+	background: rgba(26, 26, 26, 0.2);
+}
