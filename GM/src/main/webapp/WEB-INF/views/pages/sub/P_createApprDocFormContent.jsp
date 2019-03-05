@@ -14,6 +14,13 @@ function cancelPay(){
 	window.location='P_listApprTodoView';
 }
 
+function checkSubject(){
+	if(!document.apprDocForm.subject.value){
+		alert('제목을 입력해야 합니다.');
+		return false;
+	}
+	document.apprDocForm.submit();
+}
 </script>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -203,7 +210,7 @@ function cancelPay(){
 		
 					<div class="btnset mt30 mb50">
 					    <input type="button" name="payLine" value="결재선" onclick="addApprLine();">
-					    <input type="button" name="paySubmit" value="결재요청" onclick="document.apprDocForm.submit();">
+					    <input type="button" name="paySubmit" value="결재요청" onclick="checkSubject();">
 					    <input type="button" name="cancel" value="취소" onclick="cancelPay();">
 					</div>
 				</form>
