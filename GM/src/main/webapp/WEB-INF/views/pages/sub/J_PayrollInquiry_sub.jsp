@@ -84,7 +84,7 @@
 					</div>
 				</div>
 				<div class="subtitle">
-					<h3>금여 목록</h3>
+					<h3>급여 목록</h3>
 				</div>
 				<div id="result" class="salary_info_result">
 					<table>
