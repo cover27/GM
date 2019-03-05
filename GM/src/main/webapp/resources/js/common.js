@@ -497,6 +497,11 @@ if(url.indexOf('/')){
 					$("#J_UseHoliday").children().css("color", "#d3292c");
 					$("#J_UseHoliday").css("font-weight", "bold");
 				});
+			} else if(category[0] == "vacationUH2") {
+				$(function(){
+					$("#J_UseHoliday").children().css("color", "#d3292c");
+					$("#J_UseHoliday").css("font-weight", "bold");
+				});
 			}
 		}
 	}
