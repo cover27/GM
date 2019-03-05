@@ -41,7 +41,7 @@ function getInfo(id, name, pageNum, number){
 <section>
 	<article>
 		<div class="content_header">
-			<h2>전체 구성원 목록</h2>
+			<h2>부서 구성원 목록</h2>
 		</div>
 		<div class="content">
 			<form action="<c:url value='/pages/E_addmembersDepartPro'/>" method="post">
@@ -72,7 +72,7 @@ function getInfo(id, name, pageNum, number){
 						</thead>
 					</table>
 				</div>
-				<div class="table_body">
+				<div class="table_body" style="height: 620px;">
 					<table>
 						<colgroup>
 							<col width="100px" />

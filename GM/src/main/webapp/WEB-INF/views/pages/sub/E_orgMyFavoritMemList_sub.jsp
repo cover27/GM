@@ -31,7 +31,7 @@
 					</thead>
 				</table>
 			</div>
-			<div class="table_body">
+			<div class="table_body" style="height: 620px;">
 				<table>
 					<colgroup>
 						<col width="265px;" />
@@ -73,7 +73,7 @@
 									<input type="button" value="쪽지쓰기" onclick="window.location='<c:url value="/pages/S_orgSendMessageForm?id=${mf_dtos.id}"/>'" style="background:#555;">
 								</td>
 								<td>
-									<input type="button" class="inputButton" value="맴버 삭제" onclick="window.location='<c:url value="/pages/E_deleteMemberPro?id=${mf_dtos.id}&pageNum=${pageNum}&number=${number}"/>'">
+									<input type="button" value="맴버 삭제" onclick="window.location='<c:url value="/pages/E_deleteMemberPro?id=${mf_dtos.id}&pageNum=${pageNum}&number=${number}"/>'" style="background:#d3292c;">
 								</td>
 							</tr>
 						</c:forEach>
@@ -84,20 +84,20 @@
             <div class="paging">
 				<c:if test="${cnt > 0}">
 				    <c:if test="${startPage > pageBlock}">
-				        <a href="<c:url value='/pages/E_departMemberList'/>"><i class="fas fa-angle-double-left"></i></a>
-				        <a href="<c:url value='/pages/E_departMemberList?num=${num}&pageNum=${startPage - pageBlock}'/>"><i class="fas fa-angle-left"></i></a>
+				        <a href="<c:url value='/pages/E_orgMyFavoritMemList'/>"><i class="fas fa-angle-double-left"></i></a>
+				        <a href="<c:url value='/pages/E_orgMyFavoritMemList?num=${num}&pageNum=${startPage - pageBlock}'/>"><i class="fas fa-angle-left"></i></a>
 				    </c:if>
 				    <c:forEach var="i" begin="${startPage}" end="${endPage}">
 				        <c:if test="${i == currentPage}">
 				            <span class="thisPage"><b>${i}</b></span>
 				        </c:if>
 				        <c:if test="${i != currentPage}">
-				            <a href="<c:url value='/pages/E_departMemberList?num=${num}&pageNum=${i}'/>">${i}</a>
+				            <a href="<c:url value='/pages/E_orgMyFavoritMemList?num=${num}&pageNum=${i}'/>">${i}</a>
 				        </c:if>
 				    </c:forEach>
 				    <c:if test="${pageCount > endPage}">
-				        <a href="<c:url value='/pages/E_departMemberList?num=${num}&pageNum=${startPage + pageBlock}'/>"><i class="fas fa-angle-right"></i></a>
-				        <a href="<c:url value='/pages/E_departMemberList?num=${num}&pageNum=${pageCount}'/>"><i class="fas fa-angle-double-right"></i></a>
+				        <a href="<c:url value='/pages/E_orgMyFavoritMemList?num=${num}&pageNum=${startPage + pageBlock}'/>"><i class="fas fa-angle-right"></i></a>
+				        <a href="<c:url value='/pages/E_orgMyFavoritMemList?num=${num}&pageNum=${pageCount}'/>"><i class="fas fa-angle-double-right"></i></a>
 				    </c:if>
 				</c:if>
             </div>

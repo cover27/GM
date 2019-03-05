@@ -92,7 +92,7 @@
 	padding: 30px 30px 10px 30px;
 }
 
-.content>h3	 {
+.content>h3, .content>form>h3	 {
 	padding-left: 15px;
     color: #222;
     font-weight: 600;
