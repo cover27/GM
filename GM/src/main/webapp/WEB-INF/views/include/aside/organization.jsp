@@ -39,9 +39,6 @@
                     </li>
                     <li>
                         <span id="E_orgMyFavoritMemList"><a href="<c:url value='/pages/E_orgMyFavoritMemList'/>">자주 연락하는 사람 관리</a></span>
-                        <ul>
-                        	<li><a href="<c:url value=''/>">${dtos.id}</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>
