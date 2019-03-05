@@ -1,9 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
+<script>
+function insertONtime(num) {
+	var date = ${date};
+	alert("date :" + date + "num :" + num);
+	window.location="insertONtime?date="+date + "&num=" + num;
+};
+function showONtime2(){
+	var date = $("#date2").val();
+  	var url="showONtime?date=" + date;
+   	window.open(url, "showONtime", "menubar=no, width=1000, height=560");
+};
+</script>
 <div class="table_top">
-	<table>
+<input type="month"  id="date2" value="${date}" required>
+<input type="button" onclick="showONtime2()" value="검색">
+	<table border="1">
 		<colgroup>
 			<col width="198px" />
 			<col width="198px" />
@@ -17,8 +31,6 @@
 				<th>등록번호</th>
 				<th>사원번호</th>
 				<th>성명</th>
-				<th>직급</th>
-				<th>부서</th>
 				<th>근태종류</th>
 				<th>근태시간</th>
 				<th>근태일자</th>
@@ -28,7 +40,7 @@
 	</table>
 </div>
 <div class="salary_info" style="height:700px;">
-	<table>
+	<table border="1">
 		<colgroup>
 			<col width="198px" />
 			<col width="198px" />
@@ -49,17 +61,31 @@
 						<td>${dtos.num}</td>
 						<td>${dtos.id}</td>
 						<td>${dtos.name}</td>
-						<td>${dtos.rank_name}</td>
-						<td>${dtos.j_name}</td>
-						<td>연장근무</td>
-						<td>${dtos.overtimes}</td>
+						<td>
+						<c:if test="${dtos.overtime > 0 && dtos.nighttime == 0}">
+							연장근무
+						</c:if>
+						<c:if test="${dtos.overtime > 0 && dtos.nighttime > 0}">
+							 연장,야간근무
+						</c:if>
+						</td>
+						<td>
+						<c:if test="${dtos.overtimes != null}">
+							${dtos.overtimes}
+						</c:if>
+						<c:if test="${dtos.nighttime != null}">
+							${dtos.nighttimes}
+						</c:if>
+						</td>
 						<td>${dtos.day}</td>
+						<td>
 						<c:if test="${dtos.state == 0}">
-							<td>지급처리중</td>
+							<input type="button" value="지급처리" onclick="insertONtime('${dtos.num}')">
 						</c:if>
 						<c:if test="${dtos.state == 1}">
-							<td>지급완료</td>
+							지급완료
 						</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</c:if>

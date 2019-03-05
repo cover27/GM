@@ -39,6 +39,16 @@ function setAction(num){
 	}
 	document.deleteTask.submit();
 }
+
+//날짜 예외처리 방법
+function lastDate(){
+	var lastD = $('#begin').val();
+	$('#end').attr("min", lastD);
+}
+function firstDate(){
+	var firstD = $('#end').val();
+	$('#begin').attr("max", firstD);
+}
 </script>
 
 <section>
@@ -66,9 +76,9 @@ function setAction(num){
 	                    	<input name="searchApprTitle" value="" type="text" title="문서제목" placeholder="검색어">
 	                    </span>	
 						<span>
-							<input id="begin" type="date" title="날짜시작" name="searchStartDate" value="">
+							<input id="begin" type="date" title="날짜시작" onchange="lastDate()" max="firstD" name="searchStartDate" value="">
 								<span>~</span>
-							<input id="end" type="date" title="날짜끝" name="searchEndDate" value="" >
+							<input id="end" type="date" title="날짜끝" onchange="firstDate()" min="lastD" name="searchEndDate" value="" >
 						</span>
 		                <span>
 			               <input type="button" value="검색" onclick="setAction(0);">

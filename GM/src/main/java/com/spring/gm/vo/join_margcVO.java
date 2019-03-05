@@ -56,7 +56,8 @@ public class join_margcVO {
 	private String nighttimes; // 야간근로(String)
 	private String perceptiontimes; // 지각시간(String)
 	private String departuretimes; // 조퇴시간(String)
-
+	private int state;	//지급상태
+	
 	private int j_id;// 그룹, 사업장 id
 	private String j_name;// 그룹, 사업장 name
 	public String getId() {
@@ -359,6 +360,12 @@ public class join_margcVO {
 	public void setDeparturetimes(String departuretimes) {
 		this.departuretimes = departuretimes;
 	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
 	public int getJ_id() {
 		return j_id;
 	}
@@ -385,10 +392,10 @@ public class join_margcVO {
 				+ ", overtime=" + overtime + ", nighttime=" + nighttime + ", perceptiontime=" + perceptiontime
 				+ ", departuretime=" + departuretime + ", gos=" + gos + ", offs=" + offs + ", worktimes=" + worktimes
 				+ ", overtimes=" + overtimes + ", nighttimes=" + nighttimes + ", perceptiontimes=" + perceptiontimes
-				+ ", departuretimes=" + departuretimes + ", j_id=" + j_id + ", j_name=" + j_name + ", getId()="
-				+ getId() + ", getPwd()=" + getPwd() + ", getName()=" + getName() + ", getEng_name()=" + getEng_name()
-				+ ", getJumin1()=" + getJumin1() + ", getJumin2()=" + getJumin2() + ", getGender()=" + getGender()
-				+ ", getMarry()=" + getMarry() + ", getWdday()=" + getWdday() + ", getFrgn()=" + getFrgn()
+				+ ", departuretimes=" + departuretimes + ", state=" + state + ", j_id=" + j_id + ", j_name=" + j_name
+				+ ", getId()=" + getId() + ", getPwd()=" + getPwd() + ", getName()=" + getName() + ", getEng_name()="
+				+ getEng_name() + ", getJumin1()=" + getJumin1() + ", getJumin2()=" + getJumin2() + ", getGender()="
+				+ getGender() + ", getMarry()=" + getMarry() + ", getWdday()=" + getWdday() + ", getFrgn()=" + getFrgn()
 				+ ", getNation()=" + getNation() + ", getTel()=" + getTel() + ", getTel_hm()=" + getTel_hm()
 				+ ", getEmail_in()=" + getEmail_in() + ", getEmail_out()=" + getEmail_out() + ", getAddress()="
 				+ getAddress() + ", getEng_address()=" + getEng_address() + ", getDepart()=" + getDepart()
@@ -404,8 +411,9 @@ public class join_margcVO {
 				+ getDeparturetime() + ", getGos()=" + getGos() + ", getOffs()=" + getOffs() + ", getWorktimes()="
 				+ getWorktimes() + ", getOvertimes()=" + getOvertimes() + ", getNighttimes()=" + getNighttimes()
 				+ ", getPerceptiontimes()=" + getPerceptiontimes() + ", getDeparturetimes()=" + getDeparturetimes()
-				+ ", getJ_id()=" + getJ_id() + ", getJ_name()=" + getJ_name() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ ", getState()=" + getState() + ", getJ_id()=" + getJ_id() + ", getJ_name()=" + getJ_name()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 	
 	

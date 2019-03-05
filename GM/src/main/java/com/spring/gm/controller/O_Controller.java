@@ -70,6 +70,7 @@ public class O_Controller {
 		oservice.selectTodo(req, model);
 		return "pages/O_listMyTodoView";
 	}
+	
 	//TO-DO - 나의 할일 화면 등록
 	@RequestMapping("/pages/W_insertTodoPro")
 	public String O_insertTodoPro(HttpServletRequest req, Model model) {
@@ -79,6 +80,17 @@ public class O_Controller {
 		oservice.insertTodoPro(req, model);
 		
 		return "pages/O_insertTodoPro";
+	}
+	
+	//TO-DO - 나의 할일 화면 삭제
+	@RequestMapping("/pages/W_deleteTodoPro")
+	public String O_deleteTodoPro(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
+		
+		oservice.deleteTodoPro(req, model);
+		
+		return "pages/O_deleteTodoPro";
 	}
 	
 	//TO-DO - 나의할일 등록한 뒤나오는 화면

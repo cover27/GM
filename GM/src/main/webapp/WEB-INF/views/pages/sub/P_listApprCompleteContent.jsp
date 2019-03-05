@@ -36,14 +36,8 @@ function firstDate(){
 						<span><input type="text" title="문서제목" name="searchApprTitle" value="" placeholder="문서제목 입력"></span>
 						<span>
 							<label class="bold5px ml50">배정일<input type="date" title="시작일" id="searchStartDate" onchange="lastDate()" max="firstD" name="searchStartDate" value="" placeholder="시작일" class="ml10"></label>
-							<script>
-								document.getElementById('searchStartDate').value =new Date().toISOString().substring(0, 10);
-							</script>
 							<span>~</span>
 							<input type="date" title="종료일" id="searchEndDate" onchange="firstDate()" min="lastD" name="searchEndDate" value="" placeholder="종료일">
-							<script>
-								document.getElementById('searchEndDate').value = new Date().toISOString().substring(0, 10);
-							</script>
 						</span>
 						<span><input type="submit" value="검색"></span>
 					</div>

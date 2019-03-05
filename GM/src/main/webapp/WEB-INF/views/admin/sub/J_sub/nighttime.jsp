@@ -22,6 +22,7 @@
 				<th>근태종류</th>
 				<th>근태시간</th>
 				<th>근태일자</th>
+				<th>지급상태</th>
 			</tr>
 		</thead>
 	</table>
@@ -53,6 +54,12 @@
 						<td>야간근무</td>
 						<td>${dtos.overtimes}</td>
 						<td>${dtos.day}</td>
+						<c:if test="${dtos.state == 0}">
+							<td>지급처리중</td>
+						</c:if>
+						<c:if test="${dtos.state == 1}">
+							<td>지급완료</td>
+						</c:if>
 					</tr>
 				</c:forEach>
 			</c:if>

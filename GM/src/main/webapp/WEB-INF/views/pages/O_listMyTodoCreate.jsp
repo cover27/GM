@@ -7,7 +7,7 @@
 		<c:forEach var="dto" items="${dtos}">
 			<li>
 				<span>${dto.content}</span>
-				<input type="button" value="삭제">
+				<input type="button" id="tododel" value="삭제" onclick="window.location='<c:url value='/pages/W_deleteTodoPro?num=${dto.num}'/>'">
 			</li>
 		</c:forEach>	
 	</ul>

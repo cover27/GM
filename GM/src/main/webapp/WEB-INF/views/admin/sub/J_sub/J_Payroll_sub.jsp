@@ -24,7 +24,12 @@
 					<td>${dto.salaryday}월</td>
 					<td>${dto.id}</td>
 					<td>${dto.name}</td>
+					<c:if test="${dto.g_name == null }">
+					<td>${dto.c_name}</td>
+					</c:if>
+					<c:if test="${dto.g_name != null }">
 					<td>${dto.g_name}</td>
+					</c:if>
 					<td>${dto.c_name}</td>
 					<td>${dto.year}</td>
 					<td>${dto.day}</td>

@@ -134,12 +134,17 @@ function inputCheck(){
 
 function findCompany(){
 	var url="findCompany";
-	window.open(url, "confirm", "menubar=no, width=800, height=600");
+	window.open(url, "confirm", "menubar=no, width=800, height=680");
 }
 
 function companyInfo(){
 	var url="companyInfo";
 	window.open(url, "confirm", "menubar=no, width=800, height=600");
+}
+
+function newCompanyInfo(){
+	var url="companyInfo";
+	window.open(url, "confirm", "menubar=no, width=800, height=400");
 }
 
 function nextJumin(){

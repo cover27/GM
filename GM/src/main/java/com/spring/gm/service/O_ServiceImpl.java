@@ -898,6 +898,8 @@ public class O_ServiceImpl implements O_Service{
 	@Override
 	public void adminTodoList(HttpServletRequest req, Model model) {
 		
+		int company=((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		
 		//3단계. 화면으로부터 입력받은 값을 받아온다.
 		//페이징 처리
 		int pageSize = 17;		//한페이지당 출력할 글 갯수
@@ -936,6 +938,7 @@ public class O_ServiceImpl implements O_Service{
 			map = (Map<String, Object>)req.getSession().getAttribute("searchMap");
 			req.getSession().removeAttribute("searchMap");
 		}
+		map.put("company", company);
 		cnt = dao.adminListCnt(map);
 
 		System.out.println("cnt : " + cnt); //먼저 테이블에 30건을 insert함
@@ -1070,6 +1073,19 @@ public class O_ServiceImpl implements O_Service{
 		System.out.println("확인확인"+dtos.toString());
 		
 		model.addAttribute("dtos", dtos);
+	}
+
+	//TO-DO - 나의 할일 삭제
+	@Override
+	public void deleteTodoPro(HttpServletRequest req, Model model) {
+		
+		int num = Integer.parseInt(req.getParameter("num"));
+		
+		int deleteCnt = dao.deleteTodoPro(num);
+		System.out.println("deleteCnt" + deleteCnt);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
+		
 	}
 
 

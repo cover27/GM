@@ -58,7 +58,8 @@ public interface J_Service {
 	//-----------------------------상여조희--------------------------------------------
 	//상여 조회 목록 가져오기
 	public void searchBonusInquiry(HttpServletRequest req, Model model);
-	
+	//야간/연장 근무 수당 가져오기
+	public void showONtime(HttpServletRequest req, Model model);
 	
 	
 	//------------------수당 조회-----------------------------

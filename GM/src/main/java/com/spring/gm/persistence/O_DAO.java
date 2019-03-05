@@ -66,10 +66,12 @@ public interface O_DAO {
 	//관리자 메뉴 - 업무 문서 관리
 	public int adminListCnt(Map<String, Object> map);
 	public List<B_ManageVO> adminList(Map<String, Object> map);
-	//TO-DO - 나의 할일 화면 및 등록
+	//TO-DO - 나의 할일 등록
 	public int insertTodoPro(TodoListVO vo);
 	//TO-DO - 나의할일 등록한 뒤나오는 화면
 	public List<TodoListVO> selectTodo(String id);
+	//TO-DO - 나의 할일 삭제
+	public int deleteTodoPro(int num);
 	/* 업무 끝 */
 	
 	

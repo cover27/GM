@@ -33,7 +33,7 @@
                 				<th>내용</th>
                 				<td colspan="7" style="height: 230px;text-align: left; padding-left: 20px;vertical-align: top;">${dto.content}</td>
                 			</tr>
-                			<tr>
+                			<!-- <tr>
                 				<th>첨부파일</th>
                 				<td colspan="7"></td>
                 			</tr>
@@ -42,7 +42,7 @@
                 				<td colspan="3"></td>
                 				<th>관련결재</th>
                 				<td colspan="3"></td>
-                			</tr>
+                			</tr> -->
                 		</tbody>
                		</c:forEach>
 	    		</table>
@@ -55,7 +55,7 @@
     							<td>${dto2.b_name}</td>
     							<th>최종수정일</th>
     							<td>${dto2.reg_date}</td>
-    							<th>첨부파일</th>
+    							<th></th>
     							<td></td>
     						</tr>
     						<tr>

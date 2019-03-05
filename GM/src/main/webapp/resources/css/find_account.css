@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+body {
+    background: #eee url(../images/main_bg.jpg) no-repeat right bottom;
+}
+
+.findAccount_wrap {
+	padding-top: 60px;
+}
+
+.findAccount_wrap .findAccount_box {
+	position: absolute;
+    width: 482px;
+    height: 360px;
+    top: 55%;
+    margin: -250px 0 0 -252px;
+    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    z-index: 10;
+	background: rgba(26, 26, 26, 0.2);
+}
+
+.findAccount_wrap .box1 {
+	left: 35%;
+}
+
+.findAccount_wrap .box2 {
+	right: 25%;
+}
+
+.findAccount_wrap h2	{
+	padding: 45px 0 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #111;
+    text-align: center;
+    letter-spacing: 1.5px;
+}
+
+.findAccount_wrap .form_area {
+	position: absolute;
+    top: 100px;
+    left: 56px;
+    width: 380px;
+}
+
+.findAccount_wrap .form_area .input_area {
+	position: relative;
+}
+
+.findAccount_wrap .form_area .input_area .i_id, .findAccount_wrap .form_area .input_area .i_name, .findAccount_wrap .form_area .input_area .i_email {
+	display: inline-block;
+    position: absolute;
+    width: 62px;
+    height: 48px;
+}
+
+.findAccount_wrap .form_area .input_area .i_id {
+	background: url(../images/ic_login_id.png) no-repeat 6px center;
+}
+
+.findAccount_wrap .form_area .input_area .i_name {
+	background: url(../images/ic_name.png) no-repeat 6px center;
+}
+
+.findAccount_wrap .form_area .input_area .i_email {
+	background: url(../images/ic_email.png) no-repeat 6px center;
+}
+
+.findAccount_wrap .form_area .input_area .i_pwd {
+	display: inline-block;
+    position: absolute;
+    width: 62px;
+    height: 48px;
+    background: url(../images/ic_login_pwd.png?v1) no-repeat 6px center;
+}
+
+.findAccount_wrap .form_area .input_area input:focus {
+	background: rgba(254, 255, 196, .8);
+	outline: none;
+}
+
+.findAccount_wrap .form_area input[type="submit"], .findAccount_wrap .form_area input[type="button"] {
+	display: block;
+    margin: 10px 0 4px;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.findAccount_wrap .form_area input[type="submit"] {
+	background: #e30413;
+    border: 1px solid #e30413;
+}
+
+.findAccount_wrap .form_area input[type="button"] {
+	background: #555;
+    border: 1px solid #555;
+}
+
+.findAccount_wrap .form_area input[type="submit"]:hover, .findAccount_wrap .form_area input[type="button"]:hover {
+	opacity: .8;
+}
