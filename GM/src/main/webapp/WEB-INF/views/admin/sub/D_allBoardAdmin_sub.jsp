@@ -53,7 +53,9 @@ function board_move(){
 						</colgroup>
 						<thead>
 							<tr>
-								<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allcheck();"/></th>
+								<c:if test="${sessionScope.loginInfo.sys_rank == 1}">
+									<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allcheck();"/></th>
+								</c:if>
 								<th> 게시판명 </th>
 								<th> 이동 대상 게시판 </th>
 								<th> 글제목 </th>
@@ -81,7 +83,9 @@ function board_move(){
 								<c:if test="${dto.del == 0}">
 									<tr>				
 										<td>
-											<input type="checkbox" name="checkRow" value="${dto.boardnum}"/>
+											<c:if test="${sessionScope.loginInfo.sys_rank == 1}">
+												<input type="checkbox" name="checkRow" value="${dto.boardnum}"/>
+											</c:if>
 										</td>
 										<td>
 											<c:forEach var="dtos" items="${b_dtos}">
