@@ -73,12 +73,16 @@ function sendDeletePro(){
 														취소불가
 													</c:if>
 												<td>
-													<c:if test="${dto.readCnt == 0}">
-														안읽음
-													</c:if>
-													<c:if test="${dto.readCnt != 0}">
-														읽음
-													</c:if>																
+													<c:forEach var="dtos" items="${m_dtos}">
+														<c:if test="${(dto.num - 1) == dtos.num}">
+															<c:if test="${dtos.readCnt == 0}">
+																안읽음
+															</c:if>
+															<c:if test="${dtos.readCnt != 0}">
+																읽음
+															</c:if>	
+														</c:if>	
+													</c:forEach>														
 												</td><!-- 읽음 안읽음 여부만 -->
 												<td style="text-align: left; padding-left: 20px;">
 													<a href="<c:url value='/pages/S_contentMessage?num=${dto.num}&message_num=${dto.message_num}&pageNum=${pageNum}&number=${number}'/>">

@@ -143,4 +143,10 @@ public class S_DAOImpl implements S_DAO {
 		return dao.getMemberInfo(strId);
 	}
 
+	@Override
+	public int sendReadCnt(int num) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.sendReadCnt(num);
+	}
+
 }

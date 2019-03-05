@@ -3,7 +3,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
+
 <mapper namespace="com.spring.gm.persistence.S_DAO" >
 
 	<select id="getMessageArticleCnt" resultType="int">
@@ -91,6 +91,10 @@
 	
 	<select id="getMemberInfo" parameterType="String" resultType="com.spring.gm.vo.MemberVO">
 		SELECT * FROM member WHERE id=#{strId}
+	</select>
+	
+	<select id="sendReadCnt" parameterType="int">
+		select readCnt from message WHERE num = #{num} - 1
 	</select>
 
 </mapper>

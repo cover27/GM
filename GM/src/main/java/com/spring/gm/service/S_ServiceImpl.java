@@ -25,7 +25,7 @@ public class S_ServiceImpl implements S_Service {
 	@Override
 	public void messageList(HttpServletRequest req, Model model) {
 		String receiver = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -126,6 +126,8 @@ public class S_ServiceImpl implements S_Service {
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("number", number);
 	}		
+	
+	
 
 
 	@Override
@@ -180,7 +182,7 @@ public class S_ServiceImpl implements S_Service {
 	@Override
 	public void sendList(HttpServletRequest req, Model model) {
 		String sendId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -287,7 +289,7 @@ public class S_ServiceImpl implements S_Service {
 	@Override
 	public void garbageList(HttpServletRequest req, Model model) {
 		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -568,6 +570,24 @@ public class S_ServiceImpl implements S_Service {
 		int sendCnt = dao.sendMessage(vo);
 		
 		model.addAttribute("sendCnt", sendCnt);
+	}
+
+	@Override
+	public void sendMessageContent(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int message_num = Integer.parseInt((req.getParameter("message_num")));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int number = Integer.parseInt(req.getParameter("number"));
+		
+		MessageVO vo = dao.content(num);
+		
+		dao.sendReadCnt(num);
+
+		model.addAttribute("ct_dto", vo);
+		model.addAttribute("message_num", message_num);
+		model.addAttribute("num", num);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("number", number);
 	}
 	
 

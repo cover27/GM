@@ -43,4 +43,5 @@ public interface S_Service {
 	
 	public void orgsendMessageDataPro(HttpServletRequest req, Model model);	// 조직도 보넨쪽지 저장 처리
 	
+	public void sendMessageContent(HttpServletRequest req, Model model);	// 조회수 증가
 }
