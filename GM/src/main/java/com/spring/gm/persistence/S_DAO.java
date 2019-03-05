@@ -57,6 +57,9 @@ public interface S_DAO {
 	// 조회수 증가
 	public int addReadCnt(int num);
 	
+	// 보넨 메세지 조회수 증가
+	public int sendAddReadCnt(int num);
+	
 	// 상세페이지 삭제
 	public int deleteMessage(int num);
 	
@@ -72,5 +75,14 @@ public interface S_DAO {
 	
 	// 아이디 정보조회
 	public MemberVO getMemberInfo(String strId);
+	
+	// 휴지통 복원
+	public int restoreMessage(int num);
+	
+	// 휴지통 복원 처리
+	public int garbageRestore(Map<String, Integer> map);
+	
+	// 휴지통 전체삭제
+	public int garbageAlldelete(Map<String, Integer> map);
 
 }

@@ -11,6 +11,27 @@ function allcheck(){
         $("input[name=checkRow]").prop("checked", false);
       }
 }
+
+function getInfo(id, name, pageNum, number){
+	$("#info_result").css("display", "block");
+	$.ajax({
+		type : "POST",
+		url : "${pageContext.request.contextPath}/pages/E_memberContents",
+		data : {
+			"id" : id,
+			"name" : name,
+			"pageNum" : pageNum,
+			"number" : number
+		},
+		success : function(result) {
+			// alert("성공");
+			$("#info_result").html(result);
+		},
+		error : function() {
+			alert("게시판 등록이 실패하였습니다.");
+		}
+	});
+}
 </script>
 <section>
 	<article>
@@ -71,7 +92,7 @@ function allcheck(){
 								</c:if>
 							</td>
 							<td>
-								<a href='<c:url value="/pages/E_memberContents?id=${dto.id}&name=${dto.name}&pageNum=${pageNum}&number=${number}"/>'>${dto.name} (${dto.id})</a>
+								<a href="#" onclick="getInfo('${dto.id}', '${dto.name}', '${pageNum}', '${number}')">${dto.name} (${dto.id})</a>
 							</td>
 							
 							<td>
@@ -136,6 +157,7 @@ function allcheck(){
 	            <div class="btnset fright">
 					<input type="submit" value="자주 연락하는 사람에 추가">
 				</div>
+				<div id="info_result"></div>
             </form>
 		</div>
 	</article>

@@ -35,7 +35,6 @@
 				<input type="button" class="inputButton" value="전송취소" onclick="window.location='<c:url value="/pages/S_sendMessageDeletePro?pageNum=${pageNum}&num=${ct_dto.num}&message_num=${ct_dto.message_num}" />'">
 			</c:if> --%>
 			<c:if test="${ct_dto.message_num == 4 }">
-				<input type="button" class="inputButton" value="복원" onclick="window.location='<c:url value="/pages/S_garbageContentRestorePro?pageNum=${pageNum}&num=${ct_dto.num}&message_num=${ct_dto.message_num}" />'">
 				<input type="button" class="inputButton" value="삭제" onclick="window.location='<c:url value="/pages/S_garbageContentDeletePro?pageNum=${pageNum}&num=${ct_dto.num}&message_num=${ct_dto.message_num}" />'">
 			</c:if>
 				<input type="button" class="inputButton" value="목록 보기" onclick="window.history.back()">

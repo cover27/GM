@@ -43,4 +43,8 @@ public interface S_Service {
 	
 	public void orgsendMessageDataPro(HttpServletRequest req, Model model);	// 조직도 보넨쪽지 저장 처리
 	
+	public void restoreGarbageContent(HttpServletRequest req, Model model);		// 휴지통 상세 페이지 복원
+	
+	public void restoreGarbage(HttpServletRequest req, Model model);	// 휴지통 복원
+
 }

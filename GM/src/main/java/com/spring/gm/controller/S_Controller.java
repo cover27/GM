@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.gm.service.E_Service;
 import com.spring.gm.service.J_Service;
 import com.spring.gm.service.S_Service;
 
@@ -18,7 +19,12 @@ public class S_Controller {
 	
 	@Autowired
 	S_Service service;
+	
+	@Autowired
 	J_Service jservice;
+	
+	@Autowired
+	E_Service eservice;
 	
 	/* 선빈이 콘트롤러에 작성
 	// 로그인
@@ -180,6 +186,7 @@ public class S_Controller {
 	public String orgSendMessage(HttpServletRequest req, Model model) {
 		logger.info("URL : S_orgSendMessageForm");
 		service.orgSendMessageForm(req, model);
+		eservice.departList(req, model);
 		return "pages/S_orgSendMessageForm";		
 	}	
 	
@@ -190,5 +197,20 @@ public class S_Controller {
 		service.orgsendMessageDataPro(req, model);
 		return "pages/S_orgSendMessagePro";		
 	}	
+	@RequestMapping("pages/S_garbageContentRestorePro")
+	public String garbageContentRestore(HttpServletRequest req, Model model) {
+		logger.info("URL : S_garbageContentRestorePro");
+		
+		service.restoreGarbageContent(req, model);
+		return "pages/S_garbageContentRestorePro";		
+	}
 	
+	@RequestMapping("pages/S_garbageRestorePro")
+	public String garbageRestore(HttpServletRequest req, Model model) {
+		logger.info("URL : S_garbageContentRestorePro");
+		
+		service.restoreGarbage(req, model);
+		return "pages/S_garbageRestorePro";		
+	}
+
 }

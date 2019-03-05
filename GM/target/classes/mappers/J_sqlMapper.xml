@@ -26,9 +26,13 @@
 		resultType="com.spring.gm.vo.join_mgcVO2">
 	<![CDATA[
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
-              FROM member m ,groups g , grade r
+              FROM member m ,groups g , grade r 
               WHERE m.depart = g.groupid and m.rank = r.rank and m.company = #{company}
+<<<<<<< HEAD
               and r.r_name != '대기자' and m.del = 0
+=======
+              and r.r_name != '대기자'  and m.del = 0
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
               order by m.depart ,r.r_name)
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company} 
 	]]>
@@ -49,15 +53,16 @@
 		resultType="int">
 		SELECT count(*) cnt FROM member WHERE name like
 		'%'||#{search_content}||'%' and company = #{company}
+		and del = 0
 	</select>
 	<!-- 검색 급여 회원정보 가져오기(성명 - 그룹테이블과 조인) -->
 	<select id="searchinfoList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgcVO2">
 		select * from(SELECT m.id, m.name, r.r_name, m.depart,
 		m.enterday, m.tel, m.email_in, g.g_name as j_name
-		FROM member m ,groups g, grade r
-		WHERE m.depart = g.groupid and m.rank = r.rank and m.company = #{company})
-		where depart != #{company} and name like '%'||#{search_content}||'%'
+		FROM member m ,groups g, grade r 
+		WHERE m.depart = g.groupid and m.rank = r.rank and m.company = #{company} and m.del = 0)
+		where depart != #{company} and name like '%'||#{search_content}||'%' 
 	</select>
 	<!-- 검색 급여 회원정보 가져오기(성명 - 사업장테이블과 조인) -->
 	<select id="searchinfoList3" parameterType="java.util.Map"
@@ -65,8 +70,8 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart,
 		m.enterday, m.tel, m.email_in, c.c_name as j_name
 		FROM member m ,companies c, grade r
-		WHERE m.depart = c.company and m.rank = r.rank and m.company = #{company})
-		where depart = #{company} and name like '%'||#{search_content}||'%'
+		WHERE m.depart = c.company and m.rank = r.rank and m.company = #{company} and m.del = 0)
+		where depart = #{company} and name like '%'||#{search_content}||'%'  
 	</select>
 
 
@@ -74,7 +79,7 @@
 	<select id="search_salaryCnt2" parameterType="java.util.Map"
 		resultType="int">
 		SELECT count(*) cnt FROM groups WHERE g_name like
-		'%'||#{search_content}||'%' and company = #{company}
+		'%'||#{search_content}||'%' and company = #{company} 
 	</select>
 	<select id="searchinfoList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgcVO2">
@@ -82,8 +87,7 @@
 		m.enterday, m.tel, m.email_in, g.g_name as j_name
 		FROM member m ,groups g, grade r
 		WHERE m.depart = g.groupid and m.rank = r.rank and m.company = #{company}
-		and g.g_name like '%'||#{search_content}||'%' and g.company =
-		#{company})
+		and g.g_name like '%'||#{search_content}||'%' and g.company = #{company} and m.del = 0)
 	</select>
 
 
@@ -91,7 +95,7 @@
 	<select id="search_salaryCnt3" parameterType="java.util.Map"
 		resultType="int">
 		SELECT count(*) cnt FROM member WHERE id =
-		#{search_content} and company = #{company}
+		#{search_content} and company = #{company} and del = 0
 	</select>
 	<!-- 검색 급여 회원정보 가져오기(사원 아이디 - 그룹테이블과 조인) -->
 	<select id="searchinfoList4" parameterType="java.util.Map"
@@ -99,8 +103,8 @@
 		select * from(SELECT m.id, m.name, r.r_name, m.depart,
 		m.enterday, m.tel, m.email_in, g.g_name as j_name
 		FROM member m ,groups g, grade r
-		WHERE m.depart = g.groupid and m.rank = r.rank and m.company = #{company})
-		where depart != #{company} and id like '%'||#{search_content}||'%'
+		WHERE m.depart = g.groupid and m.rank = r.rank and m.company = #{company} and m.del = 0)
+		where depart != #{company} and id like '%'||#{search_content}||'%' 
 	</select>
 	<!-- 검색 급여 회원정보 가져오기(성명 - 사업장테이블과 조인) -->
 	<select id="searchinfoList5" parameterType="java.util.Map"
@@ -108,7 +112,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart,
 		m.enterday, m.tel, m.email_in, c.c_name as j_name
 		FROM member m ,companies c, grade r
-		WHERE m.depart = c.company and m.rank = r.rank and m.company = #{company})
+		WHERE m.depart = c.company and m.rank = r.rank and m.company = #{company}  and m.del = 0)
 		where depart = #{company} and id like '%'||#{search_content}||'%'
 	</select>
 
@@ -121,7 +125,7 @@
 		where s.id = m.id
 		and
 		to_char(s.day,'yyyymm')=to_char(sysdate,'yyyymm') and m.id = #{id} and
-		company = #{company}
+		company = #{company} and m.del = 0
 	</select>
 	<select id="J_PayrollRegistrationList"
 		parameterType="java.util.Map" resultType="com.spring.gm.vo.join_msVO">
@@ -132,14 +136,14 @@
 		where m.id = s.id and
 		m.rank = r.rank
 		and s.id = #{id} and m.company = #{company} and
-		to_char(s.day,'yyyymm')=to_char(sysdate,'yyyymm')
+		to_char(s.day,'yyyymm')=to_char(sysdate,'yyyymm') and m.del = 0
 	</select>
 	<!--개인 급여등록(이번달 목록 가져오기) 없으면 인설트할 목록 가져오기 -->
 	<select id="J_PayrollRegistrationInsertList"
 		parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
 		SELECT
 		id,name,tel,email_in,round(salary/12, -2) as salary,account_number
-		FROM member where id = #{id} and company = #{company}
+		FROM member where id = #{id} and company = #{company} and del = 0
 	</select>
 	<select id="J_PayrollRegistrationInsertList2"
 		parameterType="java.util.Map"
@@ -149,9 +153,9 @@
 		from member m left join
 		bonus_cut b on m.id = b.id
 		where m.id = #{id} and m.company =
-		#{company} and to_char(b.day,'yyyymm') = TO_CHAR(sysdate, 'YYYYMM')
+		#{company} and to_char(b.day,'yyyymm') = TO_CHAR(sysdate, 'YYYYMM') and m.del = 0
 		group by m.id, m.name, m.tel, m.email_in, round(m.salary/12, -2),
-		m.account_number
+		m.account_number 
 	</select>
 
 
@@ -206,7 +210,7 @@
 		where m.id
 		= b.id
 		and m.id = #{id} and to_char(b.day,'yyyymm') = TO_CHAR(sysdate,
-		'YYYYMM') and m.company= #{company}
+		'YYYYMM') and m.company= #{company} and m.del = 0
 	</select>
 	<select id="bonussalary" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgsbVO">
@@ -215,7 +219,7 @@
 		where m.id = b.id
 		and m.id = #{id} and
 		to_char(b.day,'yyyymm') = TO_CHAR(sysdate, 'YYYYMM') and m.company=
-		#{company}
+		#{company} and m.del = 0
 	</select>
 
 
@@ -236,7 +240,7 @@
 	SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
               FROM member m ,companies c, grade r
               WHERE m.depart = c.company and m.rank = r.rank
-               and to_char(m.enterday,'yyyy') <= #{content})
+               and to_char(m.enterday,'yyyy') <= #{content} and m.del = 0)
         WHERE  depart = #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
@@ -246,7 +250,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
               FROM member m ,groups g, grade r 
               WHERE m.depart = g.groupid and m.rank = r.rank
-              and to_char(m.enterday,'yyyy')<= #{content})
+              and to_char(m.enterday,'yyyy')<= #{content} and m.del = 0)
          WHERE  depart != #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
@@ -256,7 +260,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
               FROM member m ,companies c, grade r
               WHERE m.depart = c.company and m.rank = r.rank
-              and to_char(m.enterday,'yyyymm') <= #{content})
+              and to_char(m.enterday,'yyyymm') <= #{content} and m.del = 0)
         WHERE  depart = #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
@@ -266,7 +270,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
               FROM member m ,groups g, grade r 
               WHERE m.depart = g.groupid and m.rank = r.rank
-              and to_char(m.enterday,'yyyymm')<= #{content})
+              and to_char(m.enterday,'yyyymm')<= #{content} and m.del = 0)
          WHERE  depart != #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
@@ -276,7 +280,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name
               FROM member m ,companies c, grade r
               WHERE m.depart = c.company and m.rank = r.rank
-              and to_char(m.enterday,'yyyymmdd') <= #{content})
+              and to_char(m.enterday,'yyyymmdd') <= #{content} and m.del = 0)
         WHERE  depart = #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
@@ -286,7 +290,7 @@
 		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
               FROM member m ,groups g, grade r 
               WHERE m.depart = g.groupid and m.rank = r.rank
-              and to_char(m.enterday,'yyyymmdd')<= #{content})
+              and to_char(m.enterday,'yyyymmdd')<= #{content} and m.del = 0)
          WHERE  depart != #{company} and id like '%'||#{content2}||'%'
 	]]>
 	</select>
@@ -298,7 +302,7 @@
 	<![CDATA[
 	SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
               FROM member m ,groups g, grade r
-              WHERE m.depart = g.groupid and m.rank = r.rank
+              WHERE m.depart = g.groupid and m.rank = r.rank and m.del = 0
               and to_char(m.enterday,'yyyy') <= #{content} and g_name like '%'||#{content2}||'%' and  m.company = #{company})
 	]]>
 	</select>
@@ -308,7 +312,7 @@
 	<![CDATA[
 		SELECT * FROM(SELECT m.id, m.name, m.rank, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
               FROM member m ,groups g, grade r
-              WHERE m.depart = g.groupid and m.rank = r.rank
+              WHERE m.depart = g.groupid and m.rank = r.rank and m.del = 0
               and to_char(m.enterday,'yyyymm') <= #{content} and g_name like '%'||#{content2}||'%' and  m.company = #{company})
 	]]>
 	</select>
@@ -318,7 +322,7 @@
 	<![CDATA[
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
               FROM member m ,groups g, grade r
-              WHERE m.depart = g.groupid and m.rank = r.rank
+              WHERE m.depart = g.groupid and m.rank = r.rank and m.del = 0
               and to_char(m.enterday,'yyyymmdd') <= #{content} and g_name like '%'||#{content2}||'%' and  m.company = #{company})
 	]]>
 	</select>
@@ -330,7 +334,7 @@
 		m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name
 		FROM member m ,groups g, grade r
 		WHERE m.depart = g.groupid and m.rank = r.rank
-		and g.g_name like '%'||#{content2}||'%' and m.company = #{company})
+		and g.g_name like '%'||#{content2}||'%' and m.company = #{company} and m.del = 0) 
 	</select>
 	<select id="selectNoneDepartList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgcVO2">
@@ -338,7 +342,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
               FROM member m ,groups g, grade r 
               WHERE m.depart = g.groupid and m.rank = r.rank
-              and g.g_name like '%'||#{content2}||'%' and m.company = #{company})
+              and g.g_name like '%'||#{content2}||'%' and m.company = #{company} and m.del = 0)
         WHERE (rNum >=  #{start} AND rNum <= #{end})
      ]]>
 	</select>
@@ -347,7 +351,7 @@
 	<select id="selectNoneIdCnt" parameterType="java.util.Map"
 		resultType="int">
 		SELECT COUNT(*) as cnt FROM member where company =
-		#{company} and id like '%'||#{content2}||'%'
+		#{company} and id like '%'||#{content2}||'%' and del = 0
 	</select>
 	<select id="selectNoneIdList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgcVO2">
@@ -355,7 +359,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
               FROM member m ,groups g, grade r 
               WHERE m.depart = g.groupid and m.rank = r.rank
-              and id like '%'||#{content2}||'%' and m.company = #{company})
+              and id like '%'||#{content2}||'%' and m.company = #{company} and m.del = 0)
         WHERE (rNum >=  #{start} AND rNum <= #{end})
 	]]>
 	</select>
@@ -365,7 +369,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
               FROM member m ,companies c, grade r
               WHERE m.depart = c.company and m.rank = r.rank
-              and id like '%'||#{content2}||'%' and m.company = #{company})
+              and id like '%'||#{content2}||'%' and m.company = #{company} and m.del = 0)
        WHERE (rNum >=  #{start} AND rNum <= #{end})
 	]]>
 	</select>
@@ -478,7 +482,7 @@
 	SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
               FROM member m ,companies c, grade r
               WHERE m.depart = c.company and m.rank = r.rank
-              and to_char(m.enterday,'yyyy') <= #{content} and m.company = #{company})
+              and to_char(m.enterday,'yyyy') <= #{content} and m.company = #{company} and m.del = 0)
        WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
 	]]>
 	</select>
@@ -488,7 +492,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
               FROM member m ,groups g, grade r 
               WHERE m.depart = g.groupid and m.rank = r.rank
-              and to_char(m.enterday,'yyyy')<= #{content} and m.company = #{company})
+              and to_char(m.enterday,'yyyy')<= #{content} and m.company = #{company} and m.del = 0)
          WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
 	]]>
 	</select>
@@ -498,7 +502,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
               FROM member m ,companies c, grade r
               WHERE m.depart = c.company and m.rank = r.rank
-              and to_char(m.enterday,'yyyymm') <= #{content} and m.company = #{company})
+              and to_char(m.enterday,'yyyymm') <= #{content} and m.company = #{company} and m.del = 0)
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
 	]]>
 	</select>
@@ -508,7 +512,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
               FROM member m ,groups g , grade r
               WHERE m.depart = g.groupid and m.rank = r.rank
-              and to_char(m.enterday,'yyyymm')<= #{content} and m.company = #{company})
+              and to_char(m.enterday,'yyyymm')<= #{content} and m.company = #{company} and m.del = 0)
          WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
 	]]>
 	</select>
@@ -518,7 +522,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
               FROM member m ,companies c, grade r
               WHERE m.depart = c.company and m.rank = r.rank
-              and to_char(m.enterday,'yyyymmdd') <= #{content} and m.company = #{company})
+              and to_char(m.enterday,'yyyymmdd') <= #{content} and m.company = #{company} and m.del = 0)
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company}
 	]]>
 	</select>
@@ -528,7 +532,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
               FROM member m ,groups g, grade r 
               WHERE m.depart = g.groupid and m.rank = r.rank
-              and to_char(m.enterday,'yyyymmdd')<= #{content} and m.company = #{company})
+              and to_char(m.enterday,'yyyymmdd')<= #{content} and m.company = #{company} and m.del = 0)
          WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company}
 	]]>
 	</select>
@@ -550,22 +554,22 @@
 	<select id="searchIdCnt" parameterType="java.util.Map"
 		resultType="int">
 		SELECT COUNT(*) as cnt FROM member where company =
-		#{company} and id like '%'||#{id}||'%'
+		#{company} and id like '%'||#{id}||'%' and del = 0
 	</select>
 	<select id="searchIdList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgcVO2">
 		select * from(SELECT m.id, m.name, r.r_name, m.depart,
 		m.enterday, m.tel, m.email_in, g.g_name as j_name
 		FROM member m ,groups g, grade r
-		WHERE m.depart = g.groupid and m.rank = r.rank and m.company = #{company})
-		where depart != #{company} and id like '%'||#{id}||'%'
+		WHERE m.depart = g.groupid and m.rank = r.rank and m.company = #{company} and m.del = 0)
+		where depart != #{company} and id like '%'||#{id}||'%' 
 	</select>
 	<select id="searchIdList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgcVO2">
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel,
 		m.email_in, c.c_name as j_name
 		FROM member m ,companies c, grade r
-		WHERE m.depart = c.company and m.rank = r.rank and m.company = #{company})
+		WHERE m.depart = c.company and m.rank = r.rank and m.company = #{company} and m.del = 0)
 		where depart = #{company} and id like '%'||#{id}||'%'
 	</select>
 
@@ -578,12 +582,12 @@
 		FROM member m , salary s
 		WHERE m.id = s.id
 		and to_char(s.day,'yyyymm') = #{months} and m.id = #{id} and m.company =
-		#{company} and state = '지급'
+		#{company} and state = '지급' and m.del = 0
 	</select>
 	<select id="mgstblCnt2" parameterType="java.util.Map"
 		resultType="int">
 		select count(*) as cnt from bonus_cut where id= #{id} and
-		to_char(day,'yyyymm') = #{months} and state = '지급'
+		to_char(day,'yyyymm') = #{months} and state = '지급' 
 	</select>
 
 	
@@ -600,7 +604,7 @@
 		member m, groups g, salary s
 		where m.depart = g.groupid and m.id = s.id
 		and m.id = #{id} and m.depart != #{company} and m.company = #{company}
-		and to_char(s.day,'yyyymm')= #{months} and state = '지급'
+		and to_char(s.day,'yyyymm')= #{months} and state = '지급' and m.del = 0
 	</select>
 	<!-- 급여 회사명 가져오는 셀리리조인 -->
 	<select id="mgstbl2" parameterType="java.util.Map"
@@ -612,7 +616,7 @@
 		= c.company and m.id = s.id
 		and m.id = #{id} and m.depart = #{company}
 		and m.company = #{company} and to_char(s.day,'yyyymm')= #{months} and
-		state = '지급'
+		state = '지급' and m.del = 0
 	</select>
 
 
@@ -624,14 +628,14 @@
 		where m.id = b.id
 		and m.id= #{id} and
 		to_char(b.day,'yyyymm') = #{months} and m.company = #{company} and
-		state = '지급'
+		state = '지급' and m.del = 0
 	</select>
 	<select id="bonustbl2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgsbVO">
 		select * from bonus_cut b,member m
 		where m.id = b.id
 		and m.id= #{id} and to_char(b.day,'yyyymm') = #{months}
-		and m.company = #{company} and state = '지급'
+		and m.company = #{company} and state = '지급' and m.del = 0
 	</select>
 
 	<!--추가 및 삭감 이달의 정보 보기 -->
@@ -642,7 +646,7 @@
 		where m.id = b.id
 		and m.id= #{id} and
 		to_char(b.day,'yyyymm') = #{months} and m.company = #{company} and
-		state = '지급'
+		state = '지급' and m.del = 0
 	</select>
 	<select id="bonustbl4" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgsbVO">
@@ -651,7 +655,7 @@
 		where m.id = b.id
 		and m.id= #{id} and
 		to_char(b.day,'yyyymm') = #{months} and m.company = #{company} and
-		state = '미지급'
+		state = '미지급' and m.del = 0
 	</select>
 
 
@@ -662,7 +666,7 @@
 		from salary s,member m
 		where m.id = s.id
 		and m.id= #{id} and to_char(day,'yyyy') = #{month} and
-		m.company = #{company}
+		m.company = #{company} and m.del = 0
 	</select>
 	<select id="J_SalaryCalculationSearchList2"
 		parameterType="java.util.Map"
@@ -672,9 +676,9 @@
 		from salary s,member m
 		where m.id = s.id
 		and m.id= #{id} and to_char(day,'yyyy') = #{month} and
-		m.company = #{company}
+		m.company = #{company} and m.del = 0
 		group by s.sal_num, s.id, s.day, s.salary,
-		s.state
+		s.state 
 	</select>
 
 
@@ -688,7 +692,7 @@
 		and b.id = m.id
 		and m.id = #{id} and m.depart != #{company} and
 		m.company = #{company} and to_char(b.day,'yyyymm')= #{months} and
-		b.state = '지급'
+		b.state = '지급' and m.del = 0
 	</select>
 	<select id="bonusList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgsbVO">
@@ -698,7 +702,7 @@
 		where m.company = c.company and b.id = m.id
 		and m.id = #{id} and
 		m.depart = #{company} and m.company = #{company} and
-		to_char(b.day,'yyyymm')= #{months} and b.state = '지급'
+		to_char(b.day,'yyyymm')= #{months} and b.state = '지급' and m.del = 0
 	</select>
 	<!-- 야간/연장 근무 수당 가져오기 -->
 	<select id="showONtimeCnt" parameterType="java.util.Map" resultType="int">
@@ -706,28 +710,28 @@
 		from attended a, member m
 		where m.id = a.id
 		and a.overtime > 0 and a.nighttime = 0
-		and to_char(a.day,'yyyymm') = #{date}
+		and to_char(a.day,'yyyymm') = #{date} and m.del = 0
 	</select>
 	<select id="showONtimeList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
 		select a.num,m.id, m.name, a.overtime, a.state,a.day
 		from attended a, member m
 		where m.id = a.id
 		and a.overtime >0 and a.nighttime = 0
-		and to_char(a.day,'yyyymm') = #{date}
+		and to_char(a.day,'yyyymm') = #{date} and m.del = 0
 	</select>
 	<select id="showONtimeCnt2" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt
 		from attended a, member m
 		where m.id = a.id
 		and a.nighttime > 0
-		and to_char(a.day,'yyyymm') = #{date}
+		and to_char(a.day,'yyyymm') = #{date} and m.del = 0
 	</select>
 	<select id="showONtimeList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
 		select a.num,m.id, m.name, a.overtime, a.nighttime, a.state,a.day
 		from attended a, member m
 		where m.id = a.id
 		and a.nighttime >0
-		and to_char(a.day,'yyyymm') = #{date} 
+		and to_char(a.day,'yyyymm') = #{date}  and m.del = 0
 	</select>
 	<!-- 야간,연장 근무 시간 가져옿기 -->
 	<select id="ONtime" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
@@ -767,7 +771,7 @@
 		and b.id = m.id
 		and m.id = #{id} and m.depart != #{company} and
 		m.company = #{company} and to_char(b.day,'yyyymm')= #{months} and
-		b.state = '미지급'
+		b.state = '미지급' and m.del = 0
 	</select>
 	<select id="bonusNoneList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgsbVO">
@@ -778,7 +782,7 @@
 		c.company and b.id = m.id
 		and m.id = #{id} and m.depart = #{company}
 		and m.company = #{company} and to_char(b.day,'yyyymm')= #{months} and
-		b.state = '미지급'
+		b.state = '미지급' and m.del = 0
 	</select>
 
 
@@ -791,7 +795,7 @@
 		and m.company = #{company}
 		and to_char(s.day,'yyyy')= TO_CHAR(sysdate, 'YYYY') 
 		and m.id = #{id}
-        and s.state = '지급'
+        and s.state = '지급' and m.del = 0
 	</select>
 	<select id="IdSearchList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgsbcVO">
@@ -802,7 +806,7 @@
 		and m.id = b.id
 		and m.depart != #{company} and m.company = #{company}
 		and to_char(s.day,'yyyymm')= #{year} and m.id = #{id}
-		and to_char(b.day,'yyyymm')= #{year} and s.state = '지급' and b.state = '지급'
+		and to_char(b.day,'yyyymm')= #{year} and s.state = '지급' and b.state = '지급' and m.del = 0
 		group by s.day, m.id, m.name, g.g_name, round(m.salary/12,-2),
 		c.c_name , s.salary, m.year
 	</select>
@@ -815,7 +819,7 @@
 		and m.id = s.id and m.id = b.id
 		and m.depart = #{company} and m.company
 		= #{company} and to_char(s.day,'yyyymm')= #{year} and m.id = #{id}
-		and to_char(b.day,'yyyymm')= #{year} and s.state = '지급' and b.state = '지급'
+		and to_char(b.day,'yyyymm')= #{year} and s.state = '지급' and b.state = '지급' and m.del = 0
 		group by s.day, m.id, m.name, c.c_name, round(m.salary/12,-2),
 		s.salary, m.year
 	</select>
@@ -832,7 +836,7 @@
 		from member m,salary s
 		where m.id = s.id
 		and m.company =
-		#{company} and to_char(s.day,'yyyy')= #{cntyear} and s.state = '지급'
+		#{company} and to_char(s.day,'yyyy')= #{cntyear} and s.state = '지급' and m.del = 0
 	</select>
 	<select id="searchList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgsbcVO">
@@ -853,7 +857,7 @@
 		where m.id = b.id
 		and m.id = s.id
 		and to_char(s.day,'yyyymm')= #{year} and m.company =
-		#{company}
+		#{company} and m.del = 0
 	</select>
 
 
@@ -867,7 +871,7 @@
 		where m.id = a.id
 		and m.company = #{company} and m.id = #{id} and
 		to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
-		and a.result != 0
+		and a.result != 0 and m.del = 0
 	</select>
 	<select id="GoOffList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_maVO">
@@ -878,7 +882,7 @@
 		and m.company = #{company}
 		and m.id = #{id}
 		and to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
-		and a.result != 0
+		and a.result != 0 and m.del = 0
 	</select>
 
 	<!-- 날짜로 출근 목록 뽑아오기 -->
@@ -888,7 +892,7 @@
 		from member m, attended a
 		where m.id = a.id
 		and m.company = #{company} and m.id = #{id}
-		and to_char(a.day,'yyyymmdd')=#{date}
+		and to_char(a.day,'yyyymmdd')=#{date} and m.del = 0
 	</select>
 	<select id="searchGoOffList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_maVO">
@@ -898,7 +902,7 @@
 		where m.id = a.id
 		and m.company = #{company}
 		and m.id = #{id}
-		and to_char(a.day,'yyyymmdd')=#{date}
+		and to_char(a.day,'yyyymmdd')=#{date} and m.del = 0
 	</select>
 
 
@@ -934,7 +938,7 @@
 		where m.id = a.id
 		and to_char(a.day,'yyyymmdd') = #{begin}
 		and m.company = #{company}
-		and m.id = #{id}
+		and m.id = #{id} and m.del = 0
 	</select>
 
 	<!-- 퇴근시간 업데이트(근무시간, 연장시간, 야간시간, 조퇴시간) -->
@@ -953,7 +957,7 @@
 		from member m, attended a
 		where m.id = a.id
 		and m.company = #{company} and to_char(a.day,'yyyymmdd')=#{date}
-		and a.result != 0
+		and a.result != 0 and m.del = 0
 	</select>
 	<select id="allListList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_maVO">
 		select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime,
@@ -962,7 +966,7 @@
 		where m.id = a.id
 		and m.company = #{company}
 		and to_char(a.day,'yyyymmdd')=#{date}
-		and a.result != 0
+		and a.result != 0 and m.del = 0
 	</select>
 	<!-- 사원 근태 삭제 -->
 	<delete id="deleteAttended" parameterType="java.util.Map">
@@ -977,7 +981,7 @@
 		where m.id = a.id
 		and m.company = #{company} and
 		to_char(a.day,'yyyymmdd')=to_char(sysdate,'yyyymmdd')
-		and a.num = #{num}
+		and a.num = #{num} and m.del = 0
 	</select>
 	<select id="modifyList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_maVO">
@@ -985,7 +989,7 @@
 		a.nighttime, a.perceptiontime, a.departuretime
 		from member m, attended a
 		where m.id = a.id
-		and a.num = #{num}
+		and a.num = #{num} and m.del = 0
 	</select>
 
 	<!-- 수정 업데이트 -->
@@ -1003,7 +1007,7 @@
 		from member m, attended a
 		where m.id = a.id
 		and m.company = #{company} and to_char(a.day,'yyyymm')=#{month}
-		and m.id=#{id}
+		and m.id=#{id} and m.del = 0
 	</select>
 	<select id="monthList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
@@ -1017,8 +1021,7 @@
 		and m.company = #{company} and
 		to_char(a.day,'yyyymm')=#{month}
 		and m.depart != #{company}
-		and m.id=
-		#{id}
+		and m.id=#{id} and m.del = 0
 		order by a.day
 	</select>
 	<select id="monthList2" parameterType="java.util.Map"
@@ -1033,8 +1036,7 @@
 		and m.company = #{company} and
 		to_char(a.day,'yyyymm')=#{month}
 		and m.depart = #{company}
-		and m.id=
-		#{id}
+		and m.id=#{id} and m.del = 0
 		order by a.day
 	</select>
 	<!-- 월별 근태 정보 가져오기(전체) -->
@@ -1043,7 +1045,7 @@
 		select count(*) as cnt
 		from member m, attended a
 		where m.id = a.id
-		and m.company = #{company} and to_char(a.day,'yyyymm')=#{month}
+		and m.company = #{company} and to_char(a.day,'yyyymm')=#{month} and m.del = 0
 	</select>
 	<select id="monthList3" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
@@ -1056,9 +1058,8 @@
 		g.groupid
 		and m.company = #{company} and
 		to_char(a.day,'yyyymm')=#{month}
-		and m.depart != #{company}
-		order by
-		a.day desc
+		and m.depart != #{company} and m.del = 0
+		order by a.day desc
 	</select>
 	<select id="monthList4" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
@@ -1071,9 +1072,8 @@
 		m.company = c.company
 		and m.company = #{company} and
 		to_char(a.day,'yyyymm')=#{month}
-		and m.depart = #{company}
-		order by
-		a.day desc
+		and m.depart = #{company} and m.del = 0
+		order by a.day desc
 	</select>
 
 	<!-- 휴가 목록 뽑아오기 -->
@@ -1084,7 +1084,7 @@
 		where m.id = a.id
 		and
 		m.company = #{company} and to_char(a.day,'yyyymm')=#{month}
-		and a.result = 3
+		and a.result = 3 and m.del = 0
 	</select>
 	<select id="holidayList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
@@ -1097,8 +1097,7 @@
 		and m.company = #{company}
 		and m.depart != #{company}
 		and to_char(a.day,'yyyymm')=#{month}
-		and
-		a.result = 3
+		and a.result = 3 and m.del = 0
 	</select>
 	<select id="holidayList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
@@ -1111,8 +1110,7 @@
 		and m.company = #{company}
 		and m.depart = #{company}
 		and to_char(a.day,'yyyymm')=#{month}
-		and
-		a.result = 3
+		and a.result = 3 and m.del = 0
 	</select>
 
 	<!-- 연장근무 목록 뽑아오기 -->
@@ -1124,7 +1122,7 @@
 		and
 		m.company = #{company}
 		and to_char(a.day,'yyyymm')=#{month}
-		and a.overtime != 0
+		and a.overtime != 0 and m.del = 0
 	</select>
 	<select id="overtimeList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
@@ -1137,8 +1135,7 @@
 		and m.company = #{company}
 		and m.depart != #{company}
 		and to_char(a.day,'yyyymm')=#{month}
-		and
-		a.overtime != 0
+		and a.overtime != 0 and m.del = 0
 	</select>
 	<select id="overtimeList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
@@ -1151,8 +1148,7 @@
 		and m.company = #{company}
 		and m.depart = #{company}
 		and to_char(a.day,'yyyymm')=#{month}
-		and
-		a.overtime != 0
+		and a.overtime != 0 and m.del = 0
 	</select>
 
 
@@ -1162,10 +1158,9 @@
 		select count(*) as cnt
 		from member m, attended a
 		where m.id = a.id
-		and
-		m.company = #{company}
+		and m.company = #{company}
 		and to_char(a.day,'yyyymm')=#{month}
-		and a.nighttime != 0
+		and a.nighttime != 0 and m.del = 0
 	</select>
 	<select id="nighttimeList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
@@ -1178,8 +1173,7 @@
 		and m.company = #{company}
 		and m.depart != #{company}
 		and to_char(a.day,'yyyymm')=#{month}
-		and
-		a.nighttime != 0
+		and a.nighttime != 0 and m.del = 0
 	</select>
 	<select id="nighttimeList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_margcVO">
@@ -1192,8 +1186,7 @@
 		and m.company = #{company}
 		and m.depart = #{company}
 		and to_char(a.day,'yyyymm')=#{month}
-		and
-		a.nighttime != 0
+		and a.nighttime != 0 and m.del = 0
 	</select>
 
 
@@ -1206,7 +1199,7 @@
      and  company=#{company}  
      and rank is  not null 
      and id = #{id}
-     and to_char(enterday,'yyyy') <= #{year}
+     and to_char(enterday,'yyyy') <= #{year} and del = 0
    	]]>
 	</select>
 	<!-- 전체사원 연차/휴가 목록 뽑기 -->
@@ -1216,7 +1209,7 @@
      select id from member where sys_rank != 0 
      and company=#{company}  
      and rank is  not null 
-     and to_char(enterday,'yyyy') <= #{year}
+     and to_char(enterday,'yyyy') <= #{year} and del = 0
    	 ]]>
 	</select>
 
@@ -1224,7 +1217,7 @@
 	<select id="memberyear" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
 		select year from member
-		where id=#{id} and company=#{company}
+		where id=#{id} and company=#{company} and del = 0
 	</select>
 	<!-- 해당 회사 연차 가져고이 -->
 	<select id="companyyear" parameterType="java.util.Map"
@@ -1245,7 +1238,7 @@
 		and m.company = #{company}
 		and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
 		and types = 2
-		and fullhalfday = 2
+		and fullhalfday = 2 and m.del = 0
 	</select>
 
 
@@ -1265,6 +1258,7 @@
 		and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
 		and types = 2
 		and state = 1
+		and m.del = 0
 	</select>
 	<!-- 휴가 횟수 -->
 	<select id="vacation" parameterType="java.util.Map"
@@ -1277,6 +1271,7 @@
 		and to_char(v.begin,'yyyy')= 2019 and to_char(v.end,'yyyy')= #{year}
 		and types = 1
 		and v.state = 1
+		and m.del = 0
 	</select>
 
 	<!-- 연차 -->
@@ -1290,6 +1285,7 @@
 		and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
 		and v.types = 2
 		and v.state = 1
+		and m.del = 0
 	</select>
 	<select id="annualList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
 		select m.id, m.name, r.r_name as rank_name, m.enterday, m.year, d.day as annual
@@ -1300,6 +1296,7 @@
 		and m.id = #{id}
 		and m.company = #{company}
 		and d.types = 1
+		and m.del = 0
 	</select>
 
 	<!-- 휴가 -->
@@ -1311,7 +1308,11 @@
 		and m.company = #{company}
 		and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
 		and v.types = 1
+<<<<<<< HEAD
 		and v.state = 1
+=======
+		and m.del = 0
+>>>>>>> branch 'master' of https://github.com/cover27/GM.git
 	</select>
 	<select id="vacationList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1323,6 +1324,7 @@
 		and m.id = #{id}
 		and m.company = #{company}
 		and d.types = 2
+		and m.del = 0
 	</select>
 
 	<!-- 휴가신청내역 가져오기 -->
@@ -1333,6 +1335,7 @@
 		and m.id = #{id}
 		and m.company = #{company}
 		and v.state != 1
+		and m.del = 0
 	</select>
 	<select id="vacationapplicationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
 		select v.num, v.id, v.types, v.begin, v.end, v.day, v.content, v.state,
@@ -1343,6 +1346,7 @@
 		and m.id=#{id}
 		and m.company=#{company}
 		and v.state != 1
+		and m.del = 0
 	</select>
 	<!-- 휴가신청내역 가져오기 -->
 	<select id="vacationapplicationCnt2" parameterType="java.util.Map" resultType="int">
@@ -1351,6 +1355,7 @@
 		where m.id = v.id
 		and m.company = #{company}
 		and v.state != 1
+		and m.del = 0
 	</select>
 	<select id="vacationapplicationList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
 		select v.num,m.name, v.id, v.types, v.begin, v.end, v.day, v.content, v.state,
@@ -1359,6 +1364,7 @@
 		where m.id = v.id
 		and m.company=#{company}
 		and v.state != 1
+		and m.del = 0
 	</select>
 
 	<!-- 휴가 신청하기(요청) -->
@@ -1393,6 +1399,7 @@
 		and m.company = #{company}
 		and to_char(v.applicationdate,'yyyy') = #{year}
 		and v.state = 1
+		and m.del = 0
 	</select>
 	<select id="vacationUHList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1410,6 +1417,7 @@
 		m.company = #{company}
 		and to_char(v.applicationdate,'yyyy') = #{year}
 		and v.state = 1
+		and m.del = 0
 	</select>
 	<select id="vacationUHList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1424,6 +1432,7 @@
 		and m.company = #{company}
 		and to_char(v.applicationdate,'yyyy') = #{year}
 		and v.state = 1
+		and m.del = 0
 	</select>
 
 
@@ -1437,6 +1446,7 @@
 		and m.company = #{company}
 		and to_char(v.applicationdate,'yyyy') = #{year}
 		and v.state = 1
+		and m.del = 0
 	</select>
 	<select id="vacationUHList3" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1446,14 +1456,11 @@
 		vacation v, groups g, grade r
 		where m.id = v.id
 		and m.rank = r.rank
-		and
-		m.depart = g.groupid
+		and m.depart = g.groupid
 		and m.depart != #{company}
-		and m.company =
-		#{company}
+		and m.company = #{company}
 		and to_char(v.applicationdate,'yyyy') = #{year}
-		and v.state =
-		1
+		and v.state =1 and m.del = 0
 	</select>
 	<select id="vacationUHList4" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1466,7 +1473,7 @@
 		and m.depart = #{company}
 		and m.company = #{company}
 		and to_char(v.applicationdate,'yyyy') = #{year}
-		and v.state = 1
+		and v.state = 1 and m.del = 0
 	</select>
 
 	<!-- 휴가승인목록 확인 -->
@@ -1477,7 +1484,7 @@
 		and m.company = #{company}
 		and to_char(v.begin,'yyyymmdd') = #{date}
 		and v.state = 0
-		and v.fullhalfday = 1
+		and v.fullhalfday = 1 and m.del = 0
 	</select>
 	<select id="vacationCnt3" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt
@@ -1488,7 +1495,7 @@
 		and to_char(v.begin,'yyyymmdd') = #{date}
 		and to_char(a.day,'yyyymmdd') = #{date}
 		and v.state = 0
-		and v.fullhalfday = 2
+		and v.fullhalfday = 2 and m.del = 0
 	</select>
 	<select id="vacationList2" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1502,7 +1509,7 @@
 		and m.company = #{company}
 		and to_char(v.begin,'yyyymmdd') = #{date}
 		and v.state = 0
-		and v.fullhalfday = 1
+		and v.fullhalfday = 1 and m.del = 0
 	</select>
 	<select id="vacationList3" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1516,7 +1523,7 @@
 		and m.company = #{company}
 		and to_char(v.begin,'yyyymmdd') = #{date}
 		and v.state = 0
-		and v.fullhalfday = 1
+		and v.fullhalfday = 1 and m.del = 0
 	</select>
 	<select id="vacationList4" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1533,7 +1540,7 @@
 		and to_char(v.begin,'yyyymmdd') = #{date}
 		and to_char(a.day,'yyyymmdd') = #{date}
 		and v.state = 0
-		and v.fullhalfday = 2
+		and v.fullhalfday = 2 and m.del = 0
 	</select>
 	<select id="vacationList5" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
@@ -1550,7 +1557,7 @@
 		and to_char(v.begin,'yyyymmdd') = #{date}
 		and to_char(a.day,'yyyymmdd') = #{date}
 		and v.state = 0
-		and v.fullhalfday = 2
+		and v.fullhalfday = 2 and m.del = 0
 	</select>
 
 

@@ -44,4 +44,7 @@ public interface E_DAO {
 	
 	// 자주 연락하는 사람 삭제
 	public int deleteMember(AddressMemVO vo);
+	
+	// 아이디 체크
+	public int idCheck(Map<String, Object> map);
 }

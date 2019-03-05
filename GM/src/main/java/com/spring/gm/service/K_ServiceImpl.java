@@ -20,6 +20,7 @@ import com.spring.gm.MailUtils;
 import com.spring.gm.persistence.J_DAO;
 import com.spring.gm.persistence.K_DAO;
 import com.spring.gm.persistence.O_DAO;
+import com.spring.gm.vo.AddressMemberMainVO;
 import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.CompaniesMemberVO;
@@ -1452,6 +1453,21 @@ public class K_ServiceImpl implements K_Service{
 		cnt = (cnt != 0 && updateCnt2 != 0) ? 1:0;
 		
 		model.addAttribute("cnt", cnt);
+	}
+
+	@Override
+	public void addressMemberMain(HttpServletRequest req, Model model) {
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
+		String companyName = dao.getCompanyName(company);
+		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
+		List<AddressMemberMainVO> addressList = new ArrayList<AddressMemberMainVO>();
+		addressList = dao.getAddressList(strId);
+		for(int i = 0; i<addressList.size(); i++) {
+			if(addressList.get(i).getG_name() == null) {
+				addressList.get(i).setG_name(companyName);
+			}
+		}
+		model.addAttribute("addressList", addressList);
 	}
 	
 }

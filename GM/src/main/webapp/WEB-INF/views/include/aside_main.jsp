@@ -38,12 +38,11 @@
 			<ul>
 				<c:forEach var="svo2" items="${svo}">
 					<li>
-						<i class="far fa-calendar-check mr5"></i>
-						<span>${svo2.begin}</span>
-						<span class="ml10 mr10">|</span>
-						<span>${svo2.scheduleKind}</span>
-						<span class="ml10 mr10">|</span>
-						<span>${svo2.subject}</span>
+						<ul class="pl50">
+							<li class="text-left"><i class="far fa-calendar-check mr5"></i>${svo2.begin}</li>
+							<li class="text-left pl10">${svo2.scheduleKind}</li>
+							<li class="text-left pl10" style="border-bottom: 1px solid #eee;">${svo2.subject}</li>
+						</ul>
 					</li>
 				</c:forEach>
 			</ul>
@@ -51,14 +50,21 @@
 	</div>
 	<div class="favorite_member mt50">
 		<h2>
-			<a href="#">자주 연락하는 사람들</a>
+			<a href="<c:url value='/pages/E_orgMyFavoritMemList'/>">자주 연락하는 사람들</a>
 		</h2>
 		<div class="favorite_member_list">
-			<ul>
-				<li><span>자주 연락하는 동료를 등록해보세요.</span></li>
-				<li><span>자주 연락하는 동료를 등록해보세요.</span></li>
-				<li><span>자주 연락하는 동료를 등록해보세요.</span></li>
-			</ul>
+			<c:if test="${addressList == null }">
+				<ul>
+					<li><span>자주 연락하는 동료를 등록해보세요.</span></li>
+				</ul>
+			</c:if>
+			<c:if test="${addressList != null }">
+				<ul>
+					<c:forEach var="dto" items="${addressList }">
+						<li><span onclick="window.location='<c:url value='/pages/S_orgSendMessageForm?id=${dto.id }'/>'">${dto.g_name } ${dto.name } ${dto.r_name }</span></li>
+					</c:forEach>
+				</ul>
+			</c:if>
 		</div>
 	</div>
 </aside>

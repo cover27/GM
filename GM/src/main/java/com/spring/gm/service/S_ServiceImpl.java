@@ -25,7 +25,7 @@ public class S_ServiceImpl implements S_Service {
 	@Override
 	public void messageList(HttpServletRequest req, Model model) {
 		String receiver = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -118,7 +118,12 @@ public class S_ServiceImpl implements S_Service {
 		
 		MessageVO vo = dao.content(num);
 		
-		dao.addReadCnt(num);
+		if(num % 2 == 0) {
+			dao.addReadCnt(num);
+			dao.sendAddReadCnt(num);
+		}else if (num % 2 != 0){
+			
+		}
 
 		model.addAttribute("ct_dto", vo);
 		model.addAttribute("message_num", message_num);
@@ -126,6 +131,8 @@ public class S_ServiceImpl implements S_Service {
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("number", number);
 	}		
+	
+	
 
 
 	@Override
@@ -180,7 +187,7 @@ public class S_ServiceImpl implements S_Service {
 	@Override
 	public void sendList(HttpServletRequest req, Model model) {
 		String sendId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -235,6 +242,7 @@ public class S_ServiceImpl implements S_Service {
 			
 			List<MessageVO> dtos = dao.sendMessageArticleList(map);
 			
+			System.out.println("리드씨엔티:"+ dtos.toString());
 
 			model.addAttribute("s_dtos", dtos);
 
@@ -287,7 +295,7 @@ public class S_ServiceImpl implements S_Service {
 	@Override
 	public void garbageList(HttpServletRequest req, Model model) {
 		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -382,7 +390,7 @@ public class S_ServiceImpl implements S_Service {
 			for(int i=0; i<message.length; i++) {
 				Map<String, Integer> map = new HashMap<String, Integer>();
 					map.put("num", Integer.parseInt(message[i]));
-					deleteCnt = dao.garbage(map);
+					deleteCnt = dao.garbageAlldelete(map);
 			}
 		}
 		
@@ -412,7 +420,6 @@ public class S_ServiceImpl implements S_Service {
 	public void sendDelPro(HttpServletRequest req, Model model) {
 		int cancelCnt = 0;
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-		String receiver = req.getParameter("id");
 		String [] sendMessage = req.getParameterValues("checkRow");
 		
 		if(sendMessage != null && sendMessage.length > 0) {
@@ -569,6 +576,43 @@ public class S_ServiceImpl implements S_Service {
 		
 		model.addAttribute("sendCnt", sendCnt);
 	}
-	
+
+	@Override
+	public void restoreGarbageContent(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int message_num = Integer.parseInt(req.getParameter("message_num"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int restoreCnt = 0;
+		
+		MessageVO vo = new MessageVO();
+		vo.setNum(num);
+		
+		restoreCnt = dao.restoreMessage(num);
+
+		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("num", num);
+		model.addAttribute("restoreCnt", restoreCnt);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("message_num", message_num);		
+
+	}
+
+	@Override
+	public void restoreGarbage(HttpServletRequest req, Model model) {
+		int restoreCnt = 0;
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		String [] garbageMessage = req.getParameterValues("checkRow");
+		
+		if(garbageMessage != null && garbageMessage.length > 0) {
+			for(int i=0; i<garbageMessage.length; i++) {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+					map.put("num", Integer.parseInt(garbageMessage[i]));
+					restoreCnt = dao.garbageRestore(map);
+			}
+		}
+		
+		model.addAttribute("restoreCnt", restoreCnt);
+		model.addAttribute("pageNum", pageNum);
+	}
 
 }

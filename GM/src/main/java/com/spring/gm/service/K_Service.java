@@ -115,4 +115,6 @@ public interface K_Service {
 	public void createNewPw(HttpServletRequest req, Model model);
 	
 	public void newPwd_pro(HttpServletRequest req, Model model);
+	
+	public void addressMemberMain(HttpServletRequest req, Model model);
 }

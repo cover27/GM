@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.spring.gm.vo.AddressMemberMainVO;
 import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.CompaniesMemberVO;
@@ -207,4 +208,6 @@ public interface K_DAO {
 	public int updatePw(Map<String, Object> map);
 	
 	public int updateUsers(Map<String, Object> map);
+	
+	public List<AddressMemberMainVO> getAddressList(String strId);
 }

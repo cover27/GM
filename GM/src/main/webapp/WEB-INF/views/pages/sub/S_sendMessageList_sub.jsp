@@ -34,18 +34,18 @@ function sendDeletePro(){
 					<table>
 						<colgroup>
 							<col width="100px" />
-							<col width="*" />
-							<col width="200px" />
-							<col width="300px" />
 							<col width="100px" />
+							<col width="870px" />
+							<col width="200px" />
+							<col width="*" />
 						</colgroup>
 						<thead>
 							<tr>
 								<th><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allDelete()" /></th>
+								<th>읽음</th>
 								<th>쪽지 제목</th>
 								<th>수신자</th>
 								<th>작성일</th>
-								<th>읽음 안읽음 여부</th>
 							</tr>
 						</thead>
 					</table>
@@ -54,40 +54,74 @@ function sendDeletePro(){
 					<table>
 						<colgroup>
 							<col width="100px" />
-							<col width="*" />
-							<col width="200px" />
-							<col width="300px" />
 							<col width="100px" />
+							<col width="870px" />
+							<col width="200px" />
+							<col width="*" />
 						</colgroup>
 						<tbody>
 							<c:if test="${cnt > 0}">
 								<c:forEach var="dto" items="${s_dtos}">
 									<c:if test="${dto.del == 0}">
-										<tr>
-											<td><input type="checkbox" name="checkRow" value="${dto.num}" /></td>
-											<td style="text-align: left; padding-left: 20px;">
-												<a href="<c:url value='/pages/S_contentMessage?num=${dto.num}&message_num=${dto.message_num}&pageNum=${pageNum}&number=${number}'/>">
-													${dto.subject}
-												</a>
-											</td>
-											<td>${dto.receiver}</td>
-											<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.receiveDate}" /></td>
-											<td>
-												<c:if test="${dto.readCnt == 0}">
-													안읽음
-												</c:if>
-												<c:if test="${dto.readCnt != 0}">
-													읽음
-												</c:if>																
-											</td><!-- 읽음 안읽음 여부만 -->
-										</tr>
+										<c:if test="${dto.readCnt == 0}">
+											<tr class="boldChild">
+												<td>
+													<c:if test="${dto.readCnt == 0}">
+														<input type="checkbox" name="checkRow" value="${dto.num}" /></td>
+													</c:if>
+													<c:if test="${dto.readCnt != 0}">
+														취소불가
+													</c:if>
+												<td>
+													<c:if test="${dto.readCnt == 0}">
+																안읽음
+													</c:if>
+													<c:if test="${dto.readCnt != 0}">
+																읽음
+													</c:if>															
+												</td><!-- 읽음 안읽음 여부만 -->
+												<td style="text-align: left; padding-left: 20px;">
+													<a href="<c:url value='/pages/S_contentMessage?num=${dto.num}&message_num=${dto.message_num}&pageNum=${pageNum}&number=${number}'/>">
+														${dto.subject}
+													</a>
+												</td>
+												<td>${dto.receiver}</td>
+												<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.receiveDate}" /></td>
+											</tr>
+										</c:if>
+										<c:if test="${dto.readCnt != 0}">
+											<tr>
+												<td>
+													<c:if test="${dto.readCnt == 0}">
+														<input type="checkbox" name="checkRow" value="${dto.num}" /></td>
+													</c:if>
+													<c:if test="${dto.readCnt != 0}">
+														취소불가
+													</c:if>
+												<td>
+													<c:if test="${dto.readCnt == 0}">
+														안읽음
+													</c:if>
+													<c:if test="${dto.readCnt != 0}">
+														읽음
+													</c:if>																
+												</td><!-- 읽음 안읽음 여부만 -->
+												<td style="text-align: left; padding-left: 20px;">
+													<a href="<c:url value='/pages/S_contentMessage?num=${dto.num}&message_num=${dto.message_num}&pageNum=${pageNum}&number=${number}'/>">
+														${dto.subject}
+													</a>
+												</td>
+												<td>${dto.receiver}</td>
+												<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.receiveDate}" /></td>
+											</tr>
+										</c:if>	
 									</c:if>
 								</c:forEach>
 							</c:if>
 							<!-- 게시글이 없으면 -->
 							<c:if test="${cnt == 0}">
 								<tr>
-									<td colspan="6" align="center">쪽지를 보넨적이 없습니다.!!</td>
+									<td colspan="6" align="center">쪽지를 보낸적이 없습니다.!!</td>
 								</tr>
 							</c:if>
 						</tbody>

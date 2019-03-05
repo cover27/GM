@@ -140,7 +140,7 @@ function moveGarbage(){
 				</div>
 	            <div class="btnset fright mt10">
 	            	<ul>
-	            		<li><input type="submit" value="삭제" onclick="moveGarbage()"></li>
+	            		<li><input type="submit" value="휴지통" onclick="moveGarbage()"></li>
 	            	</ul>
 	            </div>
 	        </form>

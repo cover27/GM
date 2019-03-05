@@ -7,15 +7,15 @@
 	<h3 align="center"> 메세지 휴지통 이동 처리</h3>
 	<c:if test="${moveCnt == 0}">
 		<script type="text/javascript">
-		alert("휴지통 보네기에 실패했습니다.");
+		alert("휴지통 보내기에 실패했습니다.");
 		window.history.back();
 		</script>
 	</c:if>
 	
 	<c:if test="${moveCnt != 0}">
 		<script type="text/javascript">
-			alert("휴지통으로 보네졌습니다.");
-			window.location="S_receiveMessage?pageNum=${pageNum}&num=${num}";
+			alert("휴지통으로 보내졌습니다.");
+			window.location="S_message_inbox?pageNum=${pageNum}&num=${num}";
 		</script>
 	</c:if>
 </body>

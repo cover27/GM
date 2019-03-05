@@ -53,7 +53,7 @@
 		                            <td colspan="3"><input type="text" title="제목" name="subject" placeholder="제목을 입력하세요." required autofocus></td>
 		                        </tr>
 		                        <tr>
-		                            <th><span>*</span>업무기한1111</th>
+		                            <th><span>*</span>업무기한</th>
 		                            <td style="text-align: left;">
 		                            	<input type="date" title="업무기한" name="begin" id="now_date" onchange="lastDate()" max="firstD" style="width: 130px;">
 		                                <script>
@@ -73,7 +73,7 @@
 		                            </th>
 		                            <td style="text-align: left;">
 	                               		<input type="hidden" class="searchp" name="id">
-	                               		<input type="text" class="searchp" name="b_name" title="사용자" required style="width:308px;">
+	                               		<input type="text" class="searchp" name="b_name" title="사용자" required style="width:308px;" readonly>
 	                                	<a href="#" onclick="searchIdPlease();" style="margin-left: 5px;background: #555;color:#fff;border-radius:5px;padding:5px;font-size:0.8em;font-weight:bold;">검색</a>
 		                            </td>
 		                        </tr>

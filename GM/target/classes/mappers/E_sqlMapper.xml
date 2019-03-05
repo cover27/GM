@@ -69,5 +69,10 @@
 
 	<insert id="addMembers" parameterType="com.spring.gm.vo.AddressMemVO">
 		INSERT INTO addressmem (id, del, strId) VALUES(#{id}, #{del}, #{strId})
-	</insert>	
+	</insert>
+	
+	<!-- 아이디 체크 -->
+	<select id="idCheck" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) FROM addressmem WHERE id=#{id} AND del = 0 AND strId = #{strId}
+	</select>	
 </mapper>
