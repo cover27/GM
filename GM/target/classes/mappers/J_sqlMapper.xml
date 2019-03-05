@@ -893,7 +893,7 @@
 	<select id="searchGoOffList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_maVO">
 		select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime,
-		a.nighttime, a.perceptiontime, a.departuretime
+		a.nighttime, a.perceptiontime, a.departuretime ,a.result
 		from member m, attended a
 		where m.id = a.id
 		and m.company = #{company}
@@ -1311,6 +1311,7 @@
 		and m.company = #{company}
 		and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
 		and v.types = 1
+		and v.state = 1
 	</select>
 	<select id="vacationList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mrvdgcVO">
