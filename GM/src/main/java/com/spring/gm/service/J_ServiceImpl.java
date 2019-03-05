@@ -1087,6 +1087,138 @@ public class J_ServiceImpl implements J_Service {
 		model.addAttribute("cnt2", cnt2);
 		model.addAttribute("cnt", cnt);
 	}
+	//야간/연장 근무 수당 가져오기
+	public void showONtime(HttpServletRequest req, Model model) {
+		String date = req.getParameter("date");
+		System.out.println("date : " + date);
+		if(date.length() == 0) {
+			long day = System.currentTimeMillis(); // 이번달
+			SimpleDateFormat dates = new SimpleDateFormat("YYYY-MM-dd kk:mm");
+			date = dates.format(new Date(day)).substring(0, 7);
+			System.out.println("date :" + date);
+			String[] months = date.split("-");
+			date = months[0] + months[1];
+			System.out.println("date: " + date);
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("date", date);
+		int selectCnt = dao.showONtimeCnt(map);
+		System.out.println("selectCnt: " + selectCnt);
+		int selectCnt2 = dao.showONtimeCnt2(map);
+		System.out.println("selectCnt2: " + selectCnt2);
+		int cnt = selectCnt + selectCnt2;
+		System.out.println("cnt: " + cnt);
+		if(cnt > 0) {
+			List<join_margcVO> dtos = new ArrayList<join_margcVO>();
+			List<join_margcVO> dtos1 = dao.showONtimeList(map); 
+			List<join_margcVO> dtos2 = dao.showONtimeList2(map); 
+			for(int i= 0; i< selectCnt; i++) {
+			dtos1.get(i).setOvertimes(toTime(dtos1.get(i).getOvertime()));
+			}
+			for(int i= 0; i< selectCnt2; i++) {
+			dtos2.get(i).setNighttimes(toTime(dtos2.get(i).getNighttime() + dtos2.get(i).getOvertime()));
+			}
+			System.out.println("dtos :" + dtos.toString());
+			dtos.addAll(dtos1);
+			dtos.addAll(dtos2);
+			model.addAttribute("dtos",dtos);
+		}
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("date",date);
+	}
+	//야간/연장 근무 수당 상여금에 미지급으로 인서트
+	public void insertONtime(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
+		System.out.println("company : " + company);
+		String date = req.getParameter("date");
+		System.out.println("date : " + date);
+		int num = Integer.parseInt(req.getParameter("num"));
+		System.out.println("num : " + num);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("date", date);
+		map.put("num", num);
+		map.put("company", company);
+		
+		//1시간에 3600초
+		
+		//야간,연장 근무 시간 가져옿기
+		List<join_margcVO> dtos5 = dao.ONtime(map);
+		System.out.println("dtos : " + dtos5.toString());
+		// 설정시간 가져오기
+		AttendedSetVO attended = null;
+		attended = K_dao.getAttendedSet(company);
+		String id = dtos5.get(0).getId();
+		map.put("id", id);
+		int salary = 0; //상여금 인설트할 금액
+		int overtime = dtos5.get(0).getOvertime(); //연장근무 시간
+		System.out.println("연장근무 시간 : " + overtime);
+		int nighttime = dtos5.get(0).getNighttime();//야간근무 시간
+		System.out.println("야간근무 시간 : " + nighttime);
+		int night = 0; //야간 근무시간
+		if(dtos5.get(0).getNighttime() < 86400) {
+			System.out.println("하루 넘기이 않았을 경우");
+			night = (79200 + dtos5.get(0).getNighttime()) - attended.getNight_start(); //하루 넘기이 않았을 경우
+		}else if (dtos5.get(0).getNighttime() >= 0) {
+			System.out.println("하루 넘겼을경우");
+			night = ((attended.getNight_start()+ 86400) - (dtos5.get(0).getNighttime() + 79200));	//하루 넘겼을경우
+		}
+		System.out.println("night : " + night);
+		
+		
+		
+		int over_sal = attended.getOver_sal(); //시간당 연장 수당금액
+		System.out.println("over_sal : " + over_sal);
+		int night_sal = attended.getNight_sal();	// 시간당 야간 수당금액
+		System.out.println("night_sal : " + night_sal);
+		if(dtos5.get(0).getOvertime() > 0 && dtos5.get(0).getNighttime() == 0) { //연장근무만 했을경우
+			salary = (overtime / 3600) * over_sal;
+			System.out.println("salary : " + salary);
+		}else if(dtos5.get(0).getOvertime() > 0 && dtos5.get(0).getNighttime() > 0) { //야간,연장근무 했을때
+			salary = (4 * over_sal) + ((night / 3600) * night_sal);
+			System.out.println("salary : " + salary);
+		}
+		 map.put("salary",  salary);
+		 String a = date + "연장근무 수당";
+		 String b = date + "연장,야간근무 수당";
+		 System.out.println("a : " + a);
+		 System.out.println("b : " + b);
+		 if(nighttime < 0) {
+			 map.put("title", a);
+		 }else {
+			 map.put("title", b);
+		 }
+		 int insertCnt = dao.insertONtime(map);	//상여금에 인설트
+		 System.out.println("insertCnt : " + insertCnt);
+		 if(insertCnt > 0) {
+			 int updateCnt = dao.updateONtime(map);
+			 System.out.println("updateCnt : " + updateCnt);
+			 int selectCnt = dao.showONtimeCnt(map);
+				System.out.println("selectCnt: " + selectCnt);
+				int selectCnt2 = dao.showONtimeCnt2(map);
+				System.out.println("selectCnt2: " + selectCnt2);
+				int cnt = selectCnt + selectCnt2;
+				System.out.println("cnt: " + cnt);
+				if(cnt > 0) {
+					List<join_margcVO> dtos = new ArrayList<join_margcVO>();
+					List<join_margcVO> dtos1 = dao.showONtimeList(map); 
+					List<join_margcVO> dtos2 = dao.showONtimeList2(map); 
+					for(int i= 0; i< selectCnt; i++) {
+					dtos1.get(i).setOvertimes(toTime(dtos1.get(i).getOvertime()));
+					}
+					for(int i= 0; i< selectCnt2; i++) {
+					dtos2.get(i).setNighttimes(toTime(dtos2.get(i).getNighttime() + dtos2.get(i).getOvertime()));
+					}
+					System.out.println("dtos :" + dtos.toString());
+					dtos.addAll(dtos1);
+					dtos.addAll(dtos2);
+					model.addAttribute("dtos",dtos);
+				}
+				model.addAttribute("cnt", cnt);
+				model.addAttribute("date",date);
+		 }
+		 
+	}
+	
 
 	// ------------------급여 대장-----------------------------
 	// 아이디 검색 이번년도 급여대장정보 가져오기 아이디 검색.
@@ -1120,12 +1252,18 @@ public class J_ServiceImpl implements J_Service {
 					System.out.println("dtos1 :" + dtos1.toString());
 					List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
 					System.out.println("dtos2 :" + dtos2.toString());
-					if (dtos1.size() != 0) {
-						dtos1.get(0).setSalaryday(i);
-						allsalary = allsalary + dtos1.get(0).getSalary();
-						bonussalary = bonussalary + dtos1.get(0).getBonussalary();
-						sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
-					}
+						if(dtos1.size() != 0) {
+							dtos1.get(0).setSalaryday(i);
+							allsalary = allsalary + dtos1.get(0).getSalary();
+							bonussalary = bonussalary + dtos1.get(0).getBonussalary();
+							sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
+						}else if(dtos2.size() != 0) {
+							dtos2.get(0).setSalaryday(i);
+							allsalary = allsalary + dtos2.get(0).getSalary();
+							bonussalary = bonussalary + dtos2.get(0).getBonussalary();
+							sumsalarybonus = sumsalarybonus + dtos2.get(0).getSumsalarybonus();
+						}
+						
 					dtos.addAll(dtos1);
 					dtos.addAll(dtos2);
 					map.remove("year");
@@ -1133,15 +1271,22 @@ public class J_ServiceImpl implements J_Service {
 				} else {
 					year += i;
 					System.out.println("year :" + year);
-					map.put("year", year);
+					map.put("year", year); 
 					List<join_mgsbcVO> dtos1 = dao.IdSearchList(map); // 부서로 검색
 					System.out.println("dtos1 :" + dtos1.toString());
 					List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
-					if (dtos1.size() != 0) {
+					System.out.println("dtos2 :" + dtos2.toString());
+					
+					if(dtos1.size() != 0) {
 						dtos1.get(0).setSalaryday(i);
 						allsalary = allsalary + dtos1.get(0).getSalary();
 						bonussalary = bonussalary + dtos1.get(0).getBonussalary();
 						sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
+					}else if(dtos2.size() != 0) {
+						dtos2.get(0).setSalaryday(i);
+						allsalary = allsalary + dtos2.get(0).getSalary();
+						bonussalary = bonussalary + dtos2.get(0).getBonussalary();
+						sumsalarybonus = sumsalarybonus + dtos2.get(0).getSumsalarybonus();
 					}
 					dtos.addAll(dtos1);
 					dtos.addAll(dtos2);
@@ -1149,12 +1294,12 @@ public class J_ServiceImpl implements J_Service {
 					year = 201900;
 				}
 			}
+			model.addAttribute("allsalary", allsalary);
+			model.addAttribute("bonussalary", bonussalary);
+			model.addAttribute("sumsalarybonus", sumsalarybonus);
 		}
 		System.out.println("dtos :" + dtos.toString());
 		model.addAttribute("dtos", dtos);
-		model.addAttribute("allsalary", allsalary);
-		model.addAttribute("bonussalary", bonussalary);
-		model.addAttribute("sumsalarybonus", sumsalarybonus);
 		model.addAttribute("num", num);
 		model.addAttribute("year", year);
 		model.addAttribute("cntyear", cntyear);
@@ -1192,22 +1337,28 @@ public class J_ServiceImpl implements J_Service {
 				if (num != 0) {
 
 					if (i == 1) { // 1월달 급여는 전년도 12월 급여
-						year = year + num + 12;
+						year = year + i;
 						System.out.println("year :" + year);
 						map.put("year", year);
 						List<join_mgsbcVO> dtos1 = dao.IdSearchList(map); // 부서로 검색
 						System.out.println("dtos1 :" + dtos1.toString());
 						List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
-						if (dtos1.size() != 0) {
-							dtos1.get(0).setSalaryday(12);
+						System.out.println("dtos2 :" + dtos2.toString());
+						if(dtos1.size() != 0) {
+							dtos1.get(0).setSalaryday(i);
 							allsalary = allsalary + dtos1.get(0).getSalary();
 							bonussalary = bonussalary + dtos1.get(0).getBonussalary();
 							sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
+						}else if(dtos2.size() != 0) {
+							dtos2.get(0).setSalaryday(i);
+							allsalary = allsalary + dtos2.get(0).getSalary();
+							bonussalary = bonussalary + dtos2.get(0).getBonussalary();
+							sumsalarybonus = sumsalarybonus + dtos2.get(0).getSumsalarybonus();
 						}
 						dtos.addAll(dtos1);
 						dtos.addAll(dtos2);
 						map.remove("year");
-						year = year - num - 12;
+						year = year  - i;
 					} else {
 						year += i;
 						System.out.println("year :" + year);
@@ -1215,11 +1366,17 @@ public class J_ServiceImpl implements J_Service {
 						List<join_mgsbcVO> dtos1 = dao.IdSearchList(map); // 부서로 검색
 						System.out.println("dtos1 :" + dtos1.toString());
 						List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
-						if (dtos1.size() != 0) {
-							dtos1.get(0).setSalaryday(i - 1);
+						System.out.println("dtos2 :" + dtos2.toString());
+						if(dtos1.size() != 0) {
+							dtos1.get(0).setSalaryday(i);
 							allsalary = allsalary + dtos1.get(0).getSalary();
 							bonussalary = bonussalary + dtos1.get(0).getBonussalary();
 							sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
+						}else if(dtos2.size() != 0) {
+							dtos2.get(0).setSalaryday(i);
+							allsalary = allsalary + dtos2.get(0).getSalary();
+							bonussalary = bonussalary + dtos2.get(0).getBonussalary();
+							sumsalarybonus = sumsalarybonus + dtos2.get(0).getSumsalarybonus();
 						}
 						dtos.addAll(dtos1);
 						dtos.addAll(dtos2);
@@ -1227,14 +1384,14 @@ public class J_ServiceImpl implements J_Service {
 						year = year - i;
 					}
 				}
+				model.addAttribute("allsalary", allsalary);
+				model.addAttribute("bonussalary", bonussalary);
+				model.addAttribute("sumsalarybonus", sumsalarybonus);
 			}
 		}
 		System.out.println("year :" + year);
 		System.out.println("dtos :" + dtos.toString());
 		model.addAttribute("dtos", dtos);
-		model.addAttribute("allsalary", allsalary);
-		model.addAttribute("bonussalary", bonussalary);
-		model.addAttribute("sumsalarybonus", sumsalarybonus);
 		model.addAttribute("num", num);
 		model.addAttribute("year", year);
 		model.addAttribute("cntyear", cntyear);
@@ -1276,11 +1433,18 @@ public class J_ServiceImpl implements J_Service {
 						List<join_mgsbcVO> dtos1 = dao.IdSearchList(map); // 부서로 검색
 						System.out.println("dtos1 :" + dtos1.toString());
 						List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
-						if (dtos1.size() != 0) {
-							dtos1.get(0).setSalaryday(12);
+						System.out.println("dtos2 :" + dtos2.toString());
+						
+						if(dtos1.size() != 0) {
+							dtos1.get(0).setSalaryday(i);
 							allsalary = allsalary + dtos1.get(0).getSalary();
 							bonussalary = bonussalary + dtos1.get(0).getBonussalary();
 							sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
+						}else if(dtos2.size() != 0) {
+							dtos2.get(0).setSalaryday(i);
+							allsalary = allsalary + dtos2.get(0).getSalary();
+							bonussalary = bonussalary + dtos2.get(0).getBonussalary();
+							sumsalarybonus = sumsalarybonus + dtos2.get(0).getSumsalarybonus();
 						}
 						dtos.addAll(dtos1);
 						dtos.addAll(dtos2);
@@ -1293,11 +1457,18 @@ public class J_ServiceImpl implements J_Service {
 						List<join_mgsbcVO> dtos1 = dao.IdSearchList(map); // 부서로 검색
 						System.out.println("dtos1 :" + dtos1.toString());
 						List<join_mgsbcVO> dtos2 = dao.IdSearchList2(map);// 사업장으로 검색
-						if (dtos1.size() != 0) {
-							dtos1.get(0).setSalaryday(i - 1);
+						System.out.println("dtos2 :" + dtos2.toString());
+						
+						if(dtos1.size() != 0) {
+							dtos1.get(0).setSalaryday(i);
 							allsalary = allsalary + dtos1.get(0).getSalary();
 							bonussalary = bonussalary + dtos1.get(0).getBonussalary();
 							sumsalarybonus = sumsalarybonus + dtos1.get(0).getSumsalarybonus();
+						}else if(dtos2.size() != 0) {
+							dtos2.get(0).setSalaryday(i);
+							allsalary = allsalary + dtos2.get(0).getSalary();
+							bonussalary = bonussalary + dtos2.get(0).getBonussalary();
+							sumsalarybonus = sumsalarybonus + dtos2.get(0).getSumsalarybonus();
 						}
 						dtos.addAll(dtos1);
 						dtos.addAll(dtos2);
@@ -1305,13 +1476,13 @@ public class J_ServiceImpl implements J_Service {
 						year = year - i;
 					}
 				}
+				model.addAttribute("allsalary", allsalary);
+				model.addAttribute("bonussalary", bonussalary);
+				model.addAttribute("sumsalarybonus", sumsalarybonus);
 			}
 		}
 		System.out.println("dtos :" + dtos.toString());
 		model.addAttribute("dtos", dtos);
-		model.addAttribute("allsalary", allsalary);
-		model.addAttribute("bonussalary", bonussalary);
-		model.addAttribute("sumsalarybonus", sumsalarybonus);
 		model.addAttribute("num", num);
 		model.addAttribute("year", year);
 		model.addAttribute("cntyear", cntyear);
@@ -1618,7 +1789,12 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("조퇴시간 : " + dtime);
 
 		System.out.println("map : " + map.toString());
-		int updateCnt = dao.offUpdate(map);
+		int updateCnt = 0;
+		if(otime > 0 || ntime > 0) {
+			updateCnt = dao.offUpdate2(map);
+		}else if(otime == 0 && ntime == 0) {
+			updateCnt = dao.offUpdate(map);
+		}
 		System.out.println("updateCnt : " + updateCnt);
 		if (updateCnt > 0) {
 			List<join_maVO> dtos = dao.GoOffList(map);

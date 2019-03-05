@@ -18,7 +18,6 @@ $(function(){
 			data : content,
 			success : function(result){ //콜백함수
 				$('#result').html(result);
-			alert('ddd');
 			},
 			error : function(result){
 				alert('오류');
@@ -31,7 +30,7 @@ $(function(){
 <section>
 	<article>
 		<div class="content_header">
-			<h2>나의 할일ff11f</h2>
+			<h2>나의 할일</h2>
 		</div>
 		
 		<div>
