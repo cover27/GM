@@ -512,4 +512,13 @@
 	<update id="updateUsers" parameterType="java.util.Map">
 		UPDATE users SET password = #{pwd} WHERE username = #{id}
 	</update>
+	
+	<select id="getAddressList" resultType="com.spring.gm.vo.AddressMemberMainVO">
+		select a.strid, a.id, m.name, r.r_name, g.g_name from member m, addressmem a, grade r, groups g
+		    where a.id = m.id
+		    and m.rank = r.rank
+		    and a.strid = #{strId}
+		    and g.groupid(+) = m.depart
+		    and m.del = 0
+	</select>
 </mapper>

@@ -23,10 +23,10 @@
 <div class="content">
 	<div class="search-wrap" style="margin-bottom: 0">
 		<div class="form-group">
-			<form action="" method="post" name="searchform123">
+			<form action="W_searchId_sub" method="post" name="searchform123">
 				<span class="bold5px">아이디 : </span>
 				<span><input type="text" class="searchp" value="${id}" name="id"></span>
-				<span><input type="button" name="id" onclick="searchIdP();" value="검색"></span>
+				<span><input type="submit" name="id"  value="검색"></span>
 			</form>
 		</div>
 	</div>

@@ -25,7 +25,7 @@ public class S_ServiceImpl implements S_Service {
 	@Override
 	public void messageList(HttpServletRequest req, Model model) {
 		String receiver = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -118,7 +118,12 @@ public class S_ServiceImpl implements S_Service {
 		
 		MessageVO vo = dao.content(num);
 		
-		dao.addReadCnt(num);
+		if(num % 2 == 0) {
+			dao.addReadCnt(num);
+			dao.sendAddReadCnt(num);
+		}else if (num % 2 != 0){
+			
+		}
 
 		model.addAttribute("ct_dto", vo);
 		model.addAttribute("message_num", message_num);
@@ -126,6 +131,8 @@ public class S_ServiceImpl implements S_Service {
 		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("number", number);
 	}		
+	
+	
 
 
 	@Override
@@ -180,7 +187,7 @@ public class S_ServiceImpl implements S_Service {
 	@Override
 	public void sendList(HttpServletRequest req, Model model) {
 		String sendId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -235,6 +242,7 @@ public class S_ServiceImpl implements S_Service {
 			
 			List<MessageVO> dtos = dao.sendMessageArticleList(map);
 			
+			System.out.println("리드씨엔티:"+ dtos.toString());
 
 			model.addAttribute("s_dtos", dtos);
 
@@ -287,7 +295,7 @@ public class S_ServiceImpl implements S_Service {
 	@Override
 	public void garbageList(HttpServletRequest req, Model model) {
 		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
-		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -412,7 +420,6 @@ public class S_ServiceImpl implements S_Service {
 	public void sendDelPro(HttpServletRequest req, Model model) {
 		int cancelCnt = 0;
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-		String receiver = req.getParameter("id");
 		String [] sendMessage = req.getParameterValues("checkRow");
 		
 		if(sendMessage != null && sendMessage.length > 0) {
@@ -569,6 +576,7 @@ public class S_ServiceImpl implements S_Service {
 		
 		model.addAttribute("sendCnt", sendCnt);
 	}
+
 	
 
 }

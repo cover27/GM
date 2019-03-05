@@ -64,6 +64,7 @@ public class K_Controller {
 			S_service.messageListCnt(req, model);
 			P_service.P_listApprTodoView(req, model);
 			O_service.listTodo(req, model);
+			service.addressMemberMain(req, model);
 		}
 		
 		// 경주니

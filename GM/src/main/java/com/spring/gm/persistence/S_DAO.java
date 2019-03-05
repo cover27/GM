@@ -57,6 +57,9 @@ public interface S_DAO {
 	// 조회수 증가
 	public int addReadCnt(int num);
 	
+	// 보넨 메세지 조회수 증가
+	public int sendAddReadCnt(int num);
+	
 	// 상세페이지 삭제
 	public int deleteMessage(int num);
 	

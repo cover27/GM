@@ -73,6 +73,12 @@ public class S_DAOImpl implements S_DAO {
 	}
 
 	@Override
+	public int sendAddReadCnt(int num) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.sendAddReadCnt(num);
+	}
+	
+	@Override
 	public int getGarbageCnt(String strId) {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
 		return dao.getGarbageCnt(strId);
@@ -142,5 +148,6 @@ public class S_DAOImpl implements S_DAO {
 		S_DAO dao = sqlSession.getMapper(S_DAO.class);
 		return dao.getMemberInfo(strId);
 	}
+
 
 }
