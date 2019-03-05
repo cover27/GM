@@ -39,11 +39,13 @@
 				<c:forEach var="svo2" items="${svo}">
 					<li>
 						<i class="far fa-calendar-check mr5"></i>
-						<span>${svo2.begin}</span>
-						<span class="ml10 mr10">|</span>
-						<span>${svo2.scheduleKind}</span>
-						<span class="ml10 mr10">|</span>
-						<span>${svo2.subject}</span>
+						<ul>
+							<li>${svo2.begin}</li>
+							<li class="ml10 mr10">|</li>
+							<li>${svo2.scheduleKind}</li>
+							<li class="ml10 mr10">|</li>
+							<li>${svo2.subject}</li>
+						</ul>
 					</li>
 				</c:forEach>
 			</ul>

@@ -25,6 +25,7 @@
 		join companies c on m.company = c.company
 		left join grade r on m.rank = r.rank
 		where m.del=0
+		AND m.rank!=#{company}
 		AND m.company=#{company}
 	</select>
 	

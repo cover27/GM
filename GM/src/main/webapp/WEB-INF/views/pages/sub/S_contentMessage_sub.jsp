@@ -2,11 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<style>
-	th, td {
-		border-bottom: 1px #c0c0c0 solid;
-	}
-</style>
 <section>
 	<article>
 		<div class="content_header">
@@ -20,14 +15,14 @@
 			<div class="table_head">
 				<table>
 					<tr>
-						<th>제목</th>
-						<td>${ct_dto.subject}</td>
-						<th>받는사람</th>
-						<td>${ct_dto.receiver}</td>
+						<th style="border-bottom: 1px #c0c0c0 solid; border-right: 1px #e5e5e5 solid;">제목</th>
+						<td style="border-bottom: 1px #c0c0c0 solid;">${ct_dto.subject}</td>
+						<th style="border-bottom: 1px #c0c0c0 solid; border-right: 1px #e5e5e5 solid;">받는사람</th>
+						<td style="border-bottom: 1px #c0c0c0 solid;">${ct_dto.receiver}</td>
 					</tr>
 					<tr>
-						<th>내용</th>
-						<td colspan="3" style="height: 640px;">${ct_dto.content}</td>
+						<th style="border-bottom: 1px #c0c0c0 solid; border-right: 1px #e5e5e5 solid;">내용</th>
+						<td colspan="3" style="height: 640px; border-bottom: 1px #c0c0c0 solid; text-align: left; vertical-align: top; padding: 20px 0 0 20px;">${ct_dto.content}</td>
 					</tr>
 				</table>
 			</div>
@@ -36,9 +31,9 @@
 			<c:if test="${ct_dto.message_num == 1}">
 				<input type="button" class="inputButton" value="삭제" onclick="window.location='<c:url value="/pages/S_messageDeletePro?pageNum=${pageNum}&num=${ct_dto.num}&message_num=${ct_dto.message_num}" />'">
 			</c:if>
-			<c:if test="${ct_dto.message_num == 2 }">
+			<%-- <c:if test="${ct_dto.message_num == 2 }">
 				<input type="button" class="inputButton" value="전송취소" onclick="window.location='<c:url value="/pages/S_sendMessageDeletePro?pageNum=${pageNum}&num=${ct_dto.num}&message_num=${ct_dto.message_num}" />'">
-			</c:if>
+			</c:if> --%>
 			<c:if test="${ct_dto.message_num == 4 }">
 				<input type="button" class="inputButton" value="삭제" onclick="window.location='<c:url value="/pages/S_garbageContentDeletePro?pageNum=${pageNum}&num=${ct_dto.num}&message_num=${ct_dto.message_num}" />'">
 			</c:if>
