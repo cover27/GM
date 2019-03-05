@@ -148,8 +148,9 @@
 	function showONtime(){
 		var date = $("#date").val();
 	  	 var url="showONtime?date=" + date;
-	   	window.open(url, "showONtime", "menubar=no, width=1000, height=560");
+	   	window.open(url, "showONtime", "menubar=no, width=1500, height=560");
 		}
+	
 </script>
 <section>
 	<article>
