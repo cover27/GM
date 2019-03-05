@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <link rel="stylesheet" href="${path}css/layout.css">
-<link rel="stylesheet" href="${path}css/signup.css">
+<link rel="stylesheet" href="${path}css/find_account.css">
 <script type="text/javascript">
 	function checkBlank(num){
 		if(num == 1){
@@ -28,52 +27,42 @@
 			
 	}
 </script>
-<html>
-	<div class="login_wrap" style="position: relative; top: 300px;">
-		<div class="fleft w50p">
-		    <form action="findId" name="findidform" method="post" onsubmit="return checkBlank(1);">
-		    	<h3>아이디 찾기</h3>
-		    	<table>
-		    		<tr>
-		    			<th>이름</th>
-		    			<th><input type="text" name="name"></th>
-		    		</tr>
-		    		<tr>
-		    			<th>이메일</th>
-		    			<th><input type="text" name="email"></th>
-		    		</tr>
-		    		<tr>
-		    			<td>
-		    				<input type="submit" value="아이디찾기">
-		    			</td>
-		    		</tr>
-		    	</table>
-		    </form>
-		</div>
-		
-		<div class="fright w50p">
-		    <form action="findPw" name="findpwform" method="post" onsubmit="return checkBlank(2);">
-		    	<h3>비밀번호 찾기</h3>
-		    	<table>
-		    		<tr>
-		    			<th>아이디</th>
-		    			<th><input type="text" name="id"></th>
-		    		</tr>
-		    		<tr>
-		    			<th>이름</th>
-		    			<th><input type="text" name="name"></th>
-		    		</tr>
-		    		<tr>
-		    			<th>이메일</th>
-		    			<th><input type="text" name="email"></th>
-		    		</tr>
-		    		<tr>
-		    			<td>
-		    				<input type="submit" value="비밀번호찾기">
-		    			</td>
-		    		</tr>
-		    	</table>
-		    </form>
+<div class="findAccount_wrap">
+	<div class="findAccount_box box1">
+		<h2>아이디 찾기</h2>
+    	<div class="form_area">
+    		<form action="findId" name="findidform" method="post" onsubmit="return checkBlank(1);">
+    			<div class="input_area">
+    				<i class="i_name"></i>
+    				<input type="text" name="name" class="input_lg w100p" placeholder="이름을 입력하세요.">
+    			</div>
+    			<div class="input_area">
+    				<i class="i_email"></i>
+    				<input type="text" name="email" class="input_lg w100p" placeholder="이메일 주소를 입력하세요.">
+    			</div>
+    			<input type="submit" value="아이디찾기">
+    			<input type="button" value="뒤로가기" onclick="window.history.back();" class="back">
+    		</form>
+    	</div>
+	</div>
+	<div class="findAccount_box box2">
+		<h2>비밀번호 찾기</h2>
+		<div class="form_area">
+			<form action="findPw" name="findpwform" method="post" onsubmit="return checkBlank(2);">
+				<div class="input_area">
+					<i class="i_id"></i>
+					<input type="text" name="id" class="input_lg w100p" placeholder="아이디를 입력하세요.">
+				</div>
+				<div class="input_area">
+					<i class="i_name"></i>
+					<input type="text" name="name" class="input_lg w100p" placeholder="이름을 입력하세요.">
+				</div>
+				<div class="input_area">
+					<i class="i_email"></i>
+					<input type="text" name="email" class="input_lg w100p" placeholder="이메일 주소를 입력하세요.">
+				</div>
+				<input type="submit" value="비밀번호찾기">
+			</form>
 		</div>
 	</div>
-</html>
+</div>
