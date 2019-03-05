@@ -1,15 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ include file="/WEB-INF/views/setting.jsp"%>
 <script>
 function insertONtime(num) {
 	var date = ${date};
 	alert("date :" + date + "num :" + num);
 	window.location="insertONtime?date="+date + "&num=" + num;
 };
+function showONtime2(){
+	var date = $("#date2").val();
+  	var url="showONtime?date=" + date;
+   	window.open(url, "showONtime", "menubar=no, width=1000, height=560");
+};
 </script>
 <div class="table_top">
+<input type="month"  id="date2" value="${date}" required>
+<input type="button" onclick="showONtime2()" value="검색">
 	<table border="1">
 		<colgroup>
 			<col width="198px" />

@@ -1090,6 +1090,10 @@ public class J_ServiceImpl implements J_Service {
 	//야간/연장 근무 수당 가져오기
 	public void showONtime(HttpServletRequest req, Model model) {
 		String date = req.getParameter("date");
+		if(date.length() > 6) {
+			String[] dates = date.split("-");
+			date = dates[0] + dates[1];
+		}
 		System.out.println("date : " + date);
 		if(date.length() == 0) {
 			long day = System.currentTimeMillis(); // 이번달
@@ -1123,6 +1127,13 @@ public class J_ServiceImpl implements J_Service {
 			dtos.addAll(dtos2);
 			model.addAttribute("dtos",dtos);
 		}
+		
+		String dates1 = date.substring(0,4);
+		System.out.println("dates1 :" + dates1);
+		String dates2 = date.substring(4,6);
+		System.out.println("dates2 :" + dates2);
+		date = dates1 + "-" + dates2;
+		System.out.println("date : " + date);
 		model.addAttribute("cnt", cnt);
 		model.addAttribute("date",date);
 	}
