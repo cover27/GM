@@ -271,3 +271,16 @@
     border-radius: 5px;
     margin: 0 5px;
 }
+
+.content #info_result {
+	width: 600px;
+    height: 340px;
+    background: #fff;
+    box-shadow: 3px 3px 30px #aaa;
+    position: absolute;
+    top: 120px;
+    left: 700px;
+    z-index: 99;
+    border-radius: 10px;
+    display: none;
+}

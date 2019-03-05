@@ -11,19 +11,36 @@
 			<h3 class="mb10">전체<span class="ml10 cnt">${cnt}</span></h3>
 			<div class="table_head">
 				<table>
+					<colgroup>
+						<col width="265px;" />
+						<col width="265px;" />
+						<col width="265px;" />
+						<col width="265px;" />
+						<col width="265px;" />
+						<col width="*" />
+					</colgroup>
 					<thead>
 						<tr>
 							<th>아이디</th>
 							<th>이름</th>
 							<th>핸드폰</th>
 							<th>이메일</th>
-							<th>삭제<th>
+							<th>쪽지쓰기</th>
+							<th>삭제</th>
 						</tr>
 					</thead>
 				</table>
 			</div>
 			<div class="table_body">
 				<table>
+					<colgroup>
+						<col width="265px;" />
+						<col width="265px;" />
+						<col width="265px;" />
+						<col width="265px;" />
+						<col width="265px;" />
+						<col width="*" />
+					</colgroup>
 					<tbody>
 						<!-- 구성원이 있으면 -->
 						<c:forEach var='mf_dtos' items='${mf_dtos}'>
@@ -31,7 +48,6 @@
 								<td>
 									${mf_dtos.id}
 								</td>
-								
 								<td>
 									<c:forEach var="mem_dtos" items="${mem_dtos}">
 										<c:if test="${mf_dtos.id == mem_dtos.id}">
@@ -39,7 +55,6 @@
 										</c:if>
 									</c:forEach>
 								</td>
-								
 								<td>
 									<c:forEach var="mem_dtos" items="${mem_dtos}">
 										<c:if test="${mf_dtos.id == mem_dtos.id}">
@@ -54,7 +69,9 @@
 										</c:if>
 									</c:forEach>
 								</td>
-								
+								<td>
+									<input type="button" value="쪽지쓰기" onclick="window.location='<c:url value="/pages/S_orgSendMessageForm?id=${mf_dtos.id}"/>'" style="background:#555;">
+								</td>
 								<td>
 									<input type="button" class="inputButton" value="맴버 삭제" onclick="window.location='<c:url value="/pages/E_deleteMemberPro?id=${mf_dtos.id}&pageNum=${pageNum}&number=${number}"/>'">
 								</td>
