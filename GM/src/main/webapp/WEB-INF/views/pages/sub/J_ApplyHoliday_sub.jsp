@@ -38,6 +38,8 @@ function handler(e){
 	var date1 = new Date(strDate); // 2017-11-30
     var date2 = new Date(endDate); // 2017-12-6
     var count = 0;
+    var firstD = $('#end').val();
+	$('#begin').attr("max", firstD);
 while(true) {  
     var temp_date = date1;
     if(temp_date.getTime() > date2.getTime()) {
@@ -83,6 +85,11 @@ function chageLangSelect(){
 		$("#end2").show();
 		$("#end3").show();
 	}
+}
+//날짜 예외처리 방법
+function lastDate(){
+	var lastD = $('#begin').val();
+	$('#end').attr("min", lastD);
 }
 </script>
 <section>
@@ -215,9 +222,9 @@ function chageLangSelect(){
 			                <tr>
 			                    <th>휴가기간</th>
 			                    <td>
-			                    	<span style="margin: 0 9px;"><input type="date" id="begin" name="begin" style="width:45%;"></span>
+			                    	<span style="margin: 0 9px;"><input type="date" id="begin" onchange="lastDate()" max="firstD" name="begin" style="width:45%;"></span>
 			                    	<span id="end3" > ~ </span>
-			                    	<span id="end2" ><input type="date" id="end" name="end" onchange="handler(event);" style="width:45%;"></span>
+			                    	<span id="end2" ><input type="date" id="end" name="end" onchange="handler(event);" min="lastD" style="width:45%;"></span>
 			                    </td>
 			                    <th>일수</th>
 			                    <td>

@@ -21,10 +21,14 @@
 		var id = $('#id').val();
 		var name = $('#name').val();
 		var month = $('#month').val();
-		var textLength = $('#month').val().length;
+		var textLength = $('#id').val().length;
+		var textLength = $('#id').val().length;
+		var textLength2 = $('#month').val().length;
 		if (textLength == 0) {
+			alert("사원아이디를 입력해주십시오.");
+		}else if(textLength2 == 0){
 			alert("날짜를 입력해주십시오.");
-		} else {
+		}else {
 			$
 			.ajax({
 				url : '${pageContext.request.contextPath}/pages/searchPayrollInquiry',
@@ -59,7 +63,7 @@
 								<span id="search_title" class="bold5px">${dto.c_name}</span>
 							</c:forEach>
 							<span class="ml50 bold5px">아이디</span>
-							<span><input type="text" class="searchId" id="id" required></span>
+							<span><input type="text" class="searchId" id="id"></span>
 							<span><a href="#" onclick="searchId()" class="find_btn"><i class="fa fa-search fa-fw"></i></a></span>
 							<span class="bold5px ml50">이름 : </span>
 							<span><input type="text" class="searchName" name="name" readonly placeholder="아이디를 조회하세요." style="background: #f3f3f3;"></span>
