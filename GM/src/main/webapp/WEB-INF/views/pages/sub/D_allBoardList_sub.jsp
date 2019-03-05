@@ -44,7 +44,9 @@ function delBoard(){
 						</colgroup>
 						<thead>
 							<tr>
-								<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allcheck();" /></th>
+								<c:if test="${sessionScope.loginInfo.sys_rank == 1}">
+									<th scope="col"><input type="checkbox" name="checkAll" id="th_checkAll" onclick="allcheck();" /></th>
+								</c:if>
 								<th>게시판명</th>
 								<th>글제목</th>
 								<th>작성자</th>
@@ -69,7 +71,9 @@ function delBoard(){
 							<c:forEach var="dto" items="${dtos}">
 								<c:if test="${dto.del == 0}">
 									<tr>
+									<c:if test="${sessionScope.loginInfo.sys_rank == 1}">
 										<td><input type="checkbox" name="checkRow" value="${dto.boardnum}" /></td>
+									</c:if>
 										<td>
 											<c:forEach var="dtos" items="${b_dtos}">
 												<c:if test="${dto.num == dtos.num}">
