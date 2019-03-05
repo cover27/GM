@@ -356,17 +356,28 @@
 
 <!-- TO-DO - 나의 할일 등록  -->
 <insert id="insertTodoPro" parameterType="com.spring.gm.vo.TodoListVO">
-	insert into todolist values(seq_todolist.nextval, #{id}, #{content}, 0)
+	insert into todolist values(seq_todolist.nextval, #{id}, #{content}, 0, 0)
 </insert>
 
 <!-- TO-DO - 나의할일 등록한 뒤나오는 화면 -->
 <select id="selectTodo" resultType="com.spring.gm.vo.TodoListVO" parameterType="String">
-	select * from todolist where id=#{id} and del=0
+	select * from todolist where id=#{id} and del=0 order by complate asc, num desc
 </select>
 
 <!-- TO-DO - 나의 할일 삭제  -->
 <update id="deleteTodoPro">
 	update todolist set del=1 where num=#{num}
+</update>
+
+<!-- TO-DO - 나의 할일 완료  -->
+<select id="selectTodoPro" resultType="int" parameterType="int">
+	select complate from todolist where num=#{num} and del=0
+</select>
+<update id="updateTodoPro">
+	update todolist set complate=1 where num=#{num}
+</update>
+<update id="unUpdateTodoPro">
+	update todolist set complate=0 where num=#{num}
 </update>
 <!-- 업무 끝 -->
 

@@ -72,6 +72,10 @@ public interface O_DAO {
 	public List<TodoListVO> selectTodo(String id);
 	//TO-DO - 나의 할일 삭제
 	public int deleteTodoPro(int num);
+	//TO-DO - 나의 할일 완료
+	public int selectTodoPro(int num);
+	public int updateTodoPro(int num);
+	public int unUpdateTodoPro(int num);
 	/* 업무 끝 */
 	
 	

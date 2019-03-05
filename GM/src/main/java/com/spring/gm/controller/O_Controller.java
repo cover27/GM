@@ -105,6 +105,17 @@ public class O_Controller {
 		return "pages/O_listMyTodoCreate";
 	}
 	
+	//TO-DO - 나의 할일 완료
+	@RequestMapping("/pages/W_updateTodoPro")
+	public	String O_updateMyTodoPro(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
+		
+		oservice.updateTodoPro(req, model);
+		
+		return "pages/O_updateTodoPro";
+	}
+	
 	//업무 등록 화면
 	@RequestMapping("/pages/W_createSelfTaskView")
 	public String O_createSelfTaskView(HttpServletRequest req, Model model) {
