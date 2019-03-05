@@ -62,6 +62,7 @@ function firstDate(){
 									<select name="scheduleKind">
 										<option value="출장">출장</option>
 										<option value="휴가">휴가</option>
+										<option value="기타">기타</option>
 									</select>
 									<input type="text" name="subject" title="제목" placeholder="제목" required style="width: 92.7%;">
 								</div>
