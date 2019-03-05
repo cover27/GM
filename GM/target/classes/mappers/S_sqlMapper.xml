@@ -96,5 +96,17 @@
 	<select id="getMemberInfo" parameterType="String" resultType="com.spring.gm.vo.MemberVO">
 		SELECT * FROM member WHERE id=#{strId}
 	</select>
+
+	<update id="restoreMessage" parameterType="int">
+		UPDATE message SET message_num = 1 WHERE num = #{num}
+	</update>
+	
+	<update id="garbageRestore" parameterType="com.spring.gm.vo.MessageVO">
+		UPDATE message SET message_num = 1 WHERE num = #{num}
+	</update>
+	
+	<update id="garbageAlldelete" parameterType="com.spring.gm.vo.MessageVO">
+		UPDATE message SET del = 1 WHERE num = #{num}
+	</update>
 	
 </mapper>

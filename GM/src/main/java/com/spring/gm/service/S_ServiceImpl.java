@@ -390,7 +390,7 @@ public class S_ServiceImpl implements S_Service {
 			for(int i=0; i<message.length; i++) {
 				Map<String, Integer> map = new HashMap<String, Integer>();
 					map.put("num", Integer.parseInt(message[i]));
-					deleteCnt = dao.garbage(map);
+					deleteCnt = dao.garbageAlldelete(map);
 			}
 		}
 		
@@ -577,6 +577,42 @@ public class S_ServiceImpl implements S_Service {
 		model.addAttribute("sendCnt", sendCnt);
 	}
 
-	
+	@Override
+	public void restoreGarbageContent(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		int message_num = Integer.parseInt(req.getParameter("message_num"));
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		int restoreCnt = 0;
+		
+		MessageVO vo = new MessageVO();
+		vo.setNum(num);
+		
+		restoreCnt = dao.restoreMessage(num);
+
+		// 6단계. request나 session에 처리 결과를 저장(jsp에서 받아야 하니깐!)
+		model.addAttribute("num", num);
+		model.addAttribute("restoreCnt", restoreCnt);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("message_num", message_num);		
+
+	}
+
+	@Override
+	public void restoreGarbage(HttpServletRequest req, Model model) {
+		int restoreCnt = 0;
+		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		String [] garbageMessage = req.getParameterValues("checkRow");
+		
+		if(garbageMessage != null && garbageMessage.length > 0) {
+			for(int i=0; i<garbageMessage.length; i++) {
+				Map<String, Integer> map = new HashMap<String, Integer>();
+					map.put("num", Integer.parseInt(garbageMessage[i]));
+					restoreCnt = dao.garbageRestore(map);
+			}
+		}
+		
+		model.addAttribute("restoreCnt", restoreCnt);
+		model.addAttribute("pageNum", pageNum);
+	}
 
 }
