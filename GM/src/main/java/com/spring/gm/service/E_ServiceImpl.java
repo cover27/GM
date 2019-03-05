@@ -286,6 +286,7 @@ public class E_ServiceImpl implements E_Service {
 
 		int addCnt = dao.addMember(vo);
 		model.addAttribute("addCnt", addCnt);
+
 		
 	}
 
