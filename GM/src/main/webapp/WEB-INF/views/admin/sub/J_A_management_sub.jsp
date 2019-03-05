@@ -26,8 +26,13 @@
 		window.location="deleteAttended?num="+num + "&date=" + date;
 	};
 	function allList() {
-		var date = $("#date").val();
+		var date = $('#date').val();
+		var textLength2 = $('#date').val().length;
+		 if(textLength2 == 0){
+			alert("날짜를 입력해주십시오.");
+		}else {
 		window.location="J_A_management?date=" + date; 
+		}
 	};
 	//휴가승인된 목록 보기	
 	function vacationList() {

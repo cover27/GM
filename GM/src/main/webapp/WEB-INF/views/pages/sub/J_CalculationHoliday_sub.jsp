@@ -83,10 +83,12 @@ function allsearch() {
 		</div>
 		<div class="content">
 			<form name="searchform">
+			<c:if test="${sys_rank == 1}">
 			    <div>
 			        <span><input type="button" onclick="search()" value="사원조회" style="background: #d3292c; border: solid 1px #d3292c;"></span>
 			        <span><input type="button" onclick="allsearch()" value="전체조회" style="background: #d3292c; border: solid 1px #d3292c;"></span>
 			    </div>
+		    </c:if>
 			    <div class="search-wrap mt10" style="height: 38px;">
 					<div class="form-group">
 						<c:if test="${sys_rank == 1}">
@@ -104,6 +106,7 @@ function allsearch() {
 					            <span><input type="text" id="year" placeholder="예)2019" maxlength="4"></span>
 					            <span><input type="button" onclick="VacationViews()" value="조회" style="background: #d3292c;"></span>
 					        </div>
+					        <!-- 전체보기 -->
 					        <div id="allsearch" style="display:none;">
 					            <span class="bold5px ml50">*년도별검색 : </span>
 					            <span><input type="text" id="year2" placeholder="예)2019" maxlength="4"></span>
