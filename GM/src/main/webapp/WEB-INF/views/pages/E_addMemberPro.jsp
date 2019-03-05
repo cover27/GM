@@ -7,7 +7,7 @@
 	<h3 align="center"> 자주 연락하는 사람 추가 처리</h3>
 	<c:if test="${addCnt == 0}">
 		<script type="text/javascript">
-		alert("자주 연락하는 목록에 실패했습니다.");
+		alert("이미 목록에 있는 사람입니다.");
 		window.history.back();
 		</script>
 	</c:if>

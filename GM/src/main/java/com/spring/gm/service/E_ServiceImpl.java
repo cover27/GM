@@ -277,17 +277,20 @@ public class E_ServiceImpl implements E_Service {
 	@Override
 	public void addMember(HttpServletRequest req, Model model) {
 		String id = req.getParameter("id");
+		int addCnt=0;
 		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		AddressMemVO vo = new AddressMemVO();
 		
-		vo.setId(id);
-		vo.setDel(0);
-		vo.setStrId(strId);
+		if(id != vo.getId() && id != null) {
+			vo.setId(id);
+			vo.setDel(0);
+			vo.setStrId(strId);
 
-		int addCnt = dao.addMember(vo);
+			addCnt = dao.addMember(vo);
+			model.addAttribute("addCnt", addCnt);
+		}
+		addCnt = dao.addMember(vo);
 		model.addAttribute("addCnt", addCnt);
-
-		
 	}
 
 	@Override
