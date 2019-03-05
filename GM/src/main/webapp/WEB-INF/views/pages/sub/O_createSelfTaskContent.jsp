@@ -53,7 +53,7 @@
 		                            <td colspan="3"><input type="text" title="제목" name="subject" placeholder="제목을 입력하세요." required autofocus></td>
 		                        </tr>
 		                        <tr>
-		                            <th><span>*</span>업무기한</th>
+		                            <th><span>*</span>업무기한1111</th>
 		                            <td style="text-align: left;">
 		                            	<input type="date" title="업무기한" name="begin" id="now_date" onchange="lastDate()" max="firstD" style="width: 130px;">
 		                                <script>
