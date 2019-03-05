@@ -61,23 +61,37 @@
 			</c:if>
 			<c:if test="${cnt == 1}">
 				<c:forEach var="dtos" items="${dtos}">
-					<td>${id}</td>
-					<td>${name}</td>
-					<c:if test="${fn:length(dtos.gos) > 0 }"><td>${dtos.gos}</td></c:if>
-					<c:if test="${fn:length(dtos.gos) == 0 }"><td>00:00</td></c:if>
-					<c:if test="${fn:length(dtos.offs) > 0 }"><td>${dtos.offs}</td></c:if>
-					<c:if test="${fn:length(dtos.offs) == 0 }"><td>00:00</td></c:if>
-					<c:if test="${fn:length(dtos.worktimes) > 0 }"><td>${dtos.worktimes}</td></c:if>
-					<c:if test="${fn:length(dtos.worktimes) == 0 }"><td>00:00</td></c:if>
-					<c:if test="${fn:length(dtos.overtimes) > 0 }"><td>${dtos.overtimes}</td></c:if>
-					<c:if test="${fn:length(dtos.overtimes) == 0 }"><td>00:00</td></c:if>
-					<c:if test="${fn:length(dtos.nighttimes) > 0 }"><td>${dtos.nighttimes}</td></c:if>
-					<c:if test="${fn:length(dtos.nighttimes) == 0 }"><td>00:00</td></c:if>
-					<c:if test="${fn:length(dtos.perceptiontimes) > 0 }"><td>${dtos.perceptiontimes}</td></c:if>
-					<c:if test="${fn:length(dtos.perceptiontimes) == 0 }"><td>00:00</td></c:if>
-					<c:if test="${fn:length(dtos.departuretimes) > 0 }"><td>${dtos.departuretimes}</td></c:if>
-					<c:if test="${fn:length(dtos.departuretimes) == 0 }"><td>00:00</td></c:if>
-				</c:forEach>
+					<c:if test="${dtos.result == 1}">
+								<td>${id}</td>
+								<td>${name}</td>
+								<td>${dtos.gos}</td>
+								<td>${dtos.offs}</td>
+								<td>${dtos.worktimes}</td>
+								<td>${dtos.overtimes}</td>
+								<td>${dtos.nighttimes}</td>
+								<c:if test="${dtos.perceptiontimes ne '00:00'}">
+									<td style="color: #d3292c;font-weight: bold;">${dtos.perceptiontimes}</td>
+								</c:if>
+								<td style="color: #d3292c;font-weight: bold;">${dtos.departuretimes}</td>
+							</c:if>
+							<c:if test="${dtos.result == 3}">
+								<td>${id}</td>
+								<td>${name}</td>
+								<td colspan="7">휴가처리</td>
+							</c:if>
+							<c:if test="${dtos.result == 4}">
+								<td>${id}</td>
+								<td>${name}</td>
+								<td>${dtos.gos}</td>
+								<td>${dtos.offs}(반차)</td>
+								<td>${dtos.worktimes}</td>
+								<td>${dtos.overtimes}</td>
+								<td>${dtos.nighttimes}</td>
+								<c:if test="${dtos.perceptiontimes ne '00:00'}">
+									<td style="color: #d3292c;font-weight: bold;">${dtos.perceptiontimes}</td>
+								</c:if>
+								<td style="color: #d3292c;font-weight: bold;">${dtos.departuretimes}</td>
+							</c:if>				</c:forEach>
 			</c:if>
 			<c:if test="${cnt > 1}">
 					<td colspan="9" style="height: 384px;">출근관리 문제가 생겼습니다. 관리자에게 문의 하십시오.</td>

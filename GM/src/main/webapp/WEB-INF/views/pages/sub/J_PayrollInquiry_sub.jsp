@@ -21,10 +21,14 @@
 		var id = $('#id').val();
 		var name = $('#name').val();
 		var month = $('#month').val();
-		var textLength = $('#month').val().length;
+		var textLength = $('#id').val().length;
+		var textLength = $('#id').val().length;
+		var textLength2 = $('#month').val().length;
 		if (textLength == 0) {
+			alert("사원아이디를 입력해주십시오.");
+		}else if(textLength2 == 0){
 			alert("날짜를 입력해주십시오.");
-		} else {
+		}else {
 			$
 			.ajax({
 				url : '${pageContext.request.contextPath}/pages/searchPayrollInquiry',

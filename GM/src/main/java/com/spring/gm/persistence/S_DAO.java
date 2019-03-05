@@ -75,5 +75,14 @@ public interface S_DAO {
 	
 	// 아이디 정보조회
 	public MemberVO getMemberInfo(String strId);
+	
+	// 휴지통 복원
+	public int restoreMessage(int num);
+	
+	// 휴지통 복원 처리
+	public int garbageRestore(Map<String, Integer> map);
+	
+	// 휴지통 전체삭제
+	public int garbageAlldelete(Map<String, Integer> map);
 
 }

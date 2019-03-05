@@ -51,7 +51,7 @@
 	<!-- 자주 연락하는 사람 목록 -->
 	<select id="getMyFavoriteMemberList" parameterType="java.util.Map" resultType="com.spring.gm.vo.AddressMemVO">
 		<![CDATA[
-			SELECT * FROM(SELECT id, del, strId, rownum rNum FROM (SELECT * FROM addressmem WHERE strId=#{strId} AND del = 0 ORDER BY id ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT id, del, strId, rownum rNum FROM (SELECT * FROM AddressMem WHERE strId=#{strId} AND del = 0 ORDER BY id ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>
 	

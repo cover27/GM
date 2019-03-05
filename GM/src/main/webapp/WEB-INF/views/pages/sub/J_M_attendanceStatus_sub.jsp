@@ -49,7 +49,12 @@
 	};
 	function J_M_attendanceStatus2() {
 		var month = $("#month2").val();
+		var textLength2 = $('#month2').val().length;
+		 if(textLength2 == 0){
+			alert("날짜를 입력해주십시오.");
+		}else {
 		window.location="J_M_attendanceStatus2?month="+month;
+		}
 	};
 	function search() {
 		$("#search").show();
@@ -68,10 +73,12 @@
 		</div>
 		<div class="content">
 			<form action="J_M_attendanceStatus" method="post" name="searchform">
+				<c:if test="${sys_rank == 1 }">
 				<div>
 					<span><input type="button" onclick="search()" value="사원조회" style="background: #d3292c; border: solid 1px #d3292c;"></span>
 					<span><input type="button" onclick="allsearch()" value="전체조회" style="background: #d3292c; border: solid 1px #d3292c;"></span>
 				</div>
+				</c:if>
 				<div class="search-wrap mt10" style="height: 38px;">
 					<div class="form-group">
 						<c:if test="${sys_rank == 1 }">
@@ -87,7 +94,7 @@
 								<span class="bold5px ml50">이름 : </span>
 								<span><input type="text" class="searchName" name="name" readonly placeholder="아이디를 조회하세요." style="background: #f3f3f3;"></span>
 								<span class="ml50 bold5px">*급여년월</span>
-								<span><input type="month" id="month" value="${month}" name="month"></span>
+								<span><input type="month" id="month" value="${month}" name="month" required></span>
 								<span><input type="submit" value="조회" style="background: #d3292c;"></span>
 							</div>
 	
@@ -109,7 +116,7 @@
 						<span class="bold5px ml50">이름 : </span>
 						<span><input type="text" class="searchName" name="name" value="${name}" readonly placeholder="아이디를 조회하세요."></span>
 						<span class="bold5px ml50">*급여년월</span>
-						<span><input type="month" id="month" value="${month}" name="month"></span>
+						<span><input type="month" id="month" value="${month}" name="month" required></span>
 						<span><input type="submit" value="조회" style="background: #d3292c;"></span>
 					</c:if>
 					<c:if test="${month == null}">

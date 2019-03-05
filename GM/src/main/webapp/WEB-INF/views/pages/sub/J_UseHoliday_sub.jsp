@@ -17,7 +17,12 @@ function back(id, name) {
 }
 function vacationUH2() {
 	var year = $("#year2").val();
+	var textLength2 = $('#year2').val().length;
+	 if(textLength2 == 0){
+		alert("날짜를 입력해주십시오.");
+	}else {
 	window.location="vacationUH2?year="+year;
+	}
 };
 function search() {
 	$("#search").show();

@@ -59,7 +59,11 @@
 	//날짜 검색
 	function searchList() {
 			// alert(id);
-			var date = $('#date').val();
+		var date = $('#date').val();
+		var textLength2 = $('#date').val().length;
+		 if(textLength2 == 0){
+			alert("날짜를 입력해주십시오.");
+		}else {
 			$.ajax({
 				url : '${pageContext.request.contextPath}/pages/searchList', //컨트롤러/basic1_sub로 가라
 				type : 'POST',
@@ -74,8 +78,8 @@
 					alert('오류');
 				}
 			});
+		}
 	};
-	
 	
 </script>
 <section>

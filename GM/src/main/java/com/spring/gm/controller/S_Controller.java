@@ -197,5 +197,20 @@ public class S_Controller {
 		service.orgsendMessageDataPro(req, model);
 		return "pages/S_orgSendMessagePro";		
 	}	
+	@RequestMapping("pages/S_garbageContentRestorePro")
+	public String garbageContentRestore(HttpServletRequest req, Model model) {
+		logger.info("URL : S_garbageContentRestorePro");
+		
+		service.restoreGarbageContent(req, model);
+		return "pages/S_garbageContentRestorePro";		
+	}
+	
+	@RequestMapping("pages/S_garbageRestorePro")
+	public String garbageRestore(HttpServletRequest req, Model model) {
+		logger.info("URL : S_garbageContentRestorePro");
+		
+		service.restoreGarbage(req, model);
+		return "pages/S_garbageRestorePro";		
+	}
 
 }

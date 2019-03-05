@@ -21,6 +21,16 @@ function deletegarbage(){
 		document.garbage.submit();
 	}
 }
+
+//복원할거 정보이전
+function restoregarbage(){
+	var restoregarbage = confirm("선택하신것을 복원하시겠습니까?");
+	if(restoregarbage){
+		document.garbage.action="<c:url value='/pages/S_garbageRestorePro'/>"
+		document.garbage.submit();
+	}
+}
+
 </script>
 <section>
     <article>
@@ -141,6 +151,7 @@ function deletegarbage(){
 				</div>
 	            <div class="btnset fright mt10">
 	            	<ul>
+	            		<li><input type="submit" value="복원" onclick="restoregarbage()"></li>
 	            		<li><input type="submit" value="삭제" onclick="deletegarbage()"></li>
 	            	</ul>
 	            </div>
