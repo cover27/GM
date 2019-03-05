@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.gm.vo.AddressMemberMainVO;
 import com.spring.gm.vo.AttendedSetVO;
 import com.spring.gm.vo.BoardListVO;
 import com.spring.gm.vo.CompaniesMemberVO;
@@ -563,4 +564,10 @@ public class K_DAOImpl implements K_DAO{
 	public int updateUsers(Map<String, Object> map) {
 		return sqlSession.update("com.spring.gm.persistence.K_DAO.updateUsers", map);
 	}
+
+	@Override
+	public List<AddressMemberMainVO> getAddressList(String strId) {
+		return sqlSession.selectList("com.spring.gm.persistence.K_DAO.getAddressList", strId);
+	}
+	
 }
