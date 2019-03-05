@@ -118,7 +118,12 @@ public class S_ServiceImpl implements S_Service {
 		
 		MessageVO vo = dao.content(num);
 		
-		dao.addReadCnt(num);
+		if(num % 2 == 0) {
+			dao.addReadCnt(num);
+			dao.sendAddReadCnt(num);
+		}else if (num % 2 != 0){
+			
+		}
 
 		model.addAttribute("ct_dto", vo);
 		model.addAttribute("message_num", message_num);
@@ -237,6 +242,7 @@ public class S_ServiceImpl implements S_Service {
 			
 			List<MessageVO> dtos = dao.sendMessageArticleList(map);
 			
+			System.out.println("리드씨엔티:"+ dtos.toString());
 
 			model.addAttribute("s_dtos", dtos);
 
@@ -414,7 +420,6 @@ public class S_ServiceImpl implements S_Service {
 	public void sendDelPro(HttpServletRequest req, Model model) {
 		int cancelCnt = 0;
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-		String receiver = req.getParameter("id");
 		String [] sendMessage = req.getParameterValues("checkRow");
 		
 		if(sendMessage != null && sendMessage.length > 0) {
@@ -572,23 +577,6 @@ public class S_ServiceImpl implements S_Service {
 		model.addAttribute("sendCnt", sendCnt);
 	}
 
-	@Override
-	public void sendMessageContent(HttpServletRequest req, Model model) {
-		int num = Integer.parseInt(req.getParameter("num"));
-		int message_num = Integer.parseInt((req.getParameter("message_num")));
-		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-		int number = Integer.parseInt(req.getParameter("number"));
-		
-		MessageVO vo = dao.content(num);
-		
-		dao.sendReadCnt(num);
-
-		model.addAttribute("ct_dto", vo);
-		model.addAttribute("message_num", message_num);
-		model.addAttribute("num", num);
-		model.addAttribute("pageNum", pageNum);
-		model.addAttribute("number", number);
-	}
 	
 
 }

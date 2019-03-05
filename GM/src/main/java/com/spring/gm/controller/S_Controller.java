@@ -197,5 +197,5 @@ public class S_Controller {
 		service.orgsendMessageDataPro(req, model);
 		return "pages/S_orgSendMessagePro";		
 	}	
-	
+
 }
