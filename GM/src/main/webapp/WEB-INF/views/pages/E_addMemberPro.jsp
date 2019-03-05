@@ -15,7 +15,7 @@
 	<c:if test="${addCnt != 0}">
 		<script type="text/javascript">
 			alert("자주 연락하는 목록에 추가되었습니다.");
-			window.location="E_orgnaizationMemberList";
+			window.location="E_orgMyFavoritMemList";
 		</script>
 	</c:if>
 </body>

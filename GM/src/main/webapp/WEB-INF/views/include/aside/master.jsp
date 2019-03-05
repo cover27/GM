@@ -11,7 +11,7 @@
      -->
     <div class="nav">
         <div class="nav_title">
-            <h2>시스템 관리자</h2>
+            <h2>시스템</h2>
             <div class="category">
                 <ul>
                 	<%

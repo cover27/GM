@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.spring.gm.service.J_ServiceImpl;
 import com.spring.gm.vo.MemberVO;
-import com.sun.jmx.snmp.Timestamp;
 
 @Controller
 public class J_Controller {
