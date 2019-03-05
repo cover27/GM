@@ -8,7 +8,7 @@
 
 	<select id="selectCnt" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(*) as cnt FROM member m, grade r where m.rank = r.rank
-		and m.company = #{company}  and r.r_name != '대기자' 
+		and m.company = #{company}  and r.r_name != '대기자' and m.del = 0
 	</select>
 	<!-- 급여 회원정보 가져오기(부서번호가 회사명) -->
 	<select id="selectList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
@@ -16,7 +16,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, c.c_name as j_name, rownum rNum
               FROM member m ,companies c, grade r
               WHERE m.depart = c.company and m.rank = r.rank and m.company = #{company}
-             and r.r_name != '대기자'
+             and r.r_name != '대기자' and m.del = 0
               order by m.depart ,r.r_name)
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart = #{company} 
 	]]>
@@ -28,7 +28,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
               FROM member m ,groups g , grade r
               WHERE m.depart = g.groupid and m.rank = r.rank and m.company = #{company}
-              and r.r_name != '대기자' 
+              and r.r_name != '대기자' and m.del = 0
               order by m.depart ,r.r_name)
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company} 
 	]]>
