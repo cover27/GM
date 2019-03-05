@@ -8,7 +8,7 @@
 			<h2>자주 연락하는 사람 목록</h2>
 		</div>
 		<div class="content">
-			<h3 class="mb10">전체<span class="ml10 cnt">${cnt}</span></h3>
+			<h3 class="mb10">전체<span class="ml10 cnt">${memfcnt}</span></h3>
 			<div class="table_head">
 				<table>
 					<colgroup>
@@ -82,7 +82,7 @@
 			</div>
 			<!-- 페이지 컨트롤 -->
             <div class="paging">
-				<c:if test="${cnt > 0}">
+				<c:if test="${memfcnt > 0}">
 				    <c:if test="${startPage > pageBlock}">
 				        <a href="<c:url value='/pages/E_orgMyFavoritMemList'/>"><i class="fas fa-angle-double-left"></i></a>
 				        <a href="<c:url value='/pages/E_orgMyFavoritMemList?num=${num}&pageNum=${startPage - pageBlock}'/>"><i class="fas fa-angle-left"></i></a>

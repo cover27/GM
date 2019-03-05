@@ -118,11 +118,14 @@ public class S_ServiceImpl implements S_Service {
 		
 		MessageVO vo = dao.content(num);
 		
-		if(num % 2 == 0) {
+		if(message_num == 1) {
 			dao.addReadCnt(num);
 			dao.sendAddReadCnt(num);
-		}else if (num % 2 != 0){
+		}else if (message_num == 2){
 			
+		}else if (message_num == 4) {
+			dao.addReadCnt(num);
+			dao.sendAddReadCnt(num);
 		}
 
 		model.addAttribute("ct_dto", vo);
