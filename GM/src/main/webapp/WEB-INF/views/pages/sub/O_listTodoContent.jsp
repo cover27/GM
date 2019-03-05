@@ -10,7 +10,6 @@ function firstDate(){
 	var firstD = $('#end').val();
 	$('#begin').attr("max", firstD);
 }
-
 </script>
 <section>
 	<article>
@@ -37,14 +36,8 @@ function firstDate(){
 	                    </span>	
 						<span>
 							<input id="begin" type="date" title="날짜시작" onchange="lastDate()" max="firstD" name="searchStartDate" value="">
-							<script>
-								document.getElementById('begin').value =new Date().toISOString().substring(0, 10);
-							</script>
 								<span>~</span>
 							<input id="end" type="date" title="날짜끝" onchange="firstDate()" min="lastD" name="searchEndDate" value="" >
-							<script>
-								document.getElementById('end').value = new Date().toISOString().substring(0, 10);
-							</script>
 						</span>
 		                <span>
 			               <input type="submit" value="검색">

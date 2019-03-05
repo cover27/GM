@@ -233,7 +233,7 @@ public class O_DAOImpl implements O_DAO {
 		return dtos;
 	}
 	
-	//TO-DO - 나의 할일 화면 및 등록
+	//TO-DO - 나의 할일 등록
 	@Override
 	public int insertTodoPro(TodoListVO vo) {
 		dao = sqlSession.getMapper(O_DAO.class);
@@ -247,6 +247,13 @@ public class O_DAOImpl implements O_DAO {
 		dao = sqlSession.getMapper(O_DAO.class);
 		dtos= dao.selectTodo(id);
 		return dtos;
+	}
+	
+	//TO-DO - 나의 할일 삭제
+	@Override
+	public int deleteTodoPro(int num) {
+		dao = sqlSession.getMapper(O_DAO.class);
+		return dao.deleteTodoPro(num);
 	}
 	
 	

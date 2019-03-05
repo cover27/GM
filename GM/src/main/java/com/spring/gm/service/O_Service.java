@@ -50,10 +50,11 @@ public interface O_Service {
 	public void adminTodoList(HttpServletRequest req, Model model);
 	//업무관리의 view 페이지 검색기능
 	public void W_searchTodoTool(HttpServletRequest req, Model model);
-	//TO-DO - 나의 할일 화면 및 등록
+	//TO-DO - 나의 할일 등록
 	public void insertTodoPro(HttpServletRequest req, Model model);
 	//TO-DO - 나의할일 등록한 뒤나오는 화면
 	public void selectTodo(HttpServletRequest req, Model model);
-	
+	//TO-DO - 나의 할일 삭제
+	public void deleteTodoPro(HttpServletRequest req, Model model);
 	/* 업무관리 끝 */
 }

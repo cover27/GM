@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script>
-function todoList(){
-	var item = document.getElementById("todoInput").value;
-	var text = document.createTextNode(item);
-	var newItem = document.createElement("li");
-	newItem.appendChild(text);
-	document.getElementById("todoList").appendChild(newItem);
-}
-
+//나의 할일 등록
 $(function(){
 	$('#todosub').click(function(){	
 		var content = $("#todoForm").serialize(); // form submit을 ajax로 사용하기
@@ -18,7 +11,24 @@ $(function(){
 			data : content,
 			success : function(result){ //콜백함수
 				$('#result').html(result);
-			alert('ddd');
+			},
+			error : function(result){
+				alert('오류');
+			}
+		});
+	});
+});
+
+//나의 할일 삭제
+$(function(){
+	$('#tododel').click(function(){	
+		var content = $("#todoForm").serialize(); // form submit을 ajax로 사용하기
+		$.ajax({
+			type : 'POST',
+			url : '${pageContext.request.contextPath}/pages/W_deleteTodoPro',	//{컨트롤러}/이동페이지
+			data : content,
+			success : function(result){ //콜백함수
+				$('#result').html(result);
 			},
 			error : function(result){
 				alert('오류');
@@ -31,7 +41,7 @@ $(function(){
 <section>
 	<article>
 		<div class="content_header">
-			<h2>나의 할일ff11f</h2>
+			<h2>나의 할일</h2>
 		</div>
 		
 		<div>
