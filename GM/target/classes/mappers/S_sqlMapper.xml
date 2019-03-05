@@ -43,7 +43,7 @@
 	
 	<update id="garbage" parameterType="com.spring.gm.vo.MessageVO">
 		<![CDATA[
-			UPDATE message SET del = 1 WHERE num = #{num}
+			UPDATE message SET message_num = 4 WHERE num = #{num}
 		]]>
 	</update>
 	

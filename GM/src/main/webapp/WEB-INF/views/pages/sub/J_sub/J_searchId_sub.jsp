@@ -30,7 +30,7 @@
 			<thead>
 				<tr>
 					<th>사업장</th>
-					<th>사원번호</th>
+					<th>사원아이디</th>
 					<th>성명</th>
 					<th>부서</th>
 					<th>직급</th>

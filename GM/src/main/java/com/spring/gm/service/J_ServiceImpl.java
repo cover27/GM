@@ -893,6 +893,7 @@ public class J_ServiceImpl implements J_Service {
 		map.put("id", id);
 		map.put("company", company);
 		int cnt = dao.searchIdCnt(map);
+		System.out.println("cnt : " + cnt);
 		if (cnt > 0) {
 			List<join_mgcVO2> dtos = new ArrayList<join_mgcVO2>();
 			List<join_mgcVO2> dtos2 = dao.searchIdList(map); // depart가 회사번호
@@ -900,6 +901,9 @@ public class J_ServiceImpl implements J_Service {
 			dtos.addAll(dtos2);
 			dtos.addAll(dtos3);
 			System.out.println(dtos.toString());
+			
+			String companyName = K_dao.getCompanyName(company);
+			model.addAttribute("companyName", companyName);
 			model.addAttribute("dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
 		}
 		model.addAttribute("cnt", cnt);

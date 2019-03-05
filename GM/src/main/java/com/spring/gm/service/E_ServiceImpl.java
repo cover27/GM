@@ -26,7 +26,7 @@ public class E_ServiceImpl implements E_Service {
 	@Override
 	public void myCompanyMember(HttpServletRequest req, Model model) {
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
-		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 18; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
@@ -279,14 +279,26 @@ public class E_ServiceImpl implements E_Service {
 		String id = req.getParameter("id");
 		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		AddressMemVO vo = new AddressMemVO();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("strId", strId);
+		int check = dao.idCheck(map);
 		
-		vo.setId(id);
-		vo.setDel(0);
-		vo.setStrId(strId);
+		System.out.println("체크값 1:"+check);
+		
+		if(check != 0) {
+			System.out.println("체크값 3:"+check);
+			int addCnt = 0;
+			model.addAttribute("addCnt", addCnt);
+		}else if (check == 0) {
+			System.out.println("체크값 2:"+check);
+			vo.setId(id);
+			vo.setDel(0);
+			vo.setStrId(strId);
 
-		int addCnt = dao.addMember(vo);
-		model.addAttribute("addCnt", addCnt);
-
+			int addCnt = dao.addMember(vo);
+			model.addAttribute("addCnt", addCnt);
+		}
 		
 	}
 
@@ -319,20 +331,28 @@ public class E_ServiceImpl implements E_Service {
 		int del = 0;
 		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		String [] idArr = req.getParameterValues("checkRow");
-		
+	
 		if(idArr != null && idArr.length > 0) {
 			for(int i=0; i<idArr.length; i++) {
-				AddressMemVO vo = new AddressMemVO();
-				vo.setId(idArr[i]);
-				vo.setStrId(strId);
-				addCnt = dao.addMembers(vo);
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("id", idArr[i]);
+				map.put("strId", strId);
+				int check = dao.idCheck(map);
+					if(check == 0) {
+						AddressMemVO vo = new AddressMemVO();
+						vo.setId(idArr[i]);
+						vo.setStrId(strId);
+						addCnt = dao.addMembers(vo);
+						model.addAttribute("addCnt", addCnt);
+					}else if(check != 0) {
+						addCnt = 0;
+						model.addAttribute("addCnt", addCnt);
+					}
 			}
 		}
 		
-		model.addAttribute("addCnt", addCnt);
 		model.addAttribute("strId",strId);
-		model.addAttribute("del", del);
-		//model.addAttribute("num", num);		
+		model.addAttribute("del", del);	
 	}
 		
 }
