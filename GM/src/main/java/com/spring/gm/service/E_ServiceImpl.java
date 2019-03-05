@@ -26,7 +26,7 @@ public class E_ServiceImpl implements E_Service {
 	@Override
 	public void myCompanyMember(HttpServletRequest req, Model model) {
 		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
-		int pageSize = 18; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int cnt = 0;			// 글갯수		
