@@ -46,7 +46,7 @@ function allcheck(){
 						</thead>
 					</table>
 				</div>
-				<div class="table_body" style="height: 650px;">
+				<div class="table_body" style="height: 610px;">
 					<table>
 						<colgroup>
 							<col width="100px" />

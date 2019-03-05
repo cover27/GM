@@ -22,10 +22,15 @@ function write(){
 		<div class="content_header">
 			<h2>전체 구성원 목록</h2>
 		</div>
+		<div class="content">
+			<form action="<c:url value='/pages/E_addmembersDepartPro'/>" method="post">
+				
+			</form>
+		</div>
 		
 		<div style="overflow-y: scroll; height:400px;">	<!-- 스크롤바 -->
 			<table style="width:1500px; align=center; border:2px;">
-        	<form action="<c:url value='/pages/E_addmembersDepartPro'/>" method="post">
+        	
 				<tr>
 					<th colspan="6" align="left" style="height:25px">
 						전체&nbsp;&nbsp;  / ${memcnt} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -102,7 +107,6 @@ function write(){
 	                    <input class="inputButton" type="submit" value="자주 연락하는 사람 추가">
 	                </td>
 		        </tr>
-		    </form>
 			</table>
 		</div>	
 				
