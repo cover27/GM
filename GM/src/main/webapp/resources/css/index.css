@@ -13,11 +13,11 @@ body {
   font-size: 1.6rem;
   font-family: "Open Sans", sans-serif;
   color: #040404;
-  background-color: #ffffff;
+  background: #eee url(../images/main_bg.jpg) no-repeat right bottom;
 }
 
 a {
-  color: #2e416a;
+  color: #555;
   text-decoration: none;
 }
 
@@ -30,7 +30,7 @@ General Style
   width: 100%;
   /* vertically align its content */
   display: table;
-  background: #2e416a;
+  background: #555;
   overflow: hidden;
 }
 
@@ -40,13 +40,13 @@ General Style
   vertical-align: middle;
   text-align: center;
   padding: 0 5%;
-  background: #2e416a;
+  background: #eee url(../images/main_bg.jpg) no-repeat right bottom;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 .cd-intro-content h1 {
   font-size: 2.4rem;
-  color: #ffffff;
+  color: #555;
 }
 .cd-intro-content p {
   font-size: 1.4rem;
@@ -80,8 +80,8 @@ General Style
 .cd-btn {
   display: inline-block;
   padding: 1.2em 1.4em;
-  font-size: 1.3rem;
-  color: #ffffff;
+  font-size: 1em;
+  color: #fff;
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 1px;
@@ -93,7 +93,7 @@ General Style
   margin-right: 0;
 }
 .cd-btn.main-action {
-  background-color: #fb5e58;
+  background-color: #e30413;
 }
 @media only screen and (min-width: 480px) {
   .cd-btn {
@@ -102,7 +102,7 @@ General Style
 }
 @media only screen and (min-width: 768px) {
   .cd-btn {
-    padding: 1.4em 1.8em;
+    padding: 1em 1em;
   }
 }
 
@@ -354,7 +354,7 @@ Cut
   height: 50%;
   left: 0;
   overflow: hidden;
-  color: #ffffff;
+  color: #555;
 }
 .cut.cd-intro-content h1 span:first-of-type {
   top: 0;
@@ -370,7 +370,7 @@ Cut
   position: absolute;
   width: 100%;
   left: 0;
-  color: #ffffff;
+  color: #555;
 }
 .cut.cd-intro-content h1 span:first-of-type::before {
   top: 0;
@@ -517,7 +517,7 @@ Reveal
   left: 0;
   height: 100%;
   width: 100%;
-  color: #ffffff;
+  color: #555;
   opacity: 0;
   -webkit-animation-name: cd-reveal-up;
   -moz-animation-name: cd-reveal-up;
@@ -723,7 +723,7 @@ Mask
   left: 0;
   height: 100%;
   width: 100%;
-  color: #ffffff;
+  color: #555;
   -webkit-animation-name: cd-reveal-up;
   -moz-animation-name: cd-reveal-up;
   animation-name: cd-reveal-up;
@@ -744,7 +744,7 @@ Mask
   left: -1em;
   height: 2px;
   width: calc(100% + 2em);
-  background-color: #ffffff;
+  background-color: #555;
   -webkit-animation: cd-loading-mask 1s 0.3s both;
   -moz-animation: cd-loading-mask 1s 0.3s both;
   animation: cd-loading-mask 1s 0.3s both;
@@ -850,7 +850,7 @@ Mask 2
   left: 0;
   height: 100%;
   width: 2px;
-  background-color: #ffffff;
+  background-color: #555;
   -webkit-animation: cd-pulse 1.3s 0.3s both;
   -moz-animation: cd-pulse 1.3s 0.3s both;
   animation: cd-pulse 1.3s 0.3s both;
@@ -1090,7 +1090,7 @@ Parallax
   font-size: 2.2rem;
 }
 .parallax.cd-intro-content h1 span::after {
-  color: #ffffff;
+  color: #555;
 }
 @media only screen and (min-width: 768px) {
   .parallax.cd-intro-content h1 {
@@ -1104,15 +1104,15 @@ Parallax
 
 .parallax .cd-btn {
   color: #202e4a;
-  background-color: #ffffff;
+  background-color: #555;
   margin-top: .6em;
   /* overwrite default style */
   border-radius: 0;
   margin-right: 0;
 }
 .parallax .cd-btn.main-action {
-  background-color: #fb5e58;
-  color: #ffffff;
+  background-color: #e30413;
+  color: #555;
   padding: 1.8em 2.2em;
   margin-top: 0;
 }
@@ -1277,7 +1277,7 @@ Video
   background-color: rgba(4, 4, 4, 0.4);
 }
 .video.cd-intro-content .cd-btn.main-action {
-  background-color: #fb5e58;
+  background-color: #e30413;
 }
 @media only screen and (min-width: 768px) {
   .video.cd-intro-content svg.svg-mask-mobile {

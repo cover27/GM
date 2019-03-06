@@ -46,7 +46,7 @@ public class HomeController {
 	public String home(HttpServletRequest request, Locale locale, Model model) {
 		logger.info("URL : home");
 		
-		return "common/login";
+		return "index";
 	}
 	
 }

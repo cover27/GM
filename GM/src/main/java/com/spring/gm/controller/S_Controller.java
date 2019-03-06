@@ -36,6 +36,15 @@ public class S_Controller {
 		return "pages/login";
 	}
 	*/
+	
+	@Transactional
+	@RequestMapping("/index")
+	public String index(HttpServletRequest req, Model model) {
+		logger.info("URL : index");
+
+		return "/index";
+	}
+	
 	@Transactional
 	@RequestMapping("/pages/S_message_inbox")
 	public String S_message_inbox(HttpServletRequest req, Model model) {
@@ -216,5 +225,4 @@ public class S_Controller {
 		service.restoreGarbage(req, model);
 		return "pages/S_garbageRestorePro";		
 	}
-
 }
