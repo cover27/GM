@@ -62,3 +62,30 @@
 	background: #eee !important;
 	padding: 5px !important;
 }
+
+.content_result {
+	overflow-y: auto;
+	height: 710px;
+}
+
+.content_result li {
+	margin: 10px 0;
+}
+
+.content_result li input[type="checkbox"] {
+	display: none;
+}
+
+.content_result li label {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #bcbcbc;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.content_result li input[type="checkbox"]:checked + label {
+	background-color: #bcbcbc;
+	background-image: url("https://image.flaticon.com/icons/png/512/60/60731.png");
+}

@@ -1070,6 +1070,7 @@ public class O_ServiceImpl implements O_Service{
 		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
 		List<TodoListVO> dtos = dao.selectTodo(id);
+		
 		System.out.println("확인확인"+dtos.toString());
 		
 		model.addAttribute("dtos", dtos);
@@ -1086,6 +1087,29 @@ public class O_ServiceImpl implements O_Service{
 		
 		model.addAttribute("deleteCnt", deleteCnt);
 		
+	}
+	
+	//TO-DO - 나의 할일 완료
+	@Override
+	public void updateTodoPro(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		
+		int selectCnt = dao.selectTodoPro(num);
+		System.out.println("selectCnt" + selectCnt);
+		
+		if(selectCnt == 0) {
+			System.out.println("요기는 완");
+			int updateCnt = dao.updateTodoPro(num);
+			System.out.println("updateCnt" + updateCnt);
+			
+			model.addAttribute("updateCnt", updateCnt);
+		} else if(selectCnt != 0) {
+			System.out.println("요기는 미완");
+			int updateCnt = dao.unUpdateTodoPro(num);
+			System.out.println("updateCnt" + updateCnt);
+			
+			model.addAttribute("updateCnt", updateCnt);
+		}
 	}
 
 

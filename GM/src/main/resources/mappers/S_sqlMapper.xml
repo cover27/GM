@@ -53,7 +53,7 @@
 	
 	<select id="getGarbageList" parameterType="java.util.Map" resultType="com.spring.gm.vo.MessageVO">
 		<![CDATA[  
-			SELECT * FROM(SELECT num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate, del ,rownum rNum FROM (SELECT * FROM message WHERE receiver = #{strId} AND del = 0 AND message_num = 4 ORDER BY message_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
+			SELECT * FROM(SELECT num, message_num, sender, receiver, subject, content, state, sentDate, receiveDate, del , readCnt, rownum rNum FROM (SELECT * FROM message WHERE receiver = #{strId} AND del = 0 AND message_num = 4 ORDER BY message_num ASC)) WHERE rNum >= #{start} AND rNum <= #{end}
 		]]>
 	</select>	
 	

@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +29,7 @@ public class P_Controller {
 	P_Service service;
 	
 	//기안 - 기안문 작성
+	@Transactional
 	@RequestMapping("/pages/P_createApprDocFormView")
 	public String P_createApprDocFormView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_createApprDocFormView");
@@ -38,6 +40,7 @@ public class P_Controller {
 	}
 	
 	//기안 - 기안문 작성 - 결재선 지정
+	@Transactional
 	@RequestMapping("/pages/P_addApprLine")
 	public String P_addApprLine(HttpServletRequest req, Model model) {
 		logger.info("URL : P_addApprLine");
@@ -48,6 +51,7 @@ public class P_Controller {
 	}
 	
 	//기안 - 결재선 추가
+	@Transactional
 	@RequestMapping("/pages/P_payLinePro")
 	public String P_payLinePro(HttpServletRequest req, Model model) {
 		logger.info("URL : P_payLinePro");
@@ -58,6 +62,7 @@ public class P_Controller {
 	}
 	
 	//기안 - 결재선 확정
+	@Transactional
 	@RequestMapping("/pages/P_resistPayLine")
 	public String P_resistPayLine(HttpServletRequest req, Model model) {
 		logger.info("URL : P_resistPayLine");
@@ -68,6 +73,7 @@ public class P_Controller {
 	}
 	
 	//기안 - 기안문 작성 - 결재 요청
+	@Transactional
 	@RequestMapping("/pages/P_apprDocFormReqPro")
 	public String P_apprDocFormReqPro(@RequestParam("file") MultipartFile file, 
 			HttpServletRequest req, Model model) {
@@ -79,6 +85,7 @@ public class P_Controller {
 	}
 	
 	//기안 - 결재 요청함
+	@Transactional
 	@RequestMapping("/pages/P_listApprMyRequestView")
 	public String P_listApprMyRequestView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_listApprMyRequestView");
@@ -89,6 +96,7 @@ public class P_Controller {
 	}
 	
 	//결재 - 결재 대기함
+	@Transactional
 	@RequestMapping("/pages/P_listApprTodoView")
 	public String P_listApprTodoView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_listApprTodoView");
@@ -99,6 +107,7 @@ public class P_Controller {
 	}
 	
 	//결재 상세 페이지
+	@Transactional
 	@RequestMapping("/pages/P_payContentForm")
 	public String P_payContentForm(HttpServletRequest req, Model model) {
 		logger.info("URL : P_payContentForm");
@@ -109,6 +118,7 @@ public class P_Controller {
 	}
 	
 	//다운로드
+	@Transactional
 	@RequestMapping("/pages/downloadFile")
 	public void downloadFile(HttpServletRequest req, HttpServletResponse res) throws Exception{
 		logger.info("URL : downloadFile");
@@ -130,6 +140,7 @@ public class P_Controller {
     }
 	
 	//관리자결제상세페이지
+	@Transactional
 	@RequestMapping("/admin/P_payContentForm")
 	public String P_payContentForm_admin(HttpServletRequest req, Model model) {
 		logger.info("URL : P_payContentForm_admin");
@@ -140,6 +151,7 @@ public class P_Controller {
 	}
 	
 	//결재문서삭제 관리자
+	@Transactional
 	@RequestMapping("/admin/P_deletePayment")
 	public String P_deletePayment(HttpServletRequest req, Model model) {
 		logger.info("URL : P_deletePayment");
@@ -150,6 +162,7 @@ public class P_Controller {
 	}
 	
 	//결재문서 복구 관리자 
+	@Transactional
 	@RequestMapping("/admin/P_restoPayment")
 	public String P_restoPayment(HttpServletRequest req, Model model) {
 		logger.info("URL : P_restoPayment");
@@ -160,6 +173,7 @@ public class P_Controller {
 	}
 	
 	//결재팝업
+	@Transactional
 	@RequestMapping("/pages/P_payApprove")
 	public String P_payApprove(HttpServletRequest req, Model model) {
 		logger.info("URL : P_payApprove");
@@ -170,6 +184,7 @@ public class P_Controller {
 	}
 	
 	//결재진행
+	@Transactional
 	@RequestMapping("/pages/P_payApprove_pro")
 	public String P_payApprove_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : P_payApprove_pro");
@@ -180,6 +195,7 @@ public class P_Controller {
 	}
 	
 	//반려팝업
+	@Transactional
 	@RequestMapping("/pages/P_payDeny")
 	public String P_payDeny(HttpServletRequest req, Model model) {
 		logger.info("URL : P_payDeny");
@@ -190,6 +206,7 @@ public class P_Controller {
 	}
 	
 	//결재진행
+	@Transactional
 	@RequestMapping("/pages/P_payDeny_pro")
 	public String P_payDeny_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : P_payDeny_pro");
@@ -200,6 +217,7 @@ public class P_Controller {
 	}
 	
 	//합의팝업
+	@Transactional
 	@RequestMapping("/pages/P_payAgree")
 	public String P_payAgree(HttpServletRequest req, Model model) {
 		logger.info("URL : P_payAgree");
@@ -210,6 +228,7 @@ public class P_Controller {
 	}
 	
 	//합의진행
+	@Transactional
 	@RequestMapping("/pages/P_payAgree_pro")
 	public String P_payAgree_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : P_payAgree_pro");
@@ -220,6 +239,7 @@ public class P_Controller {
 	}
 	
 	//각 결재함의 검색기능
+	@Transactional
 	@RequestMapping("/pages/P_SearchPaymentTool")
 	public String P_SearchPaymentTool(HttpServletRequest req, Model model) {
 		logger.info("URL : P_SearchPaymentTool");
@@ -230,6 +250,7 @@ public class P_Controller {
 	}
 	
 	//결재 - 결재 진행함
+	@Transactional
 	@RequestMapping("/pages/P_listApprCompleteView")
 	public String P_listApprCompleteView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_listApprCompleteView");
@@ -240,6 +261,7 @@ public class P_Controller {
 	}
 	
 	//결재 - 완료 문서함
+	@Transactional
 	@RequestMapping("/pages/P_readApprAllListView")
 	public String P_readApprAllListView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_readApprAllListView");
@@ -250,6 +272,7 @@ public class P_Controller {
 	}
 	
 	//결재 - 반려 문서함
+	@Transactional
 	@RequestMapping("/pages/P_listApprRejectView")
 	public String P_listApprRejectView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_listApprRejectView");
@@ -260,6 +283,7 @@ public class P_Controller {
 	}
 	
 	//결재 - 참조/열람문서함
+	@Transactional
 	@RequestMapping("/pages/P_listApprReferenceView")
 	public String P_listApprReferenceView(HttpServletRequest req, Model model) {
 		logger.info("URL : P_listApprReferenceView");
@@ -270,6 +294,7 @@ public class P_Controller {
 	}
 	
 	//결재 - 관리자 결재문서관리
+	@Transactional
 	@RequestMapping("/admin/P_managePayment")
 	public String P_managePayment(HttpServletRequest req, Model model) {
 		logger.info("URL : P_managePayment");

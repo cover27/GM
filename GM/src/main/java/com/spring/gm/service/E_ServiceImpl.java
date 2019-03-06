@@ -188,7 +188,6 @@ public class E_ServiceImpl implements E_Service {
 		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
-		int memcnt = 0;			// 맴버 명수
 		int start = 0;			// 현재 페이지 시작 글번호
 		int end = 0;			// 현재 페이지 마지막 글번호
 		int number = 0;			// 출력용 글번호
@@ -198,9 +197,9 @@ public class E_ServiceImpl implements E_Service {
 		int pageCount = 0;		// 페이지 갯수
 		int startPage = 0;		// 시작 페이지
 		int endPage = 0;		// 마지막 페이지
-		int cnt = 0;
+		int memfcnt = 0;
 		
-		cnt = dao.getMyFavoriteMemberCnt(strId);
+		memfcnt = dao.getMyFavoriteMemberCnt(strId);
 		
 		pageNum = req.getParameter("pageNum");
 		
@@ -211,17 +210,17 @@ public class E_ServiceImpl implements E_Service {
 		currentPage = Integer.parseInt(pageNum);
 		System.out.println("currentPage : " + currentPage);
 		
-		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
+		pageCount = (memfcnt / pageSize) + (memfcnt % pageSize > 0 ? 1 : 0); // 페이지 갯수 + 나머지 있으면 1
 		
 		start = (currentPage - 1) * pageSize + 1; 
 		
 		end = start + pageSize - 1;
 		
-		if(end > cnt) end = cnt;
+		if(end > memfcnt) end = memfcnt;
 		
-		number = cnt - (currentPage - 1) * pageSize;  // 출력용 글번호
+		number = memfcnt - (currentPage - 1) * pageSize;  // 출력용 글번호
 
-		if(cnt > 0) {
+		if(memfcnt > 0) {
 			//게시판 목록 조회
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
@@ -243,11 +242,11 @@ public class E_ServiceImpl implements E_Service {
 		endPage = startPage + pageBlock - 1; 
 		if(endPage > pageCount) endPage = pageCount;
 		
-		model.addAttribute("cnt", cnt); // 출력용 글번호
+		model.addAttribute("memfcnt", memfcnt); // 출력용 글번호
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum);  // 페이지번호
 		
-		if(cnt > 0) {
+		if(memfcnt > 0) {
 			model.addAttribute("startPage", startPage);     // 시작 페이지
 			model.addAttribute("endPage", endPage);         // 마지막 페이지
 			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
