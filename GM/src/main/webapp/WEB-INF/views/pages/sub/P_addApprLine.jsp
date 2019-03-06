@@ -76,7 +76,7 @@
 						</c:forEach>
 					</table>
 				</div>
-				<div class="w10p fleft ml30 howpay mt40">
+				<div class="w10p fleft ml30 howpay mt40" style="font-size: 1em;">
 					<ul>
 						<li>
 							<label>
