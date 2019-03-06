@@ -62,17 +62,17 @@ public class K_Controller {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getName();
-		
+				
 		if(id != null) {
 			service.login(req, model, id);
-			S_service.messageListCnt(req, model);
-			P_service.P_listApprTodoView(req, model);
-			O_service.listTodo(req, model);
-			service.addressMemberMain(req, model);
+			if(!id.equals("master")) {
+				S_service.messageListCnt(req, model);
+				P_service.P_listApprTodoView(req, model);
+				O_service.listTodo(req, model);
+				service.addressMemberMain(req, model);
+			}
 		}
 		
-		// 경주니
-		System.out.println("vo확인"+((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank());
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		System.out.println("sys_rank : " +  sys_rank);
 		model.addAttribute("sys_rank",sys_rank);
