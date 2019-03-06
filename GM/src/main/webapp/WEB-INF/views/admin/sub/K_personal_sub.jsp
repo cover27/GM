@@ -50,7 +50,7 @@
 					<form action="<c:url value='/admin/registpersonal'/>" method="post">
 						<ul>
 							<li class="ml10">
-								<span>여름휴가 : </span>
+								<span>휴가 : </span>
 								<span><input type="text" name="holiday" value="${holiday }"></span>
 								<span>일</span>
 							</li>
