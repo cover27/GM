@@ -43,7 +43,7 @@
 					</colgroup>
 					<tbody>
 						<!-- 구성원이 있으면 -->
-						<c:forEach var='mf_dtos' items='${mf_dtos}'>
+						<c:forEach var='mf_dtos' items='${mfe_dtos}'>
 							<tr>
 								<td>
 									${mf_dtos.id}
@@ -81,26 +81,28 @@
 				</table>
 			</div>
 			<!-- 페이지 컨트롤 -->
-            <div class="paging">
-				<c:if test="${memfcnt > 0}">
-				    <c:if test="${startPage > pageBlock}">
-				        <a href="<c:url value='/pages/E_orgMyFavoritMemList'/>"><i class="fas fa-angle-double-left"></i></a>
-				        <a href="<c:url value='/pages/E_orgMyFavoritMemList?num=${num}&pageNum=${startPage - pageBlock}'/>"><i class="fas fa-angle-left"></i></a>
-				    </c:if>
-				    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-				        <c:if test="${i == currentPage}">
-				            <span class="thisPage"><b>${i}</b></span>
-				        </c:if>
-				        <c:if test="${i != currentPage}">
-				            <a href="<c:url value='/pages/E_orgMyFavoritMemList?num=${num}&pageNum=${i}'/>">${i}</a>
-				        </c:if>
-				    </c:forEach>
-				    <c:if test="${pageCount > endPage}">
-				        <a href="<c:url value='/pages/E_orgMyFavoritMemList?num=${num}&pageNum=${startPage + pageBlock}'/>"><i class="fas fa-angle-right"></i></a>
-				        <a href="<c:url value='/pages/E_orgMyFavoritMemList?num=${num}&pageNum=${pageCount}'/>"><i class="fas fa-angle-double-right"></i></a>
-				    </c:if>
-				</c:if>
-            </div>
+	            <div class="paging">
+					<c:if test="${memfcnt > 0}">
+					    <c:if test="${startPage > pageBlock}">
+					        <a href="<c:url value='/pages/E_departMemberList'/>"><i class="fas fa-angle-double-left"></i></a>
+					        <a href="<c:url value='/pages/E_departMemberList?num=${num}&pageNum=${startPage - pageBlock}'/>"><i class="fas fa-angle-left"></i></a>
+					    </c:if>
+					
+					    <c:forEach var="i" begin="${startPage}" end="${endPage}">
+					        <c:if test="${i == currentPage}">
+					            <span class="thisPage"><b>${i}</b></span>
+					        </c:if>
+					        <c:if test="${i != currentPage}">
+					            <a href="<c:url value='/pages/E_departMemberList?num=${num}&pageNum=${i}'/>">${i}</a>
+					        </c:if>
+					    </c:forEach>
+					
+					    <c:if test="${pageCount > endPage}">
+					        <a href="<c:url value='/pages/E_departMemberList?num=${num}&pageNum=${startPage + pageBlock}'/>"><i class="fas fa-angle-right"></i></a>
+					        <a href="<c:url value='/pages/E_departMemberList?num=${num}&pageNum=${pageCount}'/>"><i class="fas fa-angle-double-right"></i></a>
+					    </c:if>
+					</c:if>
+	            </div>
 		</div>
 	</article>
 </section>

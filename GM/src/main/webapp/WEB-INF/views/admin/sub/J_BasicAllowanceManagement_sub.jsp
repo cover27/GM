@@ -148,7 +148,7 @@
 	function showONtime(){
 		var date = $("#date").val();
 	  	 var url="showONtime?date=" + date;
-	   	window.open(url, "showONtime", "menubar=no, width=1500, height=560");
+	   	window.open(url, "showONtime", "menubar=no, width=1500, height=465");
 		}
 	
 </script>
@@ -187,6 +187,9 @@
 		                </span>
 		                <span>
 		                	<input type="submit" value="검색">
+		                </span>
+		                <span>
+		                	<input type="button" value="연간/연장 수당보기" onclick="showONtime()" style="position: relative; left: 591px; top: 45px;">
 		                </span>
 				    </form>
 				</div>
@@ -246,7 +249,6 @@
 			</div>
 		    <div class="fright w70p" style="height: 666px;">
 		    	<h3>기본수당외 수당등록</h3>
-		    	<input type="button" value="연간/연장 수당보기" onclick="showONtime()">
 		    	<div class="table_top">
 		    		<table>
 		    			<colgroup>

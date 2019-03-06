@@ -83,7 +83,7 @@
 }
 
 .content .salary_info {
-	overflow-y: scroll;
+	overflow-y: auto;
 	height: 386px;
 	border-bottom: 2px #c0c0c0 solid;
 }
@@ -220,7 +220,7 @@
 }
 
 .content .J_BasicAllowanceManagement_btnset>div {
-	margin-right: 5%;
+	/* margin-right: 5%; */
 }
 
 .content .J_BasicAllowanceManagement_btnset input {

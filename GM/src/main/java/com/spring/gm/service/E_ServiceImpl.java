@@ -14,6 +14,7 @@ import com.spring.gm.persistence.E_DAO;
 import com.spring.gm.vo.AddressMemVO;
 import com.spring.gm.vo.GroupsVO;
 import com.spring.gm.vo.MemberVO;
+import com.spring.gm.vo.MessageVO;
 
 
 
@@ -112,7 +113,7 @@ public class E_ServiceImpl implements E_Service {
 	@Override
 	public void departMember(HttpServletRequest req, Model model) {
 		int depart = Integer.parseInt(req.getParameter("groupId"));
-		int pageSize = 100; 		// 한페이지당 출력할 글 갯수
+		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
 		int memcnt = 0;			// 맴버 명수
@@ -188,6 +189,7 @@ public class E_ServiceImpl implements E_Service {
 		int pageSize = 17; 		// 한페이지당 출력할 글 갯수
 		int pageBlock = 3;		// 한 블럭당 페이지 갯수
 		
+		int memfcnt = 0;			// 글갯수		
 		int start = 0;			// 현재 페이지 시작 글번호
 		int end = 0;			// 현재 페이지 마지막 글번호
 		int number = 0;			// 출력용 글번호
@@ -197,9 +199,13 @@ public class E_ServiceImpl implements E_Service {
 		int pageCount = 0;		// 페이지 갯수
 		int startPage = 0;		// 시작 페이지
 		int endPage = 0;		// 마지막 페이지
-		int memfcnt = 0;
-		
+	
+		// 게시판 갯수
 		memfcnt = dao.getMyFavoriteMemberCnt(strId);
+
+		
+		System.out.println("cnt(쪽지 갯수) : " + memfcnt);
+
 		
 		pageNum = req.getParameter("pageNum");
 		
@@ -216,33 +222,42 @@ public class E_ServiceImpl implements E_Service {
 		
 		end = start + pageSize - 1;
 		
+		System.out.println("start : " + start);
+		System.out.println("end : " + end);
+		
 		if(end > memfcnt) end = memfcnt;
 		
 		number = memfcnt - (currentPage - 1) * pageSize;  // 출력용 글번호
-
+		
+		System.out.println("number : " + number);
+		System.out.println("pageSize : " + pageSize);
+		
 		if(memfcnt > 0) {
 			//게시판 목록 조회
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
 			map.put("strId", strId);
-
 			
-			List<AddressMemVO> mf_dtos = dao.getMyFavoriteMemberList(map);
-			System.out.println("dddd"+mf_dtos);
-			model.addAttribute("mf_dtos", mf_dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
+			List<AddressMemVO> dtos = dao.getMyFavoriteMemberList(map);
+			
+
+			model.addAttribute("mfe_dtos", dtos); // 큰바구니 : 게시글 목록 cf) 작은바구니 : 게시글 1건
 
 		}
 		
 		// 시작페이지
 		startPage = (currentPage / pageBlock) * pageBlock + 1; 
 		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+		System.out.println("startPage : " + startPage);
 				
 		// 마지막 페이지
 		endPage = startPage + pageBlock - 1; 
 		if(endPage > pageCount) endPage = pageCount;
+		System.out.println("endPage : " + endPage);
+		System.out.println("================");
 		
-		model.addAttribute("memfcnt", memfcnt); // 출력용 글번호
+		model.addAttribute("memfcnt", memfcnt);  // 글갯수
 		model.addAttribute("number", number); // 출력용 글번호
 		model.addAttribute("pageNum", pageNum);  // 페이지번호
 		
@@ -252,7 +267,7 @@ public class E_ServiceImpl implements E_Service {
 			model.addAttribute("pageBlock", pageBlock);     // 출력할 페이지 갯수
 			model.addAttribute("pageCount", pageCount);     // 페이지 갯수
 			model.addAttribute("currentPage", currentPage); // 현재페이지
-		}
+		}		
 	}
 
 	@Override
