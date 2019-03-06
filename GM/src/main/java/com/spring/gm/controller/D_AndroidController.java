@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,6 +27,7 @@ public class D_AndroidController {
 	D_DAO dao;
 	
 	//앱 로그인
+	@Transactional
 	@ResponseBody//웹에서 안드로이드로 값을 전달하기 위한 어노테이션
 	@RequestMapping("androidSignIn")
 	public Map<String, String> androidSignIn(HttpServletRequest req){
@@ -53,6 +55,7 @@ public class D_AndroidController {
 	}
 	
 	//앱 마이페이지
+	@Transactional
 	@ResponseBody
 	@RequestMapping("androidMyPageMain")
 	public Map<String, Object> androidMyPageMain(HttpServletRequest req) {

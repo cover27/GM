@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,6 +21,7 @@ public class D_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(D_Controller.class);
 	
 	// 게시판 생성 페이지
+	@Transactional
 	@RequestMapping("/admin/D_createBoards")
 	public String createBoards(HttpServletRequest req, Model model) {
 		logger.info("URL : D_createBoards");
@@ -28,6 +30,7 @@ public class D_Controller {
 	}
 	
 	//게시판 생성 처리
+	@Transactional
 	@RequestMapping("/admin/D_CreateBoardsPro")
 	public String createBoardsPro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_CreateBoards_pro");
@@ -38,6 +41,7 @@ public class D_Controller {
 	}
 	
 	//게시판 설정
+	@Transactional
 	@RequestMapping("/admin/D_boardsSetting")
 	public String boardsList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardsSetting");
@@ -47,6 +51,7 @@ public class D_Controller {
 	}
 	
 	// 게시판 수정
+	@Transactional
 	@RequestMapping("/admin/D_boardsUpdate")
 	public String boardsUpdate(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardsUpdate");
@@ -55,6 +60,7 @@ public class D_Controller {
 		return "admin/D_boardsUpdate";
 	}
 	// 게시판 수정 처리
+	@Transactional
 	@RequestMapping("/admin/D_boardsUpdatePro")
 	public String boardsUpdatePro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardsUpdatePro");
@@ -64,6 +70,7 @@ public class D_Controller {
 	}
 	
 	//게시글 목록
+	@Transactional
 	@RequestMapping("/pages/D_boardList")
 	public String boardList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardlist");
@@ -74,6 +81,7 @@ public class D_Controller {
 	}
 	
 	// 게시판관리 - 게시판 선택
+	@Transactional
 	@RequestMapping("/pages/D_boardListSetting")
 	public String boardListSetting(HttpServletRequest req, Model model) {
 		logger.info("URL : D_BoardListSetting");
@@ -82,6 +90,7 @@ public class D_Controller {
 	}
 
 	//게시글 입력
+	@Transactional
 	@RequestMapping("/pages/D_writeForm")
 	public String insertBoard(HttpServletRequest req, Model model) {
 		logger.info("URL : D_writeForm");
@@ -91,6 +100,7 @@ public class D_Controller {
 		return "pages/D_writeForm";
 	}
 	
+	@Transactional
 	@RequestMapping("/pages/D_writePro")
 	public String writePro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_writePro");
@@ -99,6 +109,7 @@ public class D_Controller {
 		return "pages/D_writePro";
 	}
 	
+	@Transactional
 	@RequestMapping("/pages/D_boardContent")
 	public String boardContent(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardContent");
@@ -108,6 +119,7 @@ public class D_Controller {
 		service.repleList(req, model);
 		return "pages/D_boardContent";
 	}
+	@Transactional
 	@RequestMapping("/pages/D_boardUpdate")
 	public String boardUpdate(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardUpdate");
@@ -115,7 +127,7 @@ public class D_Controller {
 		service.boardUpdate(req, model);
 		return "pages/D_boardUpdate";
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/D_boardUpdatePro")
 	public String boardUpdatePro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardUpdatePro");
@@ -123,7 +135,7 @@ public class D_Controller {
 		service.boardUpdatePro(req, model);
 		return "pages/D_boardUpdatePro";
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/D_boardDeletePro")
 	public String boardDeletePro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardDeletePro");
@@ -131,7 +143,7 @@ public class D_Controller {
 		service.boardDelete(req, model);
 		return "pages/D_boardDeletePro";
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/D_repleInsertPro")
 	public String repleInsert(HttpServletRequest req, Model model) {
 		logger.info("URL : D_repleInsertPro");
@@ -139,7 +151,7 @@ public class D_Controller {
 		service.insertReple(req, model);
 		return "pages/D_repleInsertPro";
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/D_repleDeletePro")
 	public String repleDelete(HttpServletRequest req, Model model) {
 		logger.info("URL : D_repleDeletePro");
@@ -147,7 +159,7 @@ public class D_Controller {
 		service.deleteReple(req, model);
 		return "/pages/D_repleDeletePro";
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/D_allBoardList")
 	public String allBoardList(HttpServletRequest req, Model model) {
 		logger.info("URL : D_allBoardList");
@@ -156,7 +168,7 @@ public class D_Controller {
 		service.allBoardList(req, model);
 		return "/pages/D_allBoardList";
 	}
-	
+	@Transactional
 	@RequestMapping("/admin/D_deleteBoardsPro")
 	public String deleteBoards(HttpServletRequest req, Model model) {
 		logger.info("URL : D_allBoardList");
@@ -164,7 +176,7 @@ public class D_Controller {
 		service.boardsDelete(req, model);
 		return "/admin/sub/D_deleteBoards_Pro";
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/D_repleUpdate")
 	public String repleUpdate(HttpServletRequest req, Model model) {
 		logger.info("URL : D_repleUpdate");
@@ -172,7 +184,7 @@ public class D_Controller {
 		service.repleUpdate(req, model);
 		return "pages/D_repleUpdate";
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/D_repleUpdatePro")
 	public String repleUpdatePro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_repleUpdatePro");
@@ -180,7 +192,7 @@ public class D_Controller {
 		service.repleUpdatePro(req, model);
 		return "pages/D_repleUpdatePro";
 	}
-	
+	@Transactional
 	@RequestMapping("/admin/D_boardDelPro")
 	public String boardDel(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardDelPro");
@@ -188,7 +200,7 @@ public class D_Controller {
 		service.boardDel(req, model);
 		return "/admin/sub/D_boardDelPro";
 	}
-	
+	@Transactional
 	@RequestMapping("/admin/D_allBoardDeletePro")	// 전체 게시물 목록에서 삭제
 	public String allBoardDeletePro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_allBoardDeletePro");
@@ -196,7 +208,7 @@ public class D_Controller {
 		service.boardDel(req, model);
 		return "/admin/sub/D_allBoardDeletePro";
 	}
-	
+	@Transactional
 	@RequestMapping("/admin/D_allBoardAdmin")	// 게시물 관리
 	public String allBoardAdmin(HttpServletRequest req, Model model) {
 		logger.info("URL : D_allBoardAdmin");
@@ -205,7 +217,7 @@ public class D_Controller {
 		service.allBoardAdmin(req, model);
 		return "/admin/D_allBoardAdmin";
 	}
-	
+	@Transactional
 	@RequestMapping("/admin/D_boardMovePro")	//  게시물 목록 관리에서 이동
 	public String boardMovePro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardMovePro");
@@ -213,7 +225,7 @@ public class D_Controller {
 		service.boardMove(req, model);
 		return "/admin/sub/D_boardMovePro";
 	}
-	
+	@Transactional
 	@RequestMapping("/admin/D_boardAdminDeletePro")	// 게시물 목록 관리에서 삭제
 	public String allBoardAdminDeletePro(HttpServletRequest req, Model model) {
 		logger.info("URL : D_boardAdminDeletePro");

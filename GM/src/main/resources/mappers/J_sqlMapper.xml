@@ -1332,7 +1332,7 @@
 		and m.del = 0
 	</select>
 	<select id="vacationapplicationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
-		select v.num, v.id, v.types, v.begin, v.end, v.day, v.content, v.state,
+		select v.num, v.id, v.types, v.begin, v.end, v.day, v.content, v.state, m.name,
 		v.applicationdate, v.fullhalfday
 		from member m, vacation v
 		where m.id =
@@ -1352,7 +1352,7 @@
 		and m.del = 0
 	</select>
 	<select id="vacationapplicationList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
-		select v.num,m.name, v.id, v.types, v.begin, v.end, v.day, v.content, v.state,
+		select v.num,m.name , v.id, v.types, v.begin, v.end, v.day, v.content, v.state,
 		v.applicationdate, v.fullhalfday
 		from member m, vacation v
 		where m.id = v.id
