@@ -45,7 +45,18 @@
 						<span><b>${dto.subject}</b></span>
 					</li>
 					<li>
-						<span>${dto.writer}</span>
+						<span>
+						<c:forEach var="b_dtos" items="${b_dtos}">
+							<c:if test="${b_dtos.num == dto.num}">
+								<c:if test="${b_dtos.anon == 0}">
+									${dto.writer}
+								</c:if>
+								<c:if test="${b_dtos.anon == 1}">
+									*********
+								</c:if>								
+							</c:if>
+						</c:forEach>
+						</span>
 						<span style="margin:0 10px;color: #c0c0c0;">|</span>
 						<span><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.getReg_date()}" /></span>
 					</li>
@@ -75,7 +86,18 @@
 						<c:if test="${r_dtos.del == 0}">
 							<ul id="result" class="cmt_list" style="margin-top: 20px;border-top: 1px solid #e5e5e5">
 								<li>
-									<span>${r_dtos.writer}</span>
+									<span>
+										<c:forEach var="b_dtos" items="${b_dtos}">
+											<c:if test="${b_dtos.num == dto.num && dto.boardnum == r_dtos.boardnum}">
+												<c:if test="${b_dtos.anon == 0}">
+													${r_dtos.writer}
+												</c:if>
+												<c:if test="${b_dtos.anon == 1}">
+													*********
+												</c:if>
+											</c:if>
+										</c:forEach>
+									</span>
 									<span style="margin:0 10px;color: #c0c0c0;">|</span>
 									<span><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${r_dtos.reg_date}" /></span>
 									<c:if test="${sessionScope.loginInfo.name == r_dtos.writer}">
@@ -96,8 +118,10 @@
 				</form>
 			</div>
 			<div style="margin-bottom:60px;padding-top: 20px;" class="btnset fright">
-				<c:if test="${sessionScope.loginInfo.sys_rank == 1 || sessionScope.loginInfo.name == dto.writer}">
+				<c:if test="${sessionScope.loginInfo.name == dto.writer}">
 					<input type="button" class="inputButton" value="글 수정" onclick="window.location='<c:url value="/pages/D_boardUpdate?boardnum=${dto.boardnum}&pageNum=${pageNum}&num=${num}"/>'">
+				</c:if>
+				<c:if test="${sessionScope.loginInfo.sys_rank == 1 || sessionScope.loginInfo.name == dto.writer}">
 					<input type="button" class="inputButton" value="글 삭제" onclick="window.location='<c:url value="/pages/D_boardDeletePro?boardnum=${dto.boardnum}&pageNum=${pageNum}&num=${num}&ref_level=${dto.ref_level}"/>'">
 				</c:if>
 				<input type="button" class="inputButton" value="답글 쓰기" onclick="window.location='<c:url value="/pages/D_writeForm?boardnum=${dto.boardnum}&num=${num}&ref=${dto.ref}&ref_step=${dto.ref_step}&ref_level=${dto.ref_level}&pageNum=${pageNum}"/>'">
