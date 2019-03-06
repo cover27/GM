@@ -42,7 +42,6 @@
             <li class="menu_all"><a href="#"></a></li>
             -->
         </ul>
-       
         <div class="etc">
             <!-- this object only main start -->
             <div class="call_center_banner">
@@ -99,6 +98,5 @@
                 <form action="<c:url value='/logout' />" id="logout_form" method="post"></form>
             </div>
         </div>
-        
        </c:if>
    </header>
