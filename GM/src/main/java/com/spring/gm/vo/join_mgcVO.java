@@ -111,17 +111,12 @@ public class join_mgcVO {
 	}
 	@Override
 	public String toString() {
-		return "J_mgcJoinVO [id=" + id + ", name=" + name + ", jumin1=" + jumin1 + ", gender=" + gender + ", nation="
+		return "join_mgcVO [id=" + id + ", name=" + name + ", jumin1=" + jumin1 + ", gender=" + gender + ", nation="
 				+ nation + ", tel=" + tel + ", email_in=" + email_in + ", rank=" + rank + ", salary=" + salary
 				+ ", enterday=" + enterday + ", year=" + year + ", account_number=" + account_number + ", company="
-				+ company + ", j_id=" + j_id + ", j_name=" + j_name + ", getId()=" + getId() + ", getName()="
-				+ getName() + ", getJumin1()=" + getJumin1() + ", getGender()=" + getGender() + ", getNation()="
-				+ getNation() + ", getTel()=" + getTel() + ", getEmail_in()=" + getEmail_in() + ", getRank()="
-				+ getRank() + ", getSalary()=" + getSalary() + ", getEnterday()=" + getEnterday() + ", getYear()="
-				+ getYear() + ", getAccount_number()=" + getAccount_number() + ", getCompany()=" + getCompany()
-				+ ", getJ_id()=" + getJ_id() + ", getJ_name()=" + getJ_name() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ company + ", j_id=" + j_id + ", j_name=" + j_name + "]";
 	}
     
+	
     
 }
