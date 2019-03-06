@@ -100,6 +100,10 @@ header .etc>.top_notice>li>.mail {
     background: url(../images/iconset_etc.png) no-repeat 0 0;
 }
 
+header .etc>.top_notice>li>.calendar {
+    background: url(../images/iconset_etc.png) no-repeat 0 -49px;
+}
+
 header .etc>.top_notice>li>.appr {
     background: url(../images/iconset_etc.png) no-repeat 0 -100px;
 }
