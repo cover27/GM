@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,6 +23,7 @@ public class E_Controller {
 	
 						
 	// 조직도 - 첫페이지, 내회사 전체 구성원 목록	
+	@Transactional
 	@RequestMapping("pages/E_orgnaizationMemberList")
 	public String organizationMemberList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_orgnaizationMemberList");
@@ -32,6 +34,7 @@ public class E_Controller {
 	}
 	
 	// 조직도 - 회사내 부서 구성원 목록
+	@Transactional
 	@RequestMapping("pages/E_departMemberList")
 	public String departMemberList(HttpServletRequest req, Model model) {
 		logger.info("URL : E_departMemberList");
@@ -40,7 +43,7 @@ public class E_Controller {
 		service.departMember(req, model);
 		return "pages/E_departMemberList";
 	}
-	
+	@Transactional
 	@RequestMapping("pages/E_orgMyFavoritMemList")
 	public String favoriteMember(HttpServletRequest req, Model model) {
 		logger.info("URL : E_orgMyFavoritMemList");
@@ -50,7 +53,7 @@ public class E_Controller {
 		service.myCompanyMember(req, model);
 		return "pages/E_orgMyFavoritMemList";
 	}
-	
+	@Transactional
 	@RequestMapping("pages/E_memberContents")
 	public String memberContents(HttpServletRequest req, Model model) {
 		logger.info("URL : E_memberContents");
@@ -61,6 +64,7 @@ public class E_Controller {
 	}
 	
 	// 자주 연락하는 사람 추가
+	@Transactional
 	@RequestMapping("pages/E_addMemberPro")
 	public String addMemberPro(HttpServletRequest req, Model model) {
 		logger.info("URL : E_addMemberPro");
@@ -70,6 +74,7 @@ public class E_Controller {
 	}
 	
 	// 자주연락하는 사람 삭제
+	@Transactional
 	@RequestMapping("pages/E_deleteMemberPro")
 	public String deleteMember(HttpServletRequest req, Model model) {
 		logger.info("URL : E_deleteMemberPro");
@@ -77,7 +82,7 @@ public class E_Controller {
 		service.deleteMember(req, model);
 		return "pages/E_deleteMemberPro";
 	}
-	
+	@Transactional
 	@RequestMapping("pages/E_addmembersPro")
 	public String addMembers(HttpServletRequest req, Model model) {
 		logger.info("URL : E_addmembersPro");
@@ -85,7 +90,7 @@ public class E_Controller {
 		service.addMembers(req, model);
 		return "pages/E_addmembersPro";		
 	}
-	
+	@Transactional
 	@RequestMapping("pages/E_addmembersDepartPro")
 	public String addMembersDepartPro(HttpServletRequest req, Model model) {
 		logger.info("URL : E_addmembersDepartPro");

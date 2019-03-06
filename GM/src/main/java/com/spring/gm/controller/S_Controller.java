@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,7 +36,7 @@ public class S_Controller {
 		return "pages/login";
 	}
 	*/
-	
+	@Transactional
 	@RequestMapping("/pages/S_message_inbox")
 	public String S_message_inbox(HttpServletRequest req, Model model) {
 		logger.info("URL : S_message_inbox");
@@ -57,6 +58,7 @@ public class S_Controller {
 	*/
 	
 	// 쪽지
+	@Transactional
 	@RequestMapping("/pages/S_message")
 	public String mail(HttpServletRequest req, Model model) {
 		logger.info("URL : S_message");
@@ -66,6 +68,7 @@ public class S_Controller {
 	}
 	
 	// 쪽지 쓰기
+	@Transactional
 	@RequestMapping("/pages/S_sendMessageForm")
 	public String sendMessage(HttpServletRequest req, Model model) {
 		logger.info("URL : S_sendMessageForm");
@@ -75,6 +78,7 @@ public class S_Controller {
 	}
 	
 	// 쪽지 쓰기 처리
+	@Transactional
 	@RequestMapping("/pages/S_sendMessagePro")
 	public String sendMessagePro(HttpServletRequest req, Model model) {
 		logger.info("URL : S_sendMessagePro");
@@ -84,7 +88,7 @@ public class S_Controller {
 		service.messageListCnt(req, model);
 		return "pages/S_sendMessagePro";		
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/S_sendMessageList")
 	public String sendMessageList(HttpServletRequest req, Model model) {
 		logger.info("URL : S_sendMessageList");
@@ -93,7 +97,7 @@ public class S_Controller {
 		service.messageListCnt(req, model);
 		return "pages/S_sendMessageList";
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/S_moveGarbagePro")
 	public String moveGarbage(HttpServletRequest req, Model model) {
 		logger.info("URL : S_moveGarbagePro");
@@ -102,7 +106,7 @@ public class S_Controller {
 		service.messageListCnt(req, model);
 		return "pages/S_moveGarbagePro";
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/S_garbageList")
 	public String garbageList(HttpServletRequest req, Model model) {
 		logger.info("URL : S_garbageList");
@@ -111,7 +115,7 @@ public class S_Controller {
 		service.messageListCnt(req, model);
 		return "pages/S_garbageList";
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/S_delGarbagePro")
 	public String delGarbage(HttpServletRequest req, Model model) {
 		logger.info("URL : S_delGarbage");
@@ -120,7 +124,7 @@ public class S_Controller {
 		service.messageListCnt(req, model);
 		return "pages/S_delGarbagePro";
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/S_sendDeletePro")
 	public String sendDeletePro(HttpServletRequest req, Model model) {
 		logger.info("URL : S_sendDeletePro");
@@ -130,7 +134,7 @@ public class S_Controller {
 		service.messageListCnt(req, model);
 		return "pages/S_sendDeletePro";		
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/S_contentMessage")
 	public String contentMessage(HttpServletRequest req, Model model) {
 		logger.info("URL : S_contentMessage");
@@ -139,7 +143,7 @@ public class S_Controller {
 		service.messageListCnt(req, model);
 		return "pages/S_contentMessage";		
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/S_messageDeletePro")
 	public String contentDelete(HttpServletRequest req, Model model) {
 		logger.info("URL : S_messageDeletePro");
@@ -147,7 +151,7 @@ public class S_Controller {
 		service.messageListCnt(req, model);
 		return "pages/S_messageDeletePro";	
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/S_sendcontentMessage")
 	public String endcontentMessage(HttpServletRequest req, Model model) {
 		logger.info("URL : S_sendcontentMessage");
@@ -156,7 +160,7 @@ public class S_Controller {
 		service.messageListCnt(req, model);
 		return "pages/S_sendcontentMessage";	
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/S_sendMessageDeletePro")
 	public String sendContentDelete(HttpServletRequest req, Model model) {
 		logger.info("URL : S_sendMessageDeletePro");
@@ -165,7 +169,7 @@ public class S_Controller {
 		service.messageListCnt(req, model);
 		return "pages/S_sendMessageDeletePro";	
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/S_contentDelPro")
 	public String contentDelPro(HttpServletRequest req, Model model) {
 		logger.info("URL : S_contentDelPro");
@@ -173,7 +177,7 @@ public class S_Controller {
 		service.messageListCnt(req, model);
 		return "pages/S_contentDelPro";	
 	}
-	
+	@Transactional
 	@RequestMapping("/pages/S_garbageContentDeletePro")
 	public String garbageContentDelete(HttpServletRequest req, Model model) {
 		logger.info("URL : S_garbageContentDeletePro");
@@ -181,7 +185,7 @@ public class S_Controller {
 		service.messageListCnt(req, model);
 		return "pages/S_garbageContentDeletePro";	
 	}
-	
+	@Transactional
 	@RequestMapping("pages/S_orgSendMessageForm")
 	public String orgSendMessage(HttpServletRequest req, Model model) {
 		logger.info("URL : S_orgSendMessageForm");
@@ -189,7 +193,7 @@ public class S_Controller {
 		eservice.departList(req, model);
 		return "pages/S_orgSendMessageForm";		
 	}	
-	
+	@Transactional
 	@RequestMapping("pages/S_orgSendMessagePro")
 	public String orgSendMessagePro(HttpServletRequest req, Model model) {
 		logger.info("URL : S_orgSendMessagePro");

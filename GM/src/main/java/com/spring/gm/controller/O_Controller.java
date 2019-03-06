@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,6 +30,7 @@ public class O_Controller {
 	
 	/* 업무관리 시작 */	
 	//업무 요청 - 업무관리 클릭 화면 및 수신업무 요청 화면
+	@Transactional
 	@RequestMapping("/pages/W_listTodoView")
 	public String O_listTodoView(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
@@ -41,6 +43,7 @@ public class O_Controller {
 	}
 	
 	//업무요청 - 수신 업무 요청 상세 조회 화면
+	@Transactional
 	@RequestMapping("/pages/W_readSubTodoView")
 	public String O_readSubTodoView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_readSubTodoView");
@@ -51,6 +54,7 @@ public class O_Controller {
 	}
 	
 	//업무요청 - 수신 업무 요청 상세 조회 처리 항목 pro
+	@Transactional
 	@RequestMapping("/pages/W_readSubTodoSuccessPro")
 	public String O_readSubTodoSuccessPro(HttpServletRequest req, Model model) {
 		logger.info("URL : O_readSubTodoSuccessPro");
@@ -61,6 +65,7 @@ public class O_Controller {
 	}
 	
 	//TO-DO - 나의 할일 화면
+	@Transactional
 	@RequestMapping("/pages/W_listMyTodoView")
 	public String O_listMyTodoView(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
@@ -72,6 +77,7 @@ public class O_Controller {
 	}
 	
 	//TO-DO - 나의 할일 화면 등록
+	@Transactional
 	@RequestMapping("/pages/W_insertTodoPro")
 	public String O_insertTodoPro(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
@@ -83,6 +89,7 @@ public class O_Controller {
 	}
 	
 	//TO-DO - 나의 할일 화면 삭제
+	@Transactional
 	@RequestMapping("/pages/W_deleteTodoPro")
 	public String O_deleteTodoPro(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
@@ -94,6 +101,7 @@ public class O_Controller {
 	}
 	
 	//TO-DO - 나의할일 등록한 뒤나오는 화면
+	@Transactional
 	@RequestMapping("/pages/W_listMyTodoCreate")
 	public String O_listMyTodoCreate(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
@@ -106,6 +114,7 @@ public class O_Controller {
 	}
 	
 	//업무 등록 화면
+	@Transactional
 	@RequestMapping("/pages/W_createSelfTaskView")
 	public String O_createSelfTaskView(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
@@ -120,6 +129,7 @@ public class O_Controller {
 	}
 	
 	//업무 등록 insert
+	@Transactional
 	@RequestMapping("/pages/W_createSelfTaskPro")
 	public String O_createSelfTaskPro(HttpServletRequest req, Model model) {
 		logger.info("URL : O_createSelfTaskPro");
@@ -130,6 +140,7 @@ public class O_Controller {
 	}
 	
 	//업무 요청 - 내가 한 업무요청 화면
+	@Transactional
 	@RequestMapping("/pages/W_listPureOrderView")
 	public String O_listPureOrderView(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
@@ -142,6 +153,7 @@ public class O_Controller {
 	}
 	
 	//업무요청 - 내가 한 업무요청 상세 조회 화면
+	@Transactional
 	@RequestMapping("/pages/W_readOrderView")
 	public String O_readOrderView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_readOrderView");
@@ -152,6 +164,7 @@ public class O_Controller {
 	}
 	
 	//업무요청 - 업무요청 수정 화면
+	@Transactional
 	@RequestMapping("/pages/W_updateTaskView")
 	public String O_updateTaskView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_updateTaskView");
@@ -162,6 +175,7 @@ public class O_Controller {
 	}
 	
 	//업무요청 - 업무요청 수정 Pro
+	@Transactional
 	@RequestMapping("/pages/W_updateTaskPro")
 	public String O_updateTaskPro(HttpServletRequest req, Model model) {
 		logger.info("URL : O_updateTaskPro");
@@ -172,6 +186,7 @@ public class O_Controller {
 	}
 	
 	//업무요청 - 업무요청 삭제 Pro
+	@Transactional
 	@RequestMapping("/pages/W_updateTaskDeletePro")
 	public String O_updateTaskDeletePro(HttpServletRequest req, Model model) {
 		logger.info("URL : O_updateTaskDeletePro");
@@ -182,6 +197,7 @@ public class O_Controller {
 	}
 	
 	//업무요청 - 내가 한 업무요청 view의 checkbox 삭제
+	@Transactional
 	@RequestMapping("/pages/W_listDeletePro")
 	public String O_listDeletePro(HttpServletRequest req, Model model) {
 		logger.info("URL : O_listDeletePro");
@@ -192,6 +208,7 @@ public class O_Controller {
 	}
 	
 	//업무 요청 - 업무완료함 조회
+	@Transactional
 	@RequestMapping("/pages/W_listTodoReportView")
 	public String O_listTodoReportView(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
@@ -204,6 +221,7 @@ public class O_Controller {
 	}
 	
 	//관리자 메뉴 - 업무 문서 관리
+	@Transactional
 	@RequestMapping("/admin/W_listAdminDocManagement")
 	public String O_listAdminDocManagement(HttpServletRequest req, Model model) {
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
@@ -216,6 +234,7 @@ public class O_Controller {
 	}
 	
 	//업무관리의 view 페이지 검색기능
+	@Transactional
 	@RequestMapping("/pages/W_searchTodoTool")
 	public String W_searchTodoTool(HttpServletRequest req, Model model) {
 		logger.info("URL : W_searchTodoTool");
@@ -228,6 +247,7 @@ public class O_Controller {
 	
 	
 	//사원 검색조회
+	@Transactional
 	@RequestMapping("/pages/W_searchId_sub")
 	public String searchIdPlease(HttpServletRequest req, Model model) {
 		logger.info("URL : searchId_sub");
@@ -248,6 +268,7 @@ public class O_Controller {
 	
 	/* 일정 시작 */
 	//일정 화면
+	@Transactional
 	@RequestMapping("/pages/O_calendar")
 	public String O_calendar(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendar");
@@ -258,6 +279,7 @@ public class O_Controller {
 	}
 	
 	//일정 등록
+	@Transactional
 	@RequestMapping("/pages/O_calendarCreateView")
 	public String O_calendarCreateView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendarCreateView");
@@ -268,7 +290,7 @@ public class O_Controller {
 	}
 	
 	//일정 등록 pro
-	
+	@Transactional
 	@RequestMapping("/pages/O_calendarPro")
 	public String O_calendarPro(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendarPro");
@@ -279,6 +301,7 @@ public class O_Controller {
 	}
 	
 	//일정 상세 화면
+	@Transactional
 	@RequestMapping("/pages/O_calendarDetail")
 	public String O_calendarDetail(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendarDetail");
@@ -289,6 +312,7 @@ public class O_Controller {
 	}
 	
 	//일정 수정
+	@Transactional
 	@RequestMapping("/pages/O_calendarModify")
 	public String O_calendarModify(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendarDetail");
@@ -299,6 +323,7 @@ public class O_Controller {
 	}
 	
 	//일정 삭제
+	@Transactional
 	@RequestMapping("/pages/O_calendarDelete")
 	public String O_calendarDelete(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendarDelete");
@@ -309,6 +334,7 @@ public class O_Controller {
 	}
 	
 	//메인화면 일정 view
+	@Transactional
 	@RequestMapping("/pages/O_calendarMainView")
 	public String O_calendarMainView(HttpServletRequest req, Model model) {
 		logger.info("URL : O_calendarMainView");
