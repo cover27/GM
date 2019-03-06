@@ -1467,6 +1467,7 @@ public class K_ServiceImpl implements K_Service{
 				addressList.get(i).setG_name(companyName);
 			}
 		}
+		System.out.println("addressList : "+addressList.size());
 		model.addAttribute("addressList", addressList);
 	}
 	
