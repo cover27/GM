@@ -78,7 +78,7 @@
 }
 
 .content .table_body {
-	overflow-y: scroll;
+	overflow-y: auto;
 	height: 701px;
 	border-bottom: 2px #c0c0c0 solid;
 }
