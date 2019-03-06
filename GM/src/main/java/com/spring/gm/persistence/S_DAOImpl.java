@@ -149,5 +149,23 @@ public class S_DAOImpl implements S_DAO {
 		return dao.getMemberInfo(strId);
 	}
 
+	@Override
+	public int restoreMessage(int num) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.restoreMessage(num);
+	}
+
+	@Override
+	public int garbageRestore(Map<String, Integer> map) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.garbageRestore(map);
+	}
+
+	@Override
+	public int garbageAlldelete(Map<String, Integer> map) {
+		S_DAO dao = sqlSession.getMapper(S_DAO.class);
+		return dao.garbageAlldelete(map);
+	}
+
 
 }

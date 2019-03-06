@@ -56,5 +56,7 @@ public interface O_Service {
 	public void selectTodo(HttpServletRequest req, Model model);
 	//TO-DO - 나의 할일 삭제
 	public void deleteTodoPro(HttpServletRequest req, Model model);
+	//TO-DO - 나의 할일 완료
+	public void updateTodoPro(HttpServletRequest req, Model model);
 	/* 업무관리 끝 */
 }

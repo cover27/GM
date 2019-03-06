@@ -28,6 +28,7 @@
 		SELECT * FROM(SELECT m.id, m.name, r.r_name, m.depart, m.enterday, m.tel, m.email_in, g.g_name as j_name, rownum rNum
               FROM member m ,groups g , grade r 
               WHERE m.depart = g.groupid and m.rank = r.rank and m.company = #{company}
+              and r.r_name != '대기자' and m.del = 0
               and r.r_name != '대기자'  and m.del = 0
               order by m.depart ,r.r_name)
         WHERE (rNum >=  #{start} AND rNum <= #{end}) and depart != #{company} 
@@ -90,8 +91,8 @@
 	<!-- 검색 급여 회원정보 가져오기(사원 아이디) -->
 	<select id="search_salaryCnt3" parameterType="java.util.Map"
 		resultType="int">
-		SELECT count(*) cnt FROM member WHERE id =
-		#{search_content} and company = #{company} and del = 0
+		SELECT count(*) cnt FROM member WHERE id like '%'||#{search_content}||'%'
+		 and company = #{company} and del = 0
 	</select>
 	<!-- 검색 급여 회원정보 가져오기(사원 아이디 - 그룹테이블과 조인) -->
 	<select id="searchinfoList4" parameterType="java.util.Map"
@@ -893,7 +894,7 @@
 	<select id="searchGoOffList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_maVO">
 		select a.num, a.id, a.go, a.off, m.name, a.worktime, a.overtime,
-		a.nighttime, a.perceptiontime, a.departuretime
+		a.nighttime, a.perceptiontime, a.departuretime ,a.result
 		from member m, attended a
 		where m.id = a.id
 		and m.company = #{company}
@@ -1304,6 +1305,7 @@
 		and m.company = #{company}
 		and to_char(v.begin,'yyyy')= #{year} and to_char(v.end,'yyyy')= #{year}
 		and v.types = 1
+		and v.state = 1
 		and m.del = 0
 	</select>
 	<select id="vacationList" parameterType="java.util.Map"

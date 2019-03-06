@@ -6,7 +6,11 @@
 <script type="text/javascript">
 	//휴가 목록 뽑아오기
 	function holiday() {
-		var month = $("#month").val();
+		var month = $('#month').val();
+		var textLength2 = $('#month').val().length;
+		 if(textLength2 == 0){
+			alert("날짜를 입력해주십시오.");
+		}else {
 		$.ajax({
 			url : '${pageContext.request.contextPath}/admin/holiday',
 			type : 'POST',
@@ -20,10 +24,15 @@
 				alert('오류');
 			}
 		});
+		}
 	};
 	//연장근무 목록 뽑아오기
 	function overtime() {
-		var month = $("#month").val();
+		var month = $('#month').val();
+		var textLength2 = $('#month').val().length;
+		 if(textLength2 == 0){
+			alert("날짜를 입력해주십시오.");
+		}else {
 		$.ajax({
 			url : '${pageContext.request.contextPath}/admin/overtime',
 			type : 'POST',
@@ -37,10 +46,15 @@
 				alert('오류');
 			}
 		});
+		}
 	};
 	//야간 목록 뽑아오기
 	function nighttime() {
-		var month = $("#month").val();
+		var month = $('#month').val();
+		var textLength2 = $('#month').val().length;
+		 if(textLength2 == 0){
+			alert("날짜를 입력해주십시오.");
+		}else {
 		$.ajax({
 			url : '${pageContext.request.contextPath}/admin/nighttime',
 			type : 'POST',
@@ -54,6 +68,7 @@
 				alert('오류');
 			}
 		});
+		}
 	};
 </script>
 <section>
