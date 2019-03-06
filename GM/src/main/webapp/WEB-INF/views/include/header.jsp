@@ -12,7 +12,7 @@
 	</c:if>
 	<c:if test="${sessionScope.loginInfo == null}">
 		<div class="logo" style="position: relative; left: -50px; margin: 0 auto;">
-			<a href="<c:url value='/login'/>">
+			<a href="<c:url value='/index'/>">
 				<!-- <img src="https://ezportal.bizmeka.com/images/common/logo_bizmeka_2.png" style="margin-top: 4px;"> -->
 				<img src="${path}images/logo.png" style="margin-top: 4px;">
 			</a>

@@ -521,7 +521,6 @@ public class S_ServiceImpl implements S_Service {
 		String strId = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		int cnt = dao.notReadCnt(strId);
 		
-		
 		model.addAttribute("messageCnt", cnt);
 	}
 
