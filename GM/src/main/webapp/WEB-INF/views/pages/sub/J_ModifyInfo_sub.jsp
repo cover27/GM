@@ -9,11 +9,29 @@
 function back(){
 	window.history.back();
 	}
+	
+function checkpw(){
+	if(!document.inputform.pwd.value){
+		alert('비밀번호를 입력하세요.');
+		document.inputform.pwd.focus();
+		return false; //다음으로 못넘김
+	} else if(!document.inputform.repwd.value){
+		alert('비밀번호를 확인하세요.');
+		document.inputform.repwd.focus();
+		return false; //다음으로 못넘김
+	}else if(document.inputform.pwd.value != document.inputform.repwd.value){
+		alert('비밀번호가 일치하지 않습니다. 다시 확인 해주세요');
+		document.inputform.pwd.value = "";
+		document.inputform.repwd.value = "";
+		document.inputform.pwd.focus();
+		return false;
+	}
+}
 </script>
 
 <%@ include file="/WEB-INF/views/include/header.jsp"%>
 <div class="signup_wrap">
-    <form action="myinfoModifyUpdate" method="post" name="inputform">
+    <form action="myinfoModifyUpdate" method="post" name="inputform" onsubmit="return checkpw();">
         <input type="hidden" name="hiddenId" value="0">
         <input type="hidden" name="depart">
         <div class="signup_center">
@@ -40,7 +58,7 @@ function back(){
                         </li>
                         <li>
                             <span>*회사</span>
-                            <span class="input_wrap">${dtos.company}</span>
+                            <span class="input_wrap">${dtos.j_name}</span>
                         </li>
                         <li>
                             <span class="two_line_header">*이메일</span>
@@ -95,14 +113,14 @@ function back(){
                         	<span>*성별</span>
                         	<c:if test="${dtos.gender == 1}">
                             	<span class="input_wrap">
-		                            <label><input type="radio" name="gender" value=1 checked="checked"><b>기혼</b></label>
-		                            <label><input type="radio" name="gender" value=2><b>미혼</b></label>
+		                            <label><input type="radio" name="gender" value=1 checked="checked"><b>남성</b></label>
+		                            <label><input type="radio" name="gender" value=2><b>여성</b></label>
                             	</span>
 	                            </c:if>
 	                            <c:if test="${dtos.gender == 2}">
                             	<span class="input_wrap">
-		                            <label><input type="radio" name="gender" value=1><b>기혼</b></label>
-		                            <label><input type="radio" name="gender" value=2 checked="checked"><b>미혼</b></label>
+		                            <label><input type="radio" name="gender" value=1><b>남성</b></label>
+		                            <label><input type="radio" name="gender" value=2 checked="checked"><b>여성</b></label>
                             	</span>
 	                            </c:if>
                         </li>

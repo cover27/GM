@@ -49,7 +49,7 @@ function back(){
                         </li>
                         <li>
                             <span>*회사</span>
-                            <span class="input_wrap">${dtos.company}</span>
+                            <span class="input_wrap">${dtos.j_name}</span>
                         </li>
                         <li>
                             <span class="two_line_header">*이메일</span>
@@ -73,11 +73,16 @@ function back(){
             		<ul>
                         <li class="jumin">
                            <span>*주민등록번호</span>
-	                          <span class="input_wrap" style="padding-left:18px !important;">${dtos.jumin1} - ${dtos.jumin2}</span>
+	                          <span class="input_wrap" style="padding-left:18px !important;">${dtos.jumin1} - *******</span>
                         </li>
                         <li>
                         	<span>*성별</span>
-                        	<span class="input_wrap" style="padding-left:18px!important;">${dtos.gender}</span>
+                        	<c:if test="${dtos.gender == 1}">
+                        	<span class="input_wrap" style="padding-left:18px!important;">남성</span>
+                        	</c:if>
+                        	<c:if test="${dtos.gender == 2}">
+                        	<span class="input_wrap" style="padding-left:18px!important;">여성</span>
+                        	</c:if>
                         </li>
                         <li>
                         	<span>*내외국인 여부</span>
