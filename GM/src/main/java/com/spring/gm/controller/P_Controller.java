@@ -127,7 +127,7 @@ public class P_Controller {
         String original_File_Name = vo.getTitle();
         String stored_File_Name = vo.getStored_title();
          
-        byte[] fileByte = FileUtils.readFileToByteArray(new File("C:\\DEV43_\\git\\GM\\GM\\src\\main\\webapp\\resources\\files\\"+stored_File_Name));
+        byte[] fileByte = FileUtils.readFileToByteArray(new File("J:\\Dev\\workspace\\git\\GM\\GM\\src\\main\\webapp\\resources\\files\\"+stored_File_Name));
          
         res.setContentType("application/octet-stream");
         res.setContentLength(fileByte.length);
