@@ -2779,7 +2779,7 @@ public class J_ServiceImpl implements J_Service {
 		}
 		
 		int selectCnt2 = dao.vacationapplicationCnt(map);
-		System.out.println("selectCnt : " + selectCnt);
+		System.out.println("selectCnt2 : " + selectCnt2);
 
 		if (selectCnt2 > 0) {
 			List<join_mrvdgcVO> dtos2 = dao.vacationapplicationList(map);
@@ -2814,7 +2814,7 @@ public class J_ServiceImpl implements J_Service {
 		}
 		
 		int selectCnt2 = dao.vacationapplicationCnt2(map);
-		System.out.println("selectCnt : " + selectCnt);
+		System.out.println("selectCnt2 : " + selectCnt2);
 
 		if (selectCnt2 > 0) {
 			List<join_mrvdgcVO> dtos2 = dao.vacationapplicationList2(map);
