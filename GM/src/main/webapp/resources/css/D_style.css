@@ -118,9 +118,13 @@
 .content input[type="submit"], .content input[type="button"], .content button {
 	border-radius: 5px;
 	border: none;
-	font-size: 0.8em;
+	font-size: 1em;
 	color: #fff;
 	padding: 5px;
+}
+
+.content .search-wrap input[type="submit"], .content .search-wrap input[type="button"], .content .search-wrap button {
+	font-size: 0.8 !important;
 }
 
 .content .modify_btn {

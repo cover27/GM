@@ -29,12 +29,12 @@
 </style>
 <script>
 	$(function(){
-		$("#close").click(function(){
+		$(".close").click(function(){
 			$("#info_result").css("display", "none");
 		})
 	});
 </script>
-<div class="info_wrap">
+<div class="info_wrap close">
 	<table>
 		<tr>
 			<th>아이디</th>
@@ -74,6 +74,6 @@
 	</table>
 	<div class="btnset mt15 fright">
 		<a href="E_addMemberPro?id=${cont_dto.id}">자주 연락하는 사람 추가</a>
-		<a href="#" id="close">닫기</a>
+		<a href="#" class="close">닫기</a>
 	</div>
 </div>
