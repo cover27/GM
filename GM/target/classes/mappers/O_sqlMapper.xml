@@ -160,6 +160,11 @@
 </update>
 
 <!-- 업무관리 업무요청 삭제 pro -->
+<update id="taskDeletePro">
+	update b_manage set del=1 where todonum=#{todonum}
+</update>
+
+<!-- 업무관리 업무요청 삭제 pro(check box) -->
 <update id="deleteTaskPro">
 	update b_manage set del=1 where todonum=#{todonum}
 </update>
