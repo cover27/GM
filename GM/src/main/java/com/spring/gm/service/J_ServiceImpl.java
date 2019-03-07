@@ -1149,7 +1149,10 @@ public class J_ServiceImpl implements J_Service {
 	public void insertONtime(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		System.out.println("company : " + company);
+		String day = req.getParameter("day");
+		System.out.println("day : " + day);
 		String date = req.getParameter("date");
+		model.addAttribute("date",date);
 		System.out.println("date : " + date);
 		int num = Integer.parseInt(req.getParameter("num"));
 		System.out.println("num : " + num);
@@ -1199,8 +1202,8 @@ public class J_ServiceImpl implements J_Service {
 			System.out.println("연장/야간근무 급여 : " + salary);
 		}
 		 map.put("salary",  salary);
-		 String a = date + "연장근무 수당";
-		 String b = date + "연장,야간근무 수당";
+		 String a = day + "연장근무 수당";
+		 String b = day + "연장,야간근무 수당";
 		 System.out.println("a : " + a);
 		 System.out.println("b : " + b);
 		 if(nighttime - attended.getNight_start() == 0) { //야간근무가 없을시
@@ -1213,6 +1216,12 @@ public class J_ServiceImpl implements J_Service {
 		 if(insertCnt > 0) {
 			 int updateCnt = dao.updateONtime(map);
 			 System.out.println("updateCnt : " + updateCnt);
+			 if(date.length() > 6) {
+					String[] dates = date.split("-");
+					date = dates[0] + dates[1];
+				map.remove("date");
+				map.put("date", date);
+			 }
 			 int selectCnt = dao.showONtimeCnt(map);
 				System.out.println("selectCnt: " + selectCnt);
 				int selectCnt2 = dao.showONtimeCnt2(map);
@@ -1235,7 +1244,6 @@ public class J_ServiceImpl implements J_Service {
 					model.addAttribute("dtos",dtos);
 				}
 				model.addAttribute("cnt", cnt);
-				model.addAttribute("date",date);
 		 }
 		 
 	}
