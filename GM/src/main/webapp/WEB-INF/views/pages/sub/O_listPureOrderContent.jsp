@@ -106,7 +106,7 @@ function firstDate(){
 									<a data-sortcolumn="TITLE" href="#">제목</a>
 								</th>
 								<th scope="col">
-									<a data-sortcolumn="REGISTERNAME" href="#">요청자</a>
+									<a data-sortcolumn="REGISTERNAME" href="#">담당자</a>
 								</th>
 								<th scope="col">
 									<a data-sortcolumn="INSERTDATE" href="#">요청일</a>

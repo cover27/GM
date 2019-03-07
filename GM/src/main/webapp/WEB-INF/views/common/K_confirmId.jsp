@@ -12,7 +12,7 @@
 	function setId(id){
 		document.inputform.id.value=id;
 		document.inputform.hiddenId.value="1";
-		$("#confirmId").fadeOut(1000);
+		$("#confirmId").fadeOut(300);
 		$("input[name='id']").prop("readonly",true);	// 선택된 id를 다시 변경하지 못하도록 하기
 		$("input[name='id']").css("background-color","#eee");	// id 입력창 색깗 변경
 		$("input[name='id']").css("font-weight","bold");	// id 글씨 굵게
@@ -20,7 +20,7 @@
 	}
 	
 	function closeThis(){
-		$("#confirmId").fadeOut(1000);
+		$("#confirmId").fadeOut(300);
 	}
 	
 	function confirmIdChk(){

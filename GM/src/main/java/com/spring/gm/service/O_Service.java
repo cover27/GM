@@ -39,6 +39,8 @@ public interface O_Service {
 	//업무관리 업무요청 수정 pro
 	public void updateTaskPro(HttpServletRequest req, Model model);
 	//업무관리 업무요청 삭제 pro
+	public void TaskDeletePro(HttpServletRequest req, Model model);
+	//업무관리 업무요청 삭제 pro(check box)
 	public void updateTaskDeletePro(HttpServletRequest req, Model model);
 	//업무관리 수신 업무 요청 화면
 	public void listTodo(HttpServletRequest req, Model model);

@@ -37,6 +37,10 @@
 		border: none;
 		border-bottom: 1px #c0c0c0 solid;
 	}
+	.file_download:hover {
+		cursor: pointer;
+		font-weight: bold;
+	}
 </style>
 <section>
 	<article>
@@ -190,16 +194,13 @@
 							<td colspan="3">첨부파일이 없습니다.</td>
 						</c:if>
 						<c:if test="${attachList != null }">
-							<td colspan="3">
-								<ul>
-									<c:forEach var="dto" items="${attachList }">
-										<li>
-											<input type="hidden" value="${dto.num }" id="fileNum">
-											${dto.title }&nbsp;(${Math.round(dto.filesize/1024) }Byte)
-											<input type="button" value="다운로드" onclick="download('${dto.num}');">
-										</li>
-									</c:forEach>
-								</ul>
+							<td colspan="3" style="text-align: left; padding-left: 20px;">
+								<c:forEach var="dto" items="${attachList }">
+									<span class="mr10">
+										<input type="hidden" value="${dto.num }" id="fileNum">
+										<span onclick="download('${dto.num}');" class="file_download">${dto.title }&nbsp;(${Math.round(dto.filesize/1024) }Byte)</span>
+									</span>
+								</c:forEach>
 							</td>
 						</c:if>
 					</tr>

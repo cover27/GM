@@ -41,7 +41,7 @@ $(function(){
 <section>
 	<article>
 		<div class="content_header">
-			<h2>나의 할일111</h2>
+			<h2>나의 할일</h2>
 		</div>
 		
 		<div class="content">
