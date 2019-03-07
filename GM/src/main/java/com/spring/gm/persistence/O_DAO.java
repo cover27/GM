@@ -53,6 +53,8 @@ public interface O_DAO {
 	//업무관리 업무요청 수정 pro
 	public int updateTaskPro(B_ManageVO vo);
 	//업무관리 업무요청 삭제 pro
+	public int taskDeletePro(int todonum);
+	//업무관리 업무요청 삭제 pro(check box)
 	public int deleteTaskPro(int todonum);
 	//수신업무요청 페이지넘
 	public int reciveListCnt(Map<String, Object> map);//게시글 갯수 구하기

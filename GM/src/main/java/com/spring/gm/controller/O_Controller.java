@@ -202,7 +202,7 @@ public class O_Controller {
 	public String O_updateTaskDeletePro(HttpServletRequest req, Model model) {
 		logger.info("URL : O_updateTaskDeletePro");
 		
-		oservice.updateTaskDeletePro(req, model);
+		oservice.TaskDeletePro(req, model);
 		
 		return "pages/O_updateTaskDeletePro";
 	}
