@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<style>
+.selected {
+	background: #eee;
+}
+</style>
 <script type="text/javascript">
 
 	function load(url) {
@@ -30,7 +36,7 @@
 		}
 		var select = document.messageform.select.value;
 		var url="K_sendingMessage?id="+select;
-		window.open(url, "K_sendingMessage", "menubar=no, width=1000, height=800");
+		window.open(url, "K_sendingMessage", "menubar=no, width=800, height=600");
 	}
 </script>
 <section>
@@ -82,7 +88,7 @@
 									<td onclick="load('adminList?company=${dto.company}')" style="cursor: pointer;">
 										${dto.c_name }
 									</td>
-									<td onclick="load('adminList?company=${dto.company}')">${dto.c_address }</td>
+									<td style="text-align: left; padding: 0 10px;" onclick="load('adminList?company=${dto.company}')">${dto.c_address }</td>
 								</tr>
 							</c:forEach>
 						</tbody>

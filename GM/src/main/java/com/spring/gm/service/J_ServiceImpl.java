@@ -1082,8 +1082,10 @@ public class J_ServiceImpl implements J_Service {
 			dtos.addAll(dtos1);
 			dtos.addAll(dtos2);
 			List<join_mgsbVO> dtos3 = dao.bonustbl4(map);
+			//for(int i = 0; i < cnt2; i++)
 			int bonussalary = dtos3.get(0).getBonussalary();
 			System.out.println("dtos :" + dtos.toString());
+			//}
 			model.addAttribute("dtos2", dtos);
 			model.addAttribute("bonussalary2", bonussalary);
 		}
@@ -1093,6 +1095,7 @@ public class J_ServiceImpl implements J_Service {
 	}
 	//야간/연장 근무 수당 가져오기
 	public void showONtime(HttpServletRequest req, Model model) {
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		String date = req.getParameter("date");
 		if(date.length() > 6) {
 			String[] dates = date.split("-");
@@ -1110,6 +1113,7 @@ public class J_ServiceImpl implements J_Service {
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("date", date);
+		map.put("company", company);
 		int selectCnt = dao.showONtimeCnt(map);
 		System.out.println("selectCnt: " + selectCnt);
 		int selectCnt2 = dao.showONtimeCnt2(map);
@@ -1145,7 +1149,10 @@ public class J_ServiceImpl implements J_Service {
 	public void insertONtime(HttpServletRequest req, Model model) {
 		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		System.out.println("company : " + company);
+		String day = req.getParameter("day");
+		System.out.println("day : " + day);
 		String date = req.getParameter("date");
+		model.addAttribute("date",date);
 		System.out.println("date : " + date);
 		int num = Integer.parseInt(req.getParameter("num"));
 		System.out.println("num : " + num);
@@ -1167,15 +1174,17 @@ public class J_ServiceImpl implements J_Service {
 		int salary = 0; //상여금 인설트할 금액
 		int overtime = dtos5.get(0).getOvertime(); //연장근무 시간
 		System.out.println("연장근무 시간 : " + overtime);
-		int nighttime = dtos5.get(0).getNighttime();//야간근무 시간
+		int nighttime = dtos5.get(0).getNighttime() + attended.getNight_start();//야간근무 시간
 		System.out.println("야간근무 시간 : " + nighttime);
 		int night = 0; //야간 근무시간
-		if(dtos5.get(0).getNighttime() < 86400) {
+		if(nighttime > attended.getNight_start() && nighttime < 86400) {
 			System.out.println("하루 넘기이 않았을 경우");
-			night = (79200 + dtos5.get(0).getNighttime()) - attended.getNight_start(); //하루 넘기이 않았을 경우
-		}else if (dtos5.get(0).getNighttime() >= 0) {
+			night = (dtos5.get(0).getNighttime() - attended.getNight_start()); //하루 넘기이 않았을 경우
+			System.out.println("night : " + night);
+		}else if (nighttime > attended.getNight_start() && nighttime > 86400) {
 			System.out.println("하루 넘겼을경우");
-			night = ((attended.getNight_start()+ 86400) - (dtos5.get(0).getNighttime() + 79200));	//하루 넘겼을경우
+			night = ((nighttime) - attended.getNight_start());	//하루 넘겼을경우
+			System.out.println("night : " + night);
 		}
 		System.out.println("night : " + night);
 		
@@ -1185,21 +1194,21 @@ public class J_ServiceImpl implements J_Service {
 		System.out.println("over_sal : " + over_sal);
 		int night_sal = attended.getNight_sal();	// 시간당 야간 수당금액
 		System.out.println("night_sal : " + night_sal);
-		if(dtos5.get(0).getOvertime() > 0 && dtos5.get(0).getNighttime() == 0) { //연장근무만 했을경우
+		if(nighttime - attended.getNight_start() == 0 && overtime > 0) { //연장근무만 했을경우
 			salary = (overtime / 3600) * over_sal;
-			System.out.println("salary : " + salary);
-		}else if(dtos5.get(0).getOvertime() > 0 && dtos5.get(0).getNighttime() > 0) { //야간,연장근무 했을때
+			System.out.println("연장근무만 급여 : " + salary);
+		}else if(nighttime - attended.getNight_start() > 0 && overtime > 0) { //야간,연장근무 했을때
 			salary = (4 * over_sal) + ((night / 3600) * night_sal);
-			System.out.println("salary : " + salary);
+			System.out.println("연장/야간근무 급여 : " + salary);
 		}
 		 map.put("salary",  salary);
-		 String a = date + "연장근무 수당";
-		 String b = date + "연장,야간근무 수당";
+		 String a = day + "연장근무 수당";
+		 String b = day + "연장,야간근무 수당";
 		 System.out.println("a : " + a);
 		 System.out.println("b : " + b);
-		 if(nighttime < 0) {
+		 if(nighttime - attended.getNight_start() == 0) { //야간근무가 없을시
 			 map.put("title", a);
-		 }else {
+		 }else if(nighttime - attended.getNight_start() > 0){	//야간근무가 있을시
 			 map.put("title", b);
 		 }
 		 int insertCnt = dao.insertONtime(map);	//상여금에 인설트
@@ -1207,6 +1216,12 @@ public class J_ServiceImpl implements J_Service {
 		 if(insertCnt > 0) {
 			 int updateCnt = dao.updateONtime(map);
 			 System.out.println("updateCnt : " + updateCnt);
+			 if(date.length() > 6) {
+					String[] dates = date.split("-");
+					date = dates[0] + dates[1];
+				map.remove("date");
+				map.put("date", date);
+			 }
 			 int selectCnt = dao.showONtimeCnt(map);
 				System.out.println("selectCnt: " + selectCnt);
 				int selectCnt2 = dao.showONtimeCnt2(map);
@@ -1229,7 +1244,6 @@ public class J_ServiceImpl implements J_Service {
 					model.addAttribute("dtos",dtos);
 				}
 				model.addAttribute("cnt", cnt);
-				model.addAttribute("date",date);
 		 }
 		 
 	}
@@ -1766,7 +1780,7 @@ public class J_ServiceImpl implements J_Service {
 				otime = time - attended.getOver_start();
 				map.put("otime", otime);
 			} else if (time > attended.getOver_end()) {
-				otime = 79200;
+				otime = attended.getOver_end();
 				map.put("otime", otime);
 			}
 		} else {
@@ -1782,7 +1796,7 @@ public class J_ServiceImpl implements J_Service {
 				ntime = time - attended.getNight_start();
 				map.put("ntime", ntime);
 			} else if (time > attended.getNight_end()) {
-				ntime = 79200;
+				ntime = attended.getNight_end();
 				map.put("ntime", ntime);
 			}
 		} else {
@@ -2245,10 +2259,16 @@ public class J_ServiceImpl implements J_Service {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("month", month);
-
+		
+		//회사별 기준시간 가져오기
+		AttendedSetVO attended = K_dao.getAttendedSet(company);
+		int go = attended.getGo(); //회사별 출근시간
+		model.addAttribute("go",go);
+		System.out.println("go : " + go);
+		
 		int selectCnt = dao.monthCnt2(map);
 		System.out.println("selectCnt : " + selectCnt);
-
+		
 		if (selectCnt > 0) {
 			List<join_margcVO> dtos = new ArrayList<join_margcVO>();
 			List<join_margcVO> dtos2 = dao.monthList3(map);

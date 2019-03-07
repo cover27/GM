@@ -2,6 +2,17 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <html>
+<head>
+<style>
+	.adminList tr:hover, .adminList td:hover {
+		cursor: auto !important;
+		background: #f7f7f7 !important;
+	}
+	.adminList td span:hover {
+		cursor: pointer;
+	}
+</style>
+</head>
 <body>
 	<h3>사업장 정보</h3>
 	<div class="table_head">
@@ -42,14 +53,14 @@
 					<col width="200px" />
 					<col width="*" />
 				</colgroup>
-				<tbody>
+				<tbody class="adminList">
 					<c:forEach var="dto" items="${adminList }">
 						<tr>
-							<td><input type="radio" name="select" value="${dto.id }"></td>
-							<td>${dto.id }</td>
-							<td>${dto.name }</td>
-							<td>${dto.tel }</td>
-							<td>${dto.email_in }</td>
+							<td><input type="radio" name="select" value="${dto.id }" id="${dto.id }"></td>
+							<td><label for="${dto.id }"><span>${dto.id }</span></label></td>
+							<td><label for="${dto.id }"><span>${dto.name }</span></label></td>
+							<td><label for="${dto.id }"><span>${dto.tel }</span></label></td>
+							<td><label for="${dto.id }"><span>${dto.email_in }</span></label></td>
 						</tr>
 					</c:forEach>
 				</tbody>

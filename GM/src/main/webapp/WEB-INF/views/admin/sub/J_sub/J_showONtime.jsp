@@ -3,10 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <script>
-function insertONtime(num) {
-	var date = ${date};
+function insertONtime(num,day) {
+	var date = $("#date2").val();
 	alert("date :" + date + "num :" + num);
-	window.location="insertONtime?date="+date + "&num=" + num;
+	window.location="insertONtime?date="+date + "&num=" + num +"&day=" + day;
 };
 function showONtime2(){
 	var date = $("#date2").val();
@@ -91,7 +91,7 @@ function showONtime2(){
 							<td>${dtos.day}</td>
 							<td>
 							<c:if test="${dtos.state == 0}">
-								<input type="button" value="지급처리" onclick="insertONtime('${dtos.num}')">
+								<input type="button" value="지급처리" onclick="insertONtime('${dtos.num}','${dtos.day}')">
 							</c:if>
 							<c:if test="${dtos.state == 1}">
 								지급완료
