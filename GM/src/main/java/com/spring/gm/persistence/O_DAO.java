@@ -73,9 +73,9 @@ public interface O_DAO {
 	//TO-DO - 나의 할일 삭제
 	public int deleteTodoPro(int num);
 	//TO-DO - 나의 할일 완료
-	public int selectTodoPro(int num);
-	public int updateTodoPro(int num);
-	public int unUpdateTodoPro(int num);
+	public int selectTodoPro(Map<String, Object> map);
+	public int updateTodoPro(Map<String, Object> map);
+	public int unUpdateTodoPro(Map<String, Object> map);
 	/* 업무 끝 */
 	
 	
