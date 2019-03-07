@@ -37,7 +37,7 @@
 	</insert>
 
 	<select id="getWait" parameterType="int" resultType="com.spring.gm.vo.MemberVO">
-		SELECT * FROM member WHERE depart=#{company} AND sys_rank = 0 
+		SELECT * FROM member WHERE depart=#{company} AND sys_rank = 0 AND del = 0
 	</select>
 	
 	<select id="getCompany" parameterType="int" resultType="int">
@@ -225,6 +225,7 @@
 			SELECT * FROM(
 				SELECT m.*, rownum rNum FROM member m
 				WHERE m.del = #{retire} AND m.company = #{company}
+				and m.sys_rank != 0
 				)
 			WHERE rNum >=  #{start} AND rNum <= #{end}
 		]]>
@@ -249,7 +250,8 @@
 			SELECT * FROM(
 				SELECT m.*, rownum rNum FROM member m
 				WHERE m.del = #{retire} AND m.company = #{company}
-				AND name like '%'||#{name}||'%'
+				AND m.name like '%'||#{name}||'%'
+				and m.sys_rank != 0
 				)
 			WHERE rNum >=  #{start} AND rNum <= #{end}
 		]]>

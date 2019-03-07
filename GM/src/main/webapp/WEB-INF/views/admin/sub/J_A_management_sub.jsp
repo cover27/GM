@@ -99,10 +99,23 @@
 			    	</div>
 			        <div class="salary_info">
 				        <table>
+				        	<colgroup>
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="143px" />
+			    				<col width="*" />
+			    			</colgroup>
 				            <tbody>
 					            <c:if test="${cnt == 0}">
 					                <tr>
-					                    <td width="100%">데이터 정보가 없습니다.</td>
+					                    <td colspan="11">데이터 정보가 없습니다.</td>
 					                </tr>
 					            </c:if>
 					            <c:if test="${cnt > 0}">
@@ -130,7 +143,7 @@
 					                            <td>${dtos.departuretimes}</td>
 					                        </c:if>
 					                        <td>
-					                        <input type="button" value="변경" onclick="modify('${dtos.num}')">
+					                        <input type="button" value="변경" onclick="modify('${dtos.num}')" style="background: #d3292c;">
 					                        <input type="button" value="삭제" onclick="deleteAttended('${dtos.num}')">
 					                        </td>
 					                    </tr>
@@ -142,7 +155,7 @@
 					                        <td>${dtos.name}</td>
 					                        <td colspan="7">휴가처리</td>
 					                        <td>
-					                        <input type="button" value="변경" onclick="modify('${dtos.num}')">
+					                        <input type="button" value="변경" onclick="modify('${dtos.num}')" style="background: #d3292c;">
 					                        <input type="button" value="삭제" onclick="deleteAttended('${dtos.num}')">
 					                        </td>
 					                    </tr>

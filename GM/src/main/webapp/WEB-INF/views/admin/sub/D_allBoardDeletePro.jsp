@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<h2>글 수정 처리</h2>
+	<h2>글 삭제 처리</h2>
 	<c:if test="${deleteCnt == 0}">
 		<script type="text/javascript">
 			alert("글 삭제가 실패하였습니다.");

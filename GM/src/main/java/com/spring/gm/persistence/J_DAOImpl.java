@@ -1227,10 +1227,17 @@ public class J_DAOImpl implements J_DAO {
 	//=============================================내정보=-==================================
 	//내정보 가져오기
 	@Override
-	public ArrayList<MemberVO> myinfo(Map<String, Object> map) {
-		ArrayList<MemberVO> dtos = null;
+	public ArrayList<join_mgcVO2> myinfo(Map<String, Object> map) {
+		ArrayList<join_mgcVO2> dtos = null;
 		J_DAO dao = sqlSession.getMapper(J_DAO.class);
 		dtos = dao.myinfo(map);
+		return dtos;
+	}
+	@Override
+	public ArrayList<join_mgcVO2> myinfo2(Map<String, Object> map) {
+		ArrayList<join_mgcVO2> dtos = null;
+		J_DAO dao = sqlSession.getMapper(J_DAO.class);
+		dtos = dao.myinfo2(map);
 		return dtos;
 	}
 	//회원 탈퇴
@@ -1252,8 +1259,12 @@ public class J_DAOImpl implements J_DAO {
 		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.myinfoModifyUpdate", map);
 		return cnt;
 	}
-	
-	
+	//users에내용 업데이트 하기
+	@Override
+	public int usersUpdate(Map<String, Object> map) {
+		int cnt = sqlSession.update("com.spring.gm.persistence.J_DAO.usersUpdate", map);
+		return cnt;
+	}
 	
 	
 	
