@@ -615,10 +615,14 @@ public class D_ServiceImpl implements D_Service{
 		BoardsVO vo = new BoardsVO();
 		vo.setNum(num);
 		
+		
 		int deleteCnt = dao.deleteBoards(vo);
+		int deletetoo = dao.deleteBoardContent(num);
+		
+		int cnt = (deleteCnt != 0 && deletetoo != 0)?1:0;
 		
 		model.addAttribute("num", num);
-		model.addAttribute("deleteCnt", deleteCnt);
+		model.addAttribute("deleteCnt", cnt);
 		
 	}
 
