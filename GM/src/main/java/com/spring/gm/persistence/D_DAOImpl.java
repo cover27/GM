@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
 import org.springframework.stereotype.Repository;
 
 import com.spring.gm.vo.BoardListAndBoardsVO;
@@ -290,6 +291,12 @@ public class D_DAOImpl implements D_DAO{
 		D_DAO mapper = sqlSession.getMapper(D_DAO.class);
 		MemberVO m = mapper.getMemberInfo(id);
 		return m;
+	}
+
+	@Override
+	public int deleteBoardContent(int num) {
+		D_DAO dao = sqlSession.getMapper(D_DAO.class);
+		return dao.deleteBoardContent(num);
 	}
 
 	

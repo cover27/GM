@@ -181,5 +181,11 @@
 		FROM Member
 		where id = #{id}
 	</select>
+	
+	<update id="deleteBoardContent" parameterType="int">
+		<![CDATA[
+			UPDATE BOARDLIST SET del = 1 WHERE num = #{num}
+		]]>
+	</update>
 		
 </mapper>

@@ -78,6 +78,8 @@ public interface D_DAO {
 	public int confirmIdPwd(Map<String, String> map);
 
 	public MemberVO getMemberInfo(String id);
+	
+	public int deleteBoardContent(int num);
 
 	
 }
