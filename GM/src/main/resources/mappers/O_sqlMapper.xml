@@ -370,14 +370,14 @@
 </update>
 
 <!-- TO-DO - 나의 할일 완료  -->
-<select id="selectTodoPro" resultType="int" parameterType="int">
-	select complate from todolist where num=#{num} and del=0
+<select id="selectTodoPro" resultType="int" parameterType="java.util.Map">
+	select complate from todolist where num=#{num} and del=0 and id=#{id}
 </select>
-<update id="updateTodoPro">
-	update todolist set complate=1 where num=#{num}
+<update id="updateTodoPro" parameterType="java.util.Map">
+	update todolist set complate=1 where num=#{num} and id=#{id}
 </update>
-<update id="unUpdateTodoPro">
-	update todolist set complate=0 where num=#{num}
+<update id="unUpdateTodoPro" parameterType="java.util.Map">
+	update todolist set complate=0 where num=#{num} and id=#{id}
 </update>
 <!-- 업무 끝 -->
 

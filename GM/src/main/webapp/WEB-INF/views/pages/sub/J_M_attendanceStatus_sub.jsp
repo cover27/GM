@@ -171,7 +171,7 @@
 												test="${dtos.departuretimes ne '00:00'}">
 												<font color="yellow">■</font>
 											</c:if> 
-											<c:if test="${dtos.departuretimes ne '00:00'}">
+											<c:if test="${go < dtos.go}">
 												<font color="red">■</font>
 											</c:if> 
 											<c:if test="${dtos.result == 3}">
