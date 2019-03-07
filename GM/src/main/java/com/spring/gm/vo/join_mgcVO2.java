@@ -23,7 +23,8 @@ public class join_mgcVO2 {
 	private String eng_address; // 영문주소
 	private int depart; // 그룹번호(FK)
 	private int rank; // 직급(FK)
-	private String rank_name;	//직급명 
+	private String r_name; //직급명
+	private String rank_name;	//직급명 (경준)
 	private int salary; // 연봉
 	private int contract; // 계약형태
 	private int wrkdvd; // 재직구분
@@ -151,6 +152,12 @@ public class join_mgcVO2 {
 	}
 	public void setRank(int rank) {
 		this.rank = rank;
+	}
+	public String getR_name() {
+		return r_name;
+	}
+	public void setR_name(String r_name) {
+		this.r_name = r_name;
 	}
 	public String getRank_name() {
 		return rank_name;
