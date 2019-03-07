@@ -111,8 +111,8 @@ function back(){
 							<span class="input_wrap" style="padding-left:18px!important;">${dtos.tel}</span>
                         </li>
                         <li>
-                            <span>*주소</span>
-                            <span class="input_wrap" style="padding-left:18px!important;">${dtos.address}</span>
+                            <span style="width: 377px; border-radius: 6px 6px 0 0;">*주소</span>
+                            <span class="input_wrap" style="border-top: 1px solid #d4d4d4; width: 376px !important; padding-left:18px!important; position: relative; left: 5px; border-radius: 0 0 6px 6px; width: 377px;">${dtos.address}</span>
                         </li>
             		</ul>
             	</c:forEach>

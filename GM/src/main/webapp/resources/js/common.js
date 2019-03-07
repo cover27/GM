@@ -477,6 +477,11 @@ if(url.indexOf('/')){
 					$("#J_M_attendanceStatus").children().css("color", "#d3292c");
 					$("#J_M_attendanceStatus").css("font-weight", "bold");
 				});
+			}  else if(category[0] == "J_M_attendanceStatus2") {
+				$(function(){
+					$("#J_M_attendanceStatus").children().css("color", "#d3292c");
+					$("#J_M_attendanceStatus").css("font-weight", "bold");
+				});
 			} else if(category[0] == "J_CalculationHoliday") {
 				$(function(){
 					$("#J_CalculationHoliday").children().css("color", "#d3292c");

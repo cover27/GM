@@ -615,10 +615,14 @@ public class D_ServiceImpl implements D_Service{
 		BoardsVO vo = new BoardsVO();
 		vo.setNum(num);
 		
+		
 		int deleteCnt = dao.deleteBoards(vo);
+		int deletetoo = dao.deleteBoardContent(num);
+		
+		int cnt = (deleteCnt != 0 && deletetoo != 0)?1:0;
 		
 		model.addAttribute("num", num);
-		model.addAttribute("deleteCnt", deleteCnt);
+		model.addAttribute("deleteCnt", cnt);
 		
 	}
 
@@ -674,7 +678,7 @@ public class D_ServiceImpl implements D_Service{
 	public void boardDel(HttpServletRequest req, Model model) {
 		int deleteCnt = 0;
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-		int num = Integer.parseInt(req.getParameter("num"));
+		int num = Integer.parseInt(req.getParameter("nums"));
 		String [] boardArr = req.getParameterValues("checkRow");
 		
 		if(boardArr != null && boardArr.length > 0) {
