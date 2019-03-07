@@ -227,12 +227,12 @@ public class P_ServiceImpl implements P_Service{
 			
 			// 선빈 pc임 첨부파일 쓸거면 각자 자기 pc url 적어놓으셈
 			// 선빈 : C:\\DEV43_\\git\\GM\\GM\\src\\main\\webapp\\resources\\files\\
-			// 장훈
+			// 장훈 : J:\\Dev\\workspace\\git\\GM\\GM\\src\\main\\webapp\\resources\\files\\
 			// 원영
 			// 킹정
 			// 경준
 			
-			File f = new File("C:\\DEV43_\\git\\GM\\GM\\src\\main\\webapp\\resources\\files\\"+stored_title);
+			File f = new File("J:\\Dev\\workspace\\git\\GM\\GM\\src\\main\\webapp\\resources\\files\\"+stored_title);
 			
 			try {
 				file.transferTo(f);

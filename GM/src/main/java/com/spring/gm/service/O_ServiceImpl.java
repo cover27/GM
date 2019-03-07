@@ -1093,19 +1093,24 @@ public class O_ServiceImpl implements O_Service{
 	@Override
 	public void updateTodoPro(HttpServletRequest req, Model model) {
 		int num = Integer.parseInt(req.getParameter("num"));
+		String id = ((MemberVO)req.getSession().getAttribute("loginInfo")).getId();
 		
-		int selectCnt = dao.selectTodoPro(num);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("num", num);
+		map.put("id", id);
+		
+		int selectCnt = dao.selectTodoPro(map);
 		System.out.println("selectCnt" + selectCnt);
 		
 		if(selectCnt == 0) {
 			System.out.println("요기는 완");
-			int updateCnt = dao.updateTodoPro(num);
+			int updateCnt = dao.updateTodoPro(map);
 			System.out.println("updateCnt" + updateCnt);
 			
 			model.addAttribute("updateCnt", updateCnt);
 		} else if(selectCnt != 0) {
 			System.out.println("요기는 미완");
-			int updateCnt = dao.unUpdateTodoPro(num);
+			int updateCnt = dao.unUpdateTodoPro(map);
 			System.out.println("updateCnt" + updateCnt);
 			
 			model.addAttribute("updateCnt", updateCnt);

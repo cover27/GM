@@ -70,7 +70,7 @@ function delBoard(){
 								<c:forEach var="dto" items="${dtos}">
 									<c:if test="${dto.del == 0}">
 										<tr>
-											<td><input type="checkbox" name="checkRow" value="${dto.boardnum}" /></td>
+											<td><input type="checkbox" name=checkRow value="${dto.boardnum}" /></td>
 											<td>
 												<c:forEach var="dtos" items="${b_dtos}">
 													<c:if test="${dto.num == dtos.num}">
