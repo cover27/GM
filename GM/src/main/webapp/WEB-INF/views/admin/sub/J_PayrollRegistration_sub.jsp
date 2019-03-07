@@ -228,7 +228,7 @@
 					</c:if>
 				</table>
 			</div>
-			<div class="paging">
+			<%-- <div class="paging">
 				<c:if test="${cnt > 0}">
 					<c:if test="${startPage > pageBlock}">
 						<a href="J_PayrollRegistration"><i class="fas fa-angle-double-left"></i></a>
@@ -237,11 +237,11 @@
 
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
 						<c:if test="${i == currentPage}">
-							<span><b>[${i}]</b></span>
+							<span class="thisPage"><b>${i}</b></span>
 						</c:if>
 
 						<c:if test="${i != currentPage}">
-							<a href="J_PayrollRegistration?pageNum=${i}">[${i}]</a>
+							<a href="J_PayrollRegistration?pageNum=${i}" class="thisPage">${i}</a>
 						</c:if>
 					</c:forEach>
 
@@ -250,7 +250,7 @@
 						<a href="J_PayrollRegistration?pageNum=${pageCount}"><i class="fas fa-angle-double-right"></i></a>
 					</c:if>
 				</c:if>
-			</div>
+			</div> --%>
 			<div class="subtitle">
 				<h3>이번달 급여 목록</h3>
 			</div>

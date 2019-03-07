@@ -177,12 +177,12 @@ function searchAddress(){
                         </li>
                         <li>
                             <span>*주소</span>
-                            <input type="text" name="address" placeholder="주소를 입력하세요.">
+                            <input type="text" name="address" placeholder="주소를 입력하세요." class="haveBtn" >
+                            <input type="button" value="주소검색" onclick="searchAddress();">
                         </li>
                         <li>
                             <span>상세주소</span>
-                            <input type="text" class="haveBtn" name="address2" placeholder="상세주소를 입력하세요.">
-                            <input type="button" value="주소검색" onclick="searchAddress();">
+                            <input type="text" name="address2" placeholder="상세주소를 입력하세요.">
                         </li>
             		</ul>
             	</div>

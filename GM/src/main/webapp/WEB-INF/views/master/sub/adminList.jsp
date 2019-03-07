@@ -2,6 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/setting.jsp"%>
 <html>
+<head>
+<style>
+	.adminList tr:hover, .adminList td:hover {
+		cursor: auto !important;
+		background: #fff !important;
+	}
+</style>
+</head>
 <body>
 	<h3>사업장 정보</h3>
 	<div class="table_head">
@@ -42,7 +50,7 @@
 					<col width="200px" />
 					<col width="*" />
 				</colgroup>
-				<tbody>
+				<tbody class="adminList">
 					<c:forEach var="dto" items="${adminList }">
 						<tr>
 							<td><input type="radio" name="select" value="${dto.id }"></td>
