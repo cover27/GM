@@ -2245,10 +2245,16 @@ public class J_ServiceImpl implements J_Service {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("company", company);
 		map.put("month", month);
-
+		
+		//회사별 기준시간 가져오기
+		AttendedSetVO attended = K_dao.getAttendedSet(company);
+		int go = attended.getGo(); //회사별 출근시간
+		model.addAttribute("go",go);
+		System.out.println("go : " + go);
+		
 		int selectCnt = dao.monthCnt2(map);
 		System.out.println("selectCnt : " + selectCnt);
-
+		
 		if (selectCnt > 0) {
 			List<join_margcVO> dtos = new ArrayList<join_margcVO>();
 			List<join_margcVO> dtos2 = dao.monthList3(map);
