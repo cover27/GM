@@ -674,7 +674,7 @@ public class D_ServiceImpl implements D_Service{
 	public void boardDel(HttpServletRequest req, Model model) {
 		int deleteCnt = 0;
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
-		int num = Integer.parseInt(req.getParameter("nums"));
+		int num = Integer.parseInt(req.getParameter("num"));
 		String [] boardArr = req.getParameterValues("checkRow");
 		
 		if(boardArr != null && boardArr.length > 0) {
