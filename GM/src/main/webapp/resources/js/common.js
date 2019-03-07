@@ -647,3 +647,28 @@ if(url.indexOf('/')){
 	}
 }
 /* aside 조직도 끝 */
+
+/* header .ect 메인에서만 보이게 */
+var url = window.location.href.split('gm');
+if(url.indexOf('/')){
+	var url_split = url[1].split('/');
+	if(url_split.length > 2){
+		if(url_split.indexOf('?')){
+			var category = url_split[2].split('?');
+			//alert(category[0]);
+
+			if(url[1] == "/main"){
+				// alert("됨");
+				$(function(){
+					$(".top_notice").css("display", "block");
+				});
+			} else if(url[1] != "/main"){
+				// alert("됨");
+				$(function(){
+					$(".top_notice").css("display", "none");
+				});
+			}
+		}
+	}
+}
+/* header .ect 메인에서만 보이게 끝 */

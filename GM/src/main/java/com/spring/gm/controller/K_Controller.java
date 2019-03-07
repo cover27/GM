@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -36,6 +37,7 @@ public class K_Controller {
 	O_Service O_service;
 		
 	// 로그인화면
+	@Transactional
 	@RequestMapping("login")
 	public String login(HttpServletRequest req, Model model) {
 		logger.info("URL : login");
@@ -44,6 +46,7 @@ public class K_Controller {
 	}
 	
 	// 로그인 프로세스
+	@Transactional
 	@RequestMapping("loginPro")
 	public String loginPro(HttpServletRequest req, Model model) {
 		logger.info("URL : login");
@@ -52,23 +55,24 @@ public class K_Controller {
 	}
 	
 	// 메인화면
+	@Transactional
 	@RequestMapping("main")
 	public String main(HttpServletRequest req, Model model) {
 		logger.info("URL : main");
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String id = authentication.getName();
-		
+				
 		if(id != null) {
 			service.login(req, model, id);
-			S_service.messageListCnt(req, model);
-			P_service.P_listApprTodoView(req, model);
-			O_service.listTodo(req, model);
-			service.addressMemberMain(req, model);
+			if(!id.equals("master")) {
+				S_service.messageListCnt(req, model);
+				P_service.P_listApprTodoView(req, model);
+				O_service.listTodo(req, model);
+				service.addressMemberMain(req, model);
+			}
 		}
 		
-		// 경주니
-		System.out.println("vo확인"+((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank());
 		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
 		System.out.println("sys_rank : " +  sys_rank);
 		model.addAttribute("sys_rank",sys_rank);
@@ -84,6 +88,7 @@ public class K_Controller {
 	}
 	
 	// 회원가입 선택
+	@Transactional
 	@RequestMapping("selectCreateAccount")
 	public String selectCreateAccount(HttpServletRequest req, Model model) {
 		logger.info("URL : selectCreateAccount");
@@ -92,6 +97,7 @@ public class K_Controller {
 	}
 	
 	// 회원가입화면 - 새 사업장
+	@Transactional
 	@RequestMapping("createCompany")
 	public String createCompany(HttpServletRequest req, Model model) {
 		logger.info("URL : K_createCompany");
@@ -100,6 +106,7 @@ public class K_Controller {
 	}
 	
 	// 회원가입화면 - 기존사업장
+	@Transactional
 	@RequestMapping("createAccount")
 	public String createAccount(HttpServletRequest req, Model model) {
 		logger.info("URL : K_createAccount");
@@ -108,6 +115,7 @@ public class K_Controller {
 	}
 	
 	// 아이디 중복확인
+	@Transactional
 	@RequestMapping("confirmId")
 	public String confirmId(HttpServletRequest req, Model model) {
 		logger.info("URL : K_confirmId");
@@ -118,6 +126,7 @@ public class K_Controller {
 	}
 	
 	// 회사 찾기(그냥 클릭했을때 검색안했을경우)
+	@Transactional
 	@RequestMapping("findCompany")
 	public String findCompany(HttpServletRequest req, Model model) {
 		logger.info("URL : K_findCompany");
@@ -128,6 +137,7 @@ public class K_Controller {
 	}
 	
 	// 회사 찾기(그냥 클릭했을때 검색안했을경우)
+	@Transactional
 	@RequestMapping("searchCompany")
 	public String searchCompany(HttpServletRequest req, Model model) {
 		logger.info("URL : K_searchCompany");
@@ -138,6 +148,7 @@ public class K_Controller {
 	}
 	
 	// 회사 정보입력
+	@Transactional
 	@RequestMapping("companyInfo")
 	public String companyInfo(HttpServletRequest req, Model model) {
 		logger.info("URL : companyInfo");
@@ -146,6 +157,7 @@ public class K_Controller {
 	}
 	
 	// 회원등록
+	@Transactional
 	@RequestMapping("registAccount")
 	public String registAccount(HttpServletRequest req, Model model) {
 		logger.info("URL : K_registAccount");
@@ -157,6 +169,7 @@ public class K_Controller {
 	}
 	
 	//메일 인증 눌러야되는 것
+	@Transactional
 	@RequestMapping("checkEmail")
 	public String checkEmail(HttpServletRequest req, Model model) {
 		logger.info("URL : checkEmail");
@@ -167,6 +180,7 @@ public class K_Controller {
 	}
 	
 	//우측상단에 로그아웃 누르면 로그아웃되면서 로그인화면으로 가짐
+	@Transactional
 	@RequestMapping("logout")
 	public String logout(HttpServletRequest req, Model model) {
 		logger.info("URL : logout");
@@ -177,6 +191,7 @@ public class K_Controller {
 	}
 	
 	//인사관리 - 대기명단 승인/취소가 기본
+	@Transactional
 	@RequestMapping("admin/K_member_manage")
 	public String K_member_manage(HttpServletRequest req, Model model) {
 		logger.info("URL : K_member_manage");
@@ -187,6 +202,7 @@ public class K_Controller {
 	}
 	
 	// 대기명단 승인/취소
+	@Transactional
 	@RequestMapping("admin/K_appMember")
 	public String K_appMember(HttpServletRequest req, Model model) {
 		logger.info("URL : K_appMember");
@@ -197,6 +213,7 @@ public class K_Controller {
 	}
 	
 	//인사정보등록
+	@Transactional
 	@RequestMapping("admin/K_resistMemberInfo")
 	public String K_resistMemberInfo(HttpServletRequest req, Model model) {
 		logger.info("URL : K_resistMemberInfo");
@@ -218,6 +235,7 @@ public class K_Controller {
 	}
 	
 	// 개인정보 가져오기(Ajax)
+	@Transactional
 	@RequestMapping("admin/K_getMemberInfo")
 	public String K_getMemberInfo(HttpServletRequest req, Model model) {
 		logger.info("URL : K_getMemberInfo");
@@ -227,6 +245,7 @@ public class K_Controller {
 	}
 	
 	//개인정보 수정
+	@Transactional
 	@RequestMapping("admin/K_updateMemberInfo")
 	public String K_updateMemberInfo(HttpServletRequest req, Model model) {
 		logger.info("URL : K_updateMemberInfo");
@@ -236,6 +255,7 @@ public class K_Controller {
 	}
 	
 	//개인정보 업데이트
+	@Transactional
 	@RequestMapping("/admin/K_infoUpdate")
 	public String K_infoUpdate(HttpServletRequest req, Model model) {
 		logger.info("URL : K_infoUpdate");
@@ -244,6 +264,7 @@ public class K_Controller {
 	}
 	
 	//근태/급여기준정보설정
+	@Transactional
 	@RequestMapping("admin/K_personal")
 	public String K_personal(HttpServletRequest req, Model model) {
 		logger.info("URL : K_personal");
@@ -254,6 +275,7 @@ public class K_Controller {
 	}
 	
 	// 근태 및 급여설정 변경
+	@Transactional
 	@RequestMapping("admin/registpersonal")
 	public String K_registpersonal(HttpServletRequest req, Model model) {
 		logger.info("URL : K_registpersonal");
@@ -264,6 +286,7 @@ public class K_Controller {
 	}
 	
 	//퇴사자 등록
+	@Transactional
 	@RequestMapping("admin/K_registRetirement")
 	public String K_registRetirement(HttpServletRequest req, Model model) {
 		logger.info("URL : K_registRetirement");
@@ -274,6 +297,7 @@ public class K_Controller {
 	}
 	
 	//인사정보 재등록
+	@Transactional
 	@RequestMapping("admin/K_restoMember")
 	public String K_restoMember(HttpServletRequest req, Model model) {
 		logger.info("URL : K_restoMember");
@@ -284,6 +308,7 @@ public class K_Controller {
 	}
 	
 	//인사정보 재등록 - 복구버튼
+	@Transactional
 	@RequestMapping("admin/K_restoMember_pro")
 	public String K_restoMember_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : K_restoMember_pro");
@@ -294,6 +319,7 @@ public class K_Controller {
 	}
 	
 	// 사용자 조직도 관리
+	@Transactional
 	@RequestMapping("admin/K_manageOrgan")
 	public String K_manageOrgan(HttpServletRequest req, Model model) {
 		logger.info("URL : K_manageOrgan");
@@ -303,6 +329,7 @@ public class K_Controller {
 		return "admin/K_manageOrgan";
 	}
 	
+	@Transactional
 	@RequestMapping("admin/K_openOrgan")
 	public String K_openOrgan(HttpServletRequest req, Model model) {
 		logger.info("URL : K_openOrgan");
@@ -312,6 +339,7 @@ public class K_Controller {
 		return "admin/sub/K_openOrgan";
 	}
 	
+	@Transactional
 	@RequestMapping("admin/K_createDepart")
 	public String K_createDepart(HttpServletRequest req, Model model) {
 		logger.info("URL : K_createDepart");
@@ -320,7 +348,7 @@ public class K_Controller {
 		
 		return "admin/sub/K_createDepart";
 	}
-	
+	@Transactional
 	@RequestMapping("admin/K_updateDepart")
 	public String K_updateDepart(HttpServletRequest req, Model model) {
 		logger.info("URL : K_updateDepart");
@@ -329,7 +357,7 @@ public class K_Controller {
 		
 		return "admin/sub/K_updateDepart";
 	}
-	
+	@Transactional
 	@RequestMapping("admin/K_updateDepartName")
 	public String K_updateDepartName(HttpServletRequest req, Model model) {
 		logger.info("URL : K_updateDepartName");
@@ -338,7 +366,7 @@ public class K_Controller {
 		
 		return "admin/sub/K_updateDepartName";
 	}
-	
+	@Transactional
 	@RequestMapping("admin/K_deleteDepartName")
 	public String K_deleteDepartName(HttpServletRequest req, Model model) {
 		logger.info("URL : K_deleteDepartName");
@@ -347,7 +375,7 @@ public class K_Controller {
 		
 		return "admin/sub/K_deleteDepartName";
 	}
-	
+	@Transactional
 	@RequestMapping("admin/K_updateDepartLeader")
 	public String K_updateDepartLeader(HttpServletRequest req, Model model) {
 		logger.info("URL : K_updateDepartLeader");
@@ -356,7 +384,7 @@ public class K_Controller {
 		
 		return "admin/sub/K_updateDepartLeader";
 	}
-	
+	@Transactional
 	@RequestMapping("admin/K_departLeader_pro")
 	public String K_departLeader_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : K_departLeader_pro");
@@ -367,6 +395,7 @@ public class K_Controller {
 	}
 	
 	//직급관리
+	@Transactional
 	@RequestMapping("admin/K_manageRank")
 	public String K_manageRank(HttpServletRequest req, Model model) {
 		logger.info("URL : K_manageRank");
@@ -377,6 +406,7 @@ public class K_Controller {
 	}
 	
 	// 직급삭제
+	@Transactional
 	@RequestMapping("admin/K_deleteRank")
 	public String K_deleteRank(HttpServletRequest req, Model model) {
 		logger.info("URL : K_deleteRank");
@@ -387,6 +417,7 @@ public class K_Controller {
 	}
 	
 	// 직급추가
+	@Transactional
 	@RequestMapping("admin/K_addRank")
 	public String K_addRank(HttpServletRequest req, Model model) {
 		logger.info("URL : K_addRank");
@@ -397,6 +428,7 @@ public class K_Controller {
 	}
 	
 	//직급 등록
+	@Transactional
 	@RequestMapping("admin/K_manageRank_pro")
 	public String K_manageRank_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : K_manageRank_pro");
@@ -407,6 +439,7 @@ public class K_Controller {
 	}
 	
 	//우리회사 관리자
+	@Transactional
 	@RequestMapping("admin/K_ourManager")
 	public String K_ourManager(HttpServletRequest req, Model model) {
 		logger.info("URL : K_ourManager");
@@ -417,6 +450,7 @@ public class K_Controller {
 	}
 	
 	//사용자 -> 관리자
+	@Transactional
 	@RequestMapping("admin/K_insertManager")
 	public String K_insertManager(HttpServletRequest req, Model model) {
 		logger.info("URL : K_insertManager");
@@ -427,6 +461,7 @@ public class K_Controller {
 	}
 	
 	//관리자 ->사용자
+	@Transactional
 	@RequestMapping("admin/K_deleteManager")
 	public String K_deleteManager(HttpServletRequest req, Model model) {
 		logger.info("URL : K_deleteManager");
@@ -437,6 +472,7 @@ public class K_Controller {
 	}
 	
 	//휴무 승인/취소
+	@Transactional
 	@RequestMapping("admin/K_appHoliday")
 	public String K_appHoliday(HttpServletRequest req, Model model) {
 		logger.info("URL : K_appHoliday");
@@ -447,6 +483,7 @@ public class K_Controller {
 	}
 	
 	//휴무 승인취소 처리
+	@Transactional
 	@RequestMapping("admin/K_appHoliday_pro")
 	public String K_appHoliday_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : K_appHoliday_pro");
@@ -457,6 +494,7 @@ public class K_Controller {
 	}
 	
 	//시스템관리자 - 회사목록
+	@Transactional
 	@RequestMapping("master/companiesList")
 	public String companiesList(HttpServletRequest req, Model model) {
 		logger.info("URL : companiesList");
@@ -467,6 +505,7 @@ public class K_Controller {
 	}
 	
 	//시스템관리자 - 회사목록 - 상세인원 확인
+	@Transactional
 	@RequestMapping("master/adminList")
 	public String adminList(HttpServletRequest req, Model model) {
 		logger.info("URL : adminList");
@@ -477,6 +516,7 @@ public class K_Controller {
 	}
 	
 	//시스템관리자 - 회사 가입 승인
+	@Transactional
 	@RequestMapping("master/appCompanies")
 	public String appCompanies(HttpServletRequest req, Model model) {
 		logger.info("URL : appCompanies");
@@ -487,6 +527,7 @@ public class K_Controller {
 	}
 	
 	//시스템관리자 - 회사 가입승인취소 처리
+	@Transactional
 	@RequestMapping("master/appCompanies_pro")
 	public String appCompanies_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : appCompanies_pro");
@@ -497,6 +538,7 @@ public class K_Controller {
 	}
 	
 	//공지사항
+	@Transactional
 	@RequestMapping("pages/K_noticeBoard")
 	public String K_noticeBoard(HttpServletRequest req, Model model) {
 		logger.info("URL : K_noticeBoard");
@@ -507,6 +549,7 @@ public class K_Controller {
 	}
 	
 	//공지사항 글쓰기
+	@Transactional
 	@RequestMapping("master/K_noticeWrite")
 	public String K_noticeWrite(HttpServletRequest req, Model model) {
 		logger.info("URL : K_noticeWrite");
@@ -515,6 +558,7 @@ public class K_Controller {
 	}
 	
 	//공지사항 글쓰기 처리
+	@Transactional
 	@RequestMapping("master/K_noticeWritePro")
 	public String K_noticeWritePro(HttpServletRequest req, Model model) {
 		logger.info("URL : K_noticeWritePro");
@@ -525,6 +569,7 @@ public class K_Controller {
 	}
 	
 	//공지사항 상세 페이지
+	@Transactional
 	@RequestMapping("pages/K_noticeContent")
 	public String K_noticeContent(HttpServletRequest req, Model model) {
 		logger.info("URL : K_noticeContent");
@@ -535,6 +580,7 @@ public class K_Controller {
 	}
 	
 	//공지사항 수정
+	@Transactional
 	@RequestMapping("master/K_updateNotice")
 	public String K_updateNotice(HttpServletRequest req, Model model) {
 		logger.info("URL : K_updateNotice");
@@ -545,6 +591,7 @@ public class K_Controller {
 	}
 	
 	//공지사항 수정 처리
+	@Transactional
 	@RequestMapping("master/K_updateNotice_pro")
 	public String K_updateNotice_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : K_updateNotice_pro");
@@ -555,6 +602,7 @@ public class K_Controller {
 	}
 	
 	//공지사항 수정
+	@Transactional
 	@RequestMapping("master/K_deleteNotice")
 	public String K_deleteNotice(HttpServletRequest req, Model model) {
 		logger.info("URL : K_deleteNotice");
@@ -565,6 +613,7 @@ public class K_Controller {
 	}
 	
 	//메시지 보내는 창
+	@Transactional
 	@RequestMapping("master/K_sendingMessage")
 	public String K_sendingMessage(HttpServletRequest req, Model model) {
 		logger.info("URL : K_sendingMessage");
@@ -575,6 +624,7 @@ public class K_Controller {
 	}
 	
 	//메시지 보내는 창
+	@Transactional
 	@RequestMapping("master/K_sendMessage_pro")
 	public String K_sendMessage_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : K_sendMessage_pro");
@@ -585,6 +635,7 @@ public class K_Controller {
 	}
 	
 	//아이디/비밀번호 찾기
+	@Transactional
 	@RequestMapping("findAccount")
 	public String findAccount(HttpServletRequest req, Model model) {
 		logger.info("URL : findAccount");
@@ -593,6 +644,7 @@ public class K_Controller {
 	}
 	
 	//아아디 찾기
+	@Transactional
 	@RequestMapping("findId")
 	public String findId(HttpServletRequest req, Model model) {
 		logger.info("URL : findId");
@@ -603,6 +655,7 @@ public class K_Controller {
 	}
 	
 	//비밀번호 찾기
+	@Transactional
 	@RequestMapping("findPw")
 	public String findPw(HttpServletRequest req, Model model) {
 		logger.info("URL : findPw");
@@ -613,6 +666,7 @@ public class K_Controller {
 	}
 	
 	//인증 이메일 보내기
+	@Transactional
 	@RequestMapping("sendPwCond")
 	public String sendPwCond(HttpServletRequest req, Model model) {
 		logger.info("URL : sendPwCond");
@@ -623,6 +677,7 @@ public class K_Controller {
 	}
 	
 	//입력코드 확인
+	@Transactional
 	@RequestMapping("createNewPw")
 	public String createNewPw(HttpServletRequest req, Model model) {
 		logger.info("URL : createNewPw");
@@ -633,6 +688,7 @@ public class K_Controller {
 	}
 	
 	//새로운 비밀번호 등록
+	@Transactional
 	@RequestMapping("newPwd_pro")
 	public String newPwd_pro(HttpServletRequest req, Model model) {
 		logger.info("URL : newPwd_pro");

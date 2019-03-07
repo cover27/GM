@@ -154,7 +154,7 @@ function allsearch() {
 					            <th>성명</th>
 					            <th>직급</th>
 					            <th>입사일</th>
-					            <th>연차</th>
+					            <th>입사년차</th>
 					            <th>연차 설정횟수</th>
 					            <th>사용연차</th>
 					            <th>잔여연차</th>

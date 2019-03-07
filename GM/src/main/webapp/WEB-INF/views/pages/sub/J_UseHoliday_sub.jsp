@@ -199,11 +199,13 @@ function cancelapplication(num) {
 						<col width="158px" />
 						<col width="157px" />
 						<col width="157px" />
-						<col width="158px" />
-						<col width="158px" />
+						<col width="80px" />
+						<col width="80px" />
 						<col width="157px" />
 						<col width="158px" />
-						<col width="158px" />
+						<col width="80px" />
+						<col width="120px" />
+						<col width="120px" />
 						<col width="*" />
 					</colgroup>
 					<thead>
@@ -231,17 +233,19 @@ function cancelapplication(num) {
 						<col width="158px" />
 						<col width="157px" />
 						<col width="157px" />
-						<col width="158px" />
-						<col width="158px" />
+						<col width="80px" />
+						<col width="80px" />
 						<col width="157px" />
 						<col width="158px" />
-						<col width="158px" />
+						<col width="80px" />
+						<col width="120px" />
+						<col width="120px" />
 						<col width="*" />
 					</colgroup>
 					<tbody>
 						<c:if test="${cnt2 == 0}">
 							<tr>
-								<td colspan="10" style="height:247px;">*데이터 정보가 없습니다.</td>
+								<td colspan="12" style="height:247px;">*데이터 정보가 없습니다.</td>
 							</tr>
 						</c:if>
 						<c:if test="${cnt2 > 0}">

@@ -9,9 +9,12 @@
 	<h1></h1>
 	<div class="user_info">
 		<ul>
-			<li><a href="#"> <img src="${path}images/profile_default.png">
-			</a></li>
-			<li><a href="#"><%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %></a></li>
+			<li>
+				<a href="<c:url value='/pages/J_MyInfo'/>"><img src="${path}images/profile_default.png"></a>
+			</li>
+			<li>
+				<a href="<c:url value='/pages/J_MyInfo'/>"><%=((MemberVO)request.getSession().getAttribute("loginInfo")).getName() %></a>
+			</li>
 		</ul>
 	</div>
 	<div class="admin">
@@ -38,11 +41,12 @@
 			<ul>
 				<c:forEach var="svo2" items="${svo}">
 					<li>
-						<ul class="pl50">
-							<li class="text-left"><i class="far fa-calendar-check mr5"></i>${svo2.begin}</li>
-							<li class="text-left pl10">${svo2.scheduleKind}</li>
-							<li class="text-left pl10" style="border-bottom: 1px solid #eee;">${svo2.subject}</li>
-						</ul>
+						<div class="pl10">
+							<ul>
+								<li class="text-left"><i class="far fa-calendar-check mr5"></i>${svo2.begin}</li>
+								<li class="text-left"><i class="far fa-file-alt mr5"></i>[${svo2.scheduleKind}] ${svo2.subject}</li>
+							</ul>
+						</div>
 					</li>
 				</c:forEach>
 			</ul>
@@ -61,7 +65,15 @@
 			<c:if test="${addressList != null }">
 				<ul>
 					<c:forEach var="dto" items="${addressList }">
-						<li><span onclick="window.location='<c:url value='/pages/S_orgSendMessageForm?id=${dto.id }'/>'">${dto.g_name } ${dto.name } ${dto.r_name }</span></li>
+						<li>
+							<span>
+								<i class="far fa-address-card"></i>
+								<span>[${dto.g_name }]</span>
+								<span class="ml5"><b>${dto.name }</b></span>
+								<span class="ml5"><i>${dto.r_name }</i></span>
+								<span class="btnset fright"><button onclick="window.location='<c:url value='/pages/S_orgSendMessageForm?id=${dto.id }'/>'"><i class="fab fa-telegram-plane"></i><span class="ml5">쪽지</span></button></span>
+							</span>
+						</li>
 					</c:forEach>
 				</ul>
 			</c:if>

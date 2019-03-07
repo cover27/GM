@@ -1332,7 +1332,7 @@
 		and m.del = 0
 	</select>
 	<select id="vacationapplicationList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
-		select v.num, v.id, v.types, v.begin, v.end, v.day, v.content, v.state,
+		select v.num, v.id, v.types, v.begin, v.end, v.day, v.content, v.state, m.name,
 		v.applicationdate, v.fullhalfday
 		from member m, vacation v
 		where m.id =
@@ -1352,7 +1352,7 @@
 		and m.del = 0
 	</select>
 	<select id="vacationapplicationList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mrvdgcVO">
-		select v.num,m.name, v.id, v.types, v.begin, v.end, v.day, v.content, v.state,
+		select v.num,m.name , v.id, v.types, v.begin, v.end, v.day, v.content, v.state,
 		v.applicationdate, v.fullhalfday
 		from member m, vacation v
 		where m.id = v.id
@@ -1559,9 +1559,22 @@
 
 <!-- ===================내정보 가져오시========================= -->
 <!-- 내정보 거져오기 -->
-<select id="myinfo" parameterType="java.util.Map" resultType="com.spring.gm.vo.MemberVO">
-	select * from member where id = #{id} and company = #{company} and del = 0
+<select id="myinfo" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+	select m.*, g.g_name as j_name 
+	from member m, groups g
+	where m.depart = g.groupid
+	and m.id = #{id} and m.company = #{company} 
+	and m.depart != #{company} and m.del = 0
 </select>
+<select id="myinfo2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_mgcVO2">
+	select m.*, c.c_name as j_name 
+	from member m, companies c
+	where m.company = c.company
+	and m.id = #{id} and m.company = #{company} 
+	and m.depart = #{company} and m.del = 0
+</select>
+
+
 <!-- 회훤 탈퇴 처리 del = 0으로 -->
 <update id="J_Withdrawal" parameterType="java.util.Map">
 	update member set del = 1 where id=#{id} and company=#{company}
@@ -1579,7 +1592,10 @@
 	tel_hm = #{tel_hm}, address = #{address}, eng_name = #{eng_name}, nation = #{nation}, eng_address = #{eng_address}
 	where id = #{id} and company = #{company}
 </update>
-
+<!-- users에내용 업데이트 하기 -->
+<update id="usersUpdate" parameterType="java.util.Map">
+	update users set password = #{pwd} where username=#{id}
+</update>
 
 
 

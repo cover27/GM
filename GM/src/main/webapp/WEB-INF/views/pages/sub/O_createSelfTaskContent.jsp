@@ -22,6 +22,12 @@
     	var firstD = $('#now_date2').val();
     	$('#now_date').attr("max", firstD);
     }
+    function checkName(){
+    	if(!document.searchform123.b_name.value){
+    		alert('담당자를 지정해야 합니다.');
+    		return false;
+    	}
+    }
 </script>
 
 <section>
@@ -31,7 +37,7 @@
 		</div>
 		<div class="content">
 		    <div class="content">
-		        <form action="<c:url value='/pages/W_createSelfTaskPro'/>" method="post" name="searchform123">
+		        <form action="<c:url value='/pages/W_createSelfTaskPro'/>" method="post" name="searchform123" onsubmit="return checkName();">
 			        <input type="hidden" name="todonum" value="${todonum}">
 			        <input type="hidden" name="groupId" value="${groupId}">
 			        <input type="hidden" name="state" value="${state}">

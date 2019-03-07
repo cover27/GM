@@ -182,7 +182,15 @@
 								<c:if test="${dtos.perceptiontimes ne '00:00'}">
 									<td style="color: #d3292c;font-weight: bold;">${dtos.perceptiontimes}</td>
 								</c:if>
-								<td style="color: #d3292c;font-weight: bold;">${dtos.departuretimes}</td>
+								<c:if test="${dtos.perceptiontimes eq '00:00'}">
+									<td>${dtos.perceptiontimes}</td>
+								</c:if>
+								<c:if test="${dtos.departuretimes ne '00:00'}">
+									<td style="color: #d3292c;font-weight: bold;">${dtos.departuretimes}</td>
+								</c:if>
+								<c:if test="${dtos.departuretimes eq '00:00'}">
+									<td>${dtos.departuretimes}</td>
+								</c:if>
 							</c:if>
 							<c:if test="${dtos.result == 3}">
 								<td>${id}</td>

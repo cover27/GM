@@ -2779,7 +2779,7 @@ public class J_ServiceImpl implements J_Service {
 		}
 		
 		int selectCnt2 = dao.vacationapplicationCnt(map);
-		System.out.println("selectCnt : " + selectCnt);
+		System.out.println("selectCnt2 : " + selectCnt2);
 
 		if (selectCnt2 > 0) {
 			List<join_mrvdgcVO> dtos2 = dao.vacationapplicationList(map);
@@ -2814,7 +2814,7 @@ public class J_ServiceImpl implements J_Service {
 		}
 		
 		int selectCnt2 = dao.vacationapplicationCnt2(map);
-		System.out.println("selectCnt : " + selectCnt);
+		System.out.println("selectCnt2 : " + selectCnt2);
 
 		if (selectCnt2 > 0) {
 			List<join_mrvdgcVO> dtos2 = dao.vacationapplicationList2(map);
@@ -2841,8 +2841,11 @@ public class J_ServiceImpl implements J_Service {
 		map.put("id", id);
 		map.put("company", company);
 		
-		List<MemberVO> dtos = dao.myinfo(map);
-		
+		List<join_mgcVO2> dtos = new ArrayList<join_mgcVO2>();
+		List<join_mgcVO2> dtos2 = dao.myinfo(map);
+		List<join_mgcVO2> dtos3 = dao.myinfo2(map);
+		dtos.addAll(dtos2);
+		dtos.addAll(dtos3);
 		model.addAttribute("dtos",dtos);
 		System.out.println("dtos : " + dtos.toString());
 		//회원수정 페이지로 넘기는 값.
@@ -2917,30 +2920,22 @@ public class J_ServiceImpl implements J_Service {
 		int marry = Integer.parseInt(req.getParameter("frgn"));
 		System.out.println("marry : " + marry);
 		String wdday = req.getParameter("wdday");
-		/*if(wdday.length() == 0) {
-			wdday = "0000-00-00";
-		}*/
+		
 		System.out.println("wdday : " + wdday);
 		String tel = req.getParameter("hp1") + req.getParameter("hp2") + req.getParameter("hp3");
 		System.out.println("tel : " + tel);
 		String tel_hm = req.getParameter("hm1") + req.getParameter("hm2") + req.getParameter("hm3");
 		System.out.println("tel_hm : " + tel_hm);
 		String address = req.getParameter("address");
-		/*if(address == null) {
-			address = "";
-		}*/
+		
 		System.out.println("address : " + address);
 		String eng_name = req.getParameter("eng_name");
-		/*if(eng_name == null) {
-			eng_name = "";
-		}*/
+		
 		System.out.println("eng_name : " + eng_name);
 		String nation = req.getParameter("nation");
 		System.out.println("nation : " + nation);
 		String eng_address = req.getParameter("eng_address");
-		/*if(eng_address == null) {
-			eng_address = "";
-		}*/
+		
 		System.out.println("eng_address : " + eng_address);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -2966,8 +2961,15 @@ public class J_ServiceImpl implements J_Service {
 		int updateCnt = dao.myinfoModifyUpdate(map);
 		System.out.println("updateCnt : " + updateCnt);
 		if(updateCnt > 0) {
-			List<MemberVO> dtos = dao.myinfo(map);
-			model.addAttribute("dtos", dtos);
+			int updateCnt2 = dao.usersUpdate(map);
+			System.out.println("updateCnt2 : " + updateCnt2);
+			List<join_mgcVO2> dtos = new ArrayList<join_mgcVO2>();
+			List<join_mgcVO2> dtos2 = dao.myinfo(map);
+			List<join_mgcVO2> dtos3 = dao.myinfo2(map);
+			dtos.addAll(dtos2);
+			dtos.addAll(dtos3);
+			model.addAttribute("dtos",dtos);
+			System.out.println("dtos : " + dtos.toString());
 		}
 	}
 	

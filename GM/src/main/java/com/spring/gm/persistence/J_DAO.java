@@ -319,15 +319,16 @@ public interface J_DAO {
 	
 	//=============================================내정보=-==================================
 	//내정보 가져오기
-	public ArrayList<MemberVO> myinfo(Map<String, Object> map);
+	public ArrayList<join_mgcVO2> myinfo(Map<String, Object> map);
+	public ArrayList<join_mgcVO2> myinfo2(Map<String, Object> map);
 	//회원 탈퇴
 	public int J_Withdrawal(Map<String, Object> map);
 	//회원 탈퇴하면 로그인 안되게
 	public int updateUsers(Map<String, Object> map);
 	//수정내용 업데이트 하기
 	public int myinfoModifyUpdate(Map<String, Object> map);
-	
-	
+	//users에내용 업데이트 하기
+	public int usersUpdate(Map<String, Object> map);
 	
 	
 	
