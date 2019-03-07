@@ -258,21 +258,21 @@ public class O_DAOImpl implements O_DAO {
 	
 	//TO-DO - 나의 할일 완료
 	@Override
-	public int selectTodoPro(int num) {
+	public int selectTodoPro(Map<String, Object> map) {
 		dao = sqlSession.getMapper(O_DAO.class);
-		return dao.selectTodoPro(num);
+		return dao.selectTodoPro(map);
 	}
 		
 	@Override
-	public int updateTodoPro(int num) {
+	public int updateTodoPro(Map<String, Object> map) {
 		dao = sqlSession.getMapper(O_DAO.class);
-		return dao.updateTodoPro(num);
+		return dao.updateTodoPro(map);
 	}
 	
 	@Override
-	public int unUpdateTodoPro(int num) {
+	public int unUpdateTodoPro(Map<String, Object> map) {
 		dao = sqlSession.getMapper(O_DAO.class);
-		return dao.unUpdateTodoPro(num);
+		return dao.unUpdateTodoPro(map);
 	}
 
 }
