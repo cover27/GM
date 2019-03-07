@@ -530,6 +530,7 @@ body {
 	position: relative;
     top: 18px;
     font-weight: bold;
+    color: #555;
 }
 
 .selectCreateAccount .newCompany {
