@@ -706,28 +706,28 @@
 		select count(*) as cnt
 		from attended a, member m
 		where m.id = a.id
-		and a.overtime > 0 and a.nighttime = 0
+		and a.overtime > 0 and a.nighttime = 0 and m.company = #{company}
 		and to_char(a.day,'yyyymm') = #{date} and m.del = 0
 	</select>
 	<select id="showONtimeList" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
 		select a.num,m.id, m.name, a.overtime, a.state,a.day
 		from attended a, member m
 		where m.id = a.id
-		and a.overtime >0 and a.nighttime = 0
+		and a.overtime >0 and a.nighttime = 0 and m.company = #{company}
 		and to_char(a.day,'yyyymm') = #{date} and m.del = 0
 	</select>
 	<select id="showONtimeCnt2" parameterType="java.util.Map" resultType="int">
 		select count(*) as cnt
 		from attended a, member m
 		where m.id = a.id
-		and a.nighttime > 0
+		and a.nighttime > 0 and m.company = #{company}
 		and to_char(a.day,'yyyymm') = #{date} and m.del = 0
 	</select>
 	<select id="showONtimeList2" parameterType="java.util.Map" resultType="com.spring.gm.vo.join_margcVO">
 		select a.num,m.id, m.name, a.overtime, a.nighttime, a.state,a.day
 		from attended a, member m
 		where m.id = a.id
-		and a.nighttime >0
+		and a.nighttime >0 and m.company = #{company}
 		and to_char(a.day,'yyyymm') = #{date}  and m.del = 0
 	</select>
 	<!-- 야간,연장 근무 시간 가져옿기 -->
@@ -751,13 +751,19 @@
 	<!-- 상여 미지급 목록 -->
 	<select id="bonusNoneCnt2" parameterType="java.util.Map"
 		resultType="int">
-		select count(*) as cnt from bonus_cut where id= #{id} and
-		to_char(day,'yyyymm') = #{months} and state = '지급'
+		select count(*) as cnt 
+		from member m, bonus_cut b
+		where m.id = b.id
+		and m.id= #{id} and m.company = #{company}  
+		and to_char(b.day,'yyyymm') = #{months} and b.state = '지급'  
 	</select>
 	<select id="bonusNoneCnt" parameterType="java.util.Map"
 		resultType="int">
-		select count(*) as cnt from bonus_cut where id= #{id} and
-		to_char(day,'yyyymm') = #{months} and state = '미지급'
+		select count(*) as cnt 
+		from member m, bonus_cut b
+		where m.id = b.id
+		and m.id= #{id} and m.company = #{company}
+		and to_char(b.day,'yyyymm') = #{months} and b.state = '미지급' 
 	</select>
 	<select id="bonusNoneList" parameterType="java.util.Map"
 		resultType="com.spring.gm.vo.join_mgsbVO">
