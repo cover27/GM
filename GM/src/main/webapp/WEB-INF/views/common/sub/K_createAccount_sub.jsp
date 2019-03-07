@@ -14,7 +14,7 @@ function confirmId(){
 		return false;
 	}
 	
-	$("#confirmId").fadeIn(1500);
+	$("#confirmId").fadeIn(300);
 	
 	var getId = document.inputform.id.value;
 	console.log(getId);

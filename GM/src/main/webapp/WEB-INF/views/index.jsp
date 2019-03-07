@@ -9,7 +9,7 @@
 	
 	<link rel="stylesheet" href="${path}css/reset.css" /> <!-- CSS reset -->
 	<link rel="stylesheet" href="${path}css/index.css" /> <!-- Resource style -->
-	<script src="js/modernizr.js"></script> <!-- Modernizr -->
+	<script src="${path}js/modernizr.js"></script> <!-- Modernizr -->
   	
 	<title>${title}</title>
 	<style>
@@ -57,7 +57,7 @@
 <section class="cd-intro">
 	<div class="cd-intro-content mask">
 		<img src="${path}images/main_logo.png" id="main_logo" style="position: relative; top: -30px;">
-		<h1 data-content="Group Ware Maker"><span>Group Ware Maker</span></h1>
+		<h1 data-content="Design Your Company"><span>Design Your Company</span></h1>
 		<div class="action-wrapper">
 			<p>
 				<a href="login" class="cd-btn main-action">서비스 이용하기</a>

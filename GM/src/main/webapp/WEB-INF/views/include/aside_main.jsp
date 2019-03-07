@@ -41,7 +41,7 @@
 			<ul>
 				<c:forEach var="svo2" items="${svo}">
 					<li>
-						<div class="pl10">
+						<div class="pl20">
 							<ul>
 								<li class="text-left"><i class="far fa-calendar-check mr5"></i>${svo2.begin}</li>
 								<li class="text-left"><i class="far fa-file-alt mr5"></i>[${svo2.scheduleKind}] ${svo2.subject}</li>
