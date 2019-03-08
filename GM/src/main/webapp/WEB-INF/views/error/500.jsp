@@ -98,7 +98,7 @@
 				<img src="${path}images/main_logo.png" id="main_logo">
 			</a>
 			<h2>
-				server <span style="font-size: 52px; color: #555;">500</span> error
+				server <span style="font-size: 52px; color: #d3292c;">500</span> error
 				
 			</h2>
 		</div>

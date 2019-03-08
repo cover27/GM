@@ -98,7 +98,7 @@
 				<img src="${path}images/main_logo.png" id="main_logo">
 			</a>
 			<h2>
-				error <span style="font-size: 52px; color: #555;">404</span> not found
+				error <span style="font-size: 52px; color: #d3292c;">404</span> not found
 				
 			</h2>
 		</div>

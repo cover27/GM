@@ -98,7 +98,7 @@
 				<img src="${path}images/main_logo.png" id="main_logo">
 			</a>
 			<h2>
-				error <span style="font-size: 52px; color: #555;">403</span> Forbidden
+				error <span style="font-size: 52px; color: #d3292c;">403</span> Forbidden
 				
 			</h2>
 		</div>
