@@ -77,5 +77,10 @@
 		<error-code>403</error-code>
 		<location>/WEB-INF/views/error/403.jsp</location>
 	</error-page>
+	
+	<!-- 세션 시간 -->
+	<session-config>
+        <session-timeout>120</session-timeout>
+    </session-config>
 
 </web-app>
