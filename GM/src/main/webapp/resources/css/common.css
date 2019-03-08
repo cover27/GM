@@ -553,7 +553,12 @@ img {
     font-weight: bold !important;
 }
 
- .btnset input[type="submit"], .btnset input[type="button"], .btnset input[type="reset"], .btnset button {
+.btnset input[type="submit"] {
+	color: #fff !important;
+	background: #d3292c !important;
+}
+
+ .btnset input[type="button"], .btnset input[type="reset"], .btnset button {
 	color: #fff !important;
 	background: #555 !important;
 }

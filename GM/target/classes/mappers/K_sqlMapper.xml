@@ -521,6 +521,6 @@
 		    and m.rank = r.rank
 		    and a.strid = #{strId}
 		    and g.groupid(+) = m.depart
-		    and m.del = 0
+		    and a.del = 0
 	</select>
 </mapper>

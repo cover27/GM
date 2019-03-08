@@ -169,8 +169,8 @@ function checkpw(){
                             </span>
                         </li>
                         <li>
-                            <span>*주소</span>
-                            <input type="text" name="address" value="${dtos.address}">
+                            <span style="width: 377px; border-radius: 6px 6px 0 0;">*주소</span>
+                            <input type="text" name="address" value="${dtos.address}" style="border-top: 1px solid #d4d4d4; width: 376px !important; padding-left:18px!important; position: relative; left: 5px; border-radius: 0 0 6px 6px; width: 377px;">
                         </li>
             		</ul>
             	</c:forEach>
@@ -193,19 +193,19 @@ function checkpw(){
                         <li>
 	                        <span>국적</span>
 	                        <c:if test="${dtos.nation == null}">
-                            	<input type="text" name="nation" placeholder="없음" required style="position: relative; top: 1px; left: 1px;">
+                            	<input type="text" name="nation" placeholder="없음" required style="position: relative; top: 1px; left: 2px;">
                             </c:if>
                             <c:if test="${dtos.nation != null}">
-                            	<input type="text" name="nation" value="${dtos.nation}" style="position: relative; top: 1px; left: 1px;">
+                            	<input type="text" name="nation" value="${dtos.nation}" style="position: relative; top: 1px; left: 2px;">
                             </c:if>
                         </li>
                         <li id="wedding">
                             <span>결혼기념일</span>
                             <c:if test="${dtos.wdday == null}">
-                            	<input type="date" name="wdday" style="position: relative; left: 1px;">
+                            	<input type="date" name="wdday" style="position: relative; left: 2px;">
                             </c:if>
                             <c:if test="${dtos.wdday != null}">
-                            	<input type="date" name="wdday" value="${dtos.wdday}" style="position: relative; left: 1px;">
+                            	<input type="date" name="wdday" value="${dtos.wdday}" style="position: relative; left: 2px;">
                             </c:if>
                         </li>
                         <li class="hp">

@@ -142,6 +142,9 @@ function checkSubject(){
 							</tr>
 						</table>
 					</div>
+					<div class="payment_line">
+						<button name="payLine" onclick="addApprLine();"><i class="fas fa-file-signature mr5"></i>결재선 지정</button>
+					</div>
 					<%
 						request.getSession().removeAttribute("payLine");
 					%>
@@ -209,7 +212,6 @@ function checkSubject(){
 					</div>
 		
 					<div class="btnset mt30 mb50">
-					    <input type="button" name="payLine" value="결재선" onclick="addApprLine();">
 					    <input type="button" name="paySubmit" value="결재요청" onclick="checkSubject();">
 					    <input type="button" name="cancel" value="취소" onclick="cancelPay();">
 					</div>
