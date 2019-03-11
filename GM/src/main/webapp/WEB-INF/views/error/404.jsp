@@ -94,7 +94,7 @@
 <body>
 	<div class="findAccount_wrap">
 		<div style="width: 320px; margin: 0 auto;">
-			<a href="index">
+			<a href="<c:url value="/index" />">
 				<img src="${path}images/main_logo.png" id="main_logo">
 			</a>
 			<h2>
@@ -122,7 +122,7 @@
 				</ul>
 				<div class="form_area" style="top: 270px;">
 					<button onclick="history.back();"><i class="fas fa-backward mr5"></i>이전 페이지</button>
-					<button onclick="window.location='index';" style="margin-left: 5px;"><i class="fas fa-home mr5"></i>첫 페이지</button>
+					<button onclick="window.location='<c:url value="/index" />';" style="margin-left: 5px;"><i class="fas fa-home mr5"></i>첫 페이지</button>
 				</div>
 			</div>
 		</div>
