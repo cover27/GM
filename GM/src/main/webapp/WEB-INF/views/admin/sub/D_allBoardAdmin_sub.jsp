@@ -34,7 +34,7 @@ function board_move(){
 <section>
 	<article>
 		<div class="content_header">
-			<h2>게시물 전체 목록</h2>
+			<h2>게시물 관리</h2>
 		</div>		
 		<div class="content">
 			<h3 class="mb10">전체<span class="ml10 cnt">${cnt}</span></h3>
@@ -126,7 +126,22 @@ function board_move(){
 												<span class="replycnt">${dto.re_num}</span>
 											</c:if>
 										</td>
-										<td>${dto.writer}</td>
+										<td>
+											<c:forEach var="dtos" items="${b_dtos}">
+												<c:if test="${dto.num == dtos.num}">
+												<c:if test="${dtos.anon == 0}">														
+													${dto.writer}
+												</c:if>
+												</c:if>
+											</c:forEach>
+											<c:forEach var="dtos" items="${b_dtos}">
+												<c:if test="${dto.num == dtos.num}">
+												<c:if test="${dtos.anon != 0}">			
+													************
+												</c:if>
+												</c:if>
+											</c:forEach>
+										</td>
 										<td><fmt:formatDate type="both" pattern="yyyy-MM-dd HH:mm" value="${dto.reg_date}" /></td>
 										<td>${dto.readcnt}</td>
 									</tr>

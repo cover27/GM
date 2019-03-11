@@ -927,7 +927,23 @@ public class O_ServiceImpl implements O_Service{
 		int startPage = 0;		//시작 페이지
 		int endPage = 0;		//마지막 페이지
 		
-		//4단계. 다형성 적용, 싱글톤 방식으로 DAO 객체 생성
+		pageNum = req.getParameter("pageNum");
+		
+		if(pageNum==null) {
+			pageNum = "1";	//첫페이지를 1페이지로 지정
+		}
+		//글 30건 기준
+		currentPage = Integer.parseInt(pageNum);	//현재 페이지 : 1
+		System.out.println("currentPage : " + currentPage);
+		//현재 페이지 시작 글번호(페이지별) --1
+		start = (currentPage - 1) * pageSize + 1;	//1 = (1 - 1) * 5 + 1;
+		
+		//현재 페이지 마지막 글번호 (페이지별)
+		end = start + pageSize -1;	//5 = 1 + 5 - 1;
+		
+		System.out.println("start : " + start);
+		System.out.println("end : " + end);		
+		
 				
 		//5-1단계. 글 갯수 구하기
 		int search = 0;
@@ -954,39 +970,6 @@ public class O_ServiceImpl implements O_Service{
 
 		System.out.println("cnt : " + cnt); //먼저 테이블에 30건을 insert함
 		
-		pageNum = req.getParameter("pageNum");
-		
-		if(pageNum==null) {
-			pageNum = "1";	//첫페이지를 1페이지로 지정
-		}
-			
-		//글 30건 기준
-		currentPage = Integer.parseInt(pageNum);	//현재 페이지 : 1
-		System.out.println("currentPage : " + currentPage);
-		
-		//페이지 갯수 6이 나오는 이유 =(30/5) + (0)
-		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);	//페이지 갯수 + 나머지 있으면 1
-		System.out.println("pageCount : " + pageCount);
-		
-		
-		//현재 페이지 시작 글번호(페이지별) --1
-		start = (currentPage - 1) * pageSize + 1;	//1 = (1 - 1) * 5 + 1;
-		
-		//현재 페이지 마지막 글번호 (페이지별)
-		end = start + pageSize -1;	//5 = 1 + 5 - 1;
-		
-		System.out.println("start : " + start);
-		System.out.println("end : " + end);
-		
-		if(end > cnt) end = cnt;
-		
-		//출력용 글번호
-		//30 = 30 - (1 - 1) * 5;
-		number = cnt - (currentPage - 1) * pageSize;	//출력용 글번호
-		
-		System.out.println("number : " + number);
-		System.out.println("pageSize : " + pageSize);
-		
 		if(cnt > 0) {
 			//5-2단계. 게시글 목록 조회
 			
@@ -998,6 +981,21 @@ public class O_ServiceImpl implements O_Service{
 			
 			model.addAttribute("dtos", dtos);	//큰바구니 : 게시글 목록 	cf)작은바구니 : 게시글 1건
 		}
+		
+		//페이지 갯수 6이 나오는 이유 =(30/5) + (0)
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);	//페이지 갯수 + 나머지 있으면 1
+		System.out.println("pageCount : " + pageCount);
+		
+		number = cnt - (currentPage - 1) * pageSize;	//출력용 글번호
+		if(end > cnt) end = cnt;
+		
+		//출력용 글번호
+		//30 = 30 - (1 - 1) * 5;
+		
+		System.out.println("number : " + number);
+		System.out.println("pageSize : " + pageSize);
+		
+		
 			
 		//6단계. request나 session에 처리 결과를 저장(jsp에 전달하기 위함)
 		//시작페이지

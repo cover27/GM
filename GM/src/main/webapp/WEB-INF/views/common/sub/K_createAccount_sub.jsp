@@ -103,7 +103,7 @@ function searchAddress(){
                         </li>
                         <li>
                             <span>*이름</span>
-                            <input type="text" name="name" placeholder="이름을 입력하세요.">
+                            <input type="text" name="name" placeholder="이름을 입력하세요." style="position: relative; top: 1; left: 1;">
                         </li>
                         <li>
                             <span>*회사</span>

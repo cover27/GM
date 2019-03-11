@@ -48,7 +48,7 @@ function cancelapplication(num) {
 <section>
 	<article>
 		<div class="content_header">
-			<h2>월 근태 현황</h2>
+			<h2>휴가 사용현황</h2>
 		</div>
 		<div class="content">
 			<form action="vacationUH" method="post" name="searchform">

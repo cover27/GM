@@ -609,18 +609,25 @@ public class D_ServiceImpl implements D_Service{
 
 	@Override
 	public void boardsDelete(HttpServletRequest req, Model model) {
-		
+		int company = ((MemberVO)req.getSession().getAttribute("loginInfo")).getCompany();
 		int num = Integer.parseInt(req.getParameter("num"));
 		
 		BoardsVO vo = new BoardsVO();
 		vo.setNum(num);
 		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("company", company);
+		map.put("num", num);
 		
+		int deletetoo = 1;
 		int deleteCnt = dao.deleteBoards(vo);
-		int deletetoo = dao.deleteBoardContent(num);
+		if(dao.getUserBoardArticleCnt(map) != 0) {
+			deletetoo = dao.deleteBoardContent(num);
+		}
 		
 		int cnt = (deleteCnt != 0 && deletetoo != 0)?1:0;
 		
+		System.out.println("시엔티값:" + cnt);
 		model.addAttribute("num", num);
 		model.addAttribute("deleteCnt", cnt);
 		

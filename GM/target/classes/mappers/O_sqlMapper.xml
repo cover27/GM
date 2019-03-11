@@ -328,9 +328,10 @@
 </select>
 <select id="adminList" resultType="com.spring.gm.vo.B_ManageVO" parameterType="java.util.Map">
 	<![CDATA[
-		select a.* , rownum from
-		    (select m.name, m.id,b.subject, b.begin, b.end, b.state, b.groupId, b.todonum from
-		        b_manage b, member m where b.id=m.id and b.groupid=#{company}
+		select * from 
+		    (select  m.name, m.id,b.subject, b.begin, b.end, b.state, b.groupId, b.todonum, rownum rNum
+		        from b_manage b, member m
+		        where b.id=m.id and b.groupid=#{company}
 		]]> 
 		<if test="searchUserName != null">
 	    	AND m.name like '%'||#{searchUserName}||'%'
@@ -354,8 +355,8 @@
 	    	]]>
 	    </if>
 	<![CDATA[
-		order by todonum desc ) a
-		where rownum >= #{start} and rownum <= #{end}
+		order by b.todonum desc)
+		where rNum >= #{start} and rNum <= #{end}
 	]]> 
 </select>
 
