@@ -46,6 +46,8 @@ public class O_Controller {
 	@Transactional
 	@RequestMapping("/pages/W_readSubTodoView")
 	public String O_readSubTodoView(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_readSubTodoView");
 		
 		oservice.readOrderList(req, model);
@@ -167,6 +169,8 @@ public class O_Controller {
 	@Transactional
 	@RequestMapping("/pages/W_readOrderView")
 	public String O_readOrderView(HttpServletRequest req, Model model) {
+		int sys_rank = ((MemberVO) req.getSession().getAttribute("loginInfo")).getSys_rank();
+		model.addAttribute("sys_rank",sys_rank);
 		logger.info("URL : O_readOrderView");
 		
 		oservice.readOrderList(req, model);
