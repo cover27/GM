@@ -127,6 +127,7 @@ function page_go(i, num) {
 												<td>${dto.readcnt}</td>
 											</tr>
 										</c:if>
+										<input type="hidden" name="nums" value="${dto.num}">
 									</c:forEach>
 								</c:if>
 								<!-- 게시글이 없으면 -->
