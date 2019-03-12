@@ -1162,8 +1162,9 @@ public class K_ServiceImpl implements K_Service{
 				for(int i=0; i<checks.length; i++) {
 					int company = dao.getCompanyNum(checks[i]);
 					Map<String, Object> map = new HashMap<String, Object>();
-					map.put("num", company);
-					map.put("state", 1);
+					map.put("company", company);
+					System.out.println("company : "+company);
+					map.put("del", 1);
 					dao.handlecompany(map);
 					
 					dao.retireUsers(checks[i]);

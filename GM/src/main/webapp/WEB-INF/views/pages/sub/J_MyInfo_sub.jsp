@@ -32,7 +32,7 @@ function back(){
         <input type="hidden" name="depart">
         <div class="signup_center">
             <div class="signup_box">
-                <h2>회원가입<span>-계정정보-</span></h2>
+                <h2>회원정보<span>-계정정보-</span></h2>
                 <div class="input_area">
                 <c:forEach var="dtos" items="${dtos}">
                     <ul>
@@ -67,7 +67,7 @@ function back(){
                 </div>
             </div>
             <div class="signup_box">
-            	<h2>회원가입<span>-개인정보-</span></h2>
+            	<h2>회원정보<span>-개인정보-</span></h2>
             	<div class="input_area">
             	<c:forEach var="dtos" items="${dtos}">
             		<ul>
@@ -119,7 +119,7 @@ function back(){
             	</div>
             </div>
             <div class="signup_box">
-                <h2>회원가입<span>-추가정보-</span></h2>
+                <h2>회원정보<span>-추가정보-</span></h2>
                 <div class="input_area">
                 <c:forEach var="dtos" items="${dtos}">
                     <ul>

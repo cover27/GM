@@ -13,43 +13,62 @@
   	
 	<title>${title}</title>
 	<style>
-		#main_logo {
+		 {
 		    animation: fadein 2s;
-		    -moz-animation: fadein 2s; /* Firefox */
-		    -webkit-animation: fadein 2s; /* Safari and Chrome */
-		    -o-animation: fadein 2s; /* Opera */
 		}
-		@keyframes fadein {
-		    from {
-		        opacity:0;
-		    }
-		    to {
-		        opacity:1;
-		    }
+		 #main_logo {
+		 	animation-name: fadein;
+		 	animation-delay: 1s !important;
+			animation-duration: 1s !important;
+			animation-fill-mode: both !important;
+			animation-timing-function: ease-in-out !important;
+		 }
+		 
+		 @keyframes fadein { /* Safari and Chrome */
+			    0% {
+			        opacity: 0;
+			        transform: scale(0.7);
+			    }
+			    100% {
+			        opacity: 1;
+			        transform: scale(1);
+			    }
+			}
+		
+		.pulse {
+			animation-name: pulse;
+			animation-delay: 1.8s !important;
+			animation-duration: 3s !important;
+			animation-fill-mode: both !important;
+			animation-timing-function: ease-in-out !important;
+			animation-iteration-count: infinite;
 		}
-		@-moz-keyframes fadein { /* Firefox */
-		    from {
-		        opacity:0;
-		    }
-		    to {
-		        opacity:1;
-		    }
+		
+		@keyframes pulse {
+			0% {
+				transform: scale(1);
+			}
+			50% {
+				transform: scale(1.1);
+			}
+			100% {
+				transform: scale(1);
+			}
 		}
-		@-webkit-keyframes fadein { /* Safari and Chrome */
-		    from {
-		        opacity:0;
-		    }
-		    to {
-		        opacity:1;
-		    }
+		
+		.pop {
+			animation-name: pop;
+			animation-duration: 1s !important;
+			animation-fill-mode: both !important;
+			animation-timing-function: ease-in-out !important;
 		}
-		@-o-keyframes fadein { /* Opera */
-		    from {
-		        opacity:0;
-		    }
-		    to {
-		        opacity: 1;
-		    }
+		@keyframes pop {
+			0% {
+				transform: scale(0.2);
+			}
+			100% {
+				transform: scale(1);
+			}
 		}
 	</style>
 </head>
@@ -57,10 +76,10 @@
 <section class="cd-intro">
 	<div class="cd-intro-content mask">
 		<img src="${path}images/main_logo.png" id="main_logo" style="position: relative; top: -30px;">
-		<h1 data-content="Design Your Company"><span>Design Your Company</span></h1>
+		<h1 data-content="Design Your Company" class="pulse"><span>Design Your Company</span></h1>
 		<div class="action-wrapper">
 			<p>
-				<a href="login" class="cd-btn main-action">서비스 이용하기</a>
+				<a href="login" class="cd-btn main-action pop">서비스 이용하기</a>
 				<!-- <a href="#0" class="cd-btn">Learn More</a> -->
 			</p>
 		</div>
