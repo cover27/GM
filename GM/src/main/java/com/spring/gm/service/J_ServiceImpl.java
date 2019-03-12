@@ -265,7 +265,7 @@ public class J_ServiceImpl implements J_Service {
 	// 개인 급여등록
 	@Override
 	public void J_PayrollRegistrationInsert(HttpServletRequest req, Model model) {
-		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		System.out.println("company :" + company);
 		String id = req.getParameter("id");
 		System.out.println("id :" + id);
@@ -307,7 +307,7 @@ public class J_ServiceImpl implements J_Service {
 	// 미지급 지급으로 처리
 	@Override
 	public void J_PayrollRegistrationchange(HttpServletRequest req, Model model) {
-		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		System.out.println("company :" + company);
 		String r_name = req.getParameter("r_name");
 		System.out.println("r_name :" + r_name);
@@ -339,7 +339,7 @@ public class J_ServiceImpl implements J_Service {
 	// 정보 삭제
 	@Override
 	public void J_PayrollRegistrationListDelete(HttpServletRequest req, Model model) {
-		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		System.out.println("company :" + company);
 		String id = req.getParameter("id");
 		System.out.println("id :" + id);
