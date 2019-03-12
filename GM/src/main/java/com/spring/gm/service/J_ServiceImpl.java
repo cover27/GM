@@ -228,7 +228,7 @@ public class J_ServiceImpl implements J_Service {
 	// 개인 급여등록(이번달 목록 가져오기)
 	@Override
 	public void J_PayrollRegistrationList(HttpServletRequest req, Model model) {
-		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getDepart();
+		int company = ((MemberVO) req.getSession().getAttribute("loginInfo")).getCompany();
 		System.out.println("company :" + company);
 		String id = req.getParameter("id");
 		System.out.println("id :" + id);
