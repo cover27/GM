@@ -109,7 +109,7 @@
 					<c:if test="${cnt > 0}">
 						<c:forEach var="dto" items="${dtos}">
 							<tbody>
-								<tr>
+								<tr style="cursor: pointer;">
 									<td onclick="load('K_getMemberInfo?id=${dto.id}')">${dto.id}</td>
 									<td onclick="load('K_getMemberInfo?id=${dto.id}')">${dto.name}</td>
 									<td onclick="load('K_getMemberInfo?id=${dto.id}')">${dto.r_name}</td>

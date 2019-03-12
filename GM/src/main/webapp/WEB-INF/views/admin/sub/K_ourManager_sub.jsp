@@ -36,10 +36,10 @@
 									<c:if test="${dto.sys_rank == 1}">
 										<tr>
 											<td><c:if test="${dto.id != strId }">
-													<input type="checkbox" name="check1" value="${dto.id}">
+													<input type="checkbox" name="check1" value="${dto.id}" id="${dto.id}">
 												</c:if></td>
-											<td>${dto.name }&nbsp;${dto.rankName }</td>
-											<td>${dto.departName }</td>
+											<td><label for="${dto.id}">${dto.name }&nbsp;${dto.rankName }</label></td>
+											<td><label for="${dto.id}">${dto.departName }</label></td>
 										</tr>
 									</c:if>
 								</c:forEach>
@@ -79,10 +79,10 @@
 									<c:if test="${dto.sys_rank != 1}">
 										<tr>
 											<td>
-												<input type="checkbox" name="check2" value="${dto.id}">
+												<input type="checkbox" name="check2" value="${dto.id}" id="${dto.id}">
 											</td>
-											<td>${dto.name }&nbsp;${dto.rankName }</td>
-											<td>${dto.departName }</td>
+											<td><label for="${dto.id}">${dto.name }&nbsp;${dto.rankName }</label></td>
+											<td><label for="${dto.id}">${dto.departName }</label></td>
 										</tr>
 									</c:if>
 								</c:forEach>
