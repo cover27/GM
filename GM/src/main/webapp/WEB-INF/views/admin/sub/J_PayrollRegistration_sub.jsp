@@ -251,7 +251,7 @@
 					</c:if>
 				</c:if>
 			</div> --%>
-			<div class="subtitle">
+			<div class="subtitle mt20">
 				<h3>이번달 급여 목록</h3>
 			</div>
 			<div id="result" class="salary_info_result">
