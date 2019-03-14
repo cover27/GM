@@ -72,7 +72,7 @@
 						<table>
 							<thead>
 								<tr>
-									<th onclick="load('K_openOrgan?depart=0')" style="cursor: pointer;">${companyName }</th>
+									<th onclick="load('K_openOrgan?depart=0')">${companyName }</th>
 								</tr>
 							</thead>
 						</table>
@@ -82,9 +82,9 @@
 							<tbody>
 								<c:forEach var="depart" items="${groupsList }">
 									<tr>
-										<td onclick="load('K_openOrgan?depart=${depart.groupId}')" style="cursor: pointer; height: 48px; text-align: left; padding: 0 170px;">
-											<input type="radio" name="check" value="${depart.groupId}" style="position: relative; top: 3px;">
-											<span style="margin-left: 5px;">${depart.g_name }</span>
+										<td onclick="load('K_openOrgan?depart=${depart.groupId}')" style="height: 48px; text-align: left; padding: 0 170px;">
+											<input type="radio" name="check" value="${depart.groupId}" id="${depart.groupId}" style="position: relative; top: 3px;">
+											<label for="${depart.groupId}"><span style="margin-left: 5px;">${depart.g_name }</span></label>
 										</td>
 									</tr>
 								</c:forEach>

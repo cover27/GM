@@ -60,12 +60,12 @@
 							<c:if test="${cnt > 0}">
 				                <c:forEach var="dto" items="${retireList}">
 				                    <tr>
-				                        <td><input type="radio" name="check" value="${dto.id}" required></td>
-				                        <td>${dto.id}</td>
-				                        <td>${dto.name}</td>
-				                        <td>${dto.tel}</td>
-				                        <td>${dto.email_in}</td>
-				                        <td>${dto.jumin1}</td>
+				                        <td><input type="radio" name="check" value="${dto.id}" required id="${dto.id}"></td>
+				                        <td><label for="${dto.id}">${dto.id}</label></td>
+				                        <td><label for="${dto.id}">${dto.name}</label></td>
+				                        <td><label for="${dto.id}">${dto.tel}</label></td>
+				                        <td><label for="${dto.id}">${dto.email_in}</label></td>
+				                        <td><label for="${dto.id}">${dto.jumin1}</label></td>
 				                    </tr>
 				                </c:forEach>
 				            </c:if>
